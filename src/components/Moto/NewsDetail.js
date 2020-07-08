@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
@@ -19,8 +19,13 @@ import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import IntlMessages from "util/IntlMessages";
 
-import NewsContext from "../../context/NewsContext";
 import LogBox from "../../components/Moto/LogBox";
+import CommentBox from "../../components/Moto/CommentBox";
+import {
+  NewsDetailLogStore,
+  NewsDetailCommentStore,
+} from "../../context/NewsContext";
+import MemberCard02 from "./MemberCard02";
 
 const NewsItem = ({ newsItem, loading, grid }) => {
   const {
@@ -68,12 +73,6 @@ const NewsItem = ({ newsItem, loading, grid }) => {
 
   // const truncatedDescription = description.substring(0, 120) + "&hellip;";
 
-  useEffect(() => {
-    logBox.loadNewsDetailLog(newsid);
-  }, []);
-
-  const logBox = useContext(NewsContext);
-
   function handleMenuClick(e) {
     message.info("Click on menu item.");
     // console.log("click", e);
@@ -87,13 +86,62 @@ const NewsItem = ({ newsItem, loading, grid }) => {
     </Menu>
   );
 
-  const { Meta } = Card;
-
   //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
   const htmlEntities = new Html5Entities();
 
+  const member = {
+    publisheddate,
+    publisherid,
+    publisherphoto,
+    publishername,
+    publisherpositionname,
+  };
+
   return (
     <div key={newsid} className="gx-main-content news-detail" loading={loading}>
+      <div className="gx-product-footer">
+        <div className="ant-row-flex">
+          {/* <Row>
+          <Col xs={8} sm={12} md={12} lg={24} xl={24}> */}
+          <div className="gx-module-contact-content">
+            <span>
+              <Tooltip title={publisherpositionname}>
+                <span className="ant-avatar ant-avatar-circle ant-avatar-image">
+                  <img src={publisherphoto} alt={publishername} />
+                </span>
+                <span className="gx-text-grey gx-fs-sm gx-mx-2">
+                  {publishername}
+                </span>
+              </Tooltip>
+            </span>
+          </div>
+          {/* </Col>
+          <Col xs={16} sm={12} md={12} lg={24} xl={24}> */}
+          <div className="gx-ml-auto">
+            <span style={{ display: "inline-flex" }}>
+              <Dropdown
+                overlay={menu}
+                placement="bottomRight"
+                trigger={["click"]}
+              >
+                <i className="gx-icon-btn icon icon-ellipse-v" />
+              </Dropdown>
+            </span>
+            <span style={{ display: "inline-flex" }}>
+              <Dropdown
+                overlay={menu}
+                placement="bottomRight"
+                trigger={["click"]}
+              >
+                <i className="gx-icon-btn icon icon-setting" />
+              </Dropdown>
+            </span>
+          </div>
+          {/* </Col>
+        </Row> */}
+        </div>
+      </div>
+
       <Row>
         <Col xs={24}>
           <Card cover={<img alt={title} src={imagemain} />}>
@@ -143,56 +191,18 @@ const NewsItem = ({ newsItem, loading, grid }) => {
         </Col>
       </Row>
 
-      <div className="gx-product-footer">
-        <div className="ant-row-flex">
-          {/* <Row>
-          <Col xs={8} sm={12} md={12} lg={24} xl={24}> */}
-          <div className="gx-module-contact-content">
-            <span>
-              <Tooltip title={publisherpositionname}>
-                <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                  <img src={publisherphoto} alt={publishername} />
-                </span>
-                <span className="gx-text-grey gx-fs-sm gx-mx-2">
-                  {publishername}
-                </span>
-              </Tooltip>
-            </span>
-          </div>
-          {/* </Col>
-          <Col xs={16} sm={12} md={12} lg={24} xl={24}> */}
-          <div className="gx-ml-auto">
-            <span style={{ display: "inline-flex" }}>
-              <Dropdown
-                overlay={menu}
-                placement="bottomRight"
-                trigger={["click"]}
-              >
-                <i className="gx-icon-btn icon icon-ellipse-v" />
-              </Dropdown>
-            </span>
-            <span style={{ display: "inline-flex" }}>
-              <Dropdown
-                overlay={menu}
-                placement="bottomRight"
-                trigger={["click"]}
-              >
-                <i className="gx-icon-btn icon icon-setting" />
-              </Dropdown>
-            </span>
-          </div>
-          {/* </Col>
-        </Row> */}
-        </div>
+      <div>
+        <MemberCard02 member={member} maxWidth="250px" />
       </div>
 
-      {!logBox.loading && (
-        <LogBox
-          key={newsid}
-          logBoxItem={logBox.state.logItems}
-          loading={loading}
-        />
-      )}
+      <NewsDetailCommentStore>
+        {/* Одоогоор TableName-ийг хоосон орхив */}
+        <CommentBox recordId={newsid} tableName="" />
+      </NewsDetailCommentStore>
+
+      <NewsDetailLogStore>
+        <LogBox recordId={newsid} tableName="ECM_NEWS" />
+      </NewsDetailLogStore>
     </div>
   );
 };
