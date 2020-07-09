@@ -72,6 +72,8 @@ export const NewsListStore = (props) => {
       });
   };
 
+  // df
+
   return (
     <NewsContext.Provider value={{ state, loadNewsList }}>
       {props.children}
@@ -268,7 +270,7 @@ export const NewsDetailCommentStore = (props) => {
 
   const loadNewsDetailComment = (recordId, tableName) => {
     clearNewsDetailComment();
-    console.log("IIIIIIIIIIIDDDDDDDDDDDD=====", recordId);
+    // console.log("IIIIIIIIIIIDDDDDDDDDDDD=====", recordId);
 
     myParamsNewsDetailComment.request.parameters.criteria.recordId = recordId;
     myParamsNewsDetailComment.request.parameters.criteria.tableName = tableName;
@@ -276,12 +278,12 @@ export const NewsDetailCommentStore = (props) => {
     //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
     setState({ ...state, loading: true });
 
-    console.log("MYParameter=====", myParamsNewsDetailComment);
+    // console.log("MYParameter=====", myParamsNewsDetailComment);
 
     axios
       .post("", myParamsNewsDetailComment)
       .then((response) => {
-        console.log("ИРСЭН ДАТА444:   ", response);
+        // console.log("ИРСЭН ДАТА444:   ", response);
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
 

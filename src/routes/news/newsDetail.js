@@ -1,8 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import { Col, Row } from "antd";
-
 import NewsDetail from "../../components/Moto/NewsDetail";
 import NewsContext from "../../context/NewsContext";
 
