@@ -19,6 +19,7 @@ const render = (Component) => {
 
 //Энд Жаргал гэртээ энэхүү comment-ийг бичлээ. 2020 оны 7 сарын 10 өдөр. Орой 21:52
 //За дахиад энэ Comment-ийг нэмээд үзье.
+// Гурав дахь мөр бүхий тайлбар
 
 // Do this once
 registerServiceWorker();
