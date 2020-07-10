@@ -22,6 +22,8 @@ const render = (Component) => {
 // Гурав дахь мөр бүхий тайлбар
 //Дөрөв дэх тайлбар
 
+// Тав дахь тайлбарыг харцгаая.
+
 // Do this once
 registerServiceWorker();
 
