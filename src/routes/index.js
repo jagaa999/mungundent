@@ -12,15 +12,20 @@ import Documents from "./documents/index";
 // import NewsList from "./news/newsList";
 // import NewsDetail from "./news/newsDetail";
 import { NewsListStore, NewsDetailStore } from "../context/NewsContext";
+import { MemberDetailStore } from "../context/MemberContext";
 import asyncComponent from "util/asyncComponent";
 
 //Дээгүүр гүйх цэнхэр зураас
 const NewsDetail = asyncComponent(() => {
-  return import("./news/newsDetail");
+  return import("./moto/news/newsDetail");
 });
 
 const NewsList = asyncComponent(() => {
-  return import("./news/newsList");
+  return import("./moto/news/newsList");
+});
+
+const MemberDetail = asyncComponent(() => {
+  return import("./moto/member/memberDetail");
 });
 
 const App = ({ match }) => (
@@ -36,6 +41,18 @@ const App = ({ match }) => (
         <NewsListStore>
           <NewsList />
         </NewsListStore>
+      </Route>
+
+      <Route path={`${match.url}member/:memberid`}>
+        <MemberDetailStore>
+          <MemberDetail />
+        </MemberDetailStore>
+      </Route>
+
+      <Route path={`${match.url}member`}>
+        {/* <MemberListStore>
+          <MemberList />
+        </MemberListStore> */}
       </Route>
 
       <Route path={`${match.url}main`} component={Main} />

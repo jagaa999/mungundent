@@ -7,72 +7,63 @@ import axios from "../util/axiosConfig";
 const MemberContext = React.createContext();
 
 //-----------------------
-const initialStateMemberProfile = {
-  memberProfile: {},
+const initialStateMemberDetail = {
+  memberDetail: {},
   loading: false,
   error: null,
 };
 
-const myParamsMemberProfile = {
+const myParamsMemberDetail = {
   request: {
-    sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-    command: "PL_MDVIEW_004",
+    command: "login",
     parameters: {
-      systemmetagroupid: "1587601946540",
-      showQuery: "0",
-      criteria: {
-        newsid: {
-          "0": {
-            operator: "=",
-            operand: "1588047983186922",
-          },
-        },
-      },
-      paging: {
-        pageSize: "1", //нийтлэлийн тоо
-        offset: "1", //хуудасны дугаар
-      },
+      username: "admin",
+      password: "89",
     },
   },
 };
 
-export const MemberProfileStore = (props) => {
-  const [state, setState] = useState(initialStateMemberProfile);
+export const MemberDetailStore = (props) => {
+  const [state, setState] = useState(initialStateMemberDetail);
 
-  const clearMemberProfile = () => {
-    setState(initialStateMemberProfile);
+  const clearMemberDetail = () => {
+    setState(initialStateMemberDetail);
   };
 
-  const loadMemberProfile = (newsid) => {
-    clearMemberProfile();
+  const loadMemberDetail = (memberId) => {
+    clearMemberDetail();
 
-    myParamsMemberProfile.request.parameters.criteria.newsid = newsid;
+    // myParamsMemberDetail.request.parameters.criteria.memberId = memberId;
     //console.log("ЭНД ОРЖ ИРСЭН");
-    //News татаж эхэллээ гэдгийг мэдэгдэнэ.
+    //Member татаж эхэллээ гэдгийг мэдэгдэнэ.
     //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
     setState({ ...state, loading: true });
 
     //console.log("axios====>", axios);
 
     axios
-      .post("", myParamsMemberProfile)
+      .post("", myParamsMemberDetail)
       .then((response) => {
         //Датанууд ороод ирсэн
         //Одоо state-дээ олгоно.
-        //console.log("ИРСЭН ДАТА444:   ", response);
+        // console.log("ИРСЭН ДАТА444:   ", response);
 
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
 
-        delete myArray["aggregatecolumns"];
-        delete myArray["paging"];
+        // Хэрвээ customerid хоосон байвал хүчээр тавьчихъя. 200108101001108990
+        if (myArray.userkeys[0].customerid === "") {
+          myArray.userkeys[0].customerid = "200108101001108990";
+        }
+
+        // delete myArray["aggregatecolumns"];
+        // delete myArray["paging"];
 
         setState({
           ...state,
           loading: false,
-          memberProfile: Object.values(myArray)[0],
+          memberDetail: myArray,
         });
-        // setState({ ...state, memberProfile: response.data });
       })
       .catch((error) => {
         setState({ ...state, loading: false, error });
@@ -81,7 +72,7 @@ export const MemberProfileStore = (props) => {
   };
 
   return (
-    <MemberContext.Provider value={{ state, loadMemberProfile }}>
+    <MemberContext.Provider value={{ state, loadMemberDetail }}>
       {props.children}
     </MemberContext.Provider>
   );

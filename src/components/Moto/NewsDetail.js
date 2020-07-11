@@ -19,12 +19,12 @@ import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import IntlMessages from "util/IntlMessages";
 
-import LogBox from "../../components/Moto/LogBox";
-import CommentBox from "../../components/Moto/CommentBox";
+import LogBox from "components/Moto/LogBox";
+import CommentBox from "components/Moto/CommentBox";
 import {
   NewsDetailLogStore,
   NewsDetailCommentStore,
-} from "../../context/NewsContext";
+} from "context/NewsContext";
 import MemberCard02 from "./MemberCard02";
 
 const NewsItem = ({ newsItem, loading, grid }) => {

@@ -1,16 +1,17 @@
 import React, { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import NewsDetail from "../../components/Moto/NewsDetail";
-import NewsContext from "../../context/NewsContext";
+import NewsDetail from "components/Moto/NewsDetail";
+import NewsContext from "context/NewsContext";
 
 const NewsPage = (props) => {
-  const { newsid } = useParams();
-  // console.log("НӨГӨӨ newsid", newsid);
+  //URL-аас орж ирсэн ID
+  const { newsId } = useParams();
+  // console.log("НӨГӨӨ newsId", newsId);
   //const myItem = null;
 
   useEffect(() => {
-    newsContext.loadNewsDetail(newsid);
+    newsContext.loadNewsDetail(newsId);
   }, []);
 
   const newsContext = useContext(NewsContext);
@@ -20,7 +21,7 @@ const NewsPage = (props) => {
 
   return (
     <NewsDetail
-      key={myItem.newsid}
+      key={myItem.newsId}
       newsItem={myItem}
       loading={newsContext.state.loading}
     />
