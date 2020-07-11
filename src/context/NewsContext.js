@@ -238,6 +238,7 @@ export const NewsDetailLogStore = (props) => {
 
 const initialStateNewsDetailComment = {
   commentItems: {},
+  total: 0,
   loading: false,
   error: null,
 };
@@ -294,6 +295,7 @@ export const NewsDetailCommentStore = (props) => {
           ...state,
           loading: false,
           commentItems: Object.values(myArray),
+          total: Object.values(myArray).length,
         });
       })
       .catch((error) => {

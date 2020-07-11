@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar } from "antd";
 
-const ProfileHeader = (props) => {
-  console.log("ОРЖ ИРСЭН ГИШҮҮНИЙ МЭДЭЭЛЭЛ", props);
+import MemberContext from "context/MemberContext";
+
+const ProfileHeader = () => {
+  const memberContext = useContext(MemberContext);
+  const myProfile = memberContext.state.memberProfile;
+
+  // console.log("ОРЖ ИРСЭН ГИШҮҮНИЙ МЭДЭЭЛЭЛ", props);
   return (
     <div className="gx-profile-banner">
       <div className="gx-profile-container">
@@ -17,12 +22,12 @@ const ProfileHeader = (props) => {
             </div>
             <div className="gx-profile-banner-avatar-info">
               <h2 className="gx-mb-2 gx-mb-sm-3 gx-fs-xxl gx-font-weight-light">
-                {props.memberDetail.personname} ({props.memberDetail.username})
-                ({props.memberDetail.userkeys[0].customerid})
+                {myProfile.personname} ({myProfile.username}) (
+                {myProfile.customerid})
               </h2>
               <p className="gx-mb-0 gx-fs-lg">
-                {props.memberDetail.positionname !== ""
-                  ? props.memberDetail.positionname
+                {myProfile.positionname !== ""
+                  ? myProfile.positionname
                   : "Гишүүн"}
               </p>
             </div>

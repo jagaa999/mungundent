@@ -14,32 +14,13 @@ import Photos from "components/Moto/profile/Photos/index";
 import Auxiliary from "../../../util/Auxiliary";
 import ProfileHeader from "components/Moto/profile/ProfileHeader/ProfileHeader";
 
-import CommentBox from "components/Moto/CommentBox";
-import MemberContext from "context/MemberContext";
-
 const MemberPage = (props) => {
   //URL-аас орж ирсэн ID
   const { memberId } = useParams();
 
-  useEffect(() => {
-    memberContext.loadMemberDetail(memberId);
-  }, []);
-
-  const memberContext = useContext(MemberContext);
-
-  const myItem = memberContext.state.memberDetail;
-  // myItem.imagemain = "https://www.moto.mn/" + myItem.imagemain;
-
   return (
     <Auxiliary>
-      {/* {console.log("fkfkf==", myItem)} */}
-      {Object.keys(myItem).length > 0 && (
-        <ProfileHeader
-          key={myItem.id}
-          memberDetail={myItem}
-          loading={memberContext.state.loading}
-        />
-      )}
+      <ProfileHeader />
 
       <div className="gx-profile-content">
         <Row>

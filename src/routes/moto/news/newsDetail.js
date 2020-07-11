@@ -7,7 +7,7 @@ import NewsContext from "context/NewsContext";
 const NewsPage = (props) => {
   //URL-аас орж ирсэн ID
   const { newsId } = useParams();
-  // console.log("НӨГӨӨ newsId", newsId);
+  console.log("НӨГӨӨ newsId", newsId);
   //const myItem = null;
 
   useEffect(() => {

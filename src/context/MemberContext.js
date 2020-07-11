@@ -6,14 +6,14 @@ import axios from "../util/axiosConfig";
 
 const MemberContext = React.createContext();
 
-//-----------------------
-const initialStateMemberDetail = {
-  memberDetail: {},
+//----------------------- Member Profile
+const initialStateMemberProfile = {
+  memberProfile: {},
   loading: false,
   error: null,
 };
 
-const myParamsMemberDetail = {
+const myParamsMemberProfile = {
   request: {
     command: "login",
     parameters: {
@@ -23,17 +23,17 @@ const myParamsMemberDetail = {
   },
 };
 
-export const MemberDetailStore = (props) => {
-  const [state, setState] = useState(initialStateMemberDetail);
+export const MemberProfileStore = (props) => {
+  const [state, setState] = useState(initialStateMemberProfile);
 
-  const clearMemberDetail = () => {
-    setState(initialStateMemberDetail);
+  const clearMemberProfile = () => {
+    setState(initialStateMemberProfile);
   };
 
-  const loadMemberDetail = (memberId) => {
-    clearMemberDetail();
+  const loadMemberProfile = (memberId) => {
+    clearMemberProfile();
 
-    // myParamsMemberDetail.request.parameters.criteria.memberId = memberId;
+    // myParamsMemberProfile.request.parameters.criteria.memberId = memberId;
     //console.log("ЭНД ОРЖ ИРСЭН");
     //Member татаж эхэллээ гэдгийг мэдэгдэнэ.
     //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
@@ -42,7 +42,7 @@ export const MemberDetailStore = (props) => {
     //console.log("axios====>", axios);
 
     axios
-      .post("", myParamsMemberDetail)
+      .post("", myParamsMemberProfile)
       .then((response) => {
         //Датанууд ороод ирсэн
         //Одоо state-дээ олгоно.
@@ -53,8 +53,10 @@ export const MemberDetailStore = (props) => {
 
         // Хэрвээ customerid хоосон байвал хүчээр тавьчихъя. 200108101001108990
         if (myArray.userkeys[0].customerid === "") {
+          myArray.customerid = "200108101001108990";
           myArray.userkeys[0].customerid = "200108101001108990";
         }
+        console.log("myArray", myArray);
 
         // delete myArray["aggregatecolumns"];
         // delete myArray["paging"];
@@ -62,7 +64,7 @@ export const MemberDetailStore = (props) => {
         setState({
           ...state,
           loading: false,
-          memberDetail: myArray,
+          memberProfile: myArray,
         });
       })
       .catch((error) => {
@@ -72,7 +74,7 @@ export const MemberDetailStore = (props) => {
   };
 
   return (
-    <MemberContext.Provider value={{ state, loadMemberDetail }}>
+    <MemberContext.Provider value={{ state, loadMemberProfile }}>
       {props.children}
     </MemberContext.Provider>
   );
