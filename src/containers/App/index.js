@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import URLSearchParams from "url-search-params";
 import {
@@ -34,6 +34,11 @@ import {
   NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
   THEME_TYPE_DARK,
 } from "../../constants/ThemeSetting";
+
+import { MemberProfileStore } from "context/MemberContext";
+// import MemberContext from "context/MemberContext";
+
+// const memberContext = useContext(MemberContext);
 
 const RestrictedRoute = ({
   component: Component,
@@ -133,6 +138,7 @@ const App = (props) => {
   }, [authUser, initURL, location, history]);
 
   useEffect(() => {
+    //theme ямар байгааг шалгаж тавьж өгч байна.
     if (themeType === THEME_TYPE_DARK) {
       console.log("adding dark class");
       document.body.classList.add("dark-theme");
@@ -144,6 +150,9 @@ const App = (props) => {
       link.className = "style_dark_theme";
       document.body.appendChild(link);
     }
+
+    //Хэрэглэгчийг логиндуулна
+    // memberContext.loadMemberProfile("200108101001108990");
   }, []);
 
   const currentAppLocale = AppLocale[locale.locale];
@@ -157,12 +166,14 @@ const App = (props) => {
         <Switch>
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
-          <RestrictedRoute
-            path={`${match.url}`}
-            authUser={authUser}
-            location={location}
-            component={MainApp}
-          />
+          <MemberProfileStore>
+            <RestrictedRoute
+              path={`${match.url}`}
+              authUser={authUser}
+              location={location}
+              component={MainApp}
+            />
+          </MemberProfileStore>
         </Switch>
       </IntlProvider>
     </ConfigProvider>

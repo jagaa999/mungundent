@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import { Col, Row } from "antd";
 
-import NewsList from "../../components/Moto/NewsList";
-import NewsContext from "../../context/NewsContext";
+import NewsList from "components/Moto/NewsList";
+import NewsContext from "context/NewsContext";
 
 const NewsPage = (props) => {
   // console.log("News руу орлоо");

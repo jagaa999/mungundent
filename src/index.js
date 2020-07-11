@@ -36,3 +36,5 @@ if (module.hot) {
     render(NextApp);
   });
 }
+
+// Бас нэг туршилт

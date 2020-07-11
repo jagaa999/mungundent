@@ -49,8 +49,27 @@ const HorizontalNav = () => {
         <Menu.Item key="news/">
           <Link to="/news/">
             <i className="icon icon-noodles" />
-            {/* <IntlMessages id="sidebar.widgets" /> */}
             Жагсаалт
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu
+        popupClassName={getNavStyleSubMenuClass(navStyle)}
+        key="member"
+        title="Гишүүн"
+      >
+        <Menu.Item key="member/">
+          <Link to="/member/">
+            <i className="icon icon-user" />
+            Гишүүд
+          </Link>
+        </Menu.Item>
+
+        <Menu.Item key="member/200108101001108990">
+          <Link to="/member/200108101001108990">
+            <i className="icon icon-user" />
+            Гишүүний дэлгэрэнгүй
           </Link>
         </Menu.Item>
       </SubMenu>

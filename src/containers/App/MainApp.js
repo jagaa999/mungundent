@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Layout } from "antd";
 
 import Sidebar from "../Sidebar/index";
@@ -29,9 +29,19 @@ import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 import { useRouteMatch } from "react-router-dom";
 import Customizer from "../Customizer";
 
+import MemberContext from "context/MemberContext";
+
 const { Content, Footer } = Layout;
 
 const MainApp = () => {
+  //Эхэлж нэг удаа ажиллахад хэрэглэгчийг login-дуулна.
+  useEffect(() => {
+    memberContext.loadMemberProfile("200108101001108990");
+  }, []);
+
+  const memberContext = useContext(MemberContext);
+  const myItem = memberContext.state.memberProfile;
+
   const { width, navStyle } = useSelector(({ settings }) => settings);
   const match = useRouteMatch();
 
