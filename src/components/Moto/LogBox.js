@@ -2,15 +2,15 @@ import React, { useEffect, useContext } from "react";
 
 import { Row, Col } from "antd";
 
-import NewsContext from "../../context/NewsContext";
+import LogsContext from "context/LogsContext";
 import LogBoxItems from "./LogBoxItems";
 
 const LogBox = (props) => {
   useEffect(() => {
-    if (props) logBox.loadNewsDetailLog(props.recordId, props.tableName);
+    if (props) logBox.loadLogs(props.recordId, props.tableName);
   }, []);
 
-  const logBox = useContext(NewsContext);
+  const logBox = useContext(LogsContext);
 
   return (
     <div className="gx-main-content news-detail">

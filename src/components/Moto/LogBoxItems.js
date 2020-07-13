@@ -6,18 +6,20 @@ const columns = [
   {
     title: "Гишүүн",
     dataIndex: "membername",
-    key: "id",
+    key: "membername",
     sorter: (a, b) => a.membername.length - b.membername.length,
   },
 
   {
     title: "Огноо",
     dataIndex: "actiondate",
+    key: "date",
     sorter: (a, b) => new Date(a.actiondate) - new Date(b.actiondate),
   },
   {
     title: "Үйлдэл",
     dataIndex: "actionname",
+    key: "action",
     sorter: (a, b) => a.actionname.length - b.actionname.length,
   },
 ];
@@ -31,6 +33,7 @@ const LogBoxItems = ({ logBoxItems }) => {
           size="small"
           // rowSelection={rowSelection}
           columns={columns}
+          rowKey="id" // key тавьж өгч байна.
           dataSource={logBoxItems}
         />
       </Card>

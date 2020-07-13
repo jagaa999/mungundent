@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Card, Avatar, Button } from "antd";
 
 import CommentBoxDetail from "./CommentBoxDetail";
+import MemberContext from "context/MemberContext";
 
 const CommentBoxItems = (props) => {
-  console.log("ТЭГВЭЛ ЭНИЙГ ХАР ДАА", props.commentBoxItems);
+  // console.log("ТЭГВЭЛ ЭНИЙГ ХАР ДАА", props.commentBoxItems);
+  const memberContext = useContext(MemberContext);
+  // console.log("memberProfile--------------", memberContext.state.memberProfile);
 
   return (
     <div>
@@ -29,6 +32,10 @@ const CommentBoxItems = (props) => {
               src="https://p1.pxfuel.com/preview/736/677/224/hand-hands-dom-worship-man-handwriting.jpg"
             />
             <div className="gx-media-body">
+              <p>
+                {memberContext.state.memberProfile.personname}{" "}
+                <span>({memberContext.state.memberProfile.lastname})</span>
+              </p>
               <textarea
                 id="required"
                 className="gx-border-0 ant-input"

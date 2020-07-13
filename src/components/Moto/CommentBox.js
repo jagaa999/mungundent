@@ -2,16 +2,15 @@ import React, { useEffect, useContext } from "react";
 
 import { Row, Col } from "antd";
 
-import NewsContext from "../../context/NewsContext";
+import CommentContext from "../../context/CommentContext";
 import CommentBoxItems from "./CommentBoxItems";
 
 const CommentBox = (props) => {
   useEffect(() => {
-    if (props)
-      commentBox.loadNewsDetailComment(props.recordId, props.tableName);
+    if (props) commentBox.loadCommentList(props.recordId, props.tableName);
   }, []);
 
-  const commentBox = useContext(NewsContext);
+  const commentBox = useContext(CommentContext);
 
   return (
     <div className="gx-main-content news-detail">

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
@@ -25,61 +25,24 @@ import {
   NewsDetailLogStore,
   NewsDetailCommentStore,
 } from "context/NewsContext";
+import CommentContext from "context/CommentContext";
+import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
 import NewsContext from "context/NewsContext";
 
-const NewsItem = ({ newsItem, loading, grid }) => {
-  // <NewsDetailCommentStore>
-  const commentBoxCtx = useContext(NewsContext);
-  // </NewsDetailCommentStore>;
-  console.log("commentBoxCtx------- ", commentBoxCtx);
+const NewsItem = ({ newsId }) => {
+  useEffect(() => {
+    newsContext.loadNewsDetail(newsId);
+  }, []);
 
-  // newsid,
-  // imagemain,
-  // title,
-  // body,
-  // isfeatured,
-  // isactive,
-  // newstypeid,
-  // newstypename,
-  // newssourceid,
-  // newssourcename,
-  // newssourcelogo,
-  // newssourcetype,
-  // newssourcefacebook,
-  // newssourcewebsite,
-  // newssourceyoutube,
-  // publisheddate,
-  // publisherid,
-  // publisherphoto,
-  // publishername,
-  // publisherpositionname,
-  // createddate,
-  // creatorid,
-  // creatorname,
-  // creatorphoto,
-  // creatorpositionname,
-  // modifieddate,
-  // modifiedby,
-  // modifiername,
-  // modifierphoto,
-  // modifierpositionname,
-  // iscomment,
-  // isfacebook,
-  // istwitter,
-  // contentid,
-  // companyid,
-  // booktypeid,
-  // dim1,
-  // dim2,
+  const newsContext = useContext(NewsContext);
+  const commentContext = useContext(CommentContext);
+  const logsContext = useContext(LogsContext);
 
-  // console.log("Манай бараа - ", newsItem);
-
-  // const truncatedDescription = description.substring(0, 120) + "&hellip;";
+  const newsItem = newsContext.state.newsDetail;
 
   function handleMenuClick(e) {
     message.info("Click on menu item.");
-    // console.log("click", e);
   }
 
   const menu = (
@@ -90,8 +53,7 @@ const NewsItem = ({ newsItem, loading, grid }) => {
     </Menu>
   );
 
-  //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
-  const htmlEntities = new Html5Entities();
+  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   const member = {
     publisheddate: newsItem.publisheddate,
@@ -105,12 +67,10 @@ const NewsItem = ({ newsItem, loading, grid }) => {
     <div
       key={newsItem.newsid}
       className="gx-main-content news-detail"
-      loading={loading}
+      loading={newsContext.state.loading}
     >
       <div className="gx-product-footer">
         <div className="ant-row-flex">
-          {/* <Row>
-          <Col xs={8} sm={12} md={12} lg={24} xl={24}> */}
           <div className="gx-module-contact-content">
             <span>
               <Tooltip title={newsItem.publisherpositionname}>
@@ -126,8 +86,6 @@ const NewsItem = ({ newsItem, loading, grid }) => {
               </Tooltip>
             </span>
           </div>
-          {/* </Col>
-          <Col xs={16} sm={12} md={12} lg={24} xl={24}> */}
           <div className="gx-ml-auto">
             <span style={{ display: "inline-flex" }}>
               <Dropdown
@@ -148,14 +106,19 @@ const NewsItem = ({ newsItem, loading, grid }) => {
               </Dropdown>
             </span>
           </div>
-          {/* </Col>
-        </Row> */}
         </div>
       </div>
 
       <Row>
         <Col xs={24}>
-          <Card cover={<img alt={newsItem.title} src={newsItem.imagemain} />}>
+          <Card
+            cover={
+              <img
+                alt={newsItem.title}
+                src={"https://www.moto.mn/" + newsItem.imagemain}
+              />
+            }
+          >
             <h2>{newsItem.title}</h2>
             <div className="news-header">
               <div className="ant-row-flex">
@@ -184,12 +147,18 @@ const NewsItem = ({ newsItem, loading, grid }) => {
                   <span className="gx-link gx-meta-like">
                     <i className="icon icon-like-o gx-text-red" />
                     12 таалагдсан
-                    {commentBoxCtx.state.total}
                   </span>
                 </li>
                 <li>
                   <span className="gx-link gx-meta-comment">
-                    <i className="icon icon-chat-new" />3 сэтгэгдэл
+                    <i className="icon icon-chat-new" />
+                    {commentContext.state.total} сэтгэгдэл
+                  </span>
+                </li>
+                <li>
+                  <span className="gx-link gx-meta-comment">
+                    <i className="icon icon-chat-new" />
+                    {logsContext.state.total} logs
                   </span>
                 </li>
               </ul>
@@ -209,14 +178,10 @@ const NewsItem = ({ newsItem, loading, grid }) => {
         <MemberCard02 member={member} maxWidth="250px" />
       </div>
 
-      <NewsDetailCommentStore>
-        {/* Одоогоор TableName-ийг хоосон орхив */}
-        <CommentBox recordId={newsItem.newsid} tableName="" />
-      </NewsDetailCommentStore>
+      {/* Одоогоор TableName-ийг хоосон орхив */}
+      <CommentBox recordId={newsItem.newsid} tableName="" />
 
-      <NewsDetailLogStore>
-        <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
-      </NewsDetailLogStore>
+      <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
     </div>
   );
 };

@@ -44,12 +44,7 @@ const App = ({ match }) => (
       </Route>
 
       <Route path={`${match.url}member/:memberid`}>
-        {/* <MemberProfileStore> */}
-        {/* Бүүр гадуур хучиж байгаа. Учир нь login-дсон хүний мэдээллийг хаа
-        сайгүй харж, ашиглах шаардлагатай. 
-        container→app→index.js дотор хийж өгсөн. */}
         <MemberDetail />
-        {/* </MemberProfileStore> */}
       </Route>
 
       <Route path={`${match.url}member`}>
