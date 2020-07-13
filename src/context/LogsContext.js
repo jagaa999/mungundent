@@ -20,6 +20,7 @@ const initialStateLogs = {
     // "userid": ""
   },
   total: 0,
+  actionTypes: {},
   loading: false,
   error: null,
 };
@@ -66,16 +67,71 @@ export const LogsStore = (props) => {
       .then((response) => {
         // console.log("ИРСЭН ДАТА444:   ", response);
         const myPaging = response.data.response.result.paging;
-        const myArray = response.data.response.result;
+        const myTempArray = response.data.response.result;
 
-        delete myArray["aggregatecolumns"];
-        delete myArray["paging"];
+        delete myTempArray["aggregatecolumns"];
+        delete myTempArray["paging"];
+
+        // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myArray);
+
+        const myArray = Object.values(myTempArray);
+
+        const actionTypes = myArray
+          .map((dataItem) => dataItem.actionname) // get all media types
+          .filter(
+            (actionType, index, array) => array.indexOf(actionType) === index
+          ); // filter out duplicates
+
+        //let counts = [];
+
+        // const myActionTypes = [];
+        // 0: {type: "Үзэв", count: 121}
+        // 1: {type: "Сэтгэгдэл бичив", count: 5}
+        // 2: {type: "Like", count: 1}
+        //counts.map(item=>)
+
+        //console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", counts);
+        console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", actionTypes);
+
+        // counts = mediaTypes
+        // .map(mediaType => ({
+        //   type: mediaType,
+        //   count: data.filter(item => item.media_type === mediaType).length
+        // }));
+
+        const counts = actionTypes.map(function (item, index) {
+          return { key: item, value: index };
+        });
+
+        // const myCounts = [];
+        // actionTypes.map(function (item, index) {
+        //   myCounts[item] = myArray.filter(
+        //     (cool) => cool.actionname === item
+        //   ).length;
+        // });
+
+        const myCounts = actionTypes.map((actionType) => ({
+          type: actionType,
+          count: myArray.filter((item) => item.actionname === actionType)
+            .length,
+        }));
+
+        console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myCounts);
+
+        //   {
+        //   type: actionType,
+        //   count: myArray.filter((item) => item.actionname === actionType)
+        //     .length,
+        // }
+        // ();
+        console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", counts);
 
         setState({
           ...state,
           loading: false,
-          logItems: Object.values(myArray),
-          total: Object.values(myArray).length,
+          logItems: myArray,
+          total: myArray.length,
+          actionTypes: myCounts,
         });
       })
       .catch((error) => {

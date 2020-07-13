@@ -141,27 +141,19 @@ const NewsItem = ({ newsId }) => {
               </div>
             </div>
 
-            <div>
-              <ul className="gx-list-inline gx-btn-list">
-                <li>
-                  <span className="gx-link gx-meta-like">
-                    <i className="icon icon-like-o gx-text-red" />
-                    12 таалагдсан
-                  </span>
-                </li>
-                <li>
-                  <span className="gx-link gx-meta-comment">
-                    <i className="icon icon-chat-new" />
-                    {commentContext.state.total} сэтгэгдэл
-                  </span>
-                </li>
-                <li>
-                  <span className="gx-link gx-meta-comment">
-                    <i className="icon icon-chat-new" />
-                    {logsContext.state.total} logs
-                  </span>
-                </li>
-              </ul>
+            {/* Таалагдсан. Сэтгэгдэл. Logs */}
+            <div className="gx-flex-row gx-mb-2 gx-mb-xl-3">
+              {Object.entries(logsContext.state.actionTypes).map(function (i) {
+                // console.log(i);
+                return (
+                  <p className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
+                    {/* <i className="icon icon-chat-bubble gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle" /> */}
+                    <span className="gx-d-inline-flex gx-vertical-align-middle">
+                      {i[1].count} {i[1].type}
+                    </span>
+                  </p>
+                );
+              })}
             </div>
 
             <div
