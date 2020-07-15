@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Card, Modal, Upload } from "antd";
 import ImgCrop from "antd-img-crop";
-// yarn add antd-img-crop гэж суулгана.
 // https://github.com/nanxiaobei/antd-img-crop хаяг дээр байгаа.
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 
@@ -15,62 +14,6 @@ function getBase64(file) {
 }
 
 const UploadPictureMoto = () => {
-  // state = {
-  //   previewVisible: false,
-  //   previewImage: "",
-  //   fileList: [
-  //     {
-  //       uid: -1,
-  //       name: "xxx.png",
-  //       status: "done",
-  //       url:
-  //         "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-  //     },
-  //   ],
-  // };
-
-  // handleCancel = () => this.setState({ previewVisible: false });
-
-  // handlePreview = (file) => {
-  //   this.setState({
-  //     previewImage: file.url || file.thumbUrl,
-  //     previewVisible: true,
-  //   });
-  // };
-
-  // handleChange = ({ fileList }) => this.setState({ fileList });
-
-  //   render() {
-  //     const { previewVisible, previewImage, fileList } = this.state;
-  //     const uploadButton = (
-  //       <div>
-  //         <PlusOutlined />
-  //         <div className="ant-upload-text">Upload</div>
-  //       </div>
-  //     );
-  //     return (
-  //       <Card title="Мото Нийтлэлийн зураг илгээх" className="gx-card clearfix">
-  //         <Upload
-  //           action="//jsonplaceholder.typicode.com/posts/"
-  //           listType="picture-card"
-  //           fileList={fileList}
-  //           onPreview={this.handlePreview}
-  //           onChange={this.handleChange}
-  //         >
-  //           {fileList.length >= 3 ? null : uploadButton}
-  //         </Upload>
-  //         <Modal
-  //           visible={previewVisible}
-  //           footer={null}
-  //           onCancel={this.handleCancel}
-  //         >
-  //           <img alt="example" style={{ width: "100%" }} src={previewImage} />
-  //         </Modal>
-  //       </Card>
-  //     );
-  //   }
-  // }
-
   const [state, setState] = useState({
     previewVisible: false,
     previewImage: "",
@@ -83,22 +26,27 @@ const UploadPictureMoto = () => {
         url:
           "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
       },
+      {
+        uid: "-2",
+        name: "image.png",
+        status: "done",
+        url:
+          "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+      },
     ],
   });
+
   const onChange = ({ fileList }) => {
-    console.log("onCHANGE", fileList);
     setState({ fileList });
   };
 
   const onPreview = async (file) => {
-    console.log("ЭНД ФАЙЛ ОРЖ ИРЛЭЭ", file);
-
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
 
-    setState((prevState) => ({
-      ...prevState,
+    setState(() => ({
+      ...state,
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
       previewTitle:
@@ -107,8 +55,8 @@ const UploadPictureMoto = () => {
   };
 
   const onPreviewCancel = () => {
-    setState((prevState) => ({
-      ...prevState,
+    setState(() => ({
+      ...state,
       previewVisible: false,
     }));
   };
@@ -120,11 +68,11 @@ const UploadPictureMoto = () => {
     </div>
   );
 
-  console.log("FILELIST", state);
-
   return (
-    <Card title="Мото Нийтлэлийн зураг илгээх" className="gx-card clearfix">
-      ЭНД БАЙГАА{state.fileList} ЭНД БАС БАЙГАА
+    <Card
+      title="Нийтлэлийн зураг илгээх (8 зураг)"
+      className="gx-card clearfix"
+    >
       <ImgCrop
         rotate
         zoom
@@ -142,7 +90,7 @@ const UploadPictureMoto = () => {
           onChange={onChange}
           onPreview={onPreview}
         >
-          {state.length < 8 && uploadButton}
+          {state.fileList.length < 8 && uploadButton}
         </Upload>
       </ImgCrop>
       <Modal

@@ -90,8 +90,7 @@ export const LogsStore = (props) => {
         // 2: {type: "Like", count: 1}
         //counts.map(item=>)
 
-        //console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", counts);
-        console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", actionTypes);
+        // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", actionTypes);
 
         // counts = mediaTypes
         // .map(mediaType => ({
@@ -116,7 +115,7 @@ export const LogsStore = (props) => {
             .length,
         }));
 
-        console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myCounts);
+        // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myCounts);
 
         //   {
         //   type: actionType,
@@ -124,7 +123,7 @@ export const LogsStore = (props) => {
         //     .length,
         // }
         // ();
-        console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", counts);
+        // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", counts);
 
         setState({
           ...state,

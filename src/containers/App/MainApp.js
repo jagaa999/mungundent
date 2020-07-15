@@ -4,7 +4,7 @@ import { Layout } from "antd";
 import Sidebar from "../Sidebar/index";
 import HorizontalDefault from "../Topbar/HorizontalDefault/index";
 import HorizontalDark from "../Topbar/HorizontalDark/index";
-import InsideHeader from "../Topbar/InsideHeader/index";
+import MotoHeader from "containers/Topbar/MotoHeader/MotoHeader";
 import AboveHeader from "../Topbar/AboveHeader/index";
 import BelowHeader from "../Topbar/BelowHeader/index";
 
@@ -30,6 +30,7 @@ import { useRouteMatch } from "react-router-dom";
 import Customizer from "../Customizer";
 
 import MemberContext from "context/MemberContext";
+import MemberItemsContext from "context/MemberItemsContext";
 
 const { Content, Footer } = Layout;
 
@@ -37,10 +38,13 @@ const MainApp = () => {
   //Эхэлж нэг удаа ажиллахад хэрэглэгчийг login-дуулна.
   useEffect(() => {
     memberContext.loadMemberProfile("200108101001108990");
+    //* Дараа нь тухайн хэрэглэгчийн Хадгалсан зүйлсийг дуудна.
+    memberItemsContext.loadMemberItems("1502764251361501");
   }, []);
 
   const memberContext = useContext(MemberContext);
   const myItem = memberContext.state.memberProfile;
+  const memberItemsContext = useContext(MemberItemsContext);
 
   const { width, navStyle } = useSelector(({ settings }) => settings);
   const match = useRouteMatch();
@@ -69,7 +73,7 @@ const MainApp = () => {
         return <HorizontalDark />;
       case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
         // !!jagaa Энэ нь бидний ашиглаж байгаа толгой
-        return <InsideHeader />;
+        return <MotoHeader />;
       case NAV_STYLE_ABOVE_HEADER:
         return <AboveHeader />;
       case NAV_STYLE_BELOW_HEADER:

@@ -1,20 +1,30 @@
 import React from "react";
-import {Card, Modal, Upload} from "antd";
+import { Card, Modal, Upload } from "antd";
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 
 class UploadPicture extends React.Component {
   state = {
     previewVisible: false,
-    previewImage: '',
-    fileList: [{
-      uid: -1,
-      name: 'xxx.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    }],
+    previewImage: "",
+    fileList: [
+      {
+        uid: -1,
+        name: "xxx.png",
+        status: "done",
+        url:
+          "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+      },
+      {
+        uid: -2,
+        name: "xxx.png",
+        status: "done",
+        url:
+          "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+      },
+    ],
   };
 
-  handleCancel = () => this.setState({previewVisible: false});
+  handleCancel = () => this.setState({ previewVisible: false });
 
   handlePreview = (file) => {
     this.setState({
@@ -23,10 +33,10 @@ class UploadPicture extends React.Component {
     });
   };
 
-  handleChange = ({fileList}) => this.setState({fileList});
+  handleChange = ({ fileList }) => this.setState({ fileList });
 
   render() {
-    const {previewVisible, previewImage, fileList} = this.state;
+    const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
       <div>
         <PlusOutlined />
@@ -44,8 +54,12 @@ class UploadPicture extends React.Component {
         >
           {fileList.length >= 3 ? null : uploadButton}
         </Upload>
-        <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-          <img alt="example" style={{width: '100%'}} src={previewImage}/>
+        <Modal
+          visible={previewVisible}
+          footer={null}
+          onCancel={this.handleCancel}
+        >
+          <img alt="example" style={{ width: "100%" }} src={previewImage} />
         </Modal>
       </Card>
     );

@@ -24,7 +24,6 @@ import {
   switchLanguage,
   toggleCollapsedSideNav,
 } from "../../../appRedux/actions/Setting";
-import IntlMessages from "../../../util/IntlMessages";
 
 const { Header } = Layout;
 
@@ -40,7 +39,7 @@ function handleMenuClick(e) {
   message.info("Click on menu item.");
 }
 
-const InsideHeader = () => {
+const MotoHeader = () => {
   const dispatch = useDispatch();
 
   const [searchText, setSearchText] = useState("");
@@ -221,4 +220,4 @@ const mapStateToProps = ({ settings }) => {
 export default connect(mapStateToProps, {
   toggleCollapsedSideNav,
   switchLanguage,
-})(InsideHeader);
+})(MotoHeader);

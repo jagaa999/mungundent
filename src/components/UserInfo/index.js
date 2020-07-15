@@ -9,7 +9,7 @@ const UserInfo = () => {
   const dispatch = useDispatch();
 
   const memberContext = useContext(MemberContext);
-  console.log("МИНИЙ ПРОФАЙЛ", memberContext.state.memberProfile);
+  // console.log("МИНИЙ ПРОФАЙЛ", memberContext.state.memberProfile);
 
   const userMenuOptions = (
     <>

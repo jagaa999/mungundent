@@ -56,7 +56,7 @@ export const MemberProfileStore = (props) => {
           myArray.customerid = "200108101001108990";
           myArray.userkeys[0].customerid = "200108101001108990";
         }
-        console.log("myArray", myArray);
+        // console.log("myArray", myArray);
 
         // delete myArray["aggregatecolumns"];
         // delete myArray["paging"];

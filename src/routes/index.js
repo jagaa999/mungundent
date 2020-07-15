@@ -13,6 +13,7 @@ import Documents from "./documents/index";
 // import NewsDetail from "./news/newsDetail";
 import { NewsListStore, NewsDetailStore } from "../context/NewsContext";
 import { MemberProfileStore } from "context/MemberContext";
+import { MemberItemsStore } from "context/MemberItemsContext";
 import asyncComponent from "util/asyncComponent";
 
 //Дээгүүр гүйх цэнхэр зураас

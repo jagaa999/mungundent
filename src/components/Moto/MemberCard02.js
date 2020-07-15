@@ -3,7 +3,7 @@ import React from "react";
 import Widget from "components/Widget/index";
 
 const MemberCard02 = (props) => {
-  console.log("ddddddddddd", props);
+  // console.log("ddddddddddd", props);
   return (
     <div style={{ maxWidth: props.maxWidth ? props.maxWidth : "350px" }}>
       {props.member.publisherid ? (

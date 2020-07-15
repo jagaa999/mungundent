@@ -12,10 +12,24 @@ import {
   Col,
   Dropdown,
   Menu,
+  Checkbox,
+  Switch,
   message,
+  Divider,
 } from "antd";
+import {
+  SmileTwoTone,
+  HeartTwoTone,
+  CheckCircleTwoTone,
+} from "@ant-design/icons";
+
 import StarRatingComponent from "react-star-rating-component";
-import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  WarningTwoTone,
+  SearchOutlined,
+  DownOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 import IntlMessages from "util/IntlMessages";
 
@@ -36,7 +50,6 @@ const NewsItem = ({ newsId }) => {
   }, []);
 
   const newsContext = useContext(NewsContext);
-  const commentContext = useContext(CommentContext);
   const logsContext = useContext(LogsContext);
 
   const newsItem = newsContext.state.newsDetail;
@@ -45,11 +58,18 @@ const NewsItem = ({ newsId }) => {
     message.info("Click on menu item.");
   }
 
-  const menu = (
+  const menuMemberAction = (myLike, mySave) => (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1">Products</Menu.Item>
-      <Menu.Item key="2">Apps</Menu.Item>
-      <Menu.Item key="3">Blogs</Menu.Item>
+      <Menu.Item key="Таалагдлаа">
+        <Checkbox checked={myLike}>Таалагдлаа</Checkbox>
+      </Menu.Item>
+      <Menu.Item key="Жоорлох">
+        <Checkbox checked={mySave}>Жоорлох</Checkbox>
+      </Menu.Item>
+      <Divider />
+      <Menu.Item key="Алдаатай">
+        <WarningTwoTone twoToneColor="#eb2f96" /> Алдаа мэдэгдэх
+      </Menu.Item>
     </Menu>
   );
 
@@ -67,7 +87,7 @@ const NewsItem = ({ newsId }) => {
     <div
       key={newsItem.newsid}
       className="gx-main-content news-detail"
-      loading={newsContext.state.loading}
+      // loading={newsContext.state.loading}
     >
       <div className="gx-product-footer">
         <div className="ant-row-flex">
@@ -89,20 +109,26 @@ const NewsItem = ({ newsId }) => {
           <div className="gx-ml-auto">
             <span style={{ display: "inline-flex" }}>
               <Dropdown
-                overlay={menu}
+                overlay={menuMemberAction}
                 placement="bottomRight"
                 trigger={["click"]}
+                arrow
               >
-                <i className="gx-icon-btn icon icon-ellipse-v" />
+                <Tooltip title="Таны үйлдлүүд">
+                  <i className="gx-icon-btn icon icon-ellipse-v" />
+                </Tooltip>
               </Dropdown>
             </span>
             <span style={{ display: "inline-flex" }}>
               <Dropdown
-                overlay={menu}
+                overlay={menuMemberAction}
                 placement="bottomRight"
                 trigger={["click"]}
+                arrow
               >
-                <i className="gx-icon-btn icon icon-setting" />
+                <Tooltip title="Эзний үйлдлүүд">
+                  <i className="gx-icon-btn icon icon-setting" />
+                </Tooltip>
               </Dropdown>
             </span>
           </div>
@@ -143,13 +169,18 @@ const NewsItem = ({ newsId }) => {
 
             {/* Таалагдсан. Сэтгэгдэл. Logs */}
             <div className="gx-flex-row gx-mb-2 gx-mb-xl-3">
-              {Object.entries(logsContext.state.actionTypes).map(function (i) {
-                // console.log(i);
+              {Object.entries(logsContext.state.actionTypes).map(function (
+                item,
+                i
+              ) {
                 return (
-                  <p className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey">
+                  <p
+                    key={i}
+                    className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey"
+                  >
                     {/* <i className="icon icon-chat-bubble gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle" /> */}
                     <span className="gx-d-inline-flex gx-vertical-align-middle">
-                      {i[1].count} {i[1].type}
+                      {item[1].count} {item[1].type}
                     </span>
                   </p>
                 );

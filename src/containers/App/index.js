@@ -36,6 +36,8 @@ import {
 } from "../../constants/ThemeSetting";
 
 import { MemberProfileStore } from "context/MemberContext";
+import { MemberItemsStore } from "context/MemberItemsContext";
+
 // import MemberContext from "context/MemberContext";
 
 // const memberContext = useContext(MemberContext);
@@ -167,12 +169,14 @@ const App = (props) => {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <MemberProfileStore>
-            <RestrictedRoute
-              path={`${match.url}`}
-              authUser={authUser}
-              location={location}
-              component={MainApp}
-            />
+            <MemberItemsStore>
+              <RestrictedRoute
+                path={`${match.url}`}
+                authUser={authUser}
+                location={location}
+                component={MainApp}
+              />
+            </MemberItemsStore>
           </MemberProfileStore>
         </Switch>
       </IntlProvider>
