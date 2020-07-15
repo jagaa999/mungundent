@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 
 import { Card, Tabs } from "antd";
-import NotificationItem from "./NotificationItem";
+import MemberItem from "./MemberItem";
 import { notifications } from "./data";
+import MemberItemsContext from "context/MemberItemsContext";
 
 const { TabPane } = Tabs;
 
 const MemberItems = () => {
+  const memberItemsContext = useContext(MemberItemsContext);
+
+  const memberItems = memberItemsContext.state.memberItems;
+
+  console.log("memberItems--------", memberItems);
+
   return (
     <>
       {/* <div className="gx-popover-header">
@@ -26,17 +33,17 @@ const MemberItems = () => {
             universal
           >
             <ul className="gx-sub-popover">
-              {notifications.map((notification, index) => (
-                <NotificationItem key={index} notification={notification} />
-              ))}
+              {Object.entries(memberItems).map(function (item, index) {
+                return <MemberItem key={index} memberItem={item} />;
+              })}
             </ul>
           </Scrollbars>
         </TabPane>
         <TabPane tab="Автозар" key="2">
           <Scrollbars autoHeight>
             <ul className="gx-sub-popover">
-              {notifications.map((notification, index) => (
-                <NotificationItem key={index} notification={notification} />
+              {notifications.map((memberItem, index) => (
+                <MemberItem key={index} memberItem={memberItem} />
               ))}
             </ul>
           </Scrollbars>
@@ -44,8 +51,8 @@ const MemberItems = () => {
         <TabPane tab="Tab 3" key="3">
           <Scrollbars autoHeight>
             <ul className="gx-sub-popover">
-              {notifications.map((notification, index) => (
-                <NotificationItem key={index} notification={notification} />
+              {notifications.map((memberItem, index) => (
+                <MemberItem key={index} memberItem={memberItem} />
               ))}
             </ul>
           </Scrollbars>
