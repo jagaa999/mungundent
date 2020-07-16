@@ -9,8 +9,6 @@ import InBuiltApps from "./inBuiltApps/index";
 import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
-// import NewsList from "./news/newsList";
-// import NewsDetail from "./news/newsDetail";
 import { NewsListStore, NewsDetailStore } from "../context/NewsContext";
 import { MemberProfileStore } from "context/MemberContext";
 import { MemberItemsStore } from "context/MemberItemsContext";

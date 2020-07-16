@@ -84,46 +84,7 @@ export const NewsListStore = (props) => {
 //-----------------------
 
 const initialStateNewsDetail = {
-  newsDetail: {
-    // newsid,
-    // imagemain,
-    // title,
-    // body,
-    // isfeatured,
-    // isactive,
-    // newstypeid,
-    // newstypename,
-    // newssourceid,
-    // newssourcename,
-    // newssourcelogo,
-    // newssourcetype,
-    // newssourcefacebook,
-    // newssourcewebsite,
-    // newssourceyoutube,
-    // publisheddate,
-    // publisherid,
-    // publisherphoto,
-    // publishername,
-    // publisherpositionname,
-    // createddate,
-    // creatorid,
-    // creatorname,
-    // creatorphoto,
-    // creatorpositionname,
-    // modifieddate,
-    // modifiedby,
-    // modifiername,
-    // modifierphoto,
-    // modifierpositionname,
-    // iscomment,
-    // isfacebook,
-    // istwitter,
-    // contentid,
-    // companyid,
-    // booktypeid,
-    // dim1,
-    // dim2,
-  },
+  newsDetail: {},
   loading: false,
   error: null,
 };
@@ -131,22 +92,10 @@ const initialStateNewsDetail = {
 const myParamsNewsDetail = {
   request: {
     sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-    command: "PL_MDVIEW_004",
+    command: "motoNEWS_MAINDETAIL_004",
     parameters: {
-      systemmetagroupid: "1587601946540",
-      showQuery: "0",
-      criteria: {
-        newsid: {
-          "0": {
-            operator: "=",
-            operand: "1588047983186922",
-          },
-        },
-      },
-      paging: {
-        pageSize: "1", //нийтлэлийн тоо
-        offset: "1", //хуудасны дугаар
-      },
+      newsid: "1588047983186922",
+      memberid: "1502764251361501",
     },
   },
 };
@@ -160,32 +109,19 @@ export const NewsDetailStore = (props) => {
 
   const loadNewsDetail = (newsid) => {
     clearNewsDetail();
-
-    myParamsNewsDetail.request.parameters.criteria.newsid = newsid;
-    //console.log("ЭНД ОРЖ ИРСЭН");
-    //News татаж эхэллээ гэдгийг мэдэгдэнэ.
-    //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
+    myParamsNewsDetail.request.parameters.newsid = newsid;
     setState({ ...state, loading: true });
-
-    //console.log("axios====>", axios);
 
     axios
       .post("", myParamsNewsDetail)
       .then((response) => {
-        //Датанууд ороод ирсэн
-        //Одоо state-дээ олгоно.
-        //console.log("ИРСЭН ДАТА444:   ", response);
-
-        const myPaging = response.data.response.result.paging;
+        // console.log("ИРСЭН ДАТА444:   ", response);
         const myArray = response.data.response.result;
-
-        delete myArray["aggregatecolumns"];
-        delete myArray["paging"];
-
+        // console.log("NEWS DETAIL------------>", myArray);
         setState({
           ...state,
           loading: false,
-          newsDetail: Object.values(myArray)[0],
+          newsDetail: myArray,
         });
         // setState({ ...state, newsDetail: response.data });
       })

@@ -10,10 +10,7 @@ const { TabPane } = Tabs;
 
 const MemberItems = () => {
   const memberItemsContext = useContext(MemberItemsContext);
-
   const memberItems = memberItemsContext.state.memberItems;
-
-  console.log("memberItems--------", memberItems);
 
   return (
     <>
@@ -32,14 +29,14 @@ const MemberItems = () => {
             autoHideTimeout={2000}
             universal
           >
-            <ul className="gx-sub-popover">
+            <ul className="gx-sub-popover" style={{ marginLeft: "0" }}>
               {Object.entries(memberItems).map(function (item, index) {
                 return <MemberItem key={index} memberItem={item} />;
               })}
             </ul>
           </Scrollbars>
         </TabPane>
-        <TabPane tab="Автозар" key="2">
+        <TabPane tab="Автозар" key="2" disabled>
           <Scrollbars autoHeight>
             <ul className="gx-sub-popover">
               {notifications.map((memberItem, index) => (
@@ -48,7 +45,7 @@ const MemberItems = () => {
             </ul>
           </Scrollbars>
         </TabPane>
-        <TabPane tab="Tab 3" key="3">
+        <TabPane tab="Tab 3" key="3" disabled>
           <Scrollbars autoHeight>
             <ul className="gx-sub-popover">
               {notifications.map((memberItem, index) => (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
@@ -16,14 +16,9 @@ import {
   Switch,
   message,
   Divider,
+  Spin,
 } from "antd";
-import {
-  SmileTwoTone,
-  HeartTwoTone,
-  CheckCircleTwoTone,
-} from "@ant-design/icons";
 
-import StarRatingComponent from "react-star-rating-component";
 import {
   WarningTwoTone,
   SearchOutlined,
@@ -31,24 +26,14 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import IntlMessages from "util/IntlMessages";
-
 import LogBox from "components/Moto/LogBox";
 import CommentBox from "components/Moto/CommentBox";
-import {
-  NewsDetailLogStore,
-  NewsDetailCommentStore,
-} from "context/NewsContext";
-import CommentContext from "context/CommentContext";
+
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
 import NewsContext from "context/NewsContext";
 
 const NewsItem = ({ newsId }) => {
-  useEffect(() => {
-    newsContext.loadNewsDetail(newsId);
-  }, []);
-
   const newsContext = useContext(NewsContext);
   const logsContext = useContext(LogsContext);
 
@@ -84,127 +69,125 @@ const NewsItem = ({ newsId }) => {
   };
 
   return (
-    <div
-      key={newsItem.newsid}
-      className="gx-main-content news-detail"
-      // loading={newsContext.state.loading}
-    >
-      <div className="gx-product-footer">
-        <div className="ant-row-flex">
-          <div className="gx-module-contact-content">
-            <span>
-              <Tooltip title={newsItem.publisherpositionname}>
-                <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                  <img
-                    src={newsItem.publisherphoto}
-                    alt={newsItem.publishername}
-                  />
-                </span>
-                <span className="gx-text-grey gx-fs-sm gx-mx-2">
-                  {newsItem.publishername}
-                </span>
-              </Tooltip>
-            </span>
-          </div>
-          <div className="gx-ml-auto">
-            <span style={{ display: "inline-flex" }}>
-              <Dropdown
-                overlay={menuMemberAction}
-                placement="bottomRight"
-                trigger={["click"]}
-                arrow
-              >
-                <Tooltip title="Таны үйлдлүүд">
-                  <i className="gx-icon-btn icon icon-ellipse-v" />
+    <div>
+      <div key={newsItem.newsid} className="gx-main-content news-detail">
+        <div className="gx-product-footer">
+          <div className="ant-row-flex">
+            <div className="gx-module-contact-content">
+              <span>
+                <Tooltip title={newsItem.publisherpositionname}>
+                  <span className="ant-avatar ant-avatar-circle ant-avatar-image">
+                    <img
+                      src={newsItem.publisherphoto}
+                      alt={newsItem.publishername}
+                    />
+                  </span>
+                  <span className="gx-text-grey gx-fs-sm gx-mx-2">
+                    {newsItem.publishername}
+                  </span>
                 </Tooltip>
-              </Dropdown>
-            </span>
-            <span style={{ display: "inline-flex" }}>
-              <Dropdown
-                overlay={menuMemberAction}
-                placement="bottomRight"
-                trigger={["click"]}
-                arrow
-              >
-                <Tooltip title="Эзний үйлдлүүд">
-                  <i className="gx-icon-btn icon icon-setting" />
-                </Tooltip>
-              </Dropdown>
-            </span>
+              </span>
+            </div>
+            <div className="gx-ml-auto">
+              <span style={{ display: "inline-flex" }}>
+                <Dropdown
+                  overlay={menuMemberAction}
+                  placement="bottomRight"
+                  trigger={["click"]}
+                  arrow
+                >
+                  <Tooltip title="Таны үйлдлүүд">
+                    <i className="gx-icon-btn icon icon-ellipse-v" />
+                  </Tooltip>
+                </Dropdown>
+              </span>
+              <span style={{ display: "inline-flex" }}>
+                <Dropdown
+                  overlay={menuMemberAction}
+                  placement="bottomRight"
+                  trigger={["click"]}
+                  arrow
+                >
+                  <Tooltip title="Эзний үйлдлүүд">
+                    <i className="gx-icon-btn icon icon-setting" />
+                  </Tooltip>
+                </Dropdown>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <Row>
-        <Col xs={24}>
-          <Card
-            cover={
-              <img
-                alt={newsItem.title}
-                src={"https://www.moto.mn/" + newsItem.imagemain}
-              />
-            }
-          >
-            <h2>{newsItem.title}</h2>
-            <div className="news-header">
-              <div className="ant-row-flex">
-                <Tooltip title="Төрөл">
-                  <Badge
-                    count={newsItem.newstypename}
-                    style={{ backgroundColor: "teal" }}
-                  />
-                </Tooltip>
-                <Tooltip title="Эх сурвалж">
-                  <span className="gx-text-grey gx-fs-sm">
-                    {newsItem.newssourcename}
-                  </span>
-                </Tooltip>
-                <Tooltip title="Нийтэлсэн огноо">
-                  <span className="gx-text-grey gx-fs-sm gx-ml-2">
-                    {newsItem.publisheddate}
-                  </span>
-                </Tooltip>
-              </div>
-            </div>
-
-            {/* Таалагдсан. Сэтгэгдэл. Logs */}
-            <div className="gx-flex-row gx-mb-2 gx-mb-xl-3">
-              {Object.entries(logsContext.state.actionTypes).map(function (
-                item,
-                i
-              ) {
-                return (
-                  <p
-                    key={i}
-                    className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey"
-                  >
-                    {/* <i className="icon icon-chat-bubble gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle" /> */}
-                    <span className="gx-d-inline-flex gx-vertical-align-middle">
-                      {item[1].count} {item[1].type}
+        <Row>
+          <Col xs={24}>
+            <Card
+              cover={
+                <img
+                  alt={newsItem.title}
+                  src={"https://www.moto.mn/" + newsItem.imagemain}
+                />
+              }
+            >
+              <h2>{newsItem.title}</h2>
+              <div className="news-header">
+                <div className="ant-row-flex">
+                  <Tooltip title="Төрөл">
+                    <Badge
+                      count={newsItem.newstypename}
+                      style={{ backgroundColor: "teal" }}
+                    />
+                  </Tooltip>
+                  <Tooltip title="Эх сурвалж">
+                    <span className="gx-text-grey gx-fs-sm">
+                      {newsItem.newssourcename}
                     </span>
-                  </p>
-                );
-              })}
-            </div>
+                  </Tooltip>
+                  <Tooltip title="Нийтэлсэн огноо">
+                    <span className="gx-text-grey gx-fs-sm gx-ml-2">
+                      {newsItem.publisheddate}
+                    </span>
+                  </Tooltip>
+                </div>
+              </div>
 
-            <div
-              className="news-body"
-              dangerouslySetInnerHTML={{
-                __html: htmlEntities.decode(newsItem.body),
-              }}
-            ></div>
-          </Card>
-        </Col>
-      </Row>
+              {/* Таалагдсан. Сэтгэгдэл. Logs */}
+              <div className="gx-flex-row gx-mb-2 gx-mb-xl-3">
+                {Object.entries(logsContext.state.actionTypes).map(function (
+                  item,
+                  i
+                ) {
+                  return (
+                    <p
+                      key={i}
+                      className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey"
+                    >
+                      {/* <i className="icon icon-chat-bubble gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle" /> */}
+                      <span className="gx-d-inline-flex gx-vertical-align-middle">
+                        {item[1].count} {item[1].type}
+                      </span>
+                    </p>
+                  );
+                })}
+              </div>
 
-      <div>
-        <MemberCard02 member={member} maxWidth="250px" />
+              <div
+                className="news-body"
+                dangerouslySetInnerHTML={{
+                  __html: htmlEntities.decode(newsItem.body),
+                }}
+              ></div>
+            </Card>
+          </Col>
+        </Row>
+
+        <div>
+          <MemberCard02 member={member} maxWidth="250px" />
+        </div>
+
+        {/* Одоогоор TableName-ийг хоосон орхив */}
+        <CommentBox recordId={newsItem.newsid} tableName="" />
+
+        <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
       </div>
-
-      {/* Одоогоор TableName-ийг хоосон орхив */}
-      <CommentBox recordId={newsItem.newsid} tableName="" />
-
-      <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
     </div>
   );
 };

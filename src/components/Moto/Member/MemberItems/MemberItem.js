@@ -1,7 +1,9 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
+
 import { Avatar } from "antd";
 
-const MemberItem = ({ memberItem }) => {
+const MemberItem = (props) => {
   // actiondata: "1"
   // actionname: "Таалагдлаа"
   // id: "1577322982856239"
@@ -14,26 +16,44 @@ const MemberItem = ({ memberItem }) => {
   // title: "Land Cruiser-ийн төрсөн нутаг"
   // typeid: "205"
 
-  // image: "https://via.placeholder.com/150",
-  // title: "Alex Brown has shared Martin Guptil's post",
-  // time: "5:18 PM",
-  // icon: "chat gx-text-grey",
+  const memberItem = props.memberItem[1];
+  const imageMain = "https://www.moto.mn/" + memberItem.imagemain;
 
-  console.log("memberItem//////////////", memberItem[1]);
+  if (memberItem.actiondata === 0) return null; //actiondata буюу Үйлдэл нь false байвал хоосон буцаана.
 
-  const { icon, image, title, time } = memberItem;
+  // *Түлхүүр үгүүдийг өнгөөр ялгаж бичихэд хэрэглэнэ.
+  let myTextColor = "gx-text-grey";
+  switch (memberItem.actionname) {
+    case "Таалагдлаа":
+      myTextColor = "gx-text-orange";
+      break;
+    case "Жоорлох":
+      myTextColor = "gx-text-success";
+      break;
+    default:
+      myTextColor = "gx-text-grey";
+      break;
+  }
+
   return (
     <li className="gx-media">
       <Avatar
         className="gx-size-40 gx-mr-3"
-        alt={memberItem[1].imagemain}
-        src={memberItem[1].imagemain}
+        alt={memberItem.title}
+        src={imageMain}
       />
       <div className="gx-media-body gx-align-self-center">
-        <p className="gx-fs-sm gx-mb-0">{memberItem[1].title}</p>
-        <i className="icon icon-chat gx-text-grey gx-pr-2" />
+        <Link to={"/news/" + memberItem.recordid}>
+          <p className="gx-fs-sm gx-mb-0">{memberItem.title}</p>
+        </Link>
+        {/* <Link to={"/news/" + newsid}>{title}</Link> */}
+
+        {/* <i className="icon icon-chat gx-text-grey gx-pr-2" /> */}
+        <span className={`gx-mr-2 ${myTextColor}`}>
+          <small>{memberItem.actionname}</small>
+        </span>
         <span className="gx-meta-date">
-          <small>{memberItem[1].modifieddate}</small>
+          <small>{memberItem.modifieddate}</small>
         </span>
       </div>
     </li>
