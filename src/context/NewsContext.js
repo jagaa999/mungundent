@@ -94,8 +94,8 @@ const myParamsNewsDetail = {
     sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
     command: "motoNEWS_MAINDETAIL_004",
     parameters: {
-      newsid: "1588047983186922",
-      memberid: "1502764251361501",
+      newsid: "",
+      memberid: "",
     },
   },
 };

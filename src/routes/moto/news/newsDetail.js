@@ -6,7 +6,6 @@ import { CommentListStore } from "context/CommentContext";
 import { LogsStore } from "context/LogsContext";
 import NewsContext from "context/NewsContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
-import { Skeleton } from "antd";
 
 const NewsPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID

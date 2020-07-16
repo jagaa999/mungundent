@@ -1,24 +1,10 @@
 import React, { useState } from "react";
-
 import axios from "../util/axiosConfig";
 
 const LogsContext = React.createContext();
 
 const initialStateLogs = {
-  logItems: {
-    // "id": "1588304812557",
-    // "tablename": "ECM_NEWS",
-    // "recordid": "1588047983186922",
-    // "actionname": "Үзэв",
-    // "actiondate": "2020-05-12 10:20:21",
-    // "idstring": "",
-    // "description": "",
-    // "memberid": "1502764251361501",
-    // "memberphoto": "https://scontent-sin6-2.xx.fbcdn.n",
-    // "membername": "Jargal Tumurbaatar",
-    // "positionname": "Админ",
-    // "userid": ""
-  },
+  logItems: {},
   total: 0,
   actionTypes: {},
   loading: false,
@@ -55,12 +41,13 @@ export const LogsStore = (props) => {
     if (recordId === undefined) return null;
 
     clearLogs();
-
     myParamsLogs.request.parameters.criteria.recordId = recordId;
     myParamsLogs.request.parameters.criteria.tableName = tableName;
-    //Log татаж эхэллээ гэдгийг мэдэгдэнэ.
-    //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
+
     setState({ ...state, loading: true });
+
+    // console.log("MYSTATE---------", state);
+    // console.log("myParamsLogs.request---------", myParamsLogs.request);
 
     axios
       .post("", myParamsLogs)
@@ -72,31 +59,15 @@ export const LogsStore = (props) => {
         delete myTempArray["aggregatecolumns"];
         delete myTempArray["paging"];
 
-        // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myArray);
-
         const myArray = Object.values(myTempArray);
+
+        // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myArray);
 
         const actionTypes = myArray
           .map((dataItem) => dataItem.actionname) // get all media types
           .filter(
             (actionType, index, array) => array.indexOf(actionType) === index
           ); // filter out duplicates
-
-        //let counts = [];
-
-        // const myActionTypes = [];
-        // 0: {type: "Үзэв", count: 121}
-        // 1: {type: "Сэтгэгдэл бичив", count: 5}
-        // 2: {type: "Like", count: 1}
-        //counts.map(item=>)
-
-        // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", actionTypes);
-
-        // counts = mediaTypes
-        // .map(mediaType => ({
-        //   type: mediaType,
-        //   count: data.filter(item => item.media_type === mediaType).length
-        // }));
 
         const counts = actionTypes.map(function (item, index) {
           return { key: item, value: index };

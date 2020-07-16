@@ -58,7 +58,7 @@ export const MemberItemsStore = (props) => {
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
 
-        console.log("ИРСЭН MYARRAY:   ", myArray);
+        // console.log("ИРСЭН MYARRAY:   ", myArray);
 
         setState({
           ...state,
