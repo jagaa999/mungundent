@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Button, Checkbox, Input, message, Form } from "antd";
-import Icon from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+
+import { Button, Checkbox, Input, message, Form, Divider } from "antd";
+import Icon from "@ant-design/icons";
 
 import {
   hideMessage,
@@ -23,9 +24,14 @@ import GoogleOutlined from "@ant-design/icons/lib/icons/GoogleOutlined";
 
 const SignIn = () => {
   const dispatch = useDispatch();
-  const { loader, alertMessage, showMessage, authUser } = useSelector(
-    ({ auth }) => auth
-  );
+  const {
+    loader,
+    alertMessage,
+    showMessage,
+    authUser,
+    userProfile,
+  } = useSelector(({ auth }) => auth);
+
   const [form] = Form.useForm();
   const history = useHistory();
 
@@ -33,7 +39,7 @@ const SignIn = () => {
     if (showMessage) {
       setTimeout(() => {
         dispatch(hideMessage());
-      }, 100);
+      }, 500);
     }
     if (authUser !== null) {
       history.push("/");
@@ -66,24 +72,70 @@ const SignIn = () => {
         <div className="gx-app-login-main-content">
           <div className="gx-app-logo-content">
             <div className="gx-app-logo-content-bg">
-              <img src={"https://via.placeholder.com/272x395"} alt="Neature" />
+              <img
+                src={
+                  "https://images.unsplash.com/photo-1529567186287-3e17bdefa342?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=500&q=80"
+                }
+                alt="Moto Signup Wallpaper"
+              />
             </div>
             <div className="gx-app-logo-wid">
-              <h1>
-                <IntlMessages id="app.userAuth.signIn" />
-              </h1>
+              <h1>Нэвтрэх</h1>
               <p>
-                <IntlMessages id="app.userAuth.bySigning" />
+                Moto гишүүн болсноор системийн бүх ажиллагаа танд нээлттэй
+                болно.
               </p>
-              <p>
-                <IntlMessages id="app.userAuth.getAccount" />
-              </p>
+              <p>Бүртгүүлэхэд болоход Үнэгүй, бас Амархан.</p>
             </div>
             <div className="gx-app-logo">
               <img alt="example" src={require("assets/images/logo.png")} />
             </div>
           </div>
           <div className="gx-app-login-content">
+            <Button
+              style={{ backgroundColor: "#3b5998", color: "#fff" }}
+              // type="primary"
+              icon={<FacebookOutlined />}
+              size="large"
+              block
+              onClick={() => {
+                dispatch(showAuthLoader());
+                dispatch(userFacebookSignIn());
+              }}
+            >
+              Facebook
+            </Button>
+            <Button
+              style={{ backgroundColor: "#dd4b39", color: "#fff" }}
+              // type="primary"
+              icon={<GoogleOutlined />}
+              size="large"
+              block
+              onClick={() => {
+                dispatch(showAuthLoader());
+                dispatch(userGoogleSignIn());
+              }}
+            >
+              Google
+            </Button>
+            <Button
+              style={{ backgroundColor: "#2795e9", color: "#fff" }}
+              // type="primary"
+              icon={<TwitterOutlined />}
+              size="large"
+              block
+              onClick={() => {
+                dispatch(showAuthLoader());
+                dispatch(userTwitterSignIn());
+              }}
+            >
+              Twitter
+            </Button>
+
+            <Divider dashed orientation="left">
+              эсвэл
+            </Divider>
+
             <Form
               initialValues={{ remember: true }}
               name="basic"
@@ -92,39 +144,41 @@ const SignIn = () => {
               className="gx-signin-form gx-form-row0"
             >
               <Form.Item
-                initialValue="demo@example.com"
+                // initialValue="demo@example.com"
+                initialValue=""
                 rules={[{ required: true, message: "Зөв имэйл оруулна уу!" }]}
                 name="email"
               >
-                <Input placeholder="Email" />
+                <Input placeholder="Имэйл хаяг" />
               </Form.Item>
               <Form.Item
-                initialValue="demo#123"
+                // initialValue="demo#123"
+                initialValue=""
                 rules={[{ required: true, message: "Нууц үгээ оруулна уу!" }]}
                 name="password"
               >
-                <Input type="password" placeholder="Password" />
+                <Input type="password" placeholder="Нууц үг" />
               </Form.Item>
+
               <Form.Item>
-                <Checkbox>
-                  <IntlMessages id="appModule.iAccept" />
+                <Checkbox checked>
+                  систем ашиглах{" "}
+                  <span className="gx-signup-form-forgot gx-link">
+                    нөхцөлийг
+                  </span>{" "}
+                  зөвшөөрч байна.
                 </Checkbox>
-                <span className="gx-signup-form-forgot gx-link">
-                  <IntlMessages id="appModule.termAndCondition" />
-                </span>
               </Form.Item>
+
               <Form.Item>
                 <Button type="primary" className="gx-mb-0" htmlType="submit">
-                  <IntlMessages id="app.userAuth.signIn" />
+                  Нэвтрэх
                 </Button>
-                <span>
-                  <IntlMessages id="app.userAuth.or" />
-                </span>{" "}
-                <Link to="/signup">
-                  <IntlMessages id="app.userAuth.signUp" />
-                </Link>
+                <span className="gx-text-light gx-fs-sm">шинэ хүн үү?</span>
+                <Link to="/signup"> Мото Гишүүн болох</Link>
               </Form.Item>
-              <div className="gx-flex-row gx-justify-content-between">
+
+              {/* <div className="gx-flex-row gx-justify-content-between">
                 <span>or connect with</span>
                 <ul className="gx-social-link">
                   <li>
@@ -143,12 +197,6 @@ const SignIn = () => {
                       }}
                     />
                   </li>
-                  {/* <li>
-                      <GithubOutlined onClick={() => {
-                        dispatch(showAuthLoader());
-                        dispatch(userGithubSignIn());
-                      }}/>
-                    </li> */}
                   <li>
                     <TwitterOutlined
                       onClick={() => {
@@ -158,11 +206,7 @@ const SignIn = () => {
                     />
                   </li>
                 </ul>
-              </div>
-              <span className="gx-text-light gx-fs-sm">
-                {" "}
-                demo user email: 'demo@example.com' and password: 'demo#123'
-              </span>
+              </div> */}
             </Form>
           </div>
 

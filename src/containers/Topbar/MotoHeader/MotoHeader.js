@@ -15,6 +15,7 @@ import CustomScrollbars from "util/CustomScrollbars";
 import languageData from "../languageData";
 import SearchBox from "components/SearchBox";
 import UserInfo from "components/UserInfo";
+import MenuMember from "components/Moto/Menu/MenuMember";
 import AppNotification from "components/AppNotification";
 import MemberItems from "components/Moto/Member/MemberItems/MemberItems";
 import MailNotification from "components/MailNotification";
@@ -203,7 +204,8 @@ const MotoHeader = () => {
                 </Popover>
               </li>
               <li className="gx-user-nav">
-                <UserInfo />
+                {/* <UserInfo /> */}
+                <MenuMember />
               </li>
             </ul>
           </div>

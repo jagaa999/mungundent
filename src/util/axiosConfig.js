@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// axios.defaults.withCredentials = true;
 const instance = axios.create({
   baseURL: "http://172.104.58.164:8080/erp-services/RestWS/runJson",
   //   method: "post",

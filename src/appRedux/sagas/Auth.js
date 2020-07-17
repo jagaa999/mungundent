@@ -92,11 +92,22 @@ function* createUserWithEmailPassword({ payload }) {
 function* signInUserWithGoogle() {
   try {
     const signUpUser = yield call(signInUserWithGoogleRequest);
+
+    console.log("signUpUser - GOOOOOOOOOGLE ------->>>", signUpUser);
+
     if (signUpUser.message) {
       yield put(showAuthMessage(signUpUser.message));
     } else {
-      localStorage.setItem("user_id", signUpUser.user.uid);
-      yield put(userGoogleSignInSuccess(signUpUser.user.uid));
+      localStorage.setItem("motoMemberUID", signUpUser.user.uid);
+      localStorage.setItem(
+        "motoMemberProfile",
+        JSON.stringify(signUpUser.additionalUserInfo.profile)
+      );
+      localStorage.setItem(
+        "motoMemberGoogleProfile",
+        JSON.stringify(signUpUser.additionalUserInfo.profile)
+      );
+      yield put(userGoogleSignInSuccess(signUpUser.user.uid, signUpUser)); //Бүх мэдээллийг бүхлээр нь Store-д хийнэ.
     }
   } catch (error) {
     yield put(showAuthMessage(error));
@@ -106,10 +117,21 @@ function* signInUserWithGoogle() {
 function* signInUserWithFacebook() {
   try {
     const signUpUser = yield call(signInUserWithFacebookRequest);
+
+    console.log("signUpUser-------->>>", signUpUser);
+
     if (signUpUser.message) {
       yield put(showAuthMessage(signUpUser.message));
     } else {
-      localStorage.setItem("user_id", signUpUser.user.uid);
+      localStorage.setItem("motoMemberUID", signUpUser.user.uid);
+      localStorage.setItem(
+        "motoMemberProfile",
+        JSON.stringify(signUpUser.additionalUserInfo.profile)
+      );
+      localStorage.setItem(
+        "motoMemberFacebookProfile",
+        JSON.stringify(signUpUser.additionalUserInfo.profile)
+      );
       yield put(userFacebookSignInSuccess(signUpUser.user.uid));
     }
   } catch (error) {
@@ -172,7 +194,8 @@ function* signOut() {
   try {
     const signOutUser = yield call(signOutRequest);
     if (signOutUser === undefined) {
-      localStorage.removeItem("user_id");
+      localStorage.removeItem("motoMemberId");
+      localStorage.removeItem("motoMemberProfile");
       yield put(userSignOutSuccess(signOutUser));
     } else {
       yield put(showAuthMessage(signOutUser.message));

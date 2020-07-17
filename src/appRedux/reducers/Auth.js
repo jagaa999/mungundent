@@ -18,7 +18,8 @@ const INIT_STATE = {
   alertMessage: "",
   showMessage: false,
   initURL: "",
-  authUser: localStorage.getItem("user_id"),
+  authUser: localStorage.getItem("motoMemberUID"),
+  userProfile: JSON.parse(localStorage.getItem("motoMemberProfile")),
 };
 
 export default (state = INIT_STATE, action) => {
@@ -73,14 +74,16 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loader: false,
-        authUser: action.payload,
+        authUser: action.authUser,
+        userProfile: action.userProfile,
       };
     }
     case SIGNIN_FACEBOOK_USER_SUCCESS: {
       return {
         ...state,
         loader: false,
-        authUser: action.payload,
+        authUser: action.authUser,
+        userProfile: action.userProfile,
       };
     }
     case SIGNIN_TWITTER_USER_SUCCESS: {

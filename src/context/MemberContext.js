@@ -9,6 +9,8 @@ const MemberContext = React.createContext();
 //----------------------- Member Profile
 const initialStateMemberProfile = {
   memberProfile: {},
+  memberFirebaseProfile: JSON.parse(localStorage.getItem("motoMemberProfile")),
+  memberUID: localStorage.getItem("motoMemberUID"),
   loading: false,
   error: null,
 };
@@ -60,6 +62,8 @@ export const MemberProfileStore = (props) => {
 
         // delete myArray["aggregatecolumns"];
         // delete myArray["paging"];
+
+        console.log(myArray);
 
         setState({
           ...state,

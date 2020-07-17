@@ -44,7 +44,7 @@ export const NewsListStore = (props) => {
     //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
     setState({ ...state, loading: true });
 
-    //console.log("axios====>", axios);
+    console.log("myParamsNewsList====>", myParamsNewsList);
 
     axios
       .post("", myParamsNewsList)
