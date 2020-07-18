@@ -68,6 +68,8 @@ const NewsItem = ({ newsId }) => {
     publisherpositionname: newsItem.publisherpositionname,
   };
 
+  const myBody = newsItem.body.replace("storage", "hahaha");
+
   return (
     <div>
       <div key={newsItem.newsid} className="gx-main-content news-detail">
@@ -172,7 +174,10 @@ const NewsItem = ({ newsId }) => {
               <div
                 className="news-body"
                 dangerouslySetInnerHTML={{
-                  __html: htmlEntities.decode(newsItem.body),
+                  __html: htmlEntities.decode(
+                    // newsItem.body.replace("storage", "hahaha")
+                    myBody
+                  ),
                 }}
               ></div>
             </Card>
