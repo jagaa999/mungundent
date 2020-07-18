@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import {
+  firebaseAuth,
+  facebookAuthProvider,
+  githubAuthProvider,
+  googleAuthProvider,
+  twitterAuthProvider,
+} from "firebase/firebase";
 
 import axios from "../util/axiosConfig";
 // import mainAxios from "axios";
@@ -8,9 +15,10 @@ const MemberContext = React.createContext();
 
 //----------------------- Member Profile
 const initialStateMemberProfile = {
+  memberUID: localStorage.getItem("motoMemberUID") || 0,
   memberProfile: {},
-  memberFirebaseProfile: JSON.parse(localStorage.getItem("motoMemberProfile")),
-  memberUID: localStorage.getItem("motoMemberUID"),
+  memberFirebaseProfile:
+    JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
   loading: false,
   error: null,
 };
@@ -29,42 +37,35 @@ export const MemberProfileStore = (props) => {
   const [state, setState] = useState(initialStateMemberProfile);
 
   const clearMemberProfile = () => {
-    setState(initialStateMemberProfile);
+    localStorage.removeItem("motoMemberUID");
+    localStorage.removeItem("motoMemberProfile");
+
+    setState({
+      memberUID: 0,
+      memberProfile: {},
+      memberFirebaseProfile: {},
+      loading: false,
+      error: null,
+    });
   };
 
+  // const setFirebaseProfile = (firebaseProfile) => {
+  //   setState({ ...state, memberFirebaseProfile: firebaseProfile });
+  // };
+
   const loadMemberProfile = (memberId) => {
-    clearMemberProfile();
-
-    // myParamsMemberProfile.request.parameters.criteria.memberId = memberId;
-    //console.log("ЭНД ОРЖ ИРСЭН");
-    //Member татаж эхэллээ гэдгийг мэдэгдэнэ.
-    //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
     setState({ ...state, loading: true });
-
-    //console.log("axios====>", axios);
-
     axios
       .post("", myParamsMemberProfile)
       .then((response) => {
-        //Датанууд ороод ирсэн
-        //Одоо state-дээ олгоно.
-        // console.log("ИРСЭН ДАТА444:   ", response);
-
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
-
         // Хэрвээ customerid хоосон байвал хүчээр тавьчихъя. 200108101001108990
         if (myArray.userkeys[0].customerid === "") {
           myArray.customerid = "200108101001108990";
           myArray.userkeys[0].customerid = "200108101001108990";
         }
         // console.log("myArray", myArray);
-
-        // delete myArray["aggregatecolumns"];
-        // delete myArray["paging"];
-
-        console.log(myArray);
-
         setState({
           ...state,
           loading: false,
@@ -77,8 +78,53 @@ export const MemberProfileStore = (props) => {
       });
   };
 
+  const signinFirebase = () => {
+    setState({ ...state, loading: true });
+
+    firebaseAuth
+      .signInWithPopup(googleAuthProvider)
+      .then((response) => {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const token = response.credential.accessToken;
+        // The signed-in user info.
+        const user = response.user;
+        // ...
+
+        localStorage.setItem("motoMemberUID", response.user.uid);
+        localStorage.setItem(
+          "motoMemberProfile",
+          JSON.stringify(response.additionalUserInfo.profile)
+        );
+
+        setState({
+          ...state,
+          memberUID: response.user.uid,
+          memberFirebaseProfile: response.additionalUserInfo.profile,
+          loading: false,
+        });
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        const credential = error.credential;
+        // ...
+      });
+  };
+
   return (
-    <MemberContext.Provider value={{ state, loadMemberProfile }}>
+    <MemberContext.Provider
+      value={{
+        state,
+        loadMemberProfile,
+        signinFirebase,
+        clearMemberProfile,
+        // setFirebaseProfile,
+      }}
+    >
       {props.children}
     </MemberContext.Provider>
   );

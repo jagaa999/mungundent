@@ -37,7 +37,7 @@ const { Content, Footer } = Layout;
 const MainApp = () => {
   //Эхэлж нэг удаа ажиллахад хэрэглэгчийг login-дуулна.
   useEffect(() => {
-    memberContext.loadMemberProfile("200108101001108990");
+    // memberContext.loadMemberProfile("200108101001108990");
     //* Дараа нь тухайн хэрэглэгчийн Хадгалсан зүйлсийг дуудна.
     memberItemsContext.loadMemberItems("1502764251361501");
   }, []);
@@ -63,33 +63,6 @@ const MainApp = () => {
         return "gx-container-wrap";
       default:
         return "";
-    }
-  };
-  const getNavStyles = (navStyle) => {
-    switch (navStyle) {
-      case NAV_STYLE_DEFAULT_HORIZONTAL:
-        return <HorizontalDefault />;
-      case NAV_STYLE_DARK_HORIZONTAL:
-        return <HorizontalDark />;
-      case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
-        // !!jagaa Энэ нь бидний ашиглаж байгаа толгой
-        return <MotoHeader />;
-      case NAV_STYLE_ABOVE_HEADER:
-        return <AboveHeader />;
-      case NAV_STYLE_BELOW_HEADER:
-        return <BelowHeader />;
-      case NAV_STYLE_FIXED:
-        return <Topbar />;
-      case NAV_STYLE_DRAWER:
-        return <Topbar />;
-      case NAV_STYLE_MINI_SIDEBAR:
-        return <Topbar />;
-      case NAV_STYLE_NO_HEADER_MINI_SIDEBAR:
-        return <NoHeaderNotification />;
-      case NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR:
-        return <NoHeaderNotification />;
-      default:
-        return null;
     }
   };
 
@@ -119,7 +92,8 @@ const MainApp = () => {
     <Layout className="gx-app-layout">
       {getSidebar(navStyle, width)}
       <Layout>
-        {getNavStyles(navStyle)}
+        {/* {getNavStyles(navStyle)} */}
+        <MotoHeader />
         <Content
           className={`gx-layout-content ${getContainerClass(navStyle)} `}
         >
@@ -133,4 +107,5 @@ const MainApp = () => {
     </Layout>
   );
 };
+
 export default MainApp;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
@@ -15,6 +15,8 @@ import {
   userTwitterSignIn,
 } from "appRedux/actions/Auth";
 
+import MemberContext from "context/MemberContext";
+
 import IntlMessages from "util/IntlMessages";
 import CircularProgress from "components/CircularProgress/index";
 import TwitterOutlined from "@ant-design/icons/lib/icons/TwitterOutlined";
@@ -23,6 +25,10 @@ import FacebookOutlined from "@ant-design/icons/lib/icons/FacebookOutlined";
 import GoogleOutlined from "@ant-design/icons/lib/icons/GoogleOutlined";
 
 const SignIn = () => {
+  console.log("SIGNIN ДОТОР ОРЖ ИРЖ БАЙНА.");
+
+  const memberContext = useContext(MemberContext);
+
   const dispatch = useDispatch();
   const {
     loader,
@@ -36,12 +42,13 @@ const SignIn = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (showMessage) {
-      setTimeout(() => {
-        dispatch(hideMessage());
-      }, 500);
-    }
-    if (authUser !== null) {
+    // if (showMessage) {
+    //   setTimeout(() => {
+    //     dispatch(hideMessage());
+    //   }, 500);
+    // }
+
+    if (memberContext.state.memberUID !== 0) {
       history.push("/");
     }
   });
@@ -112,8 +119,9 @@ const SignIn = () => {
               size="large"
               block
               onClick={() => {
-                dispatch(showAuthLoader());
-                dispatch(userGoogleSignIn());
+                // dispatch(showAuthLoader());
+                // dispatch(userGoogleSignIn());
+                memberContext.signinFirebase();
               }}
             >
               Google

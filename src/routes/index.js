@@ -10,8 +10,7 @@ import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
 import { NewsListStore, NewsDetailStore } from "../context/NewsContext";
-import { MemberProfileStore } from "context/MemberContext";
-import { MemberItemsStore } from "context/MemberItemsContext";
+
 import asyncComponent from "util/asyncComponent";
 
 //Дээгүүр гүйх цэнхэр зураас

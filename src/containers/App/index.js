@@ -38,10 +38,6 @@ import {
 import { MemberProfileStore } from "context/MemberContext";
 import { MemberItemsStore } from "context/MemberItemsContext";
 
-// import MemberContext from "context/MemberContext";
-
-// const memberContext = useContext(MemberContext);
-
 const RestrictedRoute = ({
   component: Component,
   location,
@@ -152,9 +148,6 @@ const App = (props) => {
       link.className = "style_dark_theme";
       document.body.appendChild(link);
     }
-
-    //Хэрэглэгчийг логиндуулна
-    // memberContext.loadMemberProfile("200108101001108990");
   }, []);
 
   const currentAppLocale = AppLocale[locale.locale];
@@ -168,16 +161,13 @@ const App = (props) => {
         <Switch>
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
-          <MemberProfileStore>
-            <MemberItemsStore>
-              <RestrictedRoute
-                path={`${match.url}`}
-                authUser={authUser}
-                location={location}
-                component={MainApp}
-              />
-            </MemberItemsStore>
-          </MemberProfileStore>
+
+          <RestrictedRoute
+            path={`${match.url}`}
+            authUser={authUser}
+            location={location}
+            component={MainApp}
+          />
         </Switch>
       </IntlProvider>
     </ConfigProvider>

@@ -19,7 +19,7 @@ import MenuMember from "components/Moto/Menu/MenuMember";
 import AppNotification from "components/AppNotification";
 import MemberItems from "components/Moto/Member/MemberItems/MemberItems";
 import MailNotification from "components/MailNotification";
-import HorizontalNav from "../HorizontalNav";
+import MotoHorizontalNav from "../MotoHorizontalNav";
 import { Link } from "react-router-dom";
 import {
   switchLanguage,
@@ -116,7 +116,7 @@ const MotoHeader = () => {
             </Link>
 
             <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
-              <HorizontalNav />
+              <MotoHorizontalNav />
             </div>
 
             <ul className="gx-header-notifications gx-ml-auto">

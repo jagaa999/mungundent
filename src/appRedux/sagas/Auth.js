@@ -91,6 +91,8 @@ function* createUserWithEmailPassword({ payload }) {
 
 function* signInUserWithGoogle() {
   try {
+    //const memberContext = useContext(MemberContext);
+
     const signUpUser = yield call(signInUserWithGoogleRequest);
 
     console.log("signUpUser - GOOOOOOOOOGLE ------->>>", signUpUser);
@@ -107,6 +109,7 @@ function* signInUserWithGoogle() {
         "motoMemberGoogleProfile",
         JSON.stringify(signUpUser.additionalUserInfo.profile)
       );
+
       yield put(userGoogleSignInSuccess(signUpUser.user.uid, signUpUser)); //Бүх мэдээллийг бүхлээр нь Store-д хийнэ.
     }
   } catch (error) {
@@ -194,7 +197,7 @@ function* signOut() {
   try {
     const signOutUser = yield call(signOutRequest);
     if (signOutUser === undefined) {
-      localStorage.removeItem("motoMemberId");
+      localStorage.removeItem("motoMemberUID");
       localStorage.removeItem("motoMemberProfile");
       yield put(userSignOutSuccess(signOutUser));
     } else {

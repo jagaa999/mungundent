@@ -35,12 +35,7 @@ import {
   THEME_TYPE_DARK,
 } from "../../constants/ThemeSetting";
 
-import { MemberProfileStore } from "context/MemberContext";
-import { MemberItemsStore } from "context/MemberItemsContext";
-
-// import MemberContext from "context/MemberContext";
-
-// const memberContext = useContext(MemberContext);
+import MemberContext from "context/MemberContext";
 
 const RestrictedRoute = ({
   component: Component,
@@ -48,24 +43,27 @@ const RestrictedRoute = ({
   authUser,
   ...rest
 }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      authUser ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/signin",
-            state: { from: location },
-          }}
-        />
-      )
-    }
-  />
+  // <Route
+  //   {...rest}
+  //   render={(props) =>
+  //     authUser ? (
+  //       <Component {...props} />
+  //     ) : (
+  //       <Redirect
+  //         to={{
+  //           pathname: "/signin",
+  //           state: { from: location },
+  //         }}
+  //       />
+  //     )
+  //   }
+  // />
+  <Route {...rest} render={(props) => <Component {...props} />} />
 );
 
-const App = (props) => {
+const MotoIndexApp = (props) => {
+  const memberContext = useContext(MemberContext);
+
   const dispatch = useDispatch();
   const { locale, themeType, navStyle, layoutType } = useSelector(
     ({ settings }) => settings
@@ -76,24 +74,24 @@ const App = (props) => {
   const history = useHistory();
   const match = useRouteMatch();
 
-  useEffect(() => {
-    if (initURL === "") {
-      dispatch(setInitUrl(location.pathname));
-    }
-    const params = new URLSearchParams(location.search);
+  // useEffect(() => {
+  //   if (initURL === "") {
+  //     dispatch(setInitUrl(location.pathname));
+  //   }
+  //   const params = new URLSearchParams(location.search);
 
-    if (params.has("theme")) {
-      dispatch(setThemeType(params.get("theme")));
-    }
-    if (params.has("nav-style")) {
-      dispatch(onNavStyleChange(params.get("nav-style")));
-    }
-    if (params.has("layout-type")) {
-      dispatch(onLayoutTypeChange(params.get("layout-type")));
-    }
-    setLayoutType(layoutType);
-    setNavStyle(navStyle);
-  });
+  //   if (params.has("theme")) {
+  //     dispatch(setThemeType(params.get("theme")));
+  //   }
+  //   if (params.has("nav-style")) {
+  //     dispatch(onNavStyleChange(params.get("nav-style")));
+  //   }
+  //   if (params.has("layout-type")) {
+  //     dispatch(onLayoutTypeChange(params.get("layout-type")));
+  //   }
+  //   setLayoutType(layoutType);
+  //   setNavStyle(navStyle);
+  // });
 
   const setLayoutType = (layoutType) => {
     if (layoutType === LAYOUT_TYPE_FULL) {
@@ -127,17 +125,35 @@ const App = (props) => {
     }
   };
 
+  // Доор нь өөрчилж янзалсан хувилбар байгаа.
+  // useEffect(() => {
+  //   if (location.pathname === "/") {
+  //     if (authUser === null) {
+  //       history.push("/signin");
+  //     } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
+  //       history.push("/main/dashboard/crypto");
+  //     } else {
+  //       history.push(initURL);
+  //     }
+  //   }
+  // }, [authUser, initURL, location, history]);
+
+  // useEffect(() => {
+  //   if (location.pathname === "/") {
+  //     if (memberContext.state.memberUID === 0) {
+  //       history.push("/signin");
+  //     } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
+  //       history.push("/main/dashboard/crypto");
+  //     } else {
+  //       history.push(initURL);
+  //     }
+  //   }
+  // }, [memberContext.state.memberUID, location, history]);
+
   useEffect(() => {
-    if (location.pathname === "/") {
-      if (authUser === null) {
-        history.push("/signin");
-      } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
-        history.push("/main/dashboard/crypto");
-      } else {
-        history.push(initURL);
-      }
-    }
-  }, [authUser, initURL, location, history]);
+    // memberContext.loadMemberProfile("200108101001108990");
+    console.log("memberContext.state", memberContext.state);
+  }, []);
 
   const currentAppLocale = AppLocale[locale.locale];
 
@@ -150,20 +166,17 @@ const App = (props) => {
         <Switch>
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
-          <MemberProfileStore>
-            <MemberItemsStore>
-              <RestrictedRoute
-                path={`${match.url}`}
-                authUser={authUser}
-                location={location}
-                component={MainApp}
-              />
-            </MemberItemsStore>
-          </MemberProfileStore>
+          {/* <RestrictedRoute
+            path={`${match.url}`}
+            authUser={authUser}
+            location={location}
+            component={MainApp}
+          /> */}
+          <Route path={`${match.url}`} component={MainApp} />
         </Switch>
       </IntlProvider>
     </ConfigProvider>
   );
 };
 
-export default memo(App);
+export default memo(MotoIndexApp);
