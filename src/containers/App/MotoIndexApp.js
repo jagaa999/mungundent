@@ -152,7 +152,6 @@ const MotoIndexApp = (props) => {
 
   useEffect(() => {
     // memberContext.loadMemberProfile("200108101001108990");
-    console.log("memberContext.state", memberContext.state);
   }, []);
 
   const currentAppLocale = AppLocale[locale.locale];

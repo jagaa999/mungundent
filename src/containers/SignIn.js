@@ -25,8 +25,6 @@ import FacebookOutlined from "@ant-design/icons/lib/icons/FacebookOutlined";
 import GoogleOutlined from "@ant-design/icons/lib/icons/GoogleOutlined";
 
 const SignIn = () => {
-  console.log("SIGNIN ДОТОР ОРЖ ИРЖ БАЙНА.");
-
   const memberContext = useContext(MemberContext);
 
   const dispatch = useDispatch();
