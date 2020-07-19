@@ -68,7 +68,10 @@ const NewsItem = ({ newsId }) => {
     publisherpositionname: newsItem.publisherpositionname,
   };
 
-  const myBody = newsItem.body.replace("storage", "hahaha");
+  const myBody1 = newsItem.body || "";
+  const myBody = myBody1
+    .split('"/storage')
+    .join('"https://www.moto.mn/storage');
 
   return (
     <div>

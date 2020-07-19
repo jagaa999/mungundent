@@ -90,7 +90,7 @@ const SignIn = () => {
                 Moto гишүүн болсноор системийн бүх ажиллагаа танд нээлттэй
                 болно.
               </p>
-              <p>Бүртгүүлэхэд болоход Үнэгүй, бас Амархан.</p>
+              <p>Бүртгүүлэхэд Үнэгүй, бас Амархан.</p>
             </div>
             <div className="gx-app-logo">
               <img alt="example" src={require("assets/images/logo.png")} />

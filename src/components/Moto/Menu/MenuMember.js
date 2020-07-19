@@ -61,6 +61,8 @@ const MenuMember = () => {
     </>
   );
 
+  // console.log("memberContext.state-------", memberContext.state);
+
   return (
     <Popover
       overlayClassName="gx-popover-horizantal"
