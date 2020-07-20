@@ -68,10 +68,9 @@ const NewsItem = ({ newsId }) => {
     publisherpositionname: newsItem.publisherpositionname,
   };
 
-  const myBody1 = newsItem.body || "";
-  const myBody = myBody1
-    .split('"/storage')
-    .join('"https://www.moto.mn/storage');
+  let myBody = htmlEntities.decode(newsItem.body) || "";
+  myBody = myBody.split('"/storage').join('"https://www.moto.mn/storage');
+  myBody = myBody.split('"../storage').join('"https://www.moto.mn/storage');
 
   return (
     <div>
@@ -177,10 +176,8 @@ const NewsItem = ({ newsId }) => {
               <div
                 className="news-body"
                 dangerouslySetInnerHTML={{
-                  __html: htmlEntities.decode(
-                    // newsItem.body.replace("storage", "hahaha")
-                    myBody
-                  ),
+                  // __html: htmlEntities.decode(myBody),
+                  __html: myBody,
                 }}
               ></div>
             </Card>

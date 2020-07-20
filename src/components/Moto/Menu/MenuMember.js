@@ -11,7 +11,7 @@ const MenuMember = () => {
   const history = useHistory();
 
   const memberContext = useContext(MemberContext);
-  // console.log("МИНИЙ ПРОФАЙЛ", memberContext.state.memberProfile);
+  console.log("МИНИЙ ПРОФАЙЛ", memberContext.state);
 
   const withMemberOptions = (
     <>
@@ -68,7 +68,7 @@ const MenuMember = () => {
       overlayClassName="gx-popover-horizantal"
       placement="bottomRight"
       content={
-        memberContext.state.memberUID !== 0
+        memberContext.state.isLogin
           ? withMemberOptions
           : withoutMemberGuestOptions
       }
@@ -76,20 +76,20 @@ const MenuMember = () => {
     >
       <Tooltip
         title={
-          memberContext.state.memberUID !== 0
+          memberContext.state.isLogin
             ? memberContext.state.memberFirebaseProfile.name
             : "Зочин!"
         }
       >
         <Avatar
           src={
-            memberContext.state.memberUID !== 0
+            memberContext.state.isLogin
               ? memberContext.state.memberFirebaseProfile.picture
               : "https://pbs.twimg.com/profile_images/1218399717857644544/UQoPsIgl_400x400.jpg"
           }
           className="gx-avatar gx-pointer"
           alt={
-            memberContext.state.memberUID !== 0 &&
+            memberContext.state.isLogin &&
             memberContext.state.memberFirebaseProfile.name
           }
         />

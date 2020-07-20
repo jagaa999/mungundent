@@ -178,4 +178,5 @@ const MotoIndexApp = (props) => {
   );
 };
 
-export default memo(MotoIndexApp);
+// export default memo(MotoIndexApp);
+export default MotoIndexApp;

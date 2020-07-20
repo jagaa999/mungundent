@@ -39,6 +39,8 @@ const SignIn = () => {
   const [form] = Form.useForm();
   const history = useHistory();
 
+  console.log("signin --------", memberContext.state);
+
   useEffect(() => {
     // if (showMessage) {
     //   setTimeout(() => {
@@ -46,8 +48,14 @@ const SignIn = () => {
     //   }, 500);
     // }
 
-    if (memberContext.state.memberUID !== 0) {
-      history.push("/");
+    if (memberContext.state.error !== null) {
+      setTimeout(() => {
+        memberContext.clearError();
+      }, 500);
+    }
+
+    if (memberContext.state.isLogin) {
+      history.push("/news");
     }
   });
 
@@ -221,7 +229,10 @@ const SignIn = () => {
               <CircularProgress />
             </div>
           ) : null}
-          {showMessage ? message.error(alertMessage.toString()) : null}
+          {/* {showMessage ? message.error(alertMessage.toString()) : null} */}
+          {memberContext.state.error !== null
+            ? message.error(memberContext.state.error.toString(), 7)
+            : null}
         </div>
       </div>
     </div>

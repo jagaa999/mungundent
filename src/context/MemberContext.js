@@ -19,6 +19,7 @@ const initialStateMemberProfile = {
   memberProfile: {},
   memberFirebaseProfile:
     JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
+  isLogin: localStorage.getItem("motoMemberUID") ? true : false,
   loading: false,
   error: null,
 };
@@ -44,7 +45,15 @@ export const MemberProfileStore = (props) => {
       memberUID: 0,
       memberProfile: {},
       memberFirebaseProfile: {},
+      isLogin: false,
       loading: false,
+      error: null,
+    });
+  };
+
+  const clearError = () => {
+    setState({
+      ...state,
       error: null,
     });
   };
@@ -68,8 +77,9 @@ export const MemberProfileStore = (props) => {
         // console.log("myArray", myArray);
         setState({
           ...state,
-          loading: false,
           memberProfile: myArray,
+          loading: false,
+          error: null,
         });
       })
       .catch((error) => {
@@ -100,7 +110,9 @@ export const MemberProfileStore = (props) => {
           ...state,
           memberUID: response.user.uid,
           memberFirebaseProfile: response.additionalUserInfo.profile,
+          isLogin: true,
           loading: false,
+          error: null,
         });
       })
       .catch((error) => {
@@ -112,6 +124,12 @@ export const MemberProfileStore = (props) => {
         // The firebase.auth.AuthCredential type that was used.
         const credential = error.credential;
         // ...
+        setState({
+          ...state,
+          isLogin: false,
+          loading: false,
+          error: error.message,
+        });
       });
   };
 
@@ -122,6 +140,7 @@ export const MemberProfileStore = (props) => {
         loadMemberProfile,
         signinFirebase,
         clearMemberProfile,
+        clearError,
         // setFirebaseProfile,
       }}
     >
