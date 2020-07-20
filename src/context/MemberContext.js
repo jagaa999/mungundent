@@ -88,28 +88,33 @@ export const MemberProfileStore = (props) => {
       });
   };
 
-  const signinFirebase = () => {
+  const signinFirebase = (firebaseProvider) => {
     setState({ ...state, loading: true });
 
     firebaseAuth
-      .signInWithPopup(googleAuthProvider)
+      .signInWithPopup(firebaseProvider)
       .then((response) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         const token = response.credential.accessToken;
         // The signed-in user info.
         const user = response.user;
-        // ...
+
+        console.log("Member response ------------->>", response);
 
         localStorage.setItem("motoMemberUID", response.user.uid);
         localStorage.setItem(
           "motoMemberProfile",
-          JSON.stringify(response.additionalUserInfo.profile)
+          JSON.stringify(response.user)
+        );
+        localStorage.setItem(
+          "motoMemberProfileProviderforDevelopment",
+          JSON.stringify(response.user)
         );
 
         setState({
           ...state,
           memberUID: response.user.uid,
-          memberFirebaseProfile: response.additionalUserInfo.profile,
+          memberFirebaseProfile: response.user,
           isLogin: true,
           loading: false,
           error: null,

@@ -16,10 +16,9 @@ const firebaseAuth = firebase.auth();
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 // googleAuthProvider.addScope("user_birthday");
-
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
-const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 const twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
+// const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 
 const database = firebase.database();
 
@@ -30,7 +29,6 @@ export {
   auth,
   firebaseAuth,
   googleAuthProvider,
-  githubAuthProvider,
   facebookAuthProvider,
   twitterAuthProvider,
 };

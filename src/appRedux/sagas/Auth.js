@@ -2,13 +2,11 @@ import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 import {
   auth,
   facebookAuthProvider,
-  githubAuthProvider,
   googleAuthProvider,
   twitterAuthProvider,
 } from "../../firebase/firebase";
 import {
   SIGNIN_FACEBOOK_USER,
-  SIGNIN_GITHUB_USER,
   SIGNIN_GOOGLE_USER,
   SIGNIN_TWITTER_USER,
   SIGNIN_USER,
@@ -23,7 +21,6 @@ import {
 } from "../../appRedux/actions/Auth";
 import {
   userFacebookSignInSuccess,
-  userGithubSignInSuccess,
   userGoogleSignInSuccess,
   userTwitterSignInSuccess,
 } from "../actions/Auth";
@@ -55,12 +52,6 @@ const signInUserWithGoogleRequest = async () =>
 const signInUserWithFacebookRequest = async () =>
   await auth
     .signInWithPopup(facebookAuthProvider)
-    .then((authUser) => authUser)
-    .catch((error) => error);
-
-const signInUserWithGithubRequest = async () =>
-  await auth
-    .signInWithPopup(githubAuthProvider)
     .then((authUser) => authUser)
     .catch((error) => error);
 
@@ -142,20 +133,6 @@ function* signInUserWithFacebook() {
   }
 }
 
-function* signInUserWithGithub() {
-  try {
-    const signUpUser = yield call(signInUserWithGithubRequest);
-    if (signUpUser.message) {
-      yield put(showAuthMessage(signUpUser.message));
-    } else {
-      localStorage.setItem("user_id", signUpUser.user.uid);
-      yield put(userGithubSignInSuccess(signUpUser.user.uid));
-    }
-  } catch (error) {
-    yield put(showAuthMessage(error));
-  }
-}
-
 function* signInUserWithTwitter() {
   try {
     const signUpUser = yield call(signInUserWithTwitterRequest);
@@ -224,10 +201,6 @@ export function* signInWithTwitter() {
   yield takeEvery(SIGNIN_TWITTER_USER, signInUserWithTwitter);
 }
 
-export function* signInWithGithub() {
-  yield takeEvery(SIGNIN_GITHUB_USER, signInUserWithGithub);
-}
-
 export function* signInUser() {
   yield takeEvery(SIGNIN_USER, signInUserWithEmailPassword);
 }
@@ -243,7 +216,6 @@ export default function* rootSaga() {
     fork(signInWithGoogle),
     fork(signInWithFacebook),
     fork(signInWithTwitter),
-    fork(signInWithGithub),
     fork(signOutUser),
   ]);
 }

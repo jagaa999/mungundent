@@ -17,7 +17,7 @@ const MenuMember = () => {
     <>
       <div className="gx-fs-sm">Сайн уу?</div>
       <div className="gx-fs-sm">
-        {memberContext.state.memberFirebaseProfile.name}
+        {memberContext.state.memberFirebaseProfile.displayName}
       </div>
       <div className="gx-fs-sm">
         ERP userid {memberContext.state.memberProfile.id}
@@ -61,8 +61,6 @@ const MenuMember = () => {
     </>
   );
 
-  // console.log("memberContext.state-------", memberContext.state);
-
   return (
     <Popover
       overlayClassName="gx-popover-horizantal"
@@ -77,20 +75,20 @@ const MenuMember = () => {
       <Tooltip
         title={
           memberContext.state.isLogin
-            ? memberContext.state.memberFirebaseProfile.name
+            ? memberContext.state.memberFirebaseProfile.displayName
             : "Зочин!"
         }
       >
         <Avatar
           src={
             memberContext.state.isLogin
-              ? memberContext.state.memberFirebaseProfile.picture
+              ? memberContext.state.memberFirebaseProfile.photoURL
               : "https://pbs.twimg.com/profile_images/1218399717857644544/UQoPsIgl_400x400.jpg"
           }
           className="gx-avatar gx-pointer"
           alt={
             memberContext.state.isLogin &&
-            memberContext.state.memberFirebaseProfile.name
+            memberContext.state.memberFirebaseProfile.displayName
           }
         />
       </Tooltip>

@@ -6,6 +6,14 @@ import { Button, Checkbox, Input, message, Form, Divider } from "antd";
 import Icon from "@ant-design/icons";
 
 import {
+  firebaseAuth,
+  facebookAuthProvider,
+  githubAuthProvider,
+  googleAuthProvider,
+  twitterAuthProvider,
+} from "firebase/firebase";
+
+import {
   hideMessage,
   showAuthLoader,
   userFacebookSignIn,
@@ -112,8 +120,7 @@ const SignIn = () => {
               size="large"
               block
               onClick={() => {
-                dispatch(showAuthLoader());
-                dispatch(userFacebookSignIn());
+                memberContext.signinFirebase(facebookAuthProvider);
               }}
             >
               Facebook
@@ -125,9 +132,7 @@ const SignIn = () => {
               size="large"
               block
               onClick={() => {
-                // dispatch(showAuthLoader());
-                // dispatch(userGoogleSignIn());
-                memberContext.signinFirebase();
+                memberContext.signinFirebase(googleAuthProvider);
               }}
             >
               Google
@@ -139,8 +144,7 @@ const SignIn = () => {
               size="large"
               block
               onClick={() => {
-                dispatch(showAuthLoader());
-                dispatch(userTwitterSignIn());
+                memberContext.signinFirebase(twitterAuthProvider);
               }}
             >
               Twitter
