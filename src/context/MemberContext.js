@@ -9,7 +9,7 @@ import {
 } from "firebase/firebase";
 
 import axios from "../util/axiosConfig";
-// import mainAxios from "axios";
+import { Button, Card, Modal } from "antd";
 
 const MemberContext = React.createContext();
 
@@ -20,6 +20,7 @@ const initialStateMemberProfile = {
   memberFirebaseProfile:
     JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
   isLogin: localStorage.getItem("motoMemberUID") ? true : false,
+  isModal: false,
   loading: false,
   error: null,
 };
@@ -47,8 +48,11 @@ export const MemberProfileStore = (props) => {
       memberFirebaseProfile: {},
       isLogin: false,
       loading: false,
+      isModal: false,
       error: null,
     });
+
+    firebaseAuth.signOut();
   };
 
   const clearError = () => {
@@ -78,7 +82,9 @@ export const MemberProfileStore = (props) => {
         setState({
           ...state,
           memberProfile: myArray,
+          isLogin: true,
           loading: false,
+          isModal: false,
           error: null,
         });
       })
@@ -88,65 +94,95 @@ export const MemberProfileStore = (props) => {
       });
   };
 
-  const signinFirebase = (firebaseProvider) => {
-    setState({ ...state, loading: true });
+  const setFirebaseProfile = (user) => {
+    // setState({ ...state, loading: true });
 
-    firebaseAuth
-      .signInWithPopup(firebaseProvider)
-      .then((response) => {
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        const token = response.credential.accessToken;
-        // The signed-in user info.
-        const user = response.user;
+    localStorage.setItem("motoMemberUID", user.uid);
+    localStorage.setItem("motoMemberProfile", JSON.stringify(user));
+    localStorage.setItem(
+      "motoMemberProfileProviderforDevelopment",
+      JSON.stringify(user)
+    );
 
-        console.log("Member response ------------->>", response);
-
-        localStorage.setItem("motoMemberUID", response.user.uid);
-        localStorage.setItem(
-          "motoMemberProfile",
-          JSON.stringify(response.user)
-        );
-        localStorage.setItem(
-          "motoMemberProfileProviderforDevelopment",
-          JSON.stringify(response.user)
-        );
-
-        setState({
-          ...state,
-          memberUID: response.user.uid,
-          memberFirebaseProfile: response.user,
-          isLogin: true,
-          loading: false,
-          error: null,
-        });
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        const credential = error.credential;
-        // ...
-        setState({
-          ...state,
-          isLogin: false,
-          loading: false,
-          error: error.message,
-        });
-      });
+    setState({
+      ...state,
+      memberUID: user.uid,
+      memberFirebaseProfile: user,
+      isLogin: true,
+      loading: false,
+      isModal: false,
+      error: null,
+    });
   };
+
+  const isModal = (isVisible) => {
+    console.log("COLLLLLLLLLLLL MODAL", isVisible);
+
+    setState({
+      ...state,
+      isModal: isVisible,
+    });
+  };
+
+  // const signinFirebase = (firebaseProvider) => {
+  //   setState({ ...state, loading: true });
+
+  //   firebaseAuth
+  //     .signInWithPopup(firebaseProvider)
+  //     .then((response) => {
+  //       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+  //       const token = response.credential.accessToken;
+  //       // The signed-in user info.
+  //       const user = response.user;
+
+  //       console.log("Member response ------------->>", response);
+
+  //       localStorage.setItem("motoMemberUID", response.user.uid);
+  //       localStorage.setItem(
+  //         "motoMemberProfile",
+  //         JSON.stringify(response.user)
+  //       );
+  //       localStorage.setItem(
+  //         "motoMemberProfileProviderforDevelopment",
+  //         JSON.stringify(response.user)
+  //       );
+
+  //       setState({
+  //         ...state,
+  //         memberUID: response.user.uid,
+  //         memberFirebaseProfile: response.user,
+  //         isLogin: true,
+  //         loading: false,
+  //         error: null,
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       const email = error.email;
+  //       // The firebase.auth.AuthCredential type that was used.
+  //       const credential = error.credential;
+  //       // ...
+  //       setState({
+  //         ...state,
+  //         isLogin: false,
+  //         loading: false,
+  //         error: error.message,
+  //       });
+  //     });
+  // };
 
   return (
     <MemberContext.Provider
       value={{
         state,
         loadMemberProfile,
-        signinFirebase,
         clearMemberProfile,
         clearError,
-        // setFirebaseProfile,
+        setFirebaseProfile,
+        isModal,
       }}
     >
       {props.children}

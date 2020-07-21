@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Avatar, Popover, Tooltip } from "antd";
+import { Modal, Avatar, Popover, Tooltip } from "antd";
 import { userSignOut } from "appRedux/actions/Auth";
+import CloseCircleOutlined from "@ant-design/icons/lib/icons/CloseCircleOutlined";
 
 import MemberContext from "context/MemberContext";
+import SignIn from "../../../containers/SignIn";
 
 const MenuMember = () => {
   // const dispatch = useDispatch();
@@ -61,7 +63,7 @@ const MenuMember = () => {
     </>
   );
 
-  return (
+  return memberContext.state.isLogin ? (
     <Popover
       overlayClassName="gx-popover-horizantal"
       placement="bottomRight"
@@ -93,6 +95,43 @@ const MenuMember = () => {
         />
       </Tooltip>
     </Popover>
+  ) : (
+    <>
+      {/* <Link
+        to="/signin"
+        className="gx-d-block gx-pointer"
+        style={{ fontSize: "15px" }}
+      >
+        Нэвтрэх
+      </Link> */}
+      <span
+        className="gx-block gx-pointer"
+        style={{ fontSize: "15px" }}
+        onClick={() => {
+          memberContext.isModal(true);
+        }}
+      >
+        Нэвтрэх
+      </span>
+      <Modal
+        title="Гишүүн нэвтрэх"
+        visible={memberContext.state.isModal}
+        onOk={(e) => {
+          memberContext.isModal(false);
+        }}
+        onCancel={(e) => {
+          memberContext.isModal(false);
+        }}
+        footer={null}
+        header={null}
+        width="700px"
+        z-index="5000"
+        closeIcon={<CloseCircleOutlined />}
+      >
+        <SignIn />
+      </Modal>
+      ;
+    </>
   );
 };
 

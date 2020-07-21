@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import MemberContext from "context/MemberContext";
 import {
   Button,
   Dropdown,
@@ -41,6 +43,8 @@ function handleMenuClick(e) {
 }
 
 const MotoHeader = () => {
+  const memberContext = useContext(MemberContext);
+
   const dispatch = useDispatch();
 
   const [searchText, setSearchText] = useState("");
@@ -120,76 +124,92 @@ const MotoHeader = () => {
             </div>
 
             <ul className="gx-header-notifications gx-ml-auto">
-              <li className="gx-notify gx-notify-search">
-                <Popover
-                  overlayClassName="gx-popover-horizantal"
-                  placement="bottomRight"
-                  content={
-                    <div className="gx-d-flex">
-                      <Dropdown overlay={menu}>
-                        <Button>
-                          Бүлэг <Icon type="down" />
-                        </Button>
-                      </Dropdown>
-                      <SearchBox
-                        styleName="gx-popover-search-bar"
-                        placeholder="Хайх.."
-                        onChange={updateSearchChatUser}
-                        value={searchText}
-                      />
-                    </div>
-                  }
-                  trigger="click"
-                >
-                  <span className="gx-pointer gx-d-block">
-                    <i className="icon icon-search-new" />
-                  </span>
-                </Popover>
-              </li>
+              {memberContext.state.isLogin ? (
+                <li className="gx-notify gx-notify-search">
+                  <Popover
+                    overlayClassName="gx-popover-horizantal"
+                    placement="bottomRight"
+                    content={
+                      <div className="gx-d-flex">
+                        <Dropdown overlay={menu}>
+                          <Button>
+                            Бүлэг <Icon type="down" />
+                          </Button>
+                        </Dropdown>
+                        <SearchBox
+                          styleName="gx-popover-search-bar"
+                          placeholder="Хайх.."
+                          onChange={updateSearchChatUser}
+                          value={searchText}
+                        />
+                      </div>
+                    }
+                    trigger="click"
+                  >
+                    <span className="gx-pointer gx-d-block">
+                      <i className="icon icon-search-new" />
+                    </span>
+                  </Popover>
+                </li>
+              ) : (
+                ""
+              )}
 
-              <li className="gx-notify">
-                <Popover
-                  overlayClassName="gx-popover-horizantal"
-                  placement="bottomRight"
-                  content={<AppNotification />}
-                  trigger="click"
-                >
-                  <span className="gx-pointer gx-d-block">
-                    <i className="icon icon-notification" />
-                  </span>
-                </Popover>
-              </li>
+              {memberContext.state.isLogin ? (
+                <li className="gx-notify">
+                  <Popover
+                    overlayClassName="gx-popover-horizantal"
+                    placement="bottomRight"
+                    content={<AppNotification />}
+                    trigger="click"
+                  >
+                    <span className="gx-pointer gx-d-block">
+                      <i className="icon icon-notification" />
+                    </span>
+                  </Popover>
+                </li>
+              ) : (
+                ""
+              )}
 
-              <li className="gx-notify">
-                <Popover
-                  overlayClassName="gx-popover-horizantal"
-                  placement="bottomRight"
-                  content={<MailNotification />}
-                  trigger="click"
-                >
-                  <span className="gx-pointer gx-status-pos gx-d-block">
-                    <i className="icon icon-chat-new" />
-                    <span className="gx-status gx-status-rtl gx-small gx-orange" />
-                  </span>
-                </Popover>
-              </li>
-
-              {/* //* Member хадгалсан зүйлс MemberItems context дотор байгаа зүйлс */}
-              <li className="gx-msg">
-                <Popover
-                  overlayClassName="gx-popover-horizantal"
-                  placement="bottomRight"
-                  content={<MemberItems />}
-                  trigger="click"
-                >
-                  <Tooltip title="Таны зүйлс">
+              {memberContext.state.isLogin ? (
+                <li className="gx-notify">
+                  <Popover
+                    overlayClassName="gx-popover-horizantal"
+                    placement="bottomRight"
+                    content={<MailNotification />}
+                    trigger="click"
+                  >
                     <span className="gx-pointer gx-status-pos gx-d-block">
-                      <i className="icon icon-card" />
+                      <i className="icon icon-chat-new" />
                       <span className="gx-status gx-status-rtl gx-small gx-orange" />
                     </span>
-                  </Tooltip>
-                </Popover>
-              </li>
+                  </Popover>
+                </li>
+              ) : (
+                ""
+              )}
+
+              {memberContext.state.isLogin ? (
+                //* Member хадгалсан зүйлс MemberItems context дотор байгаа зүйлс
+                <li className="gx-msg">
+                  <Popover
+                    overlayClassName="gx-popover-horizantal"
+                    placement="bottomRight"
+                    content={<MemberItems />}
+                    trigger="click"
+                  >
+                    <Tooltip title="Таны зүйлс">
+                      <span className="gx-pointer gx-status-pos gx-d-block">
+                        <i className="icon icon-card" />
+                        <span className="gx-status gx-status-rtl gx-small gx-orange" />
+                      </span>
+                    </Tooltip>
+                  </Popover>
+                </li>
+              ) : (
+                ""
+              )}
 
               <li className="gx-language">
                 <Popover
@@ -203,6 +223,7 @@ const MotoHeader = () => {
                   </span>
                 </Popover>
               </li>
+
               <li className="gx-user-nav">
                 {/* <UserInfo /> */}
                 <MenuMember />
