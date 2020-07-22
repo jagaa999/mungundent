@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Menu } from "antd";
 import { Link } from "react-router-dom";
+
+import { Menu } from "antd";
+
 import IntlMessages from "../../util/IntlMessages";
 import {
   NAV_STYLE_ABOVE_HEADER,
@@ -40,38 +42,19 @@ const HorizontalNav = () => {
       defaultOpenKeys={[defaultOpenKeys]}
       selectedKeys={[selectedKeys]}
       mode="horizontal"
+      className="motoHeader"
     >
-      <SubMenu
-        popupClassName={getNavStyleSubMenuClass(navStyle)}
-        key="news"
-        title="Нийтлэл"
-      >
-        <Menu.Item key="news/">
-          <Link to="/news/">
-            <i className="icon icon-noodles" />
-            Жагсаалт
-          </Link>
-        </Menu.Item>
-      </SubMenu>
-      <SubMenu
-        popupClassName={getNavStyleSubMenuClass(navStyle)}
-        key="member"
-        title="Гишүүн"
-      >
-        <Menu.Item key="member/">
-          <Link to="/member/">
-            <i className="icon icon-user" />
-            Гишүүд
-          </Link>
-        </Menu.Item>
+      <Menu.Item key="news" className="motoHeaderMenuItem">
+        <Link to="/news/" className="motoHeaderMenuItemLink">
+          Нийтлэл
+        </Link>
+      </Menu.Item>
 
-        <Menu.Item key="member/200108101001108990">
-          <Link to="/member/200108101001108990">
-            <i className="icon icon-user" />
-            Гишүүний дэлгэрэнгүй
-          </Link>
-        </Menu.Item>
-      </SubMenu>
+      <Menu.Item key="member" className="motoHeaderMenuItem">
+        <Link to="/member/" className="motoHeaderMenuItemLink">
+          Гишүүн
+        </Link>
+      </Menu.Item>
 
       {process.env.NODE_ENV === "development" && (
         <SubMenu

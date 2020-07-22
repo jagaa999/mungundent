@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import axios from "../util/axiosConfig";
+import axios from "util/axiosConfig";
 // import mainAxios from "axios";
 
 const NewsContext = React.createContext();

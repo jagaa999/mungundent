@@ -3,6 +3,7 @@ import { Col, Row } from "antd";
 
 import NewsList from "components/Moto/NewsList";
 import NewsContext from "context/NewsContext";
+import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
 
 const NewsPage = (props) => {
   // console.log("News руу орлоо");
@@ -21,10 +22,6 @@ const NewsPage = (props) => {
             {newsContext.state.newsList.map((el, index) => {
               const newsItem = el;
               newsItem.imageMain = "https://www.moto.mn/" + el.imagemain;
-              // thumb: `https://picsum.photos/seed/picsum/${
-              //   Math.floor(Math.random() * (300 - 200 + 1)) + 200
-              // }/300`,
-
               return (
                 <Col key={index} span={24}>
                   <NewsList key={index} newsItem={newsItem} />
@@ -32,6 +29,7 @@ const NewsPage = (props) => {
               );
             })}
           </Row>
+          <FilterDrawer />
         </div>
       )}
     </div>

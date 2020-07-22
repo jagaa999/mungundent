@@ -30,3 +30,50 @@
 .gx-user-popover li {
   width: 100%;
 }
+
+ul.motoHeader {
+  li.motoHeaderMenuItem {
+    a.motoHeaderMenuItemLink {
+      color: #ffffff;
+      &:hover,
+      &:focus {
+        color: @secondary-color;
+      }
+      .icon {
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+li.gx-user-nav {
+  .gx-avatar {
+    border: 0;
+  }
+}
+
+.moto-animation-away {
+  animation: away 2s infinite;
+}
+
+.moto-filter-checkbox {
+  display: block;
+  margin-right: 0;
+
+  label.ant-checkbox-wrapper {
+    display: flex;
+    margin-left: 0 !important;
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+}
+
+.moto-badge {
+  float: right;
+
+  .ant-badge-count {
+    background-color: #fff;
+    color: #999;
+    box-shadow: 0 0 0 1px #d9d9d9 inset;
+  }
+}
