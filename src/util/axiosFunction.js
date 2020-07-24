@@ -77,23 +77,23 @@ export function loadDataview(myState, setMyState, props) {
   axios
     .post("", myParams)
     .then((response) => {
-      console.log("axiosFunction Dataview response ----------->", response);
+      // console.log("axiosFunction Dataview response ----------->", response);
 
       const myTempArray = response.data.response.result;
-      console.log(
-        "axiosFunction Dataview myTempArray ------------>",
-        myTempArray
-      );
+      // console.log(
+      //   "axiosFunction Dataview myTempArray ------------>",
+      //   myTempArray
+      // );
 
       delete myTempArray["aggregatecolumns"];
       delete myTempArray["paging"];
 
       const myArray = Object.values(myTempArray);
 
-      console.log(
-        "axiosFunction Dataview myArray After Delete aggregatecolumns, paging ------------>",
-        myArray
-      );
+      // console.log(
+      //   "axiosFunction Dataview myArray After Delete aggregatecolumns, paging ------------>",
+      //   myArray
+      // );
 
       //console.log("props.setMyParams", setMyState);
 
