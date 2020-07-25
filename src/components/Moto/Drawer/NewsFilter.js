@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Redirect, useHistory, Link } from "react-router-dom";
 import {
   Badge,
   Button,
@@ -14,11 +15,18 @@ import CustomScrollbars from "util/CustomScrollbars";
 import MotoCheckBox from "components/Moto/Filter/CheckBox";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import axios from "axios";
+import NewsContext from "context/NewsContext";
 
 const { Search } = Input;
 
-const NewsFilter = () => {
+const NewsFilter = (props) => {
+  const history = useHistory();
+  const [didMount, setDidMount] = useState(false); //first render-ийг илрүүлэхийн төлөө
+
+  const newsContext = useContext(NewsContext);
+
   const [urlParams, setUrlParams] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
   const [newsType, setNewsType] = useState([]);
   const [newsSource, setNewsSource] = useState([]);
   const [newsPublisher, setNewsPublisher] = useState([]);
@@ -27,17 +35,21 @@ const NewsFilter = () => {
   const callFunctionAsync = async () => {
     await loadDataview(newsType, setNewsType, {
       systemmetagroupid: "1587100905303413",
+      criteria: newsContext.state.loadParams.criteria,
     });
     await loadDataview(newsSource, setNewsSource, {
       systemmetagroupid: "1585046479054",
+      criteria: newsContext.state.loadParams.criteria,
     });
     await loadDataview(newsPublisher, setNewsPublisher, {
       systemmetagroupid: "1585046481242",
+      criteria: newsContext.state.loadParams.criteria,
     });
   };
 
   useEffect(() => {
     callFunctionAsync();
+    setDidMount(true); //first render-ийг илрүүлэхийн төлөө
   }, []);
 
   const prepareURL = (checkedValues, parameterLabel) => {
@@ -48,7 +60,7 @@ const NewsFilter = () => {
       .map(function (itemvalue) {
         return encodeURIComponent(itemvalue);
       })
-      .join(",");
+      .join("|");
 
     const tempObject = {
       [parameterLabel]: param,
@@ -58,13 +70,34 @@ const NewsFilter = () => {
   };
 
   useEffect(() => {
-    console.log("ЭНД ӨӨРЧЛӨЛТ ОРЖ БАЙНА");
+    // console.log("ЭНД ӨӨРЧЛӨЛТ ОРЖ БАЙНА");
     // Энд Search Query-ээ тохируулна
-    const mySearchQuery = "";
+    const mySearchQueryParams = [];
+
     Object.keys(urlParams).map((item) => {
-      return;
+      if (urlParams[item] !== "") {
+        mySearchQueryParams.push(item + "=" + urlParams[item]);
+      }
     });
+
+    // const mySearchQuery = mySearchQueryParams.join("&");
+    setSearchQuery(mySearchQueryParams.join("&"));
+
+    // console.log(mySearchQuery);
   }, [urlParams]);
+
+  useEffect(() => {
+    if (didMount) {
+      // console.log("searchQuerysearchQuery", searchQuery);
+      // console.log("ЭНД ОРЖ БАЙНА. Push хийж байгаа");
+      // history.push("/gogo");
+      history.push({
+        pathname: "/news",
+        search: searchQuery,
+      });
+      // console.log("ХАРИН ЭНД?");
+    }
+  }, [searchQuery]);
 
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "100%" }}>
@@ -84,7 +117,7 @@ const NewsFilter = () => {
               className="moto-filter-checkbox"
             >
               {newsType.map((item) => (
-                <Checkbox value={item.newstypeid}>
+                <Checkbox value={item.newstypeid} key={item.newstypeid}>
                   {/* <div>
                     <span className="gx-d-flex"> */}
 
@@ -110,7 +143,7 @@ const NewsFilter = () => {
               className="moto-filter-checkbox"
             >
               {newsSource.map((item) => (
-                <Checkbox value={item.newssourceid}>
+                <Checkbox value={item.newssourceid} key={item.newssourceid}>
                   {item.newssourcename}
                   <span className="gx-fs-sm gx-text-light gx-ml-3">
                     {item.count}
@@ -131,7 +164,7 @@ const NewsFilter = () => {
               className="moto-filter-checkbox"
             >
               {newsPublisher.map((item) => (
-                <Checkbox value={item.publisherid}>
+                <Checkbox value={item.publisherid} key={item.publisherid}>
                   {item.publishername}
                   <span className="gx-fs-sm gx-text-light gx-ml-3">
                     {item.publishercount}

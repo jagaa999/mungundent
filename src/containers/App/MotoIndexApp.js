@@ -37,6 +37,8 @@ import {
 
 import MemberContext from "context/MemberContext";
 
+import { MemberItemsStore } from "context/MemberItemsContext";
+
 const RestrictedRoute = ({
   component: Component,
   location,
@@ -75,22 +77,24 @@ const MotoIndexApp = (props) => {
   const match = useRouteMatch();
 
   // useEffect(() => {
-  //   if (initURL === "") {
-  //     dispatch(setInitUrl(location.pathname));
-  //   }
-  //   const params = new URLSearchParams(location.search);
-
-  //   if (params.has("theme")) {
-  //     dispatch(setThemeType(params.get("theme")));
-  //   }
-  //   if (params.has("nav-style")) {
-  //     dispatch(onNavStyleChange(params.get("nav-style")));
-  //   }
-  //   if (params.has("layout-type")) {
-  //     dispatch(onLayoutTypeChange(params.get("layout-type")));
-  //   }
-  //   setLayoutType(layoutType);
-  //   setNavStyle(navStyle);
+  // if (initURL === "") {
+  //   dispatch(setInitUrl(location.pathname));
+  // }
+  // console.log("location------->", location);
+  // const params = new URLSearchParams(location.search);
+  // console.log("params------>", params);
+  // console.log("ЭНЭ ЮУ БОЛОВ?", queryString.parse(location.search));
+  // if (params.has("theme")) {
+  //   dispatch(setThemeType(params.get("theme")));
+  // }
+  // if (params.has("nav-style")) {
+  //   dispatch(onNavStyleChange(params.get("nav-style")));
+  // }
+  // if (params.has("layout-type")) {
+  //   dispatch(onLayoutTypeChange(params.get("layout-type")));
+  // }
+  // setLayoutType(layoutType);
+  // setNavStyle(navStyle);
   // });
 
   const setLayoutType = (layoutType) => {
@@ -152,6 +156,7 @@ const MotoIndexApp = (props) => {
 
   useEffect(() => {
     // memberContext.loadMemberProfile("200108101001108990");
+    // console.log("MotoINdex APpp");
   }, []);
 
   const currentAppLocale = AppLocale[locale.locale];
@@ -171,7 +176,11 @@ const MotoIndexApp = (props) => {
             location={location}
             component={MainApp}
           /> */}
-          <Route path={`${match.url}`} component={MainApp} />
+          {/* {console.log("rrrrrrrreeeeeeeeeee")} */}
+
+          <MemberItemsStore>
+            <Route path={`${match.url}`} component={MainApp} />
+          </MemberItemsStore>
         </Switch>
       </IntlProvider>
     </ConfigProvider>

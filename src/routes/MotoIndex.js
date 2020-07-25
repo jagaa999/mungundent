@@ -35,7 +35,9 @@ const App = ({ match }) => (
         </NewsDetailStore>
       </Route>
 
-      <Route path={`${match.url}news`}>
+      {/* {console.log("ХЭДЭ ДЭДЭЭДЭЭЭЭЭЭЭЭЭЭЭЭЭЭ")} */}
+
+      <Route path={`${match.url}news/`}>
         <NewsListStore>
           <NewsList />
         </NewsListStore>

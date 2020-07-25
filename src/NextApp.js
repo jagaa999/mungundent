@@ -16,12 +16,12 @@ const NextApp = () => (
     {/* <ConnectedRouter history={history}> */}
     <BrowserRouter>
       <MemberProfileStore>
-        <MemberItemsStore>
-          {/* <Switch>
+        {/* <MemberItemsStore> */}
+        {/* <Switch>
             <Route path="/" component={MotoIndexApp} />
           </Switch> */}
-          <MotoIndexApp />
-        </MemberItemsStore>
+        <MotoIndexApp />
+        {/* </MemberItemsStore> */}
       </MemberProfileStore>
     </BrowserRouter>
     {/* </ConnectedRouter> */}

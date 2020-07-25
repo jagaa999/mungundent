@@ -6,7 +6,7 @@ import "nprogress/nprogress.css";
 import "react-placeholder/lib/reactPlaceholder.css";
 import CircularProgress from "components/CircularProgress";
 
-export default function asyncComponent(importComponent) {
+function asyncComponent(importComponent) {
   class AsyncFunc extends Component {
     constructor(props) {
       super(props);
@@ -46,3 +46,5 @@ export default function asyncComponent(importComponent) {
 
   return AsyncFunc;
 }
+
+export default asyncComponent;

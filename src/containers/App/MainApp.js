@@ -10,7 +10,7 @@ import BelowHeader from "../Topbar/BelowHeader/index";
 
 import Topbar from "../Topbar/index";
 import { footerText } from "util/config";
-import App from "routes/index";
+import MotoIndex from "routes/MotoIndex";
 import { useSelector } from "react-redux";
 import {
   NAV_STYLE_ABOVE_HEADER,
@@ -93,11 +93,14 @@ const MainApp = () => {
       {getSidebar(navStyle, width)}
       <Layout>
         {/* {getNavStyles(navStyle)} */}
+
         <MotoHeader />
+
         <Content
           className={`gx-layout-content ${getContainerClass(navStyle)} `}
         >
-          <App match={match} />
+          {/* {console.log("dddddddddddd")} */}
+          <MotoIndex match={match} />
           <Footer>
             <div className="gx-layout-footer-content">{footerText}</div>
           </Footer>

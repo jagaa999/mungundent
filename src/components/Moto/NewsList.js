@@ -110,7 +110,9 @@ const NewsItem = ({ newsItem, grid }) => {
 
         <div className="gx-description">
           <p className="gx-mt-2">
-            <p dangerouslySetInnerHTML={{ __html: truncatedDescription }} />
+            <span
+              dangerouslySetInnerHTML={{ __html: truncatedDescription }}
+            ></span>
           </p>
 
           <ul className="gx-list-inline gx-btn-list">

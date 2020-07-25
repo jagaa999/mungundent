@@ -78,6 +78,8 @@ const App = (props) => {
     }
     const params = new URLSearchParams(location.search);
 
+    console.log("params-------", params);
+
     if (params.has("theme")) {
       dispatch(setThemeType(params.get("theme")));
     }

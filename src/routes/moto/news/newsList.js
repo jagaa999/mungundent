@@ -1,4 +1,6 @@
 import React, { useEffect, useContext } from "react";
+import { useParams, useLocation } from "react-router-dom";
+
 import { Col, Row } from "antd";
 
 import NewsList from "components/Moto/NewsList";
@@ -6,13 +8,12 @@ import NewsContext from "context/NewsContext";
 import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
 
 const NewsPage = (props) => {
-  // console.log("News руу орлоо");
+  const newsContext = useContext(NewsContext);
+  const { search } = useLocation();
 
   useEffect(() => {
-    newsContext.loadNewsList();
-  }, []);
-
-  const newsContext = useContext(NewsContext);
+    newsContext.loadNewsList(search);
+  }, [search]);
 
   return (
     <div>
