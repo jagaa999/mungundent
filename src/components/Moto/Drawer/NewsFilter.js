@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect, useHistory, Link } from "react-router-dom";
+import { Redirect, useHistory, Link, useLocation } from "react-router-dom";
+import { parse } from "query-string";
+
 import {
   Badge,
   Button,
@@ -20,6 +22,10 @@ import NewsContext from "context/NewsContext";
 const { Search } = Input;
 
 const NewsFilter = (props) => {
+  const { search } = useLocation();
+  const searchParams = parse(search);
+  console.log("ЭНД АЖЛАА ЗОГСООВ!!!!");
+
   const history = useHistory();
   const [didMount, setDidMount] = useState(false); //first render-ийг илрүүлэхийн төлөө
 
@@ -98,6 +104,8 @@ const NewsFilter = (props) => {
       // console.log("ХАРИН ЭНД?");
     }
   }, [searchQuery]);
+
+  console.log("newsContext.state.searchParam1", searchParams);
 
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "100%" }}>

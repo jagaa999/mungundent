@@ -43,6 +43,7 @@ const initialStateNewsList = {
   newsList: [],
   loading: false,
   error: null,
+  // searchParams1: {},
 };
 
 const myParamsNewsList = {
@@ -56,16 +57,12 @@ const myParamsNewsList = {
 export const NewsListStore = (props) => {
   const [state, setState] = useState(initialStateNewsList);
 
-  const prepareSearchQuery = () => {
-    // let { search } = useLocation();
-    // const myQuery = new URLSearchParams(search);
-    // console.log(myQuery);
-  };
-
   const loadNewsList = (queryString) => {
     // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
     const searchParams = parse(queryString);
+    // setState({ ...state, searchParams1: searchParams });
     // console.log("searchParams", searchParams);
+    // console.log(state);
 
     // ! newssourceid: "1514260642854|1518160989674"
     // ! newstypeid: "201|206"
@@ -97,10 +94,18 @@ export const NewsListStore = (props) => {
       tempFilter = Object.assign(tempFilter, myItem2);
     });
     // console.log(tempFilter);
-    const myTemp33 = Object.assign(state.loadParams, { criteria: tempFilter });
+    const dddd = state.loadParams;
+    const myTemp33 = Object.assign(dddd, { criteria: tempFilter });
     // console.log("myTemp33", myTemp33);
 
-    setState({ ...state, loadParams: myTemp33, loading: true });
+    console.log("searchParams", searchParams);
+
+    setState({
+      ...state,
+      loadParams: myTemp33,
+      loading: true,
+      // searchParams1: searchParams,
+    });
 
     myParamsNewsList.request.parameters = state.loadParams;
     // console.log("myParamsNewsListmyParamsNewsList", myParamsNewsList);
