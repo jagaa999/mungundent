@@ -9,7 +9,7 @@ import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
-const NewsPage = (props) => {
+const NewsDetailPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
   const newsContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
@@ -17,9 +17,6 @@ const NewsPage = (props) => {
   useEffect(() => {
     newsContext.loadNewsDetail(newsId);
   }, [newsId]);
-  // console.log("newsContext-----", newsContext.state);
-
-  //const loading = newsContext.state.loading;
 
   return (
     <>
@@ -40,4 +37,4 @@ const NewsPage = (props) => {
   );
 };
 
-export default NewsPage;
+export default NewsDetailPage;

@@ -6,8 +6,9 @@ import { Col, Row } from "antd";
 import NewsList from "components/Moto/NewsList";
 import NewsContext from "context/NewsContext";
 import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
+import FilterTag from "components/Moto/Tag/FilterTag";
 
-const NewsPage = (props) => {
+const NewsListPage = (props) => {
   const newsContext = useContext(NewsContext);
   const { search } = useLocation();
 
@@ -17,6 +18,8 @@ const NewsPage = (props) => {
 
   return (
     <div>
+      <FilterTag />
+
       {!newsContext.state.loading && (
         <div className="gx-main-content">
           <Row>
@@ -37,4 +40,4 @@ const NewsPage = (props) => {
   );
 };
 
-export default NewsPage;
+export default NewsListPage;

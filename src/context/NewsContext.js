@@ -3,6 +3,8 @@ import { useParams, useLocation } from "react-router-dom";
 import { parse } from "query-string";
 
 import axios from "util/axiosConfig";
+
+import { LoadProcess, loadDataview } from "util/axiosFunction";
 // import mainAxios from "axios";
 
 const NewsContext = React.createContext();
@@ -55,6 +57,7 @@ const myParamsNewsList = {
 };
 
 export const NewsListStore = (props) => {
+  //! NEWSLIST
   const [state, setState] = useState(initialStateNewsList);
 
   const loadNewsList = (queryString) => {
@@ -146,6 +149,7 @@ export const NewsListStore = (props) => {
 //-----------------------
 //-----------------------
 //-----------------------
+//! NEWSDETAIL
 
 const initialStateNewsDetail = {
   newsDetail: {},
@@ -169,6 +173,61 @@ export const NewsDetailStore = (props) => {
 
   const clearNewsDetail = () => {
     setState(initialStateNewsDetail);
+  };
+
+  const toggleIsFeatured = () => {
+    const myProcessParams = {
+      request: {
+        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        command: "motoNewsDV_SPONSOR_002",
+        parameters: {
+          id: state.newsDetail.newsid,
+          isfeatured: !!!+state.newsDetail.isfeatured,
+          memberid: "1493006644797290",
+          tablename: "ECM_NEWS",
+          recordid: state.newsDetail.newsid,
+        },
+      },
+    };
+
+    axios
+      .post("", myProcessParams)
+      .then((response) => {
+        console.log("ИРСЭН ДАТА444:   ", response);
+        const myResult = response.data.response;
+        console.log("axiosFunction Process myResult ------------>", myResult);
+
+        setState({
+          ...state,
+          newsDetail: {
+            ...state.newsDetail,
+            isfeatured: !!myResult.result.isfeatured,
+            //! Энд ЗОГСОВ. False True нь 0,1 True, False гэх мэтээр янз бүрээр ирээд байна.
+          },
+        });
+      })
+      .catch((error) => {
+        // setState({ ...state, loading: false, error });
+        console.log(error);
+      });
+
+    // ).then((response) => {
+    //   console.log("Toggle myResult------------", response);
+    //   console.log("Toggle myResult------------", myResult);
+    // });
+
+    // console.log("Toggle myResufffffffffffffflt------------", myResult);
+
+    // if (myResult.status === "success") {
+    //   setState({
+    //     ...state,
+    //     newsDetail: {
+    //       ...state.newsDetail,
+    //       isfeatured: myResult.result.isfeatured,
+    //     },
+    //   });
+    // } else {
+    // }
   };
 
   const loadNewsDetail = (newsid) => {
@@ -196,7 +255,7 @@ export const NewsDetailStore = (props) => {
   };
 
   return (
-    <NewsContext.Provider value={{ state, loadNewsDetail }}>
+    <NewsContext.Provider value={{ state, loadNewsDetail, toggleIsFeatured }}>
       {props.children}
     </NewsContext.Provider>
   );

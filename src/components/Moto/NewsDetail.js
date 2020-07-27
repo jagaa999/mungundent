@@ -28,35 +28,17 @@ import {
 
 import LogBox from "components/Moto/LogBox";
 import CommentBox from "components/Moto/CommentBox";
+import NewsButtonPanel from "components/Moto/Button/NewsButtonPanel";
 
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
 import NewsContext from "context/NewsContext";
 
-const NewsItem = ({ newsId }) => {
+const NewsDetailComponent = ({ newsId }) => {
   const newsContext = useContext(NewsContext);
   const logsContext = useContext(LogsContext);
 
   const newsItem = newsContext.state.newsDetail;
-
-  function handleMenuClick(e) {
-    message.info("Click on menu item.");
-  }
-
-  const menuMemberAction = (myLike, mySave) => (
-    <Menu onClick={handleMenuClick}>
-      <Menu.Item key="Таалагдлаа">
-        <Checkbox checked={myLike}>Таалагдлаа</Checkbox>
-      </Menu.Item>
-      <Menu.Item key="Жоорлох">
-        <Checkbox checked={mySave}>Жоорлох</Checkbox>
-      </Menu.Item>
-      <Divider />
-      <Menu.Item key="Алдаатай">
-        <WarningTwoTone twoToneColor="#eb2f96" /> Алдаа мэдэгдэх
-      </Menu.Item>
-    </Menu>
-  );
 
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
@@ -75,51 +57,7 @@ const NewsItem = ({ newsId }) => {
   return (
     <div>
       <div key={newsItem.newsid} className="gx-main-content news-detail">
-        <div className="gx-product-footer">
-          <div className="ant-row-flex">
-            <div className="gx-module-contact-content">
-              <span>
-                <Tooltip title={newsItem.publisherpositionname}>
-                  <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                    <img
-                      src={newsItem.publisherphoto}
-                      alt={newsItem.publishername}
-                    />
-                  </span>
-                  <span className="gx-text-grey gx-fs-sm gx-mx-2">
-                    {newsItem.publishername}
-                  </span>
-                </Tooltip>
-              </span>
-            </div>
-            <div className="gx-ml-auto">
-              <span style={{ display: "inline-flex" }}>
-                <Dropdown
-                  overlay={menuMemberAction}
-                  placement="bottomRight"
-                  trigger={["click"]}
-                  arrow
-                >
-                  <Tooltip title="Таны үйлдлүүд">
-                    <i className="gx-icon-btn icon icon-ellipse-v" />
-                  </Tooltip>
-                </Dropdown>
-              </span>
-              <span style={{ display: "inline-flex" }}>
-                <Dropdown
-                  overlay={menuMemberAction}
-                  placement="bottomRight"
-                  trigger={["click"]}
-                  arrow
-                >
-                  <Tooltip title="Эзний үйлдлүүд">
-                    <i className="gx-icon-btn icon icon-setting" />
-                  </Tooltip>
-                </Dropdown>
-              </span>
-            </div>
-          </div>
-        </div>
+        <NewsButtonPanel newsItem={newsItem} />
 
         <Row>
           <Col xs={24}>
@@ -197,4 +135,4 @@ const NewsItem = ({ newsId }) => {
   );
 };
 
-export default NewsItem;
+export default NewsDetailComponent;

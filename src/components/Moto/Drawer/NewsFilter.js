@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Redirect, useHistory, Link, useLocation } from "react-router-dom";
 import { parse } from "query-string";
+import { isEmpty } from "lodash";
 
 import {
   Badge,
@@ -12,11 +13,12 @@ import {
   Space,
   Row,
   Col,
+  Divider,
 } from "antd";
+import { ClearOutlined } from "@ant-design/icons";
 import CustomScrollbars from "util/CustomScrollbars";
 import MotoCheckBox from "components/Moto/Filter/CheckBox";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
-import axios from "axios";
 import NewsContext from "context/NewsContext";
 
 const { Search } = Input;
@@ -24,14 +26,14 @@ const { Search } = Input;
 const NewsFilter = (props) => {
   const { search } = useLocation();
   const searchParams = parse(search);
-  console.log("ЭНД АЖЛАА ЗОГСООВ!!!!");
+  // console.log("ЭНД АЖЛАА ЗОГСООВ!!!!");
 
   const history = useHistory();
   const [didMount, setDidMount] = useState(false); //first render-ийг илрүүлэхийн төлөө
 
   const newsContext = useContext(NewsContext);
 
-  const [urlParams, setUrlParams] = useState({});
+  const [urlParams, setUrlParams] = useState(searchParams);
   const [searchQuery, setSearchQuery] = useState("");
   const [newsType, setNewsType] = useState([]);
   const [newsSource, setNewsSource] = useState([]);
@@ -59,9 +61,6 @@ const NewsFilter = (props) => {
   }, []);
 
   const prepareURL = (checkedValues, parameterLabel) => {
-    // console.log("gotoURL дарагдлаа-------> ", checkedValues);
-    // console.log("gotoURL дарагдлаа-------> ", parameterLabel);
-
     const param = checkedValues
       .map(function (itemvalue) {
         return encodeURIComponent(itemvalue);
@@ -72,12 +71,10 @@ const NewsFilter = (props) => {
       [parameterLabel]: param,
     };
 
-    setUrlParams({ ...urlParams, ...tempObject });
+    setUrlParams((state) => ({ ...urlParams, ...tempObject }));
   };
 
   useEffect(() => {
-    // console.log("ЭНД ӨӨРЧЛӨЛТ ОРЖ БАЙНА");
-    // Энд Search Query-ээ тохируулна
     const mySearchQueryParams = [];
 
     Object.keys(urlParams).map((item) => {
@@ -86,56 +83,53 @@ const NewsFilter = (props) => {
       }
     });
 
-    // const mySearchQuery = mySearchQueryParams.join("&");
     setSearchQuery(mySearchQueryParams.join("&"));
-
-    // console.log(mySearchQuery);
   }, [urlParams]);
 
   useEffect(() => {
     if (didMount) {
-      // console.log("searchQuerysearchQuery", searchQuery);
-      // console.log("ЭНД ОРЖ БАЙНА. Push хийж байгаа");
-      // history.push("/gogo");
       history.push({
         pathname: "/news",
         search: searchQuery,
       });
-      // console.log("ХАРИН ЭНД?");
     }
   }, [searchQuery]);
 
-  console.log("newsContext.state.searchParam1", searchParams);
+  const clearUrlParams = () => {
+    setUrlParams({});
+  };
 
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "100%" }}>
       <CustomScrollbars>
-        <Search
+        {/* <Search
           placeholder="Гарчгаас хайх"
           onSearch={(value) => console.log(value)}
-        />
+        /> */}
+
         {newsType === [] ? (
           "Ачаалж байна"
         ) : (
           <>
-            <h6 className="gx-my-3 gx-text-uppercase">Төрөл</h6>
+            <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+              Төрөл
+            </h6>
 
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "newstypeid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
+              defaultValue={[searchParams.newstypeid]}
             >
               {newsType.map((item) => (
-                <Checkbox value={item.newstypeid} key={item.newstypeid}>
-                  {/* <div>
-                    <span className="gx-d-flex"> */}
-
+                <Checkbox
+                  value={item.newstypeid}
+                  key={item.newstypeid}
+                  checked={true}
+                >
                   {item.newstypename}
                   <span className="gx-fs-sm gx-text-light gx-ml-3">
                     {item.count}
                   </span>
-
-                  {/* </span>
-                  </div> */}
                 </Checkbox>
               ))}
             </Checkbox.Group>
@@ -145,10 +139,13 @@ const NewsFilter = (props) => {
           "Ачаалж байна"
         ) : (
           <>
-            <h6 className="gx-my-3 gx-text-uppercase">Эх сурвалж</h6>
+            <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+              Эх сурвалж
+            </h6>
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "newssourceid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
+              defaultValue={[searchParams.newssourceid]}
             >
               {newsSource.map((item) => (
                 <Checkbox value={item.newssourceid} key={item.newssourceid}>
@@ -166,10 +163,13 @@ const NewsFilter = (props) => {
           "Ачаалж байна"
         ) : (
           <>
-            <h6 className="gx-my-3 gx-text-uppercase">Нийтлэгч</h6>
+            <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+              Нийтлэгч
+            </h6>
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "publisherid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
+              defaultValue={[searchParams.publisherid]}
             >
               {newsPublisher.map((item) => (
                 <Checkbox value={item.publisherid} key={item.publisherid}>
@@ -185,6 +185,21 @@ const NewsFilter = (props) => {
 
         {/* <MotoCheckBox title="Нийтлэлийн төрөл" /> */}
         {/* <MotoCheckBox title="Нийтлэгч" /> */}
+
+        {isEmpty(urlParams) ? (
+          <></>
+        ) : (
+          <>
+            <Divider dashed className="gx-mt-5" />
+            <Button
+              type="dashed"
+              icon={<ClearOutlined />}
+              onClick={clearUrlParams}
+            >
+              Арилгах
+            </Button>
+          </>
+        )}
       </CustomScrollbars>
     </div>
   );

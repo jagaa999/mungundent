@@ -12,33 +12,30 @@ const myInitParamsProcess = {
   },
 };
 
-export const LoadProcess = (props) => {
-  const [myParams, setMyParams] = useState(myInitParamsProcess);
-  setMyParams({
-    ...myParams,
-    command: props.command || "",
-    parameters: props.parameters || {},
-  });
+export async function LoadProcess(props) {
+  const myParams = myInitParamsProcess;
+  myParams.request.command = props ? props.command : "";
+  myParams.request.parameters = props ? props.parameters : {};
 
-  console.log("axiosFunction Process myParams ----------->", myParams);
+  // console.log("axiosFunction Process myParams ----------->", myParams);
+  console.log("Axios props", props);
 
-  axios
+  await axios
     .post("", myParams)
     .then((response) => {
       console.log("axiosFunction Process response ----------->", response);
 
-      const myArray = response.data.response.result;
-      console.log("axiosFunction Process myArray ------------>", myArray);
+      const myResult = response.data.response;
+      console.log("axiosFunction Process myResult ------------>", myResult);
 
-      return myArray;
+      return myResult;
     })
-
     .catch((error) => {
       return error;
     });
 
   return null;
-};
+}
 
 // !-----------------------
 // !-----------------------

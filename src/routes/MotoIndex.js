@@ -15,11 +15,11 @@ import asyncComponent from "util/asyncComponent";
 
 //Дээгүүр гүйх цэнхэр зураас
 const NewsDetail = asyncComponent(() => {
-  return import("./moto/news/newsDetail");
+  return import("./moto/news/newsDetailPage");
 });
 
 const NewsList = asyncComponent(() => {
-  return import("./moto/news/newsList");
+  return import("./moto/news/newsListPage");
 });
 
 const MemberDetail = asyncComponent(() => {
