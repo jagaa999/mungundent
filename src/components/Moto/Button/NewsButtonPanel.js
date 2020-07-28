@@ -1,4 +1,7 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+
+import toBoolean from "util/booleanFunction";
 import {
   Button,
   Card,
@@ -20,6 +23,7 @@ import {
   SearchOutlined,
   DownOutlined,
   UserOutlined,
+  DeleteOutlined,
   ArrowUpOutlined,
   EditOutlined,
 } from "@ant-design/icons";
@@ -31,13 +35,7 @@ const NewsButtonPanel = () => {
   const newsContext = useContext(NewsContext);
   const newsItem = newsContext.state.newsDetail;
 
-  console.log(newsItem);
-
-  // const [memberActions, setMemberActions] = useState({});
-  // const [ownerActions, setOwnerActions] = useState({
-  //   isFeatured: newsItem.isfeatured,
-  //   isActive: newsItem.isactive,
-  // });
+  // console.log(newsItem);
 
   const menuMemberActions = (myLike, mySave) => (
     <Menu onClick={handleMenuClick}>
@@ -54,28 +52,36 @@ const NewsButtonPanel = () => {
     </Menu>
   );
 
-  function toggleFeature(e) {
-    newsContext.toggleIsFeatured();
-  }
-
-  const menuOwnerActions = (myLike, mySave) => (
+  const menuOwnerActions = () => (
     <Menu>
-      <Menu.Item key="Дээшлүүлэх" onClick={handleMenuClick}>
+      <Menu.Item key="Дээшлүүлэх" onClick={newsContext.upPublishedDate}>
         <ArrowUpOutlined /> Дээшлүүлэх
       </Menu.Item>
-      <Menu.Item key="Засах" onClick={handleMenuClick}>
-        <EditOutlined /> Засах
-      </Menu.Item>
-      <Divider />
+
       <Menu.Item key="Спонсор">
-        <Checkbox checked={myLike} onChange={toggleFeature}>
+        <Checkbox
+          checked={toBoolean(newsItem.isfeatured)}
+          onChange={newsContext.toggleIsFeatured}
+        >
           Спонсор
         </Checkbox>
       </Menu.Item>
       <Menu.Item key="Идэвхтэй">
-        <Checkbox checked={mySave} onChange={gogof}>
+        <Checkbox
+          checked={toBoolean(newsItem.isactive)}
+          onChange={newsContext.toggleIsActive}
+        >
           Идэвхтэй
         </Checkbox>
+      </Menu.Item>
+      <Divider />
+      <Menu.Item key="Засах">
+        <Link to={"/news/edit/" + newsItem.newsid}>
+          <EditOutlined /> Засах
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="Устгах" onClick={handleMenuClick} danger disabled>
+        <DeleteOutlined /> Устгах
       </Menu.Item>
     </Menu>
   );
@@ -85,18 +91,12 @@ const NewsButtonPanel = () => {
     console.log(e);
   }
 
-  function gogof(e) {
-    console.log("checkbox", e);
-  }
-
   // console.log("newsItem", newsItem);
 
   return (
     <div className="gx-product-footer">
       <div className="ant-row-flex">
         <div className="gx-module-contact-content">
-          <span>{!!+newsItem.isfeatured ? "Спонсор" : "Спонсор биш"}</span>
-          <span>{!!+newsItem.isactive ? "Идэвхтэй" : "Идэвхгүй"}</span>
           <span>
             <Tooltip title={newsItem.publisherpositionname}>
               <span className="ant-avatar ant-avatar-circle ant-avatar-image">
@@ -120,7 +120,7 @@ const NewsButtonPanel = () => {
               arrow
             >
               <Tooltip title="Таны үйлдлүүд">
-                <i className="gx-icon-btn icon icon-ellipse-v" />
+                <i className="gx-icon-btn icon icon-wall" />
               </Tooltip>
             </Dropdown>
           </span>
@@ -129,7 +129,7 @@ const NewsButtonPanel = () => {
               overlay={menuOwnerActions}
               placement="bottomRight"
               trigger={["click"]}
-              visible="true"
+              // visible="true"
               arrow
             >
               <Tooltip title="Эзний үйлдлүүд">

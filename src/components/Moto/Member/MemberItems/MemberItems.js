@@ -3,6 +3,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 
 import { Card, Tabs } from "antd";
 import MemberItem from "./MemberItem";
+import MemberItemsList from "./MemberItemsList";
 import { notifications } from "./data";
 import MemberItemsContext from "context/MemberItemsContext";
 
@@ -20,7 +21,7 @@ const MemberItems = () => {
       </div> */}
 
       <Tabs defaultActiveKey="1" size="small" className="motoMemberItems">
-        <TabPane tab="Нийтлэл" key="1">
+        {/* <TabPane tab="Нийтлэл" key="1">
           <Scrollbars
             autoHeight
             autoHeightMin={200}
@@ -35,7 +36,21 @@ const MemberItems = () => {
               })}
             </ul>
           </Scrollbars>
+        </TabPane> */}
+
+        <TabPane tab="Нийтлэл" key="Нийтлэл">
+          <Scrollbars
+            autoHeight
+            autoHeightMin={200}
+            autoHeightMax={400}
+            autoHide
+            autoHideTimeout={2000}
+            universal
+          >
+            <MemberItemsList memberItems={memberItems} />
+          </Scrollbars>
         </TabPane>
+
         <TabPane tab="Автозар" key="2" disabled>
           <Scrollbars autoHeight>
             <ul className="gx-sub-popover">

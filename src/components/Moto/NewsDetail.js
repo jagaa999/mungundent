@@ -3,6 +3,8 @@ import React, { useContext } from "react";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 
+import toBoolean from "util/booleanFunction";
+
 import {
   Button,
   Card,
@@ -10,6 +12,7 @@ import {
   Tooltip,
   Row,
   Col,
+  Tag,
   Dropdown,
   Menu,
   Checkbox,
@@ -24,11 +27,19 @@ import {
   SearchOutlined,
   DownOutlined,
   UserOutlined,
+  CheckCircleOutlined,
+  SyncOutlined,
+  CloseCircleOutlined,
+  ExclamationCircleOutlined,
+  ClockCircleOutlined,
+  MinusCircleOutlined,
 } from "@ant-design/icons";
 
 import LogBox from "components/Moto/LogBox";
 import CommentBox from "components/Moto/CommentBox";
 import NewsButtonPanel from "components/Moto/Button/NewsButtonPanel";
+import NewsDetailHeader from "components/Moto/NewsDetailHeader";
+import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
@@ -57,11 +68,17 @@ const NewsDetailComponent = ({ newsId }) => {
   return (
     <div>
       <div key={newsItem.newsid} className="gx-main-content news-detail">
+        {/* <NewsDetailHeader headerElements={newsItem} /> */}
+
         <NewsButtonPanel newsItem={newsItem} />
 
         <Row>
           <Col xs={24}>
             <Card
+              className={
+                (toBoolean(newsItem.isfeatured) ? "gx-border-success" : "") +
+                (!toBoolean(newsItem.isactive) ? "gx-border-danger" : "")
+              }
               cover={
                 <img
                   alt={newsItem.title}
@@ -69,7 +86,15 @@ const NewsDetailComponent = ({ newsId }) => {
                 />
               }
             >
-              <h2>{newsItem.title}</h2>
+              <h2
+                className={
+                  toBoolean(newsItem.isfeatured) ? "gx-text-success" : ""
+                }
+              >
+                {newsItem.title}
+                {toBoolean(newsItem.isfeatured) && <FeaturedTag />}
+                {!toBoolean(newsItem.isactive) && <ActiveTag />}
+              </h2>
               <div className="news-header">
                 <div className="ant-row-flex">
                   <Tooltip title="Төрөл">

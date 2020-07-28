@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { parse } from "query-string";
+import toBoolean from "util/booleanFunction";
 
 import axios from "util/axiosConfig";
 
@@ -118,7 +119,7 @@ export const NewsListStore = (props) => {
       .then((response) => {
         //Датанууд ороод ирсэн
         //Одоо state-дээ олгоно.
-        //console.log("ИРСЭН ДАТА444:   ", response);
+        console.log("ИРСЭН ДАТА444:   ", response);
 
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
@@ -182,7 +183,7 @@ export const NewsDetailStore = (props) => {
         command: "motoNewsDV_SPONSOR_002",
         parameters: {
           id: state.newsDetail.newsid,
-          isfeatured: !!!+state.newsDetail.isfeatured,
+          isfeatured: !toBoolean(state.newsDetail.isfeatured),
           memberid: "1493006644797290",
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
@@ -193,16 +194,15 @@ export const NewsDetailStore = (props) => {
     axios
       .post("", myProcessParams)
       .then((response) => {
-        console.log("ИРСЭН ДАТА444:   ", response);
-        const myResult = response.data.response;
-        console.log("axiosFunction Process myResult ------------>", myResult);
+        // console.log("ИРСЭН ДАТА444:   ", response);
+        // const myResult = response.data.response;
+        // console.log("axiosFunction Process myResult ------------>", myResult);
 
         setState({
           ...state,
           newsDetail: {
             ...state.newsDetail,
-            isfeatured: !!myResult.result.isfeatured,
-            //! Энд ЗОГСОВ. False True нь 0,1 True, False гэх мэтээр янз бүрээр ирээд байна.
+            isfeatured: toBoolean(response.data.response.result.isfeatured),
           },
         });
       })
@@ -210,24 +210,78 @@ export const NewsDetailStore = (props) => {
         // setState({ ...state, loading: false, error });
         console.log(error);
       });
+  };
 
-    // ).then((response) => {
-    //   console.log("Toggle myResult------------", response);
-    //   console.log("Toggle myResult------------", myResult);
-    // });
+  const toggleIsActive = () => {
+    const myProcessParams = {
+      request: {
+        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        command: "motoNewsDV_ACTIVE_002",
+        parameters: {
+          id: state.newsDetail.newsid,
+          isactive: !toBoolean(state.newsDetail.isactive),
+          memberid: "1493006644797290",
+          tablename: "ECM_NEWS",
+          recordid: state.newsDetail.newsid,
+        },
+      },
+    };
 
-    // console.log("Toggle myResufffffffffffffflt------------", myResult);
+    axios
+      .post("", myProcessParams)
+      .then((response) => {
+        // console.log("ИРСЭН ДАТА444:   ", response);
+        // const myResult = response.data.response;
+        // console.log("axiosFunction Process myResult ------------>", myResult);
 
-    // if (myResult.status === "success") {
-    //   setState({
-    //     ...state,
-    //     newsDetail: {
-    //       ...state.newsDetail,
-    //       isfeatured: myResult.result.isfeatured,
-    //     },
-    //   });
-    // } else {
-    // }
+        setState({
+          ...state,
+          newsDetail: {
+            ...state.newsDetail,
+            isactive: toBoolean(response.data.response.result.isactive),
+          },
+        });
+      })
+      .catch((error) => {
+        // setState({ ...state, loading: false, error });
+        console.log(error);
+      });
+  };
+
+  const upPublishedDate = () => {
+    console.log("ЭНД ОРЖ ИРСЭН");
+    const myProcessParams = {
+      request: {
+        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        command: "motoNewsDV_PUBLISHEDDATE_002",
+        parameters: {
+          id: state.newsDetail.newsid,
+          memberid: "1493006644797290",
+          tablename: "ECM_NEWS",
+          recordid: state.newsDetail.newsid,
+        },
+      },
+    };
+
+    axios
+      .post("", myProcessParams)
+      .then((response) => {
+        // console.log("ERP-аас ирсэн response ------------>", response);
+        const myResult = response.data.response;
+        // console.log("ERP-аас ирсэн response.data.response ------------>", myResult);
+
+        setState({
+          ...state,
+          newsDetail: {
+            ...state.newsDetail,
+            publisheddate: response.data.response.result.publisheddate,
+          },
+        });
+      })
+      .catch((error) => {
+        // setState({ ...state, loading: false, error });
+        console.log(error);
+      });
   };
 
   const loadNewsDetail = (newsid) => {
@@ -255,7 +309,15 @@ export const NewsDetailStore = (props) => {
   };
 
   return (
-    <NewsContext.Provider value={{ state, loadNewsDetail, toggleIsFeatured }}>
+    <NewsContext.Provider
+      value={{
+        state,
+        loadNewsDetail,
+        toggleIsFeatured,
+        toggleIsActive,
+        upPublishedDate,
+      }}
+    >
       {props.children}
     </NewsContext.Provider>
   );

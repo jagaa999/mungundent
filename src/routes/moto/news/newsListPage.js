@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 
 import { Col, Row } from "antd";
 
-import NewsList from "components/Moto/NewsList";
+import NewsListItem from "components/Moto/NewsListItem";
 import NewsContext from "context/NewsContext";
 import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
 import FilterTag from "components/Moto/Tag/FilterTag";
@@ -28,7 +28,7 @@ const NewsListPage = (props) => {
               newsItem.imageMain = "https://www.moto.mn/" + el.imagemain;
               return (
                 <Col key={index} span={24}>
-                  <NewsList key={index} newsItem={newsItem} />
+                  <NewsListItem key={index} newsItem={newsItem} />
                 </Col>
               );
             })}
