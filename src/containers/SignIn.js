@@ -22,8 +22,6 @@ const SignIn = () => {
   const [form] = Form.useForm();
   const history = useHistory();
 
-  console.log("signin --------", memberContext.state);
-
   useEffect(() => {
     if (memberContext.state.error !== null) {
       setTimeout(() => {
@@ -38,8 +36,9 @@ const SignIn = () => {
 
   useEffect(() => {
     const unlisten = firebaseAuth.onAuthStateChanged((user) => {
+      //Firebase-ээр дамжаад Member login-дсон гэсэн үг.
+      //Firebase-ээс хэрэглэгчийн мэдээллүүд ирнэ.
       user && memberContext.setFirebaseProfile(user);
-      // : memberContext.clearMemberProfile();
     });
     return () => {
       unlisten();

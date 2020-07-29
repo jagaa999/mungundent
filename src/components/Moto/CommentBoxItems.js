@@ -9,6 +9,10 @@ const CommentBoxItems = (props) => {
   const memberContext = useContext(MemberContext);
   // console.log("memberProfile--------------", memberContext.state.memberProfile);
 
+  const updateCommentValue = (event) => {
+    console.log(event);
+  };
+
   return (
     <div>
       <Card title="Сэтгэгдэл">
@@ -31,7 +35,7 @@ const CommentBoxItems = (props) => {
               className="gx-mr-3 gx-size-36"
               src="https://p1.pxfuel.com/preview/736/677/224/hand-hands-dom-worship-man-handwriting.jpg"
             />
-            <div className="gx-media-body">
+            <div className="gx-media-body" key="dddd">
               <p>
                 {memberContext.state.memberProfile.personname}{" "}
                 <span>({memberContext.state.memberProfile.lastname})</span>
@@ -39,7 +43,7 @@ const CommentBoxItems = (props) => {
               <textarea
                 id="required"
                 className="gx-border-0 ant-input"
-                // onChange={(event) => updateCommentValue(event)}
+                onChange={(event) => updateCommentValue(event)}
                 // onKeyPress={(event) => _handleKeyPress(event)}
                 // value={message}
                 value=""
