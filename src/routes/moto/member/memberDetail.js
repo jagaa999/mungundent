@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import { Col, Row } from "antd";
@@ -16,7 +16,6 @@ import ProfileHeader from "components/Moto/profile/ProfileHeader/ProfileHeader";
 
 const MemberPage = (props) => {
   //URL-аас орж ирсэн ID
-  const { memberId } = useParams();
 
   return (
     <Auxiliary>

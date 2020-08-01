@@ -1,109 +1,106 @@
 import React, { useContext } from "react";
-import { Redirect, useHistory, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { Modal, Avatar, Popover, Tooltip } from "antd";
-import { userSignOut } from "appRedux/actions/Auth";
-import CloseCircleOutlined from "@ant-design/icons/lib/icons/CloseCircleOutlined";
 
+import {
+  Card,
+  Modal,
+  Avatar,
+  Popover,
+  Tooltip,
+  Divider,
+  Descriptions,
+  Button,
+  List,
+} from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+  CloseCircleOutlined,
+  SearchOutlined,
+  LogoutOutlined,
+  UserOutlined,
+  HomeOutlined,
+  ProfileOutlined,
+} from "@ant-design/icons";
 import MemberContext from "context/MemberContext";
 import SignIn from "../../../containers/SignIn";
+import AvatarMember from "components/Moto/Member/MemberAvatar";
+
+const { Meta } = Card;
 
 const MenuMember = () => {
-  // const dispatch = useDispatch();
-  const history = useHistory();
-
   const memberContext = useContext(MemberContext);
   console.log("МИНИЙ ПРОФАЙЛ", memberContext.state);
 
   const withMemberOptions = (
     <>
-      <div className="gx-fs-sm">Сайн уу?</div>
-      <div className="gx-fs-sm">
-        {memberContext.state.memberFirebaseProfile.displayName}
+      <AvatarMember
+        memberName={memberContext.state.memberFirebaseProfile.displayName}
+        memberPhoto={memberContext.state.memberFirebaseProfile.photoURL}
+        memberPosition="Гишүүнчлэл: Тодорхойгүй"
+      />
+
+      <Descriptions
+        bordered
+        size="small"
+        column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+      >
+        <Descriptions.Item label="Таны ID">
+          {memberContext.state.memberCloudUserId}
+        </Descriptions.Item>
+        <Descriptions.Item label="Session ID">
+          {memberContext.state.memberCloudSessionId}
+        </Descriptions.Item>
+        <Descriptions.Item label="Firebase UID">
+          {memberContext.state.memberUID}
+        </Descriptions.Item>
+      </Descriptions>
+
+      <Divider className="gx-mt-5 gx-mb-3" />
+      <div className="gx-d-flex">
+        <div>
+          <Button type="primary" icon={<HomeOutlined />} size="small">
+            Гарааш
+          </Button>
+          <Button icon={<UserOutlined />} size="small">
+            Профайл
+          </Button>
+        </div>
+        <div className="gx-ml-auto">
+          <Button
+            icon={<LogoutOutlined />}
+            type="text"
+            size="small"
+            onClick={() => {
+              memberContext.clearMemberProfile();
+            }}
+          >
+            Гарах
+          </Button>
+        </div>
       </div>
-      <div className="gx-fs-sm">
-        ERP userid {memberContext.state.memberProfile.id}
-      </div>
-      <div className="gx-fs-sm">
-        ERP customerid {memberContext.state.memberProfile.customerid}
-      </div>
-      <div className="gx-fs-sm">
-        Firebase UID {memberContext.state.memberUID}
-      </div>
-      <ul className="gx-user-popover gx-mt-3">
-        <li>My Account</li>
-        <li>Миний хадгалсан зүйлс</li>
-        <li
-          onClick={() => {
-            memberContext.clearMemberProfile();
-            // history.push("/signin");
-          }}
-        >
-          Logout
-        </li>
-      </ul>
     </>
   );
 
-  const withoutMemberGuestOptions = (
-    <>
-      <div className="gx-fs-sm">Сайн уу?</div>
-      <div className="gx-fs-sm">Зочин</div>
-
-      <ul className="gx-user-popover gx-mt-3">
-        <li
-          onClick={() => {
-            memberContext.clearMemberProfile();
-            history.push("/signin");
-          }}
-        >
-          Нэвтрэх
-        </li>
-      </ul>
-    </>
-  );
+  // console.log("withMemberOptions", withMemberOptions);
 
   return memberContext.state.isLogin ? (
     <Popover
-      overlayClassName="gx-popover-horizantal"
+      // overlayClassName="gx-popover-horizantal"
       placement="bottomRight"
-      content={
-        memberContext.state.isLogin
-          ? withMemberOptions
-          : withoutMemberGuestOptions
-      }
+      content={withMemberOptions}
       trigger="click"
     >
-      <Tooltip
-        title={
-          memberContext.state.isLogin
-            ? memberContext.state.memberFirebaseProfile.displayName
-            : "Зочин!"
-        }
-      >
+      <Tooltip title={memberContext.state.memberFirebaseProfile.displayName}>
         <Avatar
-          src={
-            memberContext.state.isLogin
-              ? memberContext.state.memberFirebaseProfile.photoURL
-              : "https://pbs.twimg.com/profile_images/1218399717857644544/UQoPsIgl_400x400.jpg"
-          }
+          src={memberContext.state.memberFirebaseProfile.photoURL}
           className="gx-avatar gx-pointer"
-          alt={
-            memberContext.state.isLogin &&
-            memberContext.state.memberFirebaseProfile.displayName
-          }
+          alt={memberContext.state.memberFirebaseProfile.displayName}
         />
       </Tooltip>
     </Popover>
   ) : (
     <>
-      {/* <Link
-        to="/signin"
-        className="gx-d-block gx-pointer"
-        style={{ fontSize: "15px" }}
-      >
-        Нэвтрэх
-      </Link> */}
       <span
         className="gx-block gx-pointer"
         style={{ fontSize: "15px" }}

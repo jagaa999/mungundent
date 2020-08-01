@@ -1,8 +1,6 @@
 import React, { memo, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import URLSearchParams from "url-search-params";
 import {
-  Redirect,
   Route,
   Switch,
   useHistory,
@@ -16,12 +14,6 @@ import AppLocale from "lngProvider";
 import MainApp from "./MainApp";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
-import { setInitUrl } from "appRedux/actions/Auth";
-import {
-  onLayoutTypeChange,
-  onNavStyleChange,
-  setThemeType,
-} from "appRedux/actions/Setting";
 
 import {
   LAYOUT_TYPE_BOXED,
@@ -39,41 +31,9 @@ import MemberContext from "context/MemberContext";
 
 import { MemberItemsStore } from "context/MemberItemsContext";
 
-const RestrictedRoute = ({
-  component: Component,
-  location,
-  authUser,
-  ...rest
-}) => (
-  // <Route
-  //   {...rest}
-  //   render={(props) =>
-  //     authUser ? (
-  //       <Component {...props} />
-  //     ) : (
-  //       <Redirect
-  //         to={{
-  //           pathname: "/signin",
-  //           state: { from: location },
-  //         }}
-  //       />
-  //     )
-  //   }
-  // />
-  <Route {...rest} render={(props) => <Component {...props} />} />
-);
-
 const MotoIndexApp = (props) => {
-  const memberContext = useContext(MemberContext);
+  const { locale } = useSelector(({ settings }) => settings);
 
-  const dispatch = useDispatch();
-  const { locale, themeType, navStyle, layoutType } = useSelector(
-    ({ settings }) => settings
-  );
-  const { authUser, initURL } = useSelector(({ auth }) => auth);
-
-  const location = useLocation();
-  const history = useHistory();
   const match = useRouteMatch();
 
   // useEffect(() => {
@@ -187,5 +147,5 @@ const MotoIndexApp = (props) => {
   );
 };
 
-// export default memo(MotoIndexApp);
-export default MotoIndexApp;
+export default memo(MotoIndexApp);
+// export default MotoIndexApp;

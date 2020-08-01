@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { parse } from "query-string";
 import toBoolean from "util/booleanFunction";
-
 import axios from "util/axiosConfig";
-
-import { LoadProcess, loadDataview } from "util/axiosFunction";
-// import mainAxios from "axios";
+import MemberContext from "context/MemberContext";
 
 const NewsContext = React.createContext();
 
@@ -102,7 +98,7 @@ export const NewsListStore = (props) => {
     const myTemp33 = Object.assign(dddd, { criteria: tempFilter });
     // console.log("myTemp33", myTemp33);
 
-    console.log("searchParams", searchParams);
+    // console.log("searchParams", searchParams);
 
     setState({
       ...state,
@@ -119,7 +115,7 @@ export const NewsListStore = (props) => {
       .then((response) => {
         //Датанууд ороод ирсэн
         //Одоо state-дээ олгоно.
-        console.log("ИРСЭН ДАТА444:   ", response);
+        // console.log("ИРСЭН ДАТА444:   ", response);
 
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
@@ -158,18 +154,9 @@ const initialStateNewsDetail = {
   error: null,
 };
 
-const myParamsNewsDetail = {
-  request: {
-    sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-    command: "motoNEWS_MAINDETAIL_004",
-    parameters: {
-      newsid: "",
-      memberid: "",
-    },
-  },
-};
-
 export const NewsDetailStore = (props) => {
+  const memberContext = useContext(MemberContext);
+
   const [state, setState] = useState(initialStateNewsDetail);
 
   const clearNewsDetail = () => {
@@ -179,22 +166,24 @@ export const NewsDetailStore = (props) => {
   const toggleIsFeatured = () => {
     const myProcessParams = {
       request: {
-        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        sessionid: memberContext.state.memberCloudSessionId,
         command: "motoNewsDV_SPONSOR_002",
         parameters: {
           id: state.newsDetail.newsid,
-          isfeatured: !toBoolean(state.newsDetail.isfeatured),
-          memberid: "1493006644797290",
+          isfeatured: !toBoolean(state.newsDetail.isfeatured) ? "1" : "0",
+          memberid: memberContext.state.memberCloudUserId,
+          systemuserid: memberContext.state.memberCloudUserId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
       },
     };
+    console.log("myProcessParams", myProcessParams);
 
     axios
       .post("", myProcessParams)
       .then((response) => {
-        // console.log("ИРСЭН ДАТА444:   ", response);
+        console.log("ИРСЭН ДАТА444:   ", response);
         // const myResult = response.data.response;
         // console.log("axiosFunction Process myResult ------------>", myResult);
 
@@ -215,12 +204,13 @@ export const NewsDetailStore = (props) => {
   const toggleIsActive = () => {
     const myProcessParams = {
       request: {
-        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        sessionid: memberContext.state.memberCloudSessionId,
         command: "motoNewsDV_ACTIVE_002",
         parameters: {
           id: state.newsDetail.newsid,
-          isactive: !toBoolean(state.newsDetail.isactive),
-          memberid: "1493006644797290",
+          isactive: !toBoolean(state.newsDetail.isactive) ? "1" : "0",
+          memberid: memberContext.state.memberCloudUserId,
+          systemuserid: memberContext.state.memberCloudUserId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
@@ -249,24 +239,25 @@ export const NewsDetailStore = (props) => {
   };
 
   const upPublishedDate = () => {
-    console.log("ЭНД ОРЖ ИРСЭН");
     const myProcessParams = {
       request: {
-        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        sessionid: memberContext.state.memberCloudSessionId,
         command: "motoNewsDV_PUBLISHEDDATE_002",
         parameters: {
           id: state.newsDetail.newsid,
-          memberid: "1493006644797290",
+          memberid: memberContext.state.memberCloudUserId,
+          systemuserid: memberContext.state.memberCloudUserId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
       },
     };
+    // console.log("myProcessParams", myProcessParams);
 
     axios
       .post("", myProcessParams)
       .then((response) => {
-        // console.log("ERP-аас ирсэн response ------------>", response);
+        console.log("ERP-аас ирсэн response ------------>", response);
         const myResult = response.data.response;
         // console.log("ERP-аас ирсэн response.data.response ------------>", myResult);
 
@@ -284,9 +275,21 @@ export const NewsDetailStore = (props) => {
       });
   };
 
-  const loadNewsDetail = (newsid) => {
+  const loadNewsDetail = (newsId) => {
+    const myParamsNewsDetail = {
+      request: {
+        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        command: "motoNEWS_MAINDETAIL_004",
+        parameters: {
+          newsid: newsId || "",
+          memberid: memberContext.state.memberCloudUserId,
+          systemuserid: memberContext.state.memberCloudUserId,
+        },
+      },
+    };
+    // console.log("myParamsNewsDetail", myParamsNewsDetail);
+
     clearNewsDetail();
-    myParamsNewsDetail.request.parameters.newsid = newsid;
     setState({ ...state, loading: true });
 
     axios

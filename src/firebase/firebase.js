@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+// import 'firebase/storage';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-
-import MemberContext from "context/MemberContext";
 
 // Initialize Firebase
 const config = {
@@ -101,11 +101,11 @@ const uiConfig = {
 
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-      var user = authResult.user;
-      var credential = authResult.credential;
-      var isNewUser = authResult.additionalUserInfo.isNewUser;
-      var providerId = authResult.additionalUserInfo.providerId;
-      var operationType = authResult.operationType;
+      // var user = authResult.user;
+      // var credential = authResult.credential;
+      // var isNewUser = authResult.additionalUserInfo.isNewUser;
+      // var providerId = authResult.additionalUserInfo.providerId;
+      // var operationType = authResult.operationType;
       // Do something with the returned AuthResult.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.

@@ -9,14 +9,12 @@ import {
   message,
   Popover,
   Tooltip,
-  Badge,
 } from "antd";
 import Icon from "@ant-design/icons";
 import { connect, useDispatch, useSelector } from "react-redux";
 import CustomScrollbars from "util/CustomScrollbars";
 import languageData from "../languageData";
 import SearchBox from "components/SearchBox";
-import UserInfo from "components/UserInfo";
 import MenuMember from "components/Moto/Menu/MenuMember";
 import AppNotification from "components/AppNotification";
 import MemberItems from "components/Moto/Member/MemberItems/MemberItems";

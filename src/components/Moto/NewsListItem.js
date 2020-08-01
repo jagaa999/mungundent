@@ -20,7 +20,7 @@ import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
 import AvatarMember from "components/Moto/Member/MemberAvatar";
 
 const NewsItem = ({ newsItem, grid }) => {
-  console.log("Манай бараа - ", newsItem);
+  // console.log("Манай бараа - ", newsItem);
 
   const truncatedDescription =
     newsItem.description.substring(0, 120) + "&hellip;";

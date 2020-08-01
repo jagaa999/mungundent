@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "../util/axiosConfig";
+import MemberContext from "context/MemberContext";
 
 const LogsContext = React.createContext();
 
@@ -11,27 +12,9 @@ const initialStateLogs = {
   error: null,
 };
 
-const myParamsLogs = {
-  request: {
-    sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-    command: "PL_MDVIEW_004",
-    parameters: {
-      systemmetagroupid: "1588323654372494", //Log
-      showQuery: "0",
-      criteria: {
-        recordId: "1588047983186922", //Параметрээр орж ирэх ёстой
-        tableName: "ECM_NEWS", //Параметрээр орж ирэх ёстой
-      },
-      paging: {
-        pageSize: "", //нийтлэлийн тоо
-        offset: "1", //хуудасны дугаар
-      },
-    },
-  },
-};
-
 export const LogsStore = (props) => {
   const [state, setState] = useState(initialStateLogs);
+  const memberContext = useContext(MemberContext);
 
   const clearLogs = () => {
     setState(initialStateLogs);
@@ -41,8 +24,30 @@ export const LogsStore = (props) => {
     if (recordId === undefined) return null;
 
     clearLogs();
-    myParamsLogs.request.parameters.criteria.recordId = recordId;
-    myParamsLogs.request.parameters.criteria.tableName = tableName;
+
+    const myParamsLogs = {
+      request: {
+        sessionid: memberContext.state.memberCloudSessionId,
+        command: "PL_MDVIEW_004",
+        parameters: {
+          systemmetagroupid: "1588323654372494", //Log
+          showQuery: "0",
+          criteria: {
+            recordId: recordId || "", //Параметрээр орж ирэх ёстой
+            tableName: tableName || "ECM_NEWS", //Параметрээр орж ирэх ёстой
+          },
+          paging: {
+            pageSize: "", //нийтлэлийн тоо
+            offset: "1", //хуудасны дугаар
+            sortColumnNames: {
+              actionDate: {
+                sortType: "DESC", //эрэмбэлэх чиглэл
+              },
+            },
+          },
+        },
+      },
+    };
 
     setState({ ...state, loading: true });
 
@@ -52,7 +57,7 @@ export const LogsStore = (props) => {
     axios
       .post("", myParamsLogs)
       .then((response) => {
-        // console.log("ИРСЭН ДАТА444:   ", response);
+        console.log("ИРСЭН ДАТА444:   ", response);
         const myPaging = response.data.response.result.paging;
         const myTempArray = response.data.response.result;
 

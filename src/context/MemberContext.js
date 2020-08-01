@@ -16,7 +16,6 @@ const MemberContext = React.createContext();
 //----------------------- Member Profile
 const initialStateMemberProfile = {
   memberUID: localStorage.getItem("motoMemberUID") || "",
-  memberProfile: {},
   memberCloudUserId: 0,
   memberCloudSessionId: "",
   memberCloudProfile: {},
@@ -28,10 +27,6 @@ const initialStateMemberProfile = {
   error: null,
 };
 
-console.log(
-  "ЭНД АЖЛАА ЗОГСООВ - LOGIN БОЛОН CREATE ХИЙГДСЭН. ОДОО SESSION_ID-АА АВНА. ТЭГЭЭД ЦААШАА ЯВНА. "
-);
-
 export const MemberProfileStore = (props) => {
   const [state, setState] = useState(initialStateMemberProfile);
 
@@ -41,7 +36,6 @@ export const MemberProfileStore = (props) => {
 
     setState({
       memberUID: 0,
-      memberProfile: {},
       memberFirebaseProfile: {},
       isLogin: false,
       loading: false,
@@ -52,6 +46,30 @@ export const MemberProfileStore = (props) => {
     firebaseAuth.signOut();
   };
 
+  useEffect(() => {
+    if (state.isLogin) {
+      if (state.memberCloudProfile !== {}) {
+        setState({
+          ...state,
+          memberCloudUserId: state.memberCloudProfile.id,
+          memberCloudSessionId: state.memberCloudProfile.sessionid,
+        });
+      }
+    }
+  }, [state.memberCloudProfile]);
+
+  useEffect(() => {
+    console.log("ЭНД ХЭРЭГЛЭГЧ-ИЙН islogin төлөв өөрчлөгдөж байна.");
+    if (state.isLogin) {
+      // console.log("ЭНД ХЭРЭГЛЭГЧ FIREBASE логиндсон.");
+      // console.log("Харин одоо хэрэглэгчийн мэдээллийг ERP-аас татах ёстой.");
+
+      if (state.memberUID) {
+        loginMemberCloud(state.memberUID); //Cloud-д хэрэглэгчийг login-дуулна.
+      }
+    }
+  }, [state.isLogin]);
+
   const clearError = () => {
     setState({
       ...state,
@@ -61,24 +79,22 @@ export const MemberProfileStore = (props) => {
 
   const loginMemberCloud = (firebaseUid) => {
     setState({ ...state, loading: true });
-
     const myParamsLoginMemberCloud = {
       request: {
         command: "login",
         parameters: {
           username: firebaseUid,
-          // username: "k5553331tdM19FddvWsxD0Kxk4d2",
           password: "89",
         },
       },
     };
 
-    console.log("myParamsLoginMemberCloud", myParamsLoginMemberCloud);
+    // console.log("myParamsLoginMemberCloud", myParamsLoginMemberCloud);
 
     axios
       .post("", myParamsLoginMemberCloud)
       .then((response) => {
-        console.log("loginMemberCloud response:--> ", response);
+        // console.log("loginMemberCloud response:--> ", response);
         const myArray = response.data.response.result;
         // Хэрвээ customerid хоосон байвал хүчээр тавьчихъя. 200108101001108990
         // if (myArray.userkeys[0].customerid === "") {
@@ -87,22 +103,20 @@ export const MemberProfileStore = (props) => {
         // }
 
         //Одоо оршин байгаа бүх customerid-ыг userid руу шилжүүлэх шаардлагатай бололтой.
-        console.log("loginMemberCloud myArray:--> ", myArray);
+        // console.log("loginMemberCloud myArray:--> ", myArray);
 
         if (
           response.data.response.status === "error" &&
           response.data.response.text === "User_name_or_password_wrong"
         ) {
           createMemberCloudWithFirebase();
+        } else {
+          setState({
+            ...state,
+            memberCloudProfile: response.data.response.result,
+            loading: false,
+          });
         }
-
-        // User_name_or_password_wrong"
-
-        setState({
-          ...state,
-          memberCloudProfile: response.data.response.result,
-          loading: false,
-        });
       })
       .catch((error) => {
         setState({ ...state, loading: false, error });
@@ -190,18 +204,6 @@ export const MemberProfileStore = (props) => {
       error: null,
     });
   };
-
-  useEffect(() => {
-    console.log("ЭНД ХЭРЭГЛЭГЧ-ИЙН islogin төлөв өөрчлөгдөж байна.");
-    if (state.isLogin) {
-      console.log("ЭНД ХЭРЭГЛЭГЧ FIREBASE логиндсон.");
-      console.log("Харин одоо хэрэглэгчийн мэдээллийг ERP-аас татах ёстой.");
-
-      if (state.memberUID) {
-        loginMemberCloud(state.memberUID); //Cloud-д хэрэглэгчийг login-дуулна.
-      }
-    }
-  }, [state.isLogin]);
 
   const isModal = (isVisible) => {
     //Member signin хийх modal цонх нээгдсэн эсэх

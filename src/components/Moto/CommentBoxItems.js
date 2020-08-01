@@ -33,12 +33,12 @@ const CommentBoxItems = (props) => {
           <div className="gx-media gx-mb-2">
             <Avatar
               className="gx-mr-3 gx-size-36"
-              src="https://p1.pxfuel.com/preview/736/677/224/hand-hands-dom-worship-man-handwriting.jpg"
+              src={memberContext.state.memberFirebaseProfile.photoURL}
             />
             <div className="gx-media-body" key="dddd">
               <p>
-                {memberContext.state.memberProfile.personname}{" "}
-                <span>({memberContext.state.memberProfile.lastname})</span>
+                {memberContext.state.memberFirebaseProfile.displayName}{" "}
+                {/* <span>({memberContext.state.memberCloudProfile.lastname})</span> */}
               </p>
               <textarea
                 id="required"
