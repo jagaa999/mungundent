@@ -1,22 +1,32 @@
 import React, { useEffect, useContext } from "react";
 
-import { Row, Col } from "antd";
+import { Row, Col, message, Alert } from "antd";
 
 import LogsContext from "context/LogsContext";
 import LogBoxItems from "./LogBoxItems";
 
 const LogBox = (props) => {
   useEffect(() => {
-    if (props) logBox.loadLogs(props.recordId, props.tableName);
+    if (props) logContext.loadLogs(props.recordId, props.tableName);
   }, []);
 
-  const logBox = useContext(LogsContext);
+  const logContext = useContext(LogsContext);
 
   return (
     <div className="gx-main-content news-detail">
-      {logBox.state.logItems.length && (
-        <LogBoxItems logBoxItems={logBox.state.logItems} />
+      {logContext.state.logItems.length && (
+        <LogBoxItems logBoxItems={logContext.state.logItems} />
       )}
+
+      {logContext.state.error !== null ? (
+        <Alert
+          message="Анхаар!"
+          description={logContext.state.error}
+          type="warning"
+          showIcon
+          closable
+        />
+      ) : null}
     </div>
   );
 };

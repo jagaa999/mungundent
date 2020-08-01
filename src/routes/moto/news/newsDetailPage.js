@@ -15,9 +15,12 @@ const NewsDetailPage = (props) => {
   const memberContext = useContext(MemberContext);
 
   useEffect(() => {
-    if (newsId !== 0 && memberContext.state.memberCloudUserId !== 0)
-      newsContext.loadNewsDetail(newsId, memberContext.state.memberCloudUserId);
-  }, [newsId, memberContext.state.memberCloudUserId]);
+    if (newsId !== 0 && memberContext.state.memberCloudUserSysId !== 0)
+      newsContext.loadNewsDetail(
+        newsId,
+        memberContext.state.memberCloudUserSysId
+      );
+  }, [newsId, memberContext.state.memberCloudUserSysId]);
 
   return (
     <>

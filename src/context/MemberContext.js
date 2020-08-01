@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { isEmpty } from "lodash";
 import {
   firebaseAuth,
   facebookAuthProvider,
@@ -16,6 +17,7 @@ const MemberContext = React.createContext();
 //----------------------- Member Profile
 const initialStateMemberProfile = {
   memberUID: localStorage.getItem("motoMemberUID") || "",
+  memberCloudUserSysId: 0,
   memberCloudUserId: 0,
   memberCloudSessionId: "",
   memberCloudProfile: {},
@@ -48,10 +50,13 @@ export const MemberProfileStore = (props) => {
 
   useEffect(() => {
     if (state.isLogin) {
-      if (state.memberCloudProfile !== {}) {
+      console.log("state", state);
+      if (!isEmpty(state.memberCloudProfile)) {
+        console.log("state.memberCloudProfile", state.memberCloudProfile);
         setState({
           ...state,
-          memberCloudUserId: state.memberCloudProfile.id,
+          memberCloudUserSysId: state.memberCloudProfile.id,
+          memberCloudUserId: state.memberCloudProfile.userkeys[0].id || 0,
           memberCloudSessionId: state.memberCloudProfile.sessionid,
         });
       }

@@ -18,6 +18,10 @@ const NewsDetail = asyncComponent(() => {
   return import("./moto/news/newsDetailPage");
 });
 
+const NewsForm = asyncComponent(() => {
+  return import("./moto/news/newsFormPage");
+});
+
 const NewsList = asyncComponent(() => {
   return import("./moto/news/newsListPage");
 });
@@ -29,7 +33,13 @@ const MemberDetail = asyncComponent(() => {
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
-      <Route path={`${match.url}news/:newsId`}>
+      <Route path={`${match.url}news/edit/:newsId`}>
+        <NewsDetailStore>
+          <NewsForm />
+        </NewsDetailStore>
+      </Route>
+
+      <Route path={`${match.url}news/:newsId`} exact>
         <NewsDetailStore>
           <NewsDetail />
         </NewsDetailStore>

@@ -171,8 +171,8 @@ export const NewsDetailStore = (props) => {
         parameters: {
           id: state.newsDetail.newsid,
           isfeatured: !toBoolean(state.newsDetail.isfeatured) ? "1" : "0",
-          memberid: memberContext.state.memberCloudUserId,
-          systemuserid: memberContext.state.memberCloudUserId,
+          memberid: memberContext.state.memberCloudUserSysId,
+          systemuserid: memberContext.state.memberCloudUserSysId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
@@ -209,8 +209,8 @@ export const NewsDetailStore = (props) => {
         parameters: {
           id: state.newsDetail.newsid,
           isactive: !toBoolean(state.newsDetail.isactive) ? "1" : "0",
-          memberid: memberContext.state.memberCloudUserId,
-          systemuserid: memberContext.state.memberCloudUserId,
+          memberid: memberContext.state.memberCloudUserSysId,
+          systemuserid: memberContext.state.memberCloudUserSysId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
@@ -245,8 +245,8 @@ export const NewsDetailStore = (props) => {
         command: "motoNewsDV_PUBLISHEDDATE_002",
         parameters: {
           id: state.newsDetail.newsid,
-          memberid: memberContext.state.memberCloudUserId,
-          systemuserid: memberContext.state.memberCloudUserId,
+          memberid: memberContext.state.memberCloudUserSysId,
+          systemuserid: memberContext.state.memberCloudUserSysId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
@@ -282,8 +282,8 @@ export const NewsDetailStore = (props) => {
         command: "motoNEWS_MAINDETAIL_004",
         parameters: {
           newsid: newsId || "",
-          memberid: memberContext.state.memberCloudUserId,
-          systemuserid: memberContext.state.memberCloudUserId,
+          memberid: memberContext.state.memberCloudUserSysId,
+          systemuserid: memberContext.state.memberCloudUserSysId,
         },
       },
     };
