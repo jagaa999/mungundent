@@ -5,17 +5,18 @@ import MemberContext from "context/MemberContext";
 
 const LogsContext = React.createContext();
 
-const initialStateLogs = {
-  logItems: {},
-  total: 0,
-  actionTypes: {},
-  loading: false,
-  error: null,
-};
-
 export const LogsStore = (props) => {
-  const [state, setState] = useState(initialStateLogs);
   const memberContext = useContext(MemberContext);
+
+  const initialStateLogs = {
+    logItems: {},
+    total: 0,
+    actionTypes: {},
+    loading: false,
+    error: null,
+  };
+
+  const [state, setState] = useState(initialStateLogs);
 
   const clearLogs = () => {
     setState(initialStateLogs);
@@ -35,12 +36,15 @@ export const LogsStore = (props) => {
     const myParamsLogs = {
       request: {
         // sessionid: memberContext.state.memberCloudSessionId,
-        sessionid: "03f7abf9-0371-4709-807e-7241143589d4", //! jargal@kt.mn session-ийг түрдээ хүчээр өгөв. Даваа гаригт Батаагаар Java-ийн login функцийг үзүүлж, user_id үүсэхгүй байгааг үүсгүүлдэг болгуулна.
+        // sessionid: "03f7abf9-0371-4709-807e-7241143589d4", //! jargal@kt.mn session-ийг түрдээ хүчээр өгөв. Даваа гаригт Батаагаар Java-ийн login функцийг үзүүлж, user_id үүсэхгүй байгааг үүсгүүлдэг болгуулна.
         // userid: memberContext.state.memberCloudUserId,
         // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         command: "PL_MDVIEW_004",
+        username: memberContext.state.memberUID,
+        password: "89",
         parameters: {
           systemmetagroupid: "1588323654372494", //Log
+          ignorepermission: "1",
           showQuery: "0",
           criteria: {
             // memberId: memberContext.state.memberCloudUserSysId,
@@ -72,7 +76,7 @@ export const LogsStore = (props) => {
         if (myData.status === "error") {
           getError(myData.text);
         } else {
-          console.log("ИРСЭН ДАТА444:   ", response);
+          console.log("ИРСЭН ТҮҮХИЙ LOGS:   ", response);
           const myPaging = response.data.response.result.paging;
           const myTempArray = response.data.response.result;
 
@@ -80,8 +84,6 @@ export const LogsStore = (props) => {
           delete myTempArray["paging"];
 
           const myArray = Object.values(myTempArray);
-
-          // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myArray);
 
           const actionTypes = myArray
             .map((dataItem) => dataItem.actionname) // get all media types
@@ -105,16 +107,6 @@ export const LogsStore = (props) => {
             count: myArray.filter((item) => item.actionname === actionType)
               .length,
           }));
-
-          // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", myCounts);
-
-          //   {
-          //   type: actionType,
-          //   count: myArray.filter((item) => item.actionname === actionType)
-          //     .length,
-          // }
-          // ();
-          // console.log("ШҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮҮ----", counts);
 
           setState({
             ...state,

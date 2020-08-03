@@ -86,6 +86,9 @@ export const MemberProfileStore = (props) => {
     setState({ ...state, loading: true });
     const myParamsLoginMemberCloud = {
       request: {
+        // username: "username",
+        // password: "89",
+
         command: "login",
         parameters: {
           username: firebaseUid,
@@ -108,7 +111,7 @@ export const MemberProfileStore = (props) => {
         // }
 
         //Одоо оршин байгаа бүх customerid-ыг userid руу шилжүүлэх шаардлагатай бололтой.
-        // console.log("loginMemberCloud myArray:--> ", myArray);
+        console.log("loginMemberCloud myArray:--> ", myArray);
 
         if (
           response.data.response.status === "error" &&

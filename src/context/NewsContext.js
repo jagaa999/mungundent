@@ -6,55 +6,52 @@ import MemberContext from "context/MemberContext";
 
 const NewsContext = React.createContext();
 
-const initialStateNewsList = {
-  loadParams: {
-    systemmetagroupid: "1587197820548033",
-    showQuery: "0",
-    paging: {
-      pageSize: "15", //нийтлэлийн тоо
-      offset: "1", //хуудасны дугаар
-      sortColumnNames: {
-        publisheddate: {
-          //эрэмбэлэх талбар
-          sortType: "DESC", //эрэмбэлэх чиглэл
+//-----------------------
+//-----------------------
+//-----------------------
+//! NEWSLIST
+export const NewsListStore = (props) => {
+  const memberContext = useContext(MemberContext);
+
+  const initialStateNewsList = {
+    loadParams: {
+      systemmetagroupid: "1587197820548033",
+      showQuery: "0",
+      paging: {
+        pageSize: "15", //нийтлэлийн тоо
+        offset: "1", //хуудасны дугаар
+        sortColumnNames: {
+          publisheddate: {
+            //эрэмбэлэх талбар
+            sortType: "DESC", //эрэмбэлэх чиглэл
+          },
         },
       },
+      // criteria: {
+      //   title: {
+      //     0: {
+      //       operator: "like",
+      //       operand: "%toyota%",
+      //     },
+      //   },
+      //   newstypeid: {
+      //     0: {
+      //       operator: "=",
+      //       operand: "201",
+      //     },
+      //     1: {
+      //       operator: "=",
+      //       operand: "202",
+      //     },
+      //   },
+      // },
     },
-    // criteria: {
-    //   title: {
-    //     0: {
-    //       operator: "like",
-    //       operand: "%toyota%",
-    //     },
-    //   },
-    //   newstypeid: {
-    //     0: {
-    //       operator: "=",
-    //       operand: "201",
-    //     },
-    //     1: {
-    //       operator: "=",
-    //       operand: "202",
-    //     },
-    //   },
-    // },
-  },
-  newsList: [],
-  loading: false,
-  error: null,
-  // searchParams1: {},
-};
+    newsList: [],
+    loading: false,
+    error: null,
+    // searchParams1: {},
+  };
 
-const myParamsNewsList = {
-  request: {
-    sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-    command: "PL_MDVIEW_004",
-    parameters: {},
-  },
-};
-
-export const NewsListStore = (props) => {
-  //! NEWSLIST
   const [state, setState] = useState(initialStateNewsList);
 
   const loadNewsList = (queryString) => {
@@ -107,7 +104,17 @@ export const NewsListStore = (props) => {
       // searchParams1: searchParams,
     });
 
-    myParamsNewsList.request.parameters = state.loadParams;
+    const myParamsNewsList = {
+      request: {
+        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "PL_MDVIEW_004",
+        parameters: state.loadParams,
+      },
+    };
+
+    // myParamsNewsList.request.parameters = state.loadParams;
     // console.log("myParamsNewsListmyParamsNewsList", myParamsNewsList);
 
     axios
@@ -148,14 +155,14 @@ export const NewsListStore = (props) => {
 //-----------------------
 //! NEWSDETAIL
 
-const initialStateNewsDetail = {
-  newsDetail: {},
-  loading: false,
-  error: null,
-};
-
 export const NewsDetailStore = (props) => {
   const memberContext = useContext(MemberContext);
+
+  const initialStateNewsDetail = {
+    newsDetail: {},
+    loading: false,
+    error: null,
+  };
 
   const [state, setState] = useState(initialStateNewsDetail);
 
@@ -166,7 +173,9 @@ export const NewsDetailStore = (props) => {
   const toggleIsFeatured = () => {
     const myProcessParams = {
       request: {
-        sessionid: memberContext.state.memberCloudSessionId,
+        // sessionid: memberContext.state.memberCloudSessionId,
+        username: memberContext.state.memberUID,
+        password: "89",
         command: "motoNewsDV_SPONSOR_002",
         parameters: {
           id: state.newsDetail.newsid,
@@ -241,7 +250,8 @@ export const NewsDetailStore = (props) => {
   const upPublishedDate = () => {
     const myProcessParams = {
       request: {
-        sessionid: memberContext.state.memberCloudSessionId,
+        username: memberContext.state.memberUID,
+        password: "89",
         command: "motoNewsDV_PUBLISHEDDATE_002",
         parameters: {
           id: state.newsDetail.newsid,
@@ -278,7 +288,9 @@ export const NewsDetailStore = (props) => {
   const loadNewsDetail = (newsId) => {
     const myParamsNewsDetail = {
       request: {
-        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        username: memberContext.state.memberUID,
+        password: "89",
         command: "motoNEWS_MAINDETAIL_004",
         parameters: {
           newsid: newsId || "",
@@ -321,80 +333,6 @@ export const NewsDetailStore = (props) => {
         upPublishedDate,
       }}
     >
-      {props.children}
-    </NewsContext.Provider>
-  );
-};
-
-//-----------------------
-//-----------------------
-//-----------------------
-
-const initialStateNewsDetailLog = {
-  logItems: {},
-  loading: false,
-  error: null,
-};
-
-const myParamsNewsDetailLog = {
-  request: {
-    sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-    command: "PL_MDVIEW_004",
-    parameters: {
-      systemmetagroupid: "1588323654372494", //Log
-      showQuery: "0",
-      criteria: {
-        recordId: "1588047983186922", //Параметрээр орж ирэх ёстой
-        tableName: "ECM_NEWS", //Параметрээр орж ирэх ёстой
-      },
-      paging: {
-        pageSize: "", //нийтлэлийн тоо
-        offset: "1", //хуудасны дугаар
-      },
-    },
-  },
-};
-
-export const NewsDetailLogStore = (props) => {
-  const [state, setState] = useState(initialStateNewsDetailLog);
-
-  const clearNewsDetailLog = () => {
-    setState(initialStateNewsDetailLog);
-  };
-
-  const loadNewsDetailLog = (recordId, tableName) => {
-    clearNewsDetailLog();
-
-    myParamsNewsDetailLog.request.parameters.criteria.recordId = recordId;
-    myParamsNewsDetailLog.request.parameters.criteria.tableName = tableName;
-    //Log татаж эхэллээ гэдгийг мэдэгдэнэ.
-    //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
-    setState({ ...state, loading: true });
-
-    axios
-      .post("", myParamsNewsDetailLog)
-      .then((response) => {
-        // console.log("ИРСЭН ДАТА444:   ", response);
-        const myPaging = response.data.response.result.paging;
-        const myArray = response.data.response.result;
-
-        delete myArray["aggregatecolumns"];
-        delete myArray["paging"];
-
-        setState({
-          ...state,
-          loading: false,
-          logItems: Object.values(myArray),
-        });
-      })
-      .catch((error) => {
-        setState({ ...state, loading: false, error });
-        console.log(error);
-      });
-  };
-
-  return (
-    <NewsContext.Provider value={{ state, loadNewsDetailLog }}>
       {props.children}
     </NewsContext.Provider>
   );
