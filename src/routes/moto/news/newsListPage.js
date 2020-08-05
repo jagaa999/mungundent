@@ -25,7 +25,11 @@ const NewsListPage = (props) => {
           <Row>
             {newsContext.state.newsList.map((el, index) => {
               const newsItem = el;
-              newsItem.imageMain = "https://www.moto.mn/" + el.imagemain;
+              const myMainImage = el.imagemain
+                .split("storage")
+                .join("https://www.moto.mn/storage");
+
+              newsItem.imageMain = myMainImage;
               return (
                 <Col key={index} span={24}>
                   <NewsListItem key={index} newsItem={newsItem} />

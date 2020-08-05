@@ -50,6 +50,12 @@ export const CommentListStore = (props) => {
           paging: {
             pageSize: "", //нийтлэлийн тоо
             offset: "1", //хуудасны дугаар
+            sortColumnNames: {
+              createddate: {
+                //эрэмбэлэх талбар
+                sortType: "ASC", //эрэмбэлэх чиглэл
+              },
+            },
           },
         },
       },
@@ -84,8 +90,61 @@ export const CommentListStore = (props) => {
       });
   };
 
+  const insertComment = (recordId, commentBody, tableName, parentId) => {
+    console.log(
+      "recordId, commentBody, tableName, parentId",
+      recordId,
+      commentBody,
+      tableName,
+      parentId
+    );
+    if (recordId === undefined || commentBody === "") return null;
+
+    // clearCommentList();
+
+    const myParamsInsertComment = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "motoMemberDV_COMMENT_001",
+        parameters: {
+          systemUserId: memberContext.state.memberCloudUserSysId,
+          actionType: "1",
+          recordId: recordId || "",
+          description: commentBody,
+          tableName: tableName || "ECM_NEWS",
+          parentId: parentId,
+        },
+      },
+    };
+
+    // setState({ ...state, loading: true });
+
+    axios
+      .post("", myParamsInsertComment)
+      .then((response) => {
+        // console.log("COMMENT НЭМЭХ", response);
+
+        const myData = response.data.response;
+        // console.log("COMMENT НЭМЭХ", myData);
+
+        if (myData.status === "error") {
+          getError(myData.text);
+        } else {
+          message.success("Амжилттай нэмлээ. Өдрийг сайхан өнгөрүүлээрэй.");
+
+          loadCommentList(recordId, tableName);
+        }
+      })
+      .catch((error) => {
+        // getError(error);
+        message.error(error.toString(), 7);
+        console.log("error COMMENT ", error);
+      });
+  };
+
   return (
-    <CommentContext.Provider value={{ state, loadCommentList }}>
+    <CommentContext.Provider value={{ state, loadCommentList, insertComment }}>
       {props.children}
     </CommentContext.Provider>
   );

@@ -1,17 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Card, Avatar, Button } from "antd";
+import { Card, Avatar, Button, Input, Divider } from "antd";
 
 import CommentBoxDetail from "./CommentBoxDetail";
 import MemberContext from "context/MemberContext";
+import CommentContext from "context/CommentContext";
+import NewsContext from "context/NewsContext";
+
+const { TextArea } = Input;
 
 const CommentBoxItems = (props) => {
-  // console.log("ТЭГВЭЛ ЭНИЙГ ХАР ДАА", props.commentBoxItems);
+  const [commentBody, setCommentBody] = useState("");
   const memberContext = useContext(MemberContext);
-  // console.log("memberProfile--------------", memberContext.state.memberProfile);
-
-  const updateCommentValue = (event) => {
-    console.log(event);
-  };
+  const commentContext = useContext(CommentContext);
+  const newsContext = useContext(NewsContext);
 
   return (
     <div>
@@ -29,6 +30,9 @@ const CommentBoxItems = (props) => {
         ) : (
           <div className="gx-mb-3">Сэтгэгдэл алга</div>
         )}
+
+        <Divider className="gx-my-4" />
+
         <div className="gx-wall-comment-box">
           <div className="gx-media gx-mb-2">
             <Avatar
@@ -40,15 +44,36 @@ const CommentBoxItems = (props) => {
                 {memberContext.state.memberFirebaseProfile.displayName}{" "}
                 {/* <span>({memberContext.state.memberCloudProfile.lastname})</span> */}
               </p>
-              <textarea
+              {/* <textarea
                 id="required"
                 className="gx-border-0 ant-input"
-                onChange={(event) => updateCommentValue(event)}
-                // onKeyPress={(event) => _handleKeyPress(event)}
-                // value={message}
-                value=""
+                onChange={(event) => {
+                  setCommentBody(event.target.value);
+                }}
                 placeholder="Сэтгэгдлээ бичээрэй"
+              /> */}
+
+              <TextArea
+                placeholder="Сэтгэгдлээ бичээрэй"
+                autoSize={{ minRows: 2, maxRows: 6 }}
+                onChange={(event) => {
+                  setCommentBody(event.target.value);
+                }}
               />
+
+              <Button
+                className="gx-mt-3"
+                onClick={() => {
+                  commentContext.insertComment(
+                    newsContext.state.newsDetail.newsid,
+                    commentBody,
+                    "ECM_NEWS",
+                    "0"
+                  );
+                }}
+              >
+                Нэмэх
+              </Button>
             </div>
           </div>
         </div>

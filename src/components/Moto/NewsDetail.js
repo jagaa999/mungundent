@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
+import Output from "editorjs-react-renderer";
 
 import toBoolean from "util/booleanFunction";
 
@@ -65,6 +66,87 @@ const NewsDetailComponent = ({ newsId }) => {
   myBody = myBody.split('"/storage').join('"https://www.moto.mn/storage');
   myBody = myBody.split('"../storage').join('"https://www.moto.mn/storage');
 
+  // const myOutputBody = (
+  //   <div
+  //     className="news-body"
+  //     dangerouslySetInnerHTML={{
+  //       // __html: htmlEntities.decode(myBody),
+  //       __html: myBody,
+  //     }}
+  //   ></div>
+  // );
+
+  let myOutputBody = "";
+
+  if (myBody !== "") {
+    console.log("myBodymyBody", myBody);
+
+    if (myBody.indexOf('"blocks"') !== -1) {
+      const editorConfig = {
+        codeBox: {
+          disableDefaultStyle: true,
+        },
+        header: {
+          disableDefaultStyle: true,
+        },
+        paragraph: {
+          disableDefaultStyle: true,
+        },
+        image: {
+          disableDefaultStyle: true,
+        },
+        embed: {
+          disableDefaultStyle: true,
+        },
+        list: {
+          disableDefaultStyle: true,
+        },
+        checklist: {
+          disableDefaultStyle: true,
+        },
+        table: {
+          disableDefaultStyle: true,
+        },
+        quote: {
+          disableDefaultStyle: true,
+        },
+        warning: {
+          disableDefaultStyle: true,
+        },
+        delimiter: {
+          disableDefaultStyle: true,
+        },
+      };
+
+      try {
+        myOutputBody = (
+          <Output data={JSON.parse(myBody)} config={editorConfig} />
+        );
+      } catch (e) {
+        myOutputBody = "";
+      }
+    } else {
+      myOutputBody = (
+        <div
+          className="news-body"
+          dangerouslySetInnerHTML={{
+            // __html: htmlEntities.decode(myBody),
+            __html: myBody,
+          }}
+        ></div>
+      );
+    }
+  }
+
+  let myMainImage;
+  try {
+    myMainImage = newsItem.imagemain
+      .split("storage")
+      .join("https://www.moto.mn/storage");
+  } catch (e) {
+    myMainImage = "";
+  }
+
   return (
     <div>
       <div key={newsItem.newsid} className="gx-main-content news-detail">
@@ -82,7 +164,8 @@ const NewsDetailComponent = ({ newsId }) => {
               cover={
                 <img
                   alt={newsItem.title}
-                  src={"https://www.moto.mn/" + newsItem.imagemain}
+                  // src={"https://www.moto.mn/" + newsItem.imagemain}
+                  src={myMainImage}
                 />
               }
             >
@@ -136,13 +219,7 @@ const NewsDetailComponent = ({ newsId }) => {
                 })}
               </div>
 
-              <div
-                className="news-body"
-                dangerouslySetInnerHTML={{
-                  // __html: htmlEntities.decode(myBody),
-                  __html: myBody,
-                }}
-              ></div>
+              {myOutputBody}
             </Card>
           </Col>
         </Row>

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { parse } from "query-string";
+import { message } from "antd";
 import toBoolean from "util/booleanFunction";
 import axios from "util/axiosConfig";
 import MemberContext from "context/MemberContext";
@@ -10,6 +11,15 @@ const NewsContext = React.createContext();
 //-----------------------
 //-----------------------
 //! NEWSLIST
+
+//  #       ###  #####  #######
+//  #        #  #     #    #
+//  #        #  #          #
+//  #        #   #####     #
+//  #        #        #    #
+//  #        #  #     #    #
+//  ####### ###  #####     #
+
 export const NewsListStore = (props) => {
   const memberContext = useContext(MemberContext);
 
@@ -114,16 +124,9 @@ export const NewsListStore = (props) => {
       },
     };
 
-    // myParamsNewsList.request.parameters = state.loadParams;
-    // console.log("myParamsNewsListmyParamsNewsList", myParamsNewsList);
-
     axios
       .post("", myParamsNewsList)
       .then((response) => {
-        //Датанууд ороод ирсэн
-        //Одоо state-дээ олгоно.
-        // console.log("ИРСЭН ДАТА444:   ", response);
-
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
 
@@ -135,7 +138,6 @@ export const NewsListStore = (props) => {
           loading: false,
           newsList: Object.values(myArray),
         });
-        // setState({ ...state, newsList: response.data });
       })
       .catch((error) => {
         setState({ ...state, error });
@@ -150,10 +152,14 @@ export const NewsListStore = (props) => {
   );
 };
 
-//-----------------------
-//-----------------------
-//-----------------------
 //! NEWSDETAIL
+//  ######  ####### #######    #    ### #
+//  #     # #          #      # #    #  #
+//  #     # #          #     #   #   #  #
+//  #     # #####      #    #     #  #  #
+//  #     # #          #    #######  #  #
+//  #     # #          #    #     #  #  #
+//  ######  #######    #    #     # ### #######
 
 export const NewsDetailStore = (props) => {
   const memberContext = useContext(MemberContext);
@@ -170,10 +176,15 @@ export const NewsDetailStore = (props) => {
     setState(initialStateNewsDetail);
   };
 
+  const getError = (error) => {
+    setState({ ...state, loading: false, error });
+    message.error(error.toString(), 7);
+    console.log("error", error);
+  };
+
   const toggleIsFeatured = () => {
     const myProcessParams = {
       request: {
-        // sessionid: memberContext.state.memberCloudSessionId,
         username: memberContext.state.memberUID,
         password: "89",
         command: "motoNewsDV_SPONSOR_002",
@@ -192,10 +203,6 @@ export const NewsDetailStore = (props) => {
     axios
       .post("", myProcessParams)
       .then((response) => {
-        console.log("ИРСЭН ДАТА444:   ", response);
-        // const myResult = response.data.response;
-        // console.log("axiosFunction Process myResult ------------>", myResult);
-
         setState({
           ...state,
           newsDetail: {
@@ -205,8 +212,7 @@ export const NewsDetailStore = (props) => {
         });
       })
       .catch((error) => {
-        // setState({ ...state, loading: false, error });
-        console.log(error);
+        getError(error);
       });
   };
 
@@ -242,8 +248,7 @@ export const NewsDetailStore = (props) => {
         });
       })
       .catch((error) => {
-        // setState({ ...state, loading: false, error });
-        console.log(error);
+        getError(error);
       });
   };
 
@@ -280,8 +285,7 @@ export const NewsDetailStore = (props) => {
         });
       })
       .catch((error) => {
-        // setState({ ...state, loading: false, error });
-        console.log(error);
+        getError(error);
       });
   };
 
@@ -318,8 +322,82 @@ export const NewsDetailStore = (props) => {
         // setState({ ...state, newsDetail: response.data });
       })
       .catch((error) => {
-        setState({ ...state, loading: false, error });
-        console.log(error);
+        getError(error);
+      });
+  };
+
+  const escapeHTML = (str) =>
+    str.replace(
+      /[&<>'"]/g,
+      (tag) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "'": "&#39;",
+          '"': "&quot;",
+        }[tag])
+    );
+
+  const saveNewsDetail = (values) => {
+    console.log("saveNewsDetail дотор орж ирсэн values--", values);
+    const myImgUrl = values.images[0].url || "";
+    // return null;
+
+    const myParamsNewsDetail = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "motoNewsDV_001",
+        parameters: {
+          id: values.newsId || "",
+          title: values.title,
+          // imgUrl: JSON.stringify(values.images), //JSON.parse
+          imgUrl: myImgUrl,
+          body: escapeHTML(JSON.stringify(values.body)),
+          isFeatured: toBoolean(values.isFeatured) ? "1" : "0",
+          isComment: toBoolean(values.isComment) ? "1" : "0",
+          isActive: toBoolean(values.isActive) ? "1" : "0",
+          // isFacebook,
+          // isTwitter,
+          publisherId: memberContext.state.memberCloudUserSysId,
+          // creatorId,
+          modifierId: memberContext.state.memberCloudUserSysId,
+          //! publishedDate, // --Form-д байгаа ! Түр авав
+          // createdDate,
+          // modifiedDate,
+          description: values.description,
+          newstypeId: values.newstypeid,
+          newssourceId: values.newssourceid,
+          // contentId,
+          // companyId,
+          // bookTypeId,
+          // dim1,
+          // dim2,
+        },
+      },
+    };
+
+    // setState({ ...state, loading: true });
+
+    axios
+      .post("", myParamsNewsDetail)
+      .then((response) => {
+        console.log("Save NewsDetail:   ", response);
+
+        const myData = response.data.response;
+        console.log("After Save NewsDetail ------------>", myData);
+
+        if (myData.status === "error") {
+          getError(myData.text);
+        } else {
+          message.success("Амжилттай нэмлээ. Өдрийг сайхан өнгөрүүлээрэй.");
+
+          // loadNewsDetail(values.newsId);
+        }
+      })
+      .catch((error) => {
+        getError(error);
       });
   };
 
@@ -331,6 +409,7 @@ export const NewsDetailStore = (props) => {
         toggleIsFeatured,
         toggleIsActive,
         upPublishedDate,
+        saveNewsDetail,
       }}
     >
       {props.children}

@@ -75,13 +75,13 @@ const CommentBoxDetail = (props) => {
           {/* <Button type="primary" size="small" onClick={handleLikeToggle}>
             {commentItem.isLike ? "Like" : "UnLike"}
           </Button> */}
-          <Button
+          {/* <Button
             className="gx-btn-primary-light"
             size="small"
             onClick={handleCommentToggle}
           >
             Хариулах
-          </Button>
+          </Button> */}
         </div>
         {isComment === true ? (
           <div className="gx-media">
