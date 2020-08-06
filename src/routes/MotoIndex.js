@@ -34,27 +34,32 @@ const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
       <Route
-        path={
-          `${match.url}news/edit/:newsId` |
-          `${match.url}news/edit` |
-          `${match.url}news/insert` |
-          `${match.url}news/add`
-        }
+        path={[
+          "/news/edit/:newsId",
+          "/news/:newsId/edit",
+          "/news/insert",
+          "/news/add",
+        ]}
       >
         <NewsDetailStore>
           <NewsForm />
         </NewsDetailStore>
       </Route>
 
-      <Route path={`${match.url}news/:newsId`} exact>
+      <Route
+        path={[
+          "/news/:newsId",
+          "/news/:newsId/detail",
+          "/news/detail/:newsId",
+          "/newslist/:newsId",
+        ]}
+      >
         <NewsDetailStore>
           <NewsDetail />
         </NewsDetailStore>
       </Route>
 
-      {/* {console.log("ХЭДЭ ДЭДЭЭДЭЭЭЭЭЭЭЭЭЭЭЭЭЭ")} */}
-
-      <Route path={`${match.url}news/`}>
+      <Route path={["/news", "/newslist"]}>
         <NewsListStore>
           <NewsList />
         </NewsListStore>
