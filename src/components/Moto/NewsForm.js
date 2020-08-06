@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import EditorJs from "react-editor-js";
 
@@ -63,6 +63,7 @@ import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
+import { LoadProcess, loadDataview } from "util/axiosFunction";
 import NewsContext from "context/NewsContext";
 
 const { Option } = Select;
@@ -108,6 +109,48 @@ const NewsForm = () => {
   const newsContext = useContext(NewsContext);
   const [myBody, setMyBody] = useState([]);
   const [myImages, setMyImages] = useState([]);
+
+  const [newsType, setNewsType] = useState({
+    loading: false,
+    newsTypes: [],
+  });
+
+  const [newsSource, setNewsSource] = useState({
+    loading: false,
+    newsSources: [],
+  });
+
+  // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
+  const callFunctionAsync = async () => {
+    setNewsType({ ...newsType, loading: true });
+    setNewsType({
+      newsTypes: await loadDataview({
+        systemmetagroupid: "1587100905303413",
+      }),
+      loading: false,
+    });
+
+    setNewsSource({ ...newsSource, loading: true });
+    setNewsSource({
+      newsSources: await loadDataview({
+        systemmetagroupid: "1585046479054",
+      }),
+      loading: false,
+    });
+
+    // await loadDataview(newsSource, setNewsSource, {
+    //   systemmetagroupid: "1585046479054",
+    //   criteria: newsContext.state.loadParams.criteria,
+    // });
+    // await loadDataview(newsPublisher, setNewsPublisher, {
+    //   systemmetagroupid: "1585046481242",
+    //   criteria: newsContext.state.loadParams.criteria,
+    // });
+  };
+
+  useEffect(() => {
+    callFunctionAsync();
+  }, []);
 
   const onFinish = (values) => {
     // console.log("newsFormDetail form - Received values of form: ", values);
@@ -196,16 +239,17 @@ const NewsForm = () => {
         >
           <TextArea placeholder="Гарчгаа бичнэ үү" autoSize />
         </Form.Item>
+
         <Form.Item
           name="newstypeid"
           hasFeedback
-          initialValue="2"
+          initialValue={null}
           label="Төрөл"
           rules={[{ required: true, message: "Төрлөө сонгоно уу!" }]}
         >
           <Select
+            loading={newsType.loading}
             showSearch
-            // style={{ width: 200 }}
             placeholder="Төрлөө сонгоно уу"
             optionFilterProp="children"
             onChange={handleChange}
@@ -217,18 +261,20 @@ const NewsForm = () => {
                 .indexOf(input.toLowerCase()) >= 0
             }
           >
-            <Option value="1">Jack</Option>
-            <Option value="2">Lucy</Option>
-            <Option value="3">Tom</Option>
+            {newsType.newsTypes.map((item) => (
+              <Option value={item.newstypeid}>{item.newstypename}</Option>
+            ))}
           </Select>
         </Form.Item>
+
         <Form.Item
           name="newssourceid"
-          initialValue="3"
+          initialValue={null}
           label="Эх сурвалж"
           rules={[{ required: true, message: "Эх сурвалжийг сонгоно уу!" }]}
         >
           <Select
+            loading={newsSource.loading}
             showSearch
             placeholder="Эх сурвалжийг сонгоно уу!"
             optionFilterProp="children"
@@ -241,9 +287,10 @@ const NewsForm = () => {
                 .indexOf(input.toLowerCase()) >= 0
             }
           >
-            <Option value="1">Jack</Option>
-            <Option value="2">Lucy</Option>
-            <Option value="3">Tom</Option>
+            {newsSource.newsSources.map((item) => (
+              <Option value={item.newssourceid}>{item.newssourcename}</Option>
+            ))}
+            {/* // ! Цаашдаа newssourcetype -аар group-лэх хэрэгтэй. */}
           </Select>
         </Form.Item>
 

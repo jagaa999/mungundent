@@ -41,18 +41,24 @@ const NewsFilter = (props) => {
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
   const callFunctionAsync = async () => {
-    await loadDataview(newsType, setNewsType, {
-      systemmetagroupid: "1587100905303413",
-      criteria: newsContext.state.loadParams.criteria,
-    });
-    await loadDataview(newsSource, setNewsSource, {
-      systemmetagroupid: "1585046479054",
-      criteria: newsContext.state.loadParams.criteria,
-    });
-    await loadDataview(newsPublisher, setNewsPublisher, {
-      systemmetagroupid: "1585046481242",
-      criteria: newsContext.state.loadParams.criteria,
-    });
+    setNewsType(
+      await loadDataview({
+        systemmetagroupid: "1587100905303413",
+        criteria: newsContext.state.loadParams.criteria,
+      })
+    );
+    setNewsSource(
+      await loadDataview({
+        systemmetagroupid: "1585046479054",
+        criteria: newsContext.state.loadParams.criteria,
+      })
+    );
+    setNewsPublisher(
+      await loadDataview({
+        systemmetagroupid: "1585046481242",
+        criteria: newsContext.state.loadParams.criteria,
+      })
+    );
   };
 
   useEffect(() => {

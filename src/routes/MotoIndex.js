@@ -33,7 +33,14 @@ const MemberDetail = asyncComponent(() => {
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
-      <Route path={`${match.url}news/edit/:newsId`}>
+      <Route
+        path={
+          `${match.url}news/edit/:newsId` |
+          `${match.url}news/edit` |
+          `${match.url}news/insert` |
+          `${match.url}news/add`
+        }
+      >
         <NewsDetailStore>
           <NewsForm />
         </NewsDetailStore>

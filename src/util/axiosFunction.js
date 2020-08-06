@@ -61,47 +61,23 @@ const myInitParamsDataview = {
   },
 };
 
-export function loadDataview(myState, setMyState, props) {
+export function loadDataview(props) {
   const myParams = myInitParamsDataview;
-  // console.log("myParams", myParams);
-  // console.log("props", props);
   myParams.request.parameters.systemmetagroupid = props
     ? props.systemmetagroupid
     : "";
   myParams.request.parameters.criteria = props ? props.criteria : {};
-  // console.log("axiosFunction Dataview myParams ----------->", myParams);
-
-  axios
+  return axios
     .post("", myParams)
     .then((response) => {
-      // console.log("axiosFunction Dataview response ----------->", response);
-
       const myTempArray = response.data.response.result;
-      // console.log(
-      //   "axiosFunction Dataview myTempArray ------------>",
-      //   myTempArray
-      // );
-
       delete myTempArray["aggregatecolumns"];
       delete myTempArray["paging"];
 
       const myArray = Object.values(myTempArray);
-
-      // console.log(
-      //   "axiosFunction Dataview myArray After Delete aggregatecolumns, paging ------------>",
-      //   myArray
-      // );
-
-      //console.log("props.setMyParams", setMyState);
-
-      setMyState(...myState, myArray);
-
       return myArray;
     })
-
     .catch((error) => {
       return [];
     });
-
-  return [];
 }
