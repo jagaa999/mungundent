@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { parse } from "query-string";
 import { message } from "antd";
 import toBoolean from "util/booleanFunction";
@@ -163,6 +164,7 @@ export const NewsListStore = (props) => {
 
 export const NewsDetailStore = (props) => {
   const memberContext = useContext(MemberContext);
+  const history = useHistory();
 
   const initialStateNewsDetail = {
     newsDetail: {},
@@ -350,19 +352,19 @@ export const NewsDetailStore = (props) => {
         password: "89",
         command: "motoNewsDV_001",
         parameters: {
-          id: values.newsId || "",
+          id: values.newsid || "",
           title: values.title,
           // imgUrl: JSON.stringify(values.images), //JSON.parse
-          imgUrl: myImgUrl,
+          imgurl: myImgUrl,
           body: escapeHTML(JSON.stringify(values.body)),
-          isFeatured: toBoolean(values.isFeatured) ? "1" : "0",
-          isComment: toBoolean(values.isComment) ? "1" : "0",
-          isActive: toBoolean(values.isActive) ? "1" : "0",
+          isfeatured: toBoolean(values.isfeatured) ? "1" : "0",
+          iscomment: toBoolean(values.iscomment) ? "1" : "0",
+          isactive: toBoolean(values.isactive) ? "1" : "0",
           // isFacebook,
           // isTwitter,
-          publisherId: memberContext.state.memberCloudUserSysId,
+          publisherid: memberContext.state.memberCloudUserSysId,
           // creatorId,
-          modifierId: memberContext.state.memberCloudUserSysId,
+          modifierid: memberContext.state.memberCloudUserSysId,
           //! publishedDate, // --Form-д байгаа ! Түр авав
           // createdDate,
           // modifiedDate,
@@ -378,6 +380,11 @@ export const NewsDetailStore = (props) => {
       },
     };
 
+    console.log(
+      "saveNewsDetail-ын бэлтгэсэн myParamsNewsDetail",
+      myParamsNewsDetail
+    );
+
     // setState({ ...state, loading: true });
 
     axios
@@ -392,7 +399,9 @@ export const NewsDetailStore = (props) => {
           getError(myData.text);
         } else {
           message.success("Амжилттай нэмлээ. Өдрийг сайхан өнгөрүүлээрэй.");
-
+          history.push({
+            pathname: "/news",
+          });
           // loadNewsDetail(values.newsId);
         }
       })

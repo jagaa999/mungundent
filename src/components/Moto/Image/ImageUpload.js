@@ -27,26 +27,38 @@ const UploadPictureMoto = (props) => {
     previewVisible: false,
     previewImage: "",
     previewTitle: "",
-    fileList: [
-      // {
-      //   uid: "-1",
-      //   name: "image.png",
-      //   status: "done",
-      //   url:
-      //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      //   thumbUrl:
-      //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      // },
-      // {
-      //   uid: "-2",
-      //   name: "image.png",
-      //   status: "done",
-      //   url:
-      //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      //   thumbUrl:
-      //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      // },
-    ],
+    fileList: props.newsImageMain
+      ? [
+          {
+            uid: "-1",
+            name: "Тодорхойгүй",
+            status: "done",
+            url: props.newsImageMain,
+            thumbUrl: props.newsImageMain,
+          },
+        ]
+      : [],
+
+    // [
+    // {
+    //   uid: "-1",
+    //   name: "image.png",
+    //   status: "done",
+    //   url:
+    //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+    //   thumbUrl:
+    //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+    // },
+    // {
+    //   uid: "-2",
+    //   name: "image.png",
+    //   status: "done",
+    //   url:
+    //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+    //   thumbUrl:
+    //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+    // },
+    // ],
   });
 
   useEffect(() => {
@@ -132,7 +144,7 @@ const UploadPictureMoto = (props) => {
         rotate
         zoom
         grid
-        aspect="1.3333"
+        aspect={800 / 600}
         modalTitle="Зургаа янзална уу"
         modalWidth="60%"
         modalOk="Янзтай!"

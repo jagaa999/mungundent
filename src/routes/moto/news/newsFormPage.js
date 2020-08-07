@@ -12,13 +12,13 @@ const NewsFormPage = (props) => {
   const newsContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
 
-  // useEffect(() => {
-  //   if (newsId !== 0 && memberContext.state.memberCloudUserSysId !== 0)
-  //     newsContext.loadNewsDetail(
-  //       newsId,
-  //       memberContext.state.memberCloudUserSysId
-  //     );
-  // }, [newsId, memberContext.state.memberCloudUserSysId]);
+  useEffect(() => {
+    if (newsId !== 0 && memberContext.state.memberCloudUserSysId !== 0)
+      newsContext.loadNewsDetail(
+        newsId,
+        memberContext.state.memberCloudUserSysId
+      );
+  }, [newsId, memberContext.state.memberCloudUserSysId]);
 
   return (
     <>

@@ -107,14 +107,43 @@ function handleFocus() {
 const NewsForm = () => {
   const [form] = Form.useForm();
   const newsContext = useContext(NewsContext);
-  const [myBody, setMyBody] = useState([]);
+
+  const newsItem = newsContext.state.newsDetail;
+
+  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
+  let myTempBody;
+
+  try {
+    myTempBody = htmlEntities.decode(newsItem.body);
+  } catch (e) {
+    myTempBody = "";
+  }
+
+  // console.log("myTempBody", myTempBody);
+
+  let myOutputBody = {};
+  if (myTempBody !== "") {
+    if (myTempBody.indexOf('"blocks"') !== -1) {
+      try {
+        myOutputBody = JSON.parse(myTempBody);
+      } catch (e) {
+        myOutputBody = {};
+      }
+    } else {
+      myOutputBody = {};
+    }
+  }
+
+  // console.log("myTempBodymyTempBody", myTempBody);
+
+  // const myTempBody = JSON.parse(newsItem.body || []);
+  const [myBody, setMyBody] = useState(myOutputBody);
   const [myImages, setMyImages] = useState([]);
 
   const [newsType, setNewsType] = useState({
     loading: false,
     newsTypes: [],
   });
-
   const [newsSource, setNewsSource] = useState({
     loading: false,
     newsSources: [],
@@ -150,6 +179,8 @@ const NewsForm = () => {
 
   useEffect(() => {
     callFunctionAsync();
+
+    // newsItem && setMyBody(JSON.parse(newsItem.body));
   }, []);
 
   const onFinish = (values) => {
@@ -182,30 +213,6 @@ const NewsForm = () => {
       className="gx-card_old "
       style={{ backgroundColor: "#f0f0f0" }}
       title="Нийтлэлийн тохиргоо"
-      // actions={[
-      //   <Button
-      //     className="gx-text-success"
-      //     size="large"
-      //     type="link"
-      //     icon={<SettingOutlined key="setting" />}
-      //     onClick={() => {
-      //       saveButton();
-      //     }}
-      //   >
-      //     Хадгалах
-      //   </Button>,
-      //   <Button
-      //     className="gx-text-grey"
-      //     size="large"
-      //     type="link"
-      //     icon={<EditOutlined key="edit" />}
-      //     onClick={() => {
-      //       console.log("qqqqwww dfg fdg fdgdf");
-      //     }}
-      //   >
-      //     Цуцлах
-      //   </Button>,
-      // ]}
     >
       <Form
         {...formItemLayout}
@@ -213,14 +220,23 @@ const NewsForm = () => {
         name="newsDetailForm"
         onFinish={onFinish}
         initialValues={{
-          residence: ["zhejiang", "hangzhou", "xihu"],
-          prefix: "86",
+          newsid: newsItem ? newsItem.newsid : "",
+          title: newsItem ? newsItem.title : "",
+          newstypeid: newsItem ? newsItem.newstypeid : null,
+          newssourceid: newsItem ? newsItem.newssourceid : null,
+          isactive: newsItem ? toBoolean(newsItem.isactive) : true,
+          isfeatured: newsItem ? toBoolean(newsItem.isfeatured) : false,
+          iscomment: newsItem ? toBoolean(newsItem.iscomment) : true,
+          description: newsItem ? newsItem.description : "",
         }}
-        scrollToFirstError
+        scrollToFirstError={true}
       >
+        <Form.Item name="newsid" label="ID дугаар">
+          <Input disabled />
+        </Form.Item>
+
         <Form.Item
           name="title"
-          initialValue=""
           label={
             <span>
               Гарчиг&nbsp;
@@ -243,7 +259,6 @@ const NewsForm = () => {
         <Form.Item
           name="newstypeid"
           hasFeedback
-          initialValue={null}
           label="Төрөл"
           rules={[{ required: true, message: "Төрлөө сонгоно уу!" }]}
         >
@@ -262,14 +277,15 @@ const NewsForm = () => {
             }
           >
             {newsType.newsTypes.map((item) => (
-              <Option value={item.newstypeid}>{item.newstypename}</Option>
+              <Option key={item.newstypeid} value={item.newstypeid}>
+                {item.newstypename}
+              </Option>
             ))}
           </Select>
         </Form.Item>
 
         <Form.Item
           name="newssourceid"
-          initialValue={null}
           label="Эх сурвалж"
           rules={[{ required: true, message: "Эх сурвалжийг сонгоно уу!" }]}
         >
@@ -288,37 +304,24 @@ const NewsForm = () => {
             }
           >
             {newsSource.newsSources.map((item) => (
-              <Option value={item.newssourceid}>{item.newssourcename}</Option>
+              <Option key={item.newssourceid} value={item.newssourceid}>
+                {item.newssourcename}
+              </Option>
             ))}
             {/* // ! Цаашдаа newssourcetype -аар group-лэх хэрэгтэй. */}
           </Select>
         </Form.Item>
 
-        <Form.Item
-          name="isActive"
-          label="Идэвхтэй?"
-          initialValue={true}
-          valuePropName="checked"
-        >
-          <Switch name="switchIsActive" defaultChecked />
+        <Form.Item name="isactive" label="Идэвхтэй?" valuePropName="checked">
+          <Switch name="switchisactive" defaultChecked />
         </Form.Item>
-        <Form.Item
-          name="isFeatured"
-          label="Спонсор?"
-          initialValue={false}
-          valuePropName="checked"
-        >
-          <Switch name="switchIsFeatured" defaultChecked />
+        <Form.Item name="isfeatured" label="Спонсор?" valuePropName="checked">
+          <Switch name="switchisfeatured" defaultChecked />
         </Form.Item>
-        <Form.Item
-          name="isComment"
-          label="Коммент?"
-          initialValue={true}
-          valuePropName="checked"
-        >
-          <Switch name="switchIsComment" defaultChecked />
+        <Form.Item name="iscomment" label="Коммент?" valuePropName="checked">
+          <Switch name="switchiscomment" defaultChecked />
         </Form.Item>
-        <Form.Item name="description" initialValue="" label="Товчлол">
+        <Form.Item name="description" label="Товчлол">
           <TextArea rows={4} placeholder="Товчлолоо бичнэ үү" />
         </Form.Item>
         {/* <Form.Item name="publishedDate" label="Нийтлэх огноо">
@@ -328,27 +331,27 @@ const NewsForm = () => {
         <Form.Item
           name="tempimages"
           label="Зураг (8 зураг)"
-          valuePropName="fileList"
-          // getValueFromEvent={normFile}
+          // rules={[{ required: true, message: "Зургаа заавал оруулна уу!" }]}
         >
-          <ImageUpload normFile={normFileImages} />
+          <ImageUpload
+            normFile={normFileImages}
+            newsImageMain={newsItem ? newsItem.imagemain : ""}
+          />
         </Form.Item>
 
         <Form.Item
           name="tempbody"
           label="Нийтлэл"
-          // shouldUpdate={true}
-          // valuePropName="myText"
-          // getValueProps="blocks"
+          // initialValue={newsItem ? newsItem.body : ""}
           getValueFromEvent={normFileBody}
-          // trigger={dddd}
-          // valuePropName="logLevel"
           rules={[{ type: "array" }]}
         >
           <Card bordered={false}>
-            <NewsEditor normFile={normFileBody} />
+            <NewsEditor
+              normFile={normFileBody}
+              newsBody={newsItem ? newsItem.body : {}}
+            />
           </Card>
-          {/* Нийтлэлийн их бие нь энд байрлана. Зурагтайгаа юутай хээтэй. */}
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button
