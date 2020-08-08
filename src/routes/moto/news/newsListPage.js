@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 
-import { Col, Row, Button } from "antd";
+import { Col, Row, Button, Affix } from "antd";
 
 import NewsListItem from "components/Moto/NewsListItem";
 import NewsContext from "context/NewsContext";
@@ -18,8 +18,13 @@ const NewsListPage = (props) => {
     newsContext.loadNewsList(search);
   }, [search]);
 
+  const [container, setContainer] = useState(null);
+
   return (
     <div>
+      {/* <Affix offsetTop={10}> */}
+      {/* <Affix style={{ position: "absolute", top: 10, left: 10 }}> */}
+
       <div className="gx-flex-row gx-justify-content-between gx-align-items-center">
         <div className="">
           <FilterTag />

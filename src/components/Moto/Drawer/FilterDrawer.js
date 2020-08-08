@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { Button, Drawer, Radio, Space, Row, Col } from "antd";
+import { Button, Drawer, Radio, Space, Row, Col, Affix } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 import NewsFilter from "components/Moto/Drawer/NewsFilter";
 
 const FilterDrawer = () => {
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const [container, setContainer] = useState(null);
 
   const toggleFilterDrawer = () => {
     setIsFilterDrawerOpen(!isFilterDrawerOpen);
   };
 
   return (
-    <>
+    <div>
       <Drawer
         title="Шүүлтүүр"
         width="640"
@@ -28,7 +29,7 @@ const FilterDrawer = () => {
           <i className="icon icon-filter gx-d-block moto-animation-away" />
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 

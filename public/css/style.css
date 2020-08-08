@@ -29471,7 +29471,10 @@ h6,
 }
 @media screen and (max-width: 575px) {
   .gx-main-content-wrapper {
-    padding: 20px 15px 0;
+    padding: 20px 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
   }
 }
 .gx-container-wrap .gx-main-content-wrapper {
@@ -39787,5 +39790,12 @@ li.gx-user-nav .gx-avatar {
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
+  }
+}
+@media screen and (max-width: 575px) {
+  .ant-form .ant-form-item .ant-form-item-label,
+  .ant-form .ant-form-item .ant-form-item-control {
+    flex: auto;
+    max-width: 100%;
   }
 }

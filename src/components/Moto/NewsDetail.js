@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
@@ -51,6 +51,10 @@ const NewsDetailComponent = ({ newsId }) => {
   const logsContext = useContext(LogsContext);
 
   const newsItem = newsContext.state.newsDetail;
+
+  useEffect(() => {
+    document.title = newsItem.title;
+  }, [newsItem]);
 
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 

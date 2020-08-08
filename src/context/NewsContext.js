@@ -341,9 +341,21 @@ export const NewsDetailStore = (props) => {
         }[tag])
     );
 
+  //     #####     #    #     # #######
+  //  #     #   # #   #     # #
+  //  #        #   #  #     # #
+  //   #####  #     # #     # #####
+  //        # #######  #   #  #
+  //  #     # #     #   # #   #
+  //   #####  #     #    #    #######
+
   const saveNewsDetail = (values) => {
     console.log("saveNewsDetail дотор орж ирсэн values--", values);
-    const myImgUrl = values.images[0].url || "";
+    const myImgUrl =
+      values.images && values.images.length > 0 ? values.images[0].url : "";
+    // console.log(myImgUrl);
+    const myBody = escapeHTML(JSON.stringify(values.body)); //Элдэв тэмдэгтийг хувиргаж, дан текст болгон хадгална.
+    const myDescription = values.body.blocks[0].data.text; //Эхний параграф текстийг авч description буюу товчлолд өгнө.
     // return null;
 
     const myParamsNewsDetail = {
@@ -356,7 +368,7 @@ export const NewsDetailStore = (props) => {
           title: values.title,
           // imgUrl: JSON.stringify(values.images), //JSON.parse
           imgurl: myImgUrl,
-          body: escapeHTML(JSON.stringify(values.body)),
+          body: myBody,
           isfeatured: toBoolean(values.isfeatured) ? "1" : "0",
           iscomment: toBoolean(values.iscomment) ? "1" : "0",
           isactive: toBoolean(values.isactive) ? "1" : "0",
@@ -368,7 +380,7 @@ export const NewsDetailStore = (props) => {
           //! publishedDate, // --Form-д байгаа ! Түр авав
           // createdDate,
           // modifiedDate,
-          description: values.description,
+          description: myDescription,
           newstypeId: values.newstypeid,
           newssourceId: values.newssourceid,
           // contentId,

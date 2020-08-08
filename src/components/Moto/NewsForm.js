@@ -79,6 +79,14 @@ const formItemLayout = {
     sm: { span: 17 },
   },
 };
+const forItemLayoutSame = {
+  labelCol: {
+    xs: { span: 7 },
+  },
+  wrapperCol: {
+    xs: { span: 17 },
+  },
+};
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -166,25 +174,13 @@ const NewsForm = () => {
       }),
       loading: false,
     });
-
-    // await loadDataview(newsSource, setNewsSource, {
-    //   systemmetagroupid: "1585046479054",
-    //   criteria: newsContext.state.loadParams.criteria,
-    // });
-    // await loadDataview(newsPublisher, setNewsPublisher, {
-    //   systemmetagroupid: "1585046481242",
-    //   criteria: newsContext.state.loadParams.criteria,
-    // });
   };
 
   useEffect(() => {
     callFunctionAsync();
-
-    // newsItem && setMyBody(JSON.parse(newsItem.body));
   }, []);
 
   const onFinish = (values) => {
-    // console.log("newsFormDetail form - Received values of form: ", values);
     values.body = myBody;
     values.images = myImages;
     newsContext.saveNewsDetail(values);
@@ -227,11 +223,17 @@ const NewsForm = () => {
           isactive: newsItem ? toBoolean(newsItem.isactive) : true,
           isfeatured: newsItem ? toBoolean(newsItem.isfeatured) : false,
           iscomment: newsItem ? toBoolean(newsItem.iscomment) : true,
-          description: newsItem ? newsItem.description : "",
+          // description: newsItem ? newsItem.description : "",
         }}
         scrollToFirstError={true}
+        colon={false}
       >
-        <Form.Item name="newsid" label="ID дугаар">
+        <Form.Item
+          {...forItemLayoutSame}
+          name="newsid"
+          label="ID дугаар"
+          hidden={true}
+        >
           <Input disabled />
         </Form.Item>
 
@@ -312,18 +314,9 @@ const NewsForm = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item name="isactive" label="Идэвхтэй?" valuePropName="checked">
-          <Switch name="switchisactive" defaultChecked />
-        </Form.Item>
-        <Form.Item name="isfeatured" label="Спонсор?" valuePropName="checked">
-          <Switch name="switchisfeatured" defaultChecked />
-        </Form.Item>
-        <Form.Item name="iscomment" label="Коммент?" valuePropName="checked">
-          <Switch name="switchiscomment" defaultChecked />
-        </Form.Item>
-        <Form.Item name="description" label="Товчлол">
+        {/* <Form.Item name="description" label="Товчлол">
           <TextArea rows={4} placeholder="Товчлолоо бичнэ үү" />
-        </Form.Item>
+        </Form.Item> */}
         {/* <Form.Item name="publishedDate" label="Нийтлэх огноо">
           <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
         </Form.Item> */}
@@ -353,6 +346,40 @@ const NewsForm = () => {
             />
           </Card>
         </Form.Item>
+
+        <Divider dashed orientation="center" plain>
+          Тохиргоо
+        </Divider>
+
+        <Form.Item
+          name="isactive"
+          label="Идэвхтэй?"
+          valuePropName="checked"
+          {...forItemLayoutSame}
+        >
+          <Switch name="switchisactive" defaultChecked />
+        </Form.Item>
+        <Form.Item
+          name="isfeatured"
+          label="Спонсор?"
+          valuePropName="checked"
+          {...forItemLayoutSame}
+        >
+          <Switch name="switchisfeatured" defaultChecked />
+        </Form.Item>
+        <Form.Item
+          name="iscomment"
+          label="Коммент?"
+          valuePropName="checked"
+          {...forItemLayoutSame}
+        >
+          <Switch name="switchiscomment" defaultChecked />
+        </Form.Item>
+
+        <Divider dashed orientation="center" plain>
+          Таны үйлдэл
+        </Divider>
+
         <Form.Item {...tailFormItemLayout}>
           <Button
             type="primary"
