@@ -4,19 +4,19 @@ import { useParams } from "react-router-dom";
 import NewsDetail from "components/Moto/NewsDetail";
 import { CommentListStore } from "context/CommentContext";
 import { LogsStore } from "context/LogsContext";
-import NewsContext from "context/NewsContext";
+import NewsDetailContext from "context/NewsDetailContext";
 import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
 const NewsDetailPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
-  const newsContext = useContext(NewsContext);
+  const newsDetailContext = useContext(NewsDetailContext);
   const memberContext = useContext(MemberContext);
 
   useEffect(() => {
     if (newsId !== 0 && memberContext.state.memberCloudUserSysId !== 0)
-      newsContext.loadNewsDetail(
+      newsDetailContext.loadNewsDetail(
         newsId,
         memberContext.state.memberCloudUserSysId
       );
@@ -27,7 +27,7 @@ const NewsDetailPage = (props) => {
       {memberContext.state.isLogin ? (
         <CommentListStore>
           <LogsStore>
-            {newsContext.state.loading ? (
+            {newsDetailContext.state.loading ? (
               <LoadingDetail />
             ) : (
               <NewsDetail newsId={newsId} />

@@ -44,13 +44,13 @@ import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
-import NewsContext from "context/NewsContext";
+import NewsDetailContext from "context/NewsDetailContext";
 
 const NewsDetailComponent = ({ newsId }) => {
-  const newsContext = useContext(NewsContext);
+  const newsDetailContext = useContext(NewsDetailContext);
   const logsContext = useContext(LogsContext);
 
-  const newsItem = newsContext.state.newsDetail;
+  const newsItem = newsDetailContext.state.newsDetail;
 
   useEffect(() => {
     document.title = newsItem.title;

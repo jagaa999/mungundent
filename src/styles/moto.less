@@ -118,3 +118,29 @@ li.gx-user-nav {
 .ant-form-hidden {
   display: none;
 }
+
+.gx-thumb-cover-img,
+.gx-grid-thumb-cover img {
+  height: inherit;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.gx-product-horizontal .gx-product-image {
+  position: relative;
+
+  .ant-avatar {
+    bottom: 20px;
+    right: 20px;
+    position: absolute;
+  }
+}
+
+.gx-product-horizontal .gx-product-body {
+  @media screen and (max-width: @screen-lg-max) {
+    width: 66.66667%;
+  }
+  @media screen and (max-width: @screen-sm-max) {
+    width: 100%;
+  }
+}

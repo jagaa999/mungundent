@@ -64,7 +64,7 @@ import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
-import NewsContext from "context/NewsContext";
+import NewsDetailContext from "context/NewsDetailContext";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -114,9 +114,9 @@ function handleFocus() {
 
 const NewsForm = () => {
   const [form] = Form.useForm();
-  const newsContext = useContext(NewsContext);
+  const newsDetailContext = useContext(NewsDetailContext);
 
-  const newsItem = newsContext.state.newsDetail;
+  const newsItem = newsDetailContext.state.newsDetail;
 
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
   let myTempBody;
@@ -126,8 +126,6 @@ const NewsForm = () => {
   } catch (e) {
     myTempBody = "";
   }
-
-  // console.log("myTempBody", myTempBody);
 
   let myOutputBody = {};
   if (myTempBody !== "") {
@@ -181,9 +179,10 @@ const NewsForm = () => {
   }, []);
 
   const onFinish = (values) => {
+    // values.body = htmlEntities.decode(myBody);
     values.body = myBody;
     values.images = myImages;
-    newsContext.saveNewsDetail(values);
+    newsDetailContext.saveNewsDetail(values);
   };
 
   const saveButton = () => {

@@ -170,7 +170,7 @@ const MotoHeader = () => {
                 ""
               )}
 
-              {memberContext.state.isLogin ? (
+              {/* {memberContext.state.isLogin ? (
                 <li className="gx-notify">
                   <Popover
                     overlayClassName="gx-popover-horizantal"
@@ -186,7 +186,7 @@ const MotoHeader = () => {
                 </li>
               ) : (
                 ""
-              )}
+              )} */}
 
               {memberContext.state.isLogin ? (
                 //* Member хадгалсан зүйлс MemberItems context дотор байгаа зүйлс
@@ -209,7 +209,7 @@ const MotoHeader = () => {
                 ""
               )}
 
-              <li className="gx-language">
+              {/* <li className="gx-language">
                 <Popover
                   overlayClassName="gx-popover-horizantal"
                   placement="bottomRight"
@@ -220,7 +220,7 @@ const MotoHeader = () => {
                     <i className={`flag flag-24 flag-${locale.icon}`} />
                   </span>
                 </Popover>
-              </li>
+              </li> */}
 
               <li className="gx-user-nav">
                 {/* <UserInfo /> */}

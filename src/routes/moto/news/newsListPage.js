@@ -4,18 +4,18 @@ import { useParams, useLocation, useHistory } from "react-router-dom";
 import { Col, Row, Button, Affix } from "antd";
 
 import NewsListItem from "components/Moto/NewsListItem";
-import NewsContext from "context/NewsContext";
+import NewsListContext from "context/NewsListContext";
 import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
 import FilterTag from "components/Moto/Tag/FilterTag";
 import { PlusOutlined } from "@ant-design/icons";
 
 const NewsListPage = (props) => {
   const history = useHistory();
-  const newsContext = useContext(NewsContext);
+  const newsListContext = useContext(NewsListContext);
   const { search } = useLocation();
 
   useEffect(() => {
-    newsContext.loadNewsList(search);
+    newsListContext.loadNewsList(search);
   }, [search]);
 
   const [container, setContainer] = useState(null);
@@ -46,10 +46,10 @@ const NewsListPage = (props) => {
         </div>
       </div>
 
-      {!newsContext.state.loading && (
+      {!newsListContext.state.loading && (
         <div className="gx-main-content">
           <Row>
-            {newsContext.state.newsList.map((el, index) => {
+            {newsListContext.state.newsList.map((el, index) => {
               const newsItem = el;
               const myMainImage = el.imagemain
                 .split("storage")

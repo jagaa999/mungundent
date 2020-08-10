@@ -19,7 +19,7 @@ import { ClearOutlined } from "@ant-design/icons";
 import CustomScrollbars from "util/CustomScrollbars";
 import MotoCheckBox from "components/Moto/Filter/CheckBox";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
-import NewsContext from "context/NewsContext";
+import NewsListContext from "context/NewsListContext";
 
 const { Search } = Input;
 
@@ -31,7 +31,7 @@ const NewsFilter = (props) => {
   const history = useHistory();
   const [didMount, setDidMount] = useState(false); //first render-ийг илрүүлэхийн төлөө
 
-  const newsContext = useContext(NewsContext);
+  const newsListContext = useContext(NewsListContext);
 
   const [urlParams, setUrlParams] = useState(searchParams);
   const [searchQuery, setSearchQuery] = useState("");
@@ -44,19 +44,19 @@ const NewsFilter = (props) => {
     setNewsType(
       await loadDataview({
         systemmetagroupid: "1587100905303413",
-        criteria: newsContext.state.loadParams.criteria,
+        criteria: newsListContext.state.loadParams.criteria,
       })
     );
     setNewsSource(
       await loadDataview({
         systemmetagroupid: "1585046479054",
-        criteria: newsContext.state.loadParams.criteria,
+        criteria: newsListContext.state.loadParams.criteria,
       })
     );
     setNewsPublisher(
       await loadDataview({
         systemmetagroupid: "1585046481242",
-        criteria: newsContext.state.loadParams.criteria,
+        criteria: newsListContext.state.loadParams.criteria,
       })
     );
   };

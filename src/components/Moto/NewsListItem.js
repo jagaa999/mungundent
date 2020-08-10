@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
@@ -13,17 +13,37 @@ import {
   Menu,
   Avatar,
   message,
+  Modal,
+  Divider,
 } from "antd";
 
 import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
 import AvatarMember from "components/Moto/Member/MemberAvatar";
+import AvatarMember02 from "components/Moto/Member/MemberAvatar02";
+import NewsDetailModal from "components/Moto/newsDetailModal";
 
 const NewsItem = ({ newsItem, grid }) => {
+  const [ddd, setDdd] = useState(false);
+
+  const showModal = () => {
+    setDdd(!ddd);
+  };
+
+  const modalOk = (e) => {
+    console.log(e);
+    setDdd(true);
+  };
+
+  const modalCancel = (e) => {
+    console.log(e);
+    setDdd(false);
+  };
+
   // console.log("Манай бараа - ", newsItem);
 
   const truncatedDescription =
-    newsItem.description.substring(0, 120) + "&hellip;";
+    newsItem.description.substring(0, 150) + " &hellip;";
 
   return (
     <div
@@ -36,10 +56,17 @@ const NewsItem = ({ newsItem, grid }) => {
     >
       <div className="gx-product-image">
         <div className="gx-grid-thumb-equal">
-          <span className="gx-link gx-grid-thumb-cover">
-            <img alt={newsItem.title} src={newsItem.imageMain} />
-          </span>
+          <Link to={"/news/" + newsItem.newsid}>
+            <span className="gx-link gx-grid-thumb-cover">
+              <img alt={newsItem.title} src={newsItem.imageMain} />
+            </span>
+          </Link>
         </div>
+        <AvatarMember02
+          memberName={newsItem.publishername}
+          memberPhoto={newsItem.publisherphoto}
+          memberPosition={newsItem.publisherpositionname}
+        />
       </div>
 
       <div className="gx-product-body">
@@ -57,9 +84,10 @@ const NewsItem = ({ newsItem, grid }) => {
             />
           </Tooltip>
           <Tooltip title="Эх сурвалж">
-            <span className="gx-text-grey gx-fs-sm">
-              {newsItem.newssourcename}
-            </span>
+            <Badge
+              count={newsItem.newssourcename}
+              style={{ backgroundColor: "grey" }}
+            />
           </Tooltip>
           <Tooltip title="Нийтэлсэн огноо">
             <span className="gx-text-grey gx-fs-sm gx-ml-2">
@@ -75,15 +103,39 @@ const NewsItem = ({ newsItem, grid }) => {
             ></span>
           </p>
         </div>
+
+        <Button size="small" onClick={showModal}>
+          Шууд унших
+        </Button>
       </div>
 
-      <div className="gx-product-footer">
+      <Modal
+        title={newsItem.title}
+        visible={ddd}
+        footer={null}
+        onOk={modalOk}
+        onCancel={modalCancel}
+        width="80%"
+        style={{ width: "100%", resize: "none" }}
+      >
+        <div>
+          <img
+            alt="example"
+            style={{ width: "100%" }}
+            src={newsItem.imageMain}
+          />
+          <Divider className="gx-my-4" />
+          <NewsDetailModal newsId={newsItem.newsid} />
+        </div>
+      </Modal>
+
+      {/* <div className="gx-product-footer">
         <AvatarMember
           memberName={newsItem.publishername}
           memberPhoto={newsItem.publisherphoto}
           memberPosition={newsItem.publisherpositionname}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

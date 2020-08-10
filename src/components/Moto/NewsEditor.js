@@ -30,8 +30,20 @@ const NewsEditor = (props) => {
   }
 
   const onChange = (e, data) => {
-    console.log("NewsEditor e", e);
-    console.log("NewsEditor Data", data);
+    // console.log("NewsEditor e", e);
+    // console.log("NewsEditor Data", data);
+
+    data.blocks.map((value, index) => {
+      if (value.type === "paragraph") {
+        const myFfff = value.data.text;
+        // console.log("myFfffmyFfff", myFfff);
+        // const dddd = e.sanitizer.clean(myFfff, sanitizerConfig);
+        const dddd = myFfff.split('"').join("");
+        // console.log("dddddddd", dddd);
+        value.data.text = dddd;
+      }
+    });
+
     props.normFile(data);
   };
 

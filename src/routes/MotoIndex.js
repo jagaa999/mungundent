@@ -9,7 +9,8 @@ import InBuiltApps from "./inBuiltApps/index";
 import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
-import { NewsListStore, NewsDetailStore } from "../context/NewsContext";
+import { NewsListStore } from "../context/NewsListContext";
+import { NewsDetailStore } from "../context/NewsDetailContext";
 
 import asyncComponent from "util/asyncComponent";
 
@@ -61,7 +62,9 @@ const App = ({ match }) => (
 
       <Route path={["/news", "/newslist"]}>
         <NewsListStore>
-          <NewsList />
+          <NewsDetailStore>
+            <NewsList />
+          </NewsDetailStore>
         </NewsListStore>
       </Route>
 

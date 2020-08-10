@@ -57,8 +57,8 @@ const SidebarContent = () => {
             mode="inline"
           >
             <MenuItemGroup className="gx-menu-group" key="news" title="Нийтлэл">
-              <Menu.Item key="news/list">
-                <Link to="/news/list">
+              <Menu.Item key="news/">
+                <Link to="/news/">
                   <i className="icon icon-noodles" />
                   {/* <IntlMessages id="sidebar.widgets" /> */}
                   <span>Жагсаалт</span>

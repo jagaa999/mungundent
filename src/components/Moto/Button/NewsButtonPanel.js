@@ -29,11 +29,11 @@ import {
 } from "@ant-design/icons";
 
 import { LoadProcess, loadDataview } from "util/axiosFunction";
-import NewsContext from "context/NewsContext";
+import NewsDetailContext from "context/NewsDetailContext";
 
 const NewsButtonPanel = () => {
-  const newsContext = useContext(NewsContext);
-  const newsItem = newsContext.state.newsDetail;
+  const newsDetailContext = useContext(NewsDetailContext);
+  const newsItem = newsDetailContext.state.newsDetail;
 
   // console.log(newsItem);
 
@@ -54,14 +54,14 @@ const NewsButtonPanel = () => {
 
   const menuOwnerActions = () => (
     <Menu>
-      <Menu.Item key="Дээшлүүлэх" onClick={newsContext.upPublishedDate}>
+      <Menu.Item key="Дээшлүүлэх" onClick={newsDetailContext.upPublishedDate}>
         <ArrowUpOutlined /> Дээшлүүлэх
       </Menu.Item>
 
       <Menu.Item key="Спонсор">
         <Checkbox
           checked={toBoolean(newsItem.isfeatured)}
-          onChange={newsContext.toggleIsFeatured}
+          onChange={newsDetailContext.toggleIsFeatured}
         >
           Спонсор
         </Checkbox>
@@ -69,7 +69,7 @@ const NewsButtonPanel = () => {
       <Menu.Item key="Идэвхтэй">
         <Checkbox
           checked={toBoolean(newsItem.isactive)}
-          onChange={newsContext.toggleIsActive}
+          onChange={newsDetailContext.toggleIsActive}
         >
           Идэвхтэй
         </Checkbox>
