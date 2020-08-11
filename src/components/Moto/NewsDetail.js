@@ -60,10 +60,12 @@ const NewsDetailComponent = ({ newsId }) => {
 
   const member = {
     publisheddate: newsItem.publisheddate,
-    publisherid: newsItem.publisherid,
-    publisherphoto: newsItem.publisherphoto,
-    publishername: newsItem.publishername,
-    publisherpositionname: newsItem.publisherpositionname,
+    publisherid: newsItem.userpublisherid,
+    publisherphoto: newsItem.userprofilephoto,
+    publishername: newsItem.userfullename,
+    publisherpositionname: "Гишүүнчлэл тодорхойгүй",
+    publisherId: newsItem.userpublisherid,
+    publisherUid: newsItem.userfirebaseuid,
   };
 
   let myBody = htmlEntities.decode(newsItem.body) || "";
@@ -83,7 +85,7 @@ const NewsDetailComponent = ({ newsId }) => {
   let myOutputBody = "";
 
   if (myBody !== "") {
-    console.log("myBodymyBody", myBody);
+    // console.log("myBodymyBody", myBody);
 
     if (myBody.indexOf('"blocks"') !== -1) {
       const editorConfig = {

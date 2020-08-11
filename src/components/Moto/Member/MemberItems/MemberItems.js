@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 
-import { Card, Tabs } from "antd";
+import { Card, Tabs, message } from "antd";
 import MemberItem from "./MemberItem";
 import MemberItemsList from "./MemberItemsList";
 import { notifications } from "./data";

@@ -163,7 +163,7 @@ export const NewsDetailStore = (props) => {
       .then((response) => {
         // console.log("ИРСЭН ДАТА444:   ", response);
         const myArray = response.data.response.result;
-        // console.log("NEWS DETAIL------------>", myArray);
+        console.log("NEWS DETAIL------------>", myArray);
         setState({
           ...state,
           loading: false,
@@ -225,6 +225,7 @@ export const NewsDetailStore = (props) => {
           // isFacebook,
           // isTwitter,
           publisherid: memberContext.state.memberCloudUserSysId,
+          userpublisherid: memberContext.state.memberCloudUserSysId,
           // creatorId,
           modifierid: memberContext.state.memberCloudUserSysId,
           //! publishedDate, // --Form-д байгаа ! Түр авав

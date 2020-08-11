@@ -30,20 +30,43 @@ import {
 
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import NewsDetailContext from "context/NewsDetailContext";
+import MemberItemsContext from "context/MemberItemsContext";
 
 const NewsButtonPanel = () => {
   const newsDetailContext = useContext(NewsDetailContext);
+  const memberItemsContext = useContext(MemberItemsContext);
   const newsItem = newsDetailContext.state.newsDetail;
 
   // console.log(newsItem);
 
-  const menuMemberActions = (myLike, mySave) => (
-    <Menu onClick={handleMenuClick}>
+  const actionSave = () => {
+    console.log("actionSave");
+
+    const myValues = {
+      id: "",
+      tablename: "ECM_NEWS",
+      recordid: newsItem.newsid,
+      actionname: "Жоорлох",
+      actiondata: "1",
+      description: newsItem.title,
+    };
+
+    memberItemsContext.saveMemberItem(myValues);
+  };
+
+  const menuMemberActions = () => (
+    <Menu>
       <Menu.Item key="Таалагдлаа">
-        <Checkbox checked={myLike}>Таалагдлаа</Checkbox>
+        <Checkbox checked={false}>Таалагдлаа</Checkbox>
       </Menu.Item>
       <Menu.Item key="Жоорлох">
-        <Checkbox checked={mySave}>Жоорлох</Checkbox>
+        <Checkbox
+          // checked={true}
+          // onClick={memberItemsContext.saveMemberItem({})}
+          onChange={actionSave}
+        >
+          Жоорлох
+        </Checkbox>
       </Menu.Item>
       <Divider />
       <Menu.Item key="Алдаатай">

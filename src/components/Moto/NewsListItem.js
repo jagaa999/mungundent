@@ -22,22 +22,28 @@ import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
 import AvatarMember from "components/Moto/Member/MemberAvatar";
 import AvatarMember02 from "components/Moto/Member/MemberAvatar02";
 import NewsDetailModal from "components/Moto/newsDetailModal";
+import NewsDetailMore from "components/Moto/newsDetailMore";
 
 const NewsItem = ({ newsItem, grid }) => {
-  const [ddd, setDdd] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
-  const showModal = () => {
-    setDdd(!ddd);
+  const showModalToggle = () => {
+    setShowModal(!showModal);
+  };
+
+  const showMoreToggle = () => {
+    setShowMore(!showMore);
   };
 
   const modalOk = (e) => {
     console.log(e);
-    setDdd(true);
+    setShowModal(true);
   };
 
   const modalCancel = (e) => {
     console.log(e);
-    setDdd(false);
+    setShowModal(false);
   };
 
   // console.log("Манай бараа - ", newsItem);
@@ -63,9 +69,11 @@ const NewsItem = ({ newsItem, grid }) => {
           </Link>
         </div>
         <AvatarMember02
-          memberName={newsItem.publishername}
-          memberPhoto={newsItem.publisherphoto}
-          memberPosition={newsItem.publisherpositionname}
+          memberName={newsItem.userfullename}
+          memberPhoto={newsItem.userprofilephoto}
+          memberPosition="Гишүүнчлэл тодорхойгүй"
+          memberId={newsItem.userpublisherid}
+          memberUid={newsItem.userfirebaseuid}
         />
       </div>
 
@@ -104,14 +112,36 @@ const NewsItem = ({ newsItem, grid }) => {
           </p>
         </div>
 
-        <Button size="small" onClick={showModal}>
-          Шууд унших
-        </Button>
+        <div className="gx-d-flex gx-mt-4">
+          <Button size="small" onClick={showModalToggle}>
+            Нээж унших
+          </Button>
+
+          <Button size="small" onClick={showMoreToggle}>
+            Эндээ унших
+          </Button>
+        </div>
       </div>
+
+      {showMore ? (
+        <div className="gx-p-3">
+          <Divider
+            className="gx-mt-3 gx-mb-4"
+            dashed
+            plain
+            orientation="center"
+          >
+            Дэлгэрэнгүй
+          </Divider>
+          <NewsDetailMore newsId={newsItem.newsid} />
+        </div>
+      ) : (
+        <></>
+      )}
 
       <Modal
         title={newsItem.title}
-        visible={ddd}
+        visible={showModal}
         footer={null}
         onOk={modalOk}
         onCancel={modalCancel}
