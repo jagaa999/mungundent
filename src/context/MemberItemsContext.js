@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "../util/axiosConfig";
 import MemberContext from "context/MemberContext";
 import { message } from "antd";
+import Moment from "moment";
 // import mainAxios from "axios";
 
 const MemberItemsContext = React.createContext();
@@ -32,36 +33,45 @@ export const MemberItemsStore = (props) => {
   };
 
   const loadMemberItems = (memberId) => {
-    clearMemberItems();
+    if (!memberContext.state.isLogin) return null;
 
-    memberId = "1502764251361501"; //! Jargal Tumurbaatar гэдэг хэрэглэгчийн ID-г хүчээр тавьчихлаа.
+    clearMemberItems();
 
     const myParamsMemberItems = {
       request: {
-        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        username: memberContext.state.memberUID,
+        password: "89",
         command: "PL_MDVIEW_004",
         parameters: {
           systemmetagroupid: "1588074509203718",
           showQuery: "0",
+          paging: {
+            pageSize: "", //нийтлэлийн тоо
+            offset: "1", //хуудасны дугаар
+            sortColumnNames: {
+              modifieddate: {
+                //эрэмбэлэх талбар
+                sortType: "DESC", //эрэмбэлэх чиглэл
+              },
+            },
+          },
           criteria: {
-            memberId: "1502764251361501", //! Jargal Tumurbaatar гэдэг хэрэглэгчийн ID-г хүчээр тавьчихлаа.
-            actionName: "",
-            actionData: "",
+            usersystemid: memberContext.state.memberCloudUserSysId,
+            actionname: null, //Хамаарахгүй, бүгдийг нь
+            actiondata: null, //Хамаарахгүй, бүгдийг нь
+            recordid: null, //Хамаарахгүй, бүгдийг нь
           },
         },
       },
     };
-
-    //MemberItems татаж эхэллээ гэдгийг мэдэгдэнэ.
-    //Энийг хүлээж аваад Spinner ажиллаж эхэлнэ.
+    console.log("Бэлтгэсэн myParamsMemberItems : ", myParamsMemberItems);
     setState({ ...state, loading: true });
 
     axios
       .post("", myParamsMemberItems)
       .then((response) => {
-        //Датанууд ороод ирсэн
-        //Одоо state-дээ олгоно.
-        // console.log("ИРСЭН ДАТА444:   ", response);
+        console.log("ИРСЭН loadMemberItems response:   ", response);
 
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
@@ -69,7 +79,7 @@ export const MemberItemsStore = (props) => {
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
 
-        // console.log("ИРСЭН MYARRAY:   ", myArray);
+        console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
 
         setState({
           ...state,
@@ -101,16 +111,16 @@ export const MemberItemsStore = (props) => {
         command: "motoMemberDV_SAVEITEMS_002",
         parameters: {
           id: values.id || "",
-          memberId: memberContext.state.memberCloudUserSysId,
-          userSystemId: memberContext.state.memberCloudUserSysId,
-          tableName: values.tablename || "ECM_NEWS",
-          recordId: values.recordid || "",
-          actionName: values.actionname || "Таалагдлаа",
-          actionData: values.actiondata || "1",
-          createtorId: memberContext.state.memberCloudUserSysId,
-          createdDate: null,
-          modifierId: memberContext.state.memberCloudUserSysId,
-          modifiedDate: null,
+          memberid: memberContext.state.memberCloudUserSysId,
+          usersystemid: memberContext.state.memberCloudUserSysId,
+          tablename: values.tablename || "ECM_NEWS",
+          recordid: values.recordid || "",
+          actionname: values.actionname || "Таалагдлаа",
+          actiondata: values.actiondata || "1",
+          createtorid: memberContext.state.memberCloudUserSysId,
+          createddate: Moment().format("YYYY-MM-DD HH:mm:ss"),
+          modifierid: memberContext.state.memberCloudUserSysId,
+          modifieddate: Moment().format("YYYY-MM-DD HH:mm:ss"),
           description: values.description || "",
         },
       },
@@ -134,10 +144,45 @@ export const MemberItemsStore = (props) => {
           message.success(
             "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
           );
-          // history.push({
-          //   pathname: "/news",
-          // });
-          // loadNewsDetail(values.newsId);
+          loadMemberItems(memberContext.state.memberCloudUserSysId);
+        }
+      })
+      .catch((error) => {
+        getError(error);
+      });
+  };
+
+  const deleteMemberItem = (id) => {
+    console.log("deleteMemberItem дотор орж ирсэн values--", id);
+    const myMemberItem = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "motoMemberDV_SAVEITEMS_005", //Устгах
+        parameters: {
+          id: id || "",
+        },
+      },
+    };
+    console.log("deleteMemberItem-ын бэлтгэсэн myMemberItem", myMemberItem);
+
+    axios
+      .post("", myMemberItem)
+      .then((response) => {
+        console.log("Just  deleteMemberItem:   ", response);
+        const myData = response.data.response;
+        console.log(
+          "After parse deleteMemberItem Result ------------>",
+          myData
+        );
+
+        if (myData.status === "error") {
+          getError(myData.text);
+        } else {
+          message.warning(
+            "Таны тэмдэглэлээс устгалаа. Өдрийг сайхан өнгөрүүлээрэй."
+          );
+          loadMemberItems(memberContext.state.memberCloudUserSysId);
         }
       })
       .catch((error) => {
@@ -147,7 +192,7 @@ export const MemberItemsStore = (props) => {
 
   return (
     <MemberItemsContext.Provider
-      value={{ state, loadMemberItems, saveMemberItem }}
+      value={{ state, loadMemberItems, saveMemberItem, deleteMemberItem }}
     >
       {props.children}
     </MemberItemsContext.Provider>

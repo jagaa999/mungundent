@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { Avatar, List, Tooltip } from "antd";
 import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
+import MemberItemsContext from "context/MemberItemsContext";
 
 const MemberItemsList = (props) => {
-  // *Түлхүүр үгүүдийг өнгөөр ялгаж бичихэд хэрэглэнэ.
+  const memberItemsContext = useContext(MemberItemsContext);
 
   const myColor = (actionName) => {
     let myTextColor = "gx-text-grey";
@@ -44,9 +45,12 @@ const MemberItemsList = (props) => {
               <small>{item.actionname}</small>
             </span>,
             <Tooltip title="Устгах">
-              <a key="edit1">
-                <DeleteOutlined />
-              </a>
+              <DeleteOutlined
+                onClick={(e) => {
+                  // console.log("Устгах дарав", item.id);
+                  memberItemsContext.deleteMemberItem(item.id);
+                }}
+              />
             </Tooltip>,
           ]}
         >

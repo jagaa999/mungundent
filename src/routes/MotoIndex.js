@@ -11,6 +11,7 @@ import Main from "./main/index";
 import Documents from "./documents/index";
 import { NewsListStore } from "../context/NewsListContext";
 import { NewsDetailStore } from "../context/NewsDetailContext";
+import { NewsFilterStore } from "../context/NewsFilterContext";
 
 import asyncComponent from "util/asyncComponent";
 
@@ -63,7 +64,9 @@ const App = ({ match }) => (
       <Route path={["/news", "/newslist"]}>
         <NewsListStore>
           <NewsDetailStore>
-            <NewsList />
+            <NewsFilterStore>
+              <NewsList />
+            </NewsFilterStore>
           </NewsDetailStore>
         </NewsListStore>
       </Route>

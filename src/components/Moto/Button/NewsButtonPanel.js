@@ -38,15 +38,12 @@ const NewsButtonPanel = () => {
   const newsItem = newsDetailContext.state.newsDetail;
 
   // console.log(newsItem);
-
-  const actionSave = () => {
-    console.log("actionSave");
-
+  const actionSave = (actionname) => {
     const myValues = {
       id: "",
       tablename: "ECM_NEWS",
-      recordid: newsItem.newsid,
-      actionname: "Жоорлох",
+      recordid: newsItem.newsid || "",
+      actionname: actionname || "Таалагдлаа",
       actiondata: "1",
       description: newsItem.title,
     };
@@ -54,21 +51,69 @@ const NewsButtonPanel = () => {
     memberItemsContext.saveMemberItem(myValues);
   };
 
+  const actionDelete = (id) => {
+    memberItemsContext.deleteMemberItem(id);
+  };
+
+  const actionMine = (event, actionname, id) => {
+    // console.log("actionSave - e: ", event);
+    // console.log("actionSave - actionname: ", actionname);
+    const isChecked = event.target.checked || false;
+
+    if (isChecked) {
+      actionSave(actionname);
+    } else {
+      actionDelete(id);
+    }
+  };
+
+  let myIsLike = {
+    id: null,
+    checked: false,
+  };
+  let myIsSave = {
+    id: null,
+    checked: false,
+  };
+
+  Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
+    const myItem = memberItemsContext.state.memberItems[index];
+    // console.log("memberItemsContext.state.memberItems", myItem);
+    if (myItem.recordid === newsItem.newsid) {
+      switch (myItem.actionname) {
+        case "Таалагдлаа":
+          myIsLike.id = myItem.id;
+          myIsLike.checked = true;
+          break;
+        case "Жоорлох":
+          myIsSave.id = myItem.id;
+          myIsSave.checked = true;
+          break;
+        default:
+          break;
+      }
+    }
+  });
+
   const menuMemberActions = () => (
     <Menu>
       <Menu.Item key="Таалагдлаа">
-        <Checkbox checked={false}>Таалагдлаа</Checkbox>
+        <Checkbox
+          checked={myIsLike.checked}
+          onChange={(e) => actionMine(e, "Таалагдлаа", myIsLike.id)}
+        >
+          Таалагдлаа
+        </Checkbox>
       </Menu.Item>
       <Menu.Item key="Жоорлох">
         <Checkbox
-          // checked={true}
-          // onClick={memberItemsContext.saveMemberItem({})}
-          onChange={actionSave}
+          checked={myIsSave.checked}
+          onChange={(e) => actionMine(e, "Жоорлох", myIsSave.id)}
         >
           Жоорлох
         </Checkbox>
       </Menu.Item>
-      <Divider />
+      <Menu.Divider />
       <Menu.Item key="Алдаатай">
         <WarningTwoTone twoToneColor="#eb2f96" /> Алдаа мэдэгдэх
       </Menu.Item>
@@ -97,7 +142,7 @@ const NewsButtonPanel = () => {
           Идэвхтэй
         </Checkbox>
       </Menu.Item>
-      <Divider />
+      <Menu.Divider />
       <Menu.Item key="Засах">
         <Link to={"/news/edit/" + newsItem.newsid}>
           <EditOutlined /> Засах

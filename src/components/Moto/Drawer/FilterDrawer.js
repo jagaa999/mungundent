@@ -5,7 +5,6 @@ import NewsFilter from "components/Moto/Drawer/NewsFilter";
 
 const FilterDrawer = () => {
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
-  const [container, setContainer] = useState(null);
 
   const toggleFilterDrawer = () => {
     setIsFilterDrawerOpen(!isFilterDrawerOpen);

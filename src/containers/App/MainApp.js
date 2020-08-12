@@ -35,19 +35,17 @@ import MemberItemsContext from "context/MemberItemsContext";
 const { Content, Footer } = Layout;
 
 const MainApp = () => {
-  //Эхэлж нэг удаа ажиллахад хэрэглэгчийг login-дуулна.
-  useEffect(() => {
-    // memberContext.loadMemberProfile("200108101001108990");
-    //* Дараа нь тухайн хэрэглэгчийн Хадгалсан зүйлсийг дуудна.
-    memberItemsContext.loadMemberItems("1502764251361501");
-  }, []);
-
   const memberContext = useContext(MemberContext);
   const myItem = memberContext.state.memberProfile;
   const memberItemsContext = useContext(MemberItemsContext);
 
   const { width, navStyle } = useSelector(({ settings }) => settings);
   const match = useRouteMatch();
+
+  useEffect(() => {
+    //* Дараа нь тухайн хэрэглэгчийн Хадгалсан зүйлсийг дуудна.
+    memberItemsContext.loadMemberItems("1502764251361501");
+  }, [memberContext.state.memberCloudUserSysId]);
 
   const getContainerClass = (navStyle) => {
     switch (navStyle) {

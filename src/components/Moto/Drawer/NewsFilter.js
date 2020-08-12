@@ -40,7 +40,7 @@ const NewsFilter = (props) => {
   const [newsPublisher, setNewsPublisher] = useState([]);
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
-  const callFunctionAsync = async () => {
+  const callAllDataAsync = async () => {
     setNewsType(
       await loadDataview({
         systemmetagroupid: "1587100905303413",
@@ -62,7 +62,7 @@ const NewsFilter = (props) => {
   };
 
   useEffect(() => {
-    callFunctionAsync();
+    callAllDataAsync();
     setDidMount(true); //first render-ийг илрүүлэхийн төлөө
   }, []);
 
