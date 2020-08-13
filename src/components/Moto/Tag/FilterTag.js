@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Tag, Tooltip } from "antd";
 import {
   ClearOutlined,
@@ -11,45 +11,39 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 
+import NewsFilterContext from "context/NewsFilterContext";
+
 const FilterTag = () => {
-  function log(e) {
-    console.log(e);
+  const newsFilterContext = useContext(NewsFilterContext);
+
+  function log(e, myKey) {
+    // console.log("e", e);
+    // console.log("myKey", myKey);
+    newsFilterContext.updateParams({ [myKey]: "" });
   }
 
   return (
     <div key="filtertage" className="gx-my-3">
       {/* <span className="gx-mr-3">Шүүлтүүрүүд</span> */}
-
-      <Tooltip title="Төрөл">
-        <Tag
-          color="orange"
-          closable
-          onClose={log}
-          closeIcon={<CloseOutlined />}
-        >
-          Үйл ажиллагаа
-        </Tag>
-      </Tooltip>
-      <Tooltip title="Эх сурвалж">
-        <Tag
-          color="orange"
-          closable
-          onClose={log}
-          closeIcon={<CloseOutlined />}
-        >
-          Moto.mn
-        </Tag>
-      </Tooltip>
-      <Tooltip title="Нийтлэгч">
-        <Tag
-          color="orange"
-          closable
-          onClose={log}
-          closeIcon={<CloseOutlined />}
-        >
-          Эрдэнэ Эрдэнэс
-        </Tag>
-      </Tooltip>
+      {Object.entries(newsFilterContext.state.filterList).map(function (
+        item,
+        i
+      ) {
+        // console.log("itemitem", item);
+        return (
+          <Tooltip title={item[0]}>
+            <Tag
+              // key={item.}
+              color="orange"
+              closable
+              onClose={(event) => log(event, item[0])}
+              closeIcon={<CloseOutlined />}
+            >
+              {item[1]}
+            </Tag>
+          </Tooltip>
+        );
+      })}
     </div>
   );
 };

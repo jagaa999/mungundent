@@ -20,21 +20,14 @@ import CustomScrollbars from "util/CustomScrollbars";
 import MotoCheckBox from "components/Moto/Filter/CheckBox";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import NewsListContext from "context/NewsListContext";
+import NewsFilterContext from "context/NewsFilterContext";
 
 const { Search } = Input;
 
 const NewsFilter = (props) => {
-  const { search } = useLocation();
-  const searchParams = parse(search);
-  // console.log("ЭНД АЖЛАА ЗОГСООВ!!!!");
-
-  const history = useHistory();
-  const [didMount, setDidMount] = useState(false); //first render-ийг илрүүлэхийн төлөө
-
   const newsListContext = useContext(NewsListContext);
+  const newsFilterContext = useContext(NewsFilterContext);
 
-  const [urlParams, setUrlParams] = useState(searchParams);
-  const [searchQuery, setSearchQuery] = useState("");
   const [newsType, setNewsType] = useState([]);
   const [newsSource, setNewsSource] = useState([]);
   const [newsPublisher, setNewsPublisher] = useState([]);
@@ -63,7 +56,7 @@ const NewsFilter = (props) => {
 
   useEffect(() => {
     callAllDataAsync();
-    setDidMount(true); //first render-ийг илрүүлэхийн төлөө
+    // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
   }, []);
 
   const prepareURL = (checkedValues, parameterLabel) => {
@@ -77,32 +70,8 @@ const NewsFilter = (props) => {
       [parameterLabel]: param,
     };
 
-    setUrlParams((state) => ({ ...urlParams, ...tempObject }));
-  };
-
-  useEffect(() => {
-    const mySearchQueryParams = [];
-
-    Object.keys(urlParams).map((item) => {
-      if (urlParams[item] !== "") {
-        mySearchQueryParams.push(item + "=" + urlParams[item]);
-      }
-    });
-
-    setSearchQuery(mySearchQueryParams.join("&"));
-  }, [urlParams]);
-
-  useEffect(() => {
-    if (didMount) {
-      history.push({
-        pathname: "/news",
-        search: searchQuery,
-      });
-    }
-  }, [searchQuery]);
-
-  const clearUrlParams = () => {
-    setUrlParams({});
+    // console.log("tempObjecttempObject", tempObject);
+    newsFilterContext.updateParams(tempObject);
   };
 
   return (
@@ -124,7 +93,9 @@ const NewsFilter = (props) => {
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "newstypeid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
-              defaultValue={[searchParams.newstypeid]}
+              defaultValue={[
+                newsFilterContext.state.filterList?.newstypeid || "",
+              ]}
             >
               {newsType.map((item) => (
                 <Checkbox
@@ -151,7 +122,9 @@ const NewsFilter = (props) => {
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "newssourceid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
-              defaultValue={[searchParams.newssourceid]}
+              defaultValue={[
+                newsFilterContext.state.filterList?.newssourceid || "",
+              ]}
             >
               {newsSource.map((item) => (
                 <Checkbox value={item.newssourceid} key={item.newssourceid}>
@@ -175,7 +148,9 @@ const NewsFilter = (props) => {
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "publisherid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
-              defaultValue={[searchParams.publisherid]}
+              defaultValue={[
+                newsFilterContext.state.filterList?.publisherid || "",
+              ]}
             >
               {newsPublisher.map((item) => (
                 <Checkbox value={item.publisherid} key={item.publisherid}>
@@ -192,7 +167,7 @@ const NewsFilter = (props) => {
         {/* <MotoCheckBox title="Нийтлэлийн төрөл" /> */}
         {/* <MotoCheckBox title="Нийтлэгч" /> */}
 
-        {isEmpty(urlParams) ? (
+        {isEmpty(newsFilterContext.state.filterList) ? (
           <></>
         ) : (
           <>
@@ -200,7 +175,9 @@ const NewsFilter = (props) => {
             <Button
               type="dashed"
               icon={<ClearOutlined />}
-              onClick={clearUrlParams}
+              onClick={(e) => {
+                newsFilterContext.clearAll();
+              }}
             >
               Арилгах
             </Button>

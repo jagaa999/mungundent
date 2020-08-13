@@ -33,7 +33,7 @@ const NewsDetailModal = (props) => {
   let myOutputBody = "";
 
   if (myBody !== "") {
-    console.log("myBodymyBody", myBody);
+    // console.log("myBodymyBody", myBody);
 
     if (myBody.indexOf('"blocks"') !== -1) {
       const editorConfig = {
