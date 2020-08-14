@@ -56,12 +56,15 @@ const SidebarContent = () => {
             theme={themeType === THEME_TYPE_LITE ? "lite" : "dark"}
             mode="inline"
           >
-            <MenuItemGroup className="gx-menu-group" key="news" title="Нийтлэл">
+            <MenuItemGroup
+              className="gx-menu-group"
+              key="mainmenu"
+              title="Үндсэн цэс"
+            >
               <Menu.Item key="news/">
                 <Link to="/news/">
-                  <i className="icon icon-noodles" />
-                  {/* <IntlMessages id="sidebar.widgets" /> */}
-                  <span>Жагсаалт</span>
+                  <i className="icon icon-data-display" />
+                  <span>Нийтлэл</span>
                 </Link>
               </Menu.Item>
             </MenuItemGroup>
@@ -1398,30 +1401,6 @@ const SidebarContent = () => {
                   </Link>
                 </Menu.Item>
               </SubMenu>
-            </MenuItemGroup>
-
-            <MenuItemGroup
-              key="documents"
-              className="gx-menu-group"
-              title={<IntlMessages id="sidebar.documents" />}
-            >
-              <Menu.Item key="documents/changelog">
-                <Link to="/documents/changelog">
-                  <i className="icon icon-timeline-new" />
-                  <span>
-                    <IntlMessages id="sidebar.documents.changelog" />
-                  </span>
-                </Link>
-              </Menu.Item>
-
-              <Menu.Item key="documents/installation">
-                <Link to="/documents/installation">
-                  <i className="icon icon-steps" />
-                  <span>
-                    <IntlMessages id="sidebar.documents.installation" />
-                  </span>
-                </Link>
-              </Menu.Item>
             </MenuItemGroup>
           </Menu>
         </CustomScrollbars>

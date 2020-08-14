@@ -16,6 +16,8 @@ import {
   message,
   Divider,
   Spin,
+  Avatar,
+  Statistic,
 } from "antd";
 
 import {
@@ -23,6 +25,7 @@ import {
   SearchOutlined,
   DownOutlined,
   UserOutlined,
+  SettingOutlined,
   DeleteOutlined,
   ArrowUpOutlined,
   EditOutlined,
@@ -31,7 +34,7 @@ import {
 import NewsDetailContext from "context/NewsDetailContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
-const NewsButtonPanel = () => {
+const NewsButtonPanel = (props) => {
   const newsDetailContext = useContext(NewsDetailContext);
   const memberItemsContext = useContext(MemberItemsContext);
   const newsItem = newsDetailContext.state.newsDetail;
@@ -158,55 +161,38 @@ const NewsButtonPanel = () => {
     console.log(e);
   }
 
-  // console.log("newsItem", newsItem);
+  console.log("props", props);
 
   return (
-    <div className="gx-product-footer">
-      <div className="ant-row-flex">
-        <div className="gx-module-contact-content">
-          <span>
-            <Tooltip title={newsItem.publisherpositionname}>
-              <span className="ant-avatar ant-avatar-circle ant-avatar-image">
-                <img
-                  src={newsItem.publisherphoto}
-                  alt={newsItem.publishername}
-                />
-              </span>
-              <span className="gx-text-grey gx-fs-sm gx-mx-2">
-                {newsItem.publishername}
-              </span>
-            </Tooltip>
-          </span>
-        </div>
-        <div className="gx-ml-auto">
-          <span style={{ display: "inline-flex" }}>
-            <Dropdown
-              overlay={menuMemberActions}
-              placement="bottomRight"
-              trigger={["click"]}
-              arrow
-            >
-              <Tooltip title="Таны үйлдлүүд">
-                <i className="gx-icon-btn icon icon-wall" />
-              </Tooltip>
-            </Dropdown>
-          </span>
-          <span style={{ display: "inline-flex" }}>
-            <Dropdown
-              overlay={menuOwnerActions}
-              placement="bottomRight"
-              trigger={["click"]}
-              // visible="true"
-              arrow
-            >
-              <Tooltip title="Эзний үйлдлүүд">
-                <i className="gx-icon-btn icon icon-setting" />
-              </Tooltip>
-            </Dropdown>
-          </span>
-        </div>
-      </div>
-    </div>
+    <>
+      {[
+        <Dropdown
+          overlay={menuMemberActions}
+          placement="bottomRight"
+          trigger={["click"]}
+          arrow
+        >
+          <Tooltip title="Таны үйлдэл">
+            <Button>
+              <UserOutlined /> <DownOutlined />
+            </Button>
+          </Tooltip>
+        </Dropdown>,
+        <Dropdown
+          overlay={menuOwnerActions}
+          placement="bottomRight"
+          trigger={["click"]}
+          // visible="true"
+          arrow
+        >
+          <Tooltip title="Таны үйлдэл">
+            <Button type="primary">
+              <SettingOutlined /> <DownOutlined />
+            </Button>
+          </Tooltip>
+        </Dropdown>,
+      ]}
+    </>
   );
 };
 

@@ -1,28 +1,57 @@
 import React, { useContext } from "react";
 import toBoolean from "util/booleanFunction";
-import { PageHeader, Button, Descriptions, Statistic } from "antd";
 import {
-  WarningTwoTone,
+  PageHeader,
+  Button,
+  Descriptions,
+  Statistic,
+  Tooltip,
+  Badge,
+  Avatar,
+  Divider,
+} from "antd";
+import {
   ClockCircleOutlined,
   MinusCircleOutlined,
+  WarningTwoTone,
+  SearchOutlined,
+  DownOutlined,
+  UserOutlined,
+  DeleteOutlined,
+  ArrowUpOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
-import NewsButtonPanel from "components/Moto/Button/NewsButtonPanel";
+import NewsHeaderButton from "components/Moto/Button/NewsHeaderButton";
 import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
+import LogsContext from "context/LogsContext";
 
 const NewsDetailHeader = (props) => {
+  const logsContext = useContext(LogsContext);
+  const newsItem = props.newsItem;
+
   console.log("props--------", props);
 
-  const renderContent = (column = 2) => (
+  const renderContent = (column = 1) => (
     <Descriptions size="small" column={column}>
-      <Descriptions.Item label="Created">Lili Qu</Descriptions.Item>
-      <Descriptions.Item label="Association">
-        <a>421421</a>
+      <Descriptions.Item>
+        <Tooltip title="Төрөл">
+          <Badge
+            count={newsItem.newstypename}
+            style={{ backgroundColor: "teal" }}
+          />
+        </Tooltip>
       </Descriptions.Item>
-      <Descriptions.Item label="Creation Time">2017-01-10</Descriptions.Item>
-      <Descriptions.Item label="Effective Time">2017-10-10</Descriptions.Item>
-      <Descriptions.Item label="Remarks">
-        Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
+      <Descriptions.Item>
+        <Tooltip title="Эх сурвалж">
+          <Badge
+            count={newsItem.newssourcename}
+            style={{ backgroundColor: "grey" }}
+          />
+        </Tooltip>
       </Descriptions.Item>
+      {/* <Descriptions.Item>
+        <Tooltip title="Огноо">{newsItem.publisheddate}</Tooltip>
+      </Descriptions.Item> */}
     </Descriptions>
   );
 
@@ -34,85 +63,63 @@ const NewsDetailHeader = (props) => {
         justifyContent: "flex-end",
       }}
     >
-      <Statistic
-        title="Үзсэн"
-        value="2500"
-        style={{
-          marginRight: 32,
-        }}
-      />
-      <Statistic title="Price" prefix="$" value={568.08} />
+      {Object.entries(logsContext.state.actionTypes).map(function (item, i) {
+        if (item[1].type !== "Идэвхтэй" && item[1].type !== "Спонсор")
+          return (
+            <Statistic
+              style={{
+                marginRight: 32,
+              }}
+              title={item[1].type}
+              value={item[1].count}
+            />
+          );
+      })}
     </div>
   );
 
   const Content = ({ children, extra }) => {
     return (
-      <div className="content" style={{ display: "flex" }}>
+      <div className="content gx-d-flex gx-align-items-center gx-justify-content-center">
         <div className="main">{children}</div>
-        <div className="extra">{extra}</div>
+        <div className="gx-ml-auto">{extra}</div>
       </div>
     );
   };
 
   return (
-    <>
-      <h1
-        className={
-          toBoolean(props.headerElements.isfeatured) ? "gx-text-success" : ""
-        }
-      >
-        {props.headerElements.title}
-        {toBoolean(props.headerElements.isfeatured) && <FeaturedTag />}
-        {!toBoolean(props.headerElements.isactive) && <ActiveTag />}
-      </h1>
+    <PageHeader
+      className="site-page-header-responsive"
+      // onBack={() => window.history.back()}
+      title={
+        <h1 className={toBoolean(newsItem.isfeatured) ? "gx-text-success" : ""}>
+          {newsItem.title}
+          {toBoolean(newsItem.isfeatured) && <FeaturedTag />}
+          {!toBoolean(newsItem.isactive) && <ActiveTag />}
+        </h1>
+      }
+      // subTitle="This is a subtitle"
+      extra={<NewsHeaderButton />}
+    >
+      <Content extra={extraContent}>{renderContent()}</Content>
 
-      {/* <PageHeader
-        className="site-page-header-responsive"
-        onBack={() => window.history.back()}
-        title="Title"
-        subTitle="This is a subtitle"
-        extra={[
-          <Button key="3">Operation</Button>,
-          <Button key="2">Operation</Button>,
-          <Button key="1" type="primary">
-            Primary
-          </Button>,
-        ]}
-      >
-        <Content extra={extraContent}>{renderContent()}</Content>
-      </PageHeader> */}
+      <Divider className="gx-my-3" dashed />
 
-      {/* <div className="site-page-header-ghost-wrapper">
-        <PageHeader
-          ghost={false}
-          // onBack={() => window.history.back()}
-          title={props.headerElements.title}
-          tags={["dsfds", "sdfsd fds fsd"]}
-          extra={[
-            <Button key="3">Operation</Button>,
-            <Button key="2">Operation</Button>,
-            <Button key="1" type="primary">
-              Primary
-            </Button>,
-          ]}
-        ></PageHeader>
-        <Descriptions size="small" column={3}>
-          <Descriptions.Item label="Created">Lili Qu</Descriptions.Item>
-          <Descriptions.Item label="Association">
-            <a>421421</a>
-          </Descriptions.Item>
-          <Descriptions.Item label="Creation Time">
-            2017-01-10
-          </Descriptions.Item>
-          <Descriptions.Item label="Effective Time">
-            2017-10-10
-          </Descriptions.Item>
-          <Descriptions.Item label="Remarks">
-            Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
-          </Descriptions.Item>
-        </Descriptions>
-      </div> */}
-    </>
+      <div className="gx-text-center gx-w-100 gx-mt-5">
+        <Statistic
+          title="Нийтлэгч"
+          className="gx-mb-5"
+          prefix={
+            <Tooltip title={props.member.name}>
+              <Avatar src={props.member.photo} />
+            </Tooltip>
+          }
+          value=" "
+        />
+
+        <Tooltip title="Огноо">{newsItem.publisheddate}</Tooltip>
+      </div>
+    </PageHeader>
   );
 };
 

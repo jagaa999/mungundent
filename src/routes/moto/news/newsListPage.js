@@ -7,6 +7,7 @@ import NewsListItem from "components/Moto/NewsListItem";
 import NewsListContext from "context/NewsListContext";
 import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
 import FilterTag from "components/Moto/Tag/FilterTag";
+import MotoPagination from "components/Moto/Pagination/MotoPagination";
 import { PlusOutlined } from "@ant-design/icons";
 
 const NewsListPage = (props) => {
@@ -48,6 +49,8 @@ const NewsListPage = (props) => {
 
       {!newsListContext.state.loading && (
         <div className="gx-main-content">
+          <MotoPagination />
+
           <Row>
             {newsListContext.state.newsList.map((el, index) => {
               const newsItem = el;
@@ -63,6 +66,7 @@ const NewsListPage = (props) => {
               );
             })}
           </Row>
+
           <FilterDrawer />
         </div>
       )}

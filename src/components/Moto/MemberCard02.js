@@ -6,24 +6,22 @@ const MemberCard02 = (props) => {
   // console.log("ddddddddddd", props);
   return (
     <div style={{ maxWidth: props.maxWidth ? props.maxWidth : "350px" }}>
-      {props.member.publisherid ? (
+      {props.member.id ? (
         <Widget styleName="gx-card-full gx-dot-arrow-hover">
           <div className="gx-user-wid-row">
             <div className="gx-user-wid gx-mr-3">
               <img
                 alt="..."
-                src={props.member.publisherphoto}
+                src={props.member.photo}
                 className="gx-object-cover"
               />
             </div>
             <div className="gx-user-wid-body gx-py-3 gx-pr-3">
               <div className="ant-row-flex">
-                <h2 className="h4 gx-mr-1 gx-mb-1">
-                  {props.member.publishername}
-                </h2>
+                <h2 className="h4 gx-mr-1 gx-mb-1">{props.member.name}</h2>
               </div>
               <p className="gx-mb-1 gx-text-grey gx-fs-sm">
-                {props.member.publisherpositionname}
+                {props.member.positionname}
               </p>
               <div className="gx-dot-arrow">
                 <div className="gx-bg-primary gx-hover-arrow">

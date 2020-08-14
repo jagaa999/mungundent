@@ -11,10 +11,10 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 
-import NewsFilterContext from "context/NewsFilterContext";
+import FilterContext from "context/FilterContext";
 
 const FilterTag = () => {
-  const newsFilterContext = useContext(NewsFilterContext);
+  const newsFilterContext = useContext(FilterContext);
 
   function log(e, myKey) {
     // console.log("e", e);
@@ -33,7 +33,7 @@ const FilterTag = () => {
         return (
           <Tooltip title={item[0]}>
             <Tag
-              // key={item.}
+              key={item[0]}
               color="orange"
               closable
               onClose={(event) => log(event, item[0])}

@@ -14,7 +14,7 @@ import {
 } from "../../constants/ThemeSetting";
 
 const initialSettings = {
-  navCollapsed: true,
+  navCollapsed: false,
   // navStyle: NAV_STYLE_FIXED,
   navStyle: NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
   layoutType: LAYOUT_TYPE_FULL,

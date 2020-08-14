@@ -20,13 +20,13 @@ import CustomScrollbars from "util/CustomScrollbars";
 import MotoCheckBox from "components/Moto/Filter/CheckBox";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import NewsListContext from "context/NewsListContext";
-import NewsFilterContext from "context/NewsFilterContext";
+import FilterContext from "context/FilterContext";
 
 const { Search } = Input;
 
 const NewsFilter = (props) => {
   const newsListContext = useContext(NewsListContext);
-  const newsFilterContext = useContext(NewsFilterContext);
+  const newsFilterContext = useContext(FilterContext);
 
   const [newsType, setNewsType] = useState([]);
   const [newsSource, setNewsSource] = useState([]);
@@ -56,8 +56,12 @@ const NewsFilter = (props) => {
 
   useEffect(() => {
     callAllDataAsync();
+    console.log(
+      "newsListContext.state.loadParams.criterianewsListContext.state.loadParams.criterianewsListContext.state.loadParams.criteria",
+      newsListContext.state.loadParams.criteria
+    );
     // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
-  }, []);
+  }, [newsListContext.state.loadParams.criteria]);
 
   const prepareURL = (checkedValues, parameterLabel) => {
     const param = checkedValues

@@ -21,6 +21,11 @@ import {
   message,
   Divider,
   Spin,
+  Typography,
+  PageHeader,
+  Statistic,
+  Descriptions,
+  Tabs,
 } from "antd";
 
 import {
@@ -34,17 +39,22 @@ import {
   ExclamationCircleOutlined,
   ClockCircleOutlined,
   MinusCircleOutlined,
+  EllipsisOutlined,
 } from "@ant-design/icons";
 
 import LogBox from "components/Moto/LogBox";
 import CommentBox from "components/Moto/CommentBox";
 import NewsButtonPanel from "components/Moto/Button/NewsButtonPanel";
 import NewsDetailHeader from "components/Moto/NewsDetailHeader";
+import NewsHeaderButton from "components/Moto/Button/NewsHeaderButton";
 import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
 import NewsDetailContext from "context/NewsDetailContext";
+
+const { Paragraph } = Typography;
+const { TabPane } = Tabs;
 
 const NewsDetailComponent = ({ newsId }) => {
   const newsDetailContext = useContext(NewsDetailContext);
@@ -59,13 +69,13 @@ const NewsDetailComponent = ({ newsId }) => {
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   const member = {
-    publisheddate: newsItem.publisheddate,
-    publisherid: newsItem.userpublisherid,
-    publisherphoto: newsItem.userprofilephoto,
-    publishername: newsItem.userfullename,
-    publisherpositionname: "Гишүүнчлэл тодорхойгүй",
-    publisherId: newsItem.userpublisherid,
-    publisherUid: newsItem.userfirebaseuid,
+    date: newsItem.publisheddate,
+    id: newsItem.userpublisherid,
+    photo: newsItem.userprofilephoto,
+    name: newsItem.userfullename,
+    positionname: "Гишүүнчлэл тодорхойгүй",
+    // publisherId: newsItem.userpublisherid,
+    uid: newsItem.userfirebaseuid,
   };
 
   let myBody = htmlEntities.decode(newsItem.body) || "";
@@ -156,9 +166,9 @@ const NewsDetailComponent = ({ newsId }) => {
   return (
     <div>
       <div key={newsItem.newsid} className="gx-main-content news-detail">
-        {/* <NewsDetailHeader headerElements={newsItem} /> */}
+        <NewsDetailHeader newsItem={newsItem} member={member} />
 
-        <NewsButtonPanel newsItem={newsItem} />
+        {/* <NewsButtonPanel newsItem={newsItem} /> */}
 
         <Row>
           <Col xs={24}>
@@ -175,68 +185,18 @@ const NewsDetailComponent = ({ newsId }) => {
                 />
               }
             >
-              <h2
-                className={
-                  toBoolean(newsItem.isfeatured) ? "gx-text-success" : ""
-                }
-              >
-                {newsItem.title}
-                {toBoolean(newsItem.isfeatured) && <FeaturedTag />}
-                {!toBoolean(newsItem.isactive) && <ActiveTag />}
-              </h2>
-              <div className="news-header">
-                <div className="ant-row-flex">
-                  <Tooltip title="Төрөл">
-                    <Badge
-                      count={newsItem.newstypename}
-                      style={{ backgroundColor: "teal" }}
-                    />
-                  </Tooltip>
-                  <Tooltip title="Эх сурвалж">
-                    <span className="gx-text-grey gx-fs-sm">
-                      {newsItem.newssourcename}
-                    </span>
-                  </Tooltip>
-                  <Tooltip title="Нийтэлсэн огноо">
-                    <span className="gx-text-grey gx-fs-sm gx-ml-2">
-                      {newsItem.publisheddate}
-                    </span>
-                  </Tooltip>
-                </div>
-              </div>
-
-              {/* Таалагдсан. Сэтгэгдэл. Logs */}
-              <div className="gx-flex-row gx-mb-2 gx-mb-xl-3">
-                {Object.entries(logsContext.state.actionTypes).map(function (
-                  item,
-                  i
-                ) {
-                  return (
-                    <p
-                      key={i}
-                      className="gx-fs-sm gx-pointer gx-mr-3 gx-text-grey"
-                    >
-                      {/* <i className="icon icon-chat-bubble gx-fs-lg gx-mr-2 gx-d-inline-flex gx-vertical-align-middle" /> */}
-                      <span className="gx-d-inline-flex gx-vertical-align-middle">
-                        {item[1].count} {item[1].type}
-                      </span>
-                    </p>
-                  );
-                })}
-              </div>
-
               {myOutputBody}
             </Card>
           </Col>
         </Row>
-
         <div>
           <MemberCard02 member={member} maxWidth="250px" />
         </div>
-
+        <div>
+          <NewsHeaderButton />
+        </div>
         {/* Одоогоор TableName-ийг хоосон орхив */}
         <CommentBox recordId={newsItem.newsid} tableName="" />
-
         <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
       </div>
     </div>
