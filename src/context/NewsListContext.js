@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { parse } from "query-string";
 import axios from "util/axiosConfig";
 import MemberContext from "context/MemberContext";
@@ -18,9 +18,9 @@ export const NewsListStore = (props) => {
         pagesize: filterContext.state.paging.pagesize || "10", //нийтлэлийн тоо
         offset: filterContext.state.paging.offset || "1", //хуудасны дугаар
         sortcolumnnames: {
-          publisheddate: {
+          [filterContext.state.sorting.sortcolumnnames || "publisheddate"]: {
             //эрэмбэлэх талбар
-            sorttype: "DESC", //эрэмбэлэх чиглэл
+            sorttype: filterContext.state.sorting.sorttype || "DESC", //эрэмбэлэх чиглэл
           },
         },
       },
@@ -56,16 +56,15 @@ export const NewsListStore = (props) => {
 
   const [state, setState] = useState(initialStateNewsList);
 
-  const loadNewsList = (queryString) => {
-    // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
-    const searchParams = parse(queryString);
-    // setState({ ...state, searchParams1: searchParams });
-    // console.log("searchParams", searchParams);
-    // console.log(state);
+  useEffect(() => {
+    loadNewsList();
+  }, [
+    filterContext.state.filterList,
+    filterContext.state.paging,
+    filterContext.state.sorting,
+  ]);
 
-    // ! newssourceid: "1514260642854|1518160989674"
-    // ! newstypeid: "201|206"
-    //гэсэн объект орж ирнэ. Үүнийг доорх руу хувиргана.
+  const loadNewsList = (queryString) => {
     //   newstypeid: {
     //     0: {
     //       operator: "=",
@@ -77,30 +76,23 @@ export const NewsListStore = (props) => {
     //     },
     //   },
     let tempFilter = {};
-    Object.keys(searchParams).map((item) => {
-      console.log(item, "----", searchParams[item]);
+    Object.keys(filterContext.state.filterList).map((item) => {
+      console.log(item, "----", filterContext.state.filterList[item]);
       if (item !== "offset" && item !== "pagesize") {
         const myItem1 = {
           operator: "=",
-          operand: searchParams[item],
+          operand: filterContext.state.filterList[item],
         };
-        // console.log("myItem1", myItem1);
         const myItem2 = {
           [item]: {
             "0": myItem1,
           },
         };
-        // console.log("myItem2", myItem2);
         tempFilter = Object.assign(tempFilter, myItem2);
       }
     });
-    console.log(tempFilter);
-    // const dddd = state.loadParams;
     const dddd = {};
     const myTemp33 = Object.assign(dddd, { criteria: tempFilter });
-    console.log("myTemp33", myTemp33);
-
-    // console.log("searchParams", searchParams);
 
     const myNewParam = {
       ...state,
@@ -111,15 +103,18 @@ export const NewsListStore = (props) => {
           ...state.loadParams.paging,
           pagesize: filterContext.state.paging.pagesize || "10", //нийтлэлийн тоо
           offset: filterContext.state.paging.offset || "1", //хуудасны дугаар
+          sortcolumnnames: {
+            [filterContext.state.sorting.sortcolumnnames || "publisheddate"]: {
+              //эрэмбэлэх талбар
+              sorttype: filterContext.state.sorting.sorttype || "DESC", //эрэмбэлэх чиглэл
+            },
+          },
         },
       },
       loading: true,
-      // searchParams1: searchParams,
     };
 
-    console.log("myNewParammyNewParammyNewParam", myNewParam);
-
-    // setState(myNewParam);
+    // console.log("myNewParammyNewParammyNewParam", myNewParam);
 
     const myParamsNewsList = {
       request: {
@@ -131,12 +126,12 @@ export const NewsListStore = (props) => {
       },
     };
 
-    console.log("myParamsNewsListmyParamsNewsList", myParamsNewsList);
+    // console.log("myParamsNewsListmyParamsNewsList", myParamsNewsList);
 
     axios
       .post("", myParamsNewsList)
       .then((response) => {
-        console.log("loadNewsList after", response);
+        // console.log("loadNewsList after", response);
 
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;

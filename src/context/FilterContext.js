@@ -12,14 +12,35 @@ export const FilterStore = (props) => {
   const history = useHistory();
   const { search } = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
-  // console.log("queryStringqueryString", search);
   // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
   const searchParams = parse(search);
-  // console.log("searchParams", searchParams);
+  let myFilterList = {};
+  let myPaging = {};
+  let mySorting = {};
+
+  Object.keys(searchParams).map((item) => {
+    if (item === "offset" || item === "pagesize") {
+      const myTempItem = {
+        [item]: searchParams[item],
+      };
+      myPaging = Object.assign(myPaging, myTempItem);
+    } else if (item === "sortcolumnnames" || item === "sorttype") {
+      const myTempItem = {
+        [item]: searchParams[item],
+      };
+      mySorting = Object.assign(mySorting, myTempItem);
+    } else {
+      const myTempItem = {
+        [item]: searchParams[item],
+      };
+      myFilterList = Object.assign(myFilterList, myTempItem);
+    }
+  });
 
   const initialStateFilterList = {
-    filterList: searchParams,
-    paging: {},
+    filterList: myFilterList,
+    paging: myPaging,
+    sorting: mySorting,
     loading: false,
     error: null,
   };
@@ -41,53 +62,30 @@ export const FilterStore = (props) => {
       }
     });
 
-    console.log("mySearchQueryParamsmySearchQueryParams", mySearchQueryParams);
+    Object.keys(state.sorting).map((item) => {
+      if (state.sorting[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.sorting[item]);
+      }
+    });
 
     setSearchQuery(mySearchQueryParams.join("&"));
-  }, [state.filterList, state.paging]);
+  }, [state.filterList, state.paging, state.sorting]);
 
   useEffect(() => {
-    // if (didMount) {
-    console.log("searchQuerysearchQuerysearchQuerysearchQuery", searchQuery);
     history.push({
       pathname: "/news",
       search: searchQuery,
     });
-    // }
   }, [searchQuery]);
 
   const loadFilterList = () => {};
 
   const updateParams = (tempObject) => {
-    console.log("tempObjecttempObject", tempObject);
-    //{newstypeid: "206"}
-
     Object.entries(tempObject).map((item, i) => {
       const myKey = item[0]; //"newstypeid"
       const myValue = "" + item[1]; //"206"
 
-      if (myKey !== "offset" && myKey !== "pagesize") {
-        if (myValue !== "") {
-          setState({
-            ...state,
-            filterList: {
-              ...state.filterList,
-              ...tempObject,
-            },
-            paging: {},
-          });
-        } else {
-          const myTemp = state.filterList;
-          delete myTemp[myKey]; //Уг key-тэй хэсгийг устгана.
-          setState({
-            ...state,
-            filterList: {
-              ...myTemp,
-            },
-            paging: {},
-          });
-        }
-      } else {
+      if (myKey === "offset" || myKey === "pagesize") {
         if (myValue !== "") {
           setState({
             ...state,
@@ -104,6 +102,48 @@ export const FilterStore = (props) => {
             paging: {
               ...myTemp,
             },
+          });
+        }
+      } else if (myKey === "sortcolumnnames" || myKey === "sorttype") {
+        if (myValue !== "") {
+          setState({
+            ...state,
+            sorting: {
+              ...state.sorting,
+              ...tempObject,
+            },
+          });
+        } else {
+          const myTemp = state.sorting;
+          delete myTemp[myKey]; //Уг key-тэй хэсгийг устгана.
+          setState({
+            ...state,
+            sorting: {
+              ...myTemp,
+            },
+          });
+        }
+      } else {
+        if (myValue !== "") {
+          setState({
+            ...state,
+            filterList: {
+              ...state.filterList,
+              ...tempObject,
+            },
+            paging: {},
+            sorting: {},
+          });
+        } else {
+          const myTemp = state.filterList;
+          delete myTemp[myKey]; //Уг key-тэй хэсгийг устгана.
+          setState({
+            ...state,
+            filterList: {
+              ...myTemp,
+            },
+            paging: {},
+            sorting: {},
           });
         }
       }

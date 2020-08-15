@@ -5,19 +5,26 @@ import { Col, Row, Button, Affix } from "antd";
 
 import NewsListItem from "components/Moto/NewsListItem";
 import NewsListContext from "context/NewsListContext";
+import FilterContext from "context/FilterContext";
 import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
 import FilterTag from "components/Moto/Tag/FilterTag";
 import MotoPagination from "components/Moto/Pagination/MotoPagination";
+import MotoSort from "components/Moto/Sort/MotoSort";
 import { PlusOutlined } from "@ant-design/icons";
 
 const NewsListPage = (props) => {
   const history = useHistory();
   const newsListContext = useContext(NewsListContext);
+  const filterContext = useContext(FilterContext);
   const { search } = useLocation();
 
-  useEffect(() => {
-    newsListContext.loadNewsList(search);
-  }, [search]);
+  // useEffect(() => {
+  //   newsListContext.loadNewsList(search);
+  // }, [
+  //   filterContext.state.filterList,
+  //   filterContext.state.paging,
+  //   filterContext.state.sorting,
+  // ]);
 
   const [container, setContainer] = useState(null);
 
@@ -50,6 +57,7 @@ const NewsListPage = (props) => {
       {!newsListContext.state.loading && (
         <div className="gx-main-content">
           <MotoPagination />
+          <MotoSort />
 
           <Row>
             {newsListContext.state.newsList.map((el, index) => {
@@ -66,6 +74,8 @@ const NewsListPage = (props) => {
               );
             })}
           </Row>
+
+          <MotoPagination />
 
           <FilterDrawer />
         </div>

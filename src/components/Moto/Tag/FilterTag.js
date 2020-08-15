@@ -31,7 +31,7 @@ const FilterTag = () => {
       ) {
         // console.log("itemitem", item);
         return (
-          <Tooltip title={item[0]}>
+          <Tooltip title={item[0]} key={item[0]}>
             <Tag
               key={item[0]}
               color="orange"
