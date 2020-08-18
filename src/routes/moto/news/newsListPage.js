@@ -10,6 +10,7 @@ import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
 import FilterTag from "components/Moto/Tag/FilterTag";
 import MotoPagination from "components/Moto/Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
+import LoadingList from "components/Moto/Loading/LoadingList";
 import { PlusOutlined } from "@ant-design/icons";
 
 const NewsListPage = (props) => {
@@ -54,7 +55,7 @@ const NewsListPage = (props) => {
         </div>
       </div>
 
-      {!newsListContext.state.loading && (
+      {!newsListContext.state.loading ? (
         <div className="gx-main-content">
           <MotoPagination />
           <MotoSort />
@@ -62,11 +63,11 @@ const NewsListPage = (props) => {
           <Row>
             {newsListContext.state.newsList.map((el, index) => {
               const newsItem = el;
-              const myMainImage = el.imagemain
-                .split("storage")
-                .join("https://www.moto.mn/storage");
-
-              newsItem.imageMain = myMainImage;
+              // const myMainImage = el.imagemain
+              //   .split("storage")
+              //   .join("https://www.moto.mn/storage");
+              // newsItem.imageMain = myMainImage;
+              newsItem.imageMain = el.imagemain;
               return (
                 <Col key={index} span={24}>
                   <NewsListItem key={index} newsItem={newsItem} />
@@ -79,6 +80,8 @@ const NewsListPage = (props) => {
 
           <FilterDrawer />
         </div>
+      ) : (
+        <LoadingList />
       )}
     </div>
   );

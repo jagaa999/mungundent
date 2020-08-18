@@ -14,10 +14,12 @@ import {
   Checkbox,
   Switch,
   message,
+  Affix,
   Divider,
   Spin,
   Avatar,
   Statistic,
+  Modal,
 } from "antd";
 
 import {
@@ -31,6 +33,8 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 
+import ErrorReportModal from "components/Moto/Error/ErrorReportModal";
+
 import NewsDetailContext from "context/NewsDetailContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
@@ -38,6 +42,8 @@ const NewsButtonPanel = (props) => {
   const newsDetailContext = useContext(NewsDetailContext);
   const memberItemsContext = useContext(MemberItemsContext);
   const newsItem = newsDetailContext.state.newsDetail;
+
+  const [showErrorReportModal, setShowErrorReportModal] = useState(true);
 
   // console.log(newsItem);
   const actionSave = (actionname) => {
@@ -107,6 +113,7 @@ const NewsButtonPanel = (props) => {
           Таалагдлаа
         </Checkbox>
       </Menu.Item>
+
       <Menu.Item key="Жоорлох">
         <Checkbox
           checked={myIsSave.checked}
@@ -115,8 +122,15 @@ const NewsButtonPanel = (props) => {
           Жоорлох
         </Checkbox>
       </Menu.Item>
+
       <Menu.Divider />
-      <Menu.Item key="Алдаатай">
+
+      <Menu.Item
+        key="Алдаатай"
+        onClick={() => {
+          setShowErrorReportModal(true);
+        }}
+      >
         <WarningTwoTone twoToneColor="#eb2f96" /> Алдаа мэдэгдэх
       </Menu.Item>
     </Menu>
@@ -136,6 +150,7 @@ const NewsButtonPanel = (props) => {
           Спонсор
         </Checkbox>
       </Menu.Item>
+
       <Menu.Item key="Идэвхтэй">
         <Checkbox
           checked={toBoolean(newsItem.isactive)}
@@ -144,12 +159,15 @@ const NewsButtonPanel = (props) => {
           Идэвхтэй
         </Checkbox>
       </Menu.Item>
+
       <Menu.Divider />
+
       <Menu.Item key="Засах">
         <Link to={"/news/edit/" + newsItem.newsid}>
           <EditOutlined /> Засах
         </Link>
       </Menu.Item>
+
       <Menu.Item key="Устгах" onClick={handleMenuClick} danger disabled>
         <DeleteOutlined /> Устгах
       </Menu.Item>
@@ -161,36 +179,54 @@ const NewsButtonPanel = (props) => {
     console.log(e);
   }
 
-  console.log("props", props);
+  // console.log("props", props);
 
   return (
     <>
       {[
         <Dropdown
+          key="member_action_button"
           overlay={menuMemberActions}
           placement="bottomRight"
           trigger={["click"]}
           arrow
         >
-          <Tooltip title="Таны үйлдэл">
-            <Button>
-              <UserOutlined /> <DownOutlined />
-            </Button>
-          </Tooltip>
+          <Button
+            style={{
+              position: "fixed",
+              right: "76px",
+              bottom: "20px",
+              zIndex: "5000",
+            }}
+          >
+            <UserOutlined />
+          </Button>
         </Dropdown>,
         <Dropdown
+          key="owner_action_button"
           overlay={menuOwnerActions}
           placement="bottomRight"
           trigger={["click"]}
           // visible="true"
           arrow
         >
-          <Tooltip title="Таны үйлдэл">
-            <Button type="primary">
-              <SettingOutlined /> <DownOutlined />
-            </Button>
-          </Tooltip>
+          <Button
+            type="primary"
+            style={{
+              position: "fixed",
+              right: "20px",
+              bottom: "20px",
+              zIndex: "5000",
+            }}
+          >
+            <SettingOutlined />
+          </Button>
         </Dropdown>,
+        <ErrorReportModal
+          showErrorReportModal={showErrorReportModal}
+          setShowErrorReportModal={setShowErrorReportModal}
+          item={props.item}
+        />,
       ]}
     </>
   );

@@ -108,7 +108,7 @@ export const CommentListStore = (props) => {
         password: "89",
         command: "motoMemberDV_COMMENT_001",
         parameters: {
-          systemUserId: memberContext.state.memberCloudUserSysId,
+          userSystemId: memberContext.state.memberCloudUserSysId,
           actionType: "1",
           recordId: recordId || "",
           description: commentBody,
@@ -119,6 +119,8 @@ export const CommentListStore = (props) => {
     };
 
     // setState({ ...state, loading: true });
+
+    console.log("Insert Comment ------", myParamsInsertComment);
 
     axios
       .post("", myParamsInsertComment)

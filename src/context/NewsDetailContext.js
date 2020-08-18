@@ -42,7 +42,7 @@ export const NewsDetailStore = (props) => {
           id: state.newsDetail.newsid,
           isfeatured: !toBoolean(state.newsDetail.isfeatured) ? "1" : "0",
           memberid: memberContext.state.memberCloudUserSysId,
-          systemuserid: memberContext.state.memberCloudUserSysId,
+          usersystemid: memberContext.state.memberCloudUserSysId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
@@ -75,7 +75,7 @@ export const NewsDetailStore = (props) => {
           id: state.newsDetail.newsid,
           isactive: !toBoolean(state.newsDetail.isactive) ? "1" : "0",
           memberid: memberContext.state.memberCloudUserSysId,
-          systemuserid: memberContext.state.memberCloudUserSysId,
+          usersystemid: memberContext.state.memberCloudUserSysId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
@@ -111,7 +111,7 @@ export const NewsDetailStore = (props) => {
         parameters: {
           id: state.newsDetail.newsid,
           memberid: memberContext.state.memberCloudUserSysId,
-          systemuserid: memberContext.state.memberCloudUserSysId,
+          usersystemid: memberContext.state.memberCloudUserSysId,
           tablename: "ECM_NEWS",
           recordid: state.newsDetail.newsid,
         },
@@ -149,7 +149,7 @@ export const NewsDetailStore = (props) => {
         parameters: {
           newsid: newsId || "",
           memberid: memberContext.state.memberCloudUserSysId,
-          systemuserid: memberContext.state.memberCloudUserSysId,
+          usersystemid: memberContext.state.memberCloudUserSysId,
         },
       },
     };

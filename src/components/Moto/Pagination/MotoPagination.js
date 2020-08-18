@@ -12,25 +12,38 @@ const MotoPagination = () => {
   }
 
   const onChange = (page, pageSize) => {
+    console.log("Энд орж ирсэн", page, pageSize);
     filterContext.updateParams({ offset: "" + page, pagesize: "" + pageSize });
+  };
+
+  console.log(
+    "newsListContext.state.pagingnewsListContext.state.paging",
+    newsListContext.state.paging
+  );
+
+  const ddddd = (page, pageSize) => {
+    console.log("Энд fffffffffffff", page, pageSize);
   };
 
   return (
     <>
-      <Pagination
-        size="small"
-        showSizeChanger
-        // hideOnSinglePage={true}
-        pageSizeOptions={[10, 20, 50]}
-        showTotal={showTotal}
-        responsive={true}
-        total={newsListContext.state.paging.totalcount}
-        defaultCurrent={newsListContext.state.paging.offset}
-        // current={myCurrent}
-        defaultPageSize={newsListContext.state.paging.pagesize}
-        // pageSize={myPageSize}
-        onChange={onChange}
-      />
+      {!newsListContext.state.loading ? (
+        <Pagination
+          size="small"
+          showSizeChanger
+          hideOnSinglePage={true}
+          pageSizeOptions={[10, 20, 50]}
+          showTotal={showTotal}
+          responsive={true}
+          showLessItems={true}
+          current={newsListContext.state.paging.offset * 1}
+          pageSize={newsListContext.state.paging.pagesize * 1}
+          total={newsListContext.state.paging.totalcount * 1}
+          onChange={onChange}
+        />
+      ) : (
+        <span>Ачаалж байна</span>
+      )}
     </>
   );
 };

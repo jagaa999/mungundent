@@ -63,9 +63,12 @@ const CommentBoxDetail = (props) => {
       className="gx-media gx-flex-nowrap gx-wall-user-info gx-mb-3"
       key={commentItem.id}
     >
-      <Avatar className="gx-mr-3 gx-size-40" src={commentItem.memberphoto} />
+      <Avatar
+        className="gx-mr-3 gx-size-40"
+        src={commentItem.userprofilephoto}
+      />
       <div className="gx-media-body">
-        <h5 className="gx-wall-user-title">{commentItem.membername}</h5>
+        <h5 className="gx-wall-user-title">{commentItem.userfullname}</h5>
         {/* <DisplayDate date={commentItem.modifieddate} /> */}
         <p className="gx-text-grey gx-fs-sm gx-mb-0">
           {commentItem.modifieddate}

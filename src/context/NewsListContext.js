@@ -65,16 +65,8 @@ export const NewsListStore = (props) => {
   ]);
 
   const loadNewsList = (queryString) => {
-    //   newstypeid: {
-    //     0: {
-    //       operator: "=",
-    //       operand: "201",
-    //     },
-    //     1: {
-    //       operator: "=",
-    //       operand: "202",
-    //     },
-    //   },
+    setState({ ...state, loading: true });
+
     let tempFilter = {};
     Object.keys(filterContext.state.filterList).map((item) => {
       console.log(item, "----", filterContext.state.filterList[item]);
@@ -136,7 +128,7 @@ export const NewsListStore = (props) => {
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
 
-        console.log("loadNewsList after myPaging", myPaging);
+        // console.log("loadNewsList after myPaging", myPaging);
 
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
@@ -153,7 +145,7 @@ export const NewsListStore = (props) => {
         });
       })
       .catch((error) => {
-        setState({ ...state, error });
+        setState({ ...state, loading: false, error });
         console.log(error);
       });
   };

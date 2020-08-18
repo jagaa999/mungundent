@@ -24,20 +24,20 @@ const MemberItemsList = (props) => {
     return myTextColor;
   };
 
-  var res = Object.keys(props.memberItems).map(function (name) {
+  var MemberItemsList = Object.keys(props.memberItems).map(function (name) {
     var obj = {};
     obj = props.memberItems[name];
     return obj;
   });
 
-  console.log("MyArray", res);
+  console.log("MemberItemsList", MemberItemsList);
 
   return (
     <List
       className="gx-mr-4"
       loading={false}
       itemLayout="horizontal"
-      dataSource={res}
+      dataSource={MemberItemsList}
       renderItem={(item) => (
         <List.Item
           actions={[
@@ -56,11 +56,7 @@ const MemberItemsList = (props) => {
         >
           <List.Item.Meta
             avatar={
-              <Avatar
-                shape="square"
-                size="large"
-                src={`https://www.moto.mn/${item.imagemain}`}
-              />
+              <Avatar shape="square" size="large" src={`${item.imagemain}`} />
             }
             title={
               <Tooltip title={item.modifieddate}>

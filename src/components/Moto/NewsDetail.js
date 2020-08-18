@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
@@ -26,6 +26,7 @@ import {
   Statistic,
   Descriptions,
   Tabs,
+  Affix,
 } from "antd";
 
 import {
@@ -156,9 +157,10 @@ const NewsDetailComponent = ({ newsId }) => {
 
   let myMainImage;
   try {
-    myMainImage = newsItem.imagemain
-      .split("storage")
-      .join("https://www.moto.mn/storage");
+    // myMainImage = newsItem.imagemain
+    //   .split("storage")
+    //   .join("https://www.moto.mn/storage");
+    myMainImage = newsItem.imagemain;
   } catch (e) {
     myMainImage = "";
   }
@@ -189,11 +191,11 @@ const NewsDetailComponent = ({ newsId }) => {
             </Card>
           </Col>
         </Row>
-        <div>
+        {/* <div>
           <MemberCard02 member={member} maxWidth="250px" />
-        </div>
+        </div> */}
         <div>
-          <NewsHeaderButton />
+          <NewsHeaderButton item={newsItem} />
         </div>
         {/* Одоогоор TableName-ийг хоосон орхив */}
         <CommentBox recordId={newsItem.newsid} tableName="" />

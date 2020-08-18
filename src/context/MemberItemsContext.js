@@ -65,13 +65,13 @@ export const MemberItemsStore = (props) => {
         },
       },
     };
-    console.log("Бэлтгэсэн myParamsMemberItems : ", myParamsMemberItems);
+    // console.log("Бэлтгэсэн myParamsMemberItems : ", myParamsMemberItems);
     setState({ ...state, loading: true });
 
     axios
       .post("", myParamsMemberItems)
       .then((response) => {
-        console.log("ИРСЭН loadMemberItems response:   ", response);
+        // console.log("ИРСЭН loadMemberItems response:   ", response);
 
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
@@ -79,7 +79,7 @@ export const MemberItemsStore = (props) => {
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
 
-        console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
+        // console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
 
         setState({
           ...state,

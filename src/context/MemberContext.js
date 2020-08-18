@@ -50,9 +50,9 @@ export const MemberProfileStore = (props) => {
 
   useEffect(() => {
     if (state.isLogin) {
-      console.log("state", state);
+      // console.log("state", state);
       if (!isEmpty(state.memberCloudProfile)) {
-        console.log("state.memberCloudProfile", state.memberCloudProfile);
+        // console.log("state.memberCloudProfile", state.memberCloudProfile);
         setState({
           ...state,
           memberCloudUserSysId: state.memberCloudProfile.id,
@@ -64,7 +64,7 @@ export const MemberProfileStore = (props) => {
   }, [state.memberCloudProfile]);
 
   useEffect(() => {
-    console.log("ЭНД ХЭРЭГЛЭГЧ-ИЙН islogin төлөв өөрчлөгдөж байна.");
+    // console.log("ЭНД ХЭРЭГЛЭГЧ-ИЙН islogin төлөв өөрчлөгдөж байна.");
     if (state.isLogin) {
       // console.log("ЭНД ХЭРЭГЛЭГЧ FIREBASE логиндсон.");
       // console.log("Харин одоо хэрэглэгчийн мэдээллийг ERP-аас татах ёстой.");
@@ -111,7 +111,7 @@ export const MemberProfileStore = (props) => {
         // }
 
         //Одоо оршин байгаа бүх customerid-ыг userid руу шилжүүлэх шаардлагатай бололтой.
-        console.log("loginMemberCloud myArray:--> ", myArray);
+        // console.log("loginMemberCloud myArray:--> ", myArray);
 
         if (
           response.data.response.status === "error" &&

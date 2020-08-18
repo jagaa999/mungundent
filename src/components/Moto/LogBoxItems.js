@@ -1,13 +1,22 @@
 import React from "react";
 
-import { Card, Table, Row, Col } from "antd";
+import { Card, Table, Row, Col, Avatar } from "antd";
 
 const columns = [
   {
+    title: "",
+    dataIndex: "userprofilephoto",
+    key: "userprofilephoto",
+    fixed: "left",
+    render: (userprofilephoto) => (
+      <Avatar src={userprofilephoto} alt={userprofilephoto} size="small" />
+    ),
+  },
+  {
     title: "Гишүүн",
-    dataIndex: "membername",
-    key: "membername",
-    sorter: (a, b) => a.membername.length - b.membername.length,
+    dataIndex: "userfullname",
+    key: "userfullname",
+    sorter: (a, b) => a.userfullname.length - b.userfullname.length,
   },
 
   {
@@ -15,6 +24,7 @@ const columns = [
     dataIndex: "actiondate",
     key: "date",
     sorter: (a, b) => new Date(a.actiondate) - new Date(b.actiondate),
+    render: (actiondate) => <small>{actiondate}</small>,
   },
   {
     title: "Үйлдэл",
@@ -25,6 +35,7 @@ const columns = [
 ];
 
 const LogBoxItems = ({ logBoxItems }) => {
+  // console.log("logBoxItems", logBoxItems);
   return (
     <div>
       <Card title="Үзсэн түүх">
