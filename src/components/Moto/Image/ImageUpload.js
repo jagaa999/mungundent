@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Card, Modal, Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 // https://github.com/nanxiaobei/antd-img-crop хаяг дээр байгаа.
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
-
 import axios from "axios";
+
+import MemberContext from "context/MemberContext";
 
 import {
   Image,
@@ -23,6 +24,8 @@ function getBase64(file) {
 }
 
 const UploadPictureMoto = (props) => {
+  const memberContext = useContext(MemberContext);
+
   const [state, setState] = useState({
     previewVisible: false,
     previewImage: "",
@@ -86,7 +89,7 @@ const UploadPictureMoto = (props) => {
   };
 
   const onChange = () => {
-    console.log("ЭНД ЮМ БОЛОВ УУ");
+    console.log("occur onChange");
   };
 
   const uploadToCloudinary = (e) => {
@@ -97,6 +100,10 @@ const UploadPictureMoto = (props) => {
     const formData = new FormData();
     formData.append("upload_preset", "moto-member");
     formData.append("file", myFile);
+    formData.append("folder", "members/" + memberContext.state.memberUID);
+    formData.append("tags", props.imageTags);
+    formData.append("context", props.imageTags);
+
     // setLoading(true);
 
     axios
@@ -157,7 +164,7 @@ const UploadPictureMoto = (props) => {
           onChange={onChange}
           onPreview={onPreview}
         >
-          {state.fileList.length < 8 && uploadButton}
+          {state.fileList.length < 1 && uploadButton}
         </Upload>
       </ImgCrop>
       <Modal

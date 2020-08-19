@@ -91,13 +91,13 @@ export const CommentListStore = (props) => {
   };
 
   const insertComment = (recordId, commentBody, tableName, parentId) => {
-    console.log(
-      "recordId, commentBody, tableName, parentId",
-      recordId,
-      commentBody,
-      tableName,
-      parentId
-    );
+    // console.log(
+    //   "recordId, commentBody, tableName, parentId",
+    //   recordId,
+    //   commentBody,
+    //   tableName,
+    //   parentId
+    // );
     if (recordId === undefined || commentBody === "") return null;
 
     // clearCommentList();
@@ -117,9 +117,6 @@ export const CommentListStore = (props) => {
         },
       },
     };
-
-    // setState({ ...state, loading: true });
-
     console.log("Insert Comment ------", myParamsInsertComment);
 
     axios

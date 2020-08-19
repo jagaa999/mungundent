@@ -118,6 +118,13 @@ const NewsForm = () => {
 
   const newsItem = newsDetailContext.state.newsDetail;
 
+  const [imageTags, setImageTags] = useState("");
+
+  const titleOnChange = (text) => {
+    // console.log("dsfdsfsd", text.target.value);
+    setImageTags(text.target.value);
+  };
+
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
   let myTempBody;
 
@@ -254,7 +261,11 @@ const NewsForm = () => {
             },
           ]}
         >
-          <TextArea placeholder="Гарчгаа бичнэ үү" autoSize />
+          <TextArea
+            placeholder="Гарчгаа бичнэ үү"
+            autoSize
+            onChange={titleOnChange}
+          />
         </Form.Item>
 
         <Form.Item
@@ -322,12 +333,13 @@ const NewsForm = () => {
 
         <Form.Item
           name="tempimages"
-          label="Зураг (8 зураг)"
+          label="Зураг"
           // rules={[{ required: true, message: "Зургаа заавал оруулна уу!" }]}
         >
           <ImageUpload
             normFile={normFileImages}
             newsImageMain={newsItem ? newsItem.imagemain : ""}
+            imageTags={imageTags}
           />
         </Form.Item>
 

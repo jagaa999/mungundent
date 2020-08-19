@@ -122,8 +122,53 @@ export const LogsStore = (props) => {
       });
   };
 
+  const insertLog = (values) => {
+    // console.log("insertLoginsertLog ---", values);
+
+    const myParamsSendError = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "motoMemberDV_LOG_002", //Log руу нэмэх
+        parameters: {
+          // id: "",
+          tableName: values.tableName || "Тодорхойгүй",
+          recordId: values.id || "",
+          actionName: values.actionName || "Тодорхойгүй",
+          // actionDate: "",
+          actionType: values.actionType || "",
+          description: values.description || "",
+          // memberId: "",
+          // userId: "",
+          // idString: "",
+          userSystemId: memberContext.state.memberCloudUserSysId,
+        },
+      },
+    };
+
+    // console.log("insertLog ------", myParamsSendError);
+
+    axios
+      .post("", myParamsSendError)
+      .then((response) => {
+        // console.log("LOG НЭМЭХ", response);
+        const myData = response.data.response;
+        // console.log("LOG НЭМЭХ myData", myData);
+        if (myData.status === "error") {
+          getError(myData.text);
+        } else {
+          message.success("Алдааг амжилттай илгээлээ. Баярлалаа.");
+        }
+      })
+      .catch((error) => {
+        // getError(error);
+        message.error(error.toString(), 7);
+        console.log("error LOG ", error);
+      });
+  };
+
   return (
-    <LogsContext.Provider value={{ state, loadLogs }}>
+    <LogsContext.Provider value={{ state, loadLogs, insertLog }}>
       {props.children}
     </LogsContext.Provider>
   );

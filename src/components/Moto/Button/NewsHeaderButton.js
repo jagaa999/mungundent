@@ -43,7 +43,7 @@ const NewsButtonPanel = (props) => {
   const memberItemsContext = useContext(MemberItemsContext);
   const newsItem = newsDetailContext.state.newsDetail;
 
-  const [showErrorReportModal, setShowErrorReportModal] = useState(true);
+  const [showErrorReportModal, setShowErrorReportModal] = useState(false);
 
   // console.log(newsItem);
   const actionSave = (actionname) => {
@@ -182,53 +182,37 @@ const NewsButtonPanel = (props) => {
   // console.log("props", props);
 
   return (
-    <>
-      {[
-        <Dropdown
-          key="member_action_button"
-          overlay={menuMemberActions}
-          placement="bottomRight"
-          trigger={["click"]}
-          arrow
-        >
-          <Button
-            style={{
-              position: "fixed",
-              right: "76px",
-              bottom: "20px",
-              zIndex: "5000",
-            }}
-          >
-            <UserOutlined />
-          </Button>
-        </Dropdown>,
-        <Dropdown
-          key="owner_action_button"
-          overlay={menuOwnerActions}
-          placement="bottomRight"
-          trigger={["click"]}
-          // visible="true"
-          arrow
-        >
-          <Button
-            type="primary"
-            style={{
-              position: "fixed",
-              right: "20px",
-              bottom: "20px",
-              zIndex: "5000",
-            }}
-          >
-            <SettingOutlined />
-          </Button>
-        </Dropdown>,
-        <ErrorReportModal
-          showErrorReportModal={showErrorReportModal}
-          setShowErrorReportModal={setShowErrorReportModal}
-          item={props.item}
-        />,
-      ]}
-    </>
+    <div className="moto-detail-buttons">
+      <Dropdown
+        key="member_action_button"
+        overlay={menuMemberActions}
+        placement="bottomRight"
+        trigger={["click"]}
+        arrow
+      >
+        <Button>
+          <UserOutlined />
+        </Button>
+      </Dropdown>
+      <Dropdown
+        key="owner_action_button"
+        overlay={menuOwnerActions}
+        placement="bottomRight"
+        trigger={["click"]}
+        // visible="true"
+        arrow
+      >
+        <Button type="primary">
+          <SettingOutlined />
+        </Button>
+      </Dropdown>
+
+      <ErrorReportModal
+        showErrorReportModal={showErrorReportModal}
+        setShowErrorReportModal={setShowErrorReportModal}
+        item={props.item}
+      />
+    </div>
   );
 };
 
