@@ -78,16 +78,22 @@ const NewsDetailHeader = (props) => {
       </h1>
       <div className="ant-row-flex">
         <Tooltip title="Төрөл">
-          <Badge
+          <span className="moto-label-main ant-tag">
+            {newsItem.newstypename}
+          </span>
+          {/* <Badge
             count={newsItem.newstypename}
             style={{ backgroundColor: "teal" }}
-          />
+          /> */}
         </Tooltip>
         <Tooltip title="Эх сурвалж">
-          <Badge
+          <span className="moto-label-main ant-tag">
+            {newsItem.newssourcename}
+          </span>
+          {/* <Badge
             count={newsItem.newssourcename}
             style={{ backgroundColor: "grey" }}
-          />
+          /> */}
         </Tooltip>
       </div>
 

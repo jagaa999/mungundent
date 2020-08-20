@@ -56,8 +56,8 @@ const NewsItem = ({ newsItem, grid }) => {
       key={newsItem.newsid}
       className={`gx-product-item  ${
         grid ? "gx-product-vertical" : "gx-product-horizontal"
-      } ${toBoolean(newsItem.isfeatured) ? "gx-badge-green-light" : ""} ${
-        !toBoolean(newsItem.isactive) ? "gx-badge-grey" : ""
+      } ${toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""} ${
+        !toBoolean(newsItem.isactive) ? "border-top" : ""
       }`}
     >
       <div className="gx-product-image">
@@ -86,16 +86,22 @@ const NewsItem = ({ newsItem, grid }) => {
 
         <div className="ant-row-flex">
           <Tooltip title="Төрөл">
-            <Badge
+            <span className="moto-label-main ant-tag">
+              {newsItem.newstypename}
+            </span>
+            {/* <Badge
               count={newsItem.newstypename}
               style={{ backgroundColor: "teal" }}
-            />
+            /> */}
           </Tooltip>
           <Tooltip title="Эх сурвалж">
-            <Badge
+            <span className="moto-label-main ant-tag">
+              {newsItem.newssourcename}
+            </span>
+            {/* <Badge
               count={newsItem.newssourcename}
               style={{ backgroundColor: "grey" }}
-            />
+            /> */}
           </Tooltip>
           <Tooltip title="Нийтэлсэн огноо">
             <span className="gx-text-grey gx-fs-sm gx-ml-2">

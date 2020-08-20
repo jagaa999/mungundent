@@ -3,7 +3,7 @@ import { Pagination } from "antd";
 import FilterContext from "context/FilterContext";
 import NewsListContext from "context/NewsListContext";
 
-const MotoPagination = () => {
+const MotoPagination = (props) => {
   const filterContext = useContext(FilterContext);
   const newsListContext = useContext(NewsListContext);
 
@@ -21,15 +21,15 @@ const MotoPagination = () => {
     newsListContext.state.paging
   );
 
-  const ddddd = (page, pageSize) => {
-    console.log("Энд fffffffffffff", page, pageSize);
-  };
+  console.log(props);
 
   return (
     <>
       {!newsListContext.state.loading ? (
         <Pagination
           size="small"
+          className={props.myClass}
+          simple={props.type}
           showSizeChanger
           hideOnSinglePage={true}
           pageSizeOptions={[10, 20, 50]}

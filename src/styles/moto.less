@@ -157,9 +157,38 @@ span.ant-page-header-heading-title {
   white-space: normal;
 }
 
+.ant-page-header {
+  padding: 0;
+
+  .ant-page-header-heading-title {
+    top: -7px;
+    position: relative;
+  }
+}
+
 .moto-detail-buttons {
   position: fixed;
   right: 20px;
   bottom: 20px;
   z-index: 5000;
+}
+
+.moto-card-sponsor {
+  border-top: 3px solid lighten(@green-color, 40%) !important;
+}
+
+.moto-card-draft {
+  border-top: 3px solid @grey-6 !important;
+}
+
+.moto-label-main {
+  border: 0 none !important;
+}
+
+.moto-item-card {
+  height: 100%;
+  margin-bottom: 10px;
+  .ant-card-meta-title {
+    white-space: normal;
+  }
 }

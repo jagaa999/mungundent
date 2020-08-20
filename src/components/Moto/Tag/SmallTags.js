@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Tag, Tooltip } from "antd";
+import { Card, Tag, Tooltip, Badge } from "antd";
 import {
   WarningTwoTone,
   SearchOutlined,
@@ -14,8 +14,12 @@ import {
   MinusCircleOutlined,
 } from "@ant-design/icons";
 
-export const ActiveTag = () => {
-  return (
+export const ActiveTag = (props) => {
+  return props.type === "dot" ? (
+    <Tooltip title="Ноорог">
+      <Badge status="warning" className="gx-mx-2" />
+    </Tooltip>
+  ) : (
     <Tag
       icon={<ExclamationCircleOutlined />}
       color="warning"
@@ -26,8 +30,12 @@ export const ActiveTag = () => {
   );
 };
 
-export const FeaturedTag = () => {
-  return (
+export const FeaturedTag = (props) => {
+  return props.type === "dot" ? (
+    <Tooltip title="Спонсор">
+      <Badge status="success" className="gx-mx-2" />
+    </Tooltip>
+  ) : (
     <Tag icon={<StarOutlined />} color="success" className="gx-mx-2">
       Спонсор
     </Tag>
