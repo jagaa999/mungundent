@@ -25,6 +25,7 @@ const FilterTag = () => {
   return (
     <div key="filtertage" className="gx-my-3">
       {/* <span className="gx-mr-3">Шүүлтүүрүүд</span> */}
+      {/* {console.log(newsFilterContext.state)} */}
       {Object.entries(newsFilterContext.state.filterList).map(function (
         item,
         i

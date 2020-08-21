@@ -16,7 +16,7 @@ const MotoSort = () => {
 
   const [selectedKeys, setSelectedKeys] = useState([
     filterContext.state.sorting.sortcolumnnames || "publisheddate",
-    "typelist",
+    filterContext.state.cardtype.cardtype || "typelist",
   ]);
   const [sortDirection, setSortDirection] = useState(
     filterContext.state.sorting.sorttype || "DESC"
@@ -24,6 +24,7 @@ const MotoSort = () => {
 
   useDidMountEffect(() => {
     //Анхны render дээр ажиллахгүй. https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
+    console.log("Sort-ийн useDidMountEffect ажиллаж байгаа эсэх??");
     filterContext.updateParams({
       sortcolumnnames: selectedKeys[0],
       sorttype: sortDirection,
@@ -34,26 +35,22 @@ const MotoSort = () => {
   const onChangeSort = (item) => {
     console.log(item);
     // if (item.key !== selectedKeys[0]) {
-    if (item.key === selectedKeys[0]) {
-      const tempStr = selectedKeys;
-      tempStr[0] = item.key;
-      console.log("tempStrtempStr", tempStr);
-      setSelectedKeys(tempStr);
+    if (item.key !== selectedKeys[0]) {
+      // console.log("tempStrtempStr", tempStr);
+      setSelectedKeys([item.key, selectedKeys[1]]);
     } else {
       console.log("ddddddddddd", sortDirection);
       const mySort = sortDirection === "DESC" ? "ASC" : "DESC";
+      console.log("mySort", mySort);
       setSortDirection(mySort);
     }
   };
 
   const onChangeType = (item) => {
-    console.log("keyPathkeyPath", item);
-    if (item.key === selectedKeys[1]) {
-      const tempStr = selectedKeys;
-      tempStr[1] = item.key;
-      console.log("tempStrtempStr", tempStr);
-      setSelectedKeys(tempStr);
-      // setSelectedKeys(item.keyPath));
+    console.log("keyPathkeyPath", item.key, " - ", selectedKeys[1]);
+    if (item.key !== selectedKeys[1]) {
+      // console.log("tempStrtempStr", tempStr);
+      setSelectedKeys([selectedKeys[0], item.key]);
     }
   };
 

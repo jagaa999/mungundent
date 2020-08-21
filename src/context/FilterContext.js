@@ -12,40 +12,64 @@ export const FilterStore = (props) => {
   const history = useHistory();
   const { search } = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
+
   // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
   const searchParams = parse(search);
-  let myFilterList = {};
-  let myPaging = {};
-  let mySorting = {};
-
-  Object.keys(searchParams).map((item) => {
-    if (item === "offset" || item === "pagesize") {
-      const myTempItem = {
-        [item]: searchParams[item],
-      };
-      myPaging = Object.assign(myPaging, myTempItem);
-    } else if (item === "sortcolumnnames" || item === "sorttype") {
-      const myTempItem = {
-        [item]: searchParams[item],
-      };
-      mySorting = Object.assign(mySorting, myTempItem);
-    } else {
-      const myTempItem = {
-        [item]: searchParams[item],
-      };
-      myFilterList = Object.assign(myFilterList, myTempItem);
-    }
-  });
-
-  const initialStateFilterList = {
-    filterList: myFilterList,
-    paging: myPaging,
-    sorting: mySorting,
+  const [state, setState] = useState({
+    filterList: {},
+    paging: {
+      offset: "1",
+      pagesize: "10",
+    },
+    sorting: {},
+    cardtype: {},
     loading: false,
     error: null,
-  };
+  });
 
-  const [state, setState] = useState(initialStateFilterList);
+  const [totalcount, setTotalcount] = useState("1");
+
+  useEffect(() => {
+    let myFilterList = {};
+    let myPaging = { offset: "1", pagesize: "10" };
+    let mySorting = {};
+    let myCardtype = {};
+
+    Object.keys(searchParams).map((item) => {
+      if (item === "offset" || item === "pagesize") {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        myPaging = Object.assign(myPaging, myTempItem);
+      } else if (item === "sortcolumnnames" || item === "sorttype") {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        mySorting = Object.assign(mySorting, myTempItem);
+      } else if (item === "cardtype") {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        myCardtype = Object.assign(myCardtype, myTempItem);
+      } else {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        myFilterList = Object.assign(myFilterList, myTempItem);
+      }
+    });
+
+    const initialStateFilterList = {
+      filterList: myFilterList,
+      paging: myPaging,
+      sorting: mySorting,
+      cardtype: myCardtype,
+      loading: false,
+      error: null,
+    };
+
+    setState(initialStateFilterList);
+  }, []);
 
   useEffect(() => {
     const mySearchQueryParams = [];
@@ -68,8 +92,14 @@ export const FilterStore = (props) => {
       }
     });
 
+    Object.keys(state.cardtype).map((item) => {
+      if (state.cardtype[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.cardtype[item]);
+      }
+    });
+
     setSearchQuery(mySearchQueryParams.join("&"));
-  }, [state.filterList, state.paging, state.sorting]);
+  }, [state.filterList, state.paging, state.sorting, state.cardtype]);
 
   useEffect(() => {
     history.push({
@@ -81,82 +111,82 @@ export const FilterStore = (props) => {
   const loadFilterList = () => {};
 
   const updateParams = (tempObject) => {
+    // console.log("FilterContext → updateParams", tempObject);
+
+    let myObject = { ...state };
+
     Object.entries(tempObject).map((item, i) => {
       const myKey = item[0]; //"newstypeid"
       const myValue = "" + item[1]; //"206"
 
+      // console.log(item);
+      // console.log(myKey, myValue);
+
       if (myKey === "offset" || myKey === "pagesize") {
         if (myValue !== "") {
-          setState({
-            ...state,
-            paging: {
-              ...state.paging,
-              ...tempObject,
-            },
-          });
+          myObject.paging = {
+            ...myObject.paging,
+            [myKey]: myValue,
+          };
         } else {
-          const myTemp = state.paging;
-          delete myTemp[myKey]; //Уг key-тэй хэсгийг устгана.
-          setState({
-            ...state,
-            paging: {
-              ...myTemp,
-            },
-          });
+          delete myObject.paging[myKey];
         }
       } else if (myKey === "sortcolumnnames" || myKey === "sorttype") {
         if (myValue !== "") {
-          setState({
-            ...state,
-            sorting: {
-              ...state.sorting,
-              ...tempObject,
-            },
-          });
+          myObject.sorting = {
+            ...myObject.sorting,
+            [myKey]: myValue,
+          };
         } else {
-          const myTemp = state.sorting;
-          delete myTemp[myKey]; //Уг key-тэй хэсгийг устгана.
-          setState({
-            ...state,
-            sorting: {
-              ...myTemp,
-            },
-          });
+          delete myObject.sorting[myKey];
+        }
+      } else if (myKey === "cardtype") {
+        if (myValue !== "") {
+          myObject.cardtype = {
+            ...myObject.cardtype,
+            [myKey]: myValue,
+          };
+        } else {
+          delete myObject.cardtype[myKey];
         }
       } else {
         if (myValue !== "") {
-          setState({
-            ...state,
-            filterList: {
-              ...state.filterList,
-              ...tempObject,
-            },
-            paging: {},
-            sorting: {},
-          });
+          myObject.filterList = {
+            ...myObject.filterList,
+            [myKey]: myValue,
+          };
+          myObject.paging = {};
         } else {
-          const myTemp = state.filterList;
-          delete myTemp[myKey]; //Уг key-тэй хэсгийг устгана.
-          setState({
-            ...state,
-            filterList: {
-              ...myTemp,
-            },
-            paging: {},
-            sorting: {},
-          });
+          delete myObject.filterList[myKey];
+          myObject.paging = {};
+          myObject.sorting = {};
         }
       }
     });
+
+    // console.log("myObject", myObject);
+
+    setState(myObject);
   };
 
   const clearAll = () => {
-    setState({ ...state, filterList: {}, paging: {} });
+    setState({ ...state, filterList: {}, paging: {}, sorting: {} });
+  };
+
+  const updateTotal = (totalcount) => {
+    setTotalcount(totalcount);
   };
 
   return (
     <FilterContext.Provider
-      value={{ state, loadFilterList, updateParams, clearAll }}
+      value={{
+        state,
+        totalcount,
+        loadFilterList,
+        updateParams,
+        clearAll,
+        updateTotal,
+      }}
     >
       {props.children}
     </FilterContext.Provider>

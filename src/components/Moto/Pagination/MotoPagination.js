@@ -12,16 +12,9 @@ const MotoPagination = (props) => {
   }
 
   const onChange = (page, pageSize) => {
-    console.log("Энд орж ирсэн", page, pageSize);
+    // console.log("Энд орж ирсэн", page, pageSize);
     filterContext.updateParams({ offset: "" + page, pagesize: "" + pageSize });
   };
-
-  console.log(
-    "newsListContext.state.pagingnewsListContext.state.paging",
-    newsListContext.state.paging
-  );
-
-  console.log(props);
 
   return (
     <>
@@ -36,9 +29,9 @@ const MotoPagination = (props) => {
           showTotal={showTotal}
           responsive={true}
           showLessItems={true}
-          current={newsListContext.state.paging.offset * 1}
-          pageSize={newsListContext.state.paging.pagesize * 1}
-          total={newsListContext.state.paging.totalcount * 1}
+          current={filterContext.state.paging.offset * 1}
+          pageSize={filterContext.state.paging.pagesize * 1}
+          total={filterContext.totalcount * 1}
           onChange={onChange}
         />
       ) : (

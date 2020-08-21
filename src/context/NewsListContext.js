@@ -15,12 +15,12 @@ export const NewsListStore = (props) => {
       systemmetagroupid: "1587197820548033",
       showquery: "0",
       paging: {
-        pagesize: filterContext.state.paging.pagesize || "10", //нийтлэлийн тоо
-        offset: filterContext.state.paging.offset || "1", //хуудасны дугаар
+        pagesize: filterContext.state.paging?.pagesize || "10", //нийтлэлийн тоо
+        offset: filterContext.state.paging?.offset || "1", //хуудасны дугаар
         sortcolumnnames: {
-          [filterContext.state.sorting.sortcolumnnames || "publisheddate"]: {
+          [filterContext.state.sorting?.sortcolumnnames || "publisheddate"]: {
             //эрэмбэлэх талбар
-            sorttype: filterContext.state.sorting.sorttype || "DESC", //эрэмбэлэх чиглэл
+            sorttype: filterContext.state.sorting?.sorttype || "DESC", //эрэмбэлэх чиглэл
           },
         },
       },
@@ -44,14 +44,8 @@ export const NewsListStore = (props) => {
       // },
     },
     newsList: [],
-    paging: {
-      offset: 1,
-      pagesize: 10,
-      totalcount: 1,
-    },
     loading: false,
     error: null,
-    // searchParams1: {},
   };
 
   const [state, setState] = useState(initialStateNewsList);
@@ -62,6 +56,7 @@ export const NewsListStore = (props) => {
     filterContext.state.filterList,
     filterContext.state.paging,
     filterContext.state.sorting,
+    filterContext.state.cardtype,
   ]);
 
   const loadNewsList = (queryString) => {
@@ -137,12 +132,9 @@ export const NewsListStore = (props) => {
           ...myNewParam,
           loading: false,
           newsList: Object.values(myArray),
-          paging: {
-            offset: myPaging.offset,
-            pagesize: myPaging.pagesize,
-            totalcount: myPaging.totalcount,
-          },
         });
+
+        filterContext.updateTotal(myPaging.totalcount);
       })
       .catch((error) => {
         setState({ ...state, loading: false, error });
