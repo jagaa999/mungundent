@@ -15,24 +15,30 @@ const MotoSort = () => {
   const newsListContext = useContext(NewsListContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
-    "publisheddate",
+    filterContext.state.sorting.sortcolumnnames || "publisheddate",
     "typelist",
   ]);
-  const [sortDirection, setSortDirection] = useState("DESC");
+  const [sortDirection, setSortDirection] = useState(
+    filterContext.state.sorting.sorttype || "DESC"
+  );
 
   useDidMountEffect(() => {
     //Анхны render дээр ажиллахгүй. https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
     filterContext.updateParams({
       sortcolumnnames: selectedKeys[0],
       sorttype: sortDirection,
+      cardtype: selectedKeys[1],
     });
   }, [selectedKeys, sortDirection]);
 
   const onChangeSort = (item) => {
     console.log(item);
     // if (item.key !== selectedKeys[0]) {
-    if (selectedKeys.indexOf(item.key) === -1) {
-      setSelectedKeys(item.keyPath);
+    if (item.key === selectedKeys[0]) {
+      const tempStr = selectedKeys;
+      tempStr[0] = item.key;
+      console.log("tempStrtempStr", tempStr);
+      setSelectedKeys(tempStr);
     } else {
       console.log("ddddddddddd", sortDirection);
       const mySort = sortDirection === "DESC" ? "ASC" : "DESC";
@@ -42,13 +48,19 @@ const MotoSort = () => {
 
   const onChangeType = (item) => {
     console.log("keyPathkeyPath", item);
-    selectedKeys.indexOf(item.key) === -1 && setSelectedKeys(item.keyPath);
+    if (item.key === selectedKeys[1]) {
+      const tempStr = selectedKeys;
+      tempStr[1] = item.key;
+      console.log("tempStrtempStr", tempStr);
+      setSelectedKeys(tempStr);
+      // setSelectedKeys(item.keyPath));
+    }
   };
 
   const Sort = (props) => {
     // if (props.ddd === selectedKeys[0]) {
     if (selectedKeys.indexOf(props.ddd) > -1) {
-      if (sortDirection === "desc") {
+      if (sortDirection === "DESC") {
         return <CaretDownOutlined className="gx-ml-auto gx-pl-3" />;
       } else {
         return <CaretUpOutlined className="gx-ml-auto gx-pl-3" />;
