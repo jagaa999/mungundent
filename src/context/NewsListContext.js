@@ -101,11 +101,8 @@ export const NewsListStore = (props) => {
       loading: true,
     };
 
-    // console.log("myNewParammyNewParammyNewParam", myNewParam);
-
     const myParamsNewsList = {
       request: {
-        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
@@ -113,17 +110,11 @@ export const NewsListStore = (props) => {
       },
     };
 
-    // console.log("myParamsNewsListmyParamsNewsList", myParamsNewsList);
-
     axios
       .post("", myParamsNewsList)
       .then((response) => {
-        // console.log("loadNewsList after", response);
-
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
-
-        // console.log("loadNewsList after myPaging", myPaging);
 
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
