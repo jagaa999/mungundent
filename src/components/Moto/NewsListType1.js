@@ -4,6 +4,7 @@ import { useParams, useLocation, useHistory } from "react-router-dom";
 import { Col, Row, Button, Affix } from "antd";
 
 import NewsListItem from "components/Moto/NewsListItem";
+import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";
 import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
@@ -19,33 +20,15 @@ const NewsListType1 = () => {
 
   return (
     <div>
-      <div className="gx-flex-row gx-justify-content-between gx-align-items-center">
-        <div className="">
-          <FilterTag />
-        </div>
-        <div>
-          <Button
-            type="primary"
-            size="large"
-            htmlType="submit"
-            icon={<PlusOutlined />}
-            onClick={() => {
-              history.push({
-                pathname: "/news/insert",
-              });
-            }}
-          >
-            Нэмэх
-          </Button>
-        </div>
+      <div className="">
+        <FilterTag />
       </div>
 
       {!newsListContext.state.loading ? (
         <div className="gx-main-content">
-          <MotoPagination />
-          <MotoSort />
+          <NewsListIActionHeader title="Нийтлэл" />
 
-          <Row>
+          <Row className="gx-d-flex">
             {newsListContext.state.newsList.map((el, index) => {
               const newsItem = el;
               // const myMainImage = el.imagemain
@@ -60,9 +43,7 @@ const NewsListType1 = () => {
               );
             })}
           </Row>
-
           <MotoPagination />
-
           <FilterDrawer />
         </div>
       ) : (

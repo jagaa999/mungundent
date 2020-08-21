@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 
 // import NewsListItem from "components/Moto/NewsListItem";
-import NewsListItem2 from "./NewsListItem2";
+import NewsListItem3 from "./NewsListItem3";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";
@@ -39,6 +39,15 @@ const NewsListType2 = () => {
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">
+            <Col key="dffdf" xs={24}>
+              <NewsListItem3
+                key="dfdfd"
+                newsItems={newsListContext.state.newsList}
+              />
+            </Col>
+          </Row>
+
+          {/* <Row className="gx-d-flex">
             {newsListContext.state.newsList.map((el, index) => {
               const newsItem = el;
               newsItem.imageMain = el.imagemain;
@@ -51,11 +60,11 @@ const NewsListType2 = () => {
                   xs={24}
                   className="gx-mb-5"
                 >
-                  <NewsListItem2 key={index} newsItem={newsItem} />
+                  <NewsListItem3 key={index} newsItem={newsItem} />
                 </Col>
               );
             })}
-          </Row>
+          </Row> */}
           <MotoPagination />
           <FilterDrawer />
         </div>

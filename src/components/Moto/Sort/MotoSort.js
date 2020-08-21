@@ -84,6 +84,9 @@ const MotoSort = () => {
         <Menu.Item key="typecard" onClick={onChangeType}>
           Карт
         </Menu.Item>
+        <Menu.Item key="typetable" onClick={onChangeType}>
+          Хүснэгт
+        </Menu.Item>
       </Menu.ItemGroup>
     </Menu>
   );

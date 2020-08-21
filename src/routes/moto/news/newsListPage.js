@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import FilterContext from "context/FilterContext";
 import NewsListType1 from "components/Moto/NewsListType1";
 import NewsListType2 from "components/Moto/NewsListType2";
+import NewsListType3 from "components/Moto/NewsListType3";
 
 const NewsListPage = () => {
-  // return <NewsListType1 />;
-  return <NewsListType2 />;
+  const filterContext = useContext(FilterContext);
+
+  // filterContext.state.cardtype = "typecard, typelist";
+
+  if (filterContext.state.cardtype.cardtype === "typelist") {
+    return <NewsListType1 />;
+  } else if (filterContext.state.cardtype.cardtype === "typetable") {
+    return <NewsListType3 />;
+  } else {
+    return <NewsListType2 />;
+  }
 };
 
 export default NewsListPage;
