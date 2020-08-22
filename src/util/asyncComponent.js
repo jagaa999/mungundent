@@ -36,6 +36,7 @@ export default function asyncComponent(importComponent) {
 
     render() {
       const Component = this.state.component || <CircularProgress />;
+      // const Component = <CircularProgress />;
       return (
         <ReactPlaceholder type="text" rows={7} ready={Component !== null}>
           {Component}
