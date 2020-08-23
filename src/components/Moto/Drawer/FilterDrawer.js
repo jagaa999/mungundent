@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Drawer, Radio, Space, Row, Col, Affix } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
-import NewsFilter from "components/Moto/Drawer/NewsFilter";
+import NewsFilter from "./NewsFilter";
 
 const FilterDrawer = () => {
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
@@ -14,7 +14,7 @@ const FilterDrawer = () => {
     <div>
       <Drawer
         title="Шүүлтүүр"
-        width="640"
+        width="710"
         placement="left"
         closable={true}
         visible={isFilterDrawerOpen}
