@@ -112,7 +112,25 @@ const NewsItem = ({ newsItems }) => {
       title: "Гарчиг",
       dataIndex: "title",
       key: "title",
-      render: (text) => <a>{text}</a>,
+      render: (title, record) => (
+        <>
+          <Link to={"/news/" + record.newsid}>{title}</Link>
+          {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
+          {!toBoolean(record.isactive) && <ActiveTag type="dot" />}
+          <div className="gx-d-flex">
+            <Tooltip title="Төрөл">
+              <span className="moto-label-main ant-tag">
+                {record.newstypename}
+              </span>
+            </Tooltip>
+            <Tooltip title="Эх сурвалж">
+              <span className="moto-label-main ant-tag">
+                {record.newssourcename}
+              </span>
+            </Tooltip>
+          </div>
+        </>
+      ),
     },
     {
       title: "Нийтлэгч",

@@ -47,29 +47,11 @@ const NewsListType2 = () => {
             </Col>
           </Row>
 
-          {/* <Row className="gx-d-flex">
-            {newsListContext.state.newsList.map((el, index) => {
-              const newsItem = el;
-              newsItem.imageMain = el.imagemain;
-              return (
-                <Col
-                  key={index}
-                  xl={6}
-                  md={8}
-                  sm={12}
-                  xs={24}
-                  className="gx-mb-5"
-                >
-                  <NewsListItem3 key={index} newsItem={newsItem} />
-                </Col>
-              );
-            })}
-          </Row> */}
-          <MotoPagination />
+          <MotoPagination myClass="gx-mt-2" />
           <FilterDrawer />
         </div>
       ) : (
-        <LoadingList type="card" />
+        <LoadingList type="table" />
       )}
     </div>
   );

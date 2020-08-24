@@ -3,15 +3,15 @@ import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import { Col, Row, Button, Affix } from "antd";
 
-import NewsListItem from "components/Moto/NewsListItem";
+import NewsListItem from "./NewsListItem";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";
-import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
-import FilterTag from "components/Moto/Tag/FilterTag";
-import MotoPagination from "components/Moto/Pagination/MotoPagination";
+import FilterDrawer from "./Drawer/FilterDrawer";
+import FilterTag from "./Tag/FilterTag";
+import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
-import LoadingList from "components/Moto/Loading/LoadingList";
+import LoadingList from "./Loading/LoadingList";
 import { PlusOutlined } from "@ant-design/icons";
 
 const NewsListType1 = () => {
