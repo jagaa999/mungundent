@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Drawer, Radio, Space, Row, Col, Affix } from "antd";
+import { Button, Drawer, Radio, Space, Row, Col, Affix, Tooltip } from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
 import NewsFilter from "./NewsFilter";
 
@@ -14,7 +14,7 @@ const FilterDrawer = () => {
     <div>
       <Drawer
         title="Шүүлтүүр"
-        width="710"
+        width="350"
         placement="left"
         closable={true}
         visible={isFilterDrawerOpen}
@@ -23,11 +23,13 @@ const FilterDrawer = () => {
         <NewsFilter />
       </Drawer>
 
-      <div className="gx-customizer-option" style={{ top: "250px" }}>
-        <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
-          <i className="icon icon-filter gx-d-block moto-animation-away" />
-        </Button>
-      </div>
+      <Tooltip title="Шүүлтүүр">
+        <div className="moto-filter-button" style={{ top: "250px" }}>
+          <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
+            <i className="icon icon-filter gx-d-block moto-animation-away" />
+          </Button>
+        </div>
+      </Tooltip>
     </div>
   );
 };

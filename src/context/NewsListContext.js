@@ -3,6 +3,7 @@ import { parse } from "query-string";
 import axios from "util/axiosConfig";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
+import useDidMountEffect from "util/useDidMountEffect";
 
 const NewsListContext = React.createContext();
 
@@ -50,7 +51,8 @@ export const NewsListStore = (props) => {
 
   const [state, setState] = useState(initialStateNewsList);
 
-  useEffect(() => {
+  useDidMountEffect(() => {
+    // useEffect(() => {
     loadNewsList();
   }, [
     filterContext.state.filterList,

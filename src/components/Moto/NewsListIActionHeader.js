@@ -21,6 +21,7 @@ import {
   EllipsisOutlined,
 } from "@ant-design/icons";
 
+import FilterContext from "context/FilterContext";
 import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "./Sort/MotoSort";
 const { Paragraph } = Typography;
@@ -33,12 +34,13 @@ const IconLink = ({ src, text }) => (
 );
 
 const NewsListIActionHeader = (props) => {
+  const filterContext = useContext(FilterContext);
   const history = useHistory();
 
   return (
     <>
       <PageHeader
-        title={props.title}
+        title={`${props.title} (${filterContext.totalcount})`}
         extra={[
           <MotoPagination type={"simple"} myClass="gx-float-left" />,
           <MotoSort />,

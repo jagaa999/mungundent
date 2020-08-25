@@ -175,6 +175,14 @@ export const FilterStore = (props) => {
 
   const updateTotal = (totalcount) => {
     setTotalcount(totalcount);
+
+    // setState({
+    //   ...state,
+    //   // paging: {
+    //   //   offset: "3",
+    //   //   pagesize: "10",
+    //   // },
+    // });
   };
 
   return (

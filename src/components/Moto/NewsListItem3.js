@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
-import Moment from "moment";
+import moment from "moment";
+import "moment/locale/mn";
 import {
   Button,
   Badge,
@@ -30,6 +31,8 @@ import NewsDetailMore from "components/Moto/newsDetailMore";
 const { Meta } = Card;
 
 const NewsItem = ({ newsItems }) => {
+  moment.locale("mn");
+
   console.log("newsItemsnewsItems", newsItems);
   // const [showModal, setShowModal] = useState(false);
   // const [showMore, setShowMore] = useState(false);
@@ -146,9 +149,7 @@ const NewsItem = ({ newsItems }) => {
       title: "Огноо",
       dataIndex: "publisheddate",
       key: "publisheddate",
-      render: (publisheddate) => (
-        Moment(publisheddate, "DD MM YYYY"), publisheddate
-      ),
+      render: (publisheddate) => moment(publisheddate).fromNow(),
     },
   ];
 

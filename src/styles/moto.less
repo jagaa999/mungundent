@@ -239,7 +239,6 @@ span.ant-page-header-heading-title {
 #no-freeze-spinner div div {
   animation-play-state: running;
 }
-
 @keyframes loadicons {
   0% {
     transform: scale(0) translate3d(0, 0, 0);
@@ -273,6 +272,7 @@ span.ant-page-header-heading-title {
   line-height: 1;
   transform: scale(0) translate3d(0, 0, 0);
 }
+
 #no-freeze-spinner i:nth-of-type(1) {
   animation: loadicons 5s infinite ease-in-out;
 }
@@ -287,4 +287,44 @@ span.ant-page-header-heading-title {
 }
 #no-freeze-spinner i:nth-of-type(5) {
   animation: loadicons 5s 4s infinite ease-in-out;
+}
+.moto-filter-button & {
+  position: absolute;
+  left: 0;
+  top: 150px;
+  z-index: 99;
+  .full-scroll & {
+    position: fixed;
+  }
+  .full-scroll.boxed-layout & {
+    position: absolute;
+  }
+  .full-scroll.framed-layout & {
+    right: 20px;
+    @media screen and (max-width: @screen-md-max) {
+      right: 0;
+    }
+  }
+  .horizontal-layout.full-scroll & {
+    top: 200px;
+  }
+}
+.ant-btn {
+  .moto-filter-button & {
+    padding: 0 @padding-md + 2px;
+    font-size: @font-size-lg + 2px;
+    height: @btn-height-lg + 2px;
+    line-height: @btn-height-lg + 2px;
+    margin: 0;
+    .box-shadow(@gx-card-shadow-md);
+    .border-radius( 0 30px 30px 0);
+    border: 0 none;
+    color: @white-color;
+    & .icon:before {
+      display: block;
+    }
+  }
+  .horizontal-layout.full-scroll .moto-filter-button & {
+    margin-right: 0;
+  }
 }

@@ -66,7 +66,7 @@ import MemberCard02 from "./MemberCard02";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import NewsDetailContext from "context/NewsDetailContext";
 
-const { Option } = Select;
+const { Option, OptGroup } = Select;
 const { TextArea } = Input;
 
 const formItemLayout = {
@@ -168,6 +168,13 @@ const NewsForm = () => {
     setNewsType({
       newsTypes: await loadDataview({
         systemmetagroupid: "1587100905303413",
+        paging: {
+          sortColumnNames: {
+            newstypeid: {
+              sortType: "ASC", //эрэмбэлэх чиглэл
+            },
+          },
+        },
       }),
       loading: false,
     });
@@ -209,6 +216,15 @@ const NewsForm = () => {
     setMyImages(e);
     return e;
   };
+
+  let myNewsType = newsType.newsTypes;
+  myNewsType.map((item, index) => {
+    if (item.newstypeid < 199) {
+      myNewsType[index].optgroup = "Мэдээ";
+    } else {
+      myNewsType[index].optgroup = "Нийтлэл";
+    }
+  });
 
   return (
     <Card
@@ -282,17 +298,37 @@ const NewsForm = () => {
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            filterOption={(input, option) =>
-              option.props.children
-                .toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0
-            }
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                );
+              } else {
+                return false;
+              }
+            }}
           >
-            {newsType.newsTypes.map((item) => (
-              <Option key={item.newstypeid} value={item.newstypeid}>
-                {item.newstypename}
-              </Option>
-            ))}
+            {myNewsType
+              .filter(
+                (v, i, a) => a.findIndex((t) => t.optgroup === v.optgroup) === i
+              )
+              .map((item, index) => (
+                <OptGroup label={item.optgroup} key={index}>
+                  {myNewsType.map((option) => {
+                    if (item.optgroup === option.optgroup) {
+                      return (
+                        <Option
+                          key={option.newstypeid}
+                          value={option.newstypeid}
+                        >
+                          {option.newstypename}
+                        </Option>
+                      );
+                    }
+                  })}
+                </OptGroup>
+              ))}
           </Select>
         </Form.Item>
 
@@ -309,18 +345,45 @@ const NewsForm = () => {
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            filterOption={(input, option) =>
-              option.props.children
-                .toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0
-            }
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                );
+              } else {
+                return false;
+              }
+            }}
           >
-            {newsSource.newsSources.map((item) => (
+            {/* {newsSource.newsSources.map((item) => (
               <Option key={item.newssourceid} value={item.newssourceid}>
                 {item.newssourcename}
               </Option>
-            ))}
-            {/* // ! Цаашдаа newssourcetype -аар group-лэх хэрэгтэй. */}
+            ))} */}
+
+            {newsSource.newsSources
+              .filter(
+                (v, i, a) =>
+                  a.findIndex((t) => t.newssourcetype === v.newssourcetype) ===
+                  i
+              )
+              .map((item, index) => (
+                <OptGroup label={item.newssourcetype} key={index}>
+                  {newsSource.newsSources.map((option) => {
+                    if (item.newssourcetype === option.newssourcetype) {
+                      return (
+                        <Option
+                          key={option.newssourceid}
+                          value={option.newssourceid}
+                        >
+                          {option.newssourcename}
+                        </Option>
+                      );
+                    }
+                  })}
+                </OptGroup>
+              ))}
           </Select>
         </Form.Item>
 

@@ -74,6 +74,7 @@ Version        : 1.0
         09. Algolia Styles
 
   =============================================================*/
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 [class^=ant-]::-ms-clear,
 [class*= ant-]::-ms-clear,
 [class^=ant-] input::-ms-clear,
@@ -31560,11 +31561,11 @@ h6,
   color: #038fdd;
 }
 .ant-drawer-content-wrapper {
-  width: 280px !important;
+  width: 280px;
 }
 @media screen and (max-width: 991px) {
   .ant-drawer-content-wrapper {
-    width: 260px !important;
+    width: 260px;
   }
 }
 .framed-layout .ant-drawer-content-wrapper {
@@ -39792,10 +39793,205 @@ li.gx-user-nav .gx-avatar {
     max-width: 50%;
   }
 }
-@media screen and (max-width: 575px) {
-  .ant-form .ant-form-item .ant-form-item-label,
-  .ant-form .ant-form-item .ant-form-item-control {
-    flex: auto;
-    max-width: 100%;
+.news-detail h1 {
+  font-size: 2em;
+  font-weight: 500;
+}
+@media screen and (min-width: 768px) {
+  .news-detail h1 {
+    font-size: 2.5em;
   }
+}
+.ant-form-hidden {
+  display: none;
+}
+.gx-thumb-cover-img,
+.gx-grid-thumb-cover img {
+  height: inherit;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.gx-product-horizontal .gx-product-image {
+  position: relative;
+}
+.gx-product-horizontal .gx-product-image .ant-avatar {
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+}
+@media screen and (max-width: 1199px) {
+  .gx-product-horizontal .gx-product-body {
+    width: 66.66667%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .gx-product-horizontal .gx-product-body {
+    width: 100%;
+  }
+}
+span.ant-page-header-heading-title {
+  white-space: normal;
+}
+.ant-page-header {
+  padding: 0;
+}
+.ant-page-header .ant-page-header-heading-title {
+  top: -7px;
+  position: relative;
+}
+.moto-detail-buttons {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 5000;
+}
+.moto-card-sponsor {
+  border-top: 3px solid #caf5b5 !important;
+}
+.moto-card-draft {
+  border-top: 3px solid #bfbfbf !important;
+}
+.moto-label-main {
+  border: 0 none !important;
+}
+.moto-item-card {
+  height: 100%;
+  margin-bottom: 10px;
+}
+.moto-item-card .ant-card-meta-title {
+  white-space: normal;
+}
+#no-freeze-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: all 0.1s linear;
+  opacity: 0;
+  height: 100vh;
+  transform: scale(10);
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.1);
+}
+#no-freeze-spinner {
+  z-index: 9999;
+  opacity: 0.8;
+  transform: scale(1);
+}
+#no-freeze-spinner > div > div {
+  animation-play-state: paused;
+  border: 5px solid #c8c8c8;
+  border-radius: 50%;
+  animation: rotate 1s infinite linear;
+  border-left-color: rgba(200, 200, 200, 0.4);
+  width: 100%;
+  height: 100%;
+}
+#no-freeze-spinner > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  height: 150px;
+  padding: 5px;
+}
+#no-freeze-spinner div div {
+  animation-play-state: running;
+}
+@keyframes loadicons {
+  0% {
+    transform: scale(0) translate3d(0, 0, 0);
+  }
+  11% {
+    transform: scale(1.2) translate3d(0, 0, 0);
+  }
+  22% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  33% {
+    transform: scale(0) translate3d(0, 0, 0);
+  }
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#no-freeze-spinner i {
+  font-size: 48px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  color: #f1f1f1;
+  width: 48px;
+  height: 48px;
+  line-height: 1;
+  transform: scale(0) translate3d(0, 0, 0);
+}
+#no-freeze-spinner i:nth-of-type(1) {
+  animation: loadicons 5s infinite ease-in-out;
+}
+#no-freeze-spinner i:nth-of-type(2) {
+  animation: loadicons 5s 1s infinite ease-in-out;
+}
+#no-freeze-spinner i:nth-of-type(3) {
+  animation: loadicons 5s 2s infinite ease-in-out;
+}
+#no-freeze-spinner i:nth-of-type(4) {
+  animation: loadicons 5s 3s infinite ease-in-out;
+}
+#no-freeze-spinner i:nth-of-type(5) {
+  animation: loadicons 5s 4s infinite ease-in-out;
+}
+.moto-filter-button  {
+  position: absolute;
+  left: 0;
+  top: 150px;
+  z-index: 99;
+}
+.full-scroll .moto-filter-button  {
+  position: fixed;
+}
+.full-scroll.boxed-layout .moto-filter-button  {
+  position: absolute;
+}
+.full-scroll.framed-layout .moto-filter-button  {
+  right: 20px;
+}
+@media screen and (max-width: 991px) {
+  .full-scroll.framed-layout .moto-filter-button  {
+    right: 0;
+  }
+}
+.horizontal-layout.full-scroll .moto-filter-button  {
+  top: 200px;
+}
+.moto-filter-button .ant-btn {
+  padding: 0 18px;
+  font-size: 18px;
+  height: 42px;
+  line-height: 42px;
+  margin: 0;
+  -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 0 30px 30px 0;
+  -moz-border-radius: 0 30px 30px 0;
+  border-radius: 0 30px 30px 0;
+  border: 0 none;
+  color: #ffffff;
+}
+.moto-filter-button .ant-btn .icon:before {
+  display: block;
+}
+.horizontal-layout.full-scroll .moto-filter-button .ant-btn {
+  margin-right: 0;
 }

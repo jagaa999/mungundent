@@ -67,6 +67,7 @@ export function loadDataview(props) {
     ? props.systemmetagroupid
     : "";
   myParams.request.parameters.criteria = props ? props.criteria : {};
+  myParams.request.parameters.paging = props ? props.paging : {};
   return axios
     .post("", myParams)
     .then((response) => {

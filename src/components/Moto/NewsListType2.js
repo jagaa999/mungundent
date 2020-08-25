@@ -16,10 +16,10 @@ import NewsListItem2 from "./NewsListItem2";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";
-import FilterDrawer from "components/Moto/Drawer/FilterDrawer";
-import FilterTag from "components/Moto/Tag/FilterTag";
-import MotoPagination from "components/Moto/Pagination/MotoPagination";
-import MotoSort from "components/Moto/Sort/MotoSort";
+import FilterDrawer from "./Drawer/FilterDrawer";
+import FilterTag from "./Tag/FilterTag";
+import MotoPagination from "./Pagination/MotoPagination";
+import MotoSort from "./Sort/MotoSort";
 import LoadingList from "./Loading/LoadingList";
 
 const { Meta } = Card;

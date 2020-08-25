@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
+import moment from "moment";
+import "moment/locale/mn";
+
 import {
   Button,
   Badge,
@@ -26,6 +29,7 @@ import NewsDetailMore from "components/Moto/newsDetailMore";
 const { Meta } = Card;
 
 const NewsItem = ({ newsItem, grid }) => {
+  moment.locale("mn");
   const [showModal, setShowModal] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
@@ -75,7 +79,8 @@ const NewsItem = ({ newsItem, grid }) => {
           <>
             <Tooltip title="Нийтэлсэн огноо">
               <span className="gx-text-grey gx-fs-sm gx-ml-2">
-                {newsItem.publisheddate}
+                {/* {newsItem.publisheddate} */}
+                {moment(newsItem.publisheddate).fromNow()}
               </span>
             </Tooltip>
             <div className="gx-d-flex">

@@ -26,7 +26,7 @@ const { Search } = Input;
 
 const NewsFilter = (props) => {
   const newsListContext = useContext(NewsListContext);
-  const newsFilterContext = useContext(FilterContext);
+  const filterContext = useContext(FilterContext);
 
   const [newsType, setNewsType] = useState([]);
   const [newsSource, setNewsSource] = useState([]);
@@ -75,7 +75,7 @@ const NewsFilter = (props) => {
     };
 
     // console.log("tempObjecttempObject", tempObject);
-    newsFilterContext.updateParams(tempObject);
+    filterContext.updateParams(tempObject);
   };
 
   return (
@@ -97,9 +97,7 @@ const NewsFilter = (props) => {
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "newstypeid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
-              defaultValue={[
-                newsFilterContext.state.filterList?.newstypeid || "",
-              ]}
+              defaultValue={[filterContext.state.filterList?.newstypeid || ""]}
             >
               {newsType.map((item) => (
                 <Checkbox
@@ -127,7 +125,7 @@ const NewsFilter = (props) => {
               onChange={(e) => prepareURL(e, "newssourceid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
               defaultValue={[
-                newsFilterContext.state.filterList?.newssourceid || "",
+                filterContext.state.filterList?.newssourceid || "",
               ]}
             >
               {newsSource.map((item) => (
@@ -152,9 +150,7 @@ const NewsFilter = (props) => {
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "publisherid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
-              defaultValue={[
-                newsFilterContext.state.filterList?.publisherid || "",
-              ]}
+              defaultValue={[filterContext.state.filterList?.publisherid || ""]}
             >
               {newsPublisher.map((item) => (
                 <Checkbox value={item.publisherid} key={item.publisherid}>
@@ -171,7 +167,7 @@ const NewsFilter = (props) => {
         {/* <MotoCheckBox title="Нийтлэлийн төрөл" /> */}
         {/* <MotoCheckBox title="Нийтлэгч" /> */}
 
-        {isEmpty(newsFilterContext.state.filterList) ? (
+        {isEmpty(filterContext.state.filterList) ? (
           <></>
         ) : (
           <>
@@ -180,7 +176,7 @@ const NewsFilter = (props) => {
               type="dashed"
               icon={<ClearOutlined />}
               onClick={(e) => {
-                newsFilterContext.clearAll();
+                filterContext.clearAll();
               }}
             >
               Арилгах
