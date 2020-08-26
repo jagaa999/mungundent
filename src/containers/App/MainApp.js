@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 
 import Sidebar from "../Sidebar/index";
@@ -7,6 +8,8 @@ import HorizontalDark from "../Topbar/HorizontalDark/index";
 import MotoHeader from "containers/Topbar/MotoHeader/MotoHeader";
 import AboveHeader from "../Topbar/AboveHeader/index";
 import BelowHeader from "../Topbar/BelowHeader/index";
+
+import asyncComponent from "util/asyncComponent";
 
 import Topbar from "../Topbar/index";
 import { footerText } from "util/config";
@@ -33,6 +36,10 @@ import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
 const { Content, Footer } = Layout;
+
+const KiaK5Detail = asyncComponent(() => {
+  return import("content/kia/k5/index");
+});
 
 const MainApp = () => {
   const memberContext = useContext(MemberContext);
@@ -87,25 +94,34 @@ const MainApp = () => {
   // console.log("=======>  ", navStyle);
 
   return (
-    <Layout className="gx-app-layout">
-      {getSidebar(navStyle, width)}
-      <Layout>
-        {/* {getNavStyles(navStyle)} */}
-
+    <Switch>
+      <Route path={["/kia/k5", "/kia/optima"]}>
         <MotoHeader />
+        <KiaK5Detail />
+      </Route>
 
-        <Content
-          className={`gx-layout-content ${getContainerClass(navStyle)} `}
-        >
-          {/* {console.log("dddddddddddd")} */}
-          <MotoIndex match={match} />
-          <Footer>
-            <div className="gx-layout-footer-content">{footerText}</div>
-          </Footer>
-        </Content>
-        <Customizer />
-      </Layout>
-    </Layout>
+      <Route>
+        <Layout className="gx-app-layout">
+          {getSidebar(navStyle, width)}
+          <Layout>
+            {/* {getNavStyles(navStyle)} */}
+
+            <MotoHeader />
+
+            <Content
+              className={`gx-layout-content ${getContainerClass(navStyle)} `}
+            >
+              {/* {console.log("dddddddddddd")} */}
+              <MotoIndex match={match} />
+              <Footer>
+                <div className="gx-layout-footer-content">{footerText}</div>
+              </Footer>
+            </Content>
+            <Customizer />
+          </Layout>
+        </Layout>
+      </Route>
+    </Switch>
   );
 };
 

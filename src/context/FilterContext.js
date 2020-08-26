@@ -155,10 +155,13 @@ export const FilterStore = (props) => {
             ...myObject.filterList,
             [myKey]: myValue,
           };
-          myObject.paging = {};
+          myObject.paging = {
+            offset: "1",
+            pagesize: "10",
+          };
         } else {
           delete myObject.filterList[myKey];
-          myObject.paging = {};
+          myObject.paging = { offset: "1", pagesize: "10" };
           myObject.sorting = {};
         }
       }
