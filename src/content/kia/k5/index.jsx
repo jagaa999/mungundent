@@ -6,18 +6,29 @@ import { enquireScreen } from 'enquire-js';
 import Banner2 from './Banner2';
 import Content13 from './Content13';
 import Feature3 from './Feature3';
+import Feature6 from './Feature6';
 import Feature2 from './Feature2';
 import Feature1 from './Feature1';
+import Feature5 from './Feature5';
+import Feature0 from './Feature0';
+import Feature4 from './Feature4';
+import Banner1 from './Banner1';
 import Teams0 from './Teams0';
 
 import {
   Banner20DataSource,
   Content130DataSource,
   Feature30DataSource,
+  Feature61DataSource,
   Feature20DataSource,
   Feature10DataSource,
   Feature21DataSource,
   Content131DataSource,
+  Feature50DataSource,
+  Feature00DataSource,
+  Feature40DataSource,
+  Feature41DataSource,
+  Banner10DataSource,
   Teams00DataSource,
 } from './data.source';
 import './less/antMotionStyle.less';
@@ -76,6 +87,12 @@ export default class Home extends React.Component {
         dataSource={Feature30DataSource}
         isMobile={this.state.isMobile}
       />,
+      <Feature6
+        id="Feature6_1"
+        key="Feature6_1"
+        dataSource={Feature61DataSource}
+        isMobile={this.state.isMobile}
+      />,
       <Feature2
         id="Feature2_0"
         key="Feature2_0"
@@ -98,6 +115,36 @@ export default class Home extends React.Component {
         id="Content13_1"
         key="Content13_1"
         dataSource={Content131DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Feature5
+        id="Feature5_0"
+        key="Feature5_0"
+        dataSource={Feature50DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Feature0
+        id="Feature0_0"
+        key="Feature0_0"
+        dataSource={Feature00DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Feature4
+        id="Feature4_0"
+        key="Feature4_0"
+        dataSource={Feature40DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Feature4
+        id="Feature4_1"
+        key="Feature4_1"
+        dataSource={Feature41DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Banner1
+        id="Banner1_0"
+        key="Banner1_0"
+        dataSource={Banner10DataSource}
         isMobile={this.state.isMobile}
       />,
       <Teams0

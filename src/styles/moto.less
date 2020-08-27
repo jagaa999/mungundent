@@ -34,15 +34,18 @@
 ul.motoHeader {
   li.motoHeaderMenuItem {
     a.motoHeaderMenuItemLink {
-      color: #ffffff;
+      color: unset;
       &:hover,
       &:focus {
-        color: @secondary-color;
+        color: unset;
       }
       .icon {
         margin-right: 7px;
       }
     }
+  }
+  .ant-menu-item-only-child {
+    color: #ffffff;
   }
 }
 
@@ -332,3 +335,5 @@ span.ant-page-header-heading-title {
 body {
   overflow: initial !important;
 }
+
+// ant-menu-item-selected

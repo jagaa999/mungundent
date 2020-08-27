@@ -16,16 +16,6 @@ const MotoPagination = (props) => {
     filterContext.updateParams({ offset: "" + page, pagesize: "" + pageSize });
   };
 
-  console.log(
-    "filterContext.state.pagingfilterContext.state.paging",
-    filterContext.state.paging
-  );
-
-  console.log(
-    "filterContext.state.paging.offset",
-    filterContext.state.paging.offset
-  );
-
   return (
     <>
       {!newsListContext.state.loading ? (

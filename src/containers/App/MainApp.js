@@ -95,7 +95,7 @@ const MainApp = () => {
 
   return (
     <Switch>
-      <Route path={["/kia/k5", "/kia/optima"]}>
+      <Route path={["/salon/kia/k5", "/salon/kia/optima"]}>
         <MotoHeader />
         <KiaK5Detail />
       </Route>

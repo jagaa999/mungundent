@@ -7,6 +7,7 @@ import configureStore, { history } from "./appRedux/store";
 import "./firebase/firebase";
 import MotoIndexApp from "./containers/App/MotoIndexApp";
 import { MemberProfileStore } from "context/MemberContext";
+import { FilterStore } from "context/FilterContext";
 import { MemberItemsStore } from "context/MemberItemsContext";
 
 const store = configureStore(/* provide initial state if any */);
@@ -16,12 +17,14 @@ const NextApp = () => (
     {/* <ConnectedRouter history={history}> */}
     <BrowserRouter>
       <MemberProfileStore>
-        {/* <MemberItemsStore> */}
-        {/* <Switch>
+        <FilterStore>
+          {/* <MemberItemsStore> */}
+          {/* <Switch>
             <Route path="/" component={MotoIndexApp} />
           </Switch> */}
-        <MotoIndexApp />
-        {/* </MemberItemsStore> */}
+          <MotoIndexApp />
+          {/* </MemberItemsStore> */}
+        </FilterStore>
       </MemberProfileStore>
     </BrowserRouter>
     {/* </ConnectedRouter> */}

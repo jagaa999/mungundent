@@ -10,8 +10,10 @@ export const FilterStore = (props) => {
   const memberContext = useContext(MemberContext);
 
   const history = useHistory();
-  const { search } = useLocation();
+  const { pathname, search } = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
+
+  console.log("ddddddddddddddddd", pathname);
 
   // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
   const searchParams = parse(search);
@@ -28,6 +30,11 @@ export const FilterStore = (props) => {
   });
 
   const [totalcount, setTotalcount] = useState("1");
+  const [urlPath, setUrlPath] = useState(pathname || "");
+
+  useEffect(() => {
+    setUrlPath(pathname);
+  }, [pathname]);
 
   useEffect(() => {
     let myFilterList = {};
@@ -69,7 +76,7 @@ export const FilterStore = (props) => {
     };
 
     setState(initialStateFilterList);
-  }, []);
+  }, [urlPath]);
 
   useEffect(() => {
     const mySearchQueryParams = [];
@@ -103,7 +110,8 @@ export const FilterStore = (props) => {
 
   useEffect(() => {
     history.push({
-      pathname: "/news",
+      // pathname: "/news",
+      pathname: urlPath,
       search: searchQuery,
     });
   }, [searchQuery]);
@@ -167,7 +175,7 @@ export const FilterStore = (props) => {
       }
     });
 
-    // console.log("myObject", myObject);
+    console.log("myObject", myObject);
 
     setState(myObject);
   };
@@ -178,14 +186,6 @@ export const FilterStore = (props) => {
 
   const updateTotal = (totalcount) => {
     setTotalcount(totalcount);
-
-    // setState({
-    //   ...state,
-    //   // paging: {
-    //   //   offset: "3",
-    //   //   pagesize: "10",
-    //   // },
-    // });
   };
 
   return (
@@ -193,6 +193,7 @@ export const FilterStore = (props) => {
       value={{
         state,
         totalcount,
+        urlPath,
         loadFilterList,
         updateParams,
         clearAll,

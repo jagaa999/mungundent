@@ -62,13 +62,11 @@ const App = ({ match }) => (
       </Route>
 
       <Route path={["/news", "/newslist"]}>
-        <FilterStore>
-          <NewsListStore>
-            <NewsDetailStore>
-              <NewsList />
-            </NewsDetailStore>
-          </NewsListStore>
-        </FilterStore>
+        <NewsListStore>
+          <NewsDetailStore>
+            <NewsList />
+          </NewsDetailStore>
+        </NewsListStore>
       </Route>
 
       <Route path={`${match.url}member/:memberid`}>
