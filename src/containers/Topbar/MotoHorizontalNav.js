@@ -40,8 +40,8 @@ const HorizontalNav = () => {
 
   const selectedKeys = filterContext.urlPath.substr(1);
   const defaultOpenKeys = selectedKeys.split("/")[1];
-  console.log("selectedKeysselectedKeys", selectedKeys);
-  console.log("defaultOpenKeysdefaultOpenKeys", defaultOpenKeys);
+  // console.log("selectedKeysselectedKeys", selectedKeys);
+  // console.log("defaultOpenKeysdefaultOpenKeys", defaultOpenKeys);
 
   return (
     <Menu

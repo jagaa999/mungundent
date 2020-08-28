@@ -13,8 +13,6 @@ export const FilterStore = (props) => {
   const { pathname, search } = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
 
-  console.log("ddddddddddddddddd", pathname);
-
   // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
   const searchParams = parse(search);
   const [state, setState] = useState({

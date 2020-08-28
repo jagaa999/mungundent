@@ -10,12 +10,12 @@ const NewsListPage = () => {
 
   // filterContext.state.cardtype = "typecard, typelist";
 
-  if (filterContext.state.cardtype.cardtype === "typelist") {
-    return <NewsListType1 />;
+  if (filterContext.state.cardtype.cardtype === "typecard") {
+    return <NewsListType2 />;
   } else if (filterContext.state.cardtype.cardtype === "typetable") {
     return <NewsListType3 />;
   } else {
-    return <NewsListType2 />;
+    return <NewsListType1 />;
   }
 };
 
