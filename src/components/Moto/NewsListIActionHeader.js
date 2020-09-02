@@ -38,29 +38,30 @@ const NewsListIActionHeader = (props) => {
   const history = useHistory();
 
   return (
-    <>
-      <PageHeader
-        title={`${props.title} (${filterContext.totalcount})`}
-        extra={[
-          <MotoPagination type={"simple"} myClass="gx-float-left" />,
-          <MotoSort />,
-          <Button
-            type="primary"
-            size="small"
-            className="gx-bg-success gx-border-success"
-            htmlType="submit"
-            icon={<PlusOutlined />}
-            onClick={() => {
-              history.push({
-                pathname: "/news/insert",
-              });
-            }}
-          >
-            Нэмэх
-          </Button>,
-        ]}
-      ></PageHeader>
-    </>
+    <PageHeader
+      title={
+        props.title +
+        (filterContext.totalcount > 0 ? `(${filterContext.totalcount})` : "")
+      }
+      extra={[
+        // <MotoPagination type={"simple"} myClass="gx-float-left" />,
+        <MotoSort />,
+        <Button
+          type="primary"
+          size="small"
+          className="gx-bg-success gx-border-success"
+          htmlType="submit"
+          icon={<PlusOutlined />}
+          onClick={() => {
+            history.push({
+              pathname: "/news/insert",
+            });
+          }}
+        >
+          Нэмэх
+        </Button>,
+      ]}
+    ></PageHeader>
   );
 };
 

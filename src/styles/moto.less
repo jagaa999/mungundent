@@ -137,22 +137,32 @@ li.gx-user-nav {
   object-position: 50% 50%;
 }
 
-.gx-product-horizontal .gx-product-image {
-  position: relative;
+.moto-list {
+  .gx-product-horizontal {
+    align-items: stretch;
 
-  .ant-avatar {
-    bottom: 20px;
-    right: 20px;
-    position: absolute;
-  }
-}
+    .gx-product-image {
+      position: relative;
+      width: 25%;
+      .gx-grid-thumb-equal {
+        height: 100%;
+      }
 
-.gx-product-horizontal .gx-product-body {
-  @media screen and (max-width: @screen-lg-max) {
-    width: 66.66667%;
+      .ant-avatar {
+        bottom: 20px;
+        right: 20px;
+        position: absolute;
+      }
+    }
   }
-  @media screen and (max-width: @screen-sm-max) {
-    width: 100%;
+
+  .gx-product-horizontal .gx-product-body {
+    @media screen and (max-width: @screen-lg-max) {
+      width: 66.66667%;
+    }
+    @media screen and (max-width: @screen-sm-max) {
+      width: 66.66667%;
+    }
   }
 }
 
@@ -178,6 +188,10 @@ span.ant-page-header-heading-title {
 
 .moto-card-sponsor {
   border-top: 3px solid lighten(@green-color, 40%) !important;
+
+  -webkit-box-shadow: 3px 3px 37px -14px rgba(202, 245, 181, 1);
+  -moz-box-shadow: 3px 3px 37px -14px rgba(202, 245, 181, 1);
+  box-shadow: 3px 3px 37px -14px rgba(202, 245, 181, 1);
 }
 
 .moto-card-draft {

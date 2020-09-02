@@ -27,7 +27,7 @@ export const FilterStore = (props) => {
     error: null,
   });
 
-  const [totalcount, setTotalcount] = useState("1");
+  const [totalcount, setTotalcount] = useState("0");
   const [urlPath, setUrlPath] = useState(pathname || "");
 
   useEffect(() => {

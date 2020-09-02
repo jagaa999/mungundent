@@ -57,7 +57,7 @@ const NewsItem = ({ newsItem, grid }) => {
   return (
     <div
       key={newsItem.newsid}
-      className={`gx-product-item  ${
+      className={`gx-product-item   ${
         grid ? "gx-product-vertical" : "gx-product-horizontal"
       } ${toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""} ${
         !toBoolean(newsItem.isactive) ? "border-top" : ""

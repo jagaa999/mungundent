@@ -63,10 +63,6 @@ const NewsDetailComponent = ({ newsId }) => {
 
   const newsItem = newsDetailContext.state.newsDetail;
 
-  useEffect(() => {
-    document.title = newsItem.title;
-  }, [newsItem]);
-
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   const member = {
@@ -83,15 +79,7 @@ const NewsDetailComponent = ({ newsId }) => {
   myBody = myBody.split('"/storage').join('"https://www.moto.mn/storage');
   myBody = myBody.split('"../storage').join('"https://www.moto.mn/storage');
 
-  // const myOutputBody = (
-  //   <div
-  //     className="news-body"
-  //     dangerouslySetInnerHTML={{
-  //       // __html: htmlEntities.decode(myBody),
-  //       __html: myBody,
-  //     }}
-  //   ></div>
-  // );
+  // console.log("newsItem", newsItem);
 
   let myOutputBody = "";
 
@@ -164,6 +152,8 @@ const NewsDetailComponent = ({ newsId }) => {
   } catch (e) {
     myMainImage = "";
   }
+
+  console.log("newsItem", newsItem);
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useParams, useLocation, useHistory } from "react-router-dom";
 
 import { Col, Row, Button, Affix } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 import NewsListItem from "./NewsListItem";
 import NewsListIActionHeader from "./NewsListIActionHeader";
@@ -12,14 +12,12 @@ import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
 import LoadingList from "./Loading/LoadingList";
-import { PlusOutlined } from "@ant-design/icons";
 
 const NewsListType1 = () => {
-  const history = useHistory();
   const newsListContext = useContext(NewsListContext);
 
   return (
-    <div>
+    <div className="moto-list">
       <div className="">
         <FilterTag />
       </div>

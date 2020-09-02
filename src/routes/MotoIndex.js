@@ -32,6 +32,10 @@ const MemberDetail = asyncComponent(() => {
   return import("./moto/member/memberDetail");
 });
 
+const HomeIndex = asyncComponent(() => {
+  return import("./moto/home/home");
+});
+
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -90,6 +94,14 @@ const App = ({ match }) => (
       <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
       <Route path={`${match.url}social-apps`} component={SocialApps} />
       <Route path={`${match.url}documents`} component={Documents} />
+
+      <Route exact path="/home">
+        <NewsListStore>
+          <NewsDetailStore>
+            <HomeIndex />
+          </NewsDetailStore>
+        </NewsListStore>
+      </Route>
 
       <Route exact path="/">
         <NewsListStore>

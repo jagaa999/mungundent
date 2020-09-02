@@ -13,7 +13,7 @@ import asyncComponent from "util/asyncComponent";
 
 import Topbar from "../Topbar/index";
 import { footerText } from "util/config";
-import MotoIndex from "routes/MotoIndex";
+import MotoIndex from "../../routes/MotoIndex";
 import { useSelector } from "react-redux";
 import {
   NAV_STYLE_ABOVE_HEADER,

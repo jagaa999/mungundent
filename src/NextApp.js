@@ -1,4 +1,6 @@
 import React from "react";
+import { Helmet } from "react-helmet";
+
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
@@ -18,6 +20,15 @@ const NextApp = () => (
     <BrowserRouter>
       <MemberProfileStore>
         <FilterStore>
+          <Helmet>
+            <meta charSet="UTF-8" />
+            <title>Moto.mn - Cars, Parts</title>
+            <meta
+              name="description"
+              content="Автомашин, авто сэлбэг, эд анги"
+            />
+          </Helmet>
+
           {/* <MemberItemsStore> */}
           {/* <Switch>
             <Route path="/" component={MotoIndexApp} />

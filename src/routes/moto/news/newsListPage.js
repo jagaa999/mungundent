@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 
+// import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";
 import NewsListType1 from "components/Moto/NewsListType1";
 import NewsListType2 from "components/Moto/NewsListType2";
 import NewsListType3 from "components/Moto/NewsListType3";
 
 const NewsListPage = () => {
+  // const newsListContext = useContext(NewsListContext);
   const filterContext = useContext(FilterContext);
 
   // filterContext.state.cardtype = "typecard, typelist";

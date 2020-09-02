@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { parse } from "query-string";
 import { message } from "antd";
 import toBoolean from "util/booleanFunction";
@@ -60,6 +61,7 @@ export const NewsDetailStore = (props) => {
             isfeatured: toBoolean(response.data.response.result.isfeatured),
           },
         });
+        message.success("Амжилттай өөрчиллөө. Өдрийг сайхан өнгөрүүлээрэй.");
       })
       .catch((error) => {
         getError(error);
@@ -96,6 +98,7 @@ export const NewsDetailStore = (props) => {
             isactive: toBoolean(response.data.response.result.isactive),
           },
         });
+        message.success("Амжилттай өөрчиллөө. Өдрийг сайхан өнгөрүүлээрэй.");
       })
       .catch((error) => {
         getError(error);
@@ -133,6 +136,7 @@ export const NewsDetailStore = (props) => {
             publisheddate: response.data.response.result.publisheddate,
           },
         });
+        message.success("Амжилттай дээшлүүллээ. Өдрийг сайхан өнгөрүүлээрэй.");
       })
       .catch((error) => {
         getError(error);
@@ -169,7 +173,39 @@ export const NewsDetailStore = (props) => {
           loading: false,
           newsDetail: myArray,
         });
+
         // setState({ ...state, newsDetail: response.data });
+      })
+      .catch((error) => {
+        getError(error);
+      });
+  };
+
+  const loadNewsDetailOg = (newsId) => {
+    const myParamsNewsDetail = {
+      request: {
+        username: "hiWDThpHP2SZy9KRq6hyk3lrvV12",
+        password: "89",
+        command: "motoNEWS_MAINDETAIL_OG_004",
+        parameters: {
+          newsid: newsId || "",
+        },
+      },
+    };
+
+    clearNewsDetail();
+    setState({ ...state, loading: true });
+
+    axios
+      .post("", myParamsNewsDetail)
+      .then((response) => {
+        const myArray = response.data.response.result;
+        console.log("NEWS DETAIL------------>", myArray);
+        setState({
+          ...state,
+          loading: false,
+          newsDetail: myArray,
+        });
       })
       .catch((error) => {
         getError(error);
@@ -278,6 +314,7 @@ export const NewsDetailStore = (props) => {
       value={{
         state,
         loadNewsDetail,
+        loadNewsDetailOg,
         toggleIsFeatured,
         toggleIsActive,
         upPublishedDate,

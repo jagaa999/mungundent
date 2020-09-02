@@ -66,7 +66,9 @@ const NewsItem = ({ newsItem, grid }) => {
 
   return (
     <Card
-      className="moto-item-card"
+      className={`moto-item-card ${
+        toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""
+      } ${!toBoolean(newsItem.isactive) ? "border-top" : ""}`}
       hoverable={true}
       cover={<img alt={newsItem.title} src={newsItem.imageMain} />}
     >

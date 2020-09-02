@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { prepareTitle } from "util/config";
 
 import NewsDetail from "components/Moto/NewsDetail";
 import { CommentListStore } from "context/CommentContext";
@@ -14,16 +16,37 @@ const NewsDetailPage = (props) => {
   const newsDetailContext = useContext(NewsDetailContext);
   const memberContext = useContext(MemberContext);
 
+  const newsItem = newsDetailContext.state.newsDetail;
+
   useEffect(() => {
-    if (newsId !== 0 && memberContext.state.memberCloudUserSysId !== 0)
-      newsDetailContext.loadNewsDetail(
-        newsId,
-        memberContext.state.memberCloudUserSysId
-      );
+    if (newsId !== 0) {
+      if (memberContext.state.memberCloudUserSysId !== 0) {
+        newsDetailContext.loadNewsDetail(
+          newsId,
+          memberContext.state.memberCloudUserSysId
+        );
+      } else {
+        newsDetailContext.loadNewsDetailOg(newsId);
+      }
+    }
   }, [newsId, memberContext.state.memberCloudUserSysId]);
+
+  // console.log("newsDetailContext", newsDetailContext.state);
+  // console.log("ddddddddddddddddddddd");
 
   return (
     <>
+      <Helmet>
+        <title>{prepareTitle(newsItem.title)}</title>
+        <meta name="description" content={newsItem.description} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:title" content={newsItem.title} />
+        <meta property="og:description" content={newsItem.description} />
+        <meta property="og:image" content={newsItem.imagemain} />
+        <meta property="og:locale" content="mn_MN" />
+      </Helmet>
+
       {memberContext.state.isLogin ? (
         <CommentListStore>
           <LogsStore>
