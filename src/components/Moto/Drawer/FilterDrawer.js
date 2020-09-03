@@ -23,13 +23,11 @@ const FilterDrawer = () => {
         <NewsFilter />
       </Drawer>
 
-      <Tooltip title="Шүүлтүүр">
-        <div className="moto-filter-button" style={{ top: "250px" }}>
-          <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
-            <i className="icon icon-filter gx-d-block moto-animation-away" />
-          </Button>
-        </div>
-      </Tooltip>
+      <div className="moto-filter-button" style={{ top: "250px" }}>
+        <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
+          <i className="icon icon-filter gx-d-block moto-animation-away" />
+        </Button>
+      </div>
     </div>
   );
 };

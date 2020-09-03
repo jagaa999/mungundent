@@ -1,17 +1,25 @@
 import React from "react";
 
-const RoadMapItem = ({data}) => {
-  const {image, image2, title, desc} = data;
+const RoadMapItem = ({ sponsorItem }) => {
   return (
-
     <div className="gx-slider">
       <div className="gx-slider-img">
-        <img alt="example" src={image} style={{maxHeight: 185}}/>
-        <img className="gx-img-up" alt="example" src={image2}/>
+        <img
+          alt={sponsorItem.imagemain}
+          src={sponsorItem.imagemain}
+          style={{ height: 320 }}
+        />
+        <img
+          className="gx-img-up"
+          alt={sponsorItem.userprofilephoto}
+          src={sponsorItem.userprofilephoto}
+        />
       </div>
       <div className="gx-slider-content">
-        <h4>{title}</h4>
-        <p className="gx-text-grey">{desc}</p>
+        <h3 className="gx-text-success">{sponsorItem.title}</h3>
+        <p className="gx-text-grey gx-mt-2">
+          {sponsorItem.description.substring(0, 150)}
+        </p>
       </div>
     </div>
   );

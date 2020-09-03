@@ -36,27 +36,6 @@ const MotoIndexApp = (props) => {
 
   const match = useRouteMatch();
 
-  // useEffect(() => {
-  // if (initURL === "") {
-  //   dispatch(setInitUrl(location.pathname));
-  // }
-  // console.log("location------->", location);
-  // const params = new URLSearchParams(location.search);
-  // console.log("params------>", params);
-  // console.log("ЭНЭ ЮУ БОЛОВ?", queryString.parse(location.search));
-  // if (params.has("theme")) {
-  //   dispatch(setThemeType(params.get("theme")));
-  // }
-  // if (params.has("nav-style")) {
-  //   dispatch(onNavStyleChange(params.get("nav-style")));
-  // }
-  // if (params.has("layout-type")) {
-  //   dispatch(onLayoutTypeChange(params.get("layout-type")));
-  // }
-  // setLayoutType(layoutType);
-  // setNavStyle(navStyle);
-  // });
-
   const setLayoutType = (layoutType) => {
     if (layoutType === LAYOUT_TYPE_FULL) {
       document.body.classList.remove("boxed-layout");
@@ -89,36 +68,6 @@ const MotoIndexApp = (props) => {
     }
   };
 
-  // Доор нь өөрчилж янзалсан хувилбар байгаа.
-  // useEffect(() => {
-  //   if (location.pathname === "/") {
-  //     if (authUser === null) {
-  //       history.push("/signin");
-  //     } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
-  //       history.push("/main/dashboard/crypto");
-  //     } else {
-  //       history.push(initURL);
-  //     }
-  //   }
-  // }, [authUser, initURL, location, history]);
-
-  // useEffect(() => {
-  //   if (location.pathname === "/") {
-  //     if (memberContext.state.memberUID === 0) {
-  //       history.push("/signin");
-  //     } else if (initURL === "" || initURL === "/" || initURL === "/signin") {
-  //       history.push("/main/dashboard/crypto");
-  //     } else {
-  //       history.push(initURL);
-  //     }
-  //   }
-  // }, [memberContext.state.memberUID, location, history]);
-
-  useEffect(() => {
-    // memberContext.loadMemberProfile("200108101001108990");
-    // console.log("MotoINdex APpp");
-  }, []);
-
   const currentAppLocale = AppLocale[locale.locale];
 
   return (
@@ -130,13 +79,6 @@ const MotoIndexApp = (props) => {
         <Switch>
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
-          {/* <RestrictedRoute
-            path={`${match.url}`}
-            authUser={authUser}
-            location={location}
-            component={MainApp}
-          /> */}
-          {/* {console.log("rrrrrrrreeeeeeeeeee")} */}
 
           <MemberItemsStore>
             <Route path={`${match.url}`} component={MainApp} />

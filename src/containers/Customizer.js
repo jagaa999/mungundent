@@ -454,11 +454,13 @@ const CustomizerSystem = () => {
       >
         {getCustomizerContent()}
       </Drawer>
-      <div className="gx-customizer-option">
-        <Button type="primary" onClick={toggleCustomizer}>
-          <i className="icon icon-setting fxicon-hc-spin gx-d-block" />
-        </Button>
-      </div>
+      {process.env.NODE_ENV === "development" && (
+        <div className="gx-customizer-option">
+          <Button type="primary" onClick={toggleCustomizer}>
+            <i className="icon icon-setting fxicon-hc-spin gx-d-block" />
+          </Button>
+        </div>
+      )}
     </>
   );
 };
