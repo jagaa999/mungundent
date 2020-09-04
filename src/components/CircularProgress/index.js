@@ -7,11 +7,11 @@ const CircularProgress = ({ className }) => (
     {/* https://codepen.io/Jagaa999/pen/poyNXRO?editors=0100 */}
     <div id="no-freeze-spinner">
       <div>
-        <i class="material-icons">directions_car</i>
-        <i class="material-icons">home</i>
-        <i class="material-icons">local_cafe</i>
-        <i class="material-icons">miscellaneous_services</i>
-        <i class="material-icons">handyman</i>
+        <i className="material-icons">directions_car</i>
+        <i className="material-icons">home</i>
+        <i className="material-icons">local_cafe</i>
+        <i className="material-icons">miscellaneous_services</i>
+        <i className="material-icons">handyman</i>
         <div></div>
       </div>
     </div>

@@ -3,7 +3,9 @@ import axios from "util/axiosConfig";
 
 const myInitParamsProcess = {
   request: {
-    sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+    // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+    username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+    password: "89",
     command: "motoNEWS_MAINDETAIL_004",
     parameters: {
       newsid: "",
@@ -42,7 +44,8 @@ export async function LoadProcess(props) {
 // !-----------------------
 const myInitParamsDataview = {
   request: {
-    sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+    username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+    password: "89",
     command: "PL_MDVIEW_004",
     parameters: {
       systemmetagroupid: "1587100905303413",

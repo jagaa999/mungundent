@@ -24,7 +24,7 @@ import {
 } from "@ant-design/icons";
 import MemberContext from "context/MemberContext";
 import SignIn from "../../../containers/SignIn";
-import AvatarMember from "components/Moto/Member/MemberAvatar";
+import AvatarMember from "../Member/MemberAvatar";
 
 const { Meta } = Card;
 
@@ -91,13 +91,27 @@ const MenuMember = () => {
       content={withMemberOptions}
       trigger="click"
     >
-      <Tooltip title={memberContext.state.memberFirebaseProfile.displayName}>
+      {memberContext.state.memberFirebaseProfile.photoURL !== null ? (
         <Avatar
           src={memberContext.state.memberFirebaseProfile.photoURL}
           className="gx-avatar gx-pointer"
-          alt={memberContext.state.memberFirebaseProfile.displayName}
+          alt={memberContext.state.memberFirebaseProfile.photoURL}
         />
-      </Tooltip>
+      ) : (
+        <Avatar
+          id="avatar-button"
+          style={{ backgroundColor: "#f56a00", verticalAlign: "middle" }}
+          gap={2}
+          className="gx-avatar gx-pointer"
+        >
+          {memberContext.state.memberFirebaseProfile.displayName !== null
+            ? memberContext.state.memberFirebaseProfile.displayName.substring(
+                0,
+                3
+              )
+            : "Тодорхойгүй"}
+        </Avatar>
+      )}
     </Popover>
   ) : (
     <>

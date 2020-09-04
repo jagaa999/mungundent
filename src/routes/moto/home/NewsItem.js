@@ -1,18 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 
-const contentStyle = {
-  height: "260px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-  margin: "0 10px",
-};
-
 const NewsItem = ({ newsItem }) => {
-  console.log(newsItem);
-
   return (
     <Card
       className="gx-card-full gx-text-center moto-item-card"

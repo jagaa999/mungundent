@@ -10,16 +10,6 @@ import CircularProgress from "components/CircularProgress/index";
 const SignIn = () => {
   const memberContext = useContext(MemberContext);
 
-  const dispatch = useDispatch();
-  const {
-    loader,
-    alertMessage,
-    showMessage,
-    authUser,
-    userProfile,
-  } = useSelector(({ auth }) => auth);
-
-  const [form] = Form.useForm();
   const history = useHistory();
 
   useEffect(() => {
@@ -38,6 +28,8 @@ const SignIn = () => {
     const unlisten = firebaseAuth.onAuthStateChanged((user) => {
       //Firebase-ээр дамжаад Member login-дсон гэсэн үг.
       //Firebase-ээс хэрэглэгчийн мэдээллүүд ирнэ.
+      console.log("firebaseAuth.onAuthStateChanged-- ", user);
+
       user && memberContext.setFirebaseProfile(user);
     });
     return () => {
@@ -46,45 +38,31 @@ const SignIn = () => {
   }, []);
 
   return (
-    // <div className="gx-app-login-wrap">
-    //   <div className="gx-app-login-container">
     <div className="gx-app-login-main-content">
       <div className="gx-app-logo-content">
-        <div className="gx-app-logo-content-bg">
-          <img
-            src={
-              "https://images.unsplash.com/photo-1529567186287-3e17bdefa342?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=500&q=80"
-            }
-            alt="Moto Signup Wallpaper"
-          />
-        </div>
         <div className="gx-app-logo-wid">
-          <h1>Нэвтрэх</h1>
           <p>
             Moto гишүүн болсноор системийн бүх ажиллагаа танд нээлттэй болно.
           </p>
-          <p>Бүртгүүлэхэд Үнэгүй, бас Амархан.</p>
+          <p className="gx-font-weight-light">
+            Бүртгүүлэхэд Үнэгүй, бас Амархан.
+          </p>
+
+          <p>Та өөрт байгаа бэлэн бүртгэлээ ашиглан шууд гишүүн болоорой.</p>
         </div>
-        <div className="gx-app-logo">
+        {/* <div className="gx-app-logo">
           <img alt="example" src={require("assets/images/logo.png")} />
-        </div>
+        </div> */}
       </div>
       <div className="gx-app-login-content">
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
       </div>
 
-      {loader ? (
-        <div className="gx-loader-view">
-          <CircularProgress />
-        </div>
-      ) : null}
       {/* {showMessage ? message.error(alertMessage.toString()) : null} */}
       {memberContext.state.error !== null
         ? message.error(memberContext.state.error.toString(), 7)
         : null}
     </div>
-    //   </div>
-    // </div>
   );
 };
 

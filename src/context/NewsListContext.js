@@ -74,7 +74,7 @@ export const NewsListStore = (props) => {
         };
         const myItem2 = {
           [item]: {
-            "0": myItem1,
+            0: myItem1,
           },
         };
         tempFilter = Object.assign(tempFilter, myItem2);

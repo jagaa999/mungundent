@@ -14,23 +14,38 @@ import { Button, Card, Modal } from "antd";
 
 const MemberContext = React.createContext();
 
-//----------------------- Member Profile
-const initialStateMemberProfile = {
-  memberUID: localStorage.getItem("motoMemberUID") || "",
-  memberCloudUserSysId: 0,
-  memberCloudUserId: 0,
-  memberCloudSessionId: "",
-  memberCloudProfile: {},
-  memberFirebaseProfile:
-    JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
-  isLogin: localStorage.getItem("motoMemberUID") ? true : false,
-  isModal: false,
-  loading: false,
-  error: null,
-};
+//Moto Guest
+// Firebase UID: d14BuUMTjSRnLbrFXDOXM80fNfa2
+// memberCloudUserId: "1598934946965"
+// memberCloudUserSysId: "1598934946963"
+// displayName: "Moto Guest (Зочин)"
+// email: "guest@moto.mn"
+// photoURL: "https://lh3.googleusercontent.com/a-/AOh14GhRrqaweP4rM3fgr64JCbHhoVlqyWx6nZlLpdAjzkHnDQ1iYvNzDaDT-7N8rqUjjGMK22wslI8nXdeMfIqxM4jbHo-D1g4rcGIhSTWh0AGALgHoi4HV4kQkB-SY11_IcXyJ5_-8OBdaSBO9QKYUBaPW0IrQ47KgCbfR5VAOoe0LQSDpuugFNJAFkYH8vGWpoHQUvFZinesbNK2ddSuoIUnlTYlKivdiA5zkDR-mI5fW2VQNo4Eq12iWsNqNlpLeGiXgn1F7iK5HDH3tEGoTZ5mwq4LQIZbavtKwKnGiB3XKExPke6d2b-qwBjYm_RpUb8diFbJr5AJUraQgipyBA2mJSqa6CWmKiCe2mXrElSDfn80aEagJllW_7r0r14k1TS3BRHN2rjn-umTJEPQwLIWHWCSZoVurI1X8KdLTuH1C-x_Dp9I-PssIzYS4NtuqmlqlEktaTvlioaOj3d3yiDRIe8_e9v_03GPyJWHpuj9Uuf674d6o5d4eM8ASz8iQaLtPJmiLDjSDgJM0DxGk2swmf6Iqc35dPlgMQyao8RsPYvqvFQje_YuABd7cJ-33B7BcyCPSGQrFFSA5bqxee8AS9MMnvlvJcduwaCwZjYpPhY2jOYF0CdgajrsfWmOflOKg2BUCwyowa3XSlLCtF6_Yp2UKCl_MNHuQje1CTD8OQrZRCSFKR9IHxYLYNEQsx5etp5RpPslqxZMeQRoABhUPpHDq_ONQ8U4EZiKNPWyQTDfpEIvoNysUWKMmohaQuJpBJQ"
 
 export const MemberProfileStore = (props) => {
+  const initialStateMemberProfile = {
+    memberUID: localStorage.getItem("motoMemberUID") || "",
+    memberCloudUserSysId: 0,
+    memberCloudUserId: 0,
+    memberCloudSessionId: "",
+    memberCloudProfile: {},
+    memberFirebaseProfile:
+      JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
+    isLogin: localStorage.getItem("motoMemberUID") ? true : false,
+    isModal: false,
+    loading: false,
+    error: null,
+  };
+
   const [state, setState] = useState(initialStateMemberProfile);
+
+  //    ###   #
+  //   #   #  #    #
+  //  #     # #    #
+  //  #     # #    #
+  //  #     # #######
+  //   #   #       #
+  //    ###        #
 
   const clearMemberProfile = () => {
     localStorage.removeItem("motoMemberUID");
@@ -48,6 +63,14 @@ export const MemberProfileStore = (props) => {
     firebaseAuth.signOut();
   };
 
+  //    ###   #######
+  //   #   #  #
+  //  #     # #
+  //  #     # ######
+  //  #     #       #
+  //   #   #  #     #
+  //    ###    #####
+
   useEffect(() => {
     if (state.isLogin) {
       // console.log("state", state);
@@ -62,6 +85,14 @@ export const MemberProfileStore = (props) => {
       }
     }
   }, [state.memberCloudProfile]);
+
+  //    ###    #####
+  //   #   #  #     #
+  //  #     # #
+  //  #     # ######
+  //  #     # #     #
+  //   #   #  #     #
+  //    ###    #####
 
   useEffect(() => {
     // console.log("ЭНД ХЭРЭГЛЭГЧ-ИЙН islogin төлөв өөрчлөгдөж байна.");
@@ -82,13 +113,19 @@ export const MemberProfileStore = (props) => {
     });
   };
 
+  //     ###    #####
+  //   #   #  #     #
+  //  #     #       #
+  //  #     #  #####
+  //  #     #       #
+  //   #   #  #     #
+  //    ###    #####
+
   const loginMemberCloud = (firebaseUid) => {
     setState({ ...state, loading: true });
+
     const myParamsLoginMemberCloud = {
       request: {
-        // username: "username",
-        // password: "89",
-
         command: "login",
         parameters: {
           username: firebaseUid,
@@ -96,22 +133,12 @@ export const MemberProfileStore = (props) => {
         },
       },
     };
-
     // console.log("myParamsLoginMemberCloud", myParamsLoginMemberCloud);
 
     axios
       .post("", myParamsLoginMemberCloud)
       .then((response) => {
-        // console.log("loginMemberCloud response:--> ", response);
         const myArray = response.data.response.result;
-        // Хэрвээ customerid хоосон байвал хүчээр тавьчихъя. 200108101001108990
-        // if (myArray.userkeys[0].customerid === "") {
-        //   myArray.customerid = "200108101001108990";
-        //   myArray.userkeys[0].customerid = "200108101001108990";
-        // }
-
-        //Одоо оршин байгаа бүх customerid-ыг userid руу шилжүүлэх шаардлагатай бололтой.
-        // console.log("loginMemberCloud myArray:--> ", myArray);
 
         if (
           response.data.response.status === "error" &&
@@ -132,6 +159,14 @@ export const MemberProfileStore = (props) => {
       });
   };
 
+  //    ###     #
+  //   #   #   ##
+  //  #     # # #
+  //  #     #   #
+  //  #     #   #
+  //   #   #    #
+  //    ###   #####
+
   const createMemberCloudWithFirebase = () => {
     console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
 
@@ -139,16 +174,18 @@ export const MemberProfileStore = (props) => {
 
     let myFacebookData = {};
     let myGoogleData = {};
+    let myPhoneData = {};
 
     state.memberFirebaseProfile.providerData.map((item, i) => {
       console.log("item", item, i);
-
       if (item.providerId === "facebook.com") {
         myFacebookData = item;
       }
-
       if (item.providerId === "google.com") {
         myGoogleData = item;
+      }
+      if (item.providerId === "phone") {
+        myPhoneData = item;
       }
     });
 
@@ -157,15 +194,15 @@ export const MemberProfileStore = (props) => {
         sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         command: "CreateCustomer",
         parameters: {
-          displayName: state.memberFirebaseProfile.displayName,
-          givenName: state.memberFirebaseProfile.displayName,
-          familyName: state.memberFirebaseProfile.displayName,
+          displayName: state.memberFirebaseProfile.displayName || "Тодорхойгүй",
+          givenName: state.memberFirebaseProfile.displayName || "Тодорхойгүй",
+          familyName: state.memberFirebaseProfile.displayName || "Тодорхойгүй",
           email: state.memberFirebaseProfile.email,
           gender: "",
           providerId: state.memberFirebaseProfile.providerData[0].providerId,
           googleKey: myGoogleData ? myGoogleData.uid : "",
           faceBookKey: myFacebookData ? myFacebookData.uid : "",
-          phoneNumber: "",
+          phoneNumber: myPhoneData ? myPhoneData.uid : "",
           profilePhoto: state.memberFirebaseProfile.photoURL,
           firebaseUid: state.memberFirebaseProfile.uid,
           departmentId: "1",
@@ -175,6 +212,10 @@ export const MemberProfileStore = (props) => {
 
     console.log("ПАРАМЕТР ҮҮСГЭСНИЙ ДАРАА");
     console.log("state.memberFirebaseProfile", state.memberFirebaseProfile);
+    console.log(
+      "myParamsCreateMemberCloudWithFirebase",
+      myParamsCreateMemberCloudWithFirebase
+    );
 
     axios
       .post("", myParamsCreateMemberCloudWithFirebase)
@@ -192,6 +233,14 @@ export const MemberProfileStore = (props) => {
         console.log("error", error);
       });
   };
+
+  //     ###    #####
+  //   #   #  #     #
+  //  #     #       #
+  //  #     #  #####
+  //  #     # #
+  //   #   #  #
+  //    ###   #######
 
   const setFirebaseProfile = (user) => {
     // console.log("RAW user", user);

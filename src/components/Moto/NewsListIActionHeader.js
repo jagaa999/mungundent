@@ -45,8 +45,9 @@ const NewsListIActionHeader = (props) => {
       }
       extra={[
         // <MotoPagination type={"simple"} myClass="gx-float-left" />,
-        <MotoSort />,
+        <MotoSort key="motosort" />,
         <Button
+          key="motobutton"
           type="primary"
           size="small"
           className="gx-bg-success gx-border-success"
