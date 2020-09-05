@@ -182,12 +182,10 @@ const InsideHeader = () => {
                   content={<MemberItems />}
                   trigger="click"
                 >
-                  <Tooltip title="Таны зүйлс">
-                    <span className="gx-pointer gx-status-pos gx-d-block">
-                      <i className="icon icon-card" />
-                      <span className="gx-status gx-status-rtl gx-small gx-orange" />
-                    </span>
-                  </Tooltip>
+                  <span className="gx-pointer gx-status-pos gx-d-block">
+                    <i className="icon icon-card" />
+                    <span className="gx-status gx-status-rtl gx-small gx-orange" />
+                  </span>
                 </Popover>
               </li>
 

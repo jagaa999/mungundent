@@ -14,6 +14,7 @@ import { LoadProcess, loadDataview } from "util/axiosFunction";
 const NewsListPage = () => {
   const [newsSponsorItems, setNewsSponsorItems] = useState([]);
   const [newsItems, setNewsItems] = useState([]);
+  const [newMembers, setNewMembers] = useState([]);
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
   const callAllDataAsync = async () => {
@@ -62,6 +63,22 @@ const NewsListPage = () => {
         },
       })
     );
+
+    setNewMembers(
+      await loadDataview({
+        systemmetagroupid: "1598934954642",
+        criteria: {},
+        paging: {
+          offset: "1",
+          pageSize: "9",
+          sortColumnNames: {
+            createddate: {
+              sortType: "DESC",
+            },
+          },
+        },
+      })
+    );
   };
 
   useEffect(() => {
@@ -72,20 +89,27 @@ const NewsListPage = () => {
     <>
       <h1>Нийтлэл</h1>
       <Row className="gx-d-flex gx-mb-5">
-        <Col xl={15} lg={15} md={15} sm={12} xs={24}>
+        <Col xl={15} lg={15} md={15} sm={12} xs={24} className="gx-mb-3">
           <HomeSponsor newsSponsorItems={newsSponsorItems} />
         </Col>
-        <Col xl={9} lg={9} md={9} sm={12} xs={24}>
-          <MemberBox />
+        <Col xl={9} lg={9} md={9} sm={12} xs={24} className="gx-mb-3">
+          <MemberBox newMembers={newMembers} />
         </Col>
       </Row>
 
-      <Divider orientation="center" plain={true} className="gx-my-4">
+      {/* <Divider orientation="center" plain={true} className="gx-my-4">
         <Link to={"/news"}>Бүх нийтлэлийг үзэх</Link>
-      </Divider>
+      </Divider> */}
 
       <Row className="gx-d-flex gx-mb-5">
-        <Col xl={24} className="gx-bg-grey_none">
+        <Col
+          xl={24}
+          lg={24}
+          md={24}
+          sm={24}
+          xs={24}
+          className="gx-bg-grey_none"
+        >
           <HomeNewsItems newsItems={newsItems} />
         </Col>
       </Row>
@@ -93,7 +117,14 @@ const NewsListPage = () => {
       <Divider orientation="center" plain={true} className="gx-my-5"></Divider>
 
       <Row className="gx-d-flex ">
-        <Col xl={24} className="gx-bg-grey_none">
+        <Col
+          xl={24}
+          lg={24}
+          md={24}
+          sm={24}
+          xs={24}
+          className="gx-bg-grey_none"
+        >
           <h3>Facebook дэх манай пэйжийг дагаарай.</h3>
           <FacebookGadget />
         </Col>

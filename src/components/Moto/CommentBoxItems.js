@@ -18,20 +18,23 @@ const CommentBoxItems = (props) => {
     <div>
       <Card title="Сэтгэгдэл">
         {props.commentBoxItems.length > 0 ? (
-          <div className="gx-wall-comment-box">
-            {props.commentBoxItems.map((commentItem, index) => (
-              <CommentBoxDetail
-                key={index}
-                index={index}
-                commentItem={commentItem}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="gx-mb-3">Сэтгэгдэл алга</div>
-        )}
+          <>
+            <div className="gx-wall-comment-box">
+              {props.commentBoxItems.map((commentItem, index) => (
+                <CommentBoxDetail
+                  key={index}
+                  index={index}
+                  commentItem={commentItem}
+                />
+              ))}
+            </div>
 
-        <Divider className="gx-my-4" />
+            <Divider className="gx-my-4" />
+          </>
+        ) : (
+          // <div className="gx-mb-3">Сэтгэгдэл алга</div>
+          ""
+        )}
 
         <div className="gx-wall-comment-box">
           <div className="gx-media gx-mb-2">

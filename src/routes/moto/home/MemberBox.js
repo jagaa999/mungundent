@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
 import { Carousel, Button, Card, Col, Row, Space, Tooltip, Avatar } from "antd";
 
-const MemberBox = () => {
+// motoMemberLIST_MAINLIST
+
+const MemberBox = (props) => {
+  console.log(props);
+
   return (
-    <Card className="gx-widget-bg moto-item-card">
+    <Card
+      className="gx-widget-bg moto-item-card"
+      style={{ minHeight: "430px" }}
+    >
       <span
         className="gx-widget-badge"
         style={{ borderRadius: "0 4px 0 10px" }}
@@ -23,6 +30,16 @@ const MemberBox = () => {
 
       <div className="gx-mt-5">
         <h5 className="gx-text-warning">Шинэхэн гишүүд</h5>
+
+        {props.newMembers.map((member, index) => (
+          <Avatar
+            key={index}
+            shape="square"
+            size="large"
+            className="gx-mr-2 gx-mb-2"
+            src={member.profilephoto}
+          />
+        ))}
 
         <Avatar
           shape="square"

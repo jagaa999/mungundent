@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Card, Table, Row, Col, Avatar } from "antd";
+import moment from "moment";
+import "moment/locale/mn";
 
 const columns = [
   {
@@ -8,23 +10,22 @@ const columns = [
     dataIndex: "userprofilephoto",
     key: "userprofilephoto",
     fixed: "left",
-    render: (userprofilephoto) => (
-      <Avatar src={userprofilephoto} alt={userprofilephoto} size="small" />
-    ),
-  },
-  {
-    title: "Гишүүн",
-    dataIndex: "userfullname",
-    key: "userfullname",
-    sorter: (a, b) => a.userfullname.length - b.userfullname.length,
-  },
+    render: (text, record) => (
+      <div className="gx-media">
+        <Avatar
+          src={record.userprofilephoto}
+          alt={record.userfullname}
+          className="gx-mr-3"
+        />
 
-  {
-    title: "Огноо",
-    dataIndex: "actiondate",
-    key: "date",
-    sorter: (a, b) => new Date(a.actiondate) - new Date(b.actiondate),
-    render: (actiondate) => <small>{actiondate}</small>,
+        <div className="gx-media-body">
+          <h5 className="gx-wall-user-title">{record.userfullname}</h5>
+          <p className="gx-text-grey gx-fs-sm">
+            {moment(record.actiondate).fromNow()}
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     title: "Үйлдэл",
@@ -40,6 +41,7 @@ const LogBoxItems = ({ logBoxItems }) => {
     <div>
       <Card title="Үзсэн түүх">
         <Table
+          showHeader={false}
           className="gx-table-responsive"
           size="small"
           // rowSelection={rowSelection}

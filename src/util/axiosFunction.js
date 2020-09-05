@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "util/axiosConfig";
+import { message } from "antd";
 
 const myInitParamsProcess = {
   request: {
@@ -74,14 +75,22 @@ export function loadDataview(props) {
   return axios
     .post("", myParams)
     .then((response) => {
-      const myTempArray = response.data.response.result;
-      delete myTempArray["aggregatecolumns"];
-      delete myTempArray["paging"];
+      console.log("Цаанаас юу ирэв?", response);
 
-      const myArray = Object.values(myTempArray);
-      return myArray;
+      if (response.data.response.status === "error") {
+        message.error(response.data.response.text.toString(), 7);
+        return [];
+      } else {
+        const myTempArray = response.data.response.result;
+        delete myTempArray["aggregatecolumns"];
+        delete myTempArray["paging"];
+
+        const myArray = Object.values(myTempArray);
+        return myArray;
+      }
     })
     .catch((error) => {
+      message.error(error.toString(), 7);
       return [];
     });
 }
