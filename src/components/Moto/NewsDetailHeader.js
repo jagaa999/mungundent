@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 import toBoolean from "util/booleanFunction";
+import moment from "moment";
+import "moment/locale/mn";
+
 import {
   PageHeader,
   Button,
@@ -70,12 +73,6 @@ const NewsDetailHeader = (props) => {
 
   return (
     <>
-      {newsItem.publisheddate}
-      <h1 className={toBoolean(newsItem.isfeatured) ? "gx-text-success" : ""}>
-        {newsItem.title}
-        {toBoolean(newsItem.isfeatured) && <FeaturedTag />}
-        {!toBoolean(newsItem.isactive) && <ActiveTag />}
-      </h1>
       <div className="ant-row-flex">
         <Tooltip title="Төрөл">
           <span className="moto-label-main ant-tag">
@@ -90,14 +87,31 @@ const NewsDetailHeader = (props) => {
           <span className="moto-label-main ant-tag">
             {newsItem.newssourcename}
           </span>
-          {/* <Badge
-            count={newsItem.newssourcename}
-            style={{ backgroundColor: "grey" }}
-          /> */}
         </Tooltip>
       </div>
 
-      <div className="gx-mt-4 gx-mb-3">{extraContent}</div>
+      <h1 className={toBoolean(newsItem.isfeatured) ? "gx-text-success" : ""}>
+        {newsItem.title}
+        {toBoolean(newsItem.isfeatured) && <FeaturedTag />}
+        {!toBoolean(newsItem.isactive) && <ActiveTag />}
+      </h1>
+
+      <div className="gx-media gx-mt-3">
+        <Avatar
+          src={props.member.photo}
+          alt={props.member.name}
+          className="gx-mr-3"
+        />
+
+        <div className="gx-media-body">
+          <h5 className="gx-wall-user-title">{props.member.name}</h5>
+          <p className="gx-text-grey gx-fs-sm">
+            {moment(newsItem.publisheddate).fromNow()}
+          </p>
+        </div>
+      </div>
+
+      {/* <div className="gx-mt-4 gx-mb-3">{extraContent}</div> */}
     </>
   );
 };

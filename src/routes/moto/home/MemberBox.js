@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Carousel, Button, Card, Col, Row, Space, Tooltip, Avatar } from "antd";
 
+import MemberContext from "context/MemberContext";
 // motoMemberLIST_MAINLIST
 
 const MemberBox = (props) => {
   console.log(props);
+  const memberContext = useContext(MemberContext);
 
-  return (
+  const nonMemberInfo = (
     <Card
       className="gx-widget-bg moto-item-card"
       style={{ minHeight: "430px" }}
@@ -20,12 +22,12 @@ const MemberBox = (props) => {
       <i className="icon icon-user-o gx-fs-xlxl" />
 
       <h1 className="gx-fs-xxxl gx-font-weight-semi-bold gx-mb-3 gx-mb-sm-4">
-        1,702 гишүүн
+        1,702 хүн
       </h1>
-      <p>ГИШҮҮН БАЙНА.</p>
+      <p>Мото гишүүн болжээ.</p>
       <p>
-        Та ч гэсэн элсэж гишүүн болоорой. Танаас төлбөр гарахгүй, юу ч
-        шаардахгүй.
+        Та бас элсэж гишүүн болоорой. Танаас төлбөр гарахгүй, юу ч шаардахгүй.
+        Одоогийн Facebook, Google-ийнхээ аль нэгээр шууд ороорой.
       </p>
 
       <div className="gx-mt-5">
@@ -87,6 +89,12 @@ const MemberBox = (props) => {
         Бүртгүүлэх
       </Button>
     </Card>
+  );
+
+  return memberContext.state.isLogin ? (
+    <>Холбогдож орсон хүний мэдээлэл</>
+  ) : (
+    <>{nonMemberInfo}</>
   );
 };
 

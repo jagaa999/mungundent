@@ -105,9 +105,7 @@ const App = ({ match }) => (
 
       <Route exact path="/">
         <NewsListStore>
-          <NewsDetailStore>
-            <NewsList />
-          </NewsDetailStore>
+          <HomeIndex />
         </NewsListStore>
       </Route>
     </Switch>

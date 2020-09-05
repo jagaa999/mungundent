@@ -20,7 +20,7 @@ const SignIn = () => {
     }
 
     if (memberContext.state.isLogin) {
-      history.push("/news");
+      history.push("/home");
     }
   });
 

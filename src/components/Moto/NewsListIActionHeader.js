@@ -40,8 +40,16 @@ const NewsListIActionHeader = (props) => {
   return (
     <PageHeader
       title={
-        props.title +
-        (filterContext.totalcount > 0 ? `(${filterContext.totalcount})` : "")
+        <h3>
+          {props.title}
+          {filterContext.totalcount > 0 ? (
+            <span className="gx-ml-2 gx-text-grey gx-fs-sm">
+              ({filterContext.totalcount})
+            </span>
+          ) : (
+            ""
+          )}
+        </h3>
       }
       extra={[
         // <MotoPagination type={"simple"} myClass="gx-float-left" />,

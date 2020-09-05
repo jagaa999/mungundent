@@ -43,12 +43,12 @@ import {
   EllipsisOutlined,
 } from "@ant-design/icons";
 
-import LogBox from "components/Moto/LogBox";
-import CommentBox from "components/Moto/CommentBox";
-import NewsButtonPanel from "components/Moto/Button/NewsButtonPanel";
-import NewsDetailHeader from "components/Moto/NewsDetailHeader";
-import NewsHeaderButton from "components/Moto/Button/NewsHeaderButton";
-import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
+import LogBox from "./LogBox";
+import CommentBox from "./CommentBox";
+import NewsButtonPanel from "./Button/NewsButtonPanel";
+import NewsDetailHeader from "./NewsDetailHeader";
+import NewsHeaderButton from "./Button/NewsHeaderButton";
+import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";

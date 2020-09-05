@@ -56,20 +56,22 @@ const HomeNewsItems = (props) => {
         ))}
       </Carousel>
 
-      <Button
-        type="dashed"
-        shape="circle"
-        icon={<LeftOutlined />}
-        onClick={() => newsOtherSlider.current.prev()}
-      />
+      <div className="gx-d-none gx-d-sm-block">
+        <Button
+          type="dashed"
+          shape="circle"
+          icon={<LeftOutlined />}
+          onClick={() => newsOtherSlider.current.prev()}
+        />
 
-      <Button
-        type="dashed"
-        shape="circle"
-        icon={<RightOutlined />}
-        onClick={() => newsOtherSlider.current.next()}
-        className="gx-float-right"
-      />
+        <Button
+          type="dashed"
+          shape="circle"
+          icon={<RightOutlined />}
+          onClick={() => newsOtherSlider.current.next()}
+          className="gx-float-right"
+        />
+      </div>
     </>
   );
 };
