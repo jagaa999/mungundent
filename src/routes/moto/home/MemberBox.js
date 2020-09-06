@@ -10,7 +10,7 @@ const MemberBox = (props) => {
 
   const nonMemberInfo = (
     <Card
-      className="gx-widget-bg moto-item-card"
+      className="gx-widget-bg moto-item-card gx-d-none gx-d-sm-block"
       style={{ minHeight: "430px" }}
     >
       <span
@@ -91,11 +91,46 @@ const MemberBox = (props) => {
     </Card>
   );
 
-  return memberContext.state.isLogin ? (
-    <>Холбогдож орсон хүний мэдээлэл</>
-  ) : (
-    <>{nonMemberInfo}</>
+  const memberInfo = (
+    <Card
+      className="gx-widget-bg moto-item-card gx-d-none gx-d-sm-block"
+      style={{ minHeight: "250px" }}
+    >
+      <span
+        className="gx-widget-badge"
+        style={{ borderRadius: "0 4px 0 10px" }}
+      >
+        Moto гишүүн
+      </span>
+
+      <p>Сайн байна уу?</p>
+
+      <Avatar
+        shape="square"
+        size="large"
+        className="gx-mr-2 gx-mb-2"
+        src={memberContext.state.memberFirebaseProfile.photoURL}
+      />
+
+      <h1 className="gx-fs-xxxl gx-font-weight-semi-bold gx-mb-3 gx-mb-sm-4">
+        {memberContext.state.memberFirebaseProfile.displayName}
+      </h1>
+      {/* <p>Мото гишүүн болжээ.</p>
+      <p>
+        Та бас элсэж гишүүн болоорой. Танаас төлбөр гарахгүй, юу ч шаардахгүй.
+        Одоогийн Facebook, Google-ийнхээ аль нэгээр шууд ороорой.
+      </p>
+
+      <div className="gx-mt-5"></div> */}
+
+      <div style={{ position: "absolute", bottom: "29px" }}>
+        <Button className="gx-mb-1 gx-btn-warning">Гарааш</Button>
+        <Button className="gx-mb-1 gx-btn-warning">Профайл</Button>
+      </div>
+    </Card>
   );
+
+  return memberContext.state.isLogin ? <>{memberInfo}</> : <>{nonMemberInfo}</>;
 };
 
 export default MemberBox;
