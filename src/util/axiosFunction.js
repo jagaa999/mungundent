@@ -50,6 +50,7 @@ const myInitParamsDataview = {
     command: "PL_MDVIEW_004",
     parameters: {
       systemmetagroupid: "1587100905303413",
+      ignorepermission: "1",
       showQuery: "0",
       // paging: {
       //   pageSize: "15", //нийтлэлийн тоо
