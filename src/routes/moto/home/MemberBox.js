@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Carousel, Button, Card, Col, Row, Space, Tooltip, Avatar } from "antd";
+import { UserOutlined, HomeOutlined, PlusOutlined } from "@ant-design/icons";
 
 import MemberContext from "context/MemberContext";
 import OnlyAvatar from "components/Moto/Member/onlyAvatar";
@@ -43,13 +44,27 @@ const MemberBox = (props) => {
 
       <div className="gx-mt-5">
         <Link to={"/news/insert"}>
-          <Button className="gx-mb-1 gx-btn-success">Нийтлэл нэмэх</Button>
+          <Button className="gx-mb-1 gx-btn-success" icon={<PlusOutlined />}>
+            Нийтлэл нэмэх
+          </Button>
         </Link>
       </div>
 
       <div style={{ position: "absolute", bottom: "29px" }}>
-        <Button className="gx-mb-1 gx-btn-warning">Гарааш</Button>
-        <Button className="gx-mb-1 gx-btn-warning">Профайл</Button>
+        <Button
+          className="gx-mb-1 gx-btn-warning"
+          icon={<HomeOutlined />}
+          disabled
+        >
+          Гарааш
+        </Button>
+        <Button
+          className="gx-mb-1 gx-btn-warning"
+          icon={<UserOutlined />}
+          disabled
+        >
+          Профайл
+        </Button>
       </div>
     </Card>
   );
@@ -80,7 +95,7 @@ const MemberBox = (props) => {
         <h5 className="gx-text-warning">Шинэхэн гишүүд</h5>
 
         {props.newMembers.map((member, index) => (
-          <OnlyAvatar index={index} member={member} />
+          <OnlyAvatar key={index} index={index} member={member} />
         ))}
       </div>
 

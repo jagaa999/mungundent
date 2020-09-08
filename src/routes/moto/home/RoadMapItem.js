@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RoadMapItem = ({ sponsorItem }) => {
   return (
@@ -16,7 +17,9 @@ const RoadMapItem = ({ sponsorItem }) => {
         />
       </div>
       <div className="gx-slider-content">
-        <h3 className="gx-text-success">{sponsorItem.title}</h3>
+        <Link to={"/news/" + sponsorItem.newsid}>
+          <h3 className="gx-text-success">{sponsorItem.title}</h3>
+        </Link>
         <p className="gx-text-grey gx-mt-2">
           {sponsorItem.description.substring(0, 150)}
         </p>

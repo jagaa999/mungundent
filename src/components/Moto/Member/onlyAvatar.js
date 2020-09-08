@@ -10,6 +10,7 @@ const OnlyAvatar = (props) => {
     return (
       <Tooltip title={props.member.userfullname}>
         <Avatar
+          key={props.index}
           style={{ backgroundColor: "#f56a00", verticalAlign: "middle" }}
           gap={2}
           shape="square"

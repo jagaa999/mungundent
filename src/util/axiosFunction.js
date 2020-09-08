@@ -76,7 +76,7 @@ export function loadDataview(props) {
   return axios
     .post("", myParams)
     .then((response) => {
-      console.log("Цаанаас юу ирэв?", response);
+      // console.log("Цаанаас юу ирэв?", response);
 
       if (response.data.response.status === "error") {
         message.error(response.data.response.text.toString(), 7);

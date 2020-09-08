@@ -26,7 +26,7 @@ const PleaseLogin = () => {
         Нэвтрэх
       </Button>
       <Divider />
-      <Skeleton avatar active className="gx-mt-4" />
+      <Skeleton avatar className="gx-mt-4" />
     </div>
   );
 };

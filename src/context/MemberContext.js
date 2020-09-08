@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 import { isEmpty } from "lodash";
 import {
   firebaseAuth,
@@ -23,6 +23,8 @@ const MemberContext = React.createContext();
 // photoURL: "https://lh3.googleusercontent.com/a-/AOh14GhRrqaweP4rM3fgr64JCbHhoVlqyWx6nZlLpdAjzkHnDQ1iYvNzDaDT-7N8rqUjjGMK22wslI8nXdeMfIqxM4jbHo-D1g4rcGIhSTWh0AGALgHoi4HV4kQkB-SY11_IcXyJ5_-8OBdaSBO9QKYUBaPW0IrQ47KgCbfR5VAOoe0LQSDpuugFNJAFkYH8vGWpoHQUvFZinesbNK2ddSuoIUnlTYlKivdiA5zkDR-mI5fW2VQNo4Eq12iWsNqNlpLeGiXgn1F7iK5HDH3tEGoTZ5mwq4LQIZbavtKwKnGiB3XKExPke6d2b-qwBjYm_RpUb8diFbJr5AJUraQgipyBA2mJSqa6CWmKiCe2mXrElSDfn80aEagJllW_7r0r14k1TS3BRHN2rjn-umTJEPQwLIWHWCSZoVurI1X8KdLTuH1C-x_Dp9I-PssIzYS4NtuqmlqlEktaTvlioaOj3d3yiDRIe8_e9v_03GPyJWHpuj9Uuf674d6o5d4eM8ASz8iQaLtPJmiLDjSDgJM0DxGk2swmf6Iqc35dPlgMQyao8RsPYvqvFQje_YuABd7cJ-33B7BcyCPSGQrFFSA5bqxee8AS9MMnvlvJcduwaCwZjYpPhY2jOYF0CdgajrsfWmOflOKg2BUCwyowa3XSlLCtF6_Yp2UKCl_MNHuQje1CTD8OQrZRCSFKR9IHxYLYNEQsx5etp5RpPslqxZMeQRoABhUPpHDq_ONQ8U4EZiKNPWyQTDfpEIvoNysUWKMmohaQuJpBJQ"
 
 export const MemberProfileStore = (props) => {
+  const history = useHistory();
+
   const initialStateMemberProfile = {
     memberUID: localStorage.getItem("motoMemberUID") || "",
     memberCloudUserSysId: 0,
@@ -52,15 +54,24 @@ export const MemberProfileStore = (props) => {
     localStorage.removeItem("motoMemberProfile");
 
     setState({
-      memberUID: 0,
-      memberFirebaseProfile: {},
-      isLogin: false,
-      loading: false,
+      memberUID: localStorage.getItem("motoMemberUID") || "",
+      memberCloudUserSysId: 0,
+      memberCloudUserId: 0,
+      memberCloudSessionId: "",
+      memberCloudProfile: {},
+      memberFirebaseProfile:
+        JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
+      isLogin: localStorage.getItem("motoMemberUID") ? true : false,
       isModal: false,
+      loading: false,
       error: null,
     });
 
     firebaseAuth.signOut();
+
+    history.push({
+      pathname: "/home",
+    });
   };
 
   //    ###   #######
