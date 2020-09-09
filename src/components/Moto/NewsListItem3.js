@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
+import { defaultSrc } from "util/config";
 import {
   Button,
   Badge,
@@ -107,7 +108,15 @@ const NewsItem = ({ newsItems }) => {
       key: "imagemain",
       fixed: "left",
       render: (imagemain) => (
-        <Avatar src={imagemain} alt={imagemain} size={64} shape="square" />
+        <Avatar
+          src={
+            imagemain ||
+            "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+          }
+          alt={imagemain}
+          size={64}
+          shape="square"
+        />
       ),
     },
 

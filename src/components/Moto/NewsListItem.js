@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
+import { defaultSrc } from "util/config";
 
 import {
   Button,
@@ -67,7 +68,11 @@ const NewsItem = ({ newsItem, grid }) => {
         <div className="gx-grid-thumb-equal">
           <Link to={"/news/" + newsItem.newsid}>
             <span className="gx-link gx-grid-thumb-cover">
-              <img alt={newsItem.title} src={newsItem.imageMain} />
+              <img
+                alt={newsItem.title}
+                src={newsItem.imageMain}
+                onError={defaultSrc}
+              />
             </span>
           </Link>
         </div>

@@ -5,6 +5,7 @@ import { Html5Entities } from "html-entities";
 import Output from "editorjs-react-renderer";
 
 import toBoolean from "util/booleanFunction";
+import { defaultSrc } from "util/config";
 
 import {
   Button,
@@ -174,6 +175,7 @@ const NewsDetailComponent = ({ newsId }) => {
                   alt={newsItem.title}
                   // src={"https://www.moto.mn/" + newsItem.imagemain}
                   src={myMainImage}
+                  onError={defaultSrc}
                 />
               }
             >

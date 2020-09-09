@@ -1,0 +1,17 @@
+[debug] [2020-09-09T12:04:22.127Z] ----------------------------------------------------------------------
+[debug] [2020-09-09T12:04:22.129Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\jarga\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-09-09T12:04:22.129Z] CLI Version:   8.6.0
+[debug] [2020-09-09T12:04:22.129Z] Platform:      win32
+[debug] [2020-09-09T12:04:22.129Z] Node Version:  v12.18.0
+[debug] [2020-09-09T12:04:22.130Z] Time:          Wed Sep 09 2020 20:04:22 GMT+0800 (Ulaanbaatar Standard Time)
+[debug] [2020-09-09T12:04:22.130Z] ----------------------------------------------------------------------
+[debug] [2020-09-09T12:04:22.130Z] 
+[debug] [2020-09-09T12:04:22.143Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-09T12:04:22.144Z] > authorizing via signed-in user
+[debug] [2020-09-09T12:04:22.144Z] [iam] checking project moto-86243 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-09-09T12:04:22.146Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-09-09T12:04:22.146Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-09-09T12:04:22.485Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 09 Sep 2020 12:04:22 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-09T12:04:22.491Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/moto-86243:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}

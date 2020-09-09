@@ -8,4 +8,10 @@ module.exports = {
       return "Moto.mn - Car, Parts";
     }
   },
+
+  defaultSrc: (e) => {
+    e.target.onerror = null;
+    e.target.src =
+      "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg";
+  },
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { Card } from "antd";
+import { defaultSrc } from "util/config";
 
 const NewsItem = ({ newsItem }) => {
   return (
@@ -25,6 +26,7 @@ const NewsItem = ({ newsItem }) => {
           className="gx-img-fluid gx-w-100"
           alt={newsItem.title}
           src={newsItem.imagemain}
+          onError={defaultSrc}
         />
       </div>
     </Card>

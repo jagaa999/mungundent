@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
+import { defaultSrc } from "util/config";
 
 import {
   Button,
@@ -70,7 +71,15 @@ const NewsItem = ({ newsItem, grid }) => {
         toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""
       } ${!toBoolean(newsItem.isactive) ? "border-top" : ""}`}
       hoverable={true}
-      cover={<img alt={newsItem.title} src={newsItem.imageMain} />}
+      cover={
+        <img
+          alt={newsItem.title}
+          src={
+            newsItem.imageMain ||
+            "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+          }
+        />
+      }
     >
       <Meta
         // avatar={

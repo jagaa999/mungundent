@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { defaultSrc } from "util/config";
+
 const RoadMapItem = ({ sponsorItem }) => {
   return (
     <div className="gx-slider">
@@ -8,6 +10,7 @@ const RoadMapItem = ({ sponsorItem }) => {
         <img
           alt={sponsorItem.imagemain}
           src={sponsorItem.imagemain}
+          onError={defaultSrc}
           style={{ height: 320 }}
         />
         <img
