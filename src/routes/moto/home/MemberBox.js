@@ -6,6 +6,7 @@ import { UserOutlined, HomeOutlined, PlusOutlined } from "@ant-design/icons";
 
 import MemberContext from "context/MemberContext";
 import OnlyAvatar from "components/Moto/Member/onlyAvatar";
+
 // motoMemberLIST_MAINLIST
 
 const MemberBox = (props) => {
@@ -101,10 +102,12 @@ const MemberBox = (props) => {
 
       <Button
         className="gx-mb-1 gx-btn-warning"
-        htmlType="submit"
         style={{ position: "absolute", bottom: "29px" }}
+        onClick={() => {
+          memberContext.isModal(true);
+        }}
       >
-        Бүртгүүлэх
+        Нэвтрэх
       </Button>
     </Card>
   );

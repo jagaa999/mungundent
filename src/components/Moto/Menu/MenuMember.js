@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -21,7 +22,9 @@ import {
   UserOutlined,
   HomeOutlined,
   ProfileOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
+
 import MemberContext from "context/MemberContext";
 import SignIn from "../../../containers/SignIn";
 import AvatarMember from "../Member/MemberAvatar";
@@ -56,7 +59,18 @@ const MenuMember = () => {
         </Descriptions.Item>
       </Descriptions>
 
-      <Divider className="gx-mt-5 gx-mb-3" />
+      <Link to={"/news/insert"}>
+        <Button
+          className="gx-mb-1 gx-mt-2 gx-btn-success"
+          icon={<PlusOutlined />}
+          type="text"
+          size="small"
+        >
+          Нийтлэл нэмэх
+        </Button>
+      </Link>
+
+      <Divider className="gx-mt-3 gx-mb-3" />
       <div className="gx-d-flex">
         <div>
           <Button type="primary" icon={<HomeOutlined />} size="small">

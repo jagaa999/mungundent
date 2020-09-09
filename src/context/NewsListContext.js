@@ -115,8 +115,8 @@ export const NewsListStore = (props) => {
     axios
       .post("", myParamsNewsList)
       .then((response) => {
-        const myPaging = response.data.response.result.paging;
-        const myArray = response.data.response.result;
+        const myPaging = response.data.response.result.paging || {};
+        const myArray = response.data.response.result || [];
 
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
