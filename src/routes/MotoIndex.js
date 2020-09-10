@@ -11,6 +11,7 @@ import Main from "./main/index";
 import Documents from "./documents/index";
 import { NewsListStore } from "../context/NewsListContext";
 import { NewsDetailStore } from "../context/NewsDetailContext";
+import { CarCatalogListStore } from "../context/CarCatalogListContext";
 import { FilterStore } from "../context/FilterContext";
 
 import asyncComponent from "util/asyncComponent";
@@ -26,6 +27,10 @@ const NewsForm = asyncComponent(() => {
 
 const NewsList = asyncComponent(() => {
   return import("./moto/news/newsListPage");
+});
+
+const CarCatalogList = asyncComponent(() => {
+  return import("./moto/carCatalog/carCatalogListPage");
 });
 
 const MemberDetail = asyncComponent(() => {
@@ -81,6 +86,12 @@ const App = ({ match }) => (
         {/* <MemberListStore>
           <MemberList />
         </MemberListStore> */}
+      </Route>
+
+      <Route path={["/carcatalog", "/carcataloglist"]}>
+        <CarCatalogListStore>
+          <CarCatalogList />
+        </CarCatalogListStore>
       </Route>
 
       <Route path={`${match.url}main`} component={Main} />

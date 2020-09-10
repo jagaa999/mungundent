@@ -38,6 +38,7 @@ const uiConfig = {
   // signInSuccessUrl: "/",
   signInOptions: [
     // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+    /*
     {
       provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
       recaptchaParameters: {
@@ -71,6 +72,7 @@ const uiConfig = {
       // at the same time.
       whitelistedCountries: ["MN", "+976"],
     },
+    */
     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
     {
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -92,7 +94,7 @@ const uiConfig = {
       //   prompt: 'select_account'
       // }
     },
-    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
     // firebase.auth.EmailAuthProvider.PROVIDER_ID,
     // {
     //   provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,

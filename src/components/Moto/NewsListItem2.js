@@ -88,12 +88,6 @@ const NewsItem = ({ newsItem, grid }) => {
         title={myTitle}
         description={
           <>
-            <Tooltip title="Нийтэлсэн огноо">
-              <span className="gx-text-grey gx-fs-sm gx-ml-2">
-                {/* {newsItem.publisheddate} */}
-                {moment(newsItem.publisheddate).fromNow()}
-              </span>
-            </Tooltip>
             <div className="gx-d-flex">
               <Tooltip title="Төрөл">
                 <span className="moto-label-main ant-tag">
@@ -106,6 +100,11 @@ const NewsItem = ({ newsItem, grid }) => {
                 </span>
               </Tooltip>
             </div>
+
+            <span className="gx-text-grey gx-fs-sm">
+              {moment(newsItem.publisheddate).fromNow()}
+            </span>
+
             <div className="gx-description gx-fs-sm gx-mt-2">
               <span
                 dangerouslySetInnerHTML={{ __html: truncatedDescription }}

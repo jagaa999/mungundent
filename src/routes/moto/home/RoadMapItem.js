@@ -8,16 +8,13 @@ const RoadMapItem = ({ sponsorItem }) => {
     <div className="gx-slider">
       <div className="gx-slider-img">
         <img
-          alt={sponsorItem.imagemain}
-          src={sponsorItem.imagemain}
-          onError={defaultSrc}
+          src={
+            sponsorItem.imagemain ||
+            "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+          }
           style={{ height: 320 }}
         />
-        <img
-          className="gx-img-up"
-          alt={sponsorItem.userprofilephoto}
-          src={sponsorItem.userprofilephoto}
-        />
+        <img className="gx-img-up" src={sponsorItem.userprofilephoto} />
       </div>
       <div className="gx-slider-content">
         <Link to={"/news/" + sponsorItem.newsid}>

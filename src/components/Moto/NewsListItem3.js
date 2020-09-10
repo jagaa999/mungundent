@@ -32,9 +32,9 @@ import NewsDetailMore from "components/Moto/newsDetailMore";
 const { Meta } = Card;
 
 const NewsItem = ({ newsItems }) => {
-  moment.locale("mn");
+  // moment.locale("mn");
 
-  console.log("newsItemsnewsItems", newsItems);
+  // console.log("newsItemsnewsItems", newsItems);
   // const [showModal, setShowModal] = useState(false);
   // const [showMore, setShowMore] = useState(false);
 
@@ -140,6 +140,9 @@ const NewsItem = ({ newsItems }) => {
                 {record.newssourcename}
               </span>
             </Tooltip>
+            <span className="gx-fs-sm">
+              {moment(record.publisheddate).fromNow()}
+            </span>
           </div>
         </>
       ),
@@ -154,15 +157,16 @@ const NewsItem = ({ newsItems }) => {
         // </Tooltip>
       ),
     },
-    {
-      title: "Огноо",
-      dataIndex: "publisheddate",
-      key: "publisheddate",
-      render: (publisheddate) => moment(publisheddate).fromNow(),
-    },
   ];
 
-  return <Table columns={columns} dataSource={newsItems} pagination={false} />;
+  return (
+    <Table
+      rowKey="newsid"
+      columns={columns}
+      dataSource={newsItems}
+      pagination={false}
+    />
+  );
 };
 
 export default NewsItem;

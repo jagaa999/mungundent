@@ -134,7 +134,7 @@ const SignIn = () => {
             <Divider dashed orientation="left">
               эсвэл
             </Divider>
-            <Button
+            {/* <Button
               style={{ backgroundColor: "#aa1111", color: "#fff" }}
               icon={<PhoneOutlined />}
               size="large"
@@ -144,7 +144,7 @@ const SignIn = () => {
               }}
             >
               Утас
-            </Button>
+            </Button> */}
             <Button
               style={{ backgroundColor: "#3b5998", color: "#fff" }}
               // type="primary"
@@ -169,7 +169,7 @@ const SignIn = () => {
             >
               Google
             </Button>
-            <Button
+            {/* <Button
               style={{ backgroundColor: "#2795e9", color: "#fff" }}
               // type="primary"
               icon={<TwitterOutlined />}
@@ -180,7 +180,7 @@ const SignIn = () => {
               }}
             >
               Twitter
-            </Button>
+            </Button> */}
 
             <Divider dashed orientation="left">
               эсвэл

@@ -35,6 +35,14 @@ const MenuMember = () => {
   const memberContext = useContext(MemberContext);
   console.log("МИНИЙ ПРОФАЙЛ", memberContext.state);
 
+  //    ###     #
+  //   #   #   ##
+  //  #     # # #
+  //  #     #   #
+  //  #     #   #
+  //   #   #    #
+  //    ###   #####
+
   const withMemberOptions = (
     <>
       <AvatarMember
