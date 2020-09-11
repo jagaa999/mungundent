@@ -41,7 +41,7 @@ const CarCatalogType1 = () => {
             {carCatalogListContext.carFirmList.carFirmList.map(
               (firmItem, index) => {
                 return (
-                  <Col key={index} span={24}>
+                  <Col key={index} lg={6} md={8} sm={8} xs={8}>
                     <CarCatalogListItem key={index} firmItem={firmItem} />
                   </Col>
                 );

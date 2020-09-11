@@ -15,6 +15,7 @@ import {
   Dropdown,
   Menu,
   Avatar,
+  Card,
   message,
   Modal,
   Divider,
@@ -27,13 +28,28 @@ import AvatarMember02 from "components/Moto/Member/MemberAvatar02";
 import NewsDetailModal from "components/Moto/newsDetailModal";
 import NewsDetailMore from "components/Moto/newsDetailMore";
 
-const NewsItem = ({ firmItem, grid }) => {
+const { Meta } = Card;
+
+const NewsItem = ({ firmItem }) => {
   console.log("Манай Фирм - ", firmItem);
 
   return (
-    <div>
-      {firmItem.code} • {firmItem.id} • {firmItem.name}
-    </div>
+    <Link to={"/carcatalog/" + firmItem.id}>
+      <Card
+        className=""
+        hoverable={true}
+        cover={
+          null
+          // <img alt="example" src={"https://via.placeholder.com/576X383"} />
+        }
+      >
+        <Meta
+          avatar={null}
+          title={firmItem.name}
+          description={firmItem.code + " • " + firmItem.id}
+        />
+      </Card>
+    </Link>
   );
 };
 
