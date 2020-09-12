@@ -6,7 +6,7 @@ import "moment/locale/mn";
 
 const LogBoxItems = ({ logBoxItems }) => {
   const [withTime, setWithTime] = useState(false);
-  console.log("logBoxItems", logBoxItems);
+  // console.log("logBoxItems", logBoxItems);
 
   const columns = [
     {
@@ -40,10 +40,6 @@ const LogBoxItems = ({ logBoxItems }) => {
       sorter: (a, b) => a.actionname.length - b.actionname.length,
     },
   ];
-
-  const onClick = () => {
-    setWithTime(true);
-  };
 
   return (
     <div>

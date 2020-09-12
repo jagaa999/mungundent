@@ -18,18 +18,16 @@ export const CarCatalogListStore = (props) => {
 
   const initialStateCarFirmList = {
     loadParams: {
-      systemmetagroupid: "1479905024968",
+      // systemmetagroupid: "1479905024968",
+      systemmetagroupid: "1599822188399800",
       showquery: "0",
-      paging: {
-        offset: "1",
-        pagesize: "500",
-      },
       ignorepermission: "1",
-      criteria: {
-        scoretypeid: {
-          0: {
-            operator: "=",
-            operand: "4",
+      criteria: {},
+      paging: {
+        sortcolumnnames: {
+          firmname: {
+            //эрэмбэлэх талбар
+            sorttype: "ASC", //эрэмбэлэх чиглэл
           },
         },
       },
@@ -55,14 +53,16 @@ export const CarCatalogListStore = (props) => {
 
     const myParamsCarFirmList = {
       request: {
-        username: "motoadmin",
-        password: "moto123",
+        // username: "motoadmin",
+        // password: "moto123",
+        username: memberContext.state.memberUID,
+        password: "89",
         command: "PL_MDVIEW_004",
         parameters: carFirmList.loadParams,
       },
     };
 
-    axiosCloud
+    axios
       .post("", myParamsCarFirmList)
       .then((response) => {
         console.log("response---------", response);

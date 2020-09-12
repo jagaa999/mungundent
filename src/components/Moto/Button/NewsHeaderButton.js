@@ -2,30 +2,10 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
-import {
-  Button,
-  Card,
-  Badge,
-  Tooltip,
-  Row,
-  Col,
-  Dropdown,
-  Menu,
-  Checkbox,
-  Switch,
-  message,
-  Affix,
-  Divider,
-  Spin,
-  Avatar,
-  Statistic,
-  Modal,
-} from "antd";
+import { Button, Dropdown, Menu, Checkbox, message } from "antd";
 
 import {
   WarningTwoTone,
-  SearchOutlined,
-  DownOutlined,
   UserOutlined,
   SettingOutlined,
   DeleteOutlined,
@@ -36,10 +16,12 @@ import {
 import ErrorReportModal from "components/Moto/Error/ErrorReportModal";
 
 import NewsDetailContext from "context/NewsDetailContext";
+import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
 const NewsButtonPanel = (props) => {
   const newsDetailContext = useContext(NewsDetailContext);
+  const memberContext = useContext(MemberContext);
   const memberItemsContext = useContext(MemberItemsContext);
   const newsItem = newsDetailContext.state.newsDetail;
 
@@ -179,7 +161,9 @@ const NewsButtonPanel = (props) => {
     console.log(e);
   }
 
-  // console.log("props", props);
+  const newsDetailPublisherId =
+    newsDetailContext.state.newsDetail.userpublisherid;
+  const memberSysId = memberContext.state.memberCloudUserSysId;
 
   return (
     <div className="moto-detail-buttons">
@@ -194,18 +178,23 @@ const NewsButtonPanel = (props) => {
           <UserOutlined />
         </Button>
       </Dropdown>
-      <Dropdown
-        key="owner_action_button"
-        overlay={menuOwnerActions}
-        placement="bottomRight"
-        trigger={["click"]}
-        // visible="true"
-        arrow
-      >
-        <Button type="primary">
-          <SettingOutlined />
-        </Button>
-      </Dropdown>
+      {/* Энд нэвтэрсэн хэрэглэгч нь тухайн нийтлэлийн эзэн мөн эсэхийг шалгана. Биш
+      бол гаргахгүй. */}
+
+      {newsDetailPublisherId === memberSysId && (
+        <Dropdown
+          key="owner_action_button"
+          overlay={menuOwnerActions}
+          placement="bottomRight"
+          trigger={["click"]}
+          // visible="true"
+          arrow
+        >
+          <Button type="primary">
+            <SettingOutlined />
+          </Button>
+        </Dropdown>
+      )}
 
       <ErrorReportModal
         showErrorReportModal={showErrorReportModal}
