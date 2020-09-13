@@ -24,7 +24,7 @@ const NewsItem = ({ firmItem, isSpecial }) => {
         <Meta
           avatar={null}
           title={firmItem.firmname}
-          description={firmItem.firmcountrymon + " • " + firmItem.special}
+          description={firmItem.firmcountrymon}
         />
       </Card>
     </Link>

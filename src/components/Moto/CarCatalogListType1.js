@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 
-import { Col, Row, Button, Affix, Switch, Select } from "antd";
+import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
@@ -19,6 +19,7 @@ const { Option } = Select;
 const CarCatalogType1 = () => {
   const carCatalogListContext = useContext(CarCatalogListContext);
   const [isSpecial, setIsSpecial] = useState(false);
+  const [whatCountry, setWhatCountry] = useState([]);
 
   useEffect(() => {
     carCatalogListContext.loadCarFirmList();
@@ -36,47 +37,65 @@ const CarCatalogType1 = () => {
     }
   });
 
-  console.log("uniqueTags", uniqueTags);
+  // console.log("uniqueTags", uniqueTags);
 
   const children = [];
-  uniqueTags.map((item, index) => {
+  uniqueTags.sort().map((item, index) => {
     children.push(<Option key={item}>{item}</Option>);
   });
-  // for (let i = 10; i < 36; i++) {
-  //   children.push(
-  //     <Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>
-  //   );
-  // }
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
+    setWhatCountry(value);
   }
+
   return (
     <div className="moto-list">
       {/* <div className="">
         <FilterTag />
       </div> */}
-      <span className="gx-fs-sm gx-mr-2">Зөвхөн нийтлэг</span>
-      <Switch size="small" onChange={() => setIsSpecial(!isSpecial)} />
 
-      <Select
-        mode="tags"
-        style={{ width: "100%" }}
-        placeholder="Tags Mode"
-        onChange={handleChange}
-      >
-        {children}
-      </Select>
       <div className="gx-mb-2"></div>
 
       {!carCatalogListContext.carFirmList.loading ? (
         <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
+          <PageHeader
+            title={<h3>Каталоги - Фирм</h3>}
+            className="gx-mb-3"
+            extra={[
+              <span className="gx-mr-4">
+                <span className="gx-fs-sm gx-mr-1">Зөвхөн нийтлэг</span>
+                <Switch
+                  size="small"
+                  onChange={() => setIsSpecial(!isSpecial)}
+                />
+              </span>,
+              <Select
+                mode="tags"
+                style={{ minWidth: "170px" }}
+                placeholder="Улс"
+                onChange={handleChange}
+              >
+                {children}
+              </Select>,
+            ]}
+          ></PageHeader>
+
           <Row className="gx-d-flex">
             {carCatalogListContext.carFirmList.carFirmList.map(
               (firmItem, index) => {
                 if (toBoolean(isSpecial) && !toBoolean(firmItem.special)) {
+                  return "";
+                }
+
+                //  if (firmItem.firmcountrymon  whatCountry[])
+
+                if (
+                  !whatCountry.includes(firmItem.firmcountrymon) &&
+                  whatCountry.length > 0
+                ) {
                   return "";
                 }
 

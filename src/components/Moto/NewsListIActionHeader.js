@@ -26,13 +26,6 @@ import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "./Sort/MotoSort";
 const { Paragraph } = Typography;
 
-const IconLink = ({ src, text }) => (
-  <a className="example-link">
-    <img className="example-link-icon" src={src} alt={text} />
-    {text}
-  </a>
-);
-
 const NewsListIActionHeader = (props) => {
   const filterContext = useContext(FilterContext);
   const history = useHistory();
