@@ -2,19 +2,18 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
-
 import { Card } from "antd";
 
 const { Meta } = Card;
 
-const NewsItem = ({ firmItem, isSpecial }) => {
-  // console.log("Манай Фирм - ", firmItem);
+const MarkItem = ({ markItem, count }) => {
+  // console.log("Манай Фирм - ", markItem);
 
   return (
-    <Link to={"/carcatalog/" + firmItem.id}>
+    <Link to={"/carcatalog/mark/" + markItem.markid}>
       <Card
-        key={firmItem.id}
-        className={`${toBoolean(firmItem.special) ? "gx-bg-success" : ""}`}
+        key={markItem.id}
+        className=""
         hoverable={true}
         cover={
           null
@@ -23,12 +22,12 @@ const NewsItem = ({ firmItem, isSpecial }) => {
       >
         <Meta
           avatar={null}
-          title={firmItem.firmname + " - " + firmItem.firmcountrymon}
-          description={firmItem.count + " марктай"}
+          title={markItem.firmname + " " + markItem.markname}
+          description={markItem.count + " ширхэг цувралтай"}
         />
       </Card>
     </Link>
   );
 };
 
-export default NewsItem;
+export default MarkItem;

@@ -29,8 +29,24 @@ const NewsList = asyncComponent(() => {
   return import("./moto/news/newsListPage");
 });
 
-const CarCatalogList = asyncComponent(() => {
-  return import("./moto/carCatalog/carCatalogListPage");
+const CarCatalogFirmList = asyncComponent(() => {
+  return import("./moto/carCatalog/carCatalogFirmListPage");
+});
+
+const CarCatalogMarkList = asyncComponent(() => {
+  return import("./moto/carCatalog/carCatalogMarkListPage");
+});
+
+const CarCatalogIndexList = asyncComponent(() => {
+  return import("./moto/carCatalog/carCatalogIndexListPage");
+});
+
+const CarCatalogEditionList = asyncComponent(() => {
+  return import("./moto/carCatalog/carCatalogEditionListPage");
+});
+
+const CarCatalogDetail = asyncComponent(() => {
+  return import("./moto/carCatalog/carCatalogDetailPage");
 });
 
 const MemberDetail = asyncComponent(() => {
@@ -44,6 +60,15 @@ const HomeIndex = asyncComponent(() => {
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
+      {/*}
+    #     # ####### #     #  #####  
+    ##    # #       #  #  # #     # 
+    # #   # #       #  #  # #       
+    #  #  # #####   #  #  #  #####  
+    #   # # #       #  #  #       # 
+    #    ## #       #  #  # #     # 
+    #     # #######  ## ##   #####  
+    */}
       <Route
         path={[
           "/news/edit/:newsId",
@@ -56,7 +81,6 @@ const App = ({ match }) => (
           <NewsForm />
         </NewsDetailStore>
       </Route>
-
       <Route
         path={[
           "/news/:newsId",
@@ -69,7 +93,6 @@ const App = ({ match }) => (
           <NewsDetail />
         </NewsDetailStore>
       </Route>
-
       <Route path={["/news", "/newslist"]}>
         <NewsListStore>
           <NewsDetailStore>
@@ -77,23 +100,57 @@ const App = ({ match }) => (
           </NewsDetailStore>
         </NewsListStore>
       </Route>
-
       <Route path={`${match.url}member/:memberid`}>
         <MemberDetail />
       </Route>
-
       <Route path={`${match.url}member`}>
         {/* <MemberListStore>
           <MemberList />
         </MemberListStore> */}
       </Route>
-
-      <Route path={["/carcatalog", "/carcataloglist"]}>
+      {/*
+       #####     #    ######   #####     #    #######
+      #     #   # #   #     # #     #   # #      #   
+      #        #   #  #     # #        #   #     #   
+      #       #     # ######  #       #     #    #   
+      #       ####### #   #   #       #######    #   
+      #     # #     # #    #  #     # #     #    #   
+       #####  #     # #     #  #####  #     #    #   
+      */}
+      <Route path={["/carcatalog/edition/:carId", "/carcatalog/detail/:carId"]}>
         <CarCatalogListStore>
-          <CarCatalogList />
+          <CarCatalogDetail />
         </CarCatalogListStore>
       </Route>
-
+      <Route path={["/carcatalog/index/:indexId"]}>
+        <CarCatalogListStore>
+          <CarCatalogEditionList />
+        </CarCatalogListStore>
+      </Route>
+      <Route path={["/carcatalog/mark/:markId"]}>
+        <CarCatalogListStore>
+          <CarCatalogIndexList />
+        </CarCatalogListStore>
+      </Route>
+      <Route path={["/carcatalog/:firmId", "/carcatalog/firm/:firmId"]}>
+        <CarCatalogListStore>
+          <CarCatalogMarkList />
+        </CarCatalogListStore>
+      </Route>
+      <Route path={["/carcatalog", "/carcataloglist"]}>
+        <CarCatalogListStore>
+          <CarCatalogFirmList />
+        </CarCatalogListStore>
+      </Route>
+      {/*
+      ####### ####### #     # ####### ######  
+      #     #    #    #     # #       #     # 
+      #     #    #    #     # #       #     # 
+      #     #    #    ####### #####   ######  
+      #     #    #    #     # #       #   #   
+      #     #    #    #     # #       #    #  
+      #######    #    #     # ####### #     # 
+      */}
       <Route path={`${match.url}main`} component={Main} />
       <Route path={`${match.url}components`} component={Components} />
       <Route path={`${match.url}custom-views`} component={CustomViews} />
@@ -105,15 +162,20 @@ const App = ({ match }) => (
       <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
       <Route path={`${match.url}social-apps`} component={SocialApps} />
       <Route path={`${match.url}documents`} component={Documents} />
-
+      {/*
+      #     # ####### #     # ####### 
+      #     # #     # ##   ## #       
+      #     # #     # # # # # #       
+      ####### #     # #  #  # #####   
+      #     # #     # #     # #       
+      #     # #     # #     # #       
+      #     # ####### #     # ####### 
+      */}
       <Route exact path="/home">
         <NewsListStore>
-          <NewsDetailStore>
-            <HomeIndex />
-          </NewsDetailStore>
+          <HomeIndex />
         </NewsListStore>
       </Route>
-
       <Route exact path="/">
         <NewsListStore>
           <HomeIndex />

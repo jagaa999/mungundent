@@ -16,9 +16,16 @@ export const CarCatalogListStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
 
+  // ### #     # ### #######
+  // #  ##    #  #     #
+  // #  # #   #  #     #
+  // #  #  #  #  #     #
+  // #  #   # #  #     #
+  // #  #    ##  #     #
+  //### #     # ###    #
+
   const initialStateCarFirmList = {
     loadParams: {
-      // systemmetagroupid: "1479905024968",
       systemmetagroupid: "1599822188399800",
       showquery: "0",
       ignorepermission: "1",
@@ -26,7 +33,6 @@ export const CarCatalogListStore = (props) => {
       paging: {
         sortcolumnnames: {
           firmname: {
-            //эрэмбэлэх талбар
             sorttype: "ASC", //эрэмбэлэх чиглэл
           },
         },
@@ -37,7 +43,86 @@ export const CarCatalogListStore = (props) => {
     error: null,
   };
 
+  const initialStateCarMarkList = {
+    loadParams: {
+      systemmetagroupid: "1599554598533",
+      showquery: "0",
+      ignorepermission: "1",
+      criteria: {},
+      paging: {
+        sortcolumnnames: {
+          markname: {
+            sorttype: "ASC", //эрэмбэлэх чиглэл
+          },
+        },
+      },
+    },
+    carMarkList: [],
+    loading: false,
+    error: null,
+  };
+
+  const initialStateCarIndexList = {
+    loadParams: {
+      systemmetagroupid: "1599824590726192",
+      showquery: "0",
+      ignorepermission: "1",
+      criteria: {},
+      paging: {
+        sortcolumnnames: {
+          maindate2: {
+            sorttype: "DESC",
+          },
+        },
+      },
+    },
+    carIndexList: [],
+    loading: false,
+    error: null,
+  };
+
+  const initialStateCarEditionList = {
+    loadParams: {
+      systemmetagroupid: "1599825541835232",
+      showquery: "0",
+      ignorepermission: "1",
+      criteria: {},
+      paging: {
+        sortcolumnnames: {
+          maindate: {
+            sorttype: "DESC",
+          },
+        },
+      },
+    },
+    carEditionList: [],
+    loading: false,
+    error: null,
+  };
+
+  const initialStateCarDetail = {
+    loadParams: {
+      systemmetagroupid: "1588338917746510",
+      showquery: "0",
+      ignorepermission: "1",
+      criteria: {},
+      paging: {
+        pagesize: "1", //нийтлэлийн тоо
+        offset: "1", //хуудасны дугаар
+      },
+    },
+    carDetail: [],
+    loading: false,
+    error: null,
+  };
+
   const [carFirmList, setCarFirmList] = useState(initialStateCarFirmList);
+  const [carMarkList, setCarMarkList] = useState(initialStateCarMarkList);
+  const [carIndexList, setCarIndexList] = useState(initialStateCarIndexList);
+  const [carEditionList, setCarEditionList] = useState(
+    initialStateCarEditionList
+  );
+  const [carDetail, setCarDetail] = useState(initialStateCarDetail);
 
   // useDidMountEffect(() => {
   //   loadCarCatalogList();
@@ -47,6 +132,14 @@ export const CarCatalogListStore = (props) => {
   //   filterContext.state.sorting,
   //   filterContext.state.cardtype,
   // ]);
+
+  //  ####### ### ######  #     #
+  //  #        #  #     # ##   ##
+  //  #        #  #     # # # # #
+  //  #####    #  ######  #  #  #
+  //  #        #  #   #   #     #
+  //  #        #  #    #  #     #
+  //  #       ### #     # #     #
 
   const loadCarFirmList = () => {
     setCarFirmList({ ...carFirmList, loading: true });
@@ -91,8 +184,263 @@ export const CarCatalogListStore = (props) => {
       });
   };
 
+  //  #     #    #    ######  #    #
+  //  ##   ##   # #   #     # #   #
+  //  # # # #  #   #  #     # #  #
+  //  #  #  # #     # ######  ###
+  //  #     # ####### #   #   #  #
+  //  #     # #     # #    #  #   #
+  //  #     # #     # #     # #    #
+
+  const loadCarMarkList = (firmid) => {
+    setCarMarkList({ ...carMarkList, loading: true });
+
+    const myParamsCarMarkList = {
+      request: {
+        // username: "motoadmin",
+        // password: "moto123",
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "PL_MDVIEW_004",
+        parameters: {
+          ...carMarkList.loadParams,
+          criteria: {
+            id: {
+              0: {
+                operator: "=",
+                operand: firmid,
+              },
+            },
+          },
+        },
+      },
+    };
+
+    axios
+      .post("", myParamsCarMarkList)
+      .then((response) => {
+        // console.log("response---------", response);
+        const myData = response.data.response;
+        if (myData.status === "error") {
+          // getError(myData.text);
+          message.error(myData.text);
+        } else {
+          const myPaging = myData.result.paging || {};
+          const myArray = myData.result || [];
+
+          delete myArray["aggregatecolumns"];
+          delete myArray["paging"];
+
+          setCarMarkList({
+            ...carMarkList,
+            loading: false,
+            carMarkList: Object.values(myArray),
+          });
+        }
+      })
+      .catch((error) => {
+        setCarMarkList({ ...carMarkList, loading: false, error });
+        message.error(error);
+        console.log(error);
+      });
+  };
+
+  //### #     # ######  ####### #     #
+  // #  ##    # #     # #        #   #
+  // #  # #   # #     # #         # #
+  // #  #  #  # #     # #####      #
+  // #  #   # # #     # #         # #
+  // #  #    ## #     # #        #   #
+  //### #     # ######  ####### #     #
+
+  const loadCarIndexList = (markid) => {
+    setCarIndexList({ ...carIndexList, loading: true });
+
+    const myParamsCarIndexList = {
+      request: {
+        // username: "motoadmin",
+        // password: "moto123",
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "PL_MDVIEW_004",
+        parameters: {
+          ...carIndexList.loadParams,
+          criteria: {
+            markid: {
+              0: {
+                operator: "=",
+                operand: markid,
+              },
+            },
+          },
+        },
+      },
+    };
+
+    axios
+      .post("", myParamsCarIndexList)
+      .then((response) => {
+        console.log("response---------", response);
+        const myData = response.data.response;
+        if (myData.status === "error") {
+          // getError(myData.text);
+          message.error(myData.text);
+        } else {
+          const myPaging = myData.result.paging || {};
+          const myArray = myData.result || [];
+
+          delete myArray["aggregatecolumns"];
+          delete myArray["paging"];
+
+          setCarIndexList({
+            ...carIndexList,
+            loading: false,
+            carIndexList: Object.values(myArray),
+          });
+        }
+      })
+      .catch((error) => {
+        setCarIndexList({ ...carIndexList, loading: false, error });
+        message.error(error);
+        console.log(error);
+      });
+  };
+
+  //  ####### ######  ### ####### ### ####### #     #
+  //  #       #     #  #     #     #  #     # ##    #
+  //  #       #     #  #     #     #  #     # # #   #
+  //  #####   #     #  #     #     #  #     # #  #  #
+  //  #       #     #  #     #     #  #     # #   # #
+  //  #       #     #  #     #     #  #     # #    ##
+  //  ####### ######  ###    #    ### ####### #     #
+
+  const loadCarEditionList = (indexid) => {
+    setCarEditionList({ ...carEditionList, loading: true });
+
+    const myParamsCarEditionList = {
+      request: {
+        // username: "motoadmin",
+        // password: "moto123",
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "PL_MDVIEW_004",
+        parameters: {
+          ...carEditionList.loadParams,
+          criteria: {
+            mainid: {
+              0: {
+                operator: "=",
+                operand: indexid,
+              },
+            },
+          },
+        },
+      },
+    };
+
+    axios
+      .post("", myParamsCarEditionList)
+      .then((response) => {
+        const myData = response.data.response;
+        if (myData.status === "error") {
+          // getError(myData.text);
+          message.error(myData.text);
+        } else {
+          const myPaging = myData.result.paging || {};
+          const myArray = myData.result || [];
+
+          delete myArray["aggregatecolumns"];
+          delete myArray["paging"];
+
+          setCarEditionList({
+            ...carEditionList,
+            loading: false,
+            carEditionList: Object.values(myArray),
+          });
+        }
+      })
+      .catch((error) => {
+        setCarEditionList({ ...carEditionList, loading: false, error });
+        message.error(error);
+        console.log(error);
+      });
+  };
+
+  //  ######  ####### #######    #    ### #
+  //  #     # #          #      # #    #  #
+  //  #     # #          #     #   #   #  #
+  //  #     # #####      #    #     #  #  #
+  //  #     # #          #    #######  #  #
+  //  #     # #          #    #     #  #  #
+  //  ######  #######    #    #     # ### #######
+
+  const loadCarDetail = (carid) => {
+    setCarDetail({ ...carDetail, loading: true });
+
+    const myParamsCarDetail = {
+      request: {
+        // username: "motoadmin",
+        // password: "moto123",
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "PL_MDVIEW_004",
+        parameters: {
+          ...carDetail.loadParams,
+          criteria: {
+            carid: {
+              0: {
+                operator: "=",
+                operand: carid,
+              },
+            },
+          },
+        },
+      },
+    };
+
+    axios
+      .post("", myParamsCarDetail)
+      .then((response) => {
+        const myData = response.data.response;
+        if (myData.status === "error") {
+          // getError(myData.text);
+          message.error(myData.text);
+        } else {
+          const myPaging = myData.result.paging || {};
+          const myArray = myData.result || [];
+
+          delete myArray["aggregatecolumns"];
+          delete myArray["paging"];
+
+          setCarDetail({
+            ...carDetail,
+            loading: false,
+            carDetail: Object.values(myArray),
+          });
+        }
+      })
+      .catch((error) => {
+        setCarDetail({ ...carEditionList, loading: false, error });
+        message.error(error);
+        console.log(error);
+      });
+  };
+
   return (
-    <CarCatalogListContext.Provider value={{ carFirmList, loadCarFirmList }}>
+    <CarCatalogListContext.Provider
+      value={{
+        carFirmList,
+        carMarkList,
+        carIndexList,
+        carEditionList,
+        carDetail,
+        loadCarFirmList,
+        loadCarMarkList,
+        loadCarIndexList,
+        loadCarEditionList,
+        loadCarDetail,
+      }}
+    >
       {props.children}
     </CarCatalogListContext.Provider>
   );
