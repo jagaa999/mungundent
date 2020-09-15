@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
-import { Card } from "antd";
+import { Card, Badge } from "antd";
 
 const { Meta } = Card;
 
@@ -13,7 +13,7 @@ const MarkItem = ({ markItem, count }) => {
     <Link to={"/carcatalog/mark/" + markItem.markid}>
       <Card
         key={markItem.id}
-        className=""
+        className="moto-card-type1"
         hoverable={true}
         cover={
           null
@@ -22,9 +22,13 @@ const MarkItem = ({ markItem, count }) => {
       >
         <Meta
           avatar={null}
-          title={markItem.firmname + " " + markItem.markname}
-          description={markItem.count + " ширхэг цувралтай"}
+          title={markItem.markname}
+          description={markItem.firmname}
         />
+
+        <div className="moto-card-badge">
+          <Badge count={markItem.count} />
+        </div>
       </Card>
     </Link>
   );

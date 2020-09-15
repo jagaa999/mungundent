@@ -18,8 +18,7 @@ const { Option } = Select;
 
 const CarCatalogMarkType1 = ({ firmId }) => {
   const carCatalogListContext = useContext(CarCatalogListContext);
-  const [isSpecial, setIsSpecial] = useState(false);
-  const [whatCountry, setWhatCountry] = useState([]);
+  const [whatTitle, setWhatTitle] = useState([]);
 
   useEffect(() => {
     carCatalogListContext.loadCarMarkList(firmId);
@@ -32,8 +31,8 @@ const CarCatalogMarkType1 = ({ firmId }) => {
 
   const uniqueTags = [];
   carCatalogListContext.carMarkList.carMarkList.map((item) => {
-    if (uniqueTags.indexOf(item.firmcountrymon) === -1) {
-      uniqueTags.push(item.firmcountrymon);
+    if (uniqueTags.indexOf(item.markname) === -1) {
+      uniqueTags.push(item.markname);
     }
   });
 
@@ -46,7 +45,7 @@ const CarCatalogMarkType1 = ({ firmId }) => {
 
   function handleChange(value) {
     // console.log(`selected ${value}`);
-    setWhatCountry(value);
+    setWhatTitle(value);
   }
 
   return (
@@ -68,7 +67,7 @@ const CarCatalogMarkType1 = ({ firmId }) => {
               <Select
                 mode="tags"
                 style={{ minWidth: "170px" }}
-                placeholder="Үгээр хайх"
+                placeholder="Маркаар ялгах"
                 onChange={handleChange}
               >
                 {children}
@@ -83,15 +82,15 @@ const CarCatalogMarkType1 = ({ firmId }) => {
                 //   return "";
                 // }
 
-                // if (
-                //   !whatCountry.includes(markItem.markcountrymon) &&
-                //   whatCountry.length > 0
-                // ) {
-                //   return "";
-                // }
+                if (
+                  !whatTitle.includes(markItem.markname) &&
+                  whatTitle.length > 0
+                ) {
+                  return "";
+                }
 
                 return (
-                  <Col key={index} lg={6} md={8} sm={8} xs={8}>
+                  <Col key={index} lg={8} md={8} sm={12} xs={12}>
                     <CarCatalogMarkItem
                       key={index}
                       markItem={markItem}

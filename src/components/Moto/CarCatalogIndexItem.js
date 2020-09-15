@@ -17,6 +17,7 @@ const MarkItem = ({ indexItem, count }) => {
       key={indexItem.id}
       className="moto-card-type1"
       hoverable={true}
+      title={indexItem.maindate2}
       cover={
         <Link to={"/carcatalog/index/" + indexItem.mainid}>
           <img alt="" src={indexItem.mainimg} />
@@ -27,12 +28,13 @@ const MarkItem = ({ indexItem, count }) => {
         avatar={null}
         title={
           <Link to={"/carcatalog/index/" + indexItem.mainid}>
-            {indexItem.firmname + " " + indexItem.markname}
+            {indexItem.markname}
           </Link>
         }
-        description={indexItem.maindate2}
+        description={indexItem.firmname}
       />
       <Paragraph
+        className="gx-mt-3"
         ellipsis={{ rows: 2, expandable: true, symbol: <CaretDownOutlined /> }}
       >
         {indexItem.desceng}

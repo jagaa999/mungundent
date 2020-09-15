@@ -1,19 +1,15 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-// import NewsListContext from "context/NewsListContext";
-import FilterContext from "context/FilterContext";
-import MemberContext from "context/MemberContext";
+// import FilterContext from "context/FilterContext";
+// import MemberContext from "context/MemberContext";
 import CarCatalogEditionListType1 from "components/Moto/CarCatalogEditionListType1";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
 const CarCatalogEditionPage = () => {
   const { indexId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
-  // const newsListContext = useContext(CarCatalogContext);
-  const filterContext = useContext(FilterContext);
-  const memberContext = useContext(MemberContext);
-
-  console.log("FFFFFFFFFFFFF");
+  // const filterContext = useContext(FilterContext);
+  // const memberContext = useContext(MemberContext);
 
   return <CarCatalogEditionListType1 indexId={indexId} />;
 

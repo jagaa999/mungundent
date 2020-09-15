@@ -69,21 +69,20 @@ const MarkItem = ({ editionItem, count }) => {
             <span className="body">{editionItem.drive2drivename}</span>
           </li>
           <li>
-            <li>
-              <span className="title gx-fs-sm">
-                <CaretRightOutlined />
-                Хаалга
-              </span>
-              <span className="body">{editionItem.body2door}</span>
-            </li>
-            <li>
-              <span className="title gx-fs-sm">
-                <CaretRightOutlined />
-                Суудал
-              </span>
-              <span className="body">{editionItem.body2seat}</span>
-            </li>
-
+            <span className="title gx-fs-sm">
+              <CaretRightOutlined />
+              Хаалга
+            </span>
+            <span className="body">{editionItem.body2door}</span>
+          </li>
+          <li>
+            <span className="title gx-fs-sm">
+              <CaretRightOutlined />
+              Суудал
+            </span>
+            <span className="body">{editionItem.body2seat}</span>
+          </li>
+          <li>
             <span className="title gx-fs-sm">
               <CaretRightOutlined />
               Анхны үнэ

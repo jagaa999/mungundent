@@ -64,32 +64,12 @@ const CarCatalogEditionType1 = ({ indexId }) => {
           <PageHeader
             title={<h3>Каталоги - Хувилбар</h3>}
             className="gx-mb-3"
-            extra={[
-              <Select
-                mode="tags"
-                style={{ minWidth: "170px" }}
-                placeholder="Үгээр хайх"
-                onChange={handleChange}
-              >
-                {children}
-              </Select>,
-            ]}
+            extra={[]}
           ></PageHeader>
 
           <Row className="gx-d-flex">
             {carCatalogListContext.carEditionList.carEditionList.map(
               (editionItem, index) => {
-                // if (toBoolean(isSpecial) && !toBoolean(editionItem.special)) {
-                //   return "";
-                // }
-
-                // if (
-                //   !whatCountry.includes(editionItem.indexcountrymon) &&
-                //   whatCountry.length > 0
-                // ) {
-                //   return "";
-                // }
-
                 return (
                   <Col key={index} lg={8} md={12} sm={12} xs={12}>
                     <CarCatalogEditionItem
