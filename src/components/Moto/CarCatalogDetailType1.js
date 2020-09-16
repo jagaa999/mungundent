@@ -5,6 +5,7 @@ import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
 import CarCatalogDetailItem from "./CarCatalogDetailItem";
+import CarCatalogDetailItemTab from "./CarCatalogDetailItemTab";
 import CarCatalogListContext from "context/CarCatalogListContext";
 
 import LoadingList from "./Loading/LoadingList";
@@ -16,30 +17,25 @@ const CarCatalogDetailType1 = ({ carId }) => {
     carCatalogListContext.loadCarDetail(carId);
   }, []);
 
-  // console.log(
-  //   "carCatalogListContext.carDetailList",
-  //   carCatalogListContext.carDetail
-  // );
+  console.log(
+    "carCatalogListContext.carDetailList",
+    carCatalogListContext.carDetail
+  );
 
   return (
-    <div className="moto-list">
+    <div className="moto-list gx-mb-5">
       {!carCatalogListContext.carDetail.loading ? (
-        <div className="gx-main-content">
-          <Row className="gx-d-flex">
-            {carCatalogListContext.carDetail.carDetail.map(
-              (editionItem, index) => {
-                return (
-                  <Col key={index} lg={24} md={24} sm={24} xs={24}>
-                    <CarCatalogDetailItem
-                      key={index}
-                      editionItem={editionItem}
-                    />
-                  </Col>
-                );
-              }
-            )}
-          </Row>
-        </div>
+        Object.keys(carCatalogListContext.carDetail.carDetail).length !== 0 && (
+          <div className="gx-main-content">
+            <Row className="gx-d-flex">
+              <Col lg={24} md={24} sm={24} xs={24}>
+                <CarCatalogDetailItemTab
+                  editionItem={carCatalogListContext.carDetail.carDetail}
+                />
+              </Col>
+            </Row>
+          </div>
+        )
       ) : (
         <LoadingList />
       )}

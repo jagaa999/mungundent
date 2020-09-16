@@ -62,6 +62,12 @@ const SidebarContent = () => {
               </Link>
             </Menu.Item>
 
+            <Menu.Item key="carcatalog/" className="gx-mt-4">
+              <Link to="/carcatalog/">
+                <span>Каталог</span>
+              </Link>
+            </Menu.Item>
+
             <SubMenu
               popupClassName={getNavStyleSubMenuClass(navStyle)}
               key="salon"

@@ -56,6 +56,12 @@ const HorizontalNav = () => {
         </Link>
       </Menu.Item>
 
+      <Menu.Item key="carcatalog" className="motoHeaderMenuItem">
+        <Link to="/carcatalog" className="motoHeaderMenuItemLink">
+          Каталог
+        </Link>
+      </Menu.Item>
+
       <SubMenu
         popupClassName={getNavStyleSubMenuClass(navStyle)}
         key="salon"

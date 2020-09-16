@@ -101,17 +101,7 @@ export const CarCatalogListStore = (props) => {
   };
 
   const initialStateCarDetail = {
-    loadParams: {
-      systemmetagroupid: "1588338917746510",
-      showquery: "0",
-      ignorepermission: "1",
-      criteria: {},
-      paging: {
-        pagesize: "1", //нийтлэлийн тоо
-        offset: "1", //хуудасны дугаар
-      },
-    },
-    carDetail: [],
+    carDetail: {},
     loading: false,
     error: null,
   };
@@ -383,41 +373,29 @@ export const CarCatalogListStore = (props) => {
         // password: "moto123",
         username: memberContext.state.memberUID,
         password: "89",
-        command: "PL_MDVIEW_004",
+        command: "motoGOONET_MAINDETAIL_004",
         parameters: {
-          ...carDetail.loadParams,
-          criteria: {
-            carid: {
-              0: {
-                operator: "=",
-                operand: carid,
-              },
-            },
-          },
+          carid: carid || "",
+          memberid: memberContext.state.memberCloudUserSysId,
+          usersystemid: memberContext.state.memberCloudUserSysId,
         },
       },
     };
+    // console.log(myParamsCarDetail);
 
     axios
       .post("", myParamsCarDetail)
       .then((response) => {
-        const myData = response.data.response;
-        if (myData.status === "error") {
-          // getError(myData.text);
-          message.error(myData.text);
-        } else {
-          const myPaging = myData.result.paging || {};
-          const myArray = myData.result || [];
+        // console.log(response);
+        const myArray = response.data.response.result;
 
-          delete myArray["aggregatecolumns"];
-          delete myArray["paging"];
+        // console.log(myArray);
 
-          setCarDetail({
-            ...carDetail,
-            loading: false,
-            carDetail: Object.values(myArray),
-          });
-        }
+        setCarDetail({
+          ...carDetail,
+          loading: false,
+          carDetail: myArray,
+        });
       })
       .catch((error) => {
         setCarDetail({ ...carEditionList, loading: false, error });

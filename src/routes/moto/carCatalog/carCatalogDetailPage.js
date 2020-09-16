@@ -13,17 +13,9 @@ const CarCatalogDetailPage = () => {
   const filterContext = useContext(FilterContext);
   const memberContext = useContext(MemberContext);
 
-  return <CarCatalogDetailType1 carId={carId} />;
-
-  // if (memberContext.state.isLogin) {
-  //   if (filterContext.state.cardtype.cardtype === "typecard") {
-  //     return <NewsListType2 />;
-  //   } else if (filterContext.state.cardtype.cardtype === "typetable") {
-  //     return <NewsListType3 />;
-  //   } else {
-  //     return <NewsListType1 />;
-  //   }
-  // }
+  if (memberContext.state.isLogin) {
+    return <CarCatalogDetailType1 carId={carId} />;
+  }
 
   return <PleaseLogin />;
 };

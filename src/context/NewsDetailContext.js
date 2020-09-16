@@ -143,6 +143,14 @@ export const NewsDetailStore = (props) => {
       });
   };
 
+  //  #       #######    #    ######
+  //  #       #     #   # #   #     #
+  //  #       #     #  #   #  #     #
+  //  #       #     # #     # #     #
+  //  #       #     # ####### #     #
+  //  #       #     # #     # #     #
+  //  ####### ####### #     # ######
+
   const loadNewsDetail = (newsId) => {
     const myParamsNewsDetail = {
       request: {
@@ -157,7 +165,6 @@ export const NewsDetailStore = (props) => {
         },
       },
     };
-    // console.log("myParamsNewsDetail", myParamsNewsDetail);
 
     clearNewsDetail();
     setState({ ...state, loading: true });
@@ -165,16 +172,13 @@ export const NewsDetailStore = (props) => {
     axios
       .post("", myParamsNewsDetail)
       .then((response) => {
-        // console.log("ИРСЭН ДАТА444:   ", response);
         const myArray = response.data.response.result;
-        console.log("NEWS DETAIL------------>", myArray);
+        // console.log("NEWS DETAIL------------>", myArray);
         setState({
           ...state,
           loading: false,
           newsDetail: myArray,
         });
-
-        // setState({ ...state, newsDetail: response.data });
       })
       .catch((error) => {
         getError(error);
@@ -289,10 +293,10 @@ export const NewsDetailStore = (props) => {
     axios
       .post("", myParamsNewsDetail)
       .then((response) => {
-        console.log("Save NewsDetail:   ", response);
+        // console.log("Save NewsDetail:   ", response);
 
         const myData = response.data.response;
-        console.log("After Save NewsDetail ------------>", myData);
+        // console.log("After Save NewsDetail ------------>", myData);
 
         if (myData.status === "error") {
           getError(myData.text);

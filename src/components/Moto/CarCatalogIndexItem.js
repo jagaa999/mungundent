@@ -16,10 +16,13 @@ const MarkItem = ({ indexItem, count }) => {
     <Card
       key={indexItem.id}
       className="moto-card-type1"
-      hoverable={true}
+      hoverable={false}
       title={indexItem.maindate2}
       cover={
-        <Link to={"/carcatalog/index/" + indexItem.mainid}>
+        <Link
+          to={"/carcatalog/index/" + indexItem.mainid}
+          style={{ maxWidth: "73%", margin: "20px auto" }}
+        >
           <img alt="" src={indexItem.mainimg} />
         </Link>
       }

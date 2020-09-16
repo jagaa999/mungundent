@@ -13,17 +13,9 @@ const CarCatalogIndexPage = () => {
   const filterContext = useContext(FilterContext);
   const memberContext = useContext(MemberContext);
 
-  return <CarCatalogIndexListType1 markId={markId} />;
-
-  // if (memberContext.state.isLogin) {
-  //   if (filterContext.state.cardtype.cardtype === "typecard") {
-  //     return <NewsListType2 />;
-  //   } else if (filterContext.state.cardtype.cardtype === "typetable") {
-  //     return <NewsListType3 />;
-  //   } else {
-  //     return <NewsListType1 />;
-  //   }
-  // }
+  if (memberContext.state.isLogin) {
+    return <CarCatalogIndexListType1 markId={markId} />;
+  }
 
   return <PleaseLogin />;
 };

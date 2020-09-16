@@ -26,7 +26,7 @@ const dateFormat = "YYYY-MM-DD";
 
 const CarCatalogIndexType1 = ({ markId }) => {
   const carCatalogListContext = useContext(CarCatalogListContext);
-  const [whatDate, setWhatDate] = useState(["1900-01-01", "2090-12-30"]);
+  const [whatDate, setWhatDate] = useState(["1900-01-01", "2090-12-31"]);
 
   useEffect(() => {
     carCatalogListContext.loadCarIndexList(markId);
@@ -36,17 +36,6 @@ const CarCatalogIndexType1 = ({ markId }) => {
     "carCatalogListContext.carIndexList",
     carCatalogListContext.carIndexList
   );
-
-  function onChange(dates, dateStrings) {
-    // console.log("dfdfdfd", dates);
-
-    setWhatDate([
-      moment(dates?.length ? dateStrings[0] : "1900-01-01").format(dateFormat),
-      moment(dates?.length ? dateStrings[1] : "2090-01-01")
-        .add(363, "days")
-        .format(dateFormat),
-    ]);
-  }
 
   return (
     <div className="moto-list">
@@ -60,25 +49,43 @@ const CarCatalogIndexType1 = ({ markId }) => {
             title={<h3>Каталоги - Цуврал</h3>}
             className="gx-mb-3"
             extra={[
-              <RangePicker
-                picker="year"
-                // defaultValue={[
-                //   moment(
-                //     carCatalogListContext.carIndexList.carIndexList[
-                //       carCatalogListContext.carIndexList.carIndexList.length
-                //     ].maindate,
-                //     dateFormat
-                //   ),
-                //   moment(
-                //     carCatalogListContext.carIndexList.carIndexList[0]
-                //       .maindate,
-                //     dateFormat
-                //   ),
-                // ]}
-                placeholder={["Эхлэх он", "Сүүл он"]}
-                allowEmpty={true}
-                onChange={onChange}
-              />,
+              <Select
+                className="gx-mr-2"
+                style={{ width: 120 }}
+                allowClear
+                placeholder="Доод"
+                onChange={(value) => {
+                  console.log(value);
+                  setWhatDate([
+                    moment(
+                      value !== undefined ? value + "-01-01" : "1900-01-01"
+                    ).format(dateFormat),
+                    whatDate[1],
+                  ]);
+                }}
+              >
+                {Array.from(Array(30), (e, i) => {
+                  return <Option value={i + 1990}>{i + 1990}</Option>;
+                })}
+              </Select>,
+              <Select
+                style={{ width: 120 }}
+                allowClear
+                placeholder="Дээд"
+                onChange={(value) => {
+                  console.log(value);
+                  setWhatDate([
+                    whatDate[0],
+                    moment(
+                      value !== undefined ? value + "-12-31" : "2090-12-31"
+                    ).format(dateFormat),
+                  ]);
+                }}
+              >
+                {Array.from(Array(30), (e, i) => {
+                  return <Option value={i + 2000}>{i + 2000}</Option>;
+                })}
+              </Select>,
             ]}
           ></PageHeader>
 

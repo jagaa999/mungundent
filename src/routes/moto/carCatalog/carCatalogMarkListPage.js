@@ -13,17 +13,9 @@ const CarCatalogMarkPage = () => {
   const filterContext = useContext(FilterContext);
   const memberContext = useContext(MemberContext);
 
-  return <CarCatalogMarkListType1 firmId={firmId} />;
-
-  // if (memberContext.state.isLogin) {
-  //   if (filterContext.state.cardtype.cardtype === "typecard") {
-  //     return <NewsListType2 />;
-  //   } else if (filterContext.state.cardtype.cardtype === "typetable") {
-  //     return <NewsListType3 />;
-  //   } else {
-  //     return <NewsListType1 />;
-  //   }
-  // }
+  if (memberContext.state.isLogin) {
+    return <CarCatalogMarkListType1 firmId={firmId} />;
+  }
 
   return <PleaseLogin />;
 };

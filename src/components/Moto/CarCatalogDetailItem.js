@@ -23,6 +23,8 @@ import {
   CaretRightOutlined,
 } from "@ant-design/icons";
 
+import CarCatalogImagesSlider from "./Image/CarCatalogImagesSlider";
+
 const { Meta } = Card;
 const { Paragraph } = Typography;
 
@@ -30,7 +32,9 @@ const MarkItem = ({ editionItem }) => {
   console.log("Манай Машин - ", editionItem);
 
   const otherImages = editionItem.imagesother.split(" | ");
-  console.log("otherImages", otherImages);
+  otherImages.splice(-1, 1);
+
+  // console.log("otherImages", otherImages);
 
   return (
     <Card
@@ -64,7 +68,7 @@ const MarkItem = ({ editionItem }) => {
               />
             </Col>
             <Col span={8}>
-              <Statistic title="Идэлт" value={editionItem.envi2fueljc08} />
+              <Statistic title="Идэлт" value={editionItem.envi2fuel10mode} />
             </Col>
           </Row>
 
@@ -74,10 +78,10 @@ const MarkItem = ({ editionItem }) => {
               <Statistic title="Арлын дугаар" value={editionItem.modelcode} />
             </Col>
             <Col span={8}>
-              <Statistic title="Суудал" value={editionItem.seatnumber} />
+              <Statistic title="Суудал" value={editionItem.body2seat} />
             </Col>
             <Col span={8}>
-              <Statistic title="Хаалга" value={editionItem.doornumber} />
+              <Statistic title="Хаалга" value={editionItem.body2door} />
             </Col>
           </Row>
           <Divider />
@@ -126,16 +130,32 @@ const MarkItem = ({ editionItem }) => {
 
       <Row>
         <Col>
-          {/* {otherImages} */}
-          {otherImages.map((item, index) => {
-            return (
-              <img src={"https://catalogphoto.goo-net.com/carphoto/" + item} />
-            );
-          })}
+          <CarCatalogImagesSlider images={otherImages} />
         </Col>
       </Row>
 
-      <ul className="gx-list-group gx-mt-3 moto-spec-list">
+      <Row>
+        <Col>
+          <Descriptions
+            title="Ерөнхий"
+            layout="horizontal"
+            bordered
+            size="small"
+            column={{ xxl: 6, xl: 6, lg: 4, md: 4, sm: 2, xs: 1 }}
+            className="gx-mt-5"
+          >
+            {Object.keys(editionItem).map((val, k) => {
+              return (
+                <Descriptions.Item label={val}>
+                  {editionItem[val]}
+                </Descriptions.Item>
+              );
+            })}
+          </Descriptions>
+        </Col>
+      </Row>
+
+      {/* <ul className="gx-list-group gx-mt-3 moto-spec-list">
         {Object.keys(editionItem).map((val, k) => {
           return (
             <li>
@@ -147,7 +167,7 @@ const MarkItem = ({ editionItem }) => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </Card>
   );
 };

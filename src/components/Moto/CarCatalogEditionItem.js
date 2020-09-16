@@ -24,7 +24,13 @@ const MarkItem = ({ editionItem, count }) => {
         key={editionItem.id}
         className="moto-card-type1"
         hoverable={true}
-        cover={<img alt="" src={editionItem.mainimg} />}
+        cover={
+          <img
+            alt=""
+            src={editionItem.mainimg}
+            style={{ maxWidth: "73%", margin: "20px auto" }}
+          />
+        }
       >
         <Meta
           avatar={null}
