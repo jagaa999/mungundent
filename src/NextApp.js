@@ -1,22 +1,19 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 
 import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "assets/vendors/style";
 import configureStore, { history } from "./appRedux/store";
-import "./firebase/firebase";
-import MotoIndexApp from "./containers/App/MotoIndexApp";
+// import MotoIndexApp from "./containers/App/MotoIndexApp";
 import { MemberProfileStore } from "context/MemberContext";
 import { FilterStore } from "context/FilterContext";
-import { MemberItemsStore } from "context/MemberItemsContext";
 
+const MotoIndexApp = lazy(() => import("./containers/App/MotoIndexApp"));
 const store = configureStore(/* provide initial state if any */);
 
 const NextApp = () => (
   <Provider store={store}>
-    {/* <ConnectedRouter history={history}> */}
     <BrowserRouter>
       <MemberProfileStore>
         <FilterStore>
@@ -28,17 +25,12 @@ const NextApp = () => (
               content="Автомашин, авто сэлбэг, эд анги"
             />
           </Helmet>
-
-          {/* <MemberItemsStore> */}
-          {/* <Switch>
-            <Route path="/" component={MotoIndexApp} />
-          </Switch> */}
-          <MotoIndexApp />
-          {/* </MemberItemsStore> */}
+          <Suspense fallback={<div>Одоохон...</div>}>
+            <MotoIndexApp />
+          </Suspense>
         </FilterStore>
       </MemberProfileStore>
     </BrowserRouter>
-    {/* </ConnectedRouter> */}
   </Provider>
 );
 

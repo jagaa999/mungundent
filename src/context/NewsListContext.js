@@ -51,14 +51,15 @@ export const NewsListStore = (props) => {
 
   const [state, setState] = useState(initialStateNewsList);
 
-  useDidMountEffect(() => {
-    // useEffect(() => {
+  // useDidMountEffect(() => {
+  useEffect(() => {
     loadNewsList();
   }, [
     filterContext.state.filterList,
     filterContext.state.paging,
     filterContext.state.sorting,
     filterContext.state.cardtype,
+    memberContext.state.isLogin,
   ]);
 
   const loadNewsList = (queryString) => {

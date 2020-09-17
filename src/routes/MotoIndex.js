@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Components from "./components/index";
@@ -12,6 +12,8 @@ import Documents from "./documents/index";
 import { NewsListStore } from "../context/NewsListContext";
 import { NewsDetailStore } from "../context/NewsDetailContext";
 import { CarCatalogListStore } from "../context/CarCatalogListContext";
+import { MemberListStore } from "../context/MemberListContext";
+import { ProductListStore } from "../context/ProductListContext";
 import { FilterStore } from "../context/FilterContext";
 
 import asyncComponent from "util/asyncComponent";
@@ -49,26 +51,50 @@ const CarCatalogDetail = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogDetailPage");
 });
 
+const MemberList = asyncComponent(() => {
+  return import("./moto/member/memberListPage");
+});
+
 const MemberDetail = asyncComponent(() => {
   return import("./moto/member/memberDetail");
+});
+
+const ProductList = asyncComponent(() => {
+  return import("./moto/product/productListPage");
 });
 
 const HomeIndex = asyncComponent(() => {
   return import("./moto/home/home");
 });
-
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
       {/*}
-    #     # ####### #     #  #####  
-    ##    # #       #  #  # #     # 
-    # #   # #       #  #  # #       
-    #  #  # #####   #  #  #  #####  
-    #   # # #       #  #  #       # 
-    #    ## #       #  #  # #     # 
-    #     # #######  ## ##   #####  
-    */}
+      ######  ######  ####### ######  #     #  #####  ####### 
+      #     # #     # #     # #     # #     # #     #    #    
+      #     # #     # #     # #     # #     # #          #    
+      ######  ######  #     # #     # #     # #          #    
+      #       #   #   #     # #     # #     # #          #    
+      #       #    #  #     # #     # #     # #     #    #    
+      #       #     # ####### ######   #####   #####     #    
+      */}
+      {/* <Route path={`${match.url}product/:productid`}>
+        <MemberDetail />
+      </Route> */}
+      <Route path={["/product", "/productlist"]}>
+        <ProductListStore>
+          <ProductList />
+        </ProductListStore>
+      </Route>
+      {/*}
+      #     # ####### #     #  #####  
+      ##    # #       #  #  # #     # 
+      # #   # #       #  #  # #       
+      #  #  # #####   #  #  #  #####  
+      #   # # #       #  #  #       # 
+      #    ## #       #  #  # #     # 
+      #     # #######  ## ##   #####  
+      */}
       <Route
         path={[
           "/news/edit/:newsId",
@@ -100,13 +126,22 @@ const App = ({ match }) => (
           </NewsDetailStore>
         </NewsListStore>
       </Route>
+      {/* 
+      #     # ####### #     # ######  ####### ######  
+      ##   ## #       ##   ## #     # #       #     # 
+      # # # # #       # # # # #     # #       #     # 
+      #  #  # #####   #  #  # ######  #####   ######  
+      #     # #       #     # #     # #       #   #   
+      #     # #       #     # #     # #       #    #  
+      #     # ####### #     # ######  ####### #     # 
+      */}
       <Route path={`${match.url}member/:memberid`}>
         <MemberDetail />
       </Route>
-      <Route path={`${match.url}member`}>
-        {/* <MemberListStore>
+      <Route path={["/member", "/memberlist"]}>
+        <MemberListStore>
           <MemberList />
-        </MemberListStore> */}
+        </MemberListStore>
       </Route>
       {/*
        #####     #    ######   #####     #    #######

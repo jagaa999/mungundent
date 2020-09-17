@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
+import { Image } from "cloudinary-react";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 import Output from "editorjs-react-renderer";
@@ -58,7 +59,7 @@ import NewsDetailContext from "context/NewsDetailContext";
 const { Paragraph } = Typography;
 const { TabPane } = Tabs;
 
-const NewsDetailComponent = ({ newsId }) => {
+const NewsDetailComponent = () => {
   const newsDetailContext = useContext(NewsDetailContext);
   const logsContext = useContext(LogsContext);
 
@@ -144,57 +145,83 @@ const NewsDetailComponent = ({ newsId }) => {
     }
   }
 
-  let myMainImage;
-  try {
-    // myMainImage = newsItem.imagemain
-    //   .split("storage")
-    //   .join("https://www.moto.mn/storage");
-    myMainImage = newsItem.imagemain;
-  } catch (e) {
-    myMainImage = "";
-  }
-
   console.log("newsItem", newsItem);
 
-  return (
-    <div>
-      <div key={newsItem.newsid} className="gx-main-content news-detail">
-        <NewsDetailHeader newsItem={newsItem} member={member} />
+  if (Object.keys(newsItem).length !== 0) {
+    let myMainImage = "";
+    try {
+      // myMainImage = newsItem.imagemain
+      //   .split("storage")
+      //   .join("https://www.moto.mn/storage");
+      myMainImage = newsItem.imagemain;
+    } catch (e) {
+      myMainImage = "";
+    }
 
-        {/* <NewsButtonPanel newsItem={newsItem} /> */}
+    return (
+      <div>
+        <div key={newsItem.newsid} className="gx-main-content news-detail">
+          <NewsDetailHeader newsItem={newsItem} member={member} />
 
-        <Row>
-          <Col xs={24}>
-            <Card
-              className={
-                (toBoolean(newsItem.isfeatured) ? "gx-border-success" : "") +
-                (!toBoolean(newsItem.isactive) ? "gx-border-danger" : "")
-              }
-              cover={
-                <img
-                  alt={newsItem.title}
-                  // src={"https://www.moto.mn/" + newsItem.imagemain}
-                  src={myMainImage}
-                  onError={defaultSrc}
-                />
-              }
-            >
-              {myOutputBody}
-            </Card>
-          </Col>
-        </Row>
-        {/* <div>
+          {/* <NewsButtonPanel newsItem={newsItem} /> */}
+
+          <Row>
+            <Col xs={24}>
+              <Card
+                className={
+                  (toBoolean(newsItem.isfeatured) ? "gx-border-success" : "") +
+                  (!toBoolean(newsItem.isactive) ? "gx-border-danger" : "")
+                }
+                cover={
+                  // <img
+                  //   alt={newsItem.title}
+                  //   src={myMainImage}
+                  //   onError={defaultSrc}
+                  // />
+                  <Image
+                    cloudName="motomn"
+                    publicId={myMainImage
+                      .slice(
+                        myMainImage.indexOf("upload/") + 7,
+                        myMainImage.length
+                      )
+                      .split(".")
+                      .shift()}
+                    crop="fill"
+                    loading="lazy"
+                    dpr="auto"
+                    responsive
+                    width="auto"
+                    gravity="face"
+                    quality="auto"
+                    placeHolder="blur"
+                    responsiveUseBreakpoints="true"
+                    className="gx-img-fluid gx-w-100"
+                    default_image="jhannw5jgo2mlvvkvke9"
+                    alt={newsItem.title}
+                    onError={defaultSrc}
+                  />
+                }
+              >
+                <div className="moto-news-body">{myOutputBody}</div>
+              </Card>
+            </Col>
+          </Row>
+          {/* <div>
           <MemberCard02 member={member} maxWidth="250px" />
         </div> */}
-        <div>
-          <NewsHeaderButton item={newsItem} />
+          <div>
+            <NewsHeaderButton item={newsItem} />
+          </div>
+          {/* Одоогоор TableName-ийг хоосон орхив */}
+          <CommentBox recordId={newsItem.newsid} tableName="" />
+          <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
         </div>
-        {/* Одоогоор TableName-ийг хоосон орхив */}
-        <CommentBox recordId={newsItem.newsid} tableName="" />
-        <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
       </div>
-    </div>
-  );
+    );
+  } else {
+    return "";
+  }
 };
 
 export default NewsDetailComponent;

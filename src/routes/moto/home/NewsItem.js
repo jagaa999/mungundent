@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Card } from "antd";
 import { defaultSrc } from "util/config";
+import { Image } from "cloudinary-react";
 
 const NewsItem = ({ newsItem }) => {
   return (
@@ -22,10 +23,32 @@ const NewsItem = ({ newsItem }) => {
         {/* <div className="gx-text-primary gx-text-uppercase gx-d-block label-read">
           Унших
         </div> */}
-        <img
+        {/* <img
           className="gx-img-fluid gx-w-100"
           alt={newsItem.title}
           src={newsItem.imagemain}
+          onError={defaultSrc}
+        /> */}
+
+        <Image
+          cloudName="motomn"
+          publicId={newsItem.imagemain
+            .slice(
+              newsItem.imagemain.indexOf("upload/") + 7,
+              newsItem.imagemain.length
+            )
+            .split(".")
+            .shift()}
+          crop="fill"
+          loading="lazy"
+          dpr="auto"
+          responsive
+          width="auto"
+          gravity="face"
+          quality="auto"
+          responsiveUseBreakpoints="true"
+          className="gx-img-fluid gx-w-100"
+          alt={newsItem.title}
           onError={defaultSrc}
         />
       </div>

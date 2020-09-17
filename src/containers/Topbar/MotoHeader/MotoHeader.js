@@ -46,25 +46,15 @@ const MotoHeader = () => {
   const dispatch = useDispatch();
 
   const [searchText, setSearchText] = useState("");
-  const locale = useSelector(({ settings }) => settings.locale);
-  const navCollapsed = useSelector(({ settings }) => settings.navCollapsed);
-
-  const languageMenu = () => (
-    <CustomScrollbars className="gx-popover-lang-scroll">
-      <ul className="gx-sub-popover">
-        {languageData.map((language) => (
-          <li
-            className="gx-media gx-pointer"
-            key={JSON.stringify(language)}
-            onClick={(e) => dispatch(switchLanguage(language))}
-          >
-            <i className={`flag flag-24 gx-mr-2 flag-${language.icon}`} />
-            <span className="gx-language-text">{language.name}</span>
-          </li>
-        ))}
-      </ul>
-    </CustomScrollbars>
-  );
+  // const locale = useSelector(({ settings }) => settings.locale);
+  const locale = {
+    languageId: "mongolia",
+    locale: "en",
+    name: "Mongolia",
+    icon: "en",
+  };
+  // const navCollapsed = useSelector(({ settings }) => settings.navCollapsed);
+  const navCollapsed = false;
 
   const updateSearchChatUser = (evt) => {
     setSearchText(evt.target.value);
@@ -240,7 +230,10 @@ const mapStateToProps = ({ settings }) => {
   const { locale, navCollapsed } = settings;
   return { locale, navCollapsed };
 };
+
 export default connect(mapStateToProps, {
   toggleCollapsedSideNav,
   switchLanguage,
 })(MotoHeader);
+
+// export default MotoHeader;

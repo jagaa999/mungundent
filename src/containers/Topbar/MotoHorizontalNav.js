@@ -20,8 +20,9 @@ const MenuItemGroup = Menu.ItemGroup;
 const HorizontalNav = () => {
   const filterContext = useContext(FilterContext);
 
-  const navStyle = useSelector(({ settings }) => settings.navStyle);
-  const pathname = useSelector(({ settings }) => settings.pathname);
+  // const navStyle = useSelector(({ settings }) => settings.navStyle);
+  const navStyle = "NAV_STYLE_INSIDE_HEADER_HORIZONTAL";
+  // const pathname = useSelector(({ settings }) => settings.pathname);
 
   const getNavStyleSubMenuClass = (navStyle) => {
     switch (navStyle) {

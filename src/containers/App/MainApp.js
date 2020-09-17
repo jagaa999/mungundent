@@ -3,15 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 
 import Sidebar from "../Sidebar/index";
-import HorizontalDefault from "../Topbar/HorizontalDefault/index";
-import HorizontalDark from "../Topbar/HorizontalDark/index";
 import MotoHeader from "containers/Topbar/MotoHeader/MotoHeader";
-import AboveHeader from "../Topbar/AboveHeader/index";
-import BelowHeader from "../Topbar/BelowHeader/index";
-
 import asyncComponent from "util/asyncComponent";
 
-import Topbar from "../Topbar/index";
 import { footerText } from "util/config";
 import MotoIndex from "../../routes/MotoIndex";
 import { useSelector } from "react-redux";
@@ -28,9 +22,8 @@ import {
   NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
   TAB_SIZE,
 } from "../../constants/ThemeSetting";
-import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 import { useRouteMatch } from "react-router-dom";
-import Customizer from "../Customizer";
+// import Customizer from "../Customizer";
 
 import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
@@ -46,7 +39,10 @@ const MainApp = () => {
   const myItem = memberContext.state.memberProfile;
   const memberItemsContext = useContext(MemberItemsContext);
 
-  const { width, navStyle } = useSelector(({ settings }) => settings);
+  // const { width, navStyle } = useSelector(({ settings }) => settings);
+  const width = window.innerWidth;
+  const navStyle = "NAV_STYLE_INSIDE_HEADER_HORIZONTAL";
+
   const match = useRouteMatch();
 
   useEffect(() => {
@@ -117,7 +113,7 @@ const MainApp = () => {
                 <div className="gx-layout-footer-content">{footerText}</div>
               </Footer>
             </Content>
-            <Customizer />
+            {/* <Customizer /> */}
           </Layout>
         </Layout>
       </Route>
