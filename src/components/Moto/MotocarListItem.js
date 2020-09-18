@@ -33,7 +33,7 @@ const NewsItem = ({ motocarItem }) => {
         <div className="gx-user-wid gx-mr-3">
           <img
             alt="..."
-            src={`https://cloudapi.moto.mn/portal/${motocarItem.imagemain}`}
+            src={`https://cloudapi.moto.mn/${motocarItem.imagemain}`}
             className="gx-object-cover"
           />
         </div>
@@ -45,13 +45,13 @@ const NewsItem = ({ motocarItem }) => {
             </h2>
           </div>
           <p className="gx-mb-1 gx-text-grey gx-fs-sm">
-            {motocarItem.itemcode}
+            Жолооны байрлал: {motocarItem.body2driverposname}
             <br />
-            {motocarItem.departmentname}
+            Хөтлөгч: {motocarItem.drive2drivename}
             <br />
-            category: {motocarItem.category}
+            Шатахуун: {motocarItem.engine2fuelname}
             <br />
-            Үнэ: {motocarItem.saleprice}
+            Хроп: {motocarItem.drive2transtypename}
             <br />
             itemtypename: {motocarItem.itemtypename}
           </p>
@@ -64,3 +64,96 @@ const NewsItem = ({ motocarItem }) => {
 };
 
 export default NewsItem;
+
+// motocarid
+// mglLicensenumberFull
+// title
+// imageMain
+// imageOther
+// description
+// firmid
+// markid
+// mainid
+// carid
+// firmName
+// firmCountryMon
+// markName
+// indexImage
+// indexDate
+// gooCartrim
+// gooCarDate
+// gooUntilnow
+// gooPriceNewUsd
+// gooBody2Door
+// gooBody2Seat
+// gooBody2ModelCodeFull
+// gooModelCode
+// gooEngine2Code
+// gooEngine2PowerHp
+// gooEngine2Disp
+// gooEngine2Fueltank
+// gooEngine2Fuelname
+// gooDrive2Transtypename
+// carYearManufactured
+// carYearImport
+// carMilageImport
+// carMilageNow
+// carColorOutside
+// carColorInside
+// bodyid
+// body2Bodyname
+// engine2Disp
+// engine2Cylinder
+// fueltypeid
+// engine2Fuelname
+// engine2PowerHp
+// carCountyOrigin
+// carCountryImport
+// body2Door
+// body2Seat
+// transtypeid
+// drive2Transtypename
+// drive2TransmissionStep
+// driveid
+// drive2Drivename
+// driverposid
+// body2Driverposname
+// engineTurboid
+// engineTurboName
+// engine2Type
+// mglLicensenumberNumber
+// mglLicensenumberSeries
+// vehicleType
+// createdDate
+// createdBy
+// modifiedDate
+// modifiedBy
+// carFirm
+// carMark
+// cartrim
+// tempLeasing
+// tempSalecondition
+// tempPrice
+// tempPhone
+// tempUnaaid
+// tempUneguiid
+// tempNuxtsul
+// tempMiningurl
+// tempMiningpagetitle
+// tempMiningdate
+// body2ModelCodeFull
+// modelCode
+// body2VinNumber
+// engine2Code
+// temp
+// oldMotoGooAllcarCarid
+// isActive
+// ownerid
+// personId
+// systemUserId
+// memberusername
+// memberPersonId
+// memberuserFullName
+// memberprofilePhoto
+// memberfirebaseUid
+// companyId
