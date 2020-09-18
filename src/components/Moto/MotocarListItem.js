@@ -8,16 +8,16 @@ import { Card, Badge, Tag } from "antd";
 import { MailOutlined, MobileOutlined } from "@ant-design/icons";
 const { Meta } = Card;
 
-const NewsItem = ({ productItem }) => {
-  console.log("Манай бараа - ", productItem);
+const NewsItem = ({ motocarItem }) => {
+  console.log("Манай машин - ", motocarItem);
 
   return (
-    // <Link to={"/member/" + productItem.itemid}>
+    // <Link to={"/member/" + motocarItem.itemid}>
     // <Badge.Ribbon
     //   text={
     //     <>
-    //       {productItem.email !== "" && <MailOutlined className="gx-mr-2" />}
-    //       {productItem.phonenumber !== "" && (
+    //       {motocarItem.email !== "" && <MailOutlined className="gx-mr-2" />}
+    //       {motocarItem.phonenumber !== "" && (
     //         <MobileOutlined className="gx-mr-2" />
     //       )}
     //     </>
@@ -33,24 +33,27 @@ const NewsItem = ({ productItem }) => {
         <div className="gx-user-wid gx-mr-3">
           <img
             alt="..."
-            src={`https://cloudapi.moto.mn/portal/${productItem.imagemain}`}
+            src={`https://cloudapi.moto.mn/portal/${motocarItem.imagemain}`}
             className="gx-object-cover"
           />
         </div>
         <div className="gx-user-wid-body gx-py-3 gx-pr-3">
           <div className="ant-row-flex">
-            <h2 className="h4 gx-mr-1 gx-mb-1">{productItem.itemname}</h2>
+            <h2 className="h4 gx-mr-1 gx-mb-1">
+              {motocarItem.firmname} {motocarItem.markname}{" "}
+              {motocarItem.cartrim}
+            </h2>
           </div>
           <p className="gx-mb-1 gx-text-grey gx-fs-sm">
-            {productItem.itemcode}
+            {motocarItem.itemcode}
             <br />
-            {productItem.departmentname}
+            {motocarItem.departmentname}
             <br />
-            category: {productItem.category}
+            category: {motocarItem.category}
             <br />
-            Үнэ: {productItem.saleprice}
+            Үнэ: {motocarItem.saleprice}
             <br />
-            itemtypename: {productItem.itemtypename}
+            itemtypename: {motocarItem.itemtypename}
           </p>
         </div>
       </div>

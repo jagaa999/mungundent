@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { Image } from "cloudinary-react";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
@@ -108,16 +109,38 @@ const NewsItem = ({ newsItems }) => {
       key: "imagemain",
       fixed: "left",
       render: (imagemain) => (
-        <Avatar
-          src={
-            imagemain ||
-            "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
-          }
+        <Image
+          cloudName="motomn"
+          publicId={imagemain
+            .slice(imagemain.indexOf("upload/") + 7, imagemain.length)
+            .split(".")
+            .shift()}
+          crop="fill"
+          loading="lazy"
+          dpr="auto"
+          responsive
+          width="64"
+          gravity="face"
+          quality="auto"
+          placeHolder="blur"
+          responsiveUseBreakpoints="true"
+          className="gx-d-block"
+          default_image="jhannw5jgo2mlvvkvke9"
           alt={imagemain}
-          size={64}
-          shape="square"
+          onError={defaultSrc}
         />
       ),
+      // render: (imagemain) => (
+      //   <Avatar
+      //     src={
+      //       imagemain ||
+      //       "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+      //     }
+      //     alt={imagemain}
+      //     size={64}
+      //     shape="square"
+      //   />
+      // ),
     },
 
     {

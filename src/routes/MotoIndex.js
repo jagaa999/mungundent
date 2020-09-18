@@ -14,6 +14,7 @@ import { NewsDetailStore } from "../context/NewsDetailContext";
 import { CarCatalogListStore } from "../context/CarCatalogListContext";
 import { MemberListStore } from "../context/MemberListContext";
 import { ProductListStore } from "../context/ProductListContext";
+import { MotocarListStore } from "../context/MotocarListContext";
 import { FilterStore } from "../context/FilterContext";
 
 import asyncComponent from "util/asyncComponent";
@@ -63,6 +64,10 @@ const ProductList = asyncComponent(() => {
   return import("./moto/product/productListPage");
 });
 
+const MotocarList = asyncComponent(() => {
+  return import("./moto/motocar/motocarListPage");
+});
+
 const HomeIndex = asyncComponent(() => {
   return import("./moto/home/home");
 });
@@ -85,6 +90,24 @@ const App = ({ match }) => (
         <ProductListStore>
           <ProductList />
         </ProductListStore>
+      </Route>
+
+      {/*
+      #     # ####### ####### #######  #####     #    ######  
+      ##   ## #     #    #    #     # #     #   # #   #     # 
+      # # # # #     #    #    #     # #        #   #  #     # 
+      #  #  # #     #    #    #     # #       #     # ######  
+      #     # #     #    #    #     # #       ####### #   #   
+      #     # #     #    #    #     # #     # #     # #    #  
+      #     # #######    #    #######  #####  #     # #     # 
+      */}
+      {/* <Route path={`${match.url}product/:productid`}>
+        <MemberDetail />
+      </Route> */}
+      <Route path={["/motocar", "/motocarlist"]}>
+        <MotocarListStore>
+          <MotocarList />
+        </MotocarListStore>
       </Route>
       {/*}
       #     # ####### #     #  #####  

@@ -8,9 +8,9 @@ import axiosCloud from "util/axiosCloudConfig";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
-const ProductListContext = React.createContext();
+const MotocarListContext = React.createContext();
 
-export const ProductListStore = (props) => {
+export const MotocarListStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
 
@@ -22,33 +22,29 @@ export const ProductListStore = (props) => {
   // #  #    ##  #     #
   //### #     # ###    #
 
-  const initialStateProductList = {
+  const initialStateMotocarList = {
     loadParams: {
       // systemmetagroupid: "1585197442423220",
-      systemmetagroupid: "1487042451650",
+      systemmetagroupid: "1600421356169317",
       showquery: "0",
       ignorepermission: "1",
-      criteria: {
-        // categoryid: "301501121001100010",
-        // itemTypeName: "Сэлбэг",
-        itemtypeid: "1514183113705",
-      },
+      criteria: {},
       paging: {
         pageSize: "24",
         offset: "1",
-        // sortcolumnnames: {
-        //   createddate: {
-        //     sorttype: "DESC", //эрэмбэлэх чиглэл
-        //   },
-        // },
+        sortcolumnnames: {
+          createddate: {
+            sorttype: "DESC", //эрэмбэлэх чиглэл
+          },
+        },
       },
     },
-    productList: [],
+    motocarList: [],
     loading: false,
     error: null,
   };
 
-  const [productList, setProductList] = useState(initialStateProductList);
+  const [motocarList, setMotocarList] = useState(initialStateMotocarList);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #
@@ -58,23 +54,23 @@ export const ProductListStore = (props) => {
   //  #        #  #     #    #
   //  ####### ###  #####     #
 
-  const loadProductList = () => {
-    setProductList({ ...productList, loading: true });
+  const loadMotocarList = () => {
+    setMotocarList({ ...motocarList, loading: true });
 
-    const myParamsProductList = {
+    const myParamsMotocarList = {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
         // username: "motoadmin",
         // password: "moto123",
         command: "PL_MDVIEW_004",
-        parameters: productList.loadParams,
+        parameters: motocarList.loadParams,
       },
     };
 
     // axiosCloud
     axios
-      .post("", myParamsProductList)
+      .post("", myParamsMotocarList)
       .then((response) => {
         console.log("response---------", response);
         const myData = response.data.response;
@@ -88,30 +84,30 @@ export const ProductListStore = (props) => {
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
 
-          setProductList({
-            ...productList,
+          setMotocarList({
+            ...motocarList,
             loading: false,
-            productList: Object.values(myArray),
+            motocarList: Object.values(myArray),
           });
         }
       })
       .catch((error) => {
-        setProductList({ ...productList, loading: false, error });
+        setMotocarList({ ...motocarList, loading: false, error });
         message.error(error);
         console.log(error);
       });
   };
 
   return (
-    <ProductListContext.Provider
+    <MotocarListContext.Provider
       value={{
-        productList,
-        loadProductList,
+        motocarList,
+        loadMotocarList,
       }}
     >
       {props.children}
-    </ProductListContext.Provider>
+    </MotocarListContext.Provider>
   );
 };
 
-export default ProductListContext;
+export default MotocarListContext;
