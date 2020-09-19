@@ -56,13 +56,10 @@ const MenuMember = () => {
         size="small"
         column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
       >
-        <Descriptions.Item label="Таны ID">
+        <Descriptions.Item label="SysID">
           {memberContext.state.memberCloudUserSysId}
         </Descriptions.Item>
-        <Descriptions.Item label="Session ID">
-          {memberContext.state.memberCloudSessionId}
-        </Descriptions.Item>
-        <Descriptions.Item label="Firebase UID">
+        <Descriptions.Item label="UID">
           {memberContext.state.memberUID}
         </Descriptions.Item>
       </Descriptions>
