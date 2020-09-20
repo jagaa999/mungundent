@@ -18,7 +18,7 @@ const { Option } = Select;
 
 const CarCatalogType1 = () => {
   const carCatalogListContext = useContext(CarCatalogListContext);
-  const [isSpecial, setIsSpecial] = useState(false);
+  const [isSpecial, setIsSpecial] = useState(true);
   const [whatCountry, setWhatCountry] = useState([]);
 
   useEffect(() => {
@@ -41,7 +41,11 @@ const CarCatalogType1 = () => {
 
   const children = [];
   uniqueTags.sort().map((item, index) => {
-    children.push(<Option key={item}>{item}</Option>);
+    children.push(
+      <Option key={index} value={item}>
+        {item}
+      </Option>
+    );
   });
 
   function handleChange(value) {
@@ -62,17 +66,19 @@ const CarCatalogType1 = () => {
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
           <PageHeader
+            key="catalog_header"
             title={<h3>Каталоги - Фирм</h3>}
             className="gx-mb-3"
             extra={[
-              <span className="gx-mr-4">
-                <span className="gx-fs-sm gx-mr-1">Зөвхөн нийтлэг</span>
+              <span className="gx-mr-4" key="extra_01">
+                <span className="gx-fs-sm gx-mr-1">Бүгд</span>
                 <Switch
                   size="small"
                   onChange={() => setIsSpecial(!isSpecial)}
                 />
               </span>,
               <Select
+                key="extra_02"
                 mode="tags"
                 style={{ minWidth: "170px" }}
                 placeholder="Улс"

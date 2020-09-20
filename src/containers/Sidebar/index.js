@@ -78,7 +78,7 @@ const Sidebar = () => {
             themeType !== THEME_TYPE_LITE ? "gx-drawer-sidebar-dark" : null
           }`}
           placement="left"
-          closable={false}
+          closable={true}
           onClose={onToggleCollapsedNav}
           visible={navCollapsed}
         >

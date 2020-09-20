@@ -15,7 +15,7 @@ const NewsItem = ({ firmItem, isSpecial }) => {
       <Card
         key={firmItem.id}
         className={`moto-card-type1 ${
-          toBoolean(firmItem.special) ? "gx-bg-success" : ""
+          toBoolean(firmItem.special) ? "gx-bg-light" : ""
         }`}
         hoverable={true}
         cover={
