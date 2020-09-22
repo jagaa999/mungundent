@@ -3,7 +3,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { Col, Row, Button, Affix } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
-import NewsListItem from "./NewsListItem";
+import NewsListItem1 from "./NewsListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";
@@ -36,7 +36,7 @@ const NewsListType1 = () => {
               newsItem.imageMain = el.imagemain;
               return (
                 <Col key={index} span={24}>
-                  <NewsListItem key={index} newsItem={newsItem} />
+                  <NewsListItem1 key={index} newsItem={newsItem} />
                 </Col>
               );
             })}

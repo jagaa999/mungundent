@@ -4,9 +4,9 @@ import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import MotocarListItem from "./MotocarListItem";
+import MotocarListItem1 from "./MotocarListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import MotocarListContext from "context/MotocarListContext";
+import MotocarContext from "context/MotocarContext";
 import FilterContext from "context/FilterContext";
 import FilterDrawer from "./Drawer/FilterDrawer";
 import FilterTag from "./Tag/FilterTag";
@@ -17,9 +17,7 @@ import LoadingList from "./Loading/LoadingList";
 const { Option } = Select;
 
 const MotocarListType1 = () => {
-  const motocarListContext = useContext(MotocarListContext);
-  const [isSpecial, setIsSpecial] = useState(false);
-  const [whatCountry, setWhatCountry] = useState([]);
+  const motocarListContext = useContext(MotocarContext);
 
   useEffect(() => {
     motocarListContext.loadMotocarList();
@@ -27,25 +25,18 @@ const MotocarListType1 = () => {
 
   console.log("motocarListContext.motocarList", motocarListContext.motocarList);
 
-  function handleChange(value) {
-    // console.log(`selected ${value}`);
-    setWhatCountry(value);
-  }
-
   return (
     <div className="moto-list">
       {/* <div className="">
         <FilterTag />
       </div> */}
 
-      <div className="gx-mb-2"></div>
-
       {!motocarListContext.motocarList.loading ? (
         <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
           <PageHeader
-            title={<h3>Шинэхэн гишүүд</h3>}
+            title={<h3>Автомашинууд</h3>}
             className="gx-mb-3"
             extra={[]}
           ></PageHeader>
@@ -54,8 +45,8 @@ const MotocarListType1 = () => {
             {motocarListContext.motocarList.motocarList.map(
               (motocarItem, index) => {
                 return (
-                  <Col key={index} lg={8} md={8} sm={12} xs={12}>
-                    <MotocarListItem key={index} motocarItem={motocarItem} />
+                  <Col key={index} span={24}>
+                    <MotocarListItem1 key={index} motocarItem={motocarItem} />
                   </Col>
                 );
               }

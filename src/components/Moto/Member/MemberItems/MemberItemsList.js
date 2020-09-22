@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import { Image } from "cloudinary-react";
+import { defaultSrc } from "util/config";
 import { Avatar, List, Tooltip } from "antd";
 import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
 import MemberItemsContext from "context/MemberItemsContext";
+import moment from "moment";
+import "moment/locale/mn";
 
 const MemberItemsList = (props) => {
   const memberItemsContext = useContext(MemberItemsContext);
@@ -56,10 +60,34 @@ const MemberItemsList = (props) => {
         >
           <List.Item.Meta
             avatar={
-              <Avatar shape="square" size="large" src={`${item.imagemain}`} />
+              // <Avatar shape="square" size="large" src={`${item.imagemain}`} />
+
+              <Image
+                cloudName="motomn"
+                publicId={item.imagemain
+                  .slice(
+                    item.imagemain.indexOf("upload/") + 7,
+                    item.imagemain.length
+                  )
+                  .split(".")
+                  .shift()}
+                crop="fill"
+                loading="lazy"
+                dpr="auto"
+                responsive
+                width="64"
+                gravity="face"
+                quality="auto"
+                placeHolder="blur"
+                responsiveUseBreakpoints="true"
+                className="gx-d-block"
+                default_image="jhannw5jgo2mlvvkvke9"
+                alt={item.imagemain}
+                onError={defaultSrc}
+              />
             }
             title={
-              <Tooltip title={item.modifieddate}>
+              <Tooltip title={moment(item.modifieddate).fromNow()}>
                 <Link to={"/news/" + item.recordid}>
                   <span className="gx-fs-sm">{item.title}</span>
                 </Link>

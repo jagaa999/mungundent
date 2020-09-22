@@ -8,9 +8,9 @@ import axiosCloud from "util/axiosCloudConfig";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
-const MotocarListContext = React.createContext();
+const MotocarContext = React.createContext();
 
-export const MotocarListStore = (props) => {
+export const MotocarStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
 
@@ -99,15 +99,15 @@ export const MotocarListStore = (props) => {
   };
 
   return (
-    <MotocarListContext.Provider
+    <MotocarContext.Provider
       value={{
         motocarList,
         loadMotocarList,
       }}
     >
       {props.children}
-    </MotocarListContext.Provider>
+    </MotocarContext.Provider>
   );
 };
 
-export default MotocarListContext;
+export default MotocarContext;

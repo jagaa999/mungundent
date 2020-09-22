@@ -41,13 +41,13 @@ export const MemberProfileStore = (props) => {
 
   const [state, setState] = useState(initialStateMemberProfile);
 
-  //    ###   #
-  //   #   #  #    #
-  //  #     # #    #
-  //  #     # #    #
-  //  #     # #######
-  //   #   #       #
-  //    ###        #
+  //   #####  #       #######    #    ######
+  //  #     # #       #         # #   #     #
+  //  #       #       #        #   #  #     #
+  //  #       #       #####   #     # ######
+  //  #       #       #       ####### #   #
+  //  #     # #       #       #     # #    #
+  //  #####  ####### ####### #     # #     #
 
   const clearMemberProfile = () => {
     localStorage.removeItem("motoMemberUID");
@@ -83,6 +83,7 @@ export const MemberProfileStore = (props) => {
   //    ###    #####
 
   useEffect(() => {
+    //ERP Login хийгдсэн бол State-д ERP-аас ирсэн Хэрэглэгчийн мэдээллийг тавьж өгнө.
     if (state.isLogin) {
       // console.log("state", state);
       if (!isEmpty(state.memberCloudProfile)) {
@@ -124,13 +125,13 @@ export const MemberProfileStore = (props) => {
     });
   };
 
-  //     ###    #####
-  //   #   #  #     #
-  //  #     #       #
-  //  #     #  #####
-  //  #     #       #
-  //   #   #  #     #
-  //    ###    #####
+  //  ####### ######  ######     #       #######  #####  ### #     #
+  //  #       #     # #     #    #       #     # #     #  #  ##    #
+  //  #       #     # #     #    #       #     # #        #  # #   #
+  //  #####   ######  ######     #       #     # #  ####  #  #  #  #
+  //  #       #   #   #          #       #     # #     #  #  #   # #
+  //  #       #    #  #          #       #     # #     #  #  #    ##
+  //  ####### #     # #          ####### #######  #####  ### #     #
 
   const loginMemberCloud = (firebaseUid) => {
     setState({ ...state, loading: true });
@@ -170,16 +171,16 @@ export const MemberProfileStore = (props) => {
       });
   };
 
-  //    ###     #
-  //   #   #   ##
-  //  #     # # #
-  //  #     #   #
-  //  #     #   #
-  //   #   #    #
-  //    ###   #####
+  //  ####### ######  ######      #####  ######  #######    #    ####### #######
+  //  #       #     # #     #    #     # #     # #         # #      #    #
+  //  #       #     # #     #    #       #     # #        #   #     #    #
+  //  #####   ######  ######     #       ######  #####   #     #    #    #####
+  //  #       #   #   #          #       #   #   #       #######    #    #
+  //  #       #    #  #          #     # #    #  #       #     #    #    #
+  //  ####### #     # #           #####  #     # ####### #     #    #    #######
 
   const createMemberCloudWithFirebase = () => {
-    console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
+    // console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
 
     setState({ ...state, loading: true });
 
@@ -221,17 +222,17 @@ export const MemberProfileStore = (props) => {
       },
     };
 
-    console.log("ПАРАМЕТР ҮҮСГЭСНИЙ ДАРАА");
-    console.log("state.memberFirebaseProfile", state.memberFirebaseProfile);
-    console.log(
-      "myParamsCreateMemberCloudWithFirebase",
-      myParamsCreateMemberCloudWithFirebase
-    );
+    // console.log("ПАРАМЕТР ҮҮСГЭСНИЙ ДАРАА");
+    // console.log("state.memberFirebaseProfile", state.memberFirebaseProfile);
+    // console.log(
+    //   "myParamsCreateMemberCloudWithFirebase",
+    //   myParamsCreateMemberCloudWithFirebase
+    // );
 
     axios
       .post("", myParamsCreateMemberCloudWithFirebase)
       .then((response) => {
-        console.log("createMemberCloudWithFirebase response:--> ", response);
+        // console.log("createMemberCloudWithFirebase response:--> ", response);
 
         setState({
           ...state,
@@ -245,14 +246,13 @@ export const MemberProfileStore = (props) => {
       });
   };
 
-  //     ###    #####
-  //   #   #  #     #
-  //  #     #       #
-  //  #     #  #####
-  //  #     # #
-  //   #   #  #
-  //    ###   #######
-
+  //   #####  ####### #######    #       #######  #####     #    #
+  //  #     # #          #       #       #     # #     #   # #   #
+  //  #       #          #       #       #     # #        #   #  #
+  //   #####  #####      #       #       #     # #       #     # #
+  //        # #          #       #       #     # #       ####### #
+  //  #     # #          #       #       #     # #     # #     # #
+  //   #####  #######    #       ####### #######  #####  #     # #######
   const setFirebaseProfile = (user) => {
     // console.log("RAW user", user);
     localStorage.setItem("motoMemberUID", user.uid);

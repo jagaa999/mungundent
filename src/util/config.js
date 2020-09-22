@@ -14,4 +14,18 @@ module.exports = {
     e.target.src =
       "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg";
   },
+
+  prepareImageSrc: (mySrc) => {
+    // console.log("FFFFFFFFFFFFF", mySrc);
+    // storage/uploads/content/autozar/1587535124048720/2020/04/picture_1587535463.jpg
+    if (mySrc.slice(0, 8) === "storage/") {
+      return `https://cloudapi.moto.mn/${mySrc}`;
+    }
+
+    if (mySrc === "") {
+      return "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg";
+    }
+
+    return mySrc;
+  },
 };

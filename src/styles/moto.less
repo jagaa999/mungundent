@@ -82,13 +82,54 @@ li.gx-user-nav {
 }
 
 .news-detail {
+  margin: 40px 20px;
+
+  @media screen and (min-width: (@screen-xl-min + 200px)) {
+    margin: 35px 20px;
+  }
+
+  @media screen and (max-width: @screen-lg-max) {
+    margin: 31px 17px;
+  }
+
+  @media screen and (max-width: @screen-md-max) {
+    margin: 28px 9px;
+  }
+
+  @media screen and (max-width: @screen-sm-max) {
+    margin: 13px 7px;
+  }
+
   .ant-card {
-    .ant-card-cover {
-    }
+    // .ant-card-cover {
+    // }
     .ant-card-body {
       .moto-news-body {
+        width: 55%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 17px;
+
+        @media screen and (min-width: (@screen-xl-min + 200px)) {
+          width: 57%;
+        }
+
+        @media screen and (max-width: @screen-lg-max) {
+          width: 63%;
+        }
+
+        @media screen and (max-width: @screen-md-max) {
+          width: 67%;
+          font-size: 16px;
+        }
+
+        @media screen and (max-width: @screen-sm-max) {
+          width: 95%;
+          font-size: 15px;
+        }
+
         img {
-          max-width: 70%;
+          max-width: 97%;
         }
       }
     }
@@ -174,6 +215,15 @@ li.gx-user-nav {
     }
     @media screen and (max-width: @screen-sm-max) {
       width: 66.66667%;
+    }
+  }
+
+  .gx-autozar-list-item {
+    .gx-product-image {
+      width: 30%;
+    }
+    .gx-product-body {
+      width: 70%;
     }
   }
 }

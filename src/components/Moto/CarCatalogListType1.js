@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 
-import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Col, Row, Button, Switch, Select, PageHeader, Card } from "antd";
+import { PlusOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
 import CarCatalogListItem from "./CarCatalogListItem";
@@ -15,20 +15,21 @@ import MotoSort from "components/Moto/Sort/MotoSort";
 import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
+const { Meta } = Card;
 
 const CarCatalogType1 = () => {
   const carCatalogListContext = useContext(CarCatalogListContext);
-  const [isSpecial, setIsSpecial] = useState(true);
+  const [isAll, setIsAll] = useState(false);
   const [whatCountry, setWhatCountry] = useState([]);
 
   useEffect(() => {
     carCatalogListContext.loadCarFirmList();
   }, []);
 
-  console.log(
-    "carCatalogListContext.carFirmList",
-    carCatalogListContext.carFirmList
-  );
+  // console.log(
+  //   "carCatalogListContext.carFirmList",
+  //   carCatalogListContext.carFirmList
+  // );
 
   const uniqueTags = [];
   carCatalogListContext.carFirmList.carFirmList.map((item) => {
@@ -74,7 +75,8 @@ const CarCatalogType1 = () => {
                 <span className="gx-fs-sm gx-mr-1">Бүгд</span>
                 <Switch
                   size="small"
-                  onChange={() => setIsSpecial(!isSpecial)}
+                  onChange={() => setIsAll(!isAll)}
+                  checked={isAll}
                 />
               </span>,
               <Select
@@ -92,7 +94,7 @@ const CarCatalogType1 = () => {
           <Row className="gx-d-flex">
             {carCatalogListContext.carFirmList.carFirmList.map(
               (firmItem, index) => {
-                if (toBoolean(isSpecial) && !toBoolean(firmItem.special)) {
+                if (!toBoolean(isAll) && !toBoolean(firmItem.special)) {
                   return "";
                 }
 
@@ -110,11 +112,28 @@ const CarCatalogType1 = () => {
                     <CarCatalogListItem
                       key={index}
                       firmItem={firmItem}
-                      isSpecial={isSpecial}
+                      isAll={isAll}
                     />
                   </Col>
                 );
               }
+            )}
+
+            {!isAll && (
+              <Col key="more-full" lg={6} md={8} sm={8} xs={8}>
+                <Card
+                  key="more-full"
+                  className="moto-card-type1 gx-bg-amber-light"
+                  hoverable={true}
+                  onClick={() => setIsAll(true)}
+                >
+                  <Meta
+                    avatar={null}
+                    title={<PlusCircleOutlined style={{ fontSize: "24px" }} />}
+                    description="Бусдыг үзэх"
+                  />
+                </Card>
+              </Col>
             )}
           </Row>
           {/* <MotoPagination />

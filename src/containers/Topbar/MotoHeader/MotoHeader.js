@@ -116,6 +116,7 @@ const MotoHeader = () => {
             </div>
 
             <ul className="gx-header-notifications gx-ml-auto">
+              {/*
               {memberContext.state.isLogin ? (
                 <li className="gx-notify gx-notify-search">
                   <Popover
@@ -163,6 +164,7 @@ const MotoHeader = () => {
               ) : (
                 ""
               )}
+              */}
 
               {/* {memberContext.state.isLogin ? (
                 <li className="gx-notify">

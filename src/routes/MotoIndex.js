@@ -14,7 +14,7 @@ import { NewsDetailStore } from "../context/NewsDetailContext";
 import { CarCatalogListStore } from "../context/CarCatalogListContext";
 import { MemberListStore } from "../context/MemberListContext";
 import { ProductListStore } from "../context/ProductListContext";
-import { MotocarListStore } from "../context/MotocarListContext";
+import { MotocarStore } from "../context/MotocarContext";
 import { FilterStore } from "../context/FilterContext";
 
 import asyncComponent from "util/asyncComponent";
@@ -105,9 +105,9 @@ const App = ({ match }) => (
         <MemberDetail />
       </Route> */}
       <Route path={["/motocar", "/motocarlist"]}>
-        <MotocarListStore>
+        <MotocarStore>
           <MotocarList />
-        </MotocarListStore>
+        </MotocarStore>
       </Route>
       {/*}
       #     # ####### #     #  #####  
