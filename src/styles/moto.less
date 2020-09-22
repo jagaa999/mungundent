@@ -499,3 +499,23 @@ body {
     }
   }
 }
+
+.moto-spec-list {
+  list-style: none;
+  width: 100%;
+  padding-left: 0;
+
+  li {
+    display: flex;
+
+    .moto-spec-list-label {
+      width: 35%;
+      font-size: @font-size-sm - 2px;
+      color: @grey-7;
+    }
+    .moto-spec-list-value {
+      width: 75%;
+      font-size: @font-size-sm;
+    }
+  }
+}

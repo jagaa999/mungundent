@@ -121,84 +121,44 @@ const NewsItem = ({ motocarItem, grid }) => {
             </h3>
 
             <div className="gx-mt-3">
-              <Row>
-                <Col span={12}>
-                  <ul>
-                    <li>
-                      <Tooltip title="Хийц">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.body2bodyname}
-                        </span>
-                      </Tooltip>
-                    </li>
-                    <li>
-                      <Tooltip title="Жолооны байрлал">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.body2driverposname}
-                        </span>
-                      </Tooltip>
-                    </li>
-                    <li>
-                      <Tooltip title="Хөдөлгүүр">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.engine2disp} cc{", "}
-                          {motocarItem.engine2fuelname}
-                        </span>
-                      </Tooltip>
-                    </li>
-                    <li>
-                      <Tooltip title="Хроп">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.drive2transtypename}
-                        </span>
-                      </Tooltip>
-                    </li>
-                    <li>
-                      <Tooltip title="Хөтлөгч">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.drive2drivename}
-                        </span>
-                      </Tooltip>
-                    </li>
-                  </ul>
-                </Col>
-                <Col span={12}>
-                  <ul>
-                    <li>
-                      <Tooltip title="Улсын дугаар">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.mgllicensenumberfull}
-                        </span>
-                      </Tooltip>
-                    </li>
-                    <li>
-                      <Tooltip title="Гүйлт">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.carmilagenow} км
-                        </span>
-                      </Tooltip>
-                    </li>
-                    <li>
-                      <Tooltip title="Гадна өнгө">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.carcoloroutside}
-                        </span>
-                      </Tooltip>
-                    </li>
-                    <li>
-                      <Tooltip title="Импортолсон огноо">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.caryearimport}
-                        </span>
-                      </Tooltip>
-                    </li>
+              <span className="moto-label-main ant-tag">
+                {motocarItem.body2bodyname}
+              </span>
+              <Tooltip title="Улсын дугаар">
+                <span className="moto-label-main ant-tag">
+                  {motocarItem.mgllicensenumberfull}
+                </span>
+              </Tooltip>
+            </div>
 
+            <div className="gx-mt-3">
+              <Row>
+                <Col span={24}>
+                  <ul className="moto-spec-list">
                     <li>
-                      <Tooltip title="Импортолсон улс">
-                        <span className="moto-label-main ant-tag">
-                          {motocarItem.carcountryimport}
-                        </span>
-                      </Tooltip>
+                      <span className="moto-spec-list-label">Жолоо</span>
+                      <span className="moto-spec-list-value">
+                        {motocarItem.body2driverposname}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="moto-spec-list-label">Хөдөлгүүр</span>
+                      <span className="moto-spec-list-value">
+                        {motocarItem.engine2disp} cc{", "}
+                        {motocarItem.engine2fuelname}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="moto-spec-list-label">Хроп</span>
+                      <span className="moto-spec-list-value">
+                        {motocarItem.drive2transtypename}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="moto-spec-list-label">Хөтлөгч</span>
+                      <span className="moto-spec-list-value">
+                        {motocarItem.drive2drivename}
+                      </span>
                     </li>
                   </ul>
                 </Col>
@@ -223,19 +183,44 @@ const NewsItem = ({ motocarItem, grid }) => {
           </Button>
         </div> */}
           </Col>
-          <Col xl={7} md={8} sm={9} xs={24}>
-            <AvatarMember03
-              memberName={motocarItem.memberuserfullname}
-              memberPhoto={motocarItem.memberprofilephoto}
-              memberPosition="Гишүүнчлэл тодорхойгүй"
-              memberId={motocarItem.memberpersonid}
-              memberUid={motocarItem.memberfirebaseuid}
-            />
-            <Tooltip title="Нийтэлсэн огноо">
-              <span className="gx-text-grey gx-fs-sm gx-ml-2">
-                {moment(motocarItem.modifieddate).fromNow()}
-              </span>
-            </Tooltip>
+          <Col
+            xl={7}
+            md={8}
+            sm={9}
+            xs={24}
+            className="gx-d-flex gx-flex-column"
+          >
+            <div>
+              <Tooltip title="Гүйлт">
+                <span className="moto-label-main ant-tag">
+                  {motocarItem.carmilagenow} км
+                </span>
+              </Tooltip>
+              <Tooltip title="Импортолсон огноо">
+                <span className="moto-label-main ant-tag">
+                  {moment(motocarItem.caryearimport).format("YYYY")}
+                </span>
+              </Tooltip>
+            </div>
+            <div className="gx-mt-auto">
+              <div className="gx-media gx-mt-3">
+                <Avatar
+                  src={motocarItem.memberprofilephoto}
+                  alt={motocarItem.memberuserfullname}
+                  className="gx-mr-2"
+                  size={30}
+                />
+
+                <div className="gx-media-body">
+                  <h5 className=" gx-fs-sm">
+                    {motocarItem.memberuserfullname}
+                  </h5>
+                  <p className="gx-text-grey gx-fs-sm">
+                    {moment(motocarItem.modifieddate).fromNow()}
+                  </p>
+                </div>
+              </div>
+            </div>
           </Col>
         </Row>
       </div>
