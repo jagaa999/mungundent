@@ -112,7 +112,7 @@ const NewsItem = ({ motocarItem, grid }) => {
         <Row>
           <Col xl={17} md={16} sm={15} xs={24}>
             <h3 className="gx-product-title">
-              <Link to={"/news/" + motocarItem.motocarid}>
+              <Link to={"/motocar/" + motocarItem.motocarid}>
                 {myYear} {motocarItem.firmname} {motocarItem.markname}{" "}
                 {motocarItem.cartrim}
               </Link>
