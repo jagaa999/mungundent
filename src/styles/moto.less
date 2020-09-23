@@ -33,6 +33,22 @@
 
 ul.motoHeader {
   li.motoHeaderMenuItem {
+    @media screen and (min-width: (@screen-xl-min + 200px)) {
+      margin: 0 20px !important;
+    }
+
+    @media screen and (max-width: @screen-lg-max) {
+      margin: 0 15px !important;
+    }
+
+    @media screen and (max-width: @screen-md-max) {
+      margin: 0 10px !important;
+    }
+
+    @media screen and (max-width: @screen-sm-max) {
+      margin: 0 7px !important;
+    }
+
     a.motoHeaderMenuItemLink {
       color: unset;
       &:hover,
@@ -41,6 +57,15 @@ ul.motoHeader {
       }
       .icon {
         margin-right: 7px;
+      }
+
+      span.anticon {
+        position: relative;
+        top: 5px;
+        svg {
+          width: 1.7em;
+          height: 1.7em;
+        }
       }
     }
   }

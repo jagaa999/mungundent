@@ -82,14 +82,14 @@ const MotoHeader = () => {
       <Header className="gx-header-horizontal-main">
         <div className="gx-container">
           <div className="gx-header-horizontal-main-flex">
-            <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e">
+            {/* <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e">
               <i
                 className="gx-icon-btn icon icon-menu"
                 onClick={() => {
                   dispatch(toggleCollapsedSideNav(!navCollapsed));
                 }}
               />
-            </div>
+            </div> */}
             {/* <Link
               to="/"
               className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo"
@@ -100,10 +100,11 @@ const MotoHeader = () => {
                 style={{ height: "20px", marginLeft: "15px" }}
               />
             </Link> */}
-            <Link
+            {/* <Link
               to="/"
               className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
-            >
+            > */}
+            <Link to="/" className="gx-d-block  gx-pointer gx-mr-xs-5 gx-logo">
               <img
                 alt=""
                 style={{ height: "30px" }}
@@ -111,7 +112,8 @@ const MotoHeader = () => {
               />
             </Link>
 
-            <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
+            {/* <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block"> */}
+            <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-block">
               <MotoHorizontalNav />
             </div>
 

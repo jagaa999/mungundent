@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { Menu } from "antd";
+import { Menu, Avatar } from "antd";
+import { MailOutlined, CoffeeOutlined } from "@ant-design/icons";
+
+import { createFromIconfontCN } from "@ant-design/icons";
 
 import IntlMessages from "../../util/IntlMessages";
 import {
@@ -16,6 +19,10 @@ import FilterContext from "context/FilterContext";
 
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
+
+const IconFont = createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_2091278_yfwfncpm8r.js",
+});
 
 const HorizontalNav = () => {
   const filterContext = useContext(FilterContext);
@@ -53,17 +60,31 @@ const HorizontalNav = () => {
     >
       <Menu.Item key="news" className="motoHeaderMenuItem">
         <Link to="/news" className="motoHeaderMenuItemLink">
-          Нийтлэл
+          <span className="gx-d-block gx-d-lg-none">
+            {/* <Avatar
+              style={{ backgroundColor: "#262626" }}
+              icon={<IconFont type="iconreadme" />}
+            /> */}
+            <IconFont type="iconreadme" />
+          </span>
+          <div className="gx-d-none gx-d-lg-block">Нийтлэл</div>
         </Link>
       </Menu.Item>
 
       <Menu.Item key="carcatalog" className="motoHeaderMenuItem">
         <Link to="/carcatalog" className="motoHeaderMenuItemLink">
-          Каталог
+          <span className="gx-d-block gx-d-lg-none">
+            {/* <Avatar
+              style={{ backgroundColor: "#262626" }}
+              icon={<CoffeeOutlined />}
+            /> */}
+            <IconFont type="iconclipboard-check-solid" />
+          </span>
+          <div className="gx-d-none gx-d-lg-block">Каталог</div>
         </Link>
       </Menu.Item>
 
-      <SubMenu
+      {/* <SubMenu
         popupClassName={getNavStyleSubMenuClass(navStyle)}
         key="salon"
         title="Салон"
@@ -115,11 +136,21 @@ const HorizontalNav = () => {
             </Link>
           </Menu.Item>
         </SubMenu>
-      </SubMenu>
+      </SubMenu> */}
 
-      <Menu.Item key="member" className="motoHeaderMenuItem">
+      <Menu.Item
+        key="member"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
         <Link to="/member" className="motoHeaderMenuItemLink">
-          Гишүүн
+          <span className="gx-d-block gx-d-lg-none">
+            {/* <Avatar
+              style={{ backgroundColor: "#262626" }}
+              icon={<CoffeeOutlined />}
+            /> */}
+            <IconFont type="iconuser-tie-solid" />
+          </span>
+          <div className="gx-d-none gx-d-lg-block">Гишүүн</div>
         </Link>
       </Menu.Item>
 
