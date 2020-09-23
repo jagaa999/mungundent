@@ -4,7 +4,7 @@ import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import MemberListItem1 from "./MemberListItem1";
+import MemberListItem2 from "./MemberListItem2";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import MemberListContext from "context/MemberListContext";
 import FilterContext from "context/FilterContext";
@@ -55,7 +55,7 @@ const MemberListType1 = () => {
               (memberItem, index) => {
                 return (
                   <Col key={index} lg={8} md={8} sm={12} xs={12}>
-                    <MemberListItem1
+                    <MemberListItem2
                       key={index}
                       memberItem={memberItem}
                       isSpecial={isSpecial}

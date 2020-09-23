@@ -53,8 +53,7 @@ const NewsItem = ({ motocarItem, grid }) => {
 
   console.log("Манай машин - ", motocarItem);
 
-  const truncatedDescription =
-    motocarItem.description.substring(0, 150) + " &hellip;";
+  const truncatedDescription = motocarItem.description.substring(0, 250);
 
   const myMainImage = prepareImageSrc(motocarItem.imagemain);
   const myYear =
@@ -120,7 +119,19 @@ const NewsItem = ({ motocarItem, grid }) => {
               {!toBoolean(motocarItem.isactive) && <ActiveTag />}
             </h3>
 
-            <div className="gx-mt-3">
+            <div className="gx-dealclose-header-right">
+              <p className="gx-mr-3 gx-mb-2">
+                <Badge className="gx-mb-0" status="processing" />
+                {motocarItem.mgllicensenumberfull}
+              </p>
+
+              <p className="gx-mr-2 gx-mb-2">
+                <Badge className="gx-mb-0" status="default" />
+                {motocarItem.body2bodyname}
+              </p>
+            </div>
+
+            {/* <div className="gx-mt-3">
               <span className="moto-label-main ant-tag">
                 {motocarItem.body2bodyname}
               </span>
@@ -129,7 +140,7 @@ const NewsItem = ({ motocarItem, grid }) => {
                   {motocarItem.mgllicensenumberfull}
                 </span>
               </Tooltip>
-            </div>
+            </div> */}
 
             <div className="gx-mt-3">
               <Row>
@@ -190,18 +201,66 @@ const NewsItem = ({ motocarItem, grid }) => {
             xs={24}
             className="gx-d-flex gx-flex-column"
           >
+            {/* <div className="gx-overview-description motocar-left-spec">
+              <div className="gx-revenu gx-revenu-total">
+                <h5>$2,650</h5>
+                <span className="gx-fs-md">төгрөг</span>
+              </div>
+
+              <div className="gx-revenu">
+                <div className="gx-revenu-row">
+                  <div className="gx-revenu-col">
+                    <h6>{moment(motocarItem.caryearimport).format("YYYY")}</h6>
+                    <span className="gx-fs-sm">он</span>
+                  </div>
+
+                  <div className="gx-revenu-col">
+                    <h6>{motocarItem.carmilagenow}</h6>
+                    <span className="gx-fs-sm">км</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="gx-revenu">
+                <Avatar
+                  src={motocarItem.memberprofilephoto}
+                  alt={motocarItem.memberuserfullname}
+                  className="gx-mr-2"
+                  size={30}
+                />
+                <h6 className=" gx-fs-sm">{motocarItem.memberuserfullname}</h6>
+                <p className="gx-text-grey gx-fs-sm">
+                  {moment(motocarItem.modifieddate).fromNow()}
+                </p>
+              </div>
+            </div> */}
+
+            {/* <div className="moto-spec-1">
+              Гүйлт
+              <span className="moto-spec-1-label">
+                {motocarItem.carmilagenow} км
+              </span>
+              Импортолсон
+              <span className="moto-spec-1-body">
+                {moment(motocarItem.caryearimport).format("YYYY")}
+              </span>
+            </div> */}
+
+            {/* <div className="gx-currentplan-col"> */}
             <div>
-              <Tooltip title="Гүйлт">
-                <span className="moto-label-main ant-tag">
-                  {motocarItem.carmilagenow} км
-                </span>
-              </Tooltip>
-              <Tooltip title="Импортолсон огноо">
-                <span className="moto-label-main ant-tag">
-                  {moment(motocarItem.caryearimport).format("YYYY")}
-                </span>
-              </Tooltip>
+              <h3 className="gx-text-primary gx-font-weight-medium gx-mb-1">
+                19,000,000<sub className="gx-fs-md gx-bottom-0"> төг</sub>
+              </h3>
+              <p className="gx-mb-1 gx-fs-sm">
+                <span className="gx-size-8 gx-bg-success gx-rounded-xs gx-d-inline-block  gx-mr-1" />{" "}
+                {moment(motocarItem.caryearimport).format("YYYY")} он
+              </p>
+              <p className="gx-mb-1 gx-fs-sm">
+                <span className="gx-size-8 gx-bg-success gx-rounded-xs gx-d-inline-block  gx-mr-1" />{" "}
+                {motocarItem.carmilagenow} км
+              </p>
             </div>
+
             <div className="gx-mt-auto">
               <div className="gx-media gx-mt-3">
                 <Avatar

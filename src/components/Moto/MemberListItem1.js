@@ -8,7 +8,7 @@ import { Card, Badge, Tag } from "antd";
 import { MailOutlined, MobileOutlined } from "@ant-design/icons";
 const { Meta } = Card;
 
-const NewsItem = ({ memberItem, isSpecial }) => {
+const MemberListItem = ({ memberItem, isSpecial }) => {
   console.log("Манай Гишүүн - ", memberItem);
 
   return (
@@ -54,4 +54,4 @@ const NewsItem = ({ memberItem, isSpecial }) => {
   );
 };
 
-export default NewsItem;
+export default MemberListItem;
