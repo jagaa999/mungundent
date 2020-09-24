@@ -22,7 +22,11 @@ export const FilterStore = (props) => {
       pagesize: "10",
     },
     sorting: {},
-    cardtype: {},
+    cardtype: {
+      cardtype: localStorage.getItem("cardtype")
+        ? localStorage.getItem("cardtype")
+        : "typelist",
+    },
     loading: false,
     error: null,
   });
@@ -38,7 +42,11 @@ export const FilterStore = (props) => {
     let myFilterList = {};
     let myPaging = { offset: "1", pagesize: "10" };
     let mySorting = {};
-    let myCardtype = {};
+    let myCardtype = {
+      cardtype: localStorage.getItem("cardtype")
+        ? localStorage.getItem("cardtype")
+        : "typelist",
+    };
 
     Object.keys(searchParams).map((item) => {
       if (item === "offset" || item === "pagesize") {
@@ -100,6 +108,8 @@ export const FilterStore = (props) => {
     Object.keys(state.cardtype).map((item) => {
       if (state.cardtype[item] !== "") {
         mySearchQueryParams.push(item + "=" + state.cardtype[item]);
+        console.log("myCardtype", state.cardtype[item]);
+        localStorage.setItem("cardtype", state.cardtype[item]);
       }
     });
 
@@ -115,6 +125,14 @@ export const FilterStore = (props) => {
   }, [searchQuery]);
 
   const loadFilterList = () => {};
+
+  //  #     # ######  ######     #    ####### #######
+  //  #     # #     # #     #   # #      #    #
+  //  #     # #     # #     #  #   #     #    #
+  //  #     # ######  #     # #     #    #    #####
+  //  #     # #       #     # #######    #    #
+  //  #     # #       #     # #     #    #    #
+  //   #####  #       ######  #     #    #    #######
 
   const updateParams = (tempObject) => {
     // console.log("FilterContext → updateParams", tempObject);

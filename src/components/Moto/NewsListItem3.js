@@ -122,7 +122,7 @@ const NewsItem = ({ newsItems }) => {
           width="64"
           gravity="face"
           quality="auto"
-          placeHolder="blur"
+          placeholder="blur"
           responsiveUseBreakpoints="true"
           className="gx-d-block"
           default_image="jhannw5jgo2mlvvkvke9"

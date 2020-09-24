@@ -23,10 +23,10 @@ import {
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
-import AvatarMember from "components/Moto/Member/MemberAvatar";
-import AvatarMember02 from "components/Moto/Member/MemberAvatar02";
-import NewsDetailModal from "components/Moto/newsDetailModal";
-import NewsDetailMore from "components/Moto/newsDetailMore";
+import AvatarMember from "./Member/MemberAvatar";
+import AvatarMember02 from "./Member/MemberAvatar02";
+import NewsDetailModal from "./newsDetailModal";
+import NewsDetailMore from "./newsDetailMore";
 
 const NewsItem = ({ newsItem, grid }) => {
   moment.locale("mn");
@@ -85,7 +85,7 @@ const NewsItem = ({ newsItem, grid }) => {
                 width="auto"
                 gravity="face"
                 quality="auto"
-                placeHolder="blur"
+                placeholder="blur"
                 responsiveUseBreakpoints="true"
                 className="gx-img-fluid gx-w-100"
                 default_image="jhannw5jgo2mlvvkvke9"
@@ -95,13 +95,6 @@ const NewsItem = ({ newsItem, grid }) => {
             </span>
           </Link>
         </div>
-        <AvatarMember02
-          memberName={newsItem.userfullename}
-          memberPhoto={newsItem.userprofilephoto}
-          memberPosition="Гишүүнчлэл тодорхойгүй"
-          memberId={newsItem.userpublisherid}
-          memberUid={newsItem.userfirebaseuid}
-        />
       </div>
 
       <div className="gx-product-body">
@@ -153,6 +146,16 @@ const NewsItem = ({ newsItem, grid }) => {
           <Button size="small" onClick={showMoreToggle}>
             Эндээ унших
           </Button>
+        </div>
+
+        <div className="moto-bottom-right">
+          <AvatarMember02
+            memberName={newsItem.userfullename}
+            memberPhoto={newsItem.userprofilephoto}
+            memberPosition="Гишүүнчлэл тодорхойгүй"
+            memberId={newsItem.userpublisherid}
+            memberUid={newsItem.userfirebaseuid}
+          />
         </div>
       </div>
 
