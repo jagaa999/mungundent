@@ -28,28 +28,30 @@ const HorizontalNav = () => {
   const filterContext = useContext(FilterContext);
 
   // const navStyle = useSelector(({ settings }) => settings.navStyle);
-  const navStyle = "NAV_STYLE_INSIDE_HEADER_HORIZONTAL";
+  // const navStyle = "NAV_STYLE_INSIDE_HEADER_HORIZONTAL";
   // const pathname = useSelector(({ settings }) => settings.pathname);
 
-  const getNavStyleSubMenuClass = (navStyle) => {
-    switch (navStyle) {
-      case NAV_STYLE_DEFAULT_HORIZONTAL:
-        return "gx-menu-horizontal gx-submenu-popup-curve";
-      case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
-        return "gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve";
-      case NAV_STYLE_BELOW_HEADER:
-        return "gx-menu-horizontal gx-submenu-popup-curve gx-below-submenu-popup-curve";
-      case NAV_STYLE_ABOVE_HEADER:
-        return "gx-menu-horizontal gx-submenu-popup-curve gx-above-submenu-popup-curve";
-      default:
-        return "gx-menu-horizontal";
-    }
-  };
+  // const getNavStyleSubMenuClass = (navStyle) => {
+  //   switch (navStyle) {
+  //     case NAV_STYLE_DEFAULT_HORIZONTAL:
+  //       return "gx-menu-horizontal gx-submenu-popup-curve";
+  //     case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
+  //       return "gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve";
+  //     case NAV_STYLE_BELOW_HEADER:
+  //       return "gx-menu-horizontal gx-submenu-popup-curve gx-below-submenu-popup-curve";
+  //     case NAV_STYLE_ABOVE_HEADER:
+  //       return "gx-menu-horizontal gx-submenu-popup-curve gx-above-submenu-popup-curve";
+  //     default:
+  //       return "gx-menu-horizontal";
+  //   }
+  // };
+
+  // console.log(getNavStyleSubMenuClass);
+  // getNavStyleSubMenuClass =
+  //   "gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve";
 
   const selectedKeys = filterContext.urlPath.substr(1);
   const defaultOpenKeys = selectedKeys.split("/")[1];
-  // console.log("selectedKeysselectedKeys", selectedKeys);
-  // console.log("defaultOpenKeysdefaultOpenKeys", defaultOpenKeys);
 
   return (
     <Menu
@@ -156,7 +158,8 @@ const HorizontalNav = () => {
 
       {process.env.NODE_ENV === "development" && (
         <SubMenu
-          popupClassName={getNavStyleSubMenuClass(navStyle)}
+          // popupClassName= {getNavStyleSubMenuClass(navStyle)}
+          popupClassName="gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve"
           key="main"
           title={<IntlMessages id="sidebar.main" />}
         >
@@ -212,7 +215,8 @@ const HorizontalNav = () => {
             </Link>
           </Menu.Item>
           <SubMenu
-            popupClassName={getNavStyleSubMenuClass(navStyle)}
+            // popupClassName={getNavStyleSubMenuClass(navStyle)}
+            popupClassName="gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve"
             key="in-built-apps"
             title="In-built Apps"
           >
@@ -273,7 +277,8 @@ const HorizontalNav = () => {
             </Menu.Item>
           </SubMenu>
           <SubMenu
-            popupClassName={getNavStyleSubMenuClass(navStyle)}
+            // popupClassName={getNavStyleSubMenuClass(navStyle)}
+            popupClassName="gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve"
             key="components"
             title="Components"
           >
@@ -618,7 +623,8 @@ const HorizontalNav = () => {
 
       {process.env.NODE_ENV === "development" && (
         <SubMenu
-          popupClassName={getNavStyleSubMenuClass(navStyle)}
+          // popupClassName={getNavStyleSubMenuClass(navStyle)}
+          popupClassName="gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve"
           key="extraComponents"
           title="Extra"
         >
@@ -709,7 +715,8 @@ const HorizontalNav = () => {
           </Menu.Item>
 
           <SubMenu
-            popupClassName={getNavStyleSubMenuClass(navStyle)}
+            // popupClassName={getNavStyleSubMenuClass(navStyle)}
+            popupClassName="gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve"
             key="extensions"
             title={<IntlMessages id="sidebar.extensions" />}
           >
@@ -1010,7 +1017,8 @@ const HorizontalNav = () => {
             </SubMenu>
           </SubMenu>
           <SubMenu
-            popupClassName={getNavStyleSubMenuClass(navStyle)}
+            // popupClassName={getNavStyleSubMenuClass(navStyle)}
+            popupClassName="gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve"
             key="custom-views"
             title={<IntlMessages id="sidebar.customViews" />}
           >

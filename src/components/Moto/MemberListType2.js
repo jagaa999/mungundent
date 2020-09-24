@@ -45,7 +45,7 @@ const MemberListType1 = () => {
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
           <PageHeader
-            title={<h3>Шинэхэн гишүүд</h3>}
+            title={<h3>Гишүүд</h3>}
             className="gx-mb-3"
             extra={[]}
           ></PageHeader>
@@ -54,7 +54,14 @@ const MemberListType1 = () => {
             {memberListContext.memberList.memberList.map(
               (memberItem, index) => {
                 return (
-                  <Col key={index} lg={8} md={8} sm={12} xs={12}>
+                  <Col
+                    key={index}
+                    lg={8}
+                    md={8}
+                    sm={12}
+                    xs={12}
+                    className="gx-mb-5"
+                  >
                     <MemberListItem2
                       key={index}
                       memberItem={memberItem}

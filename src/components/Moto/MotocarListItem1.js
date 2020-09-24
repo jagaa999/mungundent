@@ -51,7 +51,7 @@ const NewsItem = ({ motocarItem, grid }) => {
     setShowModal(false);
   };
 
-  console.log("Манай машин - ", motocarItem);
+  // console.log("Манай машин - ", motocarItem);
 
   const truncatedDescription = motocarItem.description.substring(0, 250);
 
@@ -60,6 +60,42 @@ const NewsItem = ({ motocarItem, grid }) => {
     moment(motocarItem.caryearmanufactured, "YYYY").isValid() === true
       ? moment(motocarItem.caryearmanufactured).format("YYYY")
       : "";
+
+  const RenderCarSpec1 = (props) => {
+    if (props.value !== "") {
+      return (
+        <p className="gx-mr-3 gx-mb-2">
+          <Badge className="gx-mb-0" status={props.status} />
+          {props.value}
+        </p>
+      );
+    }
+    return "";
+  };
+
+  const RenderCarSpec2 = (props) => {
+    if (props.value !== "") {
+      return (
+        <li>
+          <span className="moto-spec-list-label">{props.label}</span>
+          <span className="moto-spec-list-value">{props.value}</span>
+        </li>
+      );
+    }
+    return "";
+  };
+
+  const RenderCarSpec3 = (props) => {
+    if (props.value !== "" && props.value !== "Invalid date") {
+      return (
+        <p className="gx-mb-1 gx-fs-sm">
+          <span className="gx-size-8 gx-bg-success gx-rounded-xs gx-d-inline-block  gx-mr-1" />{" "}
+          {props.value} {props.suffix}
+        </p>
+      );
+    }
+    return "";
+  };
 
   return (
     <div
@@ -108,7 +144,7 @@ const NewsItem = ({ motocarItem, grid }) => {
       </div>
 
       <div className="gx-product-body">
-        <Row>
+        <Row className="moto-item-card">
           <Col xl={17} md={16} sm={15} xs={24}>
             <h3 className="gx-product-title">
               <Link to={"/motocar/" + motocarItem.motocarid}>
@@ -120,15 +156,15 @@ const NewsItem = ({ motocarItem, grid }) => {
             </h3>
 
             <div className="gx-dealclose-header-right">
-              <p className="gx-mr-3 gx-mb-2">
-                <Badge className="gx-mb-0" status="processing" />
-                {motocarItem.mgllicensenumberfull}
-              </p>
+              <RenderCarSpec1
+                value={motocarItem.mgllicensenumberfull}
+                status="processing"
+              />
 
-              <p className="gx-mr-2 gx-mb-2">
-                <Badge className="gx-mb-0" status="default" />
-                {motocarItem.body2bodyname}
-              </p>
+              <RenderCarSpec1
+                value={motocarItem.body2bodyname}
+                status="default"
+              />
             </div>
 
             {/* <div className="gx-mt-3">
@@ -146,31 +182,22 @@ const NewsItem = ({ motocarItem, grid }) => {
               <Row>
                 <Col span={24}>
                   <ul className="moto-spec-list">
-                    <li>
-                      <span className="moto-spec-list-label">Жолоо</span>
-                      <span className="moto-spec-list-value">
-                        {motocarItem.body2driverposname}
-                      </span>
-                    </li>
-                    <li>
-                      <span className="moto-spec-list-label">Хөдөлгүүр</span>
-                      <span className="moto-spec-list-value">
-                        {motocarItem.engine2disp} cc{", "}
-                        {motocarItem.engine2fuelname}
-                      </span>
-                    </li>
-                    <li>
-                      <span className="moto-spec-list-label">Хроп</span>
-                      <span className="moto-spec-list-value">
-                        {motocarItem.drive2transtypename}
-                      </span>
-                    </li>
-                    <li>
-                      <span className="moto-spec-list-label">Хөтлөгч</span>
-                      <span className="moto-spec-list-value">
-                        {motocarItem.drive2drivename}
-                      </span>
-                    </li>
+                    <RenderCarSpec2
+                      value={motocarItem.body2driverposname}
+                      label="Жолоо"
+                    />
+                    <RenderCarSpec2
+                      value={`${motocarItem.engine2disp} cc, ${motocarItem.engine2fuelname}`}
+                      label="Хөдөлгүүр"
+                    />
+                    <RenderCarSpec2
+                      value={motocarItem.drive2transtypename}
+                      label="Хроп"
+                    />
+                    <RenderCarSpec2
+                      value={motocarItem.drive2drivename}
+                      label="Хөтлөгч"
+                    />
                   </ul>
                 </Col>
               </Row>
@@ -251,14 +278,11 @@ const NewsItem = ({ motocarItem, grid }) => {
               <h3 className="gx-text-primary gx-font-weight-medium gx-mb-1">
                 19,000,000<sub className="gx-fs-md gx-bottom-0"> төг</sub>
               </h3>
-              <p className="gx-mb-1 gx-fs-sm">
-                <span className="gx-size-8 gx-bg-success gx-rounded-xs gx-d-inline-block  gx-mr-1" />{" "}
-                {moment(motocarItem.caryearimport).format("YYYY")} он
-              </p>
-              <p className="gx-mb-1 gx-fs-sm">
-                <span className="gx-size-8 gx-bg-success gx-rounded-xs gx-d-inline-block  gx-mr-1" />{" "}
-                {motocarItem.carmilagenow} км
-              </p>
+              <RenderCarSpec3
+                value={moment(motocarItem.caryearimport).format("YYYY")}
+                suffix="он"
+              />
+              <RenderCarSpec3 value={motocarItem.carmilagenow} suffix="км" />
             </div>
 
             <div className="gx-mt-auto">

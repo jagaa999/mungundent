@@ -41,9 +41,6 @@ const MemberListItem = ({ memberItem, isSpecial }) => {
 
         case "google.com":
           return (
-            // <Tag icon={<GoogleOutlined />} color="#fbbc05">
-            //   {props.providerId}
-            // </Tag>
             <Avatar
               style={{ backgroundColor: "#fbbc05" }}
               icon={<IconFont type="icongoogle" />}
@@ -64,33 +61,36 @@ const MemberListItem = ({ memberItem, isSpecial }) => {
 
   return (
     // <Link to={"/member/" + memberItem.systemuserid}>
-    <Badge.Ribbon
-      text={
-        <>
-          {memberItem.email !== "" && <MailOutlined className="gx-mr-2" />}
-          {memberItem.phonenumber !== "" && (
-            <MobileOutlined className="gx-mr-2" />
-          )}
-        </>
-      }
-      // className="gx-bg-success"
-      color="#d1d1d1"
-      placement="end"
-    >
-      <Card
-        style={{ height: "250px" }}
-        hoverable={true}
-        className="gx-text-center"
-      >
-        <Avatar src={memberItem.profilephoto} size={89} />
-        <h3 className="gx-mt-4">{memberItem.userfullname}</h3>
-        <p className="gx-text-grey gx-fs-sm">
-          {moment(memberItem.createddate).fromNow()} <br />
-          {/* {memberItem.providerid} */}
-        </p>
+    //   <Badge.Ribbon
+    //     text={
+    //       <>
+    //         {memberItem.email !== "" && <MailOutlined className="gx-mr-2" />}
+    //         {memberItem.phonenumber !== "" && (
+    //           <MobileOutlined className="gx-mr-2" />
+    //         )}
+    //       </>
+    //     }
+    //     color="#d1d1d1"
+    //     placement="end"
+    //   >
+    <Card hoverable={true} className="moto-item-card gx-text-center">
+      <Avatar src={memberItem.profilephoto} size={89} />
+      <h3 className="gx-mt-4">{memberItem.userfullname}</h3>
+      <p className="gx-text-grey gx-fs-sm gx-mb-4">
+        {moment(memberItem.createddate).fromNow()} <br />
+        {/* {memberItem.providerid} */}
+      </p>
+
+      <div className="moto-bottom-right">
+        {memberItem.email !== "" && <MailOutlined className="gx-mr-2" />}
+        {memberItem.phonenumber !== "" && (
+          <MobileOutlined className="gx-mr-2" />
+        )}
+
         <WhatProvider providerId={memberItem.providerid} />
-      </Card>
-    </Badge.Ribbon>
+      </div>
+    </Card>
+    // </Badge.Ribbon>
     // </Link>
   );
 };

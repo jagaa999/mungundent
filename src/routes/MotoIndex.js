@@ -68,6 +68,10 @@ const MotocarList = asyncComponent(() => {
   return import("./moto/motocar/motocarListPage");
 });
 
+const MotocarForm = asyncComponent(() => {
+  return import("./moto/motocar/motocarFormPage");
+});
+
 const HomeIndex = asyncComponent(() => {
   return import("./moto/home/home");
 });
@@ -101,9 +105,19 @@ const App = ({ match }) => (
       #     # #     #    #    #     # #     # #     # #    #  
       #     # #######    #    #######  #####  #     # #     # 
       */}
-      {/* <Route path={`${match.url}product/:productid`}>
-        <MemberDetail />
-      </Route> */}
+      <Route
+        path={[
+          "/motocar/edit/:motocarId",
+          "/motocar/:motocarId/edit",
+          "/motocar/insert",
+          "/motocar/add",
+        ]}
+      >
+        <MotocarStore>
+          <MotocarForm />
+        </MotocarStore>
+      </Route>
+
       <Route path={["/motocar", "/motocarlist"]}>
         <MotocarStore>
           <MotocarList />

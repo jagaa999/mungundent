@@ -115,6 +115,7 @@ const MenuMember = () => {
           src={memberContext.state.memberFirebaseProfile.photoURL}
           className="gx-avatar gx-pointer"
           alt={memberContext.state.memberFirebaseProfile.photoURL}
+          size={24}
         />
       ) : (
         <Avatar

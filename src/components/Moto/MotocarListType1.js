@@ -23,7 +23,7 @@ const MotocarListType1 = () => {
     motocarListContext.loadMotocarList();
   }, []);
 
-  console.log("motocarListContext.motocarList", motocarListContext.motocarList);
+  // console.log("motocarListContext.motocarList", motocarListContext.motocarList);
 
   return (
     <div className="moto-list">

@@ -44,7 +44,30 @@ export const MotocarStore = (props) => {
     error: null,
   };
 
+  const initialStateMotocarDetail = {
+    loadParams: {
+      // systemmetagroupid: "1585197442423220",
+      systemmetagroupid: "1600421356169317",
+      showquery: "0",
+      ignorepermission: "1",
+      criteria: {},
+      paging: {
+        pageSize: "24",
+        offset: "1",
+        sortcolumnnames: {
+          createddate: {
+            sorttype: "DESC", //эрэмбэлэх чиглэл
+          },
+        },
+      },
+    },
+    motocarDetail: [],
+    loading: false,
+    error: null,
+  };
+
   const [motocarList, setMotocarList] = useState(initialStateMotocarList);
+  const [motocarDetail, setMotocarDetail] = useState(initialStateMotocarDetail);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #
@@ -72,7 +95,7 @@ export const MotocarStore = (props) => {
     axios
       .post("", myParamsMotocarList)
       .then((response) => {
-        console.log("response---------", response);
+        // console.log("response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -98,11 +121,23 @@ export const MotocarStore = (props) => {
       });
   };
 
+  // ######  ####### #######    #    ### #
+  // #     # #          #      # #    #  #
+  // #     # #          #     #   #   #  #
+  // #     # #####      #    #     #  #  #
+  // #     # #          #    #######  #  #
+  // #     # #          #    #     #  #  #
+  // ######  #######    #    #     # ### #######
+
+  const loadMotocarDetail = () => {};
+
   return (
     <MotocarContext.Provider
       value={{
         motocarList,
+        motocarDetail,
         loadMotocarList,
+        loadMotocarDetail,
       }}
     >
       {props.children}

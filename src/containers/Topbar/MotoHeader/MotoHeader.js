@@ -11,6 +11,8 @@ import {
   Tooltip,
 } from "antd";
 import Icon from "@ant-design/icons";
+import { createFromIconfontCN } from "@ant-design/icons";
+
 import { connect, useDispatch, useSelector } from "react-redux";
 import CustomScrollbars from "util/CustomScrollbars";
 import languageData from "../languageData";
@@ -27,6 +29,9 @@ import {
 } from "../../../appRedux/actions/Setting";
 
 const { Header } = Layout;
+const IconFont = createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_2091278_sye7rymtcr.js",
+});
 
 const menu = (
   <Menu onClick={handleMenuClick}>
@@ -105,11 +110,16 @@ const MotoHeader = () => {
               className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
             > */}
             <Link to="/" className="gx-d-block  gx-pointer gx-mr-xs-5 gx-logo">
-              <img
-                alt=""
-                style={{ height: "30px" }}
-                src={require("assets/images/logo.png")}
-              />
+              <span className="gx-d-block gx-d-lg-none">
+                <IconFont type="iconhome-solid" />
+              </span>
+              <div className="gx-d-none gx-d-lg-block">
+                <img
+                  alt=""
+                  style={{ height: "26px" }}
+                  src={require("assets/images/logo.png")}
+                />
+              </div>
             </Link>
 
             {/* <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block"> */}
