@@ -22,7 +22,7 @@ const MarkItem = ({ editionItem, count }) => {
     <Link to={"/carcatalog/edition/" + editionItem.id}>
       <Card
         key={editionItem.id}
-        className="moto-card-type1"
+        className="moto-card-type1 moto-item-card"
         hoverable={true}
         cover={
           <img

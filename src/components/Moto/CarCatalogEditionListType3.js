@@ -4,7 +4,7 @@ import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogEditionItem1 from "./CarCatalogEditionItem1";
+import CarCatalogEditionItem3 from "./CarCatalogEditionItem3";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import CarCatalogListContext from "context/CarCatalogListContext";
 import FilterContext from "context/FilterContext";
@@ -67,7 +67,7 @@ const CarCatalogEditionType1 = ({ indexId }) => {
             extra={[]}
           ></PageHeader>
 
-          <Row className="gx-d-flex">
+          {/* <Row className="gx-d-flex">
             {carCatalogListContext.carEditionList.carEditionList.map(
               (editionItem, index) => {
                 return (
@@ -79,7 +79,7 @@ const CarCatalogEditionType1 = ({ indexId }) => {
                     xs={12}
                     className="gx-mb-5"
                   >
-                    <CarCatalogEditionItem1
+                    <CarCatalogEditionItem3
                       key={index}
                       editionItem={editionItem}
                       count={editionItem.count}
@@ -88,7 +88,19 @@ const CarCatalogEditionType1 = ({ indexId }) => {
                 );
               }
             )}
+          </Row> */}
+
+          <Row className="gx-d-flex">
+            <Col key="dffdf" xs={24}>
+              <CarCatalogEditionItem3
+                key="dfdfd"
+                editionItems={
+                  carCatalogListContext.carEditionList.carEditionList
+                }
+              />
+            </Col>
           </Row>
+
           {/* <MotoPagination />
           <FilterDrawer /> */}
         </div>

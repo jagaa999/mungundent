@@ -102,7 +102,14 @@ const CarCatalogIndexType1 = ({ markId }) => {
                 }
 
                 return (
-                  <Col key={index} lg={8} md={12} sm={12} xs={12}>
+                  <Col
+                    key={index}
+                    lg={8}
+                    md={12}
+                    sm={12}
+                    xs={12}
+                    className="gx-mb-5"
+                  >
                     <CarCatalogIndexItem
                       key={index}
                       indexItem={indexItem}

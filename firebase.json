@@ -8,10 +8,29 @@
         "destination": "/index.html"
       }
     ],
+
     "headers": [
       {
+        "source": "build.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0"
+          }
+        ]
+      },
+      {
         "source": "/service-worker.js",
-        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+        "headers": [{ "key": "Cache-Control", "value": "max-age=0, no-cache" }]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0, no-cache"
+          }
+        ]
       },
       {
         "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
@@ -23,7 +42,7 @@
         ]
       },
       {
-        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|js|css|eot|otf|ttf|ttc|woff|woff2|font.css)",
+        "source": "**/*.@(jpg|jpeg|gif|png)",
         "headers": [
           {
             "key": "Cache-Control",
@@ -36,16 +55,16 @@
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "max-age=30000"
+            "value": "max-age=300"
           }
         ]
       },
       {
-        "source": "/**",
+        "source": "**/**",
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "no-cache, no-store, must-revalidate"
+            "value": "max-age=0, no-cache"
           }
         ]
       }

@@ -238,10 +238,20 @@ li.gx-user-nav {
 
   .gx-product-horizontal .gx-product-body {
     position: relative;
+    width: 75%;
+
+    @media screen and (min-width: (@screen-xl-min + 200px)) {
+      width: 75%;
+    }
 
     @media screen and (max-width: @screen-lg-max) {
       width: 75%;
     }
+
+    @media screen and (max-width: @screen-md-max) {
+      width: 75%;
+    }
+
     @media screen and (max-width: @screen-sm-max) {
       width: 75%;
     }

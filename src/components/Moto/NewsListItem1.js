@@ -85,7 +85,7 @@ const NewsItem = ({ newsItem, grid }) => {
                 width="auto"
                 gravity="face"
                 quality="auto"
-                placeholder="blur"
+                // placeholder="blur"
                 responsiveUseBreakpoints="true"
                 className="gx-img-fluid gx-w-100"
                 default_image="jhannw5jgo2mlvvkvke9"
