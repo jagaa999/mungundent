@@ -46,12 +46,12 @@ const MarkItem = ({ editionItem }) => {
   // console.log("otherImages", otherImages);
   const operations = (
     <>
-      <img
+      {/* <img
         src={editionItem.imagemain}
         className="gx-mr-2"
         style={{ maxHeight: "20px" }}
       />
-      {editionItem.title}
+      {editionItem.title} */}
     </>
   );
 

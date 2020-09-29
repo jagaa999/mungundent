@@ -55,6 +55,7 @@ const MenuMember = () => {
         bordered
         size="small"
         column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+        className="moto-car-spec1"
       >
         <Descriptions.Item label="SysID">
           {memberContext.state.memberCloudUserSysId}

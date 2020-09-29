@@ -101,23 +101,15 @@ const MarkItem = ({ editionItems, count }) => {
       ellipsis: true,
     },
     {
-      title: "Хаалга",
+      title: "Ха/Су",
       dataIndex: "body2door",
       key: "body2door",
       responsive: ["lg"],
-      sorter: (a, b) => a.body2door - b.body2door,
-      sortDirections: ["descend", "ascend"],
-      // render: (body2door) => <span>{body2door}</span>,
-      ellipsis: true,
-    },
-    {
-      title: "Суудал",
-      dataIndex: "body2seat",
-      key: "body2seat",
-      responsive: ["lg"],
-      sorter: (a, b) => a.body2seat - b.body2seat,
-      sortDirections: ["descend", "ascend"],
-      // render: (body2seat) => <span>{body2seat}</span>,
+      render: (body2door, record) => (
+        <span>
+          {body2door} / {record.body2seat}
+        </span>
+      ),
       ellipsis: true,
     },
     {
@@ -140,6 +132,7 @@ const MarkItem = ({ editionItems, count }) => {
       columns={columns}
       dataSource={editionItems}
       pagination={false}
+      tableLayout="auto"
     />
   );
 };

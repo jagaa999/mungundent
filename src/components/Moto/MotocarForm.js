@@ -100,10 +100,6 @@ const tailFormItemLayout = {
   },
 };
 
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-
 function handleBlur() {
   console.log("blur");
 }
@@ -153,10 +149,15 @@ const MotocarForm = () => {
   const [myBody, setMyBody] = useState(myOutputBody);
   const [myImages, setMyImages] = useState([]);
 
-  const [newsType, setNewsType] = useState({
+  const [firmList, setFirmList] = useState({
     loading: false,
-    newsTypes: [],
+    firmList: [],
   });
+  const [markList, setMarkList] = useState({
+    loading: false,
+    markList: [],
+  });
+
   const [newsSource, setNewsSource] = useState({
     loading: false,
     newsSources: [],
@@ -164,25 +165,17 @@ const MotocarForm = () => {
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
   const callFunctionAsync = async () => {
-    setNewsType({ ...newsType, loading: true });
-    setNewsType({
-      newsTypes: await loadDataview({
-        systemmetagroupid: "1587100905303413",
+    setFirmList({ ...firmList, loading: true });
+    setFirmList({
+      firmList: await loadDataview({
+        systemmetagroupid: "1599822188399800",
         paging: {
           sortColumnNames: {
-            newstypeid: {
+            firmName: {
               sortType: "ASC", //эрэмбэлэх чиглэл
             },
           },
         },
-      }),
-      loading: false,
-    });
-
-    setNewsSource({ ...newsSource, loading: true });
-    setNewsSource({
-      newsSources: await loadDataview({
-        systemmetagroupid: "1585046479054",
       }),
       loading: false,
     });
@@ -191,6 +184,38 @@ const MotocarForm = () => {
   useEffect(() => {
     callFunctionAsync();
   }, []);
+
+  const firmChange = async (value) => {
+    console.log(`Firm changed selected ${value}`);
+
+    if (value !== "") {
+      setMarkList({ ...markList, loading: true });
+      setMarkList({
+        markList: await loadDataview({
+          systemmetagroupid: "1599554598533",
+          criteria: {
+            id: {
+              0: {
+                operator: "=",
+                operand: value,
+              },
+            },
+          },
+          paging: {
+            sortColumnNames: {
+              markName: {
+                sortType: "ASC", //эрэмбэлэх чиглэл
+              },
+            },
+          },
+        }),
+        loading: false,
+      });
+    }
+  };
+
+  console.log("FITMLIST", firmList);
+  console.log("MARKLIST", markList);
 
   const onFinish = (values) => {
     // values.body = htmlEntities.decode(myBody);
@@ -216,15 +241,6 @@ const MotocarForm = () => {
     setMyImages(e);
     return e;
   };
-
-  let myNewsType = newsType.newsTypes;
-  myNewsType.map((item, index) => {
-    if (item.newstypeid < 199) {
-      myNewsType[index].optgroup = "Мэдээ";
-    } else {
-      myNewsType[index].optgroup = "Нийтлэл";
-    }
-  });
 
   return (
     <Card
@@ -285,44 +301,58 @@ const MotocarForm = () => {
         </Form.Item>
 
         <Form.Item
-          name="newstypeid"
+          name="firm"
           hasFeedback
-          label="Төрөл"
-          rules={[{ required: true, message: "Төрлөө сонгоно уу!" }]}
+          label="Фирм"
+          rules={[{ required: true, message: "Фирмээ сонгоно уу!" }]}
         >
           <Select
-            loading={newsType.loading}
+            loading={firmList.loading}
             showSearch
-            placeholder="Төрлөө сонгоно уу"
+            placeholder="Фирмээ сонгоно уу"
             optionFilterProp="children"
-            onChange={handleChange}
+            onChange={firmChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
             filterOption={(input, option) => {
+              console.log("dddddd", option);
               if (option.value) {
                 return (
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
+                  option.children[0]
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
                 );
               } else {
                 return false;
               }
             }}
           >
-            {myNewsType
+            {firmList.firmList
               .filter(
-                (v, i, a) => a.findIndex((t) => t.optgroup === v.optgroup) === i
+                (v, i, a) =>
+                  a.findIndex((t) => t.firmcountrymon === v.firmcountrymon) ===
+                  i
               )
               .map((item, index) => (
-                <OptGroup label={item.optgroup} key={index}>
-                  {myNewsType.map((option) => {
-                    if (item.optgroup === option.optgroup) {
+                <OptGroup label={item.firmcountrymon} key={index}>
+                  {firmList.firmList.map((option) => {
+                    if (item.firmcountrymon === option.firmcountrymon) {
                       return (
-                        <Option
-                          key={option.newstypeid}
-                          value={option.newstypeid}
-                        >
-                          {option.newstypename}
+                        <Option key={option.id} value={option.id}>
+                          {option.firmname}
+                          {/* <Badge
+                            count={option.count}
+                            className="gx-float-right"
+                          /> */}
+                          <Badge
+                            count={option.count}
+                            className="gx-float-right"
+                            style={{
+                              backgroundColor: "#fff",
+                              color: "#999",
+                              boxShadow: "0 0 0 1px #d9d9d9 inset",
+                            }}
+                          />
                         </Option>
                       );
                     }
@@ -333,66 +363,41 @@ const MotocarForm = () => {
         </Form.Item>
 
         <Form.Item
-          name="newssourceid"
-          label="Эх сурвалж"
-          rules={[{ required: true, message: "Эх сурвалжийг сонгоно уу!" }]}
+          name="mark"
+          hasFeedback
+          label="Марк"
+          rules={[{ required: true, message: "Маркаа сонгоно уу!" }]}
         >
           <Select
-            loading={newsSource.loading}
+            loading={markList.loading}
             showSearch
-            placeholder="Эх сурвалжийг сонгоно уу!"
+            placeholder="Маркаа сонгоно уу"
             optionFilterProp="children"
-            onChange={handleChange}
+            onChange={firmChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
             filterOption={(input, option) => {
               if (option.value) {
                 return (
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
+                  option.children[0]
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
                 );
               } else {
                 return false;
               }
             }}
           >
-            {/* {newsSource.newsSources.map((item) => (
-              <Option key={item.newssourceid} value={item.newssourceid}>
-                {item.newssourcename}
-              </Option>
-            ))} */}
-
-            {newsSource.newsSources
-              .filter(
-                (v, i, a) =>
-                  a.findIndex((t) => t.newssourcetype === v.newssourcetype) ===
-                  i
-              )
-              .map((item, index) => (
-                <OptGroup label={item.newssourcetype} key={index}>
-                  {newsSource.newsSources.map((option) => {
-                    if (item.newssourcetype === option.newssourcetype) {
-                      return (
-                        <Option
-                          key={option.newssourceid}
-                          value={option.newssourceid}
-                        >
-                          {option.newssourcename}
-                        </Option>
-                      );
-                    }
-                  })}
-                </OptGroup>
-              ))}
+            {markList.markList.map((option) => {
+              return (
+                <Option key={option.markid} value={option.markid}>
+                  {option.markname}
+                  <Badge count={option.count} className="gx-float-right" />
+                </Option>
+              );
+            })}
           </Select>
         </Form.Item>
-
-        {/* <Form.Item name="description" label="Товчлол">
-          <TextArea rows={4} placeholder="Товчлолоо бичнэ үү" />
-        </Form.Item> */}
-        {/* <Form.Item name="publishedDate" label="Нийтлэх огноо">
-          <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-        </Form.Item> */}
 
         <Form.Item
           name="tempimages"
