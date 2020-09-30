@@ -149,12 +149,17 @@ const NewsItem = ({ newsItem, grid }) => {
         </div>
 
         <div className="moto-bottom-right">
-          <AvatarMember02
+          {/* <AvatarMember02
             memberName={newsItem.userfullename}
             memberPhoto={newsItem.userprofilephoto}
             memberPosition="Гишүүнчлэл тодорхойгүй"
             memberId={newsItem.userpublisherid}
             memberUid={newsItem.userfirebaseuid}
+          /> */}
+          <Avatar
+            src={newsItem.userprofilephoto}
+            size="small"
+            alt={newsItem.userfullename}
           />
         </div>
       </div>

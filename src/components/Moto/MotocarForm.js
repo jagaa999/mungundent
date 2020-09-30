@@ -108,6 +108,13 @@ function handleFocus() {
   console.log("focus");
 }
 
+//  ####   ####  #    #  ####  #####
+// #    # #    # ##   # #        #
+// #      #    # # #  #  ####    #
+// #      #    # #  # #      #   #
+// #    # #    # #   ## #    #   #
+//  ####   ####  #    #  ####    #
+
 const MotocarForm = () => {
   const [form] = Form.useForm();
   const motocarDetailContext = useContext(MotocarContext);
@@ -115,39 +122,6 @@ const MotocarForm = () => {
   const motocarItem = motocarDetailContext.motocarDetail.motocarDetail;
 
   const [imageTags, setImageTags] = useState("");
-
-  const titleOnChange = (text) => {
-    // console.log("dsfdsfsd", text.target.value);
-    setImageTags(text.target.value);
-  };
-
-  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
-  let myTempBody;
-
-  try {
-    myTempBody = htmlEntities.decode(motocarItem.body);
-  } catch (e) {
-    myTempBody = "";
-  }
-
-  let myOutputBody = {};
-  if (myTempBody !== "") {
-    if (myTempBody.indexOf('"blocks"') !== -1) {
-      try {
-        myOutputBody = JSON.parse(myTempBody);
-      } catch (e) {
-        myOutputBody = {};
-      }
-    } else {
-      myOutputBody = {};
-    }
-  }
-
-  // console.log("myTempBodymyTempBody", myTempBody);
-
-  // const myTempBody = JSON.parse(motocarItem.body || []);
-  const [myBody, setMyBody] = useState(myOutputBody);
-  const [myImages, setMyImages] = useState([]);
 
   const [firmList, setFirmList] = useState({
     loading: false,
@@ -157,13 +131,17 @@ const MotocarForm = () => {
     loading: false,
     markList: [],
   });
-
-  const [newsSource, setNewsSource] = useState({
+  const [indexList, setIndexList] = useState({
     loading: false,
-    newsSources: [],
+    indexList: [],
   });
 
-  // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
+  const [editionList, setEditionList] = useState({
+    loading: false,
+    editionList: [],
+  });
+
+  // * axios-оор ERP-аас дуудна.
   const callFunctionAsync = async () => {
     setFirmList({ ...firmList, loading: true });
     setFirmList({
@@ -214,8 +192,68 @@ const MotocarForm = () => {
     }
   };
 
+  const markChange = async (value) => {
+    console.log(`Mark changed selected ${value}`);
+
+    if (value !== "") {
+      setIndexList({ ...indexList, loading: true });
+      setIndexList({
+        indexList: await loadDataview({
+          systemmetagroupid: "1599824590726192",
+          criteria: {
+            markid: {
+              0: {
+                operator: "=",
+                operand: value,
+              },
+            },
+          },
+          paging: {
+            sortColumnNames: {
+              maindate: {
+                sortType: "DESC", //эрэмбэлэх чиглэл
+              },
+            },
+          },
+        }),
+        loading: false,
+      });
+    }
+  };
+
+  const indexChange = async (value) => {
+    console.log(`Index changed selected ${value}`);
+
+    if (value !== "") {
+      setEditionList({ ...editionList, loading: true });
+      setEditionList({
+        editionList: await loadDataview({
+          systemmetagroupid: "1599825541835232",
+          criteria: {
+            mainid: {
+              0: {
+                operator: "=",
+                operand: value,
+              },
+            },
+          },
+          paging: {
+            sortColumnNames: {
+              pricenewusd: {
+                sortType: "ASC", //эрэмбэлэх чиглэл
+              },
+            },
+          },
+        }),
+        loading: false,
+      });
+    }
+  };
+
   console.log("FITMLIST", firmList);
   console.log("MARKLIST", markList);
+  console.log("INDEXLIST", indexList);
+  console.log("EDITIONLIST", editionList);
 
   const onFinish = (values) => {
     // values.body = htmlEntities.decode(myBody);
@@ -241,6 +279,43 @@ const MotocarForm = () => {
     setMyImages(e);
     return e;
   };
+
+  const titleOnChange = (text) => {
+    // console.log("dsfdsfsd", text.target.value);
+    setImageTags(text.target.value);
+  };
+
+  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
+  let myTempBody;
+
+  try {
+    myTempBody = htmlEntities.decode(motocarItem.body);
+  } catch (e) {
+    myTempBody = "";
+  }
+
+  let myOutputBody = {};
+  if (myTempBody !== "") {
+    if (myTempBody.indexOf('"blocks"') !== -1) {
+      try {
+        myOutputBody = JSON.parse(myTempBody);
+      } catch (e) {
+        myOutputBody = {};
+      }
+    } else {
+      myOutputBody = {};
+    }
+  }
+
+  const [myBody, setMyBody] = useState(myOutputBody);
+  const [myImages, setMyImages] = useState([]);
+
+  // #####  ###### ##### #    # #####  #    #
+  // #    # #        #   #    # #    # ##   #
+  // #    # #####    #   #    # #    # # #  #
+  // #####  #        #   #    # #####  #  # #
+  // #   #  #        #   #    # #   #  #   ##
+  // #    # ######   #    ####  #    # #    #
 
   return (
     <Card
@@ -307,6 +382,7 @@ const MotocarForm = () => {
           rules={[{ required: true, message: "Фирмээ сонгоно уу!" }]}
         >
           <Select
+            className="moto-select-firm"
             loading={firmList.loading}
             showSearch
             placeholder="Фирмээ сонгоно уу"
@@ -315,7 +391,6 @@ const MotocarForm = () => {
             onFocus={handleFocus}
             onBlur={handleBlur}
             filterOption={(input, option) => {
-              console.log("dddddd", option);
               if (option.value) {
                 return (
                   option.children[0]
@@ -346,12 +421,8 @@ const MotocarForm = () => {
                           /> */}
                           <Badge
                             count={option.count}
-                            className="gx-float-right"
-                            style={{
-                              backgroundColor: "#fff",
-                              color: "#999",
-                              boxShadow: "0 0 0 1px #d9d9d9 inset",
-                            }}
+                            // className="gx-float-right"
+                            className="moto-badge-firm"
                           />
                         </Option>
                       );
@@ -369,11 +440,12 @@ const MotocarForm = () => {
           rules={[{ required: true, message: "Маркаа сонгоно уу!" }]}
         >
           <Select
+            className="moto-select-firm"
             loading={markList.loading}
             showSearch
             placeholder="Маркаа сонгоно уу"
             optionFilterProp="children"
-            onChange={firmChange}
+            onChange={markChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
             filterOption={(input, option) => {
@@ -392,7 +464,86 @@ const MotocarForm = () => {
               return (
                 <Option key={option.markid} value={option.markid}>
                   {option.markname}
-                  <Badge count={option.count} className="gx-float-right" />
+                  <Badge count={option.count} className="moto-badge-firm" />
+                </Option>
+              );
+            })}
+          </Select>
+        </Form.Item>
+
+        <Form.Item
+          name="index"
+          hasFeedback
+          label="Цуврал"
+          rules={[{ required: true, message: "Цувралаа сонгоно уу!" }]}
+        >
+          <Select
+            className="moto-select-firm"
+            loading={indexList.loading}
+            showSearch
+            placeholder="Цувралаа сонгоно уу"
+            optionFilterProp="children"
+            onChange={indexChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children[0]
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                );
+              } else {
+                return false;
+              }
+            }}
+          >
+            {indexList.indexList.map((option) => {
+              return (
+                <Option key={option.mainid} value={option.mainid}>
+                  {option.maindate2}
+                  <Badge count={option.count} className="moto-badge-firm" />
+                </Option>
+              );
+            })}
+          </Select>
+        </Form.Item>
+
+        <Form.Item
+          name="edition"
+          hasFeedback
+          label="Хувилбар"
+          rules={[{ required: true, message: "Хувилбараа сонгоно уу!" }]}
+        >
+          <Select
+            className="moto-select-firm"
+            loading={editionList.loading}
+            showSearch
+            placeholder="Хувилбараа сонгоно уу"
+            optionFilterProp="children"
+            onChange={null}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children[0]
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                );
+              } else {
+                return false;
+              }
+            }}
+          >
+            {editionList.editionList.map((option) => {
+              return (
+                <Option key={option.id} value={option.id}>
+                  {option.cartrim}{" "}
+                  <span className="gx-float-right gx-mr-5 gx-ml-2 gx-fs-sm gx-font-weight-light gx-color-light-purple">
+                    {option.body2modelcodefull} • {option.engine2disp} cc •{" "}
+                    {option.drive2drivename} • {option.drive2transmissionfull}
+                  </span>
                 </Option>
               );
             })}

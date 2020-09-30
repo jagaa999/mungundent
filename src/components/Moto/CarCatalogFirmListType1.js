@@ -4,7 +4,7 @@ import { Col, Row, Button, Switch, Select, PageHeader, Card } from "antd";
 import { PlusOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogListItem from "./CarCatalogListItem";
+import CarCatalogFirmListItem1 from "./CarCatalogFirmListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import CarCatalogListContext from "context/CarCatalogListContext";
 import FilterContext from "context/FilterContext";
@@ -109,7 +109,7 @@ const CarCatalogType1 = () => {
 
                 return (
                   <Col key={index} lg={6} md={8} sm={8} xs={8}>
-                    <CarCatalogListItem
+                    <CarCatalogFirmListItem1
                       key={index}
                       firmItem={firmItem}
                       isAll={isAll}
