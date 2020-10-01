@@ -12,6 +12,9 @@ import ImageUpload from "./Image/ImageUpload";
 import { Html5Entities } from "html-entities";
 import toBoolean from "util/booleanFunction";
 
+import MotocarForm1General from "./MotocarForm1General";
+import MotocarFormTech from "./MotocarFormTech";
+
 import {
   Button,
   Card,
@@ -36,6 +39,7 @@ import {
   InputNumber,
   TreeSelect,
   Radio,
+  Steps,
 } from "antd";
 
 import {
@@ -68,6 +72,7 @@ import MotocarContext from "context/MotocarContext";
 
 const { Option, OptGroup } = Select;
 const { TextArea } = Input;
+const { Step } = Steps;
 
 const formItemLayout = {
   labelCol: {
@@ -121,6 +126,30 @@ const MotocarForm = () => {
 
   const motocarItem = motocarDetailContext.motocarDetail.motocarDetail;
 
+  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
+  let myTempBody;
+
+  try {
+    myTempBody = htmlEntities.decode(motocarItem.body);
+  } catch (e) {
+    myTempBody = "";
+  }
+
+  let myOutputBody = {};
+  if (myTempBody !== "") {
+    if (myTempBody.indexOf('"blocks"') !== -1) {
+      try {
+        myOutputBody = JSON.parse(myTempBody);
+      } catch (e) {
+        myOutputBody = {};
+      }
+    } else {
+      myOutputBody = {};
+    }
+  }
+
+  const [myBody, setMyBody] = useState(myOutputBody);
+  const [myImages, setMyImages] = useState([]);
   const [imageTags, setImageTags] = useState("");
 
   const [firmList, setFirmList] = useState({
@@ -139,6 +168,11 @@ const MotocarForm = () => {
   const [editionList, setEditionList] = useState({
     loading: false,
     editionList: [],
+  });
+
+  const [mglCar, setMglCar] = useState({
+    loading: false,
+    mglCar: {},
   });
 
   // * axios-оор ERP-аас дуудна.
@@ -254,12 +288,15 @@ const MotocarForm = () => {
   console.log("MARKLIST", markList);
   console.log("INDEXLIST", indexList);
   console.log("EDITIONLIST", editionList);
+  console.log("mglCar", mglCar);
 
   const onFinish = (values) => {
+    console.log("AFTER SUBMIT --------- ", values);
+
     // values.body = htmlEntities.decode(myBody);
-    values.body = myBody;
-    values.images = myImages;
-    motocarDetailContext.saveMotocarDetail(values);
+    // values.body = myBody;
+    // values.images = myImages;
+    // motocarDetailContext.saveMotocarDetail(values);
   };
 
   const saveButton = () => {
@@ -285,30 +322,11 @@ const MotocarForm = () => {
     setImageTags(text.target.value);
   };
 
-  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
-  let myTempBody;
-
-  try {
-    myTempBody = htmlEntities.decode(motocarItem.body);
-  } catch (e) {
-    myTempBody = "";
-  }
-
-  let myOutputBody = {};
-  if (myTempBody !== "") {
-    if (myTempBody.indexOf('"blocks"') !== -1) {
-      try {
-        myOutputBody = JSON.parse(myTempBody);
-      } catch (e) {
-        myOutputBody = {};
-      }
-    } else {
-      myOutputBody = {};
-    }
-  }
-
-  const [myBody, setMyBody] = useState(myOutputBody);
-  const [myImages, setMyImages] = useState([]);
+  const [currentStep, setCurrentStep] = useState(0);
+  const onStepChange = (current) => {
+    console.log("onStepChange:", current);
+    setCurrentStep(current);
+  };
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -323,57 +341,48 @@ const MotocarForm = () => {
       style={{ backgroundColor: "#f0f0f0" }}
       title="Автомашины тохиргоо"
     >
+      <Steps
+        type="navigation"
+        size="small"
+        current={currentStep}
+        onChange={onStepChange}
+        className="site-navigation-steps"
+      >
+        <Step title="Ерөнхий" />
+        <Step title="Фирм/Марк" />
+        <Step title="Автомашин" />
+        <Step title="Үзүүлэлт" />
+        <Step title="Эзэмшигч" />
+      </Steps>
+
       <Form
         {...formItemLayout}
         form={form}
         name="motocarDetailForm"
         onFinish={onFinish}
         initialValues={{
-          newsid: motocarItem ? motocarItem.newsid : "",
-          title: motocarItem ? motocarItem.title : "",
+          motocarid: motocarItem ? motocarItem.motocarid : "",
           newstypeid: motocarItem ? motocarItem.newstypeid : null,
+          vehicletype: "passenger",
           newssourceid: motocarItem ? motocarItem.newssourceid : null,
           isactive: motocarItem ? toBoolean(motocarItem.isactive) : true,
           isfeatured: motocarItem ? toBoolean(motocarItem.isfeatured) : false,
           iscomment: motocarItem ? toBoolean(motocarItem.iscomment) : true,
-          // description: motocarItem ? motocarItem.description : "",
         }}
         scrollToFirstError={true}
         colon={false}
       >
-        <Form.Item
-          {...forItemLayoutSame}
-          name="newsid"
-          label="ID дугаар"
-          hidden={true}
-        >
-          <Input disabled />
-        </Form.Item>
+        <MotocarForm1General />
+        <MotocarFormTech />
 
-        <Form.Item
-          name="title"
-          label={
-            <span>
-              Гарчиг&nbsp;
-              <Tooltip title="Нийтлэлийн утга санааг бүрэн төлөөлөхүйцээр өгөөрэй.">
-                <QuestionCircleOutlined />
-              </Tooltip>
-            </span>
-          }
-          rules={[
-            {
-              required: true,
-              message: "Гарчгаа бичнэ үү!",
-              whitespace: true,
-            },
-          ]}
-        >
-          <TextArea
-            placeholder="Гарчгаа бичнэ үү"
-            autoSize
-            onChange={titleOnChange}
-          />
-        </Form.Item>
+        {/* 
+        ####### ### ######  #     # 
+        #        #  #     # ##   ## 
+        #        #  #     # # # # # 
+        #####    #  ######  #  #  # 
+        #        #  #   #   #     # 
+        #        #  #    #  #     # 
+        #       ### #     # #     #  */}
 
         <Form.Item
           name="firm"
@@ -385,7 +394,7 @@ const MotocarForm = () => {
             className="moto-select-firm"
             loading={firmList.loading}
             showSearch
-            placeholder="Фирмээ сонгоно уу"
+            placeholder="Фирм"
             optionFilterProp="children"
             onChange={firmChange}
             onFocus={handleFocus}
@@ -432,7 +441,6 @@ const MotocarForm = () => {
               ))}
           </Select>
         </Form.Item>
-
         <Form.Item
           name="mark"
           hasFeedback
@@ -443,7 +451,7 @@ const MotocarForm = () => {
             className="moto-select-firm"
             loading={markList.loading}
             showSearch
-            placeholder="Маркаа сонгоно уу"
+            placeholder="Марк"
             optionFilterProp="children"
             onChange={markChange}
             onFocus={handleFocus}
@@ -470,18 +478,12 @@ const MotocarForm = () => {
             })}
           </Select>
         </Form.Item>
-
-        <Form.Item
-          name="index"
-          hasFeedback
-          label="Цуврал"
-          rules={[{ required: true, message: "Цувралаа сонгоно уу!" }]}
-        >
+        <Form.Item name="index" hasFeedback label="Цуврал">
           <Select
             className="moto-select-firm"
             loading={indexList.loading}
             showSearch
-            placeholder="Цувралаа сонгоно уу"
+            placeholder="Цуврал"
             optionFilterProp="children"
             onChange={indexChange}
             onFocus={handleFocus}
@@ -508,18 +510,12 @@ const MotocarForm = () => {
             })}
           </Select>
         </Form.Item>
-
-        <Form.Item
-          name="edition"
-          hasFeedback
-          label="Хувилбар"
-          rules={[{ required: true, message: "Хувилбараа сонгоно уу!" }]}
-        >
+        <Form.Item name="edition" hasFeedback label="Хувилбар">
           <Select
             className="moto-select-firm"
             loading={editionList.loading}
             showSearch
-            placeholder="Хувилбараа сонгоно уу"
+            placeholder="Хувилбар"
             optionFilterProp="children"
             onChange={null}
             onFocus={handleFocus}
@@ -549,7 +545,94 @@ const MotocarForm = () => {
             })}
           </Select>
         </Form.Item>
+        <Divider className="gx-my-5" />
+        {/*
+           ####  ##   ## #######    ####    #### ######  
+          ## ##  ##   ## ##        ## ##   ## ## ##   ## 
+          ## ##  ##   ## ##       ##  ##  ##  ## ##   ## 
+          ## ##   ###### ##      ##   ## ##   ## ######  
+          ## ##       ## ##      ####### ####### ##      
+         ####### ##   ## ##      ##   ## ##   ## ##      
+         ##   ##  #####  ##      ##   ## ##   ## ##       */}
 
+        <Divider className="gx-my-5" />
+
+        {/*}
+        #     # ####### ####### #######  #####     #    ######  
+        ##   ## #     #    #    #     # #     #   # #   #     # 
+        # # # # #     #    #    #     # #        #   #  #     # 
+        #  #  # #     #    #    #     # #       #     # ######  
+        #     # #     #    #    #     # #       ####### #   #   
+        #     # #     #    #    #     # #     # #     # #    #  
+        #     # #######    #    #######  #####  #     # #     #  */}
+
+        <Form.Item name="caryearmanufactured" label="Үйлдвэрлэсэн он">
+          <Input />
+        </Form.Item>
+        <Form.Item name="caryearimport" label="Импортолсон он">
+          <Input />
+        </Form.Item>
+        <Form.Item name="carmilageimport" label="Импортлох үеийн гүйлт">
+          <Input />
+        </Form.Item>
+        <Form.Item name="carmilagenow" label="Одоогийн гүйлт">
+          <Input />
+        </Form.Item>
+        <Form.Item name="carcoloroutside" label="Гадна өнгө">
+          <Input />
+        </Form.Item>
+        <Form.Item name="carcolorinside" label="Салоны өнгө">
+          <Input />
+        </Form.Item>
+
+        <Form.Item name="engine2Disp" label="Хөдөлгүүрийн CC">
+          <Input />
+        </Form.Item>
+        <Form.Item name="engine2Cylinder" label="Хөдөлгүүрийн цилиндр">
+          <Input />
+        </Form.Item>
+        <Form.Item name="fueltypeid" label="Шатахуун">
+          <Input />
+        </Form.Item>
+        {/* <Form.Item name="engine2PowerHp" label="Морины хүч">
+          <Input />
+        </Form.Item> */}
+        <Form.Item name="carCountyOrigin" label="Брэндийн улс">
+          <Input />
+        </Form.Item>
+        <Form.Item name="carCountryImport" label="Импортолсон улс">
+          <Input />
+        </Form.Item>
+        <Form.Item name="body2Door" label="Хаалганы тоо">
+          <Input />
+        </Form.Item>
+        <Form.Item name="body2Seat" label="Суудлын тоо">
+          <Input />
+        </Form.Item>
+        <Form.Item name="transtypeid" label="Хроп ID">
+          <Input />
+        </Form.Item>
+        {/* <Form.Item name="drive2TransmissionStep" label="Хропны шатлал">
+          <Input />
+        </Form.Item> */}
+        <Form.Item name="driveId" label="Хөтлөгч">
+          <Input />
+        </Form.Item>
+        <Form.Item name="driverPosId" label="Жолооны байрлал">
+          <Input />
+        </Form.Item>
+        {/* <Form.Item name="engineTurboid" label="Турбо">
+          <Input />
+        </Form.Item> */}
+        {/* <Form.Item name="engine2Type" label="engine2Type">
+          <Input />
+        </Form.Item> */}
+        {/* <Form.Item name="vehicletype" label="vehicletype">
+          <Input />
+        </Form.Item> */}
+        <Form.Item name="imageOther" label="imageOther">
+          <Input />
+        </Form.Item>
         <Form.Item
           name="tempimages"
           label="Зураг"
@@ -562,6 +645,10 @@ const MotocarForm = () => {
           />
         </Form.Item>
 
+        <Form.Item name="engine2Code" label="engine2Code">
+          <Input />
+        </Form.Item>
+        {/* 
         <Form.Item
           name="tempbody"
           label="Нийтлэл"
@@ -575,7 +662,7 @@ const MotocarForm = () => {
               newsBody={motocarItem ? motocarItem.body : {}}
             />
           </Card>
-        </Form.Item>
+        </Form.Item> */}
 
         <Divider dashed orientation="center" plain>
           Тохиргоо
@@ -588,22 +675,6 @@ const MotocarForm = () => {
           {...forItemLayoutSame}
         >
           <Switch name="switchisactive" defaultChecked />
-        </Form.Item>
-        <Form.Item
-          name="isfeatured"
-          label="Спонсор?"
-          valuePropName="checked"
-          {...forItemLayoutSame}
-        >
-          <Switch name="switchisfeatured" defaultChecked />
-        </Form.Item>
-        <Form.Item
-          name="iscomment"
-          label="Коммент?"
-          valuePropName="checked"
-          {...forItemLayoutSame}
-        >
-          <Switch name="switchiscomment" defaultChecked />
         </Form.Item>
 
         <Divider dashed orientation="center" plain>
@@ -635,6 +706,11 @@ export default MotocarForm;
 // MGL_LICENSENUMBER_SERIES;
 // BODYID;
 
+// DESCRIPTION
+// BODY2_MODEL_CODE_FULL
+// MODEL_CODE
+// BODY2_VIN_NUMBER
+
 //? GOOTECH
 // FIRMID;
 // CAR_FIRM;
@@ -653,15 +729,13 @@ export default MotocarForm;
 // CAR_COLOR_INSIDE;
 // CAR_COUNTY_ORIGIN;
 // CAR_COUNTRY_IMPORT;
-
-//? ЗУРАГ
 // IMAGE_MAIN;
 // IMAGE_OTHER
 // BODY2_DOOR;
 // BODY2_SEAT;
 // DRIVERPOSID;
 
-//? ТЕХНИК ҮЗҮҮЛЭЛТ
+//? ҮЗҮҮЛЭЛТ
 // ENGINE2_CODE
 // ENGINE2_DISP;
 // ENGINE2_CYLINDER;
@@ -673,12 +747,6 @@ export default MotocarForm;
 // TRANSTYPEID;
 // DRIVE2_TRANSMISSION_STEP;
 // DRIVEID;
-
-//? ТУХАЙ
-// DESCRIPTION
-// BODY2_MODEL_CODE_FULL
-// MODEL_CODE
-// BODY2_VIN_NUMBER
 
 //? ЭЗЭМШИГЧ
 // CREATED_DATE

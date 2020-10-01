@@ -250,6 +250,14 @@ const NewsForm = () => {
         scrollToFirstError={true}
         colon={false}
       >
+        {/*
+        ####### ### ####### #       ####### 
+            #     #     #    #       #       
+            #     #     #    #       #       
+            #     #     #    #       #####   
+            #     #     #    #       #       
+            #     #     #    #       #       
+            #    ###    #    ####### #######  */}
         <Form.Item
           {...forItemLayoutSame}
           name="newsid"
@@ -331,7 +339,6 @@ const NewsForm = () => {
               ))}
           </Select>
         </Form.Item>
-
         <Form.Item
           name="newssourceid"
           label="Эх сурвалж"
@@ -386,14 +393,12 @@ const NewsForm = () => {
               ))}
           </Select>
         </Form.Item>
-
         {/* <Form.Item name="description" label="Товчлол">
           <TextArea rows={4} placeholder="Товчлолоо бичнэ үү" />
         </Form.Item> */}
         {/* <Form.Item name="publishedDate" label="Нийтлэх огноо">
           <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
         </Form.Item> */}
-
         <Form.Item
           name="tempimages"
           label="Зураг"
@@ -405,7 +410,6 @@ const NewsForm = () => {
             imageTags={imageTags}
           />
         </Form.Item>
-
         <Form.Item
           name="tempbody"
           label="Нийтлэл"
@@ -420,11 +424,9 @@ const NewsForm = () => {
             />
           </Card>
         </Form.Item>
-
         <Divider dashed orientation="center" plain>
           Тохиргоо
         </Divider>
-
         <Form.Item
           name="isactive"
           label="Идэвхтэй?"
@@ -449,11 +451,9 @@ const NewsForm = () => {
         >
           <Switch name="switchiscomment" defaultChecked />
         </Form.Item>
-
         <Divider dashed orientation="center" plain>
           Таны үйлдэл
         </Divider>
-
         <Form.Item {...tailFormItemLayout}>
           <Button
             type="primary"

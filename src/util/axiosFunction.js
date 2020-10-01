@@ -9,13 +9,13 @@ const myInitParamsProcess = {
     password: "89",
     command: "motoNEWS_MAINDETAIL_004",
     parameters: {
-      newsid: "",
-      memberid: "",
+      // newsid: "",
+      // memberid: "",
     },
   },
 };
 
-export async function LoadProcess(props) {
+export function LoadProcess(props) {
   const myParams = myInitParamsProcess;
   myParams.request.command = props ? props.command : "";
   myParams.request.parameters = props ? props.parameters : {};
@@ -23,21 +23,20 @@ export async function LoadProcess(props) {
   // console.log("axiosFunction Process myParams ----------->", myParams);
   console.log("Axios props", props);
 
-  await axios
+  return axios
     .post("", myParams)
     .then((response) => {
-      console.log("axiosFunction Process response ----------->", response);
-
-      const myResult = response.data.response;
-      console.log("axiosFunction Process myResult ------------>", myResult);
-
-      return myResult;
+      if (response.data.response.status === "error") {
+        message.error(response.data.response.text.toString(), 7);
+        return {};
+      } else {
+        const myResult = response.data.response.result;
+        return myResult;
+      }
     })
     .catch((error) => {
       return error;
     });
-
-  return null;
 }
 
 // !-----------------------
