@@ -44,6 +44,8 @@ const MotocarForm1General = (props) => {
     }
   }, [mglCar.mglCar]);
 
+  console.log("mglCar", mglCar);
+
   //? ЕРӨНХИЙ
   // MOTOCARID
   // TITLE;
