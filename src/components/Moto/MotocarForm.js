@@ -154,6 +154,10 @@ const MotocarForm = () => {
     // motocarDetailContext.saveMotocarDetail(values);
   };
 
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   const saveButton = () => {
     console.log("Save button clicked");
   };
@@ -196,25 +200,12 @@ const MotocarForm = () => {
       style={{ backgroundColor: "#f0f0f0" }}
       title="Автомашины тохиргоо"
     >
-      <Steps
-        type="navigation"
-        size="small"
-        current={currentStep}
-        onChange={onStepChange}
-        className="site-navigation-steps"
-      >
-        <Step title="Ерөнхий" />
-        <Step title="Загвар" />
-        <Step title="Автомашин" />
-        <Step title="Үзүүлэлт" />
-        {/* <Step title="Эзэмшигч" /> */}
-      </Steps>
-
       <Form
         {...formItemLayout}
         form={form}
         name="motocarDetailForm"
         onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
         initialValues={{
           motocarid: motocarItem ? motocarItem.motocarid : "",
           newstypeid: motocarItem ? motocarItem.newstypeid : null,
@@ -227,30 +218,27 @@ const MotocarForm = () => {
         scrollToFirstError={true}
         colon={false}
       >
+        <Steps
+          type="navigation"
+          size="small"
+          current={currentStep}
+          onChange={onStepChange}
+          className="site-navigation-steps"
+        >
+          <Step title="Ерөнхий" />
+          <Step title="Загвар" />
+          <Step title="Автомашин" />
+          <Step title="Үзүүлэлт" />
+          {/* <Step title="Эзэмшигч" /> */}
+        </Steps>
         <div className="gx-mt-4">
-          {currentStep === 0 && <MotocarForm1General />}
+          {currentStep === 0 && <MotocarForm1General form={form} />}
           {currentStep === 1 && <MotocarFormTech />}
           {currentStep === 2 && (
             <MotocarFormThecar normFileImages={normFileImages} imageTags />
           )}
           {currentStep === 3 && <MotocarFormSpec />}
         </div>
-
-        {/* 
-        <Form.Item
-          name="tempbody"
-          label="Нийтлэл"
-          // initialValue={motocarItem ? motocarItem.body : ""}
-          getValueFromEvent={normFileBody}
-          rules={[{ type: "array" }]}
-        >
-          <Card bordered={false}>
-            <NewsEditor
-              normFile={normFileBody}
-              newsBody={motocarItem ? motocarItem.body : {}}
-            />
-          </Card>
-        </Form.Item> */}
 
         <Divider dashed orientation="center" plain>
           Тохиргоо

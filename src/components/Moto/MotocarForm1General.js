@@ -61,53 +61,55 @@ const MotocarForm1General = (props) => {
 
   return (
     <>
-      <Form.Item
-        name="motocarid"
-        label="ID дугаар"
-        // hidden={true}
-      >
-        <Input disabled />
-      </Form.Item>
-      <Form.Item name="title" label="Title">
-        <Input />
-      </Form.Item>
+      <Form form={props.form} scrollToFirstError={true} colon={false}>
+        <Form.Item
+          name="motocarid"
+          label="ID дугаар"
+          // hidden={true}
+        >
+          <Input disabled />
+        </Form.Item>
+        <Form.Item name="title" label="Title">
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        name="mglLicensenumberfull"
-        label={
-          <span>
-            Улсын дугаар
-            <Tooltip title="Зөв, гүйцэт бичээрэй. 2527УНГ">
-              <QuestionCircleOutlined className="gx-ml-3" />
-            </Tooltip>
-          </span>
-        }
-      >
-        <Input
-          placeholder="Улсын дугаараа бичнэ үү"
-          onChange={mglLicensenumberfullChange}
-        />
-      </Form.Item>
+        <Form.Item
+          name="mglLicensenumberfull"
+          label={
+            <span>
+              Улсын дугаар
+              <Tooltip title="Зөв, гүйцэт бичээрэй. 2527УНГ">
+                <QuestionCircleOutlined className="gx-ml-3" />
+              </Tooltip>
+            </span>
+          }
+        >
+          <Input
+            placeholder="Улсын дугаараа бичнэ үү"
+            onChange={mglLicensenumberfullChange}
+          />
+        </Form.Item>
 
-      <Form.Item name="bodyid" label="Хийц ID Select">
-        <Input />
-      </Form.Item>
+        <Form.Item name="bodyid" label="Хийц ID Select">
+          <Input />
+        </Form.Item>
 
-      <Form.Item name="description" label="description">
-        <Input />
-      </Form.Item>
+        <Form.Item name="description" label="description">
+          <Input />
+        </Form.Item>
 
-      <Form.Item name="body2ModelCodeFull" label="body2ModelCodeFull">
-        <Input />
-      </Form.Item>
+        <Form.Item name="body2ModelCodeFull" label="body2ModelCodeFull">
+          <Input />
+        </Form.Item>
 
-      {/* <Form.Item name="modelCode" label="modelCode">
+        {/* <Form.Item name="modelCode" label="modelCode">
           <Input />
         </Form.Item> */}
 
-      <Form.Item name="body2VinNumber" label="body2VinNumber">
-        <Input />
-      </Form.Item>
+        <Form.Item name="body2VinNumber" label="body2VinNumber">
+          <Input />
+        </Form.Item>
+      </Form>
     </>
   );
 };
