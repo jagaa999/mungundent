@@ -21,7 +21,7 @@ const { Option, OptGroup } = Select;
 // BODY2_SEAT;
 // DRIVERPOSID;
 
-const MotocarFormThecar = (props) => {
+const MotocarFormThecar = (props, { form }) => {
   return (
     <>
       <Form.Item name="caryearmanufactured" label="Үйлдвэрлэсэн он">

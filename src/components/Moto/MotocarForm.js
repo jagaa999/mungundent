@@ -20,13 +20,7 @@ import MotocarFormSpec from "./MotocarFormSpec";
 import {
   Button,
   Card,
-  Badge,
   Tooltip,
-  Row,
-  Col,
-  Tag,
-  Dropdown,
-  Menu,
   Checkbox,
   Switch,
   message,
@@ -34,30 +28,11 @@ import {
   Spin,
   Form,
   Input,
-  Cascader,
   Select,
-  AutoComplete,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Radio,
   Steps,
 } from "antd";
 
 import {
-  WarningTwoTone,
-  SearchOutlined,
-  DownOutlined,
-  UserOutlined,
-  CheckCircleOutlined,
-  SyncOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  MinusCircleOutlined,
-  SettingOutlined,
-  EditOutlined,
-  EllipsisOutlined,
   PlusOutlined,
   CloudUploadOutlined,
   QuestionCircleOutlined,
@@ -119,6 +94,11 @@ const MotocarForm = () => {
   const motocarDetailContext = useContext(MotocarContext);
   const motocarItem = motocarDetailContext.motocarDetail.motocarDetail;
 
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const [myImages, setMyImages] = useState([]);
+  const [imageTags, setImageTags] = useState("");
+
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
   let myTempBody;
 
@@ -142,21 +122,21 @@ const MotocarForm = () => {
   }
 
   const [myBody, setMyBody] = useState(myOutputBody);
-  const [myImages, setMyImages] = useState([]);
-  const [imageTags, setImageTags] = useState("");
 
-  const onFinish = (values) => {
-    console.log("AFTER SUBMIT --------- ", values);
-
-    // values.body = htmlEntities.decode(myBody);
-    // values.body = myBody;
-    // values.images = myImages;
-    // motocarDetailContext.saveMotocarDetail(values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const stepList = [
+    {
+      title: "Ерөнхий",
+    },
+    {
+      title: "Загвар",
+    },
+    {
+      title: "Автомашин",
+    },
+    {
+      title: "Үзүүлэлт",
+    },
+  ];
 
   const saveButton = () => {
     console.log("Save button clicked");
@@ -181,10 +161,35 @@ const MotocarForm = () => {
     setImageTags(text.target.value);
   };
 
-  const [currentStep, setCurrentStep] = useState(0);
   const onStepChange = (current) => {
-    console.log("onStepChange:", current);
+    // console.log("onStepChange:", current);
     setCurrentStep(current);
+  };
+
+  const onFinish = (values) => {
+    console.log("AFTER SUBMIT --------- ", values);
+
+    // values.body = htmlEntities.decode(myBody);
+    // values.body = myBody;
+    // values.images = myImages;
+    // motocarDetailContext.saveMotocarDetail(values);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo.errorFields);
+    errorInfo.errorFields.map((errorItem) => {
+      message.error(errorItem.errors[0]);
+    });
+  };
+
+  const onFieldsChange = (changedFields, allFields) => {
+    console.log("onFieldsChange onFieldsChange ", changedFields);
+    // console.log("onFieldsChange onFieldsChange ", allFields);
+  };
+  const onValuesChange = (changedValues, allValues) => {
+    console.log("onValuesChange onValuesChange ", changedValues);
+    // console.log("onValuesChange onValuesChange ", allValues);
   };
 
   // #####  ###### ##### #    # #####  #    #
@@ -198,7 +203,7 @@ const MotocarForm = () => {
     <Card
       className="gx-card_old "
       style={{ backgroundColor: "#f0f0f0" }}
-      title="Автомашины тохиргоо"
+      title="Автомашины мэдээлэл"
     >
       <Form
         {...formItemLayout}
@@ -206,6 +211,8 @@ const MotocarForm = () => {
         name="motocarDetailForm"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        onFieldsChange={onFieldsChange}
+        onValuesChange={onValuesChange}
         initialValues={{
           motocarid: motocarItem ? motocarItem.motocarid : "",
           newstypeid: motocarItem ? motocarItem.newstypeid : null,
@@ -225,19 +232,27 @@ const MotocarForm = () => {
           onChange={onStepChange}
           className="site-navigation-steps"
         >
-          <Step title="Ерөнхий" />
-          <Step title="Загвар" />
-          <Step title="Автомашин" />
-          <Step title="Үзүүлэлт" />
-          {/* <Step title="Эзэмшигч" /> */}
+          {stepList.map((item) => (
+            <Step key={item.title} title={item.title} />
+          ))}
         </Steps>
         <div className="gx-mt-4">
-          {currentStep === 0 && <MotocarForm1General form={form} />}
-          {currentStep === 1 && <MotocarFormTech />}
-          {currentStep === 2 && (
-            <MotocarFormThecar normFileImages={normFileImages} imageTags />
-          )}
-          {currentStep === 3 && <MotocarFormSpec />}
+          <div className={currentStep !== 0 && "gx-d-none"}>
+            <MotocarForm1General form={form} />
+          </div>
+          <div className={currentStep !== 1 && "gx-d-none"}>
+            <MotocarFormTech form={form} />
+          </div>
+          <div className={currentStep !== 2 && "gx-d-none"}>
+            <MotocarFormThecar
+              normFileImages={normFileImages}
+              imageTags
+              form={form}
+            />
+          </div>
+          <div className={currentStep !== 3 && "gx-d-none"}>
+            <MotocarFormSpec form={form} />
+          </div>
         </div>
 
         <Divider dashed orientation="center" plain>

@@ -4,7 +4,7 @@ import { Form, Input, Tooltip, message } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 
-const MotocarForm1General = (props) => {
+const MotocarForm1General = ({ form }) => {
   const [mglCar, setMglCar] = useState({
     loading: false,
     mglCar: {},
@@ -41,10 +41,18 @@ const MotocarForm1General = (props) => {
   useEffect(() => {
     if (Object.keys(mglCar.mglCar).length !== 0) {
       message.success("Машин олдлоо", 7);
+      console.log("mglCar", mglCar);
+
+      form.setFieldsValue({
+        body2ModelCodeFull: mglCar.mglCar.body2vinnumber,
+        body2VinNumber: mglCar.mglCar.body2vinnumber,
+        caryearmanufactured: mglCar.mglCar.caryearmanufactured,
+        caryearimport: mglCar.mglCar.caryearimport,
+        // firmid: mglCar.mglCar.firmid,
+      });
+      // form.validateFields();
     }
   }, [mglCar.mglCar]);
-
-  console.log("mglCar", mglCar);
 
   //? ЕРӨНХИЙ
   // MOTOCARID
@@ -61,55 +69,53 @@ const MotocarForm1General = (props) => {
 
   return (
     <>
-      <Form form={props.form} scrollToFirstError={true} colon={false}>
-        <Form.Item
-          name="motocarid"
-          label="ID дугаар"
-          // hidden={true}
-        >
-          <Input disabled />
-        </Form.Item>
-        <Form.Item name="title" label="Title">
-          <Input />
-        </Form.Item>
+      <Form.Item
+        name="motocarid"
+        label="ID дугаар"
+        // hidden={true}
+      >
+        <Input disabled />
+      </Form.Item>
+      <Form.Item name="title" label="Title">
+        <Input />
+      </Form.Item>
 
-        <Form.Item
-          name="mglLicensenumberfull"
-          label={
-            <span>
-              Улсын дугаар
-              <Tooltip title="Зөв, гүйцэт бичээрэй. 2527УНГ">
-                <QuestionCircleOutlined className="gx-ml-3" />
-              </Tooltip>
-            </span>
-          }
-        >
-          <Input
-            placeholder="Улсын дугаараа бичнэ үү"
-            onChange={mglLicensenumberfullChange}
-          />
-        </Form.Item>
+      <Form.Item
+        name="mglLicensenumberfull"
+        label={
+          <span>
+            Улсын дугаар
+            <Tooltip title="Зөв, гүйцэт бичээрэй. 2527УНГ">
+              <QuestionCircleOutlined className="gx-ml-3" />
+            </Tooltip>
+          </span>
+        }
+      >
+        <Input
+          placeholder="Улсын дугаараа бичнэ үү"
+          onChange={mglLicensenumberfullChange}
+        />
+      </Form.Item>
 
-        <Form.Item name="bodyid" label="Хийц ID Select">
-          <Input />
-        </Form.Item>
+      <Form.Item name="bodyid" label="Хийц ID Select">
+        <Input />
+      </Form.Item>
 
-        <Form.Item name="description" label="description">
-          <Input />
-        </Form.Item>
+      <Form.Item name="description" label="description">
+        <Input />
+      </Form.Item>
 
-        <Form.Item name="body2ModelCodeFull" label="body2ModelCodeFull">
-          <Input />
-        </Form.Item>
+      <Form.Item name="body2ModelCodeFull" label="body2ModelCodeFull">
+        <Input />
+      </Form.Item>
 
-        {/* <Form.Item name="modelCode" label="modelCode">
+      {/* <Form.Item name="modelCode" label="modelCode">
           <Input />
         </Form.Item> */}
 
-        <Form.Item name="body2VinNumber" label="body2VinNumber">
-          <Input />
-        </Form.Item>
-      </Form>
+      <Form.Item name="body2VinNumber" label="body2VinNumber">
+        <Input />
+      </Form.Item>
     </>
   );
 };

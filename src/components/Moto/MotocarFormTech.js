@@ -13,7 +13,7 @@ const { Option, OptGroup } = Select;
 // MAINID
 // CARID;
 // CARTRIM
-const MotocarFormTech = () => {
+const MotocarFormTech = ({ form }) => {
   const [firmList, setFirmList] = useState({
     loading: false,
     firmList: [],
@@ -26,7 +26,6 @@ const MotocarFormTech = () => {
     loading: false,
     indexList: [],
   });
-
   const [editionList, setEditionList] = useState({
     loading: false,
     editionList: [],
@@ -141,10 +140,10 @@ const MotocarFormTech = () => {
     }
   };
 
-  console.log("FITMLIST", firmList);
-  console.log("MARKLIST", markList);
-  console.log("INDEXLIST", indexList);
-  console.log("EDITIONLIST", editionList);
+  // console.log("FITMLIST", firmList);
+  // console.log("MARKLIST", markList);
+  // console.log("INDEXLIST", indexList);
+  // console.log("EDITIONLIST", editionList);
 
   function handleBlur() {
     console.log("blur");
@@ -154,21 +153,37 @@ const MotocarFormTech = () => {
     console.log("focus");
   }
 
+  const firmddd = () => {
+    console.log("АААААААААААААААААААААААААААААА");
+  };
+
+  //  ######  ####### ####### #     # ######  #     #
+  //  #     # #          #    #     # #     # ##    #
+  //  #     # #          #    #     # #     # # #   #
+  //  ######  #####      #    #     # ######  #  #  #
+  //  #   #   #          #    #     # #   #   #   # #
+  //  #    #  #          #    #     # #    #  #    ##
+  //  #     # #######    #     #####  #     # #     #
+
   return (
     <>
       <Form.Item
-        name="firm"
+        name="firmid"
         hasFeedback
         label="Фирм"
+        onChange={firmddd}
+        // trigger={firmddd}
         rules={[{ required: true, message: "Фирмээ сонгоно уу!" }]}
       >
         <Select
           className="moto-select-firm"
           loading={firmList.loading}
           showSearch
+          allowClear
           placeholder="Фирм"
           optionFilterProp="children"
           onChange={firmChange}
+          onSelect={firmddd}
           onFocus={handleFocus}
           onBlur={handleBlur}
           filterOption={(input, option) => {
@@ -221,6 +236,7 @@ const MotocarFormTech = () => {
           className="moto-select-firm"
           loading={markList.loading}
           showSearch
+          allowClear
           placeholder="Марк"
           optionFilterProp="children"
           onChange={markChange}
