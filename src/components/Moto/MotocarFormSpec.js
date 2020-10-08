@@ -5,6 +5,7 @@ import { LoadProcess, loadDataview } from "util/axiosFunction";
 import ImageUpload from "./Image/ImageUpload";
 
 const { Option, OptGroup } = Select;
+const { TextArea } = Input;
 
 //? ҮЗҮҮЛЭЛТ
 // ENGINE2_CODE
@@ -19,21 +20,13 @@ const { Option, OptGroup } = Select;
 // DRIVE2_TRANSMISSION_STEP;
 // DRIVEID;
 
-const MotocarFormThecar = ({ form }) => {
+const MotocarFormThecar = (props, { form }) => {
   return (
     <>
-      <Form.Item name="engine2Code" label="engine2Code">
+      <Form.Item name="carmilagenow" label="Одоогийн гүйлт">
         <Input />
       </Form.Item>
-      <Form.Item name="engine2Disp" label="Хөдөлгүүрийн CC">
-        <Input />
-      </Form.Item>
-      <Form.Item name="engine2Cylinder" label="Хөдөлгүүрийн цилиндр">
-        <Input />
-      </Form.Item>
-      <Form.Item name="fueltypeid" label="Шатахуун">
-        <Input />
-      </Form.Item>
+
       {/* <Form.Item name="engine2PowerHp" label="Морины хүч">
           <Input />
         </Form.Item> */}
@@ -43,14 +36,30 @@ const MotocarFormThecar = ({ form }) => {
       {/* <Form.Item name="engine2Type" label="engine2Type">
           <Input />
         </Form.Item> */}
-      <Form.Item name="transtypeid" label="Хроп ID">
+
+      <Form.Item
+        name="tempimages"
+        label="Зураг"
+        // rules={[{ required: true, message: "Зургаа заавал оруулна уу!" }]}
+      >
+        <ImageUpload
+          normFile={props.normFileImages}
+          // newsImageMain={motocarItem ? motocarItem.imagemain : ""}
+          newsImageMain=""
+          imageTags={props.imageTags}
+        />
+      </Form.Item>
+
+      <Form.Item name="imageOther" label="imageOther">
         <Input />
       </Form.Item>
-      {/* <Form.Item name="drive2TransmissionStep" label="Хропны шатлал">
-          <Input />
-        </Form.Item> */}
-      <Form.Item name="driveId" label="Хөтлөгч">
-        <Input />
+
+      <Form.Item name="description" label="Машины тухай">
+        <TextArea
+          placeholder="Машиныхаа тухай бичнэ үү"
+          autoSize
+          // onChange={titleOnChange}
+        />
       </Form.Item>
 
       {/* <Form.Item name="vehicletype" label="vehicletype">

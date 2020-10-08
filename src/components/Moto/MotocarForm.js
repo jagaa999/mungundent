@@ -128,14 +128,14 @@ const MotocarForm = () => {
       title: "Ерөнхий",
     },
     {
-      title: "Загвар",
-    },
-    {
-      title: "Автомашин",
-    },
-    {
       title: "Үзүүлэлт",
     },
+    {
+      title: "Бусад",
+    },
+    // {
+    //   title: "Gootech",
+    // },
   ];
 
   const saveButton = () => {
@@ -183,14 +183,12 @@ const MotocarForm = () => {
     });
   };
 
-  const onFieldsChange = (changedFields, allFields) => {
-    console.log("onFieldsChange onFieldsChange ", changedFields);
-    // console.log("onFieldsChange onFieldsChange ", allFields);
-  };
-  const onValuesChange = (changedValues, allValues) => {
-    console.log("onValuesChange onValuesChange ", changedValues);
-    // console.log("onValuesChange onValuesChange ", allValues);
-  };
+  // const onFieldsChange = (changedFields, allFields) => {
+  //   console.log("onFieldsChange onFieldsChange ", changedFields);
+  // };
+  // const onValuesChange = (changedValues, allValues) => {
+  //   console.log("onValuesChange onValuesChange ", changedValues);
+  // };
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -211,8 +209,8 @@ const MotocarForm = () => {
         name="motocarDetailForm"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        onFieldsChange={onFieldsChange}
-        onValuesChange={onValuesChange}
+        // onFieldsChange={onFieldsChange}
+        // onValuesChange={onValuesChange}
         initialValues={{
           motocarid: motocarItem ? motocarItem.motocarid : "",
           newstypeid: motocarItem ? motocarItem.newstypeid : null,
@@ -241,17 +239,21 @@ const MotocarForm = () => {
             <MotocarForm1General form={form} />
           </div>
           <div className={currentStep !== 1 && "gx-d-none"}>
-            <MotocarFormTech form={form} />
-          </div>
-          <div className={currentStep !== 2 && "gx-d-none"}>
             <MotocarFormThecar
               normFileImages={normFileImages}
               imageTags
               form={form}
             />
           </div>
+          <div className={currentStep !== 2 && "gx-d-none"}>
+            <MotocarFormSpec
+              normFileImages={normFileImages}
+              imageTags
+              form={form}
+            />
+          </div>
           <div className={currentStep !== 3 && "gx-d-none"}>
-            <MotocarFormSpec form={form} />
+            {/* <MotocarFormTech form={form} /> */}
           </div>
         </div>
 
