@@ -96,32 +96,88 @@ const MotocarForm = () => {
 
   const [currentStep, setCurrentStep] = useState(0);
 
+  const [mglFirmList, setMglFirmList] = useState({
+    loading: false,
+    mglFirmList: [],
+  });
+  const [mglMarkList, setMglMarkList] = useState({
+    loading: false,
+    mglMarkList: [],
+  });
+  const [mglBodyList, setMglBodyList] = useState({
+    loading: false,
+    mglBodyList: [],
+  });
+  const [mglFuelList, setMglFuelList] = useState({
+    loading: false,
+    mglFuelList: [],
+  });
+  const [techTranstypeList, setTechTranstypeList] = useState({
+    loading: false,
+    techTranstypeList: [],
+  });
+  const [techDriveList, setTechDriveList] = useState({
+    loading: false,
+    techDriveList: [],
+  });
+
+  // * axios-оор ERP-аас дуудна.
+  const callFunctionAsync = async () => {
+    setMglFirmList({ ...mglFirmList, loading: true });
+    setMglFirmList({
+      mglFirmList: await loadDataview({
+        systemmetagroupid: "1602132741145717",
+        paging: {
+          sortColumnNames: {
+            mglfirm: {
+              sortType: "ASC", //эрэмбэлэх чиглэл
+            },
+          },
+        },
+      }),
+      loading: false,
+    });
+
+    setMglBodyList({ ...mglBodyList, loading: true });
+    setMglBodyList({
+      mglBodyList: await loadDataview({
+        systemmetagroupid: "1599557926832",
+      }),
+      loading: false,
+    });
+
+    setMglFuelList({ ...mglFuelList, loading: true });
+    setMglFuelList({
+      mglFuelList: await loadDataview({
+        systemmetagroupid: "1599557944149",
+      }),
+      loading: false,
+    });
+
+    setTechTranstypeList({ ...techTranstypeList, loading: true });
+    setTechTranstypeList({
+      techTranstypeList: await loadDataview({
+        systemmetagroupid: "1586958774748911",
+      }),
+      loading: false,
+    });
+
+    setTechDriveList({ ...techDriveList, loading: true });
+    setTechDriveList({
+      techDriveList: await loadDataview({
+        systemmetagroupid: "1586958538229243",
+      }),
+      loading: false,
+    });
+  };
+
+  useEffect(() => {
+    callFunctionAsync();
+  }, []);
+
   const [myImages, setMyImages] = useState([]);
   const [imageTags, setImageTags] = useState("");
-
-  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
-  let myTempBody;
-
-  try {
-    myTempBody = htmlEntities.decode(motocarItem.body);
-  } catch (e) {
-    myTempBody = "";
-  }
-
-  let myOutputBody = {};
-  if (myTempBody !== "") {
-    if (myTempBody.indexOf('"blocks"') !== -1) {
-      try {
-        myOutputBody = JSON.parse(myTempBody);
-      } catch (e) {
-        myOutputBody = {};
-      }
-    } else {
-      myOutputBody = {};
-    }
-  }
-
-  const [myBody, setMyBody] = useState(myOutputBody);
+  const [myBody, setMyBody] = useState("");
 
   const stepList = [
     {
@@ -138,24 +194,6 @@ const MotocarForm = () => {
     // },
   ];
 
-  const saveButton = () => {
-    console.log("Save button clicked");
-  };
-
-  const normFileBody = (e) => {
-    console.log("Editorjs хүлээн авсан нь:", e);
-
-    setMyBody(e);
-    return e;
-  };
-
-  const normFileImages = (e) => {
-    console.log("Editorjs хүлээн авсан images:", e);
-
-    setMyImages(e);
-    return e;
-  };
-
   const titleOnChange = (text) => {
     // console.log("dsfdsfsd", text.target.value);
     setImageTags(text.target.value);
@@ -167,7 +205,8 @@ const MotocarForm = () => {
   };
 
   const onFinish = (values) => {
-    console.log("AFTER SUBMIT --------- ", values);
+    console.log("AFTER SUBMIT --------- ");
+    console.table(values);
 
     // values.body = htmlEntities.decode(myBody);
     // values.body = myBody;
@@ -216,9 +255,10 @@ const MotocarForm = () => {
           newstypeid: motocarItem ? motocarItem.newstypeid : null,
           vehicletype: "passenger",
           newssourceid: motocarItem ? motocarItem.newssourceid : null,
-          isactive: motocarItem ? toBoolean(motocarItem.isactive) : true,
+          isactive: true,
           isfeatured: motocarItem ? toBoolean(motocarItem.isfeatured) : false,
           iscomment: motocarItem ? toBoolean(motocarItem.iscomment) : true,
+          driverPosId: false,
         }}
         scrollToFirstError={true}
         colon={false}
@@ -235,24 +275,32 @@ const MotocarForm = () => {
           ))}
         </Steps>
         <div className="gx-mt-4">
-          <div className={currentStep !== 0 && "gx-d-none"}>
-            <MotocarForm1General form={form} />
+          <div className={currentStep !== 0 ? "gx-d-none" : ""}>
+            <MotocarForm1General
+              form={form}
+              mglFirmList={mglFirmList}
+              setMglFirmList={setMglFirmList}
+              mglMarkList={mglMarkList}
+              setMglMarkList={setMglMarkList}
+              mglBodyList={mglBodyList}
+              mglFuelList={mglFuelList}
+            />
           </div>
-          <div className={currentStep !== 1 && "gx-d-none"}>
+          <div className={currentStep !== 1 ? "gx-d-none" : ""}>
             <MotocarFormThecar
-              normFileImages={normFileImages}
-              imageTags
               form={form}
+              techTranstypeList={techTranstypeList}
+              techDriveList={techDriveList}
             />
           </div>
-          <div className={currentStep !== 2 && "gx-d-none"}>
+          <div className={currentStep !== 2 ? "gx-d-none" : ""}>
             <MotocarFormSpec
-              normFileImages={normFileImages}
-              imageTags
               form={form}
+              myImages={myImages}
+              setMyImages={setMyImages}
             />
           </div>
-          <div className={currentStep !== 3 && "gx-d-none"}>
+          <div className={currentStep !== 3 ? "gx-d-none" : ""}>
             {/* <MotocarFormTech form={form} /> */}
           </div>
         </div>
@@ -267,7 +315,7 @@ const MotocarForm = () => {
           valuePropName="checked"
           {...forItemLayoutSame}
         >
-          <Switch name="switchisactive" defaultChecked />
+          <Switch />
         </Form.Item>
 
         <Divider dashed orientation="center" plain>
@@ -290,82 +338,3 @@ const MotocarForm = () => {
 };
 
 export default MotocarForm;
-
-//? ЕРӨНХИЙ
-// MOTOCARID
-// TITLE;
-// MGL_LICENSENUMBER_FULL;
-// MGL_LICENSENUMBER_NUMBER;
-// MGL_LICENSENUMBER_SERIES;
-// BODYID;
-
-// DESCRIPTION
-// BODY2_MODEL_CODE_FULL
-// MODEL_CODE
-// BODY2_VIN_NUMBER
-
-//? GOOTECH
-// FIRMID;
-// CAR_FIRM;
-// MARKID;
-// CAR_MARK;
-// MAINID
-// CARID;
-// CARTRIM
-
-//? TheCar
-// CAR_YEAR_MANUFACTURED;
-// CAR_YEAR_IMPORT;
-// CAR_MILAGE_IMPORT;
-// CAR_MILAGE_NOW;
-// CAR_COLOR_OUTSIDE;
-// CAR_COLOR_INSIDE;
-
-// CAR_COUNTY_ORIGIN;
-// CAR_COUNTRY_IMPORT;
-// IMAGE_MAIN;
-// IMAGE_OTHER
-// BODY2_DOOR;
-// BODY2_SEAT;
-// DRIVERPOSID;
-
-//? ҮЗҮҮЛЭЛТ
-// ENGINE2_CODE
-// ENGINE2_DISP;
-// ENGINE2_CYLINDER;
-// FUELTYPEID;
-// ENGINE2_POWER_HP;
-// ENGINE_TURBOID
-// ENGINE2_TYPE
-
-// TRANSTYPEID;
-// DRIVE2_TRANSMISSION_STEP;
-// DRIVEID;
-
-//? ЭЗЭМШИГЧ
-// CREATED_DATE
-// CREATED_BY
-// MODIFIED_DATE
-// MODIFIED_BY
-// IS_ACTIVE
-// OWNERID
-// PERSON_ID
-// SYSTEM_USER_ID
-
-//! VEHICLE_TYPE;
-//! TEMP_LEASING
-//! TEMP_SALECONDITION
-//! TEMP_PRICE
-//! TEMP_PHONE
-
-//! TEMP_UNAAID
-//! TEMP_UNEGUIID
-//! TEMP_NUXTSUL
-//! TEMP_MININGURL
-//! TEMP_MININGPAGETITLE
-//! TEMP_MININGDATE
-
-//! TEMP
-//! OLD_MOTO_GOO_ALLCAR_CARID
-
-//! COMPANY_ID

@@ -7,6 +7,7 @@ const MotoSelect1 = (props) => {
     <Select
       className="moto-select-firm"
       loading={props.loading}
+      key={props.key}
       showSearch
       allowClear
       placeholder={props.placeholder}
@@ -23,7 +24,8 @@ const MotoSelect1 = (props) => {
       }}
     >
       {props.myList.map((item, index) => (
-        <Option key={index} value={item[props.valueName]}>
+        // <Option key={index} value={item[props.valueName]}>
+        <Option key={index} value={item.mglfirm}>
           {item[props.valueLabel]}
         </Option>
       ))}

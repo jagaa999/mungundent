@@ -13,67 +13,22 @@ import {
 } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
+import moment from "moment";
+import "moment/locale/mn";
 import MotoSelect1 from "./Form/MotoSelect1";
 
 const { Option, OptGroup } = Select;
 const { TextArea } = Input;
 
-const MotocarForm1General = ({ form }) => {
-  const [mglFirmList, setMglFirmList] = useState({
-    loading: false,
-    mglFirmList: [],
-  });
-  const [mglMarkList, setMglMarkList] = useState({
-    loading: false,
-    mglMarkList: [],
-  });
-  const [carBodyList, setCarBodyList] = useState({
-    loading: false,
-    carBodyList: [],
-  });
-  const [carFuelList, setCarFuelList] = useState({
-    loading: false,
-    carFuelList: [],
-  });
-
-  // * axios-оор ERP-аас дуудна.
-  const callFunctionAsync = async () => {
-    setMglFirmList({ ...mglFirmList, loading: true });
-    setMglFirmList({
-      mglFirmList: await loadDataview({
-        systemmetagroupid: "1602132741145717",
-        paging: {
-          sortColumnNames: {
-            mglfirm: {
-              sortType: "ASC", //эрэмбэлэх чиглэл
-            },
-          },
-        },
-      }),
-      loading: false,
-    });
-
-    setCarBodyList({ ...carBodyList, loading: true });
-    setCarBodyList({
-      carBodyList: await loadDataview({
-        systemmetagroupid: "1599557926832",
-      }),
-      loading: false,
-    });
-
-    setCarFuelList({ ...carFuelList, loading: true });
-    setCarFuelList({
-      carFuelList: await loadDataview({
-        systemmetagroupid: "1599557944149",
-      }),
-      loading: false,
-    });
-  };
-
-  useEffect(() => {
-    callFunctionAsync();
-  }, []);
-
+const MotocarForm1General = ({
+  form,
+  mglFirmList,
+  setMglFirmList,
+  mglMarkList,
+  setMglMarkList,
+  mglBodyList,
+  mglFuelList,
+}) => {
   const mglFirmChange = async (value) => {
     console.log(`mglFirm changed selected ${value}`);
 
@@ -127,7 +82,7 @@ const MotocarForm1General = ({ form }) => {
 
   const mglLicensenumberfullChange = (value) => {
     const myText = value.target.value;
-    console.log("mglLicensenumberfullChange", myText);
+    // console.log("mglLicensenumberfullChange", myText);
 
     if (myText.length == 7) {
       console.log("LENGTH", myText.length);
@@ -149,29 +104,19 @@ const MotocarForm1General = ({ form }) => {
     form.setFieldsValue({
       body2ModelCodeFull: mglCar.mglCar.body2vinnumber,
       body2VinNumber: mglCar.mglCar.body2vinnumber,
-      caryearmanufactured: mglCar.mglCar.caryearmanufactured,
-      caryearimport: mglCar.mglCar.caryearimport,
+      caryearmanufactured: mglCar.mglCar.caryearmanufactured
+        ? moment(mglCar.mglCar.caryearmanufactured, "YYYY-MM")
+        : null,
+      caryearimport: mglCar.mglCar.caryearimport
+        ? moment(mglCar.mglCar.caryearimport, "YYYY-MM-DD")
+        : null,
       mglfirm: mglCar.mglCar.mglfirm,
       mglmark: mglCar.mglCar.mglmark,
-      carbody: mglCar.mglCar.carbody,
+      mglbody: mglCar.mglCar.mglbody,
       mglenginefuel: mglCar.mglCar.mglenginefuel,
-      mglenginesize: mglCar.mglCar.mglenginesize,
-      // firmid: mglCar.mglCar.firmid,
+      mglenginesize: mglCar.mglCar.mglenginesize * 1 || undefined,
     });
   }, [mglCar.mglCar]);
-
-  //? ЕРӨНХИЙ
-  // MOTOCARID
-  // TITLE;
-  // MGL_LICENSENUMBER_FULL;
-  // MGL_LICENSENUMBER_NUMBER;
-  // MGL_LICENSENUMBER_SERIES;
-  // BODYID;
-
-  // DESCRIPTION
-  // BODY2_MODEL_CODE_FULL
-  // MODEL_CODE
-  // BODY2_VIN_NUMBER
 
   // console.log("MGLFITMLIST", mglFirmList);
   // console.log("MGLMARKLIST", mglMarkList);
@@ -213,7 +158,7 @@ const MotocarForm1General = ({ form }) => {
 
       <Divider />
 
-      <Form.Item name="body2VinNumber" label="Арлын дугаар">
+      <Form.Item name="body2VinNumber" hasFeedback label="Арлын дугаар">
         <Input />
       </Form.Item>
 
@@ -223,14 +168,39 @@ const MotocarForm1General = ({ form }) => {
         label="Фирм"
         rules={[{ required: true, message: "Фирмээ сонгоно уу!" }]}
       >
-        <MotoSelect1
+        {/* <MotoSelect1
           loading={mglFirmList.loading}
+          key="mglfirm"
           placeholder="Фирм"
           myList={mglFirmList.mglFirmList}
           valueName="mglfirm"
           valueLabel="mglfirm"
           onChange={mglFirmChange}
-        />
+        /> */}
+        <Select
+          className="moto-select-firm"
+          loading={mglFirmList.loading}
+          showSearch
+          allowClear
+          placeholder="Фирм"
+          optionFilterProp="children"
+          onChange={mglFirmChange}
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
+        >
+          {mglFirmList.mglFirmList.map((item, index) => (
+            <Option key={index} value={item.mglfirm}>
+              {item.mglfirm}
+            </Option>
+          ))}
+        </Select>
       </Form.Item>
 
       <Form.Item
@@ -239,46 +209,121 @@ const MotocarForm1General = ({ form }) => {
         label="Марк"
         rules={[{ required: true, message: "Маркаа сонгоно уу!" }]}
       >
-        <MotoSelect1
+        {/* <MotoSelect1
           loading={mglMarkList.loading}
           placeholder="Марк"
           myList={mglMarkList.mglMarkList}
           valueName="mglmark"
           valueLabel="mglmark"
           onChange={null}
-        />
+        /> */}
+        <Select
+          className="moto-select-firm"
+          loading={mglMarkList.loading}
+          showSearch
+          allowClear
+          placeholder="Марк"
+          optionFilterProp="children"
+          onChange={null}
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
+        >
+          {mglMarkList.mglMarkList.map((item, index) => (
+            <Option key={index} value={item.mglmark}>
+              {item.mglmark}
+            </Option>
+          ))}
+        </Select>
       </Form.Item>
 
       <Form.Item name="mglbody" hasFeedback label="Хийц">
-        <MotoSelect1
+        {/* <MotoSelect1
           loading={carBodyList.loading}
           placeholder="Хийц"
           myList={carBodyList.carBodyList}
-          valueName="carbody"
-          valueLabel="carbody"
+          valueName="mglbody"
+          valueLabel="mglbody"
           onChange={null}
-        />
+        /> */}
+        <Select
+          className="moto-select-firm"
+          loading={mglBodyList.loading}
+          showSearch
+          allowClear
+          placeholder="Хийц"
+          optionFilterProp="children"
+          onChange={null}
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
+        >
+          {mglBodyList.mglBodyList.map((item, index) => (
+            <Option key={index} value={item.mglbody}>
+              {item.mglbody}
+            </Option>
+          ))}
+        </Select>
       </Form.Item>
+
       <Form.Item
         name="caryearmanufactured"
         hasFeedback
         label="Үйлдвэрлэсэн Он-сар"
       >
-        <DatePicker className="gx-w-100" picker="month" placeholder="2012-12" />
+        <DatePicker
+          className="gx-w-100"
+          picker="month"
+          placeholder="2012-12"
+          format="YYYY-MM"
+        />
       </Form.Item>
+
       <Form.Item name="caryearimport" hasFeedback label="Импортолсон огноо">
-        <DatePicker className="gx-w-100" placeholder="2018-12-31" />
+        <DatePicker
+          className="gx-w-100"
+          placeholder="2018-12-31"
+          format="YYYY-MM-DD"
+        />
       </Form.Item>
 
       <Form.Item name="mglenginefuel" hasFeedback label="Шатахуун">
-        <MotoSelect1
-          loading={carFuelList.loading}
+        <Select
+          className="moto-select-firm"
+          loading={mglFuelList.loading}
+          showSearch
+          allowClear
           placeholder="Шатахуун"
-          myList={carFuelList.carFuelList}
-          valueName="mglenginefuel"
-          valueLabel="mglenginefuel"
+          optionFilterProp="children"
           onChange={null}
-        />
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
+        >
+          {mglFuelList.mglFuelList.map((item, index) => (
+            <Option key={index} value={item.mglenginefuel}>
+              {item.mglenginefuel}
+            </Option>
+          ))}
+        </Select>
       </Form.Item>
 
       <Form.Item
