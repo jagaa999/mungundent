@@ -15,15 +15,7 @@ const MotocarFormThecar = ({ form, myImages, setMyImages }) => {
   const memberContext = useContext(MemberContext);
 
   const [mainImage, setMainImage] = useState(
-    [
-      {
-        uid: "-1",
-        name: "image.png",
-        status: "done",
-        url:
-          "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      },
-    ]
+    []
     // mainImage: props.newsImageMain
     //   ? [
     //       {
@@ -74,8 +66,8 @@ const MotocarFormThecar = ({ form, myImages, setMyImages }) => {
     </div>
   );
 
-  const onUploadChange = ({ mainImage: newMainImage }) => {
-    setMainImage(newMainImage);
+  const onUploadChange = ({ fileList: newFileList }) => {
+    setMainImage(newFileList);
   };
 
   return (
@@ -97,7 +89,7 @@ const MotocarFormThecar = ({ form, myImages, setMyImages }) => {
             fileList={mainImage}
             onChange={onUploadChange}
           >
-            {mainImage.length < 5 && "+ Upload"}
+            {mainImage.length < 1 && "+ Upload"}
           </Upload>
         </ImgCrop>
       </Form.Item>
