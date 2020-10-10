@@ -250,7 +250,7 @@ const MotocarForm = () => {
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div className="gx-mt-4">
+        <div className="gx-mt-5">
           <div className={currentStep !== 0 ? "gx-d-none" : ""}>
             <MotocarForm1General
               form={form}
