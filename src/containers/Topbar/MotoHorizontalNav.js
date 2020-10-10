@@ -16,6 +16,8 @@ import {
 } from "../../constants/ThemeSetting";
 
 import FilterContext from "context/FilterContext";
+// import menuNews from "assets/icons/MenuNews.svg";
+// import { ReactComponent as MenuNews } from "assets/icons/MenuNews.svg";
 
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -68,6 +70,8 @@ const HorizontalNav = () => {
               icon={<IconFont type="iconreadme" />}
             /> */}
             <IconFont type="iconreadme" />
+            {/* <MenuNews /> */}
+            {/* <img src={menuNews} alt="dfdf" /> */}
           </span>
           <div className="gx-d-none gx-d-lg-block">Нийтлэл</div>
         </Link>
