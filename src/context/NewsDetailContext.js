@@ -230,7 +230,7 @@ export const NewsDetailStore = (props) => {
         }[tag])
     );
 
-  //     #####     #    #     # #######
+  //   #####     #    #     # #######
   //  #     #   # #   #     # #
   //  #        #   #  #     # #
   //   #####  #     # #     # #####
@@ -246,6 +246,7 @@ export const NewsDetailStore = (props) => {
 
     const myBody = JSON.stringify(values.body); //Элдэв тэмдэгтийг хувиргаж, дан текст болгон хадгална.
     const myDescription = values.body.blocks[0].data.text.substring(0, 500); //Эхний параграф текстийг авч description буюу товчлолд өгнө.
+
     // return null;
 
     const myParamsNewsDetail = {

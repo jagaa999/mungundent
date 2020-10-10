@@ -401,7 +401,7 @@ export default NewsItem;
 // fueltypeid
 // engine2Fuelname
 // engine2PowerHp
-// carCountyOrigin
+// mglCountyOrigin
 // carCountryImport
 // body2Door
 // body2Seat

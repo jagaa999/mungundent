@@ -1,13 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 
-import EditorJs from "react-editor-js";
-
-// import CKEditor from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { EDITOR_JS_TOOLS } from "./editorjsConfig";
-import NewsEditor from "./NewsEditor";
-import ImageUpload from "./Image/ImageUpload";
-
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 import toBoolean from "util/booleanFunction";
@@ -38,10 +30,6 @@ import {
   QuestionCircleOutlined,
 } from "@ant-design/icons";
 
-import NewsButtonPanel from "components/Moto/Button/NewsButtonPanel";
-
-import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
-
 import LogsContext from "context/LogsContext";
 import MemberCard02 from "./MemberCard02";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
@@ -59,14 +47,6 @@ const formItemLayout = {
   wrapperCol: {
     xs: { span: 24 },
     sm: { span: 17 },
-  },
-};
-const forItemLayoutSame = {
-  labelCol: {
-    xs: { span: 7 },
-  },
-  wrapperCol: {
-    xs: { span: 17 },
   },
 };
 const tailFormItemLayout = {
@@ -176,8 +156,6 @@ const MotocarForm = () => {
   }, []);
 
   const [myImages, setMyImages] = useState([]);
-  const [imageTags, setImageTags] = useState("");
-  const [myBody, setMyBody] = useState("");
 
   const stepList = [
     {
@@ -189,29 +167,25 @@ const MotocarForm = () => {
     {
       title: "Бусад",
     },
-    // {
-    //   title: "Gootech",
-    // },
   ];
 
-  const titleOnChange = (text) => {
-    // console.log("dsfdsfsd", text.target.value);
-    setImageTags(text.target.value);
-  };
-
   const onStepChange = (current) => {
-    // console.log("onStepChange:", current);
     setCurrentStep(current);
   };
+
+  //  #####  #     # ######  #     # ### #######
+  // #     # #     # #     # ##   ##  #     #
+  // #       #     # #     # # # # #  #     #
+  //  #####  #     # ######  #  #  #  #     #
+  //       # #     # #     # #     #  #     #
+  // #     # #     # #     # #     #  #     #
+  //  #####   #####  ######  #     # ###    #
 
   const onFinish = (values) => {
     console.log("AFTER SUBMIT --------- ");
     console.table(values);
 
-    // values.body = htmlEntities.decode(myBody);
-    // values.body = myBody;
-    // values.images = myImages;
-    // motocarDetailContext.saveMotocarDetail(values);
+    motocarDetailContext.saveMotocarDetail(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -228,6 +202,8 @@ const MotocarForm = () => {
   // const onValuesChange = (changedValues, allValues) => {
   //   console.log("onValuesChange onValuesChange ", changedValues);
   // };
+
+  // console.log("mglFuelList", mglFuelList);
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -294,11 +270,7 @@ const MotocarForm = () => {
             />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
-            <MotocarFormSpec
-              form={form}
-              myImages={myImages}
-              setMyImages={setMyImages}
-            />
+            <MotocarFormSpec form={form} />
           </div>
           <div className={currentStep !== 3 ? "gx-d-none" : ""}>
             {/* <MotocarFormTech form={form} /> */}
@@ -313,14 +285,12 @@ const MotocarForm = () => {
           name="isactive"
           label="Идэвхтэй?"
           valuePropName="checked"
-          {...forItemLayoutSame}
+          {...formItemLayout}
         >
           <Switch />
         </Form.Item>
 
-        <Divider dashed orientation="center" plain>
-          Таны үйлдэл
-        </Divider>
+        <Divider />
 
         <Form.Item {...tailFormItemLayout}>
           <Button

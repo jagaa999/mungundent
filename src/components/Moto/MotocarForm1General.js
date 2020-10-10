@@ -80,9 +80,9 @@ const MotocarForm1General = ({
     }
   };
 
-  const mglLicensenumberfullChange = (value) => {
+  const mgllicensenumberfullChange = (value) => {
     const myText = value.target.value;
-    // console.log("mglLicensenumberfullChange", myText);
+    // console.log("mgllicensenumberfullChange", myText);
 
     if (myText.length == 7) {
       console.log("LENGTH", myText.length);
@@ -113,8 +113,8 @@ const MotocarForm1General = ({
       mglfirm: mglCar.mglCar.mglfirm,
       mglmark: mglCar.mglCar.mglmark,
       mglbody: mglCar.mglCar.mglbody,
-      mglenginefuel: mglCar.mglCar.mglenginefuel,
-      mglenginesize: mglCar.mglCar.mglenginesize * 1 || undefined,
+      mglfuel: mglCar.mglCar.mglenginefuel,
+      mglengine2disp: mglCar.mglCar.mglenginesize * 1 || undefined,
     });
   }, [mglCar.mglCar]);
 
@@ -125,7 +125,7 @@ const MotocarForm1General = ({
   return (
     <>
       <Form.Item
-        name="motocarid"
+        name="id"
         label="ID дугаар"
         // hidden={true}
       >
@@ -136,7 +136,7 @@ const MotocarForm1General = ({
       </Form.Item> */}
 
       <Form.Item
-        name="mglLicensenumberfull"
+        name="mgllicensenumberfull"
         label={
           <span>
             Улсын дугаар
@@ -152,7 +152,7 @@ const MotocarForm1General = ({
       >
         <Input
           placeholder="Улсын дугаараа бичнэ үү"
-          onChange={mglLicensenumberfullChange}
+          onChange={mgllicensenumberfullChange}
         />
       </Form.Item>
 
@@ -299,7 +299,7 @@ const MotocarForm1General = ({
         />
       </Form.Item>
 
-      <Form.Item name="mglenginefuel" hasFeedback label="Шатахуун">
+      <Form.Item name="mglfuel" hasFeedback label="Шатахуун">
         <Select
           className="moto-select-firm"
           loading={mglFuelList.loading}
@@ -327,7 +327,7 @@ const MotocarForm1General = ({
       </Form.Item>
 
       <Form.Item
-        name="mglenginesize"
+        name="mglengine2disp"
         hasFeedback
         label="Хөдөлгүүрийн cc"
         rules={[

@@ -6,21 +6,6 @@ import ImageUpload from "./Image/ImageUpload";
 
 const { Option, OptGroup } = Select;
 
-//? TheCar
-// CAR_YEAR_MANUFACTURED;
-// CAR_YEAR_IMPORT;
-// CAR_MILAGE_IMPORT;
-// CAR_MILAGE_NOW;
-// CAR_COLOR_OUTSIDE;
-// CAR_COLOR_INSIDE;
-// CAR_COUNTY_ORIGIN;
-// CAR_COUNTRY_IMPORT;
-// IMAGE_MAIN;
-// IMAGE_OTHER
-// BODY2_DOOR;
-// BODY2_SEAT;
-// DRIVERPOSID;
-
 const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
   const optionsDoor = [1, 2, 3, 4, 5];
   const optionsSeat = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18];
@@ -44,7 +29,7 @@ const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
           step={1000}
           min={10}
           max={1000000}
-          formatter={(value) => `${value} км`}
+          // formatter={(value) => `${value} км`}
           // parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
           decimalSeparator=","
           className="gx-w-100"
@@ -82,7 +67,7 @@ const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item name="dirveid" hasFeedback label="Хөтлөгч">
+      <Form.Item name="driveid" hasFeedback label="Хөтлөгч">
         <Select
           className="moto-select-firm"
           loading={techDriveList.loading}
@@ -113,11 +98,11 @@ const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
         <Input />
       </Form.Item>
 
-      <Form.Item name="carCountyOrigin" hasFeedback label="Үйлдвэрлэсэн улс">
+      <Form.Item name="mglcountyorigin" hasFeedback label="Үйлдвэрлэсэн улс">
         <Input />
       </Form.Item>
 
-      <Form.Item name="carCountryImport" hasFeedback label="Импортолсон улс">
+      <Form.Item name="carcountryimport" hasFeedback label="Импортолсон улс">
         <Input />
       </Form.Item>
 
@@ -146,7 +131,7 @@ const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
       </Form.Item>
 
       <Form.Item
-        name="driverPosId"
+        name="driverposid"
         label="Жолооны байрлал"
         hasFeedback
         valuePropName="checked"

@@ -1,114 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { Form, Input, InputNumber, Select, Badge, Upload, message } from "antd";
-import { InboxOutlined, PlusOutlined } from "@ant-design/icons";
-import ImgCrop from "antd-img-crop";
-import { LoadProcess, loadDataview } from "util/axiosFunction";
-import ImageUpload2 from "./Image/ImageUpload2";
+import { Form, Input, InputNumber } from "antd";
 import MemberContext from "context/MemberContext";
+import ImageCrop2 from "./Image/ImageCrop2";
+import ImageDragger2 from "./Image/ImageDragger2";
 
-const { Option, OptGroup } = Select;
 const { TextArea } = Input;
-const { Dragger } = Upload;
 
-const MotocarFormThecar = ({ form, myImages, setMyImages }) => {
+const MotocarFormSpec = ({ form }) => {
   const memberContext = useContext(MemberContext);
-
-  const [mainImage, setMainImage] = useState(
-    []
-    // mainImage: props.newsImageMain
-    //   ? [
-    //       {
-    //         uid: "-1",
-    //         name: "Тодорхойгүй",
-    //         status: "done",
-    //         url: props.newsImageMain,
-    //         thumbUrl: props.newsImageMain,
-    //       },
-    //     ]
-    //   : [],
-
-    // [
-    // {
-    //   uid: "-1",
-    //   name: "image.png",
-    //   status: "done",
-    //   url:
-    //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    //   thumbUrl:
-    //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    // },
-  );
-
-  const normFileImages = (e) => {
-    console.log("Cloudinary-аас хүлээн авсан images:", e);
-
-    setMyImages({ ...myImages, e });
-    return e;
-  };
-
-  const onChange = (info) => {
-    const { status } = info.file;
-    if (status !== "uploading") {
-      console.log("NOT UPLOADING  ", info.file, info.fileList);
-    }
-    if (status === "done") {
-      message.success(`${info.file.name} - амжилттай илгээлээ.`);
-    } else if (status === "error") {
-      message.error(`${info.file.name} - илгээж чадсангүй.`);
-    }
-  };
-
-  const uploadButton = (
-    <div>
-      <PlusOutlined />
-      <div className="ant-upload-text">Илгээх</div>
-    </div>
-  );
-
-  const onUploadChange = ({ fileList: newFileList }) => {
-    setMainImage(newFileList);
-  };
 
   return (
     <>
-      <Form.Item name="tempimages" label="Үндсэн зураг">
-        <ImgCrop
-          rotate
-          zoom
-          grid
-          aspect={800 / 600}
-          modalTitle="Зургаа янзална уу"
-          modalWidth="60%"
-          modalOk="Янзтай!"
-          modalCancel="Болих"
-        >
-          <Upload
-            action={`https://api.cloudinary.com/v1_1/dzih5nqhg/image/upload?upload_preset=motocar&folder=motocar/${memberContext.state.memberUID}`}
-            listType="picture-card"
-            fileList={mainImage}
-            onChange={onUploadChange}
-          >
-            {mainImage.length < 1 && "+ Upload"}
-          </Upload>
-        </ImgCrop>
+      <Form.Item name="imagemain" label="Үндсэн зураг" valuePropName="fileList">
+        <ImageCrop2 />
       </Form.Item>
 
-      <Form.Item name="multiimages" label="Нэмэлт зургууд">
-        <Dragger
-          name="file"
-          multiple={true}
-          action={`https://api.cloudinary.com/v1_1/dzih5nqhg/image/upload?upload_preset=motocar&folder=motocar/${memberContext.state.memberUID}`}
-          onChange={onChange}
-        >
-          <p className="ant-upload-drag-icon">
-            <InboxOutlined />
-          </p>
-          <p className="ant-upload-text">Олон зураг оруулж болно.</p>
-          <p className="ant-upload-hint">
-            Хулганаар дарах юмуу шууд чирж оруулаарай.
-          </p>
-        </Dragger>
+      <Form.Item
+        name="imageother"
+        label="Нэмэлт зургууд"
+        valuePropName="flieList"
+      >
+        <ImageDragger2 />
       </Form.Item>
 
       <Form.Item
@@ -128,17 +41,13 @@ const MotocarFormThecar = ({ form, myImages, setMyImages }) => {
           step={1000}
           min={10}
           max={1500000}
-          formatter={(value) => `${value} км`}
+          // formatter={(value) => `${value} км`}
           decimalSeparator=","
           className="gx-w-100"
         />
       </Form.Item>
 
-      {/* <Form.Item name="imageOther" label="imageOther">
-        <Input />
-      </Form.Item> */}
-
-      <Form.Item name="description" label="Машины тухай">
+      <Form.Item name="description" hasFeedback label="Машины тухай">
         <TextArea
           placeholder="Машиныхаа тухай бичнэ үү"
           autoSize
@@ -149,7 +58,7 @@ const MotocarFormThecar = ({ form, myImages, setMyImages }) => {
   );
 };
 
-export default MotocarFormThecar;
+export default MotocarFormSpec;
 
 {
   /* <Form.Item name="engine2PowerHp" label="Морины хүч">
