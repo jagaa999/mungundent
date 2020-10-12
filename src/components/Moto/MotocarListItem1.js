@@ -51,8 +51,6 @@ const NewsItem = ({ motocarItem, grid }) => {
     setShowModal(false);
   };
 
-  // console.log("Манай машин - ", motocarItem);
-
   const truncatedDescription = motocarItem.description.substring(0, 250);
 
   const myMainImage = prepareImageSrc(motocarItem.imagemain);
@@ -97,6 +95,15 @@ const NewsItem = ({ motocarItem, grid }) => {
     return "";
   };
 
+  console.log(motocarItem);
+
+  // ######  ####### ####### #     # ######  #     #
+  // #     # #          #    #     # #     # ##    #
+  // #     # #          #    #     # #     # # #   #
+  // ######  #####      #    #     # ######  #  #  #
+  // #   #   #          #    #     # #   #   #   # #
+  // #    #  #          #    #     # #    #  #    ##
+  // #     # #######    #     #####  #     # #     #
   return (
     <div
       key={motocarItem.newsid}
@@ -115,29 +122,6 @@ const NewsItem = ({ motocarItem, grid }) => {
                 src={myMainImage}
                 className="gx-img-fluid gx-w-100"
               />
-              {/* <Image
-                cloudName="motomn"
-                publicId={motocarItem.imagemain
-                  .slice(
-                    motocarItem.imagemain.indexOf("upload/") + 7,
-                    motocarItem.imagemain.length
-                  )
-                  .split(".")
-                  .shift()}
-                crop="fill"
-                loading="lazy"
-                dpr="auto"
-                responsive
-                width="auto"
-                gravity="face"
-                quality="auto"
-                placeHolder="blur"
-                responsiveUseBreakpoints="true"
-                className="gx-img-fluid gx-w-100"
-                default_image="jhannw5jgo2mlvvkvke9"
-                alt={motocarItem.title}
-                onError={defaultSrc}
-              /> */}
             </span>
           </Link>
         </div>
@@ -148,7 +132,7 @@ const NewsItem = ({ motocarItem, grid }) => {
           <Col xl={17} md={16} sm={15} xs={24}>
             <h3 className="gx-product-title">
               <Link to={"/motocar/" + motocarItem.motocarid}>
-                {myYear} {motocarItem.firmname} {motocarItem.markname}{" "}
+                {myYear} {motocarItem.mglfirm} {motocarItem.mglmark}{" "}
                 {motocarItem.cartrim}
               </Link>
               {toBoolean(motocarItem.isfeatured) && <FeaturedTag />}
@@ -187,7 +171,7 @@ const NewsItem = ({ motocarItem, grid }) => {
                       label="Жолоо"
                     />
                     <RenderCarSpec2
-                      value={`${motocarItem.engine2disp} cc, ${motocarItem.engine2fuelname}`}
+                      value={`${motocarItem.mglengine2disp} cc, ${motocarItem.mglfuel}`}
                       label="Хөдөлгүүр"
                     />
                     <RenderCarSpec2

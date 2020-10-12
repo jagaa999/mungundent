@@ -23,8 +23,8 @@ const ImageCrop2 = ({ onChange }) => {
 
   const uploadButton = (
     <div>
-      <PlusOutlined />
-      <div className="ant-upload-text">Илгээх</div>
+      <PlusOutlined className="gx-text-light-grey" />
+      <div className="ant-upload-text gx-text-light-grey">Илгээх</div>
     </div>
   );
 

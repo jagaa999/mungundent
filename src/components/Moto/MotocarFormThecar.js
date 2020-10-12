@@ -6,9 +6,15 @@ import ImageUpload from "./Image/ImageUpload";
 
 const { Option, OptGroup } = Select;
 
-const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
+const MotocarFormThecar = ({
+  form,
+  techTranstypeList,
+  techDriveList,
+  countryList,
+}) => {
   const optionsDoor = [1, 2, 3, 4, 5];
   const optionsSeat = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18];
+  // console.log("countryList", countryList);
 
   return (
     <>
@@ -99,14 +105,38 @@ const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
       </Form.Item>
 
       <Form.Item name="mglcountyorigin" hasFeedback label="Үйлдвэрлэсэн улс">
-        <Input />
+        <Select
+          className="moto-select-firm"
+          loading={countryList.loading}
+          showSearch
+          allowClear
+          placeholder="Үйлдвэрлэсэн улс"
+        >
+          {countryList.countryList.map((item, index) => (
+            <Option key={index} value={item.id}>
+              {item.countryname}
+            </Option>
+          ))}
+        </Select>
       </Form.Item>
 
       <Form.Item name="carcountryimport" hasFeedback label="Импортолсон улс">
-        <Input />
+        <Select
+          className="moto-select-firm"
+          loading={countryList.loading}
+          showSearch
+          allowClear
+          placeholder="Импортолсон улс"
+        >
+          {countryList.countryList.map((item, index) => (
+            <Option key={index} value={item.id}>
+              {item.countryname}
+            </Option>
+          ))}
+        </Select>
       </Form.Item>
 
-      <Form.Item name="body2Door" hasFeedback label="Хаалганы тоо">
+      <Form.Item name="body2door" hasFeedback label="Хаалганы тоо">
         <Radio.Group buttonStyle="solid">
           {optionsDoor.map((item, index) => {
             return (
@@ -118,7 +148,7 @@ const MotocarFormThecar = ({ form, techTranstypeList, techDriveList }) => {
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item name="body2Seat" hasFeedback label="Суудлын тоо">
+      <Form.Item name="body2seat" hasFeedback label="Суудлын тоо">
         <Radio.Group buttonStyle="solid">
           {optionsSeat.map((item, index) => {
             return (

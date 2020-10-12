@@ -33,10 +33,12 @@ const ImageCrop2 = ({ onChange }) => {
       onChange={onMultiUploadChange}
     >
       <p className="ant-upload-drag-icon">
-        <InboxOutlined />
+        <InboxOutlined className="gx-text-light-grey" />
       </p>
-      <p className="ant-upload-text">Олон зураг оруулж болно.</p>
-      <p className="ant-upload-hint">
+      <p className="ant-upload-text gx-text-light-grey">
+        Олон зураг оруулж болно.
+      </p>
+      <p className="ant-upload-hint gx-text-light-grey">
         Хулганаар дарах юмуу шууд чирж оруулаарай.
       </p>
     </Upload.Dragger>

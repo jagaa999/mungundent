@@ -1,10 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 
-import EditorJs from "react-editor-js";
-
-// import CKEditor from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { EDITOR_JS_TOOLS } from "./editorjsConfig";
 import NewsEditor from "./NewsEditor";
 import ImageUpload from "./Image/ImageUpload";
 
@@ -15,55 +10,17 @@ import toBoolean from "util/booleanFunction";
 import {
   Button,
   Card,
-  Badge,
   Tooltip,
-  Row,
-  Col,
-  Tag,
-  Dropdown,
-  Menu,
-  Checkbox,
   Switch,
-  message,
   Divider,
-  Spin,
   Form,
   Input,
-  Cascader,
   Select,
-  AutoComplete,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Radio,
 } from "antd";
 
-import {
-  WarningTwoTone,
-  SearchOutlined,
-  DownOutlined,
-  UserOutlined,
-  CheckCircleOutlined,
-  SyncOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  MinusCircleOutlined,
-  SettingOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-  PlusOutlined,
-  CloudUploadOutlined,
-  QuestionCircleOutlined,
-} from "@ant-design/icons";
+import { PlusOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
-import NewsButtonPanel from "components/Moto/Button/NewsButtonPanel";
-
-import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
-
-import LogsContext from "context/LogsContext";
-import MemberCard02 from "./MemberCard02";
-import { LoadProcess, loadDataview } from "util/axiosFunction";
+import { loadDataview } from "util/axiosFunction";
 import NewsDetailContext from "context/NewsDetailContext";
 
 const { Option, OptGroup } = Select;
@@ -115,9 +72,7 @@ function handleFocus() {
 const NewsForm = () => {
   const [form] = Form.useForm();
   const newsDetailContext = useContext(NewsDetailContext);
-
   const newsItem = newsDetailContext.state.newsDetail;
-
   const [imageTags, setImageTags] = useState("");
 
   const titleOnChange = (text) => {
@@ -148,8 +103,6 @@ const NewsForm = () => {
   }
 
   // console.log("myTempBodymyTempBody", myTempBody);
-
-  // const myTempBody = JSON.parse(newsItem.body || []);
   const [myBody, setMyBody] = useState(myOutputBody);
   const [myImages, setMyImages] = useState([]);
 
@@ -225,6 +178,14 @@ const NewsForm = () => {
       myNewsType[index].optgroup = "Нийтлэл";
     }
   });
+
+  // ######  ####### ####### #     # ######  #     #
+  // #     # #          #    #     # #     # ##    #
+  // #     # #          #    #     # #     # # #   #
+  // ######  #####      #    #     # ######  #  #  #
+  // #   #   #          #    #     # #   #   #   # #
+  // #    #  #          #    #     # #    #  #    ##
+  // #     # #######    #     #####  #     # #     #
 
   return (
     <Card

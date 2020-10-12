@@ -100,35 +100,39 @@ const MotocarForm1General = ({
     if (Object.keys(mglCar.mglCar).length !== 0) {
       message.success("Машин олдлоо", 7);
       console.log("mglCar", mglCar);
+
+      form.setFieldsValue({
+        body2ModelCodeFull: mglCar.mglCar.body2vinnumber,
+        body2VinNumber: mglCar.mglCar.body2vinnumber,
+        caryearmanufactured: mglCar.mglCar.caryearmanufactured
+          ? moment(mglCar.mglCar.caryearmanufactured, "YYYY-MM")
+          : null,
+        caryearimport: mglCar.mglCar.caryearimport
+          ? moment(mglCar.mglCar.caryearimport, "YYYY-MM-DD")
+          : null,
+        mglfirm: mglCar.mglCar.mglfirm,
+        mglmark: mglCar.mglCar.mglmark,
+        mglbody: mglCar.mglCar.mglbody,
+        mglfuel: mglCar.mglCar.mglenginefuel,
+        mglengine2disp: mglCar.mglCar.mglenginesize * 1 || undefined,
+      });
     }
-    form.setFieldsValue({
-      body2ModelCodeFull: mglCar.mglCar.body2vinnumber,
-      body2VinNumber: mglCar.mglCar.body2vinnumber,
-      caryearmanufactured: mglCar.mglCar.caryearmanufactured
-        ? moment(mglCar.mglCar.caryearmanufactured, "YYYY-MM")
-        : null,
-      caryearimport: mglCar.mglCar.caryearimport
-        ? moment(mglCar.mglCar.caryearimport, "YYYY-MM-DD")
-        : null,
-      mglfirm: mglCar.mglCar.mglfirm,
-      mglmark: mglCar.mglCar.mglmark,
-      mglbody: mglCar.mglCar.mglbody,
-      mglfuel: mglCar.mglCar.mglenginefuel,
-      mglengine2disp: mglCar.mglCar.mglenginesize * 1 || undefined,
-    });
   }, [mglCar.mglCar]);
 
   // console.log("MGLFITMLIST", mglFirmList);
   // console.log("MGLMARKLIST", mglMarkList);
   // console.log("carbodyList", carBodyList);
 
+  // ######  ####### ####### #     # ######  #     #
+  // #     # #          #    #     # #     # ##    #
+  // #     # #          #    #     # #     # # #   #
+  // ######  #####      #    #     # ######  #  #  #
+  // #   #   #          #    #     # #   #   #   # #
+  // #    #  #          #    #     # #    #  #    ##
+  // #     # #######    #     #####  #     # #     #
   return (
     <>
-      <Form.Item
-        name="id"
-        label="ID дугаар"
-        // hidden={true}
-      >
+      <Form.Item name="motocarid" label="ID дугаар" hidden={true}>
         <Input disabled />
       </Form.Item>
       {/* <Form.Item name="title" label="Title">
@@ -147,18 +151,19 @@ const MotocarForm1General = ({
         }
         hasFeedback
         validateStatus={
-          Object.keys(mglCar.mglCar).length !== 0 ? "success" : "warning"
+          Object.keys(mglCar.mglCar).length !== 0 ? "success" : ""
         }
       >
         <Input
           placeholder="Улсын дугаараа бичнэ үү"
           onChange={mgllicensenumberfullChange}
+          className="gx-border-success"
         />
       </Form.Item>
 
       <Divider />
 
-      <Form.Item name="body2VinNumber" hasFeedback label="Арлын дугаар">
+      <Form.Item name="body2vinnumber" hasFeedback label="Арлын дугаар">
         <Input />
       </Form.Item>
 
@@ -281,7 +286,7 @@ const MotocarForm1General = ({
       <Form.Item
         name="caryearmanufactured"
         hasFeedback
-        label="Үйлдвэрлэсэн Он-сар"
+        label="Үйлдвэрлэсэн Он-Сар"
       >
         <DatePicker
           className="gx-w-100"

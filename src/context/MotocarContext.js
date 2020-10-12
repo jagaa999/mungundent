@@ -47,22 +47,14 @@ export const MotocarStore = (props) => {
     loading: false,
     error: null,
   };
-
   const initialStateMotocarDetail = {
     loadParams: {
-      // systemmetagroupid: "1585197442423220",
       systemmetagroupid: "1600421356169317",
       showquery: "0",
       ignorepermission: "1",
-      criteria: {},
       paging: {
-        pageSize: "24",
+        pageSize: "1",
         offset: "1",
-        sortcolumnnames: {
-          createddate: {
-            sorttype: "DESC", //эрэмбэлэх чиглэл
-          },
-        },
       },
     },
     motocarDetail: [],
@@ -132,7 +124,50 @@ export const MotocarStore = (props) => {
   // #     # #          #    #     #  #  #
   // ######  #######    #    #     # ### #######
 
-  const loadMotocarDetail = () => {};
+  const loadMotocarDetail = (motocarId) => {
+    const myParamsMotocarDetail = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        // username: "motoadmin",
+        // password: "moto123",
+        command: "PL_MDVIEW_004",
+        parameters: {
+          ...motocarDetail.loadParams,
+          criteria: {
+            motocarid: {
+              0: {
+                operator: "=",
+                operand: "",
+              },
+            },
+          },
+        },
+      },
+    };
+
+    // console.log("myParamsMotocarDetail", myParamsMotocarDetail);
+    setMotocarDetail(initialStateMotocarDetail);
+    setMotocarDetail({ ...motocarDetail, loading: true });
+
+    axios
+      .post("", myParamsMotocarDetail)
+      .then((response) => {
+        // console.log("MOTOCAR DETAIL RESPONSE------------> ", response);
+        const myArray = response.data.response.result[0];
+        // console.log("MOTOCAR DETAIL------------> ", myArray);
+
+        setMotocarDetail({
+          ...motocarDetail,
+          loading: false,
+          motocarDetail: myArray,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        message.error(error.toString(), 7);
+      });
+  };
 
   //   #####     #    #     # #######
   //  #     #   # #   #     # #
@@ -142,6 +177,7 @@ export const MotocarStore = (props) => {
   //  #     # #     #   # #   #
   //   #####  #     #    #    #######
   const saveMotocarDetail = (values) => {
+    // title
     // body2Door: 5
     // body2Seat: 8
     // body2VinNumber: "ATH100007261"
@@ -169,6 +205,10 @@ export const MotocarStore = (props) => {
     // transtypeid: "1002"
 
     console.log("saveMotocarDetail дотор орж ирсэн values--", values);
+    const mytitle = `${Moment(values.caryearmanufactured).format("YYYY")} ${
+      values.mglfirm
+    } ${values.mglmark}`;
+
     const myimagemain =
       values.imagemain && values.imagemain.fileList.length > 0
         ? values.imagemain.fileList[0].response.url
@@ -184,6 +224,8 @@ export const MotocarStore = (props) => {
         command: "motoMotocarDV_002",
         parameters: {
           ...values,
+          id: values.motocarid || "",
+          title: mytitle,
           imagemain: myimagemain,
           isactive: toBoolean(values.isactive) ? "1" : "0",
           driverposid: toBoolean(values.driverPosId) ? "1" : "2",

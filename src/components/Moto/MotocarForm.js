@@ -100,6 +100,10 @@ const MotocarForm = () => {
     loading: false,
     techDriveList: [],
   });
+  const [countryList, setCountryList] = useState({
+    loading: false,
+    countryList: [],
+  });
 
   // * axios-оор ERP-аас дуудна.
   const callFunctionAsync = async () => {
@@ -146,6 +150,14 @@ const MotocarForm = () => {
     setTechDriveList({
       techDriveList: await loadDataview({
         systemmetagroupid: "1586958538229243",
+      }),
+      loading: false,
+    });
+
+    setCountryList({ ...countryList, loading: true });
+    setCountryList({
+      countryList: await loadDataview({
+        systemmetagroupid: "1464050695187",
       }),
       loading: false,
     });
@@ -204,6 +216,7 @@ const MotocarForm = () => {
   // };
 
   // console.log("mglFuelList", mglFuelList);
+  console.table(motocarItem);
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -228,6 +241,7 @@ const MotocarForm = () => {
         // onValuesChange={onValuesChange}
         initialValues={{
           motocarid: motocarItem ? motocarItem.motocarid : "",
+
           newstypeid: motocarItem ? motocarItem.newstypeid : null,
           vehicletype: "passenger",
           newssourceid: motocarItem ? motocarItem.newssourceid : null,
@@ -235,6 +249,32 @@ const MotocarForm = () => {
           isfeatured: motocarItem ? toBoolean(motocarItem.isfeatured) : false,
           iscomment: motocarItem ? toBoolean(motocarItem.iscomment) : true,
           driverPosId: false,
+
+          body2door: motocarItem ? motocarItem.body2door : null,
+          body2seat: motocarItem ? motocarItem.body2seat : null,
+          body2vinnumber: motocarItem ? motocarItem.body2vinnumber : null,
+          carcolorinside: "",
+          carcoloroutside: "",
+          carcountryimport: "",
+          carmilageimport: "",
+          carmilagenow: "",
+          caryearimport: "",
+          caryearmanufactured: "",
+          description: "",
+          driveid: "",
+          driverposid: "",
+          id: "",
+          imagemain: "",
+          imageother: "",
+          isactive: "",
+          mglbody: "",
+          mglcountyorigin: "",
+          mglengine2disp: motocarItem ? motocarItem.mglengine2disp : null,
+          mglfirm: motocarItem ? motocarItem.mglfirm : "",
+          mglmark: motocarItem ? motocarItem.mglmark : "",
+          mglfuel: "",
+          mgllicensenumberfull: "",
+          transtypeid: "",
         }}
         scrollToFirstError={true}
         colon={false}
@@ -267,6 +307,7 @@ const MotocarForm = () => {
               form={form}
               techTranstypeList={techTranstypeList}
               techDriveList={techDriveList}
+              countryList={countryList}
             />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
