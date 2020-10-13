@@ -8,16 +8,16 @@ import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
 const MotocarFormPage = (props) => {
-  const { motocarId } = useParams() || 0; //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
+  const { motocarId = 0 } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
   const motocarDetailContext = useContext(MotocarContext);
   const memberContext = useContext(MemberContext);
 
   useEffect(() => {
     if (motocarId !== 0 && memberContext.state.memberCloudUserSysId !== 0) {
-      // console.log("Машин байгаа юм байна.", motocarId);
+      console.log("Машин байгаа юм байна.", motocarId);
       motocarDetailContext.loadMotocarDetail(motocarId);
     } else {
-      // console.log("ХОосон объект");
+      console.log("ХОосон объект");
       motocarDetailContext.clearMotocarDetail();
     }
   }, [motocarId, memberContext.state.memberCloudUserSysId]);
