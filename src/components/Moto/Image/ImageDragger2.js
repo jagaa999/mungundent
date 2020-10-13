@@ -1,15 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Upload, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import MemberContext from "context/MemberContext";
 
-const ImageCrop2 = ({ onChange }) => {
+const ImageCrop2 = ({ onChange, imageotherFileList }) => {
   const memberContext = useContext(MemberContext);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({
+        fileList: imageotherFileList,
+      });
+    }
+  }, []);
 
   const onMultiUploadChange = (data) => {
     const { status } = data.file;
     if (status !== "uploading") {
-      console.log("NOT UPLOADING  ", data.file, data.fileList);
+      // console.log("NOT UPLOADING  ", data.file, data.fileList);
 
       if (onChange) {
         onChange({
@@ -31,6 +39,7 @@ const ImageCrop2 = ({ onChange }) => {
       listType="picture"
       action={`https://api.cloudinary.com/v1_1/dzih5nqhg/image/upload?upload_preset=motocar&folder=motocar/${memberContext.state.memberUID}`}
       onChange={onMultiUploadChange}
+      defaultFileList={imageotherFileList}
     >
       <p className="ant-upload-drag-icon">
         <InboxOutlined className="gx-text-light-grey" />

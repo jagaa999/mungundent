@@ -102,8 +102,8 @@ const MotocarForm1General = ({
       console.log("mglCar", mglCar);
 
       form.setFieldsValue({
-        body2ModelCodeFull: mglCar.mglCar.body2vinnumber,
-        body2VinNumber: mglCar.mglCar.body2vinnumber,
+        body2modelcodefull: mglCar.mglCar.body2vinnumber,
+        body2vinnumber: mglCar.mglCar.body2vinnumber,
         caryearmanufactured: mglCar.mglCar.caryearmanufactured
           ? moment(mglCar.mglCar.caryearmanufactured, "YYYY-MM")
           : null,
@@ -115,6 +115,8 @@ const MotocarForm1General = ({
         mglbody: mglCar.mglCar.mglbody,
         mglfuel: mglCar.mglCar.mglenginefuel,
         mglengine2disp: mglCar.mglCar.mglenginesize * 1 || undefined,
+        mgldoor: mglCar.mglCar.mgldoor * 1 || undefined,
+        mglseat: mglCar.mglCar.mglseat * 1 || undefined,
       });
     }
   }, [mglCar.mglCar]);
@@ -132,7 +134,7 @@ const MotocarForm1General = ({
   // #     # #######    #     #####  #     # #     #
   return (
     <>
-      <Form.Item name="motocarid" label="ID дугаар" hidden={true}>
+      <Form.Item name="id" label="ID дугаар" hidden={true}>
         <Input disabled />
       </Form.Item>
       {/* <Form.Item name="title" label="Title">

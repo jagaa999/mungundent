@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { message } from "antd";
 import toBoolean from "util/booleanFunction";
-import Moment from "moment";
+import moment from "moment";
 
 import axios from "util/axiosConfig";
 import axiosCloud from "util/axiosCloudConfig";
@@ -49,7 +49,7 @@ export const MotocarStore = (props) => {
   };
   const initialStateMotocarDetail = {
     loadParams: {
-      systemmetagroupid: "1600421356169317",
+      systemmetagroupid: "1600405606733265",
       showquery: "0",
       ignorepermission: "1",
       paging: {
@@ -116,6 +116,10 @@ export const MotocarStore = (props) => {
       });
   };
 
+  const clearMotocarDetail = () => {
+    setMotocarDetail(initialStateMotocarDetail);
+  };
+
   // ######  ####### #######    #    ### #
   // #     # #          #      # #    #  #
   // #     # #          #     #   #   #  #
@@ -124,7 +128,9 @@ export const MotocarStore = (props) => {
   // #     # #          #    #     #  #  #
   // ######  #######    #    #     # ### #######
 
-  const loadMotocarDetail = (motocarId) => {
+  const loadMotocarDetail = (id = 0) => {
+    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
+
     const myParamsMotocarDetail = {
       request: {
         username: memberContext.state.memberUID,
@@ -135,10 +141,10 @@ export const MotocarStore = (props) => {
         parameters: {
           ...motocarDetail.loadParams,
           criteria: {
-            motocarid: {
+            id: {
               0: {
                 operator: "=",
-                operand: "",
+                operand: id,
               },
             },
           },
@@ -155,6 +161,41 @@ export const MotocarStore = (props) => {
       .then((response) => {
         // console.log("MOTOCAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0];
+        // console.log("MOTOCAR DETAIL myArray------------> ", myArray);
+        myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
+        myArray.caryearimport = moment(myArray.caryearimport);
+        myArray.mglengine2disp = myArray.mglengine2disp * 1;
+        myArray.carmilageimport = myArray.carmilageimport * 1;
+        myArray.carmilagenow = myArray.carmilagenow * 1;
+        myArray.mgldoor = myArray.mgldoor * 1;
+        myArray.mglseat = myArray.mglseat * 1;
+        myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
+        myArray.isactive = myArray.isactive === "1" ? true : false;
+        myArray.imagemainFileList =
+          myArray.imagemain !== ""
+            ? [
+                {
+                  uid: "-1",
+                  name: "Тодорхойгүй",
+                  status: "done",
+                  url: myArray.imagemain || "",
+                  thumbUrl: myArray.imagemain || "",
+                  response: { url: myArray.imagemain || "" },
+                },
+              ]
+            : [];
+        myArray.imageotherFileList =
+          myArray.imageother !== ""
+            ? JSON.parse(myArray.imageother).map((item, index) => ({
+                uid: index - 1,
+                name: item.replace(/^.*[\\\/]/, ""),
+                status: "done",
+                url: item || "",
+                thumbUrl: item || "",
+                response: { url: item || "" },
+              }))
+            : [];
+
         // console.log("MOTOCAR DETAIL------------> ", myArray);
 
         setMotocarDetail({
@@ -187,8 +228,8 @@ export const MotocarStore = (props) => {
     // carcoloroutside: "Ягаан"
     // carmilageimport: 138000
     // carmilagenow: 220000
-    // caryearimport: Moment {_isAMomentObject: true, _i: "2013-09-25", _f: "YYYY-MM-DD", _isUTC: false, _pf: {…}, …}
-    // caryearmanufactured: Moment {_isAMomentObject: true, _i: "2004-01-01", _f: "YYYY-MM", _isUTC: false, _pf: {…}, …}
+    // caryearimport: moment {_isAmomentObject: true, _i: "2013-09-25", _f: "YYYY-MM-DD", _isUTC: false, _pf: {…}, …}
+    // caryearmanufactured: moment {_isAmomentObject: true, _i: "2004-01-01", _f: "YYYY-MM", _isUTC: false, _pf: {…}, …}
     // description: "Японоос захиж авч байсан."
     // driveid: "58170471"
     // driverPosId: false
@@ -205,17 +246,24 @@ export const MotocarStore = (props) => {
     // transtypeid: "1002"
 
     console.log("saveMotocarDetail дотор орж ирсэн values--", values);
-    const mytitle = `${Moment(values.caryearmanufactured).format("YYYY")} ${
+    const mytitle = `${moment(values.caryearmanufactured).format("YYYY")} ${
       values.mglfirm
     } ${values.mglmark}`;
 
     const myimagemain =
-      values.imagemain && values.imagemain.fileList.length > 0
+      values.imagemain &&
+      values.imagemain.fileList &&
+      values.imagemain.fileList.length > 0
         ? values.imagemain.fileList[0].response.url
         : "";
-    const myimageother = JSON.stringify(
-      values.imageother.fileList.map((item, index) => item.response.url)
-    );
+    const myimageother =
+      values.imageother &&
+      values.imageother.fileList &&
+      values.imageother.fileList.length > 0
+        ? JSON.stringify(
+            values.imageother.fileList.map((item, index) => item.response.url)
+          )
+        : "";
 
     const myParamsMotocarDetail = {
       request: {
@@ -224,15 +272,15 @@ export const MotocarStore = (props) => {
         command: "motoMotocarDV_002",
         parameters: {
           ...values,
-          id: values.motocarid || "",
+          id: values.id || "",
           title: mytitle,
           imagemain: myimagemain,
           isactive: toBoolean(values.isactive) ? "1" : "0",
-          driverposid: toBoolean(values.driverPosId) ? "1" : "2",
-          caryearimport: Moment(values.caryearimport).format(
+          mgldrivepos: toBoolean(values.mgldrivepos) ? "1" : "2",
+          caryearimport: moment(values.caryearimport).format(
             "YYYY-MM-DD HH:mm:ss"
           ),
-          caryearmanufactured: Moment(values.caryearmanufactured).format(
+          caryearmanufactured: moment(values.caryearmanufactured).format(
             "YYYY-MM-DD HH:mm:ss"
           ),
           imagemain: myimagemain,
@@ -352,6 +400,7 @@ export const MotocarStore = (props) => {
         loadMotocarList,
         loadMotocarDetail,
         saveMotocarDetail,
+        clearMotocarDetail,
       }}
     >
       {props.children}

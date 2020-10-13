@@ -35,14 +35,8 @@ const MotocarFormThecar = ({
           step={1000}
           min={10}
           max={1000000}
-          // formatter={(value) => `${value} км`}
-          // parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
           decimalSeparator=","
           className="gx-w-100"
-          // formatter={(value) =>
-          //   `${value} км`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-          // }
-          // parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
         />
       </Form.Item>
 
@@ -51,19 +45,6 @@ const MotocarFormThecar = ({
       </Form.Item> */}
 
       <Form.Item name="transtypeid" hasFeedback label="Хроп">
-        {/* <Select
-          className="moto-select-firm"
-          loading={techTranstypeList.loading}
-          showSearch
-          allowClear
-          placeholder="Хроп"
-        >
-          {techTranstypeList.techTranstypeList.map((item, index) => (
-            <Option key={index} value={item.id}>
-              {item.transtypename}
-            </Option>
-          ))}
-        </Select> */}
         <Radio.Group buttonStyle="solid" className="gx-w-100">
           {techTranstypeList.techTranstypeList.map((item, index) => (
             <Radio.Button key={index} value={item.id}>
@@ -136,7 +117,7 @@ const MotocarFormThecar = ({
         </Select>
       </Form.Item>
 
-      <Form.Item name="body2door" hasFeedback label="Хаалганы тоо">
+      <Form.Item name="mgldoor" hasFeedback label="Хаалганы тоо">
         <Radio.Group buttonStyle="solid">
           {optionsDoor.map((item, index) => {
             return (
@@ -148,7 +129,7 @@ const MotocarFormThecar = ({
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item name="body2seat" hasFeedback label="Суудлын тоо">
+      <Form.Item name="mglseat" hasFeedback label="Суудлын тоо">
         <Radio.Group buttonStyle="solid">
           {optionsSeat.map((item, index) => {
             return (
@@ -161,7 +142,7 @@ const MotocarFormThecar = ({
       </Form.Item>
 
       <Form.Item
-        name="driverposid"
+        name="mgldrivepos"
         label="Жолооны байрлал"
         hasFeedback
         valuePropName="checked"

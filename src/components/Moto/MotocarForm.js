@@ -167,8 +167,6 @@ const MotocarForm = () => {
     callFunctionAsync();
   }, []);
 
-  const [myImages, setMyImages] = useState([]);
-
   const stepList = [
     {
       title: "Ерөнхий",
@@ -216,7 +214,7 @@ const MotocarForm = () => {
   // };
 
   // console.log("mglFuelList", mglFuelList);
-  console.table(motocarItem);
+  // console.log(motocarItem);
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -239,43 +237,46 @@ const MotocarForm = () => {
         onFinishFailed={onFinishFailed}
         // onFieldsChange={onFieldsChange}
         // onValuesChange={onValuesChange}
-        initialValues={{
-          motocarid: motocarItem ? motocarItem.motocarid : "",
+        initialValues={
+          // {
+          motocarItem
+          // motocarid: motocarItem ? motocarItem.motocarid : "",
 
-          newstypeid: motocarItem ? motocarItem.newstypeid : null,
-          vehicletype: "passenger",
-          newssourceid: motocarItem ? motocarItem.newssourceid : null,
-          isactive: true,
-          isfeatured: motocarItem ? toBoolean(motocarItem.isfeatured) : false,
-          iscomment: motocarItem ? toBoolean(motocarItem.iscomment) : true,
-          driverPosId: false,
+          // newstypeid: motocarItem ? motocarItem.newstypeid : null,
+          // vehicletype: "passenger",
+          // newssourceid: motocarItem ? motocarItem.newssourceid : null,
+          // isactive: true,
+          // isfeatured: motocarItem ? toBoolean(motocarItem.isfeatured) : false,
+          // iscomment: motocarItem ? toBoolean(motocarItem.iscomment) : true,
+          // driverPosId: false,
 
-          body2door: motocarItem ? motocarItem.body2door : null,
-          body2seat: motocarItem ? motocarItem.body2seat : null,
-          body2vinnumber: motocarItem ? motocarItem.body2vinnumber : null,
-          carcolorinside: "",
-          carcoloroutside: "",
-          carcountryimport: "",
-          carmilageimport: "",
-          carmilagenow: "",
-          caryearimport: "",
-          caryearmanufactured: "",
-          description: "",
-          driveid: "",
-          driverposid: "",
-          id: "",
-          imagemain: "",
-          imageother: "",
-          isactive: "",
-          mglbody: "",
-          mglcountyorigin: "",
-          mglengine2disp: motocarItem ? motocarItem.mglengine2disp : null,
-          mglfirm: motocarItem ? motocarItem.mglfirm : "",
-          mglmark: motocarItem ? motocarItem.mglmark : "",
-          mglfuel: "",
-          mgllicensenumberfull: "",
-          transtypeid: "",
-        }}
+          // body2door: motocarItem ? motocarItem.body2door : null,
+          // body2seat: motocarItem ? motocarItem.body2seat : null,
+          // body2vinnumber: motocarItem ? motocarItem.body2vinnumber : null,
+          // carcolorinside: "",
+          // carcoloroutside: "",
+          // carcountryimport: "",
+          // carmilageimport: "",
+          // carmilagenow: "",
+          // caryearimport: "",
+          // caryearmanufactured: "",
+          // description: "",
+          // driveid: "",
+          // driverposid: "",
+          // id: "",
+          // imagemain: "",
+          // imageother: "",
+          // isactive: "",
+          // mglbody: "",
+          // mglcountyorigin: "",
+          // mglengine2disp: motocarItem ? motocarItem.mglengine2disp : null,
+          // mglfirm: motocarItem ? motocarItem.mglfirm : "",
+          // mglmark: motocarItem ? motocarItem.mglmark : "",
+          // mglfuel: "",
+          // mgllicensenumberfull: "",
+          // transtypeid: "",
+          // }
+        }
         scrollToFirstError={true}
         colon={false}
       >
@@ -311,7 +312,11 @@ const MotocarForm = () => {
             />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
-            <MotocarFormSpec form={form} />
+            <MotocarFormSpec
+              form={form}
+              imagemainFileList={motocarItem.imagemainFileList || []}
+              imageotherFileList={motocarItem.imageotherFileList || []}
+            />
           </div>
           <div className={currentStep !== 3 ? "gx-d-none" : ""}>
             {/* <MotocarFormTech form={form} /> */}

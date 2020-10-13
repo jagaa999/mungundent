@@ -7,13 +7,15 @@ import ImageDragger2 from "./Image/ImageDragger2";
 
 const { TextArea } = Input;
 
-const MotocarFormSpec = ({ form }) => {
+const MotocarFormSpec = ({ form, imagemainFileList, imageotherFileList }) => {
   const memberContext = useContext(MemberContext);
+
+  // console.log("ӨӨӨӨӨӨӨӨӨӨӨӨ", imagemainFileList);
 
   return (
     <>
       <Form.Item name="imagemain" label="Үндсэн зураг" valuePropName="fileList">
-        <ImageCrop2 />
+        <ImageCrop2 imagemainFileList={imagemainFileList} />
       </Form.Item>
 
       <Form.Item
@@ -21,7 +23,7 @@ const MotocarFormSpec = ({ form }) => {
         label="Нэмэлт зургууд"
         valuePropName="flieList"
       >
-        <ImageDragger2 />
+        <ImageDragger2 imageotherFileList={imageotherFileList} />
       </Form.Item>
 
       <Form.Item

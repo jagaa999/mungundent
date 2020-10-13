@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
@@ -6,9 +6,17 @@ import ImgCrop from "antd-img-crop";
 
 import MemberContext from "context/MemberContext";
 
-const ImageCrop2 = ({ onChange }) => {
+const ImageCrop2 = ({ onChange, imagemainFileList }) => {
   const memberContext = useContext(MemberContext);
-  const [ImageMain, setImageMain] = useState([]);
+  const [ImageMain, setImageMain] = useState(imagemainFileList);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({
+        fileList: imagemainFileList,
+      });
+    }
+  }, []);
 
   const onUploadChange = (data) => {
     // console.log("YEAHYEAH YEAH", data);

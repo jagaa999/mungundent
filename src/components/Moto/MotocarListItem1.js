@@ -131,7 +131,7 @@ const NewsItem = ({ motocarItem, grid }) => {
         <Row className="moto-item-card">
           <Col xl={17} md={16} sm={15} xs={24}>
             <h3 className="gx-product-title">
-              <Link to={"/motocar/" + motocarItem.motocarid}>
+              <Link to={"/motocar/" + motocarItem.id}>
                 {myYear} {motocarItem.mglfirm} {motocarItem.mglmark}{" "}
                 {motocarItem.cartrim}
               </Link>
@@ -343,7 +343,7 @@ const NewsItem = ({ motocarItem, grid }) => {
 
 export default NewsItem;
 
-// motocarid
+// id
 // mglLicensenumberFull
 // title
 // imageMain
