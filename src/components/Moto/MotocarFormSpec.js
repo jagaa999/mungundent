@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { Form, Input, InputNumber } from "antd";
+import { Form, Input, InputNumber, Switch } from "antd";
 import MemberContext from "context/MemberContext";
 import ImageCrop2 from "./Image/ImageCrop2";
 import ImageDragger2 from "./Image/ImageDragger2";
@@ -55,6 +55,15 @@ const MotocarFormSpec = ({ form, imagemainFileList, imageotherFileList }) => {
           autoSize
           // onChange={titleOnChange}
         />
+      </Form.Item>
+
+      <Form.Item
+        name="isactive"
+        label="Идэвхтэй?"
+        valuePropName="checked"
+        initialValue={true}
+      >
+        <Switch />
       </Form.Item>
     </>
   );

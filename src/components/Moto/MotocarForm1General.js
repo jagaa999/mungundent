@@ -216,14 +216,6 @@ const MotocarForm1General = ({
         label="Марк"
         rules={[{ required: true, message: "Маркаа сонгоно уу!" }]}
       >
-        {/* <MotoSelect1
-          loading={mglMarkList.loading}
-          placeholder="Марк"
-          myList={mglMarkList.mglMarkList}
-          valueName="mglmark"
-          valueLabel="mglmark"
-          onChange={null}
-        /> */}
         <Select
           className="moto-select-firm"
           loading={mglMarkList.loading}

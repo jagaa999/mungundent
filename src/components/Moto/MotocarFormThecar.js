@@ -61,6 +61,15 @@ const MotocarFormThecar = ({
           showSearch
           allowClear
           placeholder="Хөтлөгч"
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
         >
           {techDriveList.techDriveList.map((item, index) => (
             <Option key={index} value={item.id}>
@@ -92,6 +101,15 @@ const MotocarFormThecar = ({
           showSearch
           allowClear
           placeholder="Үйлдвэрлэсэн улс"
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
         >
           {countryList.countryList.map((item, index) => (
             <Option key={index} value={item.id}>
@@ -108,6 +126,15 @@ const MotocarFormThecar = ({
           showSearch
           allowClear
           placeholder="Импортолсон улс"
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
         >
           {countryList.countryList.map((item, index) => (
             <Option key={index} value={item.id}>

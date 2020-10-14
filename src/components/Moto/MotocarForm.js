@@ -323,20 +323,7 @@ const MotocarForm = () => {
           </div>
         </div>
 
-        <Divider dashed orientation="center" plain>
-          Тохиргоо
-        </Divider>
-
-        <Form.Item
-          name="isactive"
-          label="Идэвхтэй?"
-          valuePropName="checked"
-          {...formItemLayout}
-        >
-          <Switch />
-        </Form.Item>
-
-        <Divider />
+        <Divider className="gx-my-5" />
 
         <Form.Item {...tailFormItemLayout}>
           <Button
