@@ -10,6 +10,7 @@ import {
   EditOutlined,
   EllipsisOutlined,
 } from "@ant-design/icons";
+import { defaultSrc } from "util/config";
 
 // import NewsListItem from "components/Moto/NewsListItem";
 import NewsListItem2 from "./NewsListItem2";
@@ -39,9 +40,7 @@ const NewsListType2 = () => {
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">
-            {newsListContext.state.newsList.map((el, index) => {
-              const newsItem = el;
-              newsItem.imageMain = el.imagemain;
+            {newsListContext.state.newsList.map((newsItem, index) => {
               return (
                 <Col
                   key={index}

@@ -15,22 +15,10 @@ import {
   Dropdown,
   Menu,
   Avatar,
-  message,
-  Modal,
-  Divider,
-  Card,
   Table,
-  Tag,
-  Space,
 } from "antd";
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
-import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
-import AvatarMember from "components/Moto/Member/MemberAvatar";
-import AvatarMember02 from "./Member/MemberAvatar02";
-import NewsDetailModal from "components/Moto/newsDetailModal";
-import NewsDetailMore from "components/Moto/newsDetailMore";
-const { Meta } = Card;
 
 const NewsItem = ({ newsItems }) => {
   const columns = [

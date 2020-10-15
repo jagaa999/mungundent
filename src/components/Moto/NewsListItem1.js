@@ -51,6 +51,11 @@ const NewsItem = ({ newsItem, grid }) => {
     setShowModal(false);
   };
 
+  newsItem.imagemain =
+    newsItem.imagemain === ""
+      ? "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+      : newsItem.imagemain;
+
   // console.log("Манай бараа - ", newsItem);
 
   const truncatedDescription =

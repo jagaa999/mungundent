@@ -32,28 +32,8 @@ const { Meta } = Card;
 
 const NewsItem = ({ newsItem, grid }) => {
   moment.locale("mn");
-  const [showModal, setShowModal] = useState(false);
-  const [showMore, setShowMore] = useState(false);
 
-  const showModalToggle = () => {
-    setShowModal(!showModal);
-  };
-
-  const showMoreToggle = () => {
-    setShowMore(!showMore);
-  };
-
-  const modalOk = (e) => {
-    console.log(e);
-    setShowModal(true);
-  };
-
-  const modalCancel = (e) => {
-    console.log(e);
-    setShowModal(false);
-  };
-
-  // console.log("Манай бараа - ", newsItem);
+  console.log("Манай Нийтлэл - ", newsItem);
 
   const truncatedDescription =
     newsItem.description.substring(0, 100) + " &hellip;";
@@ -65,6 +45,11 @@ const NewsItem = ({ newsItem, grid }) => {
       {!toBoolean(newsItem.isactive) && <ActiveTag type="dot" />}
     </>
   );
+
+  newsItem.imagemain =
+    newsItem.imagemain === ""
+      ? "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+      : newsItem.imagemain;
 
   return (
     <Card
@@ -89,7 +74,7 @@ const NewsItem = ({ newsItem, grid }) => {
           width="auto"
           gravity="face"
           quality="auto"
-          placeHolder="blur"
+          placeholder="blur"
           responsiveUseBreakpoints="true"
           className="gx-img-fluid gx-w-100"
           default_image="jhannw5jgo2mlvvkvke9"
