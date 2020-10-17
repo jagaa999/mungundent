@@ -180,7 +180,7 @@ export const MemberProfileStore = (props) => {
   //  ####### #     # #           #####  #     # ####### #     #    #    #######
 
   const createMemberCloudWithFirebase = () => {
-    // console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
+    console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
 
     setState({ ...state, loading: true });
 
@@ -222,8 +222,8 @@ export const MemberProfileStore = (props) => {
       },
     };
 
-    // console.log("ПАРАМЕТР ҮҮСГЭСНИЙ ДАРАА");
-    // console.log("state.memberFirebaseProfile", state.memberFirebaseProfile);
+    console.log("ПАРАМЕТР ҮҮСГЭСНИЙ ДАРАА");
+    console.log("state.memberFirebaseProfile", state.memberFirebaseProfile);
     // console.log(
     //   "myParamsCreateMemberCloudWithFirebase",
     //   myParamsCreateMemberCloudWithFirebase
@@ -232,13 +232,15 @@ export const MemberProfileStore = (props) => {
     axios
       .post("", myParamsCreateMemberCloudWithFirebase)
       .then((response) => {
-        // console.log("createMemberCloudWithFirebase response:--> ", response);
+        console.log("createMemberCloudWithFirebase response:--> ", response);
 
-        setState({
-          ...state,
-          memberCloudProfile: response.data.response.result,
-          loading: false,
-        });
+        loginMemberCloud(response.data.response.result.firebaseuid);
+
+        // setState({
+        //   ...state,
+        //   memberCloudProfile: response.data.response.result,
+        //   loading: false,
+        // });
       })
       .catch((error) => {
         setState({ ...state, loading: false, error });
