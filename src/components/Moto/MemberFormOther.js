@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  Form,
-  Input,
-  InputNumber,
-  Tooltip,
-  message,
-  Select,
-  Divider,
-  DatePicker,
-} from "antd";
+import { Form, Input, Select } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
-import moment from "moment";
 import "moment/locale/mn";
 
 const { Option, OptGroup } = Select;

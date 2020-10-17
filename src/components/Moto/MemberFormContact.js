@@ -18,59 +18,7 @@ import "moment/locale/mn";
 const { Option, OptGroup } = Select;
 const { TextArea } = Input;
 
-const MemberForm1General = ({ form }) => {
-  // ######  ####### ####### #     # ######  #     #
-  // #     # #          #    #     # #     # ##    #
-  // #     # #          #    #     # #     # # #   #
-  // ######  #####      #    #     # ######  #  #  #
-  // #   #   #          #    #     # #   #   #   # #
-  // #    #  #          #    #     # #    #  #    ##
-  // #     # #######    #     #####  #     # #     #
-
-  // ID
-  // SYSTEM_USER_ID
-  // NAME
-  // REGISTRATION_NUMBER
-  // EMAIL
-  // PHONE_NUMBER1
-  // PHONE_NUMBER2
-  // PHONE_NUMBER3
-  // BIRTH_DATE
-  // GENDER
-  // CREATED_DATE
-  // CREATED_BY
-  // FIREBASE_UID
-  // FB_ID
-  // GOOGLE_ID
-  // PROVIDER_ID
-  // IMAGEMAIN
-  // IMAGEOTHER
-  // SPEC_KNOWLEDGE
-  // SPEC_USAGE
-  // SPEC_ATTENTION
-
-  //  id
-  //  systemUserId
-  //  name
-  //  registrationNumber
-  //  email
-  //  phoneNumber1
-  //  phoneNumber2
-  //  phoneNumber3
-  //  birthDate
-  //  gender
-  //  createdDate
-  //  createdBy
-  //  firebaseUid
-  //  fbId
-  //  googleId
-  //  providerId
-  //  imagemain
-  //  imageother
-  //  specKnowledge
-  //  specUsage
-  //  specAttention
-
+const MemberFormContact = ({ form }) => {
   return (
     <>
       <Form.Item name="email" hasFeedback label="Имэйл">
@@ -99,4 +47,4 @@ const MemberForm1General = ({ form }) => {
   );
 };
 
-export default MemberForm1General;
+export default MemberFormContact;
