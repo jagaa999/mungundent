@@ -35,6 +35,7 @@ export const MemberProfileStore = (props) => {
       JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
     isLogin: localStorage.getItem("motoMemberUID") ? true : false,
     isModal: false,
+    memberDetail: [],
     loading: false,
     error: null,
   };
@@ -273,6 +274,8 @@ export const MemberProfileStore = (props) => {
     });
   };
 
+  const saveMemberDetail = (values) => {};
+
   return (
     <MemberContext.Provider
       value={{
@@ -283,6 +286,7 @@ export const MemberProfileStore = (props) => {
         clearError,
         setFirebaseProfile,
         isModal,
+        saveMemberDetail,
       }}
     >
       {props.children}

@@ -24,7 +24,7 @@ const MemberFormPage = (props) => {
     <>
       {memberContext.state.isLogin ? (
         <>
-          {motocarDetailContext.motocarDetail.loading ? (
+          {memberContext.loading ? (
             <LoadingDetail />
           ) : (
             <MemberForm memberId={memberId} />

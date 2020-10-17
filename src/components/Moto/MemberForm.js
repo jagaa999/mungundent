@@ -1,13 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 
-//Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
-// import { Html5Entities } from "html-entities";
-// import toBoolean from "util/booleanFunction";
-
-import MotocarForm1General from "./MotocarForm1General";
-// import MotocarFormTech from "./MotocarFormTech";
-import MotocarFormThecar from "./MotocarFormThecar";
-import MotocarFormSpec from "./MotocarFormSpec";
+import MemberForm1General from "./MemberForm1General";
+import MemberFormContact from "./MemberFormContact";
+import MemberFormOther from "./MemberFormOther";
 
 import {
   Button,
@@ -21,7 +16,7 @@ import {
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
-import MotocarContext from "context/MotocarContext";
+import MemberContext from "context/MemberContext";
 
 const { Step } = Steps;
 
@@ -57,19 +52,11 @@ const tailFormItemLayout = {
 
 const MotocarForm = () => {
   const [form] = Form.useForm();
-  const motocarDetailContext = useContext(MotocarContext);
-  const motocarItem = motocarDetailContext.motocarDetail.motocarDetail;
+  const memberDetailContext = useContext(MemberContext);
+  const memberItem = memberDetailContext.state.memberDetail;
 
   const [currentStep, setCurrentStep] = useState(0);
 
-  const [mglFirmList, setMglFirmList] = useState({
-    loading: false,
-    mglFirmList: [],
-  });
-  const [mglMarkList, setMglMarkList] = useState({
-    loading: false,
-    mglMarkList: [],
-  });
   const [mglBodyList, setMglBodyList] = useState({
     loading: false,
     mglBodyList: [],
@@ -78,36 +65,12 @@ const MotocarForm = () => {
     loading: false,
     mglFuelList: [],
   });
-  const [techTranstypeList, setTechTranstypeList] = useState({
-    loading: false,
-    techTranstypeList: [],
-  });
-  const [techDriveList, setTechDriveList] = useState({
-    loading: false,
-    techDriveList: [],
-  });
   const [countryList, setCountryList] = useState({
     loading: false,
     countryList: [],
   });
 
-  // * axios-оор ERP-аас дуудна.
   const callFunctionAsync = async () => {
-    setMglFirmList({ ...mglFirmList, loading: true });
-    setMglFirmList({
-      mglFirmList: await loadDataview({
-        systemmetagroupid: "1602132741145717",
-        paging: {
-          sortColumnNames: {
-            mglfirm: {
-              sortType: "ASC", //эрэмбэлэх чиглэл
-            },
-          },
-        },
-      }),
-      loading: false,
-    });
-
     setMglBodyList({ ...mglBodyList, loading: true });
     setMglBodyList({
       mglBodyList: await loadDataview({
@@ -120,22 +83,6 @@ const MotocarForm = () => {
     setMglFuelList({
       mglFuelList: await loadDataview({
         systemmetagroupid: "1599557944149",
-      }),
-      loading: false,
-    });
-
-    setTechTranstypeList({ ...techTranstypeList, loading: true });
-    setTechTranstypeList({
-      techTranstypeList: await loadDataview({
-        systemmetagroupid: "1586958774748911",
-      }),
-      loading: false,
-    });
-
-    setTechDriveList({ ...techDriveList, loading: true });
-    setTechDriveList({
-      techDriveList: await loadDataview({
-        systemmetagroupid: "1586958538229243",
       }),
       loading: false,
     });
@@ -155,10 +102,10 @@ const MotocarForm = () => {
 
   const stepList = [
     {
-      title: "Ерөнхий",
+      title: "Гишүүн",
     },
     {
-      title: "Үзүүлэлт",
+      title: "Холбогдох",
     },
     {
       title: "Бусад",
@@ -181,26 +128,37 @@ const MotocarForm = () => {
     console.log("AFTER SUBMIT --------- ");
     console.table(values);
 
-    motocarDetailContext.saveMotocarDetail(values);
+    memberDetailContext.saveMemberDetail(values);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
-    // console.log("Failed:", errorInfo.errorFields);
     errorInfo.errorFields.map((errorItem) => {
       message.error(errorItem.errors[0]);
     });
   };
 
-  // const onFieldsChange = (changedFields, allFields) => {
-  //   console.log("onFieldsChange onFieldsChange ", changedFields);
-  // };
-  // const onValuesChange = (changedValues, allValues) => {
-  //   console.log("onValuesChange onValuesChange ", changedValues);
-  // };
-
-  // console.log("mglFuelList", mglFuelList);
-  // console.log(motocarItem);
+  // ID
+  // SYSTEM_USER_ID
+  // NAME
+  // REGISTRATION_NUMBER
+  // EMAIL
+  // PHONE_NUMBER1
+  // PHONE_NUMBER2
+  // PHONE_NUMBER3
+  // BIRTH_DATE
+  // GENDER
+  // CREATED_DATE
+  // CREATED_BY
+  // FIREBASE_UID
+  // FB_ID
+  // GOOGLE_ID
+  // PROVIDER_ID
+  // IMAGEMAIN
+  // IMAGEOTHER
+  // SPEC_KNOWLEDGE
+  // SPEC_USAGE
+  // SPEC_ATTENTION
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -213,56 +171,15 @@ const MotocarForm = () => {
     <Card
       className="gx-card_old "
       style={{ backgroundColor: "#f0f0f0" }}
-      title="Автомашины мэдээлэл"
+      title="Гишүүний мэдээлэл"
     >
       <Form
         {...formItemLayout}
         form={form}
-        name="motocarDetailForm"
+        name="memberDetailForm"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        // onFieldsChange={onFieldsChange}
-        // onValuesChange={onValuesChange}
-        initialValues={
-          // {
-          motocarItem
-          // motocarid: motocarItem ? motocarItem.motocarid : "",
-
-          // newstypeid: motocarItem ? motocarItem.newstypeid : null,
-          // vehicletype: "passenger",
-          // newssourceid: motocarItem ? motocarItem.newssourceid : null,
-          // isactive: true,
-          // isfeatured: motocarItem ? toBoolean(motocarItem.isfeatured) : false,
-          // iscomment: motocarItem ? toBoolean(motocarItem.iscomment) : true,
-          // driverPosId: false,
-
-          // body2door: motocarItem ? motocarItem.body2door : null,
-          // body2seat: motocarItem ? motocarItem.body2seat : null,
-          // body2vinnumber: motocarItem ? motocarItem.body2vinnumber : null,
-          // carcolorinside: "",
-          // carcoloroutside: "",
-          // carcountryimport: "",
-          // carmilageimport: "",
-          // carmilagenow: "",
-          // caryearimport: "",
-          // caryearmanufactured: "",
-          // description: "",
-          // driveid: "",
-          // driverposid: "",
-          // id: "",
-          // imagemain: "",
-          // imageother: "",
-          // isactive: "",
-          // mglbody: "",
-          // mglcountyorigin: "",
-          // mglengine2disp: motocarItem ? motocarItem.mglengine2disp : null,
-          // mglfirm: motocarItem ? motocarItem.mglfirm : "",
-          // mglmark: motocarItem ? motocarItem.mglmark : "",
-          // mglfuel: "",
-          // mgllicensenumberfull: "",
-          // transtypeid: "",
-          // }
-        }
+        initialValues={memberItem}
         scrollToFirstError={true}
         colon={false}
       >
@@ -279,34 +196,15 @@ const MotocarForm = () => {
         </Steps>
         <div className="gx-mt-5">
           <div className={currentStep !== 0 ? "gx-d-none" : ""}>
-            <MotocarForm1General
-              form={form}
-              mglFirmList={mglFirmList}
-              setMglFirmList={setMglFirmList}
-              mglMarkList={mglMarkList}
-              setMglMarkList={setMglMarkList}
-              mglBodyList={mglBodyList}
-              mglFuelList={mglFuelList}
-            />
+            <MemberForm1General form={form} />
           </div>
           <div className={currentStep !== 1 ? "gx-d-none" : ""}>
-            <MotocarFormThecar
-              form={form}
-              techTranstypeList={techTranstypeList}
-              techDriveList={techDriveList}
-              countryList={countryList}
-            />
+            <MemberFormContact form={form} />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
-            <MotocarFormSpec
-              form={form}
-              imagemainFileList={motocarItem.imagemainFileList || []}
-              imageotherFileList={motocarItem.imageotherFileList || []}
-            />
+            <MemberFormOther form={form} />
           </div>
-          <div className={currentStep !== 3 ? "gx-d-none" : ""}>
-            {/* <MotocarFormTech form={form} /> */}
-          </div>
+          <div className={currentStep !== 3 ? "gx-d-none" : ""}></div>
         </div>
 
         <Divider className="gx-my-5" />

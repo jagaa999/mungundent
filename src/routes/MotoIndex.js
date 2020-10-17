@@ -12,6 +12,7 @@ import Documents from "./documents/index";
 import { NewsListStore } from "../context/NewsListContext";
 import { NewsDetailStore } from "../context/NewsDetailContext";
 import { CarCatalogListStore } from "../context/CarCatalogListContext";
+import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
 import { ProductListStore } from "../context/ProductListContext";
 import { MotocarStore } from "../context/MotocarContext";
@@ -58,6 +59,10 @@ const MemberList = asyncComponent(() => {
 
 const MemberDetail = asyncComponent(() => {
   return import("./moto/member/memberDetail");
+});
+
+const MemberForm = asyncComponent(() => {
+  return import("./moto/member/memberFormPage");
 });
 
 const ProductList = asyncComponent(() => {
@@ -173,10 +178,27 @@ const App = ({ match }) => (
       #     # ####### #     # ######  ####### #     # 
       */}
 
+      <Route
+        path={[
+          "/member/edit/:memberId",
+          "/member/:memberId/edit",
+          "/member/insert",
+          "/member/add",
+        ]}
+      >
+        <MemberProfileStore>
+          <MemberForm />
+        </MemberProfileStore>
+      </Route>
 
-
-
-      <Route path={`${match.url}member/:memberid`}>
+      <Route
+        path={[
+          "/member/:memberId",
+          "/member/:memberId/detail",
+          "/member/detail/:memberId",
+          "/memberlist/:memberId",
+        ]}
+      >
         <MemberDetail />
       </Route>
       <Route path={["/member", "/memberlist"]}>
