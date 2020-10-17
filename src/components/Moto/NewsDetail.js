@@ -8,63 +8,19 @@ import Output from "editorjs-react-renderer";
 import toBoolean from "util/booleanFunction";
 import { defaultSrc } from "util/config";
 
-import {
-  Button,
-  Card,
-  Badge,
-  Tooltip,
-  Row,
-  Col,
-  Tag,
-  Dropdown,
-  Menu,
-  Checkbox,
-  Switch,
-  message,
-  Divider,
-  Spin,
-  Typography,
-  PageHeader,
-  Statistic,
-  Descriptions,
-  Tabs,
-  Affix,
-} from "antd";
-
-import {
-  WarningTwoTone,
-  SearchOutlined,
-  DownOutlined,
-  UserOutlined,
-  CheckCircleOutlined,
-  SyncOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  MinusCircleOutlined,
-  EllipsisOutlined,
-} from "@ant-design/icons";
+import { Card, Row, Col, Typography, Tabs } from "antd";
 
 import LogBox from "./LogBox";
 import CommentBox from "./CommentBox";
-import NewsButtonPanel from "./Button/NewsButtonPanel";
 import NewsDetailHeader from "./NewsDetailHeader";
 import NewsHeaderButton from "./Button/NewsHeaderButton";
-import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 
 import LogsContext from "context/LogsContext";
-import MemberCard02 from "./MemberCard02";
 import NewsDetailContext from "context/NewsDetailContext";
-
-const { Paragraph } = Typography;
-const { TabPane } = Tabs;
 
 const NewsDetailComponent = () => {
   const newsDetailContext = useContext(NewsDetailContext);
-  const logsContext = useContext(LogsContext);
-
   const newsItem = newsDetailContext.state.newsDetail;
-
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   const member = {
@@ -73,7 +29,6 @@ const NewsDetailComponent = () => {
     photo: newsItem.userprofilephoto,
     name: newsItem.userfullename,
     positionname: "Гишүүнчлэл тодорхойгүй",
-    // publisherId: newsItem.userpublisherid,
     uid: newsItem.userfirebaseuid,
   };
 
@@ -148,15 +103,17 @@ const NewsDetailComponent = () => {
   console.log("newsItem", newsItem);
 
   if (Object.keys(newsItem).length !== 0) {
-    let myMainImage = "";
-    try {
-      // myMainImage = newsItem.imagemain
-      //   .split("storage")
-      //   .join("https://www.moto.mn/storage");
-      myMainImage = newsItem.imagemain;
-    } catch (e) {
-      myMainImage = "";
-    }
+    // let myMainImage = "";
+    // try {
+    //   myMainImage = newsItem.imagemain;
+    // } catch (e) {
+    //   myMainImage = "";
+    // }
+
+    newsItem.imagemain =
+      newsItem.imagemain === ""
+        ? "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+        : newsItem.imagemain;
 
     return (
       <div>
@@ -175,15 +132,15 @@ const NewsDetailComponent = () => {
                 cover={
                   // <img
                   //   alt={newsItem.title}
-                  //   src={myMainImage}
+                  //   src={newsItem.imagemain}
                   //   onError={defaultSrc}
                   // />
                   <Image
                     cloudName="motomn"
-                    publicId={myMainImage
+                    publicId={newsItem.imagemain
                       .slice(
-                        myMainImage.indexOf("upload/") + 7,
-                        myMainImage.length
+                        newsItem.imagemain.indexOf("upload/") + 7,
+                        newsItem.imagemain.length
                       )
                       .split(".")
                       .shift()}
