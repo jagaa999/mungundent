@@ -1,5 +1,8 @@
 import React, { memo, useEffect, useContext } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import ReactGA from "react-ga";
+import TagManager from "react-gtm-module";
+
 import { ConfigProvider } from "antd";
 import { IntlProvider } from "react-intl";
 
@@ -9,6 +12,15 @@ import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 
 import { MemberItemsStore } from "context/MemberItemsContext";
+
+function initializeReactGA() {
+  ReactGA.initialize("UA-19432730-1");
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
+
+const tagManagerArgs = {
+  gtmId: "GTM-NNHQ4BB",
+};
 
 const MotoIndexApp = (props) => {
   const locale = {
@@ -20,6 +32,9 @@ const MotoIndexApp = (props) => {
 
   const match = useRouteMatch();
   const currentAppLocale = AppLocale[locale.locale];
+
+  initializeReactGA();
+  TagManager.initialize(tagManagerArgs);
 
   return (
     <ConfigProvider locale={currentAppLocale.antd}>
