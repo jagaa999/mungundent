@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Carousel, Button, Card, Col, Row, Space, Tooltip, Avatar } from "antd";
@@ -9,9 +9,19 @@ import OnlyAvatar from "components/Moto/Member/onlyAvatar";
 
 // motoMemberLIST_MAINLIST
 
-const MemberBox = (props) => {
-  // console.log(props);
+const MemberBox = ({ newMembers }) => {
+  // console.log("newMembersnewMembers", newMembers);
   const memberContext = useContext(MemberContext);
+
+  const [myNewMembers, setMyNewMembers] = useState([]);
+  const [myNewMemberTotal, setMyNewMemberTotal] = useState(0);
+
+  if (newMembers && newMembers.paging) {
+    setMyNewMemberTotal(newMembers.paging.totalcount);
+    delete newMembers["aggregatecolumns"];
+    delete newMembers["paging"];
+    setMyNewMembers(Object.values(newMembers));
+  }
 
   const memberInfo = (
     <Card
@@ -84,7 +94,7 @@ const MemberBox = (props) => {
       <i className="icon icon-user-o gx-fs-xlxl" />
 
       <h1 className="gx-fs-xxxl gx-font-weight-semi-bold gx-mb-3 gx-mb-sm-4">
-        1,702 хүн
+        {myNewMemberTotal} хүн
       </h1>
       <p>Мото гишүүн болжээ.</p>
       <p>
@@ -95,7 +105,7 @@ const MemberBox = (props) => {
       <div className="gx-mt-5">
         <h5 className="gx-text-warning">Шинэхэн гишүүд</h5>
 
-        {props.newMembers.map((member, index) => (
+        {myNewMembers.map((member, index) => (
           <OnlyAvatar key={index} index={index} member={member} />
         ))}
       </div>

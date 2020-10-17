@@ -25,7 +25,7 @@ const MemberListType1 = () => {
     memberListContext.loadMemberList();
   }, []);
 
-  console.log("memberListContext.memberList", memberListContext.memberList);
+  // console.log("memberListContext.memberList", memberListContext.memberList);
 
   function handleChange(value) {
     // console.log(`selected ${value}`);

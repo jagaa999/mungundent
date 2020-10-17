@@ -9,12 +9,12 @@ import HomeNewsItems from "./HomeNewsItems";
 
 import MemberBox from "./MemberBox";
 import FacebookGadget from "./FacebookGadget";
-import { LoadProcess, loadDataview } from "util/axiosFunction";
+import { LoadProcess, loadDataview, loadDVObject } from "util/axiosFunction";
 
-const NewsListPage = () => {
+const HomePage = () => {
   const [newsSponsorItems, setNewsSponsorItems] = useState([]);
   const [newsItems, setNewsItems] = useState([]);
-  const [newMembers, setNewMembers] = useState([]);
+  const [newMembers, setNewMembers] = useState({});
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
   const callAllDataAsync = async () => {
@@ -65,7 +65,7 @@ const NewsListPage = () => {
     );
 
     setNewMembers(
-      await loadDataview({
+      await loadDVObject({
         systemmetagroupid: "1598934954642",
         criteria: {},
         paging: {
@@ -133,4 +133,4 @@ const NewsListPage = () => {
   );
 };
 
-export default NewsListPage;
+export default HomePage;

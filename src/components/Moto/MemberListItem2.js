@@ -23,11 +23,11 @@ const IconFont = createFromIconfontCN({
 const { Meta } = Card;
 
 const MemberListItem = ({ memberItem, isSpecial }) => {
-  console.log("Манай Гишүүн - ", memberItem);
+  // console.log("Манай Гишүүн - ", memberItem);
 
   const WhatProvider = (props) => {
     const providerId = props.providerId;
-    console.log(providerId);
+    // console.log(providerId);
 
     if (providerId !== "") {
       switch (providerId) {

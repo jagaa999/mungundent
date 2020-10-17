@@ -172,6 +172,10 @@ const App = ({ match }) => (
       #     # #       #     # #     # #       #    #  
       #     # ####### #     # ######  ####### #     # 
       */}
+
+
+
+
       <Route path={`${match.url}member/:memberid`}>
         <MemberDetail />
       </Route>

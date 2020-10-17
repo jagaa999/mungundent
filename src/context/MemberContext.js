@@ -63,6 +63,7 @@ export const MemberProfileStore = (props) => {
         JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
       isLogin: localStorage.getItem("motoMemberUID") ? true : false,
       isModal: false,
+      memberDetail: [],
       loading: false,
       error: null,
     });
@@ -180,8 +181,7 @@ export const MemberProfileStore = (props) => {
   //  ####### #     # #           #####  #     # ####### #     #    #    #######
 
   const createMemberCloudWithFirebase = () => {
-    console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
-
+    // console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
     setState({ ...state, loading: true });
 
     let myFacebookData = {};
@@ -222,25 +222,14 @@ export const MemberProfileStore = (props) => {
       },
     };
 
-    console.log("ПАРАМЕТР ҮҮСГЭСНИЙ ДАРАА");
-    console.log("state.memberFirebaseProfile", state.memberFirebaseProfile);
-    // console.log(
-    //   "myParamsCreateMemberCloudWithFirebase",
-    //   myParamsCreateMemberCloudWithFirebase
-    // );
+    // console.log("ПАРАМЕТР ҮҮСГЭСНИЙ ДАРАА");
+    // console.log("state.memberFirebaseProfile", state.memberFirebaseProfile);
 
     axios
       .post("", myParamsCreateMemberCloudWithFirebase)
       .then((response) => {
-        console.log("createMemberCloudWithFirebase response:--> ", response);
-
+        // console.log("createMemberCloudWithFirebase response:--> ", response);
         loginMemberCloud(response.data.response.result.firebaseuid);
-
-        // setState({
-        //   ...state,
-        //   memberCloudProfile: response.data.response.result,
-        //   loading: false,
-        // });
       })
       .catch((error) => {
         setState({ ...state, loading: false, error });

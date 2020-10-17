@@ -68,7 +68,7 @@ export const MemberListStore = (props) => {
     axios
       .post("", myParamsMemberList)
       .then((response) => {
-        console.log("response---------", response);
+        // console.log("response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
