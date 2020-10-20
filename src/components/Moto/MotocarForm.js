@@ -200,7 +200,7 @@ const MotocarForm = () => {
   // };
 
   // console.log("mglFuelList", mglFuelList);
-  // console.log(motocarItem);
+  console.log(motocarItem);
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #

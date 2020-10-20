@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 
 import MemberForm1General from "./MemberForm1General";
 import MemberFormContact from "./MemberFormContact";
+import MemberFormAddress from "./MemberFormAddress";
 import MemberFormOther from "./MemberFormOther";
 
 import {
@@ -50,10 +51,10 @@ const tailFormItemLayout = {
 // #    # #    # #   ## #    #   #
 //  ####   ####  #    #  ####    #
 
-const MotocarForm = () => {
+const MotocarForm = (props) => {
   const [form] = Form.useForm();
   const memberDetailContext = useContext(MemberContext);
-  const memberItem = memberDetailContext.state.memberDetail;
+  const memberItem = memberDetailContext.memberDetail.memberDetail;
 
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -108,6 +109,9 @@ const MotocarForm = () => {
       title: "Холбогдох",
     },
     {
+      title: "Хаяг",
+    },
+    {
       title: "Бусад",
     },
   ];
@@ -137,6 +141,8 @@ const MotocarForm = () => {
       message.error(errorItem.errors[0]);
     });
   };
+
+  console.log("memberItem FORM", memberItem);
 
   // ID
   // SYSTEM_USER_ID
@@ -202,9 +208,11 @@ const MotocarForm = () => {
             <MemberFormContact form={form} />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
+            <MemberFormAddress form={form} />
+          </div>
+          <div className={currentStep !== 3 ? "gx-d-none" : ""}>
             <MemberFormOther form={form} />
           </div>
-          <div className={currentStep !== 3 ? "gx-d-none" : ""}></div>
         </div>
 
         <Divider className="gx-my-5" />

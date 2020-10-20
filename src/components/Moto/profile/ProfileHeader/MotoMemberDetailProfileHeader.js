@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+
 import { Avatar } from "antd";
 
 import MemberContext from "context/MemberContext";
 
-const ProfileHeader = () => {
+const MotoMemberDetailProfileHeader = ({ myMemberDetail }) => {
   const memberContext = useContext(MemberContext);
-  const myProfile = memberContext.state.memberProfile;
+  const myProfile = memberContext.state;
+  const myCloudProfile = memberContext.state.memberCloudProfile;
+  const myFirebaseProfile = memberContext.state.memberFirebaseProfile;
 
-  // console.log("ОРЖ ИРСЭН ГИШҮҮНИЙ МЭДЭЭЛЭЛ", props);
+  // console.log("ОРЖ ИРСЭН ГИШҮҮНИЙ МЭДЭЭЛЭЛ", myProfile);
+  // console.log("myCloudProfile", myCloudProfile);
   return (
     <div className="gx-profile-banner">
       <div className="gx-profile-container">
@@ -17,18 +22,20 @@ const ProfileHeader = () => {
               <Avatar
                 className="gx-size-90"
                 alt="..."
-                src={"https://via.placeholder.com/150"}
+                src={myFirebaseProfile.photoURL}
               />
             </div>
             <div className="gx-profile-banner-avatar-info">
               <h2 className="gx-mb-2 gx-mb-sm-3 gx-fs-xxl gx-font-weight-light">
-                {myProfile.personname} ({myProfile.username}) (
-                {myProfile.customerid})
+                {myCloudProfile.personname}
+                {" ("}
+                {myCloudProfile.positionname !== ""
+                  ? myCloudProfile.positionname
+                  : "Гишүүн"}
+                )
               </h2>
               <p className="gx-mb-0 gx-fs-lg">
-                {myProfile.positionname !== ""
-                  ? myProfile.positionname
-                  : "Гишүүн"}
+                ({myCloudProfile.username}) ({myCloudProfile.id})
               </p>
             </div>
           </div>
@@ -77,11 +84,14 @@ const ProfileHeader = () => {
               </li>
             </ul>
           </div>
+
           <span className="gx-link gx-profile-setting">
-            <i className="icon icon-setting gx-fs-lg gx-mr-2 gx-mr-sm-3 gx-d-inline-flex gx-vertical-align-middle" />
-            <span className="gx-d-inline-flex gx-vertical-align-middle gx-ml-1 gx-ml-sm-0">
-              Setting
-            </span>
+            <Link to={"/member/edit/" + myMemberDetail.systemuserid}>
+              <i className="icon icon-setting gx-fs-lg gx-mr-2 gx-mr-sm-3 gx-d-inline-flex gx-vertical-align-middle" />
+              <span className="gx-d-inline-flex gx-vertical-align-middle gx-ml-1 gx-ml-sm-0">
+                Засах
+              </span>
+            </Link>
           </span>
         </div>
       </div>
@@ -89,4 +99,4 @@ const ProfileHeader = () => {
   );
 };
 
-export default ProfileHeader;
+export default MotoMemberDetailProfileHeader;

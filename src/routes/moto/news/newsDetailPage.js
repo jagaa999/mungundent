@@ -38,6 +38,7 @@ const NewsDetailPage = (props) => {
     <>
       <Helmet>
         <title>{prepareTitle(newsItem.title)}</title>
+        <meta property="fb:app_id" content="186294318100220" />
         <meta name="description" content={newsItem.description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={window.location.href} />

@@ -24,16 +24,16 @@ const MemberFormContact = ({ form }) => {
       <Form.Item name="email" hasFeedback label="Имэйл">
         <Input />
       </Form.Item>
-      <Form.Item name="phoneNumber1" hasFeedback label="Утас 1">
+      <Form.Item name="phonenumber1" hasFeedback label="Утас 1">
         <Input />
       </Form.Item>
-      <Form.Item name="phoneNumber2" hasFeedback label="Утас 2">
+      <Form.Item name="phonenumber2" hasFeedback label="Утас 2">
         <Input />
       </Form.Item>
-      <Form.Item name="phoneNumber3" hasFeedback label="Утас 3">
+      <Form.Item name="phonenumber3" hasFeedback label="Утас 3">
         <Input />
       </Form.Item>
-      <Form.Item name="fbId" hasFeedback label="fbId">
+      {/* <Form.Item name="fbId" hasFeedback label="fbId">
         <Input />
       </Form.Item>
       <Form.Item name="googleId" hasFeedback label="googleId">
@@ -42,7 +42,7 @@ const MemberFormContact = ({ form }) => {
 
       <Form.Item name="providerId" hasFeedback label="providerId">
         <Input />
-      </Form.Item>
+      </Form.Item> */}
     </>
   );
 };

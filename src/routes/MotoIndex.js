@@ -58,7 +58,7 @@ const MemberList = asyncComponent(() => {
 });
 
 const MemberDetail = asyncComponent(() => {
-  return import("./moto/member/memberDetail");
+  return import("./moto/member/memberDetailPage");
 });
 
 const MemberForm = asyncComponent(() => {

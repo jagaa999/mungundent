@@ -19,57 +19,47 @@ const { Option, OptGroup } = Select;
 const { TextArea } = Input;
 
 const MemberForm1General = ({ form }) => {
-  // ######  ####### ####### #     # ######  #     #
-  // #     # #          #    #     # #     # ##    #
-  // #     # #          #    #     # #     # # #   #
-  // ######  #####      #    #     # ######  #  #  #
-  // #   #   #          #    #     # #   #   #   # #
-  // #    #  #          #    #     # #    #  #    ##
-  // #     # #######    #     #####  #     # #     #
-
-  // ID
-  // SYSTEM_USER_ID
-  // NAME
-  // REGISTRATION_NUMBER
-  // EMAIL
-  // PHONE_NUMBER1
-  // PHONE_NUMBER2
-  // PHONE_NUMBER3
-  // BIRTH_DATE
-  // GENDER
-  // CREATED_DATE
-  // CREATED_BY
-  // FIREBASE_UID
-  // FB_ID
-  // GOOGLE_ID
-  // PROVIDER_ID
-  // IMAGEMAIN
-  // IMAGEOTHER
-  // SPEC_KNOWLEDGE
-  // SPEC_USAGE
-  // SPEC_ATTENTION
-
-  //  id
-  //  systemUserId
-  //  name
-  //  registrationNumber
-  //  email
-  //  phoneNumber1
-  //  phoneNumber2
-  //  phoneNumber3
-  //  birthDate
-  //  gender
-  //  createdDate
-  //  createdBy
-  //  firebaseUid
-  //  fbId
-  //  googleId
-  //  providerId
-  //  imagemain
-  //  imageother
-  //  specKnowledge
-  //  specUsage
-  //  specAttention
+  // address
+  // // birthdate
+  // cityid
+  // createdby
+  // createddate
+  // description
+  // districtid
+  //! email
+  // fbid
+  // firebaseuid
+  // // gender
+  // googleid
+  //? homecity
+  //? homedistrict
+  //? homestreet
+  // id
+  // // imagemain
+  // // imageother
+  // line1
+  // line2
+  // line3
+  // name
+  //! phonenumber1
+  //! phonenumber2
+  //! phonenumber3
+  // providerid
+  // registrationnumber
+  // specattention
+  // specknowledge
+  // specusage
+  // streetid
+  // systemuserid
+  //* typename1
+  //* typename2
+  //* typename3
+  //* typename4
+  //* typename5
+  //* typename6
+  //? workcity
+  //? workdistrict
+  //? workstreet
 
   return (
     <>
@@ -77,20 +67,16 @@ const MemberForm1General = ({ form }) => {
         <Input disabled />
       </Form.Item>
 
-      <Form.Item name="systemUserId" hasFeedback label="Системийн дугаар">
+      <Form.Item name="systemuserid" hasFeedback label="Системийн дугаар">
         <Input />
       </Form.Item>
-      <Form.Item name="name" hasFeedback label="Гишүүний нэр">
+      <Form.Item name="name" hasFeedback label="Таны нэр">
         <Input />
       </Form.Item>
-      <Form.Item
-        name="registrationNumber"
-        hasFeedback
-        label="Регистрийн дугаар"
-      >
+      <Form.Item name="registrationnumber" hasFeedback label="Регистр">
         <Input />
       </Form.Item>
-      <Form.Item name="birthDate" hasFeedback label="Төрсөн огноо">
+      <Form.Item name="birthdate" hasFeedback label="Төрсөн огноо">
         <Input />
       </Form.Item>
       <Form.Item name="gender" hasFeedback label="Хүйс">

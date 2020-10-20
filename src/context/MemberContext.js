@@ -10,7 +10,8 @@ import {
 } from "firebase/firebase";
 
 import axios from "../util/axiosConfig";
-import { Button, Card, Modal } from "antd";
+import { message } from "antd";
+import moment from "moment";
 
 const MemberContext = React.createContext();
 
@@ -40,7 +41,23 @@ export const MemberProfileStore = (props) => {
     error: null,
   };
 
+  const initialStateMemberDetail = {
+    loadParams: {
+      systemmetagroupid: "1603162864242786",
+      showquery: "0",
+      ignorepermission: "1",
+      paging: {
+        pageSize: "1",
+        offset: "1",
+      },
+    },
+    memberDetail: [],
+    loading: false,
+    error: null,
+  };
+
   const [state, setState] = useState(initialStateMemberProfile);
+  const [memberDetail, setMemberDetail] = useState(initialStateMemberDetail);
 
   //   #####  #       #######    #    ######
   //  #     # #       #         # #   #     #
@@ -64,7 +81,6 @@ export const MemberProfileStore = (props) => {
         JSON.parse(localStorage.getItem("motoMemberProfile")) || {},
       isLogin: localStorage.getItem("motoMemberUID") ? true : false,
       isModal: false,
-      memberDetail: [],
       loading: false,
       error: null,
     });
@@ -274,19 +290,98 @@ export const MemberProfileStore = (props) => {
     });
   };
 
+  const loadMemberDetail = (id = 0) => {
+    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
+
+    const myParamsMemberDetail = {
+      request: {
+        username: state.memberUID,
+        password: "89",
+        command: "PL_MDVIEW_004",
+        parameters: {
+          ...memberDetail.loadParams,
+          criteria: {
+            systemuserid: {
+              0: {
+                operator: "=",
+                operand: id,
+              },
+            },
+          },
+        },
+      },
+    };
+
+    console.log("myParamsMemberDetail", myParamsMemberDetail);
+    setMemberDetail(initialStateMemberDetail);
+    setMemberDetail({ ...memberDetail, loading: true });
+
+    axios
+      .post("", myParamsMemberDetail)
+      .then((response) => {
+        // console.log("MEMBER DETAIL RESPONSE------------> ", response);
+        const myArray = response.data.response.result[0];
+        // console.log("MEMBER DETAIL myArray------------> ", myArray);
+        // myArray.isactive = myArray.isactive === "1" ? true : false;
+        // myArray.imagemainFileList =
+        //   myArray.imagemain !== ""
+        //     ? [
+        //         {
+        //           uid: "-1",
+        //           name: "Тодорхойгүй",
+        //           status: "done",
+        //           url: myArray.imagemain || "",
+        //           thumbUrl: myArray.imagemain || "",
+        //           response: { url: myArray.imagemain || "" },
+        //         },
+        //       ]
+        //     : [];
+        // myArray.imageotherFileList =
+        //   myArray.imageother !== ""
+        //     ? JSON.parse(myArray.imageother).map((item, index) => ({
+        //         uid: index - 1,
+        //         name: item.replace(/^.*[\\\/]/, ""),
+        //         status: "done",
+        //         url: item || "",
+        //         thumbUrl: item || "",
+        //         response: { url: item || "" },
+        //       }))
+        //     : [];
+
+        // console.log("MEMBER DETAIL------------> ", myArray);
+
+        setMemberDetail({
+          ...memberDetail,
+          loading: false,
+          memberDetail: myArray,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        message.error(error.toString(), 7);
+      });
+  };
+
+  const clearMemberDetail = () => {
+    setMemberDetail(initialStateMemberDetail);
+  };
+
   const saveMemberDetail = (values) => {};
 
   return (
     <MemberContext.Provider
       value={{
         state,
+        memberDetail,
         // loadMemberProfile,
         loginMemberCloud,
         clearMemberProfile,
         clearError,
         setFirebaseProfile,
         isModal,
+        loadMemberDetail,
         saveMemberDetail,
+        clearMemberDetail,
       }}
     >
       {props.children}

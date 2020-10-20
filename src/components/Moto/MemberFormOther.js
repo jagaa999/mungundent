@@ -11,13 +11,22 @@ const { TextArea } = Input;
 const MemberFormOther = ({ form }) => {
   return (
     <>
-      <Form.Item name="specKnowledge" hasFeedback label="Мэдлэг">
+      <Form.Item name="typename1" hasFeedback label="Авто анхаарал">
         <Input />
       </Form.Item>
-      <Form.Item name="specUsage" hasFeedback label="Хэрэглээ">
+      <Form.Item name="typename2" hasFeedback label="Авто мэдлэг">
         <Input />
       </Form.Item>
-      <Form.Item name="specAttention" hasFeedback label="Анхаарал">
+      <Form.Item name="typename3" hasFeedback label="Авто хэрэглээ">
+        <Input />
+      </Form.Item>
+      <Form.Item name="typename4" hasFeedback label="Таашаал">
+        <Input />
+      </Form.Item>
+      <Form.Item name="typename5" hasFeedback label="Ажилладаг салбар">
+        <Input />
+      </Form.Item>
+      <Form.Item name="typename6" hasFeedback label="Сонирхол, Хобби">
         <Input />
       </Form.Item>
     </>
