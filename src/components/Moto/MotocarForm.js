@@ -223,46 +223,7 @@ const MotocarForm = () => {
         onFinishFailed={onFinishFailed}
         // onFieldsChange={onFieldsChange}
         // onValuesChange={onValuesChange}
-        initialValues={
-          // {
-          motocarItem
-          // motocarid: motocarItem ? motocarItem.motocarid : "",
-
-          // newstypeid: motocarItem ? motocarItem.newstypeid : null,
-          // vehicletype: "passenger",
-          // newssourceid: motocarItem ? motocarItem.newssourceid : null,
-          // isactive: true,
-          // isfeatured: motocarItem ? toBoolean(motocarItem.isfeatured) : false,
-          // iscomment: motocarItem ? toBoolean(motocarItem.iscomment) : true,
-          // driverPosId: false,
-
-          // body2door: motocarItem ? motocarItem.body2door : null,
-          // body2seat: motocarItem ? motocarItem.body2seat : null,
-          // body2vinnumber: motocarItem ? motocarItem.body2vinnumber : null,
-          // carcolorinside: "",
-          // carcoloroutside: "",
-          // carcountryimport: "",
-          // carmilageimport: "",
-          // carmilagenow: "",
-          // caryearimport: "",
-          // caryearmanufactured: "",
-          // description: "",
-          // driveid: "",
-          // driverposid: "",
-          // id: "",
-          // imagemain: "",
-          // imageother: "",
-          // isactive: "",
-          // mglbody: "",
-          // mglcountyorigin: "",
-          // mglengine2disp: motocarItem ? motocarItem.mglengine2disp : null,
-          // mglfirm: motocarItem ? motocarItem.mglfirm : "",
-          // mglmark: motocarItem ? motocarItem.mglmark : "",
-          // mglfuel: "",
-          // mgllicensenumberfull: "",
-          // transtypeid: "",
-          // }
-        }
+        initialValues={motocarItem}
         scrollToFirstError={true}
         colon={false}
       >

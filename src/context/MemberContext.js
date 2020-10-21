@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
+
 import { isEmpty } from "lodash";
 import {
   firebaseAuth,
@@ -11,17 +12,10 @@ import {
 
 import axios from "../util/axiosConfig";
 import { message } from "antd";
+import toBoolean from "util/booleanFunction";
 import moment from "moment";
 
 const MemberContext = React.createContext();
-
-//Moto Guest
-// Firebase UID: d14BuUMTjSRnLbrFXDOXM80fNfa2
-// memberCloudUserId: "1598934946965"
-// memberCloudUserSysId: "1598934946963"
-// displayName: "Moto Guest (Зочин)"
-// email: "guest@moto.mn"
-// photoURL: "https://lh3.googleusercontent.com/a-/AOh14GhRrqaweP4rM3fgr64JCbHhoVlqyWx6nZlLpdAjzkHnDQ1iYvNzDaDT-7N8rqUjjGMK22wslI8nXdeMfIqxM4jbHo-D1g4rcGIhSTWh0AGALgHoi4HV4kQkB-SY11_IcXyJ5_-8OBdaSBO9QKYUBaPW0IrQ47KgCbfR5VAOoe0LQSDpuugFNJAFkYH8vGWpoHQUvFZinesbNK2ddSuoIUnlTYlKivdiA5zkDR-mI5fW2VQNo4Eq12iWsNqNlpLeGiXgn1F7iK5HDH3tEGoTZ5mwq4LQIZbavtKwKnGiB3XKExPke6d2b-qwBjYm_RpUb8diFbJr5AJUraQgipyBA2mJSqa6CWmKiCe2mXrElSDfn80aEagJllW_7r0r14k1TS3BRHN2rjn-umTJEPQwLIWHWCSZoVurI1X8KdLTuH1C-x_Dp9I-PssIzYS4NtuqmlqlEktaTvlioaOj3d3yiDRIe8_e9v_03GPyJWHpuj9Uuf674d6o5d4eM8ASz8iQaLtPJmiLDjSDgJM0DxGk2swmf6Iqc35dPlgMQyao8RsPYvqvFQje_YuABd7cJ-33B7BcyCPSGQrFFSA5bqxee8AS9MMnvlvJcduwaCwZjYpPhY2jOYF0CdgajrsfWmOflOKg2BUCwyowa3XSlLCtF6_Yp2UKCl_MNHuQje1CTD8OQrZRCSFKR9IHxYLYNEQsx5etp5RpPslqxZMeQRoABhUPpHDq_ONQ8U4EZiKNPWyQTDfpEIvoNysUWKMmohaQuJpBJQ"
 
 export const MemberProfileStore = (props) => {
   const history = useHistory();
@@ -290,6 +284,14 @@ export const MemberProfileStore = (props) => {
     });
   };
 
+  //  #       #######    #    ######     ######  ####### #######    #    ### #
+  //  #       #     #   # #   #     #    #     # #          #      # #    #  #
+  //  #       #     #  #   #  #     #    #     # #          #     #   #   #  #
+  //  #       #     # #     # #     #    #     # #####      #    #     #  #  #
+  //  #       #     # ####### #     #    #     # #          #    #######  #  #
+  //  #       #     # #     # #     #    #     # #          #    #     #  #  #
+  //  ####### ####### #     # ######     ######  #######    #    #     # ### #######
+
   const loadMemberDetail = (id = 0) => {
     // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
 
@@ -366,7 +368,89 @@ export const MemberProfileStore = (props) => {
     setMemberDetail(initialStateMemberDetail);
   };
 
-  const saveMemberDetail = (values) => {};
+  //  #####     #    #     # #######    ######  ####### #######    #    ### #
+  // #     #   # #   #     # #          #     # #          #      # #    #  #
+  // #        #   #  #     # #          #     # #          #     #   #   #  #
+  //  #####  #     # #     # #####      #     # #####      #    #     #  #  #
+  //       # #######  #   #  #          #     # #          #    #######  #  #
+  // #     # #     #   # #   #          #     # #          #    #     #  #  #
+  //  #####  #     #    #    #######    ######  #######    #    #     # ### #######
+
+  const saveMemberDetail = (values) => {
+    console.log("saveMemberDetail дотор орж ирсэн values--", values);
+    // const mytitle = `${moment(values.caryearmanufactured).format("YYYY")} ${
+    //   values.mglfirm
+    // } ${values.mglmark}`;
+
+    // const myimagemain =
+    //   values.imagemain &&
+    //   values.imagemain.fileList &&
+    //   values.imagemain.fileList.length > 0
+    //     ? values.imagemain.fileList[0].response.url
+    //     : "";
+    // const myimageother =
+    //   values.imageother &&
+    //   values.imageother.fileList &&
+    //   values.imageother.fileList.length > 0
+    //     ? JSON.stringify(
+    //         values.imageother.fileList.map((item, index) => item.response.url)
+    //       )
+    //     : "";
+
+    const myParamsMemberDetail = {
+      request: {
+        username: state.memberUID,
+        password: "89",
+        command: "MOTO_MEMBER_DETAIL_DV_002",
+        parameters: {
+          ...values,
+          id: values.id || "",
+          // title: mytitle,
+          isactive: toBoolean(values.isactive) ? "1" : "0",
+          // mgldrivepos: toBoolean(values.mgldrivepos) ? "1" : "2",
+          // caryearimport: moment(values.caryearimport).format(
+          //   "YYYY-MM-DD HH:mm:ss"
+          // ),
+          // caryearmanufactured: moment(values.caryearmanufactured).format(
+          //   "YYYY-MM-DD HH:mm:ss"
+          // ),
+          // imagemain: myimagemain,
+          // imageother: myimageother,
+
+          createdby: state.memberCloudUserSysId,
+          modifiedby: state.memberCloudUserSysId,
+          ownerid: state.memberCloudUserSysId,
+        },
+      },
+    };
+
+    console.table(myParamsMemberDetail.request.parameters);
+
+    // return;
+
+    axios
+      .post("", myParamsMemberDetail)
+      .then((response) => {
+        console.log("Save MemberDetail:   ", response);
+
+        const myData = response.data.response;
+        console.log("After Save MemberDetail ------------>", myData);
+
+        if (myData.status === "error") {
+          message.error(myData.text, 7);
+        } else {
+          message.success(
+            "Амжилттай шинэчилллээ. Өдрийг сайхан өнгөрүүлээрэй."
+          );
+          history.push({
+            pathname: "/member",
+          });
+        }
+      })
+      .catch((error) => {
+        message.error(error, 7);
+      });
+  };
 
   return (
     <MemberContext.Provider

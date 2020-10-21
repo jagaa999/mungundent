@@ -51,47 +51,103 @@ const tailFormItemLayout = {
 // #    # #    # #   ## #    #   #
 //  ####   ####  #    #  ####    #
 
-const MotocarForm = (props) => {
+const MotocarForm = (prps) => {
   const [form] = Form.useForm();
   const memberDetailContext = useContext(MemberContext);
   const memberItem = memberDetailContext.memberDetail.memberDetail;
 
   const [currentStep, setCurrentStep] = useState(0);
 
-  const [mglBodyList, setMglBodyList] = useState({
+  const [refAttention, setRefAttention] = useState({
     loading: false,
-    mglBodyList: [],
+    refAttention: [],
   });
-  const [mglFuelList, setMglFuelList] = useState({
+  const [refKnowledge, setRefKnowledge] = useState({
     loading: false,
-    mglFuelList: [],
+    refKnowledge: [],
   });
-  const [countryList, setCountryList] = useState({
+  const [refUsage, setRefUsage] = useState({
     loading: false,
-    countryList: [],
+    refUsage: [],
+  });
+
+  const [addressHomeCity, setAddressHomeCity] = useState({
+    loading: false,
+    addressHomeCity: [],
+  });
+  const [addressHomeDistrict, setAddressHomeDistrict] = useState({
+    loading: false,
+    addressHomeDistrict: [],
+  });
+  const [addressHomeStreet, setAddressHomeStreet] = useState({
+    loading: false,
+    addressHomeStreet: [],
+  });
+
+  const [addressWorkCity, setAddressWorkCity] = useState({
+    loading: false,
+    addressWorkCity: [],
+  });
+  const [addressWorkDistrict, setAddressWorkDistrict] = useState({
+    loading: false,
+    addressWorkDistrict: [],
+  });
+  const [addressWorkStreet, setAddressWorkStreet] = useState({
+    loading: false,
+    addressWorkStreet: [],
   });
 
   const callFunctionAsync = async () => {
-    setMglBodyList({ ...mglBodyList, loading: true });
-    setMglBodyList({
-      mglBodyList: await loadDataview({
-        systemmetagroupid: "1599557926832",
+    setRefAttention({ ...refAttention, loading: true });
+    setRefAttention({
+      refAttention: await loadDataview({
+        systemmetagroupid: "1599558685611",
       }),
       loading: false,
     });
 
-    setMglFuelList({ ...mglFuelList, loading: true });
-    setMglFuelList({
-      mglFuelList: await loadDataview({
-        systemmetagroupid: "1599557944149",
+    setRefKnowledge({ ...refKnowledge, loading: true });
+    setRefKnowledge({
+      refKnowledge: await loadDataview({
+        systemmetagroupid: "1599558685529",
       }),
       loading: false,
     });
 
-    setCountryList({ ...countryList, loading: true });
-    setCountryList({
-      countryList: await loadDataview({
-        systemmetagroupid: "1464050695187",
+    setRefUsage({ ...refUsage, loading: true });
+    setRefUsage({
+      refUsage: await loadDataview({
+        systemmetagroupid: "1599558685568",
+      }),
+      loading: false,
+    });
+
+    setAddressHomeCity({ ...addressHomeCity, loading: true });
+    setAddressHomeCity({
+      addressHomeCity: await loadDataview({
+        systemmetagroupid: "144436142534122",
+        paging: {
+          sortColumnNames: {
+            name: {
+              sortType: "ASC", //эрэмбэлэх чиглэл
+            },
+          },
+        },
+      }),
+      loading: false,
+    });
+
+    setAddressWorkCity({ ...addressWorkCity, loading: true });
+    setAddressWorkCity({
+      addressWorkCity: await loadDataview({
+        systemmetagroupid: "144436142534122",
+        paging: {
+          sortColumnNames: {
+            name: {
+              sortType: "ASC", //эрэмбэлэх чиглэл
+            },
+          },
+        },
       }),
       loading: false,
     });
@@ -132,7 +188,7 @@ const MotocarForm = (props) => {
     console.log("AFTER SUBMIT --------- ");
     console.table(values);
 
-    memberDetailContext.saveMemberDetail(values);
+    // memberDetailContext.saveMemberDetail(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -143,28 +199,6 @@ const MotocarForm = (props) => {
   };
 
   console.log("memberItem FORM", memberItem);
-
-  // ID
-  // SYSTEM_USER_ID
-  // NAME
-  // REGISTRATION_NUMBER
-  // EMAIL
-  // PHONE_NUMBER1
-  // PHONE_NUMBER2
-  // PHONE_NUMBER3
-  // BIRTH_DATE
-  // GENDER
-  // CREATED_DATE
-  // CREATED_BY
-  // FIREBASE_UID
-  // FB_ID
-  // GOOGLE_ID
-  // PROVIDER_ID
-  // IMAGEMAIN
-  // IMAGEOTHER
-  // SPEC_KNOWLEDGE
-  // SPEC_USAGE
-  // SPEC_ATTENTION
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -208,10 +242,27 @@ const MotocarForm = (props) => {
             <MemberFormContact form={form} />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
-            <MemberFormAddress form={form} />
+            <MemberFormAddress
+              form={form}
+              addressHomeCity={addressHomeCity}
+              addressHomeDistrict={addressHomeDistrict}
+              setAddressHomeDistrict={setAddressHomeDistrict}
+              addressHomeStreet={addressHomeStreet}
+              setAddressHomeStreet={setAddressHomeStreet}
+              addressWorkCity={addressWorkCity}
+              addressWorkDistrict={addressWorkDistrict}
+              setAddressWorkDistrict={setAddressWorkDistrict}
+              addressWorkStreet={addressWorkStreet}
+              setAddressWorkStreet={setAddressWorkStreet}
+            />
           </div>
           <div className={currentStep !== 3 ? "gx-d-none" : ""}>
-            <MemberFormOther form={form} />
+            <MemberFormOther
+              form={form}
+              refAttention={refAttention}
+              refKnowledge={refKnowledge}
+              refUsage={refUsage}
+            />
           </div>
         </div>
 

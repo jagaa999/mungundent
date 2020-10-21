@@ -274,7 +274,6 @@ export const MotocarStore = (props) => {
           ...values,
           id: values.id || "",
           title: mytitle,
-          imagemain: myimagemain,
           isactive: toBoolean(values.isactive) ? "1" : "0",
           mgldrivepos: toBoolean(values.mgldrivepos) ? "1" : "2",
           caryearimport: moment(values.caryearimport).format(
