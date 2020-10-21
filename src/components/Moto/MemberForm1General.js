@@ -60,6 +60,7 @@ const MemberForm1General = ({ form }) => {
   //? workcity
   //? workdistrict
   //? workstreet
+  //* bio
 
   return (
     <>
@@ -70,18 +71,23 @@ const MemberForm1General = ({ form }) => {
       <Form.Item name="systemuserid" hasFeedback label="Системийн дугаар">
         <Input />
       </Form.Item>
+
       <Form.Item name="name" hasFeedback label="Таны нэр">
         <Input />
       </Form.Item>
+
       <Form.Item name="registrationnumber" hasFeedback label="Регистр">
         <Input />
       </Form.Item>
+
       <Form.Item name="birthdate" hasFeedback label="Төрсөн огноо">
         <Input />
       </Form.Item>
+
       <Form.Item name="gender" hasFeedback label="Хүйс">
         <Input />
       </Form.Item>
+
       <Form.Item name="imagemain" hasFeedback label="Үндсэн зураг">
         <Input />
       </Form.Item>
@@ -89,8 +95,6 @@ const MemberForm1General = ({ form }) => {
       <Form.Item name="imageother" hasFeedback label="Бусад зураг">
         <Input />
       </Form.Item>
-
-      <Divider />
     </>
   );
 };

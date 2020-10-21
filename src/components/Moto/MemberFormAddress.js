@@ -24,6 +24,13 @@ const MemberFormAddress = ({ form }) => {
       <Form.Item name="homestreet" hasFeedback label="Гэрийн хаяг - Хороо, баг">
         <Input />
       </Form.Item>
+      <Form.Item
+        name="homeaddress"
+        hasFeedback
+        label="Гэрийн хаяг - Дэлгэрэнгүй"
+      >
+        <Input />
+      </Form.Item>
 
       <Divider />
 
@@ -38,6 +45,13 @@ const MemberFormAddress = ({ form }) => {
         <Input />
       </Form.Item>
       <Form.Item name="workstreet" hasFeedback label="Ажлын хаяг - Хороо, баг">
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="workaddress"
+        hasFeedback
+        label="Ажлын хаяг - Дэлгэрэнгүй"
+      >
         <Input />
       </Form.Item>
     </>

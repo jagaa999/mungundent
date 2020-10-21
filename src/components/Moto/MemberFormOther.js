@@ -29,6 +29,9 @@ const MemberFormOther = ({ form }) => {
       <Form.Item name="typename6" hasFeedback label="Сонирхол, Хобби">
         <Input />
       </Form.Item>
+      <Form.Item name="bio" hasFeedback label="Таны тухай">
+        <Input />
+      </Form.Item>
     </>
   );
 };

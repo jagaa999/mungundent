@@ -1,8 +1,13 @@
+import React from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 // import 'firebase/storage';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
+// const StyledFirebaseAuth = React.lazy(() => {
+//   return import("react-firebaseui/StyledFirebaseAuth");
+// });
 
 // Initialize Firebase
 const config = {
@@ -131,7 +136,9 @@ const uiConfig = {
     uiShown: function () {
       // The widget is rendered.
       // Hide the loader.
-      // document.getElementById("loader").style.display = "none";
+      document.getElementById("myUIloader").style.display = "none";
+      console.log("ХАРАГДСАН УУУУУУУУУУУУУУУУ??");
+      return true;
     },
   },
 };
