@@ -188,7 +188,7 @@ const MotocarForm = (prps) => {
     console.log("AFTER SUBMIT --------- ");
     console.table(values);
 
-    // memberDetailContext.saveMemberDetail(values);
+    memberDetailContext.saveMemberDetail(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -236,7 +236,11 @@ const MotocarForm = (prps) => {
         </Steps>
         <div className="gx-mt-5">
           <div className={currentStep !== 0 ? "gx-d-none" : ""}>
-            <MemberForm1General form={form} />
+            <MemberForm1General
+              form={form}
+              imagemainFileList={memberItem.imagemainFileList || []}
+              imageotherFileList={memberItem.imageotherFileList || []}
+            />
           </div>
           <div className={currentStep !== 1 ? "gx-d-none" : ""}>
             <MemberFormContact form={form} />

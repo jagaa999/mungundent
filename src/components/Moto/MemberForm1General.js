@@ -6,10 +6,17 @@ import { LoadProcess, loadDataview } from "util/axiosFunction";
 import moment from "moment";
 import "moment/locale/mn";
 
+import ImageCrop2 from "./Image/ImageCrop2";
+import ImageDragger2 from "./Image/ImageDragger2";
+
 const { Option, OptGroup } = Select;
 const { TextArea } = Input;
 
-const MemberForm1General = ({ form }) => {
+const MemberForm1General = ({
+  form,
+  imagemainFileList,
+  imageotherFileList,
+}) => {
   return (
     <>
       <Form.Item name="id" label="ID дугаар" hidden={false}>
@@ -43,12 +50,16 @@ const MemberForm1General = ({ form }) => {
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item name="imagemain" hasFeedback label="Үндсэн зураг">
-        <Input />
+      <Form.Item name="imagemain" label="Үндсэн зураг" valuePropName="fileList">
+        <ImageCrop2 imagemainFileList={imagemainFileList} />
       </Form.Item>
 
-      <Form.Item name="imageother" hasFeedback label="Бусад зураг">
-        <Input />
+      <Form.Item
+        name="imageother"
+        label="Нэмэлт зургууд"
+        valuePropName="flieList"
+      >
+        <ImageDragger2 imageotherFileList={imageotherFileList} />
       </Form.Item>
     </>
   );

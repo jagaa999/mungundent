@@ -22,9 +22,9 @@ const MemberFormAddress = ({
   addressWorkStreet,
   setAddressWorkStreet,
 }) => {
-  console.log("addressHomeCityaddressHomeCity", addressHomeCity);
-  console.log("addressHomeDistrictaddressHomeDistrict", addressHomeDistrict);
-  console.log("addressHomeStreetaddressHomeStreet", addressHomeStreet);
+  // console.log("addressHomeCityaddressHomeCity", addressHomeCity);
+  // console.log("addressHomeDistrictaddressHomeDistrict", addressHomeDistrict);
+  // console.log("addressHomeStreetaddressHomeStreet", addressHomeStreet);
 
   const addressHomeCityChange = async (value) => {
     console.log(`addressHomeCityChange changed selected ${value}`);

@@ -325,30 +325,30 @@ export const MemberProfileStore = (props) => {
         const myArray = response.data.response.result[0];
         // console.log("MEMBER DETAIL myArray------------> ", myArray);
         // myArray.isactive = myArray.isactive === "1" ? true : false;
-        // myArray.imagemainFileList =
-        //   myArray.imagemain !== ""
-        //     ? [
-        //         {
-        //           uid: "-1",
-        //           name: "Тодорхойгүй",
-        //           status: "done",
-        //           url: myArray.imagemain || "",
-        //           thumbUrl: myArray.imagemain || "",
-        //           response: { url: myArray.imagemain || "" },
-        //         },
-        //       ]
-        //     : [];
-        // myArray.imageotherFileList =
-        //   myArray.imageother !== ""
-        //     ? JSON.parse(myArray.imageother).map((item, index) => ({
-        //         uid: index - 1,
-        //         name: item.replace(/^.*[\\\/]/, ""),
-        //         status: "done",
-        //         url: item || "",
-        //         thumbUrl: item || "",
-        //         response: { url: item || "" },
-        //       }))
-        //     : [];
+        myArray.imagemainFileList =
+          myArray.imagemain !== ""
+            ? [
+                {
+                  uid: "-1",
+                  name: "Тодорхойгүй",
+                  status: "done",
+                  url: myArray.imagemain || "",
+                  thumbUrl: myArray.imagemain || "",
+                  response: { url: myArray.imagemain || "" },
+                },
+              ]
+            : [];
+        myArray.imageotherFileList =
+          myArray.imageother !== ""
+            ? JSON.parse(myArray.imageother).map((item, index) => ({
+                uid: index - 1,
+                name: item.replace(/^.*[\\\/]/, ""),
+                status: "done",
+                url: item || "",
+                thumbUrl: item || "",
+                response: { url: item || "" },
+              }))
+            : [];
 
         // console.log("MEMBER DETAIL------------> ", myArray);
 
@@ -382,20 +382,20 @@ export const MemberProfileStore = (props) => {
     //   values.mglfirm
     // } ${values.mglmark}`;
 
-    // const myimagemain =
-    //   values.imagemain &&
-    //   values.imagemain.fileList &&
-    //   values.imagemain.fileList.length > 0
-    //     ? values.imagemain.fileList[0].response.url
-    //     : "";
-    // const myimageother =
-    //   values.imageother &&
-    //   values.imageother.fileList &&
-    //   values.imageother.fileList.length > 0
-    //     ? JSON.stringify(
-    //         values.imageother.fileList.map((item, index) => item.response.url)
-    //       )
-    //     : "";
+    const myimagemain =
+      values.imagemain &&
+      values.imagemain.fileList &&
+      values.imagemain.fileList.length > 0
+        ? values.imagemain.fileList[0].response.url
+        : "";
+    const myimageother =
+      values.imageother &&
+      values.imageother.fileList &&
+      values.imageother.fileList.length > 0
+        ? JSON.stringify(
+            values.imageother.fileList.map((item, index) => item.response.url)
+          )
+        : "";
 
     const myParamsMemberDetail = {
       request: {
@@ -414,8 +414,8 @@ export const MemberProfileStore = (props) => {
           // caryearmanufactured: moment(values.caryearmanufactured).format(
           //   "YYYY-MM-DD HH:mm:ss"
           // ),
-          // imagemain: myimagemain,
-          // imageother: myimageother,
+          imagemain: myimagemain,
+          imageother: myimageother,
 
           createdby: state.memberCloudUserSysId,
           modifiedby: state.memberCloudUserSysId,
