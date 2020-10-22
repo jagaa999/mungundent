@@ -83,7 +83,17 @@ const MenuMember = () => {
           type="text"
           size="small"
         >
-          Автомашин нэмэх
+          Машин нэмэх
+        </Button>
+      </Link>
+      <Link to={"/member/edit/" + memberContext.state.memberCloudUserSysId}>
+        <Button
+          className="gx-mb-1 gx-mt-2 gx-btn-success gx-ml-3"
+          icon={<PlusOutlined />}
+          type="text"
+          size="small"
+        >
+          Анкет засах
         </Button>
       </Link>
 

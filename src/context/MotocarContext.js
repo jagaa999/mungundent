@@ -160,7 +160,7 @@ export const MotocarStore = (props) => {
       .post("", myParamsMotocarDetail)
       .then((response) => {
         // console.log("MOTOCAR DETAIL RESPONSE------------> ", response);
-        const myArray = response.data.response.result[0];
+        const myArray = response.data.response.result[0] || [];
         // console.log("MOTOCAR DETAIL myArray------------> ", myArray);
         myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
         myArray.caryearimport = moment(myArray.caryearimport);
@@ -171,8 +171,10 @@ export const MotocarStore = (props) => {
         myArray.mglseat = myArray.mglseat * 1;
         myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
         myArray.isactive = myArray.isactive === "1" ? true : false;
+        myArray.imagemainFileList = [];
         myArray.imagemainFileList =
-          myArray.imagemain !== ""
+          myArray.imagemain !== undefined &&
+          (myArray.imagemain !== ""
             ? [
                 {
                   uid: "-1",
@@ -183,9 +185,11 @@ export const MotocarStore = (props) => {
                   response: { url: myArray.imagemain || "" },
                 },
               ]
-            : [];
+            : []);
+        myArray.imageotherFileList = [];
         myArray.imageotherFileList =
-          myArray.imageother !== ""
+          myArray.imageother !== undefined &&
+          (myArray.imageother !== ""
             ? JSON.parse(myArray.imageother).map((item, index) => ({
                 uid: index - 1,
                 name: item.replace(/^.*[\\\/]/, ""),
@@ -194,7 +198,7 @@ export const MotocarStore = (props) => {
                 thumbUrl: item || "",
                 response: { url: item || "" },
               }))
-            : [];
+            : []);
 
         // console.log("MOTOCAR DETAIL------------> ", myArray);
 

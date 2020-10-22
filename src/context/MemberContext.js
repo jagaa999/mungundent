@@ -322,11 +322,13 @@ export const MemberProfileStore = (props) => {
       .post("", myParamsMemberDetail)
       .then((response) => {
         // console.log("MEMBER DETAIL RESPONSE------------> ", response);
-        const myArray = response.data.response.result[0];
-        // console.log("MEMBER DETAIL myArray------------> ", myArray);
+        const myArray = response.data.response.result[0] || [];
+        console.log("MEMBER DETAIL myArray------------> ", myArray);
         // myArray.isactive = myArray.isactive === "1" ? true : false;
+        myArray.imagemainFileList = [];
         myArray.imagemainFileList =
-          myArray.imagemain !== ""
+          myArray.imagemain !== undefined &&
+          (myArray.imagemain !== ""
             ? [
                 {
                   uid: "-1",
@@ -337,9 +339,11 @@ export const MemberProfileStore = (props) => {
                   response: { url: myArray.imagemain || "" },
                 },
               ]
-            : [];
+            : []);
+        myArray.imageotherFileList = [];
         myArray.imageotherFileList =
-          myArray.imageother !== ""
+          myArray.imageother !== undefined &&
+          (myArray.imageother !== ""
             ? JSON.parse(myArray.imageother).map((item, index) => ({
                 uid: index - 1,
                 name: item.replace(/^.*[\\\/]/, ""),
@@ -348,7 +352,7 @@ export const MemberProfileStore = (props) => {
                 thumbUrl: item || "",
                 response: { url: item || "" },
               }))
-            : [];
+            : []);
 
         // console.log("MEMBER DETAIL------------> ", myArray);
 

@@ -19,11 +19,13 @@ const MotoMemberDetailBiography = ({ myMemberDetail }) => {
         className="gx-mt-5"
       >
         {Object.keys(myMemberDetail).map((val, k) => {
-          return (
-            <Descriptions.Item label={val}>
-              {myMemberDetail[val]}
-            </Descriptions.Item>
-          );
+          if (val !== "imagemainFileList" && val !== "imageotherFileList") {
+            return (
+              <Descriptions.Item label={val} key={k}>
+                {myMemberDetail[val]}
+              </Descriptions.Item>
+            );
+          }
         })}
       </Descriptions>
     </Card>
