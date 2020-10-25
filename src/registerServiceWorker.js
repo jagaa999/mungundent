@@ -29,6 +29,18 @@ export default function register() {
       return;
     }
 
+    Жагаа
+    Энийг маргааш нэмээрэй.
+    https://developers.google.com/web/fundamentals/primers/service-workers/registration
+
+    Яг энэ функцийн өмнө 
+    // if ('serviceWorker' in navigator) {
+    //   window.addEventListener('load', function() {
+    //     navigator.serviceWorker.register('/service-worker.js');
+    //   });
+    // }
+    энийг тавьж өгөх юм байна.
+
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
