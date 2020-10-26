@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Form, Input, Select } from "antd";
+import { Form, Input, Select, Radio } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import "moment/locale/mn";
@@ -15,55 +15,32 @@ const MemberFormOther = ({ form, refAttention, refKnowledge, refUsage }) => {
   return (
     <>
       <Form.Item name="refattention" hasFeedback label="Авто анхаарал">
-        <Select
-          className="moto-select-firm"
-          loading={refAttention.loading}
-          showSearch
-          allowClear
-          placeholder="Авто анхаарал"
-          filterOption={(input, option) => {
-            if (option.value) {
-              return (
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              );
-            } else {
-              return false;
-            }
-          }}
-        >
+        <Radio.Group buttonStyle="solid" className="gx-w-100">
           {refAttention.refAttention.map((item, index) => (
-            <Option key={index} value={item.booktypeid}>
+            <Radio.Button key={index} value={item.booktypeid}>
               {item.booktypename}
-            </Option>
+            </Radio.Button>
           ))}
-        </Select>
+        </Radio.Group>
       </Form.Item>
       <Form.Item name="refknowledge" hasFeedback label="Авто мэдлэг">
-        <Select
-          className="moto-select-firm"
-          loading={refKnowledge.loading}
-          showSearch
-          allowClear
-          placeholder="Авто мэдлэг"
-          filterOption={(input, option) => {
-            if (option.value) {
-              return (
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              );
-            } else {
-              return false;
-            }
-          }}
-        >
+        <Radio.Group buttonStyle="solid" className="gx-w-100">
           {refKnowledge.refKnowledge.map((item, index) => (
-            <Option key={index} value={item.booktypeid}>
+            <Radio.Button key={index} value={item.booktypeid}>
               {item.booktypename}
-            </Option>
+            </Radio.Button>
           ))}
-        </Select>
+        </Radio.Group>
       </Form.Item>
       <Form.Item name="refusage" hasFeedback label="Авто хэрэглээ">
-        <Select
+        <Radio.Group buttonStyle="solid" className="gx-w-100">
+          {refUsage.refUsage.map((item, index) => (
+            <Radio.Button key={index} value={item.booktypeid}>
+              {item.booktypename}
+            </Radio.Button>
+          ))}
+        </Radio.Group>
+        {/* <Select
           className="moto-select-firm"
           loading={refUsage.loading}
           showSearch
@@ -84,7 +61,7 @@ const MemberFormOther = ({ form, refAttention, refKnowledge, refUsage }) => {
               {item.booktypename}
             </Option>
           ))}
-        </Select>
+        </Select> */}
       </Form.Item>
       {/* <Form.Item name="typename4" hasFeedback label="Таашаал">
         <Input />

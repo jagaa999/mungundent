@@ -130,5 +130,8 @@
     "lodash.isempty": "^4.4.0",
     "react-app-rewired": "^2.1.5",
     "react-snap": "^1.23.0"
+  },
+  "reactSnap": {
+    "includes": ["/news"]
   }
 }

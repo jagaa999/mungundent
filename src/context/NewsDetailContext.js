@@ -172,8 +172,24 @@ export const NewsDetailStore = (props) => {
     axios
       .post("", myParamsNewsDetail)
       .then((response) => {
-        const myArray = response.data.response.result;
+        const myArray = response.data.response.result || [];
         // console.log("NEWS DETAIL------------>", myArray);
+        myArray.imagemainFileList = [];
+        myArray.imagemainFileList =
+          myArray.imgurl !== undefined &&
+          (myArray.imgurl !== ""
+            ? [
+                {
+                  uid: "-1",
+                  name: "Тодорхойгүй",
+                  status: "done",
+                  url: myArray.imgurl || "",
+                  thumbUrl: myArray.imgurl || "",
+                  response: { url: myArray.imgurl || "" },
+                },
+              ]
+            : []);
+
         setState({
           ...state,
           loading: false,
@@ -240,9 +256,16 @@ export const NewsDetailStore = (props) => {
 
   const saveNewsDetail = (values) => {
     console.log("saveNewsDetail дотор орж ирсэн values--", values);
-    const myImgUrl =
-      values.images && values.images.length > 0 ? values.images[0].url : "";
+
+    // const myImgUrl =
+    //   values.images && values.images.length > 0 ? values.images[0].url : "";
     // console.log(myImgUrl);
+    const myimgurl =
+      values.imgurl &&
+      values.imgurl.fileList &&
+      values.imgurl.fileList.length > 0
+        ? values.imgurl.fileList[0].response.url
+        : "";
 
     const myBody = JSON.stringify(values.body); //Элдэв тэмдэгтийг хувиргаж, дан текст болгон хадгална.
     const myDescription = values.body.blocks[0].data.text.substring(0, 500); //Эхний параграф текстийг авч description буюу товчлолд өгнө.
@@ -258,7 +281,8 @@ export const NewsDetailStore = (props) => {
           id: values.newsid || "",
           title: values.title,
           // imgUrl: JSON.stringify(values.images), //JSON.parse
-          imgurl: myImgUrl,
+          // imgurl: myImgUrl,
+          imgurl: myimgurl,
           body: myBody,
           isfeatured: toBoolean(values.isfeatured) ? "1" : "0",
           iscomment: toBoolean(values.iscomment) ? "1" : "0",

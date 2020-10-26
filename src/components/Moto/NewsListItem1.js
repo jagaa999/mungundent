@@ -87,7 +87,7 @@ const NewsItem = ({ newsItem, grid }) => {
                 loading="lazy"
                 dpr="auto"
                 responsive
-                width="auto"
+                width="300"
                 gravity="face"
                 quality="auto"
                 // placeholder="blur"

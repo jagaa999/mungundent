@@ -15,7 +15,12 @@ import {
   Select,
   Steps,
 } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import {
+  PlusOutlined,
+  UploadOutlined,
+  LeftOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
 import MemberContext from "context/MemberContext";
 
@@ -128,7 +133,7 @@ const MotocarForm = (prps) => {
         systemmetagroupid: "144436142534122",
         paging: {
           sortColumnNames: {
-            name: {
+            city_code: {
               sortType: "ASC", //эрэмбэлэх чиглэл
             },
           },
@@ -143,7 +148,7 @@ const MotocarForm = (prps) => {
         systemmetagroupid: "144436142534122",
         paging: {
           sortColumnNames: {
-            name: {
+            city_code: {
               sortType: "ASC", //эрэмбэлэх чиглэл
             },
           },
@@ -174,6 +179,14 @@ const MotocarForm = (prps) => {
 
   const onStepChange = (current) => {
     setCurrentStep(current);
+  };
+
+  const nextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const prevStep = () => {
+    setCurrentStep(currentStep - 1);
   };
 
   //  #####  #     # ######  #     # ### #######
@@ -272,16 +285,32 @@ const MotocarForm = (prps) => {
 
         <Divider className="gx-my-5" />
 
-        <Form.Item {...tailFormItemLayout}>
-          <Button
-            type="primary"
-            size="large"
-            htmlType="submit"
-            icon={<PlusOutlined />}
-          >
-            Илгээх
-          </Button>
-        </Form.Item>
+        <div className="gx-float-right">
+          {currentStep > 0 && (
+            <Button onClick={prevStep} size="large" icon={<LeftOutlined />}>
+              Өмнөх
+            </Button>
+          )}
+
+          {currentStep < stepList.length - 1 && (
+            <Button onClick={nextStep} size="large" icon={<RightOutlined />}>
+              Дараах
+            </Button>
+          )}
+
+          {currentStep === stepList.length - 1 && (
+            <Form.Item noStyle={true}>
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                icon={<UploadOutlined />}
+              >
+                Илгээх
+              </Button>
+            </Form.Item>
+          )}
+        </div>
       </Form>
     </Card>
   );

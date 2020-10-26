@@ -325,6 +325,7 @@ export const MemberProfileStore = (props) => {
         const myArray = response.data.response.result[0] || [];
         console.log("MEMBER DETAIL myArray------------> ", myArray);
         // myArray.isactive = myArray.isactive === "1" ? true : false;
+        myArray.birthdate = moment(myArray.birthdate);
         myArray.imagemainFileList = [];
         myArray.imagemainFileList =
           myArray.imagemain !== undefined &&
@@ -409,12 +410,11 @@ export const MemberProfileStore = (props) => {
         parameters: {
           ...values,
           id: values.id || "",
+          systemuserid: values.systemuserid || state.memberCloudUserSysId,
           // title: mytitle,
           isactive: toBoolean(values.isactive) ? "1" : "0",
           // mgldrivepos: toBoolean(values.mgldrivepos) ? "1" : "2",
-          // caryearimport: moment(values.caryearimport).format(
-          //   "YYYY-MM-DD HH:mm:ss"
-          // ),
+          birthdate: moment(values.birthdate).format("YYYY-MM-DD HH:mm:ss"),
           // caryearmanufactured: moment(values.caryearmanufactured).format(
           //   "YYYY-MM-DD HH:mm:ss"
           // ),

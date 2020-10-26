@@ -44,7 +44,7 @@ const MemberFormAddress = ({
           },
           paging: {
             sortColumnNames: {
-              name: {
+              code: {
                 sortType: "ASC", //эрэмбэлэх чиглэл
               },
             },
@@ -54,6 +54,8 @@ const MemberFormAddress = ({
       });
     }
   };
+
+  console.log(addressHomeDistrict);
 
   const addressHomeDistrictChange = async (value) => {
     console.log(`addressHomeDistrictChange changed selected ${value}`);
@@ -102,7 +104,7 @@ const MemberFormAddress = ({
           },
           paging: {
             sortColumnNames: {
-              name: {
+              code: {
                 sortType: "ASC", //эрэмбэлэх чиглэл
               },
             },
@@ -144,15 +146,17 @@ const MemberFormAddress = ({
 
   return (
     <>
-      <Form.Item name="homecity" hasFeedback label="Гэрийн хаяг - Хот, аймаг">
+      <h3>Гэрийн хаяг</h3>
+      <Form.Item name="homecity" hasFeedback label="Хот, аймаг">
         <Select
           className="moto-select-firm"
+          autoComplete="dontshow"
           loading={addressHomeCity.loading}
           showSearch
           allowClear
           placeholder="Хот/Аймаг"
-          optionFilterProp="children"
           onChange={addressHomeCityChange}
+          optionFilterProp="children"
           filterOption={(input, option) => {
             if (option.value) {
               return (
@@ -171,13 +175,10 @@ const MemberFormAddress = ({
         </Select>
       </Form.Item>
 
-      <Form.Item
-        name="homedistrict"
-        hasFeedback
-        label="Гэрийн хаяг - Дүүрэг, сум"
-      >
+      <Form.Item name="homedistrict" hasFeedback label="Дүүрэг, сум">
         <Select
           className="moto-select-firm"
+          autoComplete="dontshow"
           loading={addressHomeDistrict.loading}
           showSearch
           allowClear
@@ -201,9 +202,10 @@ const MemberFormAddress = ({
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="homestreet" hasFeedback label="Гэрийн хаяг - Хороо, баг">
+      <Form.Item name="homestreet" hasFeedback label="Хороо, баг">
         <Select
           className="moto-select-firm"
+          autoComplete="dontshow"
           loading={addressHomeStreet.loading}
           showSearch
           allowClear
@@ -227,22 +229,21 @@ const MemberFormAddress = ({
           ))}
         </Select>
       </Form.Item>
-      <Form.Item
-        name="homeaddress"
-        hasFeedback
-        label="Гэрийн хаяг - Дэлгэрэнгүй"
-      >
+      <Form.Item name="homeaddress" hasFeedback label="Дэлгэрэнгүй">
         <TextArea
           placeholder="Хаягийг тань олоход тустай бүхнийг бичиж болно."
           autoSize
         />
       </Form.Item>
 
-      <Divider />
+      <Divider className="gx-my-5" />
 
-      <Form.Item name="workcity" hasFeedback label="Ажлын хаяг - Хот, аймаг">
+      <h3>Ажлын хаяг</h3>
+
+      <Form.Item name="workcity" hasFeedback label="Хот, аймаг">
         <Select
           className="moto-select-firm"
+          autoComplete="dontshow"
           loading={addressWorkCity.loading}
           showSearch
           allowClear
@@ -267,13 +268,10 @@ const MemberFormAddress = ({
         </Select>
       </Form.Item>
 
-      <Form.Item
-        name="workdistrict"
-        hasFeedback
-        label="Ажлын хаяг - Дүүрэг, сум"
-      >
+      <Form.Item name="workdistrict" hasFeedback label="Дүүрэг, сум">
         <Select
           className="moto-select-firm"
+          autoComplete="dontshow"
           loading={addressWorkDistrict.loading}
           showSearch
           allowClear
@@ -297,9 +295,10 @@ const MemberFormAddress = ({
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="workstreet" hasFeedback label="Ажлын хаяг - Хороо, баг">
+      <Form.Item name="workstreet" hasFeedback label="Хороо, баг">
         <Select
           className="moto-select-firm"
+          autoComplete="dontshow"
           loading={addressWorkStreet.loading}
           showSearch
           allowClear
@@ -324,11 +323,7 @@ const MemberFormAddress = ({
         </Select>
       </Form.Item>
 
-      <Form.Item
-        name="workaddress"
-        hasFeedback
-        label="Ажлын хаяг - Дэлгэрэнгүй"
-      >
+      <Form.Item name="workaddress" hasFeedback label="Дэлгэрэнгүй">
         <TextArea
           placeholder="Хаягийг тань олоход тустай бүхнийг бичиж болно."
           autoSize

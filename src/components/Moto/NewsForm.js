@@ -22,6 +22,7 @@ import { PlusOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
 import { loadDataview } from "util/axiosFunction";
 import NewsDetailContext from "context/NewsDetailContext";
+import ImageCrop1 from "./Image/ImageCrop1";
 
 const { Option, OptGroup } = Select;
 const { TextArea } = Input;
@@ -178,6 +179,8 @@ const NewsForm = () => {
       myNewsType[index].optgroup = "Нийтлэл";
     }
   });
+
+  console.log("newsItemnewsItem", newsItem);
 
   // ######  ####### ####### #     # ######  #     #
   // #     # #          #    #     # #     # ##    #
@@ -360,16 +363,13 @@ const NewsForm = () => {
         {/* <Form.Item name="publishedDate" label="Нийтлэх огноо">
           <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
         </Form.Item> */}
-        <Form.Item
-          name="tempimages"
-          label="Зураг"
-          // rules={[{ required: true, message: "Зургаа заавал оруулна уу!" }]}
-        >
-          <ImageUpload
+        <Form.Item name="imgurl" label="Зураг" valuePropName="fileList">
+          {/* <ImageUpload
             normFile={normFileImages}
             newsImageMain={newsItem ? newsItem.imagemain : ""}
             imageTags={imageTags}
-          />
+          /> */}
+          <ImageCrop1 imagemainFileList={newsItem.imagemainFileList || []} />
         </Form.Item>
         <Form.Item
           name="tempbody"

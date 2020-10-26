@@ -157,17 +157,14 @@ const MotocarForm1General = ({
         }
       >
         <Input
-          placeholder="Улсын дугаараа бичнэ үү"
+          size="large"
+          placeholder="1234УНГ"
           onChange={mgllicensenumberfullChange}
           className="gx-border-success"
         />
       </Form.Item>
 
-      <Divider />
-
-      <Form.Item name="body2vinnumber" hasFeedback label="Арлын дугаар">
-        <Input />
-      </Form.Item>
+      <Divider className="gx-my-4" />
 
       <Form.Item
         name="mglfirm"
@@ -240,6 +237,10 @@ const MotocarForm1General = ({
             </Option>
           ))}
         </Select>
+      </Form.Item>
+
+      <Form.Item name="body2vinnumber" hasFeedback label="Арлын дугаар">
+        <Input />
       </Form.Item>
 
       <Form.Item name="mglbody" hasFeedback label="Хийц">

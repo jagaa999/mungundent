@@ -71,10 +71,10 @@ const NewsItem = ({ newsItem, grid }) => {
           loading="lazy"
           dpr="auto"
           responsive
-          width="auto"
+          width="300"
           gravity="face"
           quality="auto"
-          placeholder="blur"
+          // placeholder="blur"
           responsiveUseBreakpoints="true"
           className="gx-img-fluid gx-w-100"
           default_image="jhannw5jgo2mlvvkvke9"

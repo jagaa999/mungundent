@@ -19,12 +19,17 @@ const MemberForm1General = ({
 }) => {
   return (
     <>
-      <Form.Item name="id" label="ID дугаар" hidden={false}>
+      <Form.Item name="id" label="ID дугаар" hidden={true}>
         <Input disabled />
       </Form.Item>
 
-      <Form.Item name="systemuserid" hasFeedback label="Системийн дугаар">
-        <Input />
+      <Form.Item
+        name="systemuserid"
+        hasFeedback
+        hidden={true}
+        label="Системийн дугаар"
+      >
+        <Input disabled />
       </Form.Item>
 
       <Form.Item name="name" hasFeedback label="Таны нэр">
@@ -36,7 +41,11 @@ const MemberForm1General = ({
       </Form.Item>
 
       <Form.Item name="birthdate" hasFeedback label="Төрсөн огноо">
-        <Input />
+        <DatePicker
+          className="gx-w-100"
+          placeholder="1990-12-31"
+          format="YYYY-MM-DD"
+        />
       </Form.Item>
 
       <Form.Item name="gender" hasFeedback label="Хүйс">
@@ -50,13 +59,13 @@ const MemberForm1General = ({
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item name="imagemain" label="Үндсэн зураг" valuePropName="fileList">
+      <Form.Item name="imagemain" label="Таны зураг" valuePropName="fileList">
         <ImageCrop2 imagemainFileList={imagemainFileList} />
       </Form.Item>
 
       <Form.Item
         name="imageother"
-        label="Нэмэлт зургууд"
+        label="Таны машинтайгаа зургууд"
         valuePropName="flieList"
       >
         <ImageDragger2 imageotherFileList={imageotherFileList} />
