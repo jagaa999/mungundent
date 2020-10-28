@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "moto-86243"
+    "default": "moto-86243",
+    "staging": "moto-86243"
   }
 }

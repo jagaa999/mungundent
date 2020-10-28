@@ -1,54 +1,15 @@
 import React from "react";
+import moment from "moment";
 import { Col, Row, Descriptions, Tabs, Card } from "antd";
 import { aboutList } from "routes/socialApps/Profile/data";
 import AboutItem from "./AboutItem";
 import MotoMemberProfileAboutItem from "./MotoMemberProfileAboutItem";
 
 const TabPane = Tabs.TabPane;
-
-// id
-// systemuserid
-// name
-// registrationnumber
-// email
-// phonenumber1
-// phonenumber2
-// birthdate
-// gender
-// createddate
-// createdby
-// cityid
-// districtid
-// streetid
-// line1
-// line2
-// line3
-// homecity
-// homedistrict
-// homestreet
-// address
-// workcity
-// workdistrict
-// workstreet
-// description
-// typename1
-// typename2
-// typename3
-// typename4
-// typename5
-// typename6
-
 const myGeneralData = ["systemuserid", "name", "registrationnumber"];
 
-// {
-//   id: 1,
-//   title: 'Works at',
-//   icon: 'company',
-//   userList: '',
-//   desc: ['G-axon Tech Pvt. Ltd.']
-// },
-
 const MotoMemberProfileTab = ({ myMemberDetail }) => {
+  // console.log("dddddddddddddd", myMemberDetail);
   return (
     <Card title=" " className="gx-card-tabs gx-card-tabs-right gx-card-profile">
       <Tabs defaultActiveKey="1">
@@ -92,7 +53,7 @@ const MotoMemberProfileTab = ({ myMemberDetail }) => {
                 <MotoMemberProfileAboutItem
                   title="Төрсөн огноо"
                   icon="company"
-                  desc={myMemberDetail.birthdate}
+                  desc={moment(myMemberDetail.birthdate).format("YYYY-MM-DD")}
                   userList={null}
                 />
               </Col>
@@ -100,7 +61,7 @@ const MotoMemberProfileTab = ({ myMemberDetail }) => {
                 <MotoMemberProfileAboutItem
                   title="Хүйс"
                   icon="company"
-                  desc={myMemberDetail.gender}
+                  desc={myMemberDetail.gender === "1" ? "Эрэгтэй" : "Эмэгтэй"}
                   userList={null}
                 />
               </Col>
@@ -117,19 +78,68 @@ const MotoMemberProfileTab = ({ myMemberDetail }) => {
           </div>
         </TabPane>
 
-        <TabPane tab="Гэр" key="2">
+        <TabPane tab="Хаяг" key="2">
           <div className="gx-mb-2">
             <Row>
-              {aboutList.map((about, index) => (
-                <Col key={index} xl={8} lg={12} md={12} sm={12} xs={24}>
-                  <AboutItem data={about} />
-                </Col>
-              ))}
+              <Col xl={12} lg={12} md={12} sm={12} xs={12}>
+                <h4>Гэрийн хаяг</h4>
+                <MotoMemberProfileAboutItem
+                  title="Хот / Аймаг"
+                  icon="company"
+                  desc={myMemberDetail.homecityname}
+                  userList={null}
+                />
+                <MotoMemberProfileAboutItem
+                  title="Дүүрэг / Сум"
+                  icon="company"
+                  desc={myMemberDetail.homedistrictname}
+                  userList={null}
+                />
+                <MotoMemberProfileAboutItem
+                  title="Хороо / Баг"
+                  icon="company"
+                  desc={myMemberDetail.homestreetname}
+                  userList={null}
+                />
+                <MotoMemberProfileAboutItem
+                  title="Дэлгэрэнгүй хаяг"
+                  icon="company"
+                  desc={myMemberDetail.homeaddress}
+                  userList={null}
+                />
+              </Col>
+              <Col xl={12} lg={12} md={12} sm={12} xs={12}>
+                <h4>Ажлын хаяг</h4>
+                <MotoMemberProfileAboutItem
+                  title="Хот / Аймаг"
+                  icon="company"
+                  desc={myMemberDetail.workcityname}
+                  userList={null}
+                />
+                <MotoMemberProfileAboutItem
+                  title="Дүүрэг / Сум"
+                  icon="company"
+                  desc={myMemberDetail.workdistrictname}
+                  userList={null}
+                />
+                <MotoMemberProfileAboutItem
+                  title="Хороо / Баг"
+                  icon="company"
+                  desc={myMemberDetail.workstreetname}
+                  userList={null}
+                />
+                <MotoMemberProfileAboutItem
+                  title="Дэлгэрэнгүй хаяг"
+                  icon="company"
+                  desc={myMemberDetail.workaddress}
+                  userList={null}
+                />
+              </Col>
             </Row>
           </div>
         </TabPane>
 
-        <TabPane tab="Ажил" key="3">
+        {/* <TabPane tab="Other" key="3">
           <div className="gx-mb-2">
             <Row>
               {aboutList.map((about, index) => (
@@ -139,7 +149,7 @@ const MotoMemberProfileTab = ({ myMemberDetail }) => {
               ))}
             </Row>
           </div>
-        </TabPane>
+        </TabPane> */}
       </Tabs>
     </Card>
   );

@@ -108,14 +108,15 @@ const MenuMember = () => {
           >
             Гарааш
           </Button>
-          <Button
-            icon={<UserOutlined />}
-            size="small"
-            className="gx-btn-warning"
-            disabled
-          >
-            Профайл
-          </Button>
+          <Link to={"/member/" + memberContext.state.memberCloudUserSysId}>
+            <Button
+              icon={<UserOutlined />}
+              size="small"
+              className="gx-btn-warning"
+            >
+              Профайл
+            </Button>
+          </Link>
         </div>
         <div className="gx-ml-auto">
           <Button

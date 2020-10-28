@@ -1,14 +1,17 @@
 {
   "hosting": {
     "public": "build",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
       }
     ],
-
     "headers": [
       {
         "source": "**/**",
@@ -30,7 +33,12 @@
       },
       {
         "source": "/service-worker.js",
-        "headers": [{ "key": "Cache-Control", "value": "max-age=0, no-cache" }]
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0, no-cache"
+          }
+        ]
       },
       {
         "source": "**/*.html",
@@ -69,9 +77,13 @@
         ]
       }
     ],
-
     "cleanUrls": true,
-
     "trailingSlash": false
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint"
+    ],
+    "source": "functions"
   }
 }

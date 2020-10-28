@@ -3,7 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 
 import Sidebar from "../Sidebar/index";
-import MotoHeader from "containers/Topbar/MotoHeader/MotoHeader";
+import MotoHeader from "../Topbar/MotoHeader/MotoHeader";
+import MotoFooter from "../Topbar/MotoHeader/MotoFooter";
 import asyncComponent from "util/asyncComponent";
 
 import { footerText } from "util/config";
@@ -109,9 +110,11 @@ const MainApp = () => {
             >
               {/* {console.log("dddddddddddd")} */}
               <MotoIndex match={match} />
-              <Footer>
+
+              <MotoFooter />
+              {/* <Footer>
                 <div className="gx-layout-footer-content">{footerText}</div>
-              </Footer>
+              </Footer> */}
             </Content>
             {/* <Customizer /> */}
           </Layout>

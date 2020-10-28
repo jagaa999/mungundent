@@ -77,6 +77,10 @@ const MotocarForm = asyncComponent(() => {
   return import("./moto/motocar/motocarFormPage");
 });
 
+const ToolFuelPage = asyncComponent(() => {
+  return import("./moto/tool/toolFuelPage");
+});
+
 const HomeIndex = asyncComponent(() => {
   return import("./moto/home/home");
 });
@@ -100,7 +104,6 @@ const App = ({ match }) => (
           <ProductList />
         </ProductListStore>
       </Route>
-
       {/*
       #     # ####### ####### #######  #####     #    ######  
       ##   ## #     #    #    #     # #     #   # #   #     # 
@@ -122,7 +125,6 @@ const App = ({ match }) => (
           <MotocarForm />
         </MotocarStore>
       </Route>
-
       <Route path={["/motocar", "/motocarlist"]}>
         <MotocarStore>
           <MotocarList />
@@ -177,7 +179,6 @@ const App = ({ match }) => (
       #     # #       #     # #     # #       #    #  
       #     # ####### #     # ######  ####### #     # 
       */}
-
       <Route
         path={[
           "/member/edit/:memberId",
@@ -190,7 +191,6 @@ const App = ({ match }) => (
           <MemberForm />
         </MemberProfileStore>
       </Route>
-
       <Route
         path={[
           "/member/:memberId",
@@ -240,6 +240,19 @@ const App = ({ match }) => (
           <CarCatalogFirmList />
         </CarCatalogListStore>
       </Route>
+      {/*
+      ####### ####### ####### #       
+         #    #     # #     # #       
+         #    #     # #     # #       
+         #    #     # #     # #       
+         #    #     # #     # #       
+         #    #     # #     # #       
+         #    ####### ####### ####### 
+      */}
+      <Route path={["/tool/fuel", "/tool/fuelcheck"]}>
+        <ToolFuelPage />
+      </Route>
+
       {/*
       ####### ####### #     # ####### ######  
       #     #    #    #     # #       #     # 

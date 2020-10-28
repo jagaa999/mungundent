@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import moment from "moment";
 
 import { Avatar } from "antd";
 
@@ -7,7 +8,6 @@ import MemberContext from "context/MemberContext";
 
 const MotoMemberDetailProfileHeader = ({ myMemberDetail }) => {
   const memberContext = useContext(MemberContext);
-  const myProfile = memberContext.state;
   const myCloudProfile = memberContext.state.memberCloudProfile;
   const myFirebaseProfile = memberContext.state.memberFirebaseProfile;
 
@@ -41,29 +41,29 @@ const MotoMemberDetailProfileHeader = ({ myMemberDetail }) => {
           </div>
           <div className="gx-profile-banner-top-right">
             <ul className="gx-follower-list">
-              <li>
+              {/* <li>
                 <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
                   2k+
                 </span>
                 <span className="gx-fs-sm">Followers</span>
+              </li> */}
+              <li>
+                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
+                  {Math.abs(myMemberDetail.birthdate.diff(moment(), "years"))}
+                </span>
+                <span className="gx-fs-sm">настай</span>
               </li>
               <li>
                 <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
-                  847
+                  {moment(myMemberDetail.createddate).format("YYYY-MM-DD")}
                 </span>
-                <span className="gx-fs-sm">Following</span>
-              </li>
-              <li>
-                <span className="gx-follower-title gx-fs-lg gx-font-weight-medium">
-                  327
-                </span>
-                <span className="gx-fs-sm">Friends</span>
+                <span className="gx-fs-sm">хойш</span>
               </li>
             </ul>
           </div>
         </div>
         <div className="gx-profile-banner-bottom">
-          <div className="gx-tab-list">
+          {/* <div className="gx-tab-list">
             <ul className="gx-navbar-nav">
               <li>
                 <span className="gx-link">Timeline</span>
@@ -83,10 +83,13 @@ const MotoMemberDetailProfileHeader = ({ myMemberDetail }) => {
                 <span className="gx-link">More</span>
               </li>
             </ul>
-          </div>
+          </div> */}
 
-          <span className="gx-link gx-profile-setting">
-            <Link to={"/member/edit/" + myMemberDetail.systemuserid}>
+          <span className="gx-link gx-profile-setting ">
+            <Link
+              to={"/member/edit/" + myMemberDetail.systemuserid}
+              className="gx-text-success"
+            >
               <i className="icon icon-setting gx-fs-lg gx-mr-2 gx-mr-sm-3 gx-d-inline-flex gx-vertical-align-middle" />
               <span className="gx-d-inline-flex gx-vertical-align-middle gx-ml-1 gx-ml-sm-0">
                 Засах
