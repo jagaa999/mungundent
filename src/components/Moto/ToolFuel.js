@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import MotoTinyBarChart from "routes/extensions/charts/recharts/bar/Components/MotoTinyBarChart";
-import MotoToolFuelTips from "components/dashboard/Listing/MotoToolFuelTips";
+import MotoToolFuelTips from "../dashboard/Listing/MotoToolFuelTips";
 
 // import toBoolean from "util/booleanFunction";
 import {
@@ -12,6 +12,7 @@ import {
   Divider,
   Form,
   Input,
+  InputNumber,
   Select,
   Radio,
   Row,
@@ -99,14 +100,30 @@ const ToolFuel = () => {
   // const callOther = (allValues) => {};
 
   const onValuesChange = (changedValues, allValues) => {
-    // console.log("onValuesChange onValuesChange ", changedValues);
+    console.log("onValuesChange onValuesChange ", changedValues);
     console.log("DFDFDFDFDFDFDFDFF", allValues);
     setMyState({
       ...myState,
       mySpec: allValues,
     });
-    // callOther(allValues);
   };
+
+  // const onValuesChange = async (changedValues, allValues) => {
+  //   const testArray = [];
+
+  //   testArray.push({
+  //     ...myState,
+  //     mySpec: allValues,
+  //   });
+
+  //   return await setMyState({
+  //     testArray,
+  //   });
+  // };
+
+  // const onFieldsChange = (changedFields, allFields) => {
+  //   console.log("onFieldsChange onFieldsChange ", changedFields);
+  // };
 
   // const onFinish = (values) => {
   //   console.log("AFTER SUBMIT --------- ");
@@ -311,13 +328,14 @@ const ToolFuel = () => {
               // onFinish={onFinish}
               // onFinishFailed={onFinishFailed}
               // onFieldsChange={onFieldsChange}
+
               onValuesChange={onValuesChange}
               initialValues={{ ...myState.mySpec }}
               scrollToFirstError={true}
               colon={false}
               size="small"
             >
-              <Form.Item
+              {/* <Form.Item
                 name="zaalt"
                 label="Идэх ёстой норм"
                 rules={[
@@ -325,6 +343,32 @@ const ToolFuel = () => {
                 ]}
               >
                 <Input />
+              </Form.Item> */}
+
+              <Form.Item
+                name="zaalt"
+                hasFeedback
+                label="Идэх ёстой норм"
+                rules={[
+                  {
+                    required: true,
+                    message: "Стандарт нормыг бөглөнө үү",
+                    type: "number",
+                    min: 1,
+                    max: 50,
+                  },
+                ]}
+              >
+                <InputNumber
+                  disabled={myState.loading}
+                  step={1}
+                  min={1}
+                  max={50}
+                  // formatter={(value) => `${value} км`}
+                  decimalSeparator=","
+                  className="gx-w-100"
+                  onBlur={onBlur}
+                />
               </Form.Item>
 
               {myData.map((spec, index) => {
