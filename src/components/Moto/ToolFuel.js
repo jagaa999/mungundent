@@ -367,7 +367,6 @@ const ToolFuel = () => {
                   // formatter={(value) => `${value} км`}
                   decimalSeparator=","
                   className="gx-w-100"
-                  onBlur={onBlur}
                 />
               </Form.Item>
 
