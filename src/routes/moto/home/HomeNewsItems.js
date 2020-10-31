@@ -68,7 +68,8 @@ const HomeNewsItems = (props) => {
         ))}
       </Carousel>
 
-      <div className="gx-d-none gx-d-sm-block">
+      {/* <div className="gx-d-none gx-d-sm-block "> */}
+      <div className=" gx-d-sm-block moto-homecarousel-news-button">
         <Button
           type="dashed"
           shape="circle"

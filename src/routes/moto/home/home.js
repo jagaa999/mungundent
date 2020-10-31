@@ -11,6 +11,7 @@ import MemberBox from "./MemberBox";
 import FacebookGadget from "./FacebookGadget";
 import { LoadProcess, loadDataview, loadDVObject } from "util/axiosFunction";
 import classes from "./BackgroundVideo.module.css";
+import Vimeo from "@u-wave/react-vimeo";
 
 const HomePage = () => {
   const [newsSponsorItems, setNewsSponsorItems] = useState([]);
@@ -107,46 +108,29 @@ const HomePage = () => {
           md={{ span: 12, offset: 6 }}
         >
           {/* <HomeBanner /> */}
-          {/* https://medium.com/@Rayyan995/how-to-make-a-background-video-component-in-react-8725e32da272 */}
-          <div className={classes.Container}>
-            <video
-              autoPlay="autoplay"
-              loop="loop"
-              muted
-              className={classes.Video}
-            >
-              <source src={videoSource} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
-            <div className={classes.Content}>
-              <div className={classes.SubContent}>
-                <h1>Reactjs Course</h1>
-                <p>Learn how to develope React projects</p>
-                <button type="button" className="btn btn-outline-dark">
-                  View the course
-                </button>
-                <img
-                  src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-                  alt="profile"
-                />
-              </div>
-            </div>
-          </div>
-          {/* <ReactPlayer
-            url="https://www.youtube.com/watch?v=RVzpGKsSbOA"
-            light={true}
+          {/* https://www.npmjs.com/package/react-vimeo-embed */}
+          <Vimeo
+            video="374644920"
+            // video="461834246"
+            autoplay={true}
             muted={true}
-            volume={0}
-            controls={false}
-            loop={true}
-            playing={true}
-            autoPlay={1}
+            background={true}
             width="100%"
-            height="100%"
-          /> */}
-          dfdsg dgd gjfkds gjfskd gjfsdk gjfsdgdfsklg jdfskljg skldfgj skldfg
-          jdslkfg jfklsdjg flskdjg flskdj gskdflg jldfkj gkl
+            height="auto"
+            loop={true}
+            showByline={true}
+            controls={false}
+            responsive={true}
+          />
+          <div className="gx-mt-2 gx-w-100 gx-text-center">
+            <span className="gx-mr-2">Kia K5</span>
+            <a
+              href="https://www.facebook.com/kiamotorsmongolia/"
+              target="_blank"
+            >
+              <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-1 gx-d-inline-flex gx-vertical-align-middle" />
+            </a>
+          </div>
         </Col>
       </Row>
 
