@@ -1,10 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Menu, Dropdown, Button } from "antd";
+import { Menu, Dropdown, Button, Radio } from "antd";
 import {
   DownOutlined,
   CaretUpOutlined,
   CaretDownOutlined,
   PlusOutlined,
+  UnorderedListOutlined,
+  CreditCardOutlined,
+  TableOutlined,
 } from "@ant-design/icons";
 import FilterContext from "context/FilterContext";
 import NewsListContext from "context/NewsListContext";
@@ -47,10 +50,17 @@ const MotoSort = () => {
   };
 
   const onChangeType = (item) => {
-    console.log("keyPathkeyPath", item.key, " - ", selectedKeys[1]);
+    // console.log("keyPathkeyPath", item.key, " - ", selectedKeys[1]);
     if (item.key !== selectedKeys[1]) {
-      // console.log("tempStrtempStr", tempStr);
       setSelectedKeys([selectedKeys[0], item.key]);
+    }
+  };
+
+  const onChangeTypeRadio = (e) => {
+    // console.log("ttttt", e.target.value);
+    if (e.target.value !== selectedKeys[1]) {
+      // console.log("tempStrtempStr", tempStr);
+      setSelectedKeys([selectedKeys[0], e.target.value]);
     }
   };
 
@@ -92,15 +102,35 @@ const MotoSort = () => {
   );
 
   return (
-    <Dropdown overlay={menu} trigger={["click"]}>
-      <Button
+    <>
+      <Dropdown overlay={menu} trigger={["click"]}>
+        <Button
+          size="small"
+          className="gx-bg-grey gx-border-grey"
+          onClick={(e) => e.preventDefault()}
+        >
+          Эрэмбэ <DownOutlined />
+        </Button>
+      </Dropdown>
+
+      <Radio.Group
+        defaultValue={selectedKeys[1]}
+        buttonStyle="solid"
         size="small"
-        className="gx-bg-grey gx-border-grey"
-        onClick={(e) => e.preventDefault()}
+        onChange={onChangeTypeRadio}
+        style={{ position: "relative", top: "-6px" }}
       >
-        Эрэмбэ <DownOutlined />
-      </Button>
-    </Dropdown>
+        <Radio.Button value="typelist">
+          <UnorderedListOutlined />
+        </Radio.Button>
+        <Radio.Button value="typecard">
+          <CreditCardOutlined />
+        </Radio.Button>
+        <Radio.Button value="typetable">
+          <TableOutlined />
+        </Radio.Button>
+      </Radio.Group>
+    </>
   );
 };
 

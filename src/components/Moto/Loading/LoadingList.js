@@ -118,8 +118,8 @@ const LoadingList = (props) => {
   if (props.type === "card") {
     return (
       <Row>
-        {myLoop.map((item) => (
-          <Col xl={6} md={8} sm={12} xs={24} className="gx-mb-2">
+        {myLoop.map((item, index) => (
+          <Col key={index} xl={6} md={8} sm={12} xs={24} className="gx-mb-2">
             <Card loading={true}></Card>
           </Col>
         ))}

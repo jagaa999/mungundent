@@ -19,7 +19,7 @@ export const FilterStore = (props) => {
     filterList: {},
     paging: {
       offset: "1",
-      pagesize: "10",
+      pagesize: "12",
     },
     sorting: {},
     cardtype: {
@@ -40,7 +40,7 @@ export const FilterStore = (props) => {
 
   useEffect(() => {
     let myFilterList = {};
-    let myPaging = { offset: "1", pagesize: "10" };
+    let myPaging = { offset: "1", pagesize: "12" };
     let mySorting = {};
     let myCardtype = {
       cardtype: localStorage.getItem("cardtype")
@@ -181,11 +181,11 @@ export const FilterStore = (props) => {
           };
           myObject.paging = {
             offset: "1",
-            pagesize: "10",
+            pagesize: "12",
           };
         } else {
           delete myObject.filterList[myKey];
-          myObject.paging = { offset: "1", pagesize: "10" };
+          myObject.paging = { offset: "1", pagesize: "12" };
           myObject.sorting = {};
         }
       }

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 
 // import NewsListContext from "context/NewsListContext";
-import FilterContext from "context/FilterContext";
-import MemberContext from "context/MemberContext";
-import NewsListType1 from "components/Moto/NewsListType1";
-import NewsListType2 from "components/Moto/NewsListType2";
-import NewsListType3 from "components/Moto/NewsListType3";
-import PleaseLogin from "components/Moto/Member/PleaseLogin";
+import FilterContext from "../../../context/FilterContext";
+import MemberContext from "../../../context/MemberContext";
+import NewsListType1 from "../../../components/Moto/NewsListType1";
+import NewsListType2 from "../../../components/Moto/NewsListType2";
+import NewsListType3 from "../../../components/Moto/NewsListType3";
+import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
 const NewsListPage = () => {
   // const newsListContext = useContext(NewsListContext);
