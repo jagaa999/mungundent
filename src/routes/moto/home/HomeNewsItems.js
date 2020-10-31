@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Carousel, Button } from "antd";
 import {
@@ -9,7 +10,7 @@ import {
   LeftOutlined,
   RightOutlined,
 } from "@ant-design/icons";
-
+import WidgetHeader from "components/WidgetHeader/index";
 import NewsItem from "./NewsItem";
 
 import { LoadProcess, loadDataview } from "util/axiosFunction";
@@ -20,6 +21,16 @@ const HomeNewsItems = (props) => {
 
   return (
     <>
+      <WidgetHeader
+        styleName="gx-flex-row gx-mt-5"
+        title="Авто нийтлэлүүд"
+        extra={
+          <Link to={"/news"}>
+            Бүгдийг үзэх{" "}
+            <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-1 gx-d-inline-flex gx-vertical-align-middle" />
+          </Link>
+        }
+      />
       <Carousel
         autoplay={false}
         infinite={true}
