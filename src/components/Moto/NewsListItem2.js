@@ -33,7 +33,7 @@ const { Meta } = Card;
 const NewsItem = ({ newsItem, grid }) => {
   moment.locale("mn");
 
-  console.log("Манай Нийтлэл - ", newsItem);
+  // console.log("Манай Нийтлэл - ", newsItem);
 
   const truncatedDescription =
     newsItem.description.substring(0, 100) + " &hellip;";

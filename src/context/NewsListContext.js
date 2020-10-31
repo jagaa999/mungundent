@@ -16,7 +16,7 @@ export const NewsListStore = (props) => {
       systemmetagroupid: "1587197820548033",
       showquery: "0",
       paging: {
-        pagesize: filterContext.state.paging?.pagesize || "10", //нийтлэлийн тоо
+        pagesize: filterContext.state.paging?.pagesize || "12", //нийтлэлийн тоо
         offset: filterContext.state.paging?.offset || "1", //хуудасны дугаар
         sortcolumnnames: {
           [filterContext.state.sorting?.sortcolumnnames || "publisheddate"]: {

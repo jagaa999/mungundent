@@ -15,7 +15,7 @@ import { defaultSrc } from "util/config";
 // import NewsListItem from "components/Moto/NewsListItem";
 import NewsListItem2 from "./NewsListItem2";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import NewsListContext from "context/NewsListContext";
+import NewsListContext from "../../context/NewsListContext";
 import FilterContext from "context/FilterContext";
 import FilterDrawer from "./Drawer/FilterDrawer";
 import FilterTag from "./Tag/FilterTag";

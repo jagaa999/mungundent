@@ -18,6 +18,8 @@ import {
   Row,
   Col,
   Alert,
+  Badge,
+  Spin,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
@@ -172,7 +174,7 @@ const ToolFuel = () => {
       list: [
         { value: "0", label: "Шулуун зам" },
         { value: "4", label: "Хот дотор" },
-        { value: "5", label: "Хүнд бартаа" },
+        { value: "5", label: "Бартаат зам" },
       ],
     },
     {
@@ -182,6 +184,7 @@ const ToolFuel = () => {
         { value: "0", label: "Ачаагүй" },
         { value: "1.5", label: "45 кг ачаатай" },
         { value: "3", label: "90 кг ачаатай" },
+        { value: "4.5", label: "120 кг ачаатай" },
       ],
     },
 
@@ -189,8 +192,8 @@ const ToolFuel = () => {
       name: "tire",
       label: "Дугуй",
       list: [
-        { value: "0", label: "Хэвийн" },
-        { value: "4", label: "Хий муу" },
+        { value: "0", label: "Хэвийн дугуйтай" },
+        { value: "4", label: "Хий муу дугуйтай" },
         { value: "5", label: "Тэнхлэг алдагдсан" },
       ],
     },
@@ -198,15 +201,15 @@ const ToolFuel = () => {
       name: "window",
       label: "Цонх онгойлгох",
       list: [
-        { value: "0", label: "Хаалттай" },
-        { value: "5", label: "Онгорхой" },
+        { value: "0", label: "Цонх хаалттай" },
+        { value: "5", label: "Цонх онгорхой" },
       ],
     },
     {
       name: "light",
       label: "Их гэрэл",
       list: [
-        { value: "0", label: "Унтраастай" },
+        { value: "0", label: "Их гэрэл унтраастай" },
         { value: "5", label: "Их гэрэл асаасан" },
       ],
     },
@@ -214,51 +217,43 @@ const ToolFuel = () => {
       name: "fuellight",
       label: "Банкны шар гэрэл",
       list: [
-        { value: "0", label: "Хэвийн дүүргэдэг" },
-        { value: "5", label: "Байнга асаадаг" },
+        { value: "0", label: "Шатахуун хэвийн дүүргэдэг" },
+        { value: "5", label: "Банкны шар гэрэл асаадаг" },
       ],
     },
     {
       name: "condition",
       label: "Кондишн?",
       list: [
-        { value: "0", label: "Асаадаггүй" },
-        { value: "6", label: "Сул" },
-        { value: "15", label: "Хүчтэй" },
-        { value: "16", label: "Паар" },
-      ],
-    },
-    {
-      name: "coldengine",
-      label: "Хүйтэн хөдөлгүүр",
-      list: [
-        { value: "0", label: "Хэвийн хөдөлгүүр" },
-        { value: "12", label: "Хүйтэн хөдөлгүүр" },
+        { value: "0", label: "Кондишн асаадаггүй" },
+        { value: "6", label: "Кондишн сул үлээдэг" },
+        { value: "15", label: "Кондишн хүчтэй үлээдэг" },
+        { value: "16", label: "Паар тавьдаг" },
       ],
     },
     {
       name: "driving",
       label: "Жолоодох араншин",
       list: [
-        { value: "0", label: "Хэвийн зөөлөн" },
-        { value: "10", label: "Түрэмгий" },
-        { value: "30", label: "Хэт түрэмгий" },
+        { value: "0", label: "Хэвийн зөөлөн жолооддог" },
+        { value: "10", label: "Түрэмгий жолооддог" },
+        { value: "30", label: "Хэт түрэмгий жолооддог" },
       ],
     },
     {
       name: "engineservice",
       label: "Хөдөлгүүр (шүүгч, свечэ)",
       list: [
-        { value: "0", label: "Арчилгаа хэвийн" },
-        { value: "20", label: "Барагтай арчилдаггүй" },
+        { value: "0", label: "Хөдөлгүүр арчилдаг" },
+        { value: "20", label: "Хөдөлгүүр арчилдаггүй" },
       ],
     },
     {
       name: "enginesensor",
       label: "Мэдрэгч (яндан)",
       list: [
-        { value: "0", label: "Хэвийн" },
-        { value: "20", label: "Гэмтэлтэй" },
+        { value: "0", label: "Мэдрэгчүүд хэвийн" },
+        { value: "20", label: "Мэдрэгчүүд гэмтэлтэй" },
       ],
     },
     {
@@ -273,8 +268,8 @@ const ToolFuel = () => {
       name: "winternormal",
       label: "Өвөл нормальддаг",
       list: [
-        { value: "0", label: "Дулаан зогсоолтой" },
-        { value: "15", label: "Халаадаг" },
+        { value: "0", label: "Өвөл дулаан зогсоолтой" },
+        { value: "15", label: "Өглөө оройд халаадаг" },
       ],
     },
     {
@@ -288,54 +283,31 @@ const ToolFuel = () => {
     },
   ];
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 7 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 17 },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 17,
-        offset: 7,
-      },
-    },
-  };
-
   return (
     <>
-      <h2>Шатахууны зарцуулалтыг илрүүлэх багаж</h2>
+      <h2>Бензин идэлт хэмжих</h2>
       <Row>
         <Col span={16}>
           <Card
             className="gx-card_old "
             style={{ backgroundColor: "#f0f0f0" }}
-            title="Таны өгөгдлүүд"
+            // title="Таны өгөгдлүүд"
           >
-            <Form
-              {...formItemLayout}
-              form={form}
-              name="toolFuelForm"
-              // onFinish={onFinish}
-              // onFinishFailed={onFinishFailed}
-              // onFieldsChange={onFieldsChange}
+            <Spin spinning={myState.loading} tip="Одоохон..." size="large">
+              <Form
+                form={form}
+                name="toolFuelForm"
+                // onFinish={onFinish}
+                // onFinishFailed={onFinishFailed}
+                // onFieldsChange={onFieldsChange}
 
-              onValuesChange={onValuesChange}
-              initialValues={{ ...myState.mySpec }}
-              scrollToFirstError={true}
-              colon={false}
-              size="small"
-            >
-              {/* <Form.Item
+                onValuesChange={onValuesChange}
+                initialValues={{ ...myState.mySpec }}
+                scrollToFirstError={true}
+                colon={false}
+                size="small"
+              >
+                {/* <Form.Item
                 name="zaalt"
                 label="Идэх ёстой норм"
                 rules={[
@@ -345,61 +317,81 @@ const ToolFuel = () => {
                 <Input />
               </Form.Item> */}
 
-              <Form.Item
-                name="zaalt"
-                hasFeedback
-                label="Идэх ёстой норм"
-                rules={[
-                  {
-                    required: true,
-                    message: "Стандарт нормыг бөглөнө үү",
-                    type: "number",
-                    min: 1,
-                    max: 50,
-                  },
-                ]}
-              >
-                <InputNumber
-                  disabled={myState.loading}
-                  step={1}
-                  min={1}
-                  max={50}
-                  // formatter={(value) => `${value} км`}
-                  decimalSeparator=","
-                  className="gx-w-100"
-                />
-              </Form.Item>
+                <Form.Item
+                  labelCol={{ span: 7 }}
+                  wrapperCol={{ span: 17 }}
+                  name="zaalt"
+                  hasFeedback
+                  label="Идэх ёстой норм"
+                  size="large"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Стандарт нормыг бөглөнө үү",
+                      type: "number",
+                      min: 1,
+                      max: 50,
+                    },
+                  ]}
+                >
+                  <InputNumber
+                    disabled={myState.loading}
+                    step={1}
+                    min={1}
+                    max={50}
+                    // formatter={(value) => `${value} км`}
+                    decimalSeparator=","
+                    className="gx-w-100"
+                  />
+                </Form.Item>
 
-              {myData.map((spec, index) => {
-                return (
-                  <Form.Item key={index} name={spec.name} label={spec.label}>
-                    <Radio.Group
-                      buttonStyle="solid"
-                      className="toolspec-radio-group"
+                {myData.map((spec, index) => {
+                  return (
+                    <Form.Item
+                      key={index}
+                      name={spec.name}
+                      label={spec.label}
+                      labelCol={{ span: 0 }}
+                      wrapperCol={{ span: 24 }}
                     >
-                      {spec.list.map((item, index) => {
-                        return (
-                          <Radio.Button
-                            key={index}
-                            value={item.value}
-                            className={
-                              item.value == "0"
-                                ? "radio-button-0"
-                                : "radio-button-1"
-                            }
-                            // style={{ background: "#d1d1d1" }}
-                          >
-                            <span className="gx-fs-sm toolspec-small-labelspan">
-                              {item.label}
-                            </span>
-                          </Radio.Button>
-                        );
-                      })}
-                    </Radio.Group>
-                  </Form.Item>
-                );
-              })}
-            </Form>
+                      <Radio.Group
+                        buttonStyle="solid"
+                        className="toolspec-radio-group"
+                      >
+                        {spec.list.map((item, index) => {
+                          return (
+                            <Radio.Button
+                              key={index}
+                              value={item.value}
+                              className={`${
+                                item.value == "0"
+                                  ? "radio-button-0"
+                                  : "radio-button-1"
+                              } moto-radio-button`}
+                              // style={{ background: "#d1d1d1" }}
+                            >
+                              <span className="gx-fs-sm toolspec-small-labelspan">
+                                {item.label}
+                              </span>
+
+                              {myState.mySpec[spec.name] === item.value &&
+                                item.value !== "0" && (
+                                  <span className="toolspec-fuel-valuebadge">
+                                    <Badge
+                                      count={item.value + "%"}
+                                      className="silver-badge"
+                                    />
+                                  </span>
+                                )}
+                            </Radio.Button>
+                          );
+                        })}
+                      </Radio.Group>
+                    </Form.Item>
+                  );
+                })}
+              </Form>
+            </Spin>
           </Card>
         </Col>
         <Col span={8}>
