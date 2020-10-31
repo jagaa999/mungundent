@@ -107,6 +107,7 @@ const HomePage = () => {
           md={{ span: 12, offset: 6 }}
         >
           {/* <HomeBanner /> */}
+          {/* https://medium.com/@Rayyan995/how-to-make-a-background-video-component-in-react-8725e32da272 */}
           <div className={classes.Container}>
             <video
               autoPlay="autoplay"
