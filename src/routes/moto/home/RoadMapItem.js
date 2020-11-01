@@ -24,12 +24,12 @@ const RoadMapItem = ({ sponsorItem }) => {
             )
             .split(".")
             .shift()}
-          height="320"
+          height="500"
           crop="fill"
           loading="lazy"
           dpr="auto"
           responsive
-          width="auto"
+          width="700"
           gravity="face"
           quality="auto"
           responsiveUseBreakpoints="true"

@@ -91,7 +91,7 @@ const HomePage = () => {
 
   return (
     <>
-      <h1>Нийтлэл</h1>
+      <h5>Спонсор нийтлэл</h5>
       <Row className="gx-d-flex gx-mb-5">
         <Col xl={15} lg={15} md={15} sm={12} xs={24} className="gx-mb-3">
           <HomeSponsor newsSponsorItems={newsSponsorItems} />

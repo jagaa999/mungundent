@@ -28,6 +28,7 @@ const HomeSponsor = (props) => {
         autoplaySpeed={10000}
         arrows={false}
         dots={true}
+        arrows={true}
         infinite={true}
         speed={500}
         marginLeft={10}
