@@ -29,7 +29,7 @@ const { TextArea } = Input;
 
 const formItemLayout = {
   labelCol: {
-    xs: { span: 24 },
+    xs: { span: 0 },
     sm: { span: 7 },
   },
   wrapperCol: {
@@ -37,14 +37,7 @@ const formItemLayout = {
     sm: { span: 17 },
   },
 };
-const forItemLayoutSame = {
-  labelCol: {
-    xs: { span: 7 },
-  },
-  wrapperCol: {
-    xs: { span: 17 },
-  },
-};
+
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -180,7 +173,7 @@ const NewsForm = () => {
     }
   });
 
-  console.log("newsItemnewsItem", newsItem);
+  console.log("newsItem: ", newsItem);
 
   // ######  ####### ####### #     # ######  #     #
   // #     # #          #    #     # #     # ##    #
@@ -202,13 +195,15 @@ const NewsForm = () => {
         name="newsDetailForm"
         onFinish={onFinish}
         initialValues={{
-          newsid: newsItem ? newsItem.newsid : "",
-          title: newsItem ? newsItem.title : "",
-          newstypeid: newsItem ? newsItem.newstypeid : null,
-          newssourceid: newsItem ? newsItem.newssourceid : null,
-          isactive: newsItem ? toBoolean(newsItem.isactive) : true,
-          isfeatured: newsItem ? toBoolean(newsItem.isfeatured) : false,
-          iscomment: newsItem ? toBoolean(newsItem.iscomment) : true,
+          newsid: newsItem.newsid || "",
+          title: newsItem.title || "",
+          newstypeid: newsItem.newstypeid || null,
+          newssourceid: newsItem.newssourceid || null,
+          isactive: newsItem.isactive ? toBoolean(newsItem.isactive) : true,
+          iscomment: newsItem.iscomment ? toBoolean(newsItem.iscomment) : true,
+          isfeatured: newsItem.isfeatured
+            ? toBoolean(newsItem.isfeatured)
+            : false,
           // description: newsItem ? newsItem.description : "",
         }}
         scrollToFirstError={true}
@@ -222,12 +217,7 @@ const NewsForm = () => {
             #     #     #    #       #       
             #     #     #    #       #       
             #    ###    #    ####### #######  */}
-        <Form.Item
-          {...forItemLayoutSame}
-          name="newsid"
-          label="ID дугаар"
-          hidden={true}
-        >
+        <Form.Item name="newsid" label="ID дугаар" hidden={true}>
           <Input disabled />
         </Form.Item>
 
@@ -249,11 +239,7 @@ const NewsForm = () => {
             },
           ]}
         >
-          <TextArea
-            placeholder="Гарчгаа бичнэ үү"
-            autoSize
-            onChange={titleOnChange}
-          />
+          <TextArea placeholder="Гарчиг" autoSize onChange={titleOnChange} />
         </Form.Item>
 
         <Form.Item
@@ -265,7 +251,7 @@ const NewsForm = () => {
           <Select
             loading={newsType.loading}
             showSearch
-            placeholder="Төрлөө сонгоно уу"
+            placeholder="Төрөл"
             optionFilterProp="children"
             onChange={handleChange}
             onFocus={handleFocus}
@@ -311,7 +297,7 @@ const NewsForm = () => {
           <Select
             loading={newsSource.loading}
             showSearch
-            placeholder="Эх сурвалжийг сонгоно уу!"
+            placeholder="Эх сурвалж"
             optionFilterProp="children"
             onChange={handleChange}
             onFocus={handleFocus}
@@ -327,12 +313,6 @@ const NewsForm = () => {
               }
             }}
           >
-            {/* {newsSource.newsSources.map((item) => (
-              <Option key={item.newssourceid} value={item.newssourceid}>
-                {item.newssourcename}
-              </Option>
-            ))} */}
-
             {newsSource.newsSources
               .filter(
                 (v, i, a) =>
@@ -364,11 +344,6 @@ const NewsForm = () => {
           <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
         </Form.Item> */}
         <Form.Item name="imgurl" label="Зураг" valuePropName="fileList">
-          {/* <ImageUpload
-            normFile={normFileImages}
-            newsImageMain={newsItem ? newsItem.imagemain : ""}
-            imageTags={imageTags}
-          /> */}
           <ImageCrop1 imagemainFileList={newsItem.imagemainFileList || []} />
         </Form.Item>
         <Form.Item
@@ -385,36 +360,33 @@ const NewsForm = () => {
             />
           </Card>
         </Form.Item>
-        <Divider dashed orientation="center" plain>
-          Тохиргоо
-        </Divider>
         <Form.Item
           name="isactive"
           label="Идэвхтэй?"
           valuePropName="checked"
-          {...forItemLayoutSame}
+          hidden={true}
         >
           <Switch name="switchisactive" defaultChecked />
         </Form.Item>
-        <Form.Item
-          name="isfeatured"
-          label="Спонсор?"
-          valuePropName="checked"
-          {...forItemLayoutSame}
-        >
-          <Switch name="switchisfeatured" defaultChecked />
+        <Form.Item name="isfeatured" label="Спонсор?" valuePropName="checked">
+          <Switch
+            name="switchisfeatured"
+            defaultChecked
+            checkedChildren="Спонсор"
+            unCheckedChildren="Энгийн"
+          />
         </Form.Item>
         <Form.Item
           name="iscomment"
           label="Коммент?"
           valuePropName="checked"
-          {...forItemLayoutSame}
+          hidden={true}
         >
           <Switch name="switchiscomment" defaultChecked />
         </Form.Item>
-        <Divider dashed orientation="center" plain>
-          Таны үйлдэл
-        </Divider>
+
+        <Divider />
+
         <Form.Item {...tailFormItemLayout}>
           <Button
             type="primary"

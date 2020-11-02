@@ -31,12 +31,10 @@ const NewsListType2 = () => {
 
   return (
     <div>
-      <div className="">
-        <FilterTag />
-      </div>
+      <FilterTag />
 
       {!newsListContext.state.loading ? (
-        <div className="gx-main-content">
+        <div className="gx-main-content gx-p-2 gx-p-sm-0">
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">
@@ -47,7 +45,7 @@ const NewsListType2 = () => {
                   xl={6}
                   md={8}
                   sm={12}
-                  xs={24}
+                  xs={12}
                   className="gx-mb-5"
                 >
                   <NewsListItem2 key={index} newsItem={newsItem} />

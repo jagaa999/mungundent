@@ -107,7 +107,7 @@ const NewsItem = ({ newsItem, grid }) => {
               {moment(newsItem.publisheddate).fromNow()}
             </span>
 
-            <div className="gx-description gx-fs-sm gx-mt-2">
+            <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
               <span
                 dangerouslySetInnerHTML={{ __html: truncatedDescription }}
               ></span>

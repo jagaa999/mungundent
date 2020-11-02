@@ -176,16 +176,16 @@ export const NewsDetailStore = (props) => {
         // console.log("NEWS DETAIL------------>", myArray);
         myArray.imagemainFileList = [];
         myArray.imagemainFileList =
-          myArray.imgurl !== undefined &&
-          (myArray.imgurl !== ""
+          myArray.imagemain !== undefined &&
+          (myArray.imagemain !== ""
             ? [
                 {
                   uid: "-1",
                   name: "Тодорхойгүй",
                   status: "done",
-                  url: myArray.imgurl || "",
-                  thumbUrl: myArray.imgurl || "",
-                  response: { url: myArray.imgurl || "" },
+                  url: myArray.imagemain || "",
+                  thumbUrl: myArray.imagemain || "",
+                  response: { url: myArray.imagemain || "" },
                 },
               ]
             : []);

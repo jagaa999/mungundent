@@ -6,6 +6,11 @@ import { defaultSrc } from "util/config";
 import { Image } from "cloudinary-react";
 
 const NewsItem = ({ newsItem }) => {
+  newsItem.imagemain =
+    newsItem.imagemain === ""
+      ? "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+      : newsItem.imagemain;
+
   return (
     <Card
       className="gx-card-full gx-text-center moto-item-card"
@@ -43,7 +48,7 @@ const NewsItem = ({ newsItem }) => {
           loading="lazy"
           dpr="auto"
           responsive
-          width="auto"
+          width="300"
           gravity="face"
           quality="auto"
           responsiveUseBreakpoints="true"

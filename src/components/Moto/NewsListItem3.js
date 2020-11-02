@@ -19,73 +19,62 @@ import {
 } from "antd";
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
+import { AlignCenterOutlined } from "@ant-design/icons";
 
 const NewsItem = ({ newsItems }) => {
   const columns = [
-    {
-      title: "",
-      dataIndex: "imagemain",
-      key: "imagemain",
-      fixed: "left",
-      render: (imagemain) => (
-        <Image
-          cloudName="motomn"
-          publicId={imagemain
-            .slice(imagemain.indexOf("upload/") + 7, imagemain.length)
-            .split(".")
-            .shift()}
-          crop="fill"
-          loading="lazy"
-          dpr="auto"
-          responsive
-          width="64"
-          gravity="face"
-          quality="auto"
-          // placeholder="blur"
-          responsiveUseBreakpoints="true"
-          className="gx-d-block"
-          default_image="jhannw5jgo2mlvvkvke9"
-          alt={imagemain}
-          onError={defaultSrc}
-        />
-      ),
-      // render: (imagemain) => (
-      //   <Avatar
-      //     src={
-      //       imagemain ||
-      //       "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
-      //     }
-      //     alt={imagemain}
-      //     size={64}
-      //     shape="square"
-      //   />
-      // ),
-    },
-
     {
       title: "Гарчиг",
       dataIndex: "title",
       key: "title",
       render: (title, record) => (
         <>
-          <Link to={"/news/" + record.newsid}>{title}</Link>
-          {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
-          {!toBoolean(record.isactive) && <ActiveTag type="dot" />}
-          <div className="gx-d-flex">
-            <Tooltip title="Төрөл">
-              <span className="moto-label-main ant-tag">
-                {record.newstypename}
-              </span>
-            </Tooltip>
-            <Tooltip title="Эх сурвалж">
-              <span className="moto-label-main ant-tag">
-                {record.newssourcename}
-              </span>
-            </Tooltip>
-            <span className="gx-fs-sm">
-              {moment(record.publisheddate).fromNow()}
-            </span>
-          </div>
+          <li className="gx-media">
+            <Image
+              cloudName="motomn"
+              publicId={record.imagemain
+                .slice(
+                  record.imagemain.indexOf("upload/") + 7,
+                  record.imagemain.length
+                )
+                .split(".")
+                .shift()}
+              crop="fill"
+              loading="lazy"
+              dpr="auto"
+              responsive
+              width="64"
+              gravity="face"
+              quality="auto"
+              // placeholder="blur"
+              responsiveUseBreakpoints="true"
+              className="gx-mr-3"
+              default_image="jhannw5jgo2mlvvkvke9"
+              alt={record.imagemain}
+              onError={defaultSrc}
+            />
+
+            <div className="gx-media-body gx-align-self-center">
+              <Link to={"/news/" + record.newsid}>{title}</Link>
+              {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
+              {!toBoolean(record.isactive) && <ActiveTag type="dot" />}
+              <div className="gx-d-flex">
+                <Tooltip title="Төрөл">
+                  <span className="moto-label-main ant-tag">
+                    {record.newstypename}
+                  </span>
+                </Tooltip>
+                <Tooltip title="Эх сурвалж">
+                  <span className="moto-label-main ant-tag">
+                    {record.newssourcename}
+                  </span>
+                </Tooltip>
+                <span className="gx-fs-sm">
+                  {moment(record.publisheddate).fromNow()}
+                </span>
+              </div>
+            </div>
+          </li>
         </>
       ),
     },
@@ -93,6 +82,7 @@ const NewsItem = ({ newsItems }) => {
       title: "Нийтлэгч",
       dataIndex: "userprofilephoto",
       key: "userprofilephoto",
+      align: "center",
       render: (userprofilephoto, userfullname) => (
         // <Tooltip title={userfullname}>
         <Avatar src={userprofilephoto} alt={userprofilephoto} size="small" />
@@ -107,6 +97,7 @@ const NewsItem = ({ newsItems }) => {
       columns={columns}
       dataSource={newsItems}
       pagination={false}
+      showHeader={false}
     />
   );
 };

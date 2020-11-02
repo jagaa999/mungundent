@@ -135,7 +135,7 @@ const NewsItem = ({ newsItem, grid }) => {
           </Tooltip>
         </div>
 
-        <div className="gx-description">
+        <div className="gx-description gx-d-none gx-d-sm-block">
           <p className="gx-mt-2">
             <span
               dangerouslySetInnerHTML={{ __html: truncatedDescription }}

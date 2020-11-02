@@ -9,6 +9,7 @@ import HomeNewsItems from "./HomeNewsItems";
 
 import MemberBox from "./MemberBox";
 import FacebookGadget from "./FacebookGadget";
+import HomeBanner from "../../../components/Banner/HomeBanner";
 import { LoadProcess, loadDataview, loadDVObject } from "util/axiosFunction";
 import classes from "./BackgroundVideo.module.css";
 import Vimeo from "@u-wave/react-vimeo";
@@ -91,9 +92,15 @@ const HomePage = () => {
 
   return (
     <>
-      <h5>Спонсор нийтлэл</h5>
       <Row className="gx-d-flex gx-mb-5">
-        <Col xl={15} lg={15} md={15} sm={12} xs={24} className="gx-mb-3">
+        <Col
+          xl={{ span: 15, offset: 0 }}
+          lg={{ span: 15, offset: 0 }}
+          md={{ span: 15, offset: 0 }}
+          sm={{ span: 12, offset: 0 }}
+          xs={{ span: 20, offset: 2 }}
+          className="gx-mb-3"
+        >
           <HomeSponsor newsSponsorItems={newsSponsorItems} />
         </Col>
         <Col xl={9} lg={9} md={9} sm={12} xs={24} className="gx-mb-3">
@@ -107,30 +114,7 @@ const HomePage = () => {
           sm={{ span: 16, offset: 4 }}
           md={{ span: 12, offset: 6 }}
         >
-          {/* <HomeBanner /> */}
-          {/* https://www.npmjs.com/package/react-vimeo-embed */}
-          <Vimeo
-            video="374644920"
-            // video="461834246"
-            autoplay={true}
-            muted={true}
-            background={true}
-            width="100%"
-            height="auto"
-            loop={true}
-            showByline={true}
-            controls={false}
-            responsive={true}
-          />
-          <div className="gx-mt-2 gx-w-100 gx-text-center">
-            <span className="gx-mr-2">Kia K5</span>
-            <a
-              href="https://www.facebook.com/kiamotorsmongolia/"
-              target="_blank"
-            >
-              <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-1 gx-d-inline-flex gx-vertical-align-middle" />
-            </a>
-          </div>
+          <HomeBanner />
         </Col>
       </Row>
 
@@ -146,7 +130,7 @@ const HomePage = () => {
 
       <Divider orientation="center" plain={true} className="gx-my-5"></Divider>
 
-      <Row className="gx-d-flex ">
+      <Row className="gx-d-flex  gx-d-none gx-d-sm-block">
         <Col
           xl={24}
           lg={24}
