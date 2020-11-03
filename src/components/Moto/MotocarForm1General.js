@@ -7,7 +7,6 @@ import {
   Tooltip,
   message,
   Select,
-  Badge,
   Divider,
   DatePicker,
 } from "antd";
@@ -15,15 +14,13 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import moment from "moment";
 import "moment/locale/mn";
-import MotoSelect1 from "./Form/MotoSelect1";
 
-const { Option, OptGroup } = Select;
-const { TextArea } = Input;
+const { Option } = Select;
 
 const MotocarForm1General = ({
   form,
   mglFirmList,
-  setMglFirmList,
+  // setMglFirmList,
   mglMarkList,
   setMglMarkList,
   mglBodyList,

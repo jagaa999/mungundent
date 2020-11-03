@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { isEmpty } from "lodash";
-import {
-  firebaseAuth,
-  facebookAuthProvider,
-  githubAuthProvider,
-  googleAuthProvider,
-  twitterAuthProvider,
-} from "firebase/firebase";
+import { firebaseAuth } from "firebase/firebase";
 
-import axios from "../util/axiosConfig";
+import axios, { ecomZ, decomZ } from "util/axiosConfig";
+import myAxiosZ from "../util/myAxiosZ";
 import { message } from "antd";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
@@ -157,29 +152,26 @@ export const MemberProfileStore = (props) => {
         },
       },
     };
-    // console.log("myParamsLoginMemberCloud", myParamsLoginMemberCloud);
 
-    axios
-      .post("", myParamsLoginMemberCloud)
-      .then((response) => {
-        const myArray = response.data.response.result;
-
+    myAxiosZ(myParamsLoginMemberCloud)
+      .then((myData) => {
+        // console.log(myData);
         if (
-          response.data.response.status === "error" &&
-          response.data.response.text === "User_name_or_password_wrong"
+          myData.response.status === "error" &&
+          myData.response.text === "User_name_or_password_wrong"
         ) {
           createMemberCloudWithFirebase();
         } else {
           setState({
             ...state,
-            memberCloudProfile: response.data.response.result,
+            memberCloudProfile: myData.response.result,
             loading: false,
           });
         }
       })
       .catch((error) => {
         setState({ ...state, loading: false, error });
-        console.log("error", error);
+        console.log(error);
       });
   };
 

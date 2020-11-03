@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { parse } from "query-string";
-import axios from "util/axiosConfig";
+
+import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import useDidMountEffect from "util/useDidMountEffect";
@@ -47,6 +47,7 @@ export const NewsListStore = (props) => {
     newsList: [],
     loading: false,
     error: null,
+    isFilterDrawerOpen: false,
   };
 
   const [state, setState] = useState(initialStateNewsList);
@@ -61,6 +62,14 @@ export const NewsListStore = (props) => {
     filterContext.state.cardtype,
     memberContext.state.isLogin,
   ]);
+
+  //  #       #######    #    ######
+  //  #       #     #   # #   #     #
+  //  #       #     #  #   #  #     #
+  //  #       #     # #     # #     #
+  //  #       #     # ####### #     #
+  //  #       #     # #     # #     #
+  //  ####### ####### #     # ######
 
   const loadNewsList = (queryString) => {
     setState({ ...state, loading: true });
@@ -113,11 +122,10 @@ export const NewsListStore = (props) => {
       },
     };
 
-    axios
-      .post("", myParamsNewsList)
-      .then((response) => {
-        const myPaging = response.data.response.result.paging || {};
-        const myArray = response.data.response.result || [];
+    myAxiosZ(myParamsNewsList)
+      .then((myData) => {
+        const myPaging = myData.response.result.paging || {};
+        const myArray = myData.response.result || [];
 
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
@@ -136,8 +144,17 @@ export const NewsListStore = (props) => {
       });
   };
 
+  const toggleFilterDrawerOpen = () => {
+    setState({
+      ...state,
+      isFilterDrawerOpen: !state.isFilterDrawerOpen,
+    });
+  };
+
   return (
-    <NewsListContext.Provider value={{ state, loadNewsList }}>
+    <NewsListContext.Provider
+      value={{ state, loadNewsList, toggleFilterDrawerOpen }}
+    >
       {props.children}
     </NewsListContext.Provider>
   );

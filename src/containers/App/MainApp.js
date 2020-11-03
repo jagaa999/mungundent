@@ -1,35 +1,16 @@
 import React, { useContext, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { useRouteMatch, Route, Switch } from "react-router-dom";
 import { Layout } from "antd";
 
-import Sidebar from "../Sidebar/index";
 import MotoHeader from "../Topbar/MotoHeader/MotoHeader";
 import MotoFooter from "../Topbar/MotoHeader/MotoFooter";
 import asyncComponent from "util/asyncComponent";
-
-import { footerText } from "util/config";
 import MotoIndex from "../../routes/MotoIndex";
-import { useSelector } from "react-redux";
-import {
-  NAV_STYLE_ABOVE_HEADER,
-  NAV_STYLE_BELOW_HEADER,
-  NAV_STYLE_DARK_HORIZONTAL,
-  NAV_STYLE_DEFAULT_HORIZONTAL,
-  NAV_STYLE_DRAWER,
-  NAV_STYLE_FIXED,
-  NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
-  NAV_STYLE_MINI_SIDEBAR,
-  NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
-  NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
-  TAB_SIZE,
-} from "../../constants/ThemeSetting";
-import { useRouteMatch } from "react-router-dom";
-// import Customizer from "../Customizer";
 
 import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const KiaK5Detail = asyncComponent(() => {
   return import("content/kia/k5/index");
@@ -37,12 +18,10 @@ const KiaK5Detail = asyncComponent(() => {
 
 const MainApp = () => {
   const memberContext = useContext(MemberContext);
-  const myItem = memberContext.state.memberProfile;
   const memberItemsContext = useContext(MemberItemsContext);
 
-  // const { width, navStyle } = useSelector(({ settings }) => settings);
-  const width = window.innerWidth;
-  const navStyle = "NAV_STYLE_INSIDE_HEADER_HORIZONTAL";
+  // const width = window.innerWidth;
+  // const navStyle = "NAV_STYLE_INSIDE_HEADER_HORIZONTAL";
 
   const match = useRouteMatch();
 
@@ -51,42 +30,25 @@ const MainApp = () => {
     memberItemsContext.loadMemberItems("1502764251361501");
   }, [memberContext.state.memberCloudUserSysId]);
 
-  const getContainerClass = (navStyle) => {
-    switch (navStyle) {
-      case NAV_STYLE_DARK_HORIZONTAL:
-        return "gx-container-wrap";
-      case NAV_STYLE_DEFAULT_HORIZONTAL:
-        return "gx-container-wrap";
-      case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
-        return "gx-container-wrap";
-      case NAV_STYLE_BELOW_HEADER:
-        return "gx-container-wrap";
-      case NAV_STYLE_ABOVE_HEADER:
-        return "gx-container-wrap";
-      default:
-        return "";
-    }
-  };
-
-  const getSidebar = (navStyle, width) => {
-    if (width < TAB_SIZE) {
-      return <Sidebar />;
-    }
-    switch (navStyle) {
-      case NAV_STYLE_FIXED:
-        return <Sidebar />;
-      case NAV_STYLE_DRAWER:
-        return <Sidebar />;
-      case NAV_STYLE_MINI_SIDEBAR:
-        return <Sidebar />;
-      case NAV_STYLE_NO_HEADER_MINI_SIDEBAR:
-        return <Sidebar />;
-      case NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR:
-        return <Sidebar />;
-      default:
-        return null;
-    }
-  };
+  // const getSidebar = (navStyle, width) => {
+  //   if (width < TAB_SIZE) {
+  //     return <Sidebar />;
+  //   }
+  //   switch (navStyle) {
+  //     case NAV_STYLE_FIXED:
+  //       return <Sidebar />;
+  //     case NAV_STYLE_DRAWER:
+  //       return <Sidebar />;
+  //     case NAV_STYLE_MINI_SIDEBAR:
+  //       return <Sidebar />;
+  //     case NAV_STYLE_NO_HEADER_MINI_SIDEBAR:
+  //       return <Sidebar />;
+  //     case NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR:
+  //       return <Sidebar />;
+  //     default:
+  //       return null;
+  //   }
+  // };
 
   // console.log("=======>  ", navStyle);
 
@@ -99,16 +61,11 @@ const MainApp = () => {
 
       <Route>
         <Layout className="gx-app-layout">
-          {getSidebar(navStyle, width)}
+          {/* {getSidebar(navStyle, width)} */}
           <Layout>
-            {/* {getNavStyles(navStyle)} */}
-
             <MotoHeader />
 
-            <Content
-              className={`gx-layout-content ${getContainerClass(navStyle)} `}
-            >
-              {/* {console.log("dddddddddddd")} */}
+            <Content className="gx-layout-content gx-container-wrap">
               <MotoIndex match={match} />
 
               <MotoFooter />
@@ -116,7 +73,6 @@ const MainApp = () => {
                 <div className="gx-layout-footer-content">{footerText}</div>
               </Footer> */}
             </Content>
-            {/* <Customizer /> */}
           </Layout>
         </Layout>
       </Route>

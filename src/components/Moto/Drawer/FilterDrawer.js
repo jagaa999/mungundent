@@ -1,23 +1,28 @@
-import React, { useState } from "react";
-import { Button, Drawer, Radio, Space, Row, Col, Affix, Tooltip } from "antd";
-import CustomScrollbars from "util/CustomScrollbars";
+import React, { useContext } from "react";
+import { Button, Drawer } from "antd";
 import NewsFilter from "./NewsFilter";
+import NewsListContext from "context/NewsListContext";
 
 const FilterDrawer = () => {
-  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const newsListContext = useContext(NewsListContext);
 
   const toggleFilterDrawer = () => {
-    setIsFilterDrawerOpen(!isFilterDrawerOpen);
+    newsListContext.toggleFilterDrawerOpen();
   };
 
   return (
     <div>
       <Drawer
-        title="Шүүлтүүр"
+        title={
+          <>
+            <i className="icon icon-filter gx-d-inline-flex gx-vertical-align-middle gx-mr-3" />{" "}
+            Шүүлтүүр
+          </>
+        }
         width="350"
         placement="left"
         closable={true}
-        visible={isFilterDrawerOpen}
+        visible={newsListContext.state.isFilterDrawerOpen}
         onClose={toggleFilterDrawer}
       >
         <NewsFilter />

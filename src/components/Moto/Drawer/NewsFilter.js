@@ -1,23 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect, useHistory, Link, useLocation } from "react-router-dom";
-import { parse } from "query-string";
 import { isEmpty } from "lodash";
 
-import {
-  Badge,
-  Button,
-  Drawer,
-  Radio,
-  Input,
-  Checkbox,
-  Space,
-  Row,
-  Col,
-  Divider,
-} from "antd";
+import { Button, Input, Checkbox, Divider } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import CustomScrollbars from "util/CustomScrollbars";
-import MotoCheckBox from "components/Moto/Filter/CheckBox";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";

@@ -8,6 +8,10 @@ import {
   UnorderedListOutlined,
   CreditCardOutlined,
   TableOutlined,
+  SortAscendingOutlined,
+  SlidersOutlined,
+  DashOutlined,
+  VerticalAlignBottomOutlined,
 } from "@ant-design/icons";
 import FilterContext from "context/FilterContext";
 import NewsListContext from "context/NewsListContext";
@@ -105,12 +109,11 @@ const MotoSort = () => {
     <>
       <Dropdown overlay={menu} trigger={["click"]}>
         <Button
-          size="small"
-          className="gx-bg-grey gx-border-grey"
+          type="text"
+          icon={<i className="icon icon-ellipse-h gx-d-block" />}
           onClick={(e) => e.preventDefault()}
-        >
-          Эрэмбэ <DownOutlined />
-        </Button>
+          className="gx-ml-0"
+        ></Button>
       </Dropdown>
 
       <Radio.Group
@@ -118,7 +121,7 @@ const MotoSort = () => {
         buttonStyle="solid"
         size="small"
         onChange={onChangeTypeRadio}
-        style={{ position: "relative", top: "-6px" }}
+        style={{ marginBottom: "15px", verticalAlign: "middle" }}
       >
         <Radio.Button value="typelist">
           <UnorderedListOutlined />

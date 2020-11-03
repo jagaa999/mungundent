@@ -1,13 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import { parse } from "query-string";
 import { message } from "antd";
 import toBoolean from "util/booleanFunction";
-import axios from "util/axiosConfig";
+import axios, { ecomZ, decomZ } from "util/axiosConfig";
+import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
-import { Html5Entities } from "html-entities";
-import { mapValues } from "lodash";
 
 const NewsDetailContext = React.createContext();
 
@@ -169,10 +166,9 @@ export const NewsDetailStore = (props) => {
     clearNewsDetail();
     setState({ ...state, loading: true });
 
-    axios
-      .post("", myParamsNewsDetail)
-      .then((response) => {
-        const myArray = response.data.response.result || [];
+    myAxiosZ(myParamsNewsDetail)
+      .then((myData) => {
+        const myArray = myData.response.result || [];
         // console.log("NEWS DETAIL------------>", myArray);
         myArray.imagemainFileList = [];
         myArray.imagemainFileList =

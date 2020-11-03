@@ -1,34 +1,25 @@
-import React, { useState, useContext } from "react";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
+import { Button, PageHeader, Typography } from "antd";
 import {
-  Button,
-  Checkbox,
-  Avatar,
-  Tag,
-  PageHeader,
-  Menu,
-  Dropdown,
-  Typography,
-  Row,
-} from "antd";
-
-import {
-  SearchOutlined,
-  DownOutlined,
-  UserOutlined,
   PlusOutlined,
-  EllipsisOutlined,
+  FilterOutlined,
+  SortAscendingOutlined,
 } from "@ant-design/icons";
 
 import FilterContext from "context/FilterContext";
-import MotoPagination from "./Pagination/MotoPagination";
+import NewsListContext from "context/NewsListContext";
 import MotoSort from "./Sort/MotoSort";
-const { Paragraph } = Typography;
 
 const NewsListIActionHeader = (props) => {
   const filterContext = useContext(FilterContext);
+  const newsListContext = useContext(NewsListContext);
   const history = useHistory();
+
+  const toggleFilterDrawer = () => {
+    newsListContext.toggleFilterDrawerOpen();
+  };
 
   return (
     <PageHeader
@@ -45,23 +36,44 @@ const NewsListIActionHeader = (props) => {
         </h3>
       }
       extra={[
-        // <MotoPagination type={"simple"} myClass="gx-float-left" />,
-        <MotoSort key="motosort" />,
         <Button
-          key="motobutton"
-          type="primary"
-          size="small"
-          className="gx-bg-success gx-border-success"
-          htmlType="submit"
-          icon={<PlusOutlined />}
+          key="moto-filter-button"
+          type="text"
+          icon={<i className="icon icon-filter moto-animation-away" />}
+          onClick={toggleFilterDrawer}
+          className="gx-mr-0"
+        ></Button>,
+
+        <Button
+          key="moto-insert-button"
+          type="text"
+          // className="gx-bg-success gx-border-success"
+          // htmlType="submit"
+          // icon={<PlusOutlined />}
+          icon={<i className="icon icon-add" />}
+          className="gx-mx-0 gx-text-success"
           onClick={() => {
             history.push({
               pathname: "/news/insert",
             });
           }}
-        >
-          Нэмэх
-        </Button>,
+        ></Button>,
+
+        <MotoSort key="motosort" />,
+
+        // <Button
+        //   key="motobutton"
+        //   type="primary"
+        //   size="small"
+        //   className="gx-bg-success gx-border-success"
+        //   htmlType="submit"
+        //   icon={<PlusOutlined />}
+        //   onClick={() => {
+        //     history.push({
+        //       pathname: "/news/insert",
+        //     });
+        //   }}
+        // ></Button>,
       ]}
     ></PageHeader>
   );

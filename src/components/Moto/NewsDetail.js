@@ -151,7 +151,7 @@ const NewsDetailComponent = () => {
                     width="auto"
                     gravity="face"
                     quality="auto"
-                    placeHolder="blur"
+                    // placeHolder="blur"
                     responsiveUseBreakpoints="true"
                     className="gx-img-fluid gx-w-100"
                     default_image="jhannw5jgo2mlvvkvke9"

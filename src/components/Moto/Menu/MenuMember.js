@@ -72,7 +72,7 @@ const MenuMember = () => {
           type="text"
           size="small"
         >
-          Нийтлэл нэмэх
+          Нийтлэл
         </Button>
       </Link>
 
@@ -83,7 +83,7 @@ const MenuMember = () => {
           type="text"
           size="small"
         >
-          Машин нэмэх
+          Машин
         </Button>
       </Link>
       <Link to={"/member/edit/" + memberContext.state.memberCloudUserSysId}>
@@ -93,7 +93,7 @@ const MenuMember = () => {
           type="text"
           size="small"
         >
-          Анкет засах
+          Анкет
         </Button>
       </Link>
 

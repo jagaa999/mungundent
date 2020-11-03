@@ -28,6 +28,13 @@ export const LogsStore = (props) => {
     console.log("error", error);
   };
 
+  //  #       #######    #    ######
+  //  #       #     #   # #   #     #
+  //  #       #     #  #   #  #     #
+  //  #       #     # #     # #     #
+  //  #       #     # ####### #     #
+  //  #       #     # #     # #     #
+  //  ####### ####### #     # ######
   const loadLogs = (recordId, tableName) => {
     if (recordId === undefined) return null;
 
@@ -95,13 +102,6 @@ export const LogsStore = (props) => {
             return { key: item, value: index };
           });
 
-          // const myCounts = [];
-          // actionTypes.map(function (item, index) {
-          //   myCounts[item] = myArray.filter(
-          //     (cool) => cool.actionname === item
-          //   ).length;
-          // });
-
           const myCounts = actionTypes.map((actionType) => ({
             type: actionType,
             count: myArray.filter((item) => item.actionname === actionType)
@@ -121,6 +121,14 @@ export const LogsStore = (props) => {
         getError(error);
       });
   };
+
+  //   #####     #    #     # #######
+  //  #     #   # #   #     # #
+  //  #        #   #  #     # #
+  //   #####  #     # #     # #####
+  //        # #######  #   #  #
+  //  #     # #     #   # #   #
+  //   #####  #     #    #    #######
 
   const insertLog = (values) => {
     // console.log("insertLoginsertLog ---", values);
