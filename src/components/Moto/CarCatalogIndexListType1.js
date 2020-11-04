@@ -8,16 +8,16 @@ import {
   Select,
   PageHeader,
   Slider,
+  Card,
   DatePicker,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import moment from "moment";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogIndexItem from "./CarCatalogIndexItem";
-
+import CarCatalogIndexListView1 from "./MotoCar/CarCatalogIndexListView1";
+import CarCatalogIndexListView2 from "./MotoCar/CarCatalogIndexListView2";
 import CarCatalogListContext from "context/CarCatalogListContext";
-
 import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
@@ -42,7 +42,7 @@ const CarCatalogIndexType1 = ({ markId }) => {
       <div className="gx-mb-2"></div>
 
       {!carCatalogListContext.carIndexList.loading ? (
-        <div className="gx-main-content">
+        <div className="moto-carcatalog-timeline">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
           <PageHeader
@@ -50,6 +50,7 @@ const CarCatalogIndexType1 = ({ markId }) => {
             className="gx-mb-3"
             extra={[
               <Select
+                key="start-date"
                 className="gx-mr-2"
                 style={{ width: 120 }}
                 allowClear
@@ -69,6 +70,7 @@ const CarCatalogIndexType1 = ({ markId }) => {
                 })}
               </Select>,
               <Select
+                key="end-date"
                 style={{ width: 120 }}
                 allowClear
                 placeholder="Дээд"
@@ -89,39 +91,16 @@ const CarCatalogIndexType1 = ({ markId }) => {
             ]}
           ></PageHeader>
 
-          <Row className="gx-d-flex">
-            {carCatalogListContext.carIndexList.carIndexList.map(
-              (indexItem, index) => {
-                if (
-                  !moment(indexItem.maindate).isBetween(
-                    whatDate[0],
-                    whatDate[1]
-                  )
-                ) {
-                  return "";
-                }
+          <Card>
+            <CarCatalogIndexListView2
+              carIndexList={carCatalogListContext.carIndexList.carIndexList}
+              whatDate={whatDate}
+            />
+          </Card>
 
-                return (
-                  <Col
-                    key={index}
-                    lg={8}
-                    md={12}
-                    sm={12}
-                    xs={12}
-                    className="gx-mb-5"
-                  >
-                    <CarCatalogIndexItem
-                      key={index}
-                      indexItem={indexItem}
-                      count={indexItem.count}
-                    />
-                  </Col>
-                );
-              }
-            )}
-          </Row>
-          {/* <MotoPagination />
-          <FilterDrawer /> */}
+          {/* <CarCatalogIndexListView1
+            carIndexList={carCatalogListContext.carIndexList.carIndexList}
+          /> */}
         </div>
       ) : (
         <LoadingList />

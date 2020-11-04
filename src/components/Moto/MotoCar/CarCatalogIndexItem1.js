@@ -1,16 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
-import toBoolean from "util/booleanFunction";
 import { Card, Badge, Typography } from "antd";
-
 import { CaretDownOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
 const { Paragraph } = Typography;
 
-const MarkItem = ({ indexItem, count }) => {
-  // console.log("Манай Фирм - ", indexItem);
+const CarCatalogIndexItem1 = ({ indexItem, count }) => {
+  // console.log("Манай indexItem - ", indexItem);
 
   return (
     <Card
@@ -49,4 +46,4 @@ const MarkItem = ({ indexItem, count }) => {
   );
 };
 
-export default MarkItem;
+export default CarCatalogIndexItem1;

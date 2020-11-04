@@ -49,9 +49,9 @@ const CarCatalogType1 = () => {
     );
   });
 
-  function handleChange(value) {
+  function firmSelectChange(value) {
     // console.log(`selected ${value}`);
-    setWhatCountry(value);
+    setWhatCountry(value || []);
   }
 
   return (
@@ -80,11 +80,17 @@ const CarCatalogType1 = () => {
                 />
               </span>,
               <Select
-                key="extra_02"
-                mode="tags"
+                key="firm-select"
                 style={{ minWidth: "170px" }}
-                placeholder="Улс"
-                onChange={handleChange}
+                allowClear
+                placeholder="Марк"
+                optionFilterProp="children"
+                onChange={firmSelectChange}
+                showSearch
+                filterOption={(input, option) =>
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                }
               >
                 {children}
               </Select>,
