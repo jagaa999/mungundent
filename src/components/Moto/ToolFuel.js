@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
+import _ from "lodash";
 import axios from "axios";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import MotoTinyBarChart from "routes/extensions/charts/recharts/bar/Components/MotoTinyBarChart";
@@ -96,53 +97,34 @@ const ToolFuel = () => {
         message.error(error.toString(), 7);
         console.log(error);
       });
-    console.log(myState);
+    // console.log(myState);
   }, [myState.mySpec]);
 
-  // const callOther = (allValues) => {};
+  const delayedOperation = useRef(
+    _.debounce((allValues) => {
+      // console.log("ЭНИЙГ ХАРАА ", allValues);
+      setMyState({
+        ...myState,
+        mySpec: allValues,
+      });
+    }, 700)
+  ).current;
 
   const onValuesChange = (changedValues, allValues) => {
-    console.log("onValuesChange onValuesChange ", changedValues);
-    console.log("DFDFDFDFDFDFDFDFF", allValues);
-    setMyState({
-      ...myState,
-      mySpec: allValues,
-    });
+    if (!changedValues.zaalt) {
+      //бэлэн товчнууд дарсан үед шууд ажиллана
+      // console.log("onValuesChange onValuesChange ", changedValues);
+      // console.log("DFDFDFDFDFDFDFDFF", allValues);
+      setMyState({
+        ...myState,
+        mySpec: allValues,
+      });
+    } else {
+      //Зөвхөн input буюу Заалтыг өөрчилсөн үед! 700 миллсекунд хүлээнэ.
+      delayedOperation(allValues);
+      // console.log("OK OK zaalt өөрчлөгдөж байна ", changedValues);
+    }
   };
-
-  // const onValuesChange = async (changedValues, allValues) => {
-  //   const testArray = [];
-
-  //   testArray.push({
-  //     ...myState,
-  //     mySpec: allValues,
-  //   });
-
-  //   return await setMyState({
-  //     testArray,
-  //   });
-  // };
-
-  // const onFieldsChange = (changedFields, allFields) => {
-  //   console.log("onFieldsChange onFieldsChange ", changedFields);
-  // };
-
-  // const onFinish = (values) => {
-  //   console.log("AFTER SUBMIT --------- ");
-  //   console.table(values);
-  // };
-
-  // const onFinishFailed = (errorInfo) => {
-  //   console.log("Failed:", errorInfo);
-  //   // console.log("Failed:", errorInfo.errorFields);
-  //   errorInfo.errorFields.map((errorItem) => {
-  //     message.error(errorItem.errors[0]);
-  //   });
-  // };
-
-  // const onFieldsChange = (changedFields, allFields) => {
-  //   console.log("onFieldsChange onFieldsChange ", changedFields);
-  // };
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -330,7 +312,7 @@ const ToolFuel = () => {
                       message: "Стандарт нормыг бөглөнө үү",
                       type: "number",
                       min: 1,
-                      max: 50,
+                      max: 100,
                     },
                   ]}
                 >
@@ -338,7 +320,7 @@ const ToolFuel = () => {
                     disabled={myState.loading}
                     step={1}
                     min={1}
-                    max={50}
+                    max={100}
                     // formatter={(value) => `${value} км`}
                     decimalSeparator=","
                     className="gx-w-100"

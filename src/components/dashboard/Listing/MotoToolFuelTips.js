@@ -171,7 +171,15 @@ const MotoToolFuelTips = () => {
 
       <Row className="gx-d-flex">
         {userImageList.map((item, index) => (
-          <Col xl={4} lg={6} md={6} sm={8} xs={12} className="gx-mb-5">
+          <Col
+            key={index}
+            xl={4}
+            lg={6}
+            md={6}
+            sm={8}
+            xs={12}
+            className="gx-mb-5"
+          >
             <MotoSmartHomeCard item={item} />
           </Col>
         ))}
