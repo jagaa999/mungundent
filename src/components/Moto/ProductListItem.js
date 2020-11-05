@@ -42,15 +42,34 @@ const NewsItem = ({ productItem }) => {
             <h2 className="h4 gx-mr-1 gx-mb-1">{productItem.itemname}</h2>
           </div>
           <p className="gx-mb-1 gx-text-grey gx-fs-sm">
-            {productItem.itemcode}
-            <br />
-            {productItem.departmentname}
-            <br />
-            category: {productItem.category}
-            <br />
-            Үнэ: {productItem.saleprice}
-            <br />
             itemtypename: {productItem.itemtypename}
+            <br />
+            departmentid: {productItem.departmentid}
+            <br />
+            departmentname: {productItem.departmentname}
+            <br />
+            favid: {productItem.favid}
+            <br />
+            issaleitem: {productItem.issaleitem}
+            <br />
+            itemcategoryid: {productItem.itemcategoryid}
+            <br />
+            itemcategoryname: {productItem.itemcategoryname}
+            <br />
+            itemcode: {productItem.itemcode}
+            <br />
+            itemid: {productItem.itemid}
+            <br />
+            itemname: {productItem.itemname}
+            <br />
+            measurename: {productItem.measurename}
+            <br />
+            profilephoto: {productItem.profilephoto}
+            <br />
+            rating: {productItem.rating}
+            <br />
+            saleprice: {productItem.saleprice}
+            <br />
           </p>
         </div>
       </div>

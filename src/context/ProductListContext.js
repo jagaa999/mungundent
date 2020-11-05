@@ -24,15 +24,12 @@ export const ProductListStore = (props) => {
 
   const initialStateProductList = {
     loadParams: {
-      // systemmetagroupid: "1585197442423220",
-      systemmetagroupid: "1487042451650",
+      systemmetagroupid: "1585197442423220",
       showquery: "0",
       ignorepermission: "1",
-      criteria: {
-        // categoryid: "301501121001100010",
-        // itemTypeName: "Сэлбэг",
-        itemtypeid: "1514183113705",
-      },
+      // criteria: {
+      //   itemtypeid: "1514183113705",
+      // },
       paging: {
         pageSize: "24",
         offset: "1",
@@ -65,8 +62,6 @@ export const ProductListStore = (props) => {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
-        // username: "motoadmin",
-        // password: "moto123",
         command: "PL_MDVIEW_004",
         parameters: productList.loadParams,
       },
