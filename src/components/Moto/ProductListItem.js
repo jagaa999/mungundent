@@ -4,76 +4,77 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/mn";
 import toBoolean from "util/booleanFunction";
-import { Card, Badge, Tag } from "antd";
+import { Card, Badge, Tag, Image, List, Avatar, Divider } from "antd";
 import { MailOutlined, MobileOutlined } from "@ant-design/icons";
+import StarRatingComponent from "react-star-rating-component";
+
 const { Meta } = Card;
 
 const NewsItem = ({ productItem }) => {
   console.log("Манай бараа - ", productItem);
 
   return (
-    // <Link to={"/member/" + productItem.itemid}>
-    // <Badge.Ribbon
-    //   text={
-    //     <>
-    //       {productItem.email !== "" && <MailOutlined className="gx-mr-2" />}
-    //       {productItem.phonenumber !== "" && (
-    //         <MobileOutlined className="gx-mr-2" />
-    //       )}
-    //     </>
-    //   }
-    //   color="#d1d1d1"
-    //   placement="end"
-    // >
     <Card
-      className="gx-card-full gx-dot-arrow-hover"
-      style={{ height: "250px" }}
+      hoverable
+      // style={{ width: 240 }}
+      cover={
+        <Image
+          // height={250}
+          src={`https://cloudapi.moto.mn/portal/${productItem.profilephoto}`}
+          className="gx-p-3"
+          fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        />
+      }
     >
-      <div className="gx-user-wid-row">
-        <div className="gx-user-wid gx-mr-3">
-          <img
-            alt="..."
-            src={`https://cloudapi.moto.mn/portal/${productItem.imagemain}`}
-            className="gx-object-cover"
-          />
-        </div>
-        <div className="gx-user-wid-body gx-py-3 gx-pr-3">
-          <div className="ant-row-flex">
-            <h2 className="h4 gx-mr-1 gx-mb-1">{productItem.itemname}</h2>
-          </div>
-          <p className="gx-mb-1 gx-text-grey gx-fs-sm">
-            itemtypename: {productItem.itemtypename}
-            <br />
-            departmentid: {productItem.departmentid}
-            <br />
-            departmentname: {productItem.departmentname}
-            <br />
-            favid: {productItem.favid}
-            <br />
-            issaleitem: {productItem.issaleitem}
-            <br />
-            itemcategoryid: {productItem.itemcategoryid}
-            <br />
-            itemcategoryname: {productItem.itemcategoryname}
-            <br />
-            itemcode: {productItem.itemcode}
-            <br />
-            itemid: {productItem.itemid}
-            <br />
-            itemname: {productItem.itemname}
-            <br />
-            measurename: {productItem.measurename}
-            <br />
-            profilephoto: {productItem.profilephoto}
-            <br />
-            rating: {productItem.rating}
-            <br />
-            saleprice: {productItem.saleprice}
-            <br />
-          </p>
-        </div>
+      <h4>{productItem.itemname}</h4>
+      <div className="gx-text-success">{productItem.saleprice} төг</div>
+      {/* //Үнэ харуулах тусгай хэлбэр
+      <div className="ant-row-flex">
+        <h4>{productItem.saleprice} </h4>
+        <h5 className="gx-text-muted gx-px-2">
+          <del>1515</del>
+        </h5>
+        <h5 className="gx-text-success">10% off</h5>
+      </div> */}
+
+      <div className="ant-row-flex gx-mb-1">
+        <StarRatingComponent
+          name=""
+          // value={productItem.rating}
+          value={5}
+          starCount={5}
+          editing={false}
+        />
+        <strong className="gx-d-inline-block gx-ml-2">
+          {productItem.rating}
+        </strong>
       </div>
+
+      <div>{productItem.itemcategoryname}</div>
+      <div>{productItem.departmentname}</div>
+
+      {/* <Divider />
+
+      <List
+        itemLayout="horizontal"
+        dataSource={Object.entries(productItem)}
+        renderItem={(item) => (
+          <List.Item
+          // actions={[<a key="list-loadmore-edit">edit</a>]}
+          >
+            <List.Item.Meta
+              // avatar={
+              //   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              // }
+              title={item[0]}
+              // description="бббб"
+            />
+            <div>{item[1]}</div>
+          </List.Item>
+        )}
+      /> */}
     </Card>
+
     // </Badge.Ribbon>
     // </Link>
   );

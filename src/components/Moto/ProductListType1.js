@@ -6,7 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import toBoolean from "util/booleanFunction";
 import ProductListItem from "./ProductListItem";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import ProductListContext from "context/ProductListContext";
+import ProductContext from "context/ProductContext";
 import FilterContext from "context/FilterContext";
 import FilterDrawer from "./Drawer/FilterDrawer";
 import FilterTag from "./Tag/FilterTag";
@@ -17,9 +17,7 @@ import LoadingList from "./Loading/LoadingList";
 const { Option } = Select;
 
 const ProductListType1 = () => {
-  const productListContext = useContext(ProductListContext);
-  const [isSpecial, setIsSpecial] = useState(false);
-  const [whatCountry, setWhatCountry] = useState([]);
+  const productListContext = useContext(ProductContext);
 
   useEffect(() => {
     productListContext.loadProductList();
@@ -29,7 +27,6 @@ const ProductListType1 = () => {
 
   function handleChange(value) {
     // console.log(`selected ${value}`);
-    setWhatCountry(value);
   }
 
   return (
@@ -41,11 +38,11 @@ const ProductListType1 = () => {
       <div className="gx-mb-2"></div>
 
       {!productListContext.productList.loading ? (
-        <div className="gx-main-content">
+        <div className="gx-main-content gx-p-2 gx-p-sm-0">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
           <PageHeader
-            title={<h3>Шинэхэн гишүүд</h3>}
+            title={<h3>Бараа</h3>}
             className="gx-mb-3"
             extra={[]}
           ></PageHeader>
@@ -54,7 +51,14 @@ const ProductListType1 = () => {
             {productListContext.productList.productList.map(
               (productItem, index) => {
                 return (
-                  <Col key={index} lg={8} md={8} sm={12} xs={12}>
+                  <Col
+                    key={index}
+                    xl={6}
+                    md={8}
+                    sm={12}
+                    xs={12}
+                    className="gx-mb-5"
+                  >
                     <ProductListItem key={index} productItem={productItem} />
                   </Col>
                 );

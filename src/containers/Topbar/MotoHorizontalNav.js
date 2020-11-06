@@ -1,23 +1,11 @@
 import React, { useContext } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Menu, Avatar } from "antd";
 import { MailOutlined, CoffeeOutlined } from "@ant-design/icons";
-
 import { createFromIconfontCN } from "@ant-design/icons";
-
 import IntlMessages from "../../util/IntlMessages";
-import {
-  NAV_STYLE_ABOVE_HEADER,
-  NAV_STYLE_BELOW_HEADER,
-  NAV_STYLE_DEFAULT_HORIZONTAL,
-  NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
-} from "../../constants/ThemeSetting";
-
 import FilterContext from "context/FilterContext";
-// import menuNews from "assets/icons/MenuNews.svg";
-// import { ReactComponent as MenuNews } from "assets/icons/MenuNews.svg";
 
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -28,30 +16,6 @@ const IconFont = createFromIconfontCN({
 
 const HorizontalNav = () => {
   const filterContext = useContext(FilterContext);
-
-  // const navStyle = useSelector(({ settings }) => settings.navStyle);
-  // const navStyle = "NAV_STYLE_INSIDE_HEADER_HORIZONTAL";
-  // const pathname = useSelector(({ settings }) => settings.pathname);
-
-  // const getNavStyleSubMenuClass = (navStyle) => {
-  //   switch (navStyle) {
-  //     case NAV_STYLE_DEFAULT_HORIZONTAL:
-  //       return "gx-menu-horizontal gx-submenu-popup-curve";
-  //     case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
-  //       return "gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve";
-  //     case NAV_STYLE_BELOW_HEADER:
-  //       return "gx-menu-horizontal gx-submenu-popup-curve gx-below-submenu-popup-curve";
-  //     case NAV_STYLE_ABOVE_HEADER:
-  //       return "gx-menu-horizontal gx-submenu-popup-curve gx-above-submenu-popup-curve";
-  //     default:
-  //       return "gx-menu-horizontal";
-  //   }
-  // };
-
-  // console.log(getNavStyleSubMenuClass);
-  // getNavStyleSubMenuClass =
-  //   "gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve";
-
   const selectedKeys = filterContext.urlPath.substr(1);
   const defaultOpenKeys = selectedKeys.split("/")[1];
 
@@ -64,15 +28,7 @@ const HorizontalNav = () => {
     >
       <Menu.Item key="news" className="motoHeaderMenuItem">
         <Link to="/news" className="motoHeaderMenuItemLink">
-          <span className="gx-d-block gx-d-lg-none">
-            {/* <Avatar
-              style={{ backgroundColor: "#262626" }}
-              icon={<IconFont type="iconreadme" />}
-            /> */}
-            <IconFont type="iconreadme" />
-            {/* <MenuNews /> */}
-            {/* <img src={menuNews} alt="dfdf" /> */}
-          </span>
+          <span className="gx-d-block gx-d-lg-none"></span>
           <div className="gx-d-none gx-d-lg-block">Нийтлэл</div>
         </Link>
       </Menu.Item>
@@ -157,6 +113,18 @@ const HorizontalNav = () => {
             <IconFont type="iconuser-tie-solid" />
           </span>
           <div className="gx-d-none gx-d-lg-block">Гишүүн</div>
+        </Link>
+      </Menu.Item>
+
+      <Menu.Item
+        key="product"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
+        <Link to="/product" className="motoHeaderMenuItemLink">
+          <span className="gx-d-block gx-d-lg-none">
+            <IconFont type="iconuser-tie-solid" />
+          </span>
+          <div className="gx-d-none gx-d-lg-block">Бараа</div>
         </Link>
       </Menu.Item>
 

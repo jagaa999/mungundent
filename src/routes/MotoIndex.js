@@ -14,7 +14,7 @@ import { NewsDetailStore } from "../context/NewsDetailContext";
 import { CarCatalogListStore } from "../context/CarCatalogListContext";
 import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
-import { ProductListStore } from "../context/ProductListContext";
+import { ProductStore } from "../context/ProductContext";
 import { MotocarStore } from "../context/MotocarContext";
 import { FilterStore } from "../context/FilterContext";
 
@@ -99,10 +99,10 @@ const App = ({ match }) => (
       {/* <Route path={`${match.url}product/:productid`}>
         <MemberDetail />
       </Route> */}
-      <Route path={["/product", "/productlist"]}>
-        <ProductListStore>
+      <Route path={["/product", "/products", "/productlist"]}>
+        <ProductStore>
           <ProductList />
-        </ProductListStore>
+        </ProductStore>
       </Route>
       {/*
       #     # ####### ####### #######  #####     #    ######  
