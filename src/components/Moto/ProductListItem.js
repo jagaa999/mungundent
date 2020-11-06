@@ -46,7 +46,7 @@ const NewsItem = ({ productItem }) => {
           editing={false}
         />
         <strong className="gx-d-inline-block gx-ml-2">
-          {productItem.rating}
+          {/* {productItem.rating} */}5
         </strong>
       </div>
 
