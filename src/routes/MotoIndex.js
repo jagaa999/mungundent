@@ -15,6 +15,7 @@ import { CarCatalogListStore } from "../context/CarCatalogListContext";
 import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
 import { ProductStore } from "../context/ProductContext";
+import { AuctionStore } from "../context/AuctionContext";
 import { MotocarStore } from "../context/MotocarContext";
 import { FilterStore } from "../context/FilterContext";
 
@@ -69,6 +70,10 @@ const ProductList = asyncComponent(() => {
   return import("./moto/product/productListPage");
 });
 
+const AuctionList = asyncComponent(() => {
+  return import("./moto/auction/auctionListPage");
+});
+
 const MotocarList = asyncComponent(() => {
   return import("./moto/motocar/motocarListPage");
 });
@@ -87,6 +92,21 @@ const HomeIndex = asyncComponent(() => {
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
+      {/*}
+         #    #     #  #####  ####### ### ####### #     # 
+        # #   #     # #     #    #     #  #     # ##    # 
+       #   #  #     # #          #     #  #     # # #   # 
+      #     # #     # #          #     #  #     # #  #  # 
+      ####### #     # #          #     #  #     # #   # # 
+      #     # #     # #     #    #     #  #     # #    ## 
+      #     #  #####   #####     #    ### ####### #     # 
+      */}
+      <Route path={["/auction", "/japan", "/auctionlist", "/japanlist"]}>
+        <AuctionStore>
+          <AuctionList />
+        </AuctionStore>
+      </Route>
+
       {/*}
       ######  ######  ####### ######  #     #  #####  ####### 
       #     # #     # #     # #     # #     # #     #    #    
@@ -252,7 +272,6 @@ const App = ({ match }) => (
       <Route path={["/tool/fuel", "/tool/fuelcheck"]}>
         <ToolFuelPage />
       </Route>
-
       {/*
       ####### ####### #     # ####### ######  
       #     #    #    #     # #       #     # 
