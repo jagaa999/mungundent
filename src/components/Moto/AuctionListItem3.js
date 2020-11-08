@@ -10,7 +10,7 @@ import StarRatingComponent from "react-star-rating-component";
 
 const { Meta } = Card;
 
-const NewsItem = ({ auctionItem }) => {
+const AuctionListItem3 = ({ auctionItem }) => {
   console.log("Манай бараа - ", auctionItem);
 
   // AUCTION: "http://avto.jp/get_code"
@@ -56,14 +56,6 @@ const NewsItem = ({ auctionItem }) => {
     >
       <h4>{auctionItem.itemname}</h4>
       <div className="gx-text-success">{auctionItem.saleprice} төг</div>
-      {/* //Үнэ харуулах тусгай хэлбэр
-      <div className="ant-row-flex">
-        <h4>{auctionItem.saleprice} </h4>
-        <h5 className="gx-text-muted gx-px-2">
-          <del>1515</del>
-        </h5>
-        <h5 className="gx-text-success">10% off</h5>
-      </div> */}
 
       <div className="ant-row-flex gx-mb-1">
         <StarRatingComponent
@@ -80,32 +72,8 @@ const NewsItem = ({ auctionItem }) => {
 
       <div>{auctionItem.itemcategoryname}</div>
       <div>{auctionItem.departmentname}</div>
-
-      {/* <Divider />
-
-      <List
-        itemLayout="horizontal"
-        dataSource={Object.entries(auctionItem)}
-        renderItem={(item) => (
-          <List.Item
-          // actions={[<a key="list-loadmore-edit">edit</a>]}
-          >
-            <List.Item.Meta
-              // avatar={
-              //   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              // }
-              title={item[0]}
-              // description="бббб"
-            />
-            <div>{item[1]}</div>
-          </List.Item>
-        )}
-      /> */}
     </Card>
-
-    // </Badge.Ribbon>
-    // </Link>
   );
 };
 
-export default NewsItem;
+export default AuctionListItem3;

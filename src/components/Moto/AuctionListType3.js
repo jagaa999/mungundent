@@ -4,7 +4,7 @@ import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import AuctionListItem1 from "./AuctionListItem1";
+import AuctionListItem3 from "./AuctionListItem3";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import AuctionContext from "context/AuctionContext";
 import FilterContext from "context/FilterContext";
@@ -16,7 +16,7 @@ import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
 
-const AuctionListType1 = () => {
+const AuctionListType3 = () => {
   const auctionListContext = useContext(AuctionContext);
 
   useEffect(() => {
@@ -38,9 +38,8 @@ const AuctionListType1 = () => {
       <div className="gx-mb-2"></div>
 
       {!auctionListContext.auctionList.loading ? (
-        <div className="gx-main-content gx-p-2 gx-p-sm-0">
+        <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
-
           <PageHeader
             title={<h3>Бараа</h3>}
             className="gx-mb-3"
@@ -48,31 +47,49 @@ const AuctionListType1 = () => {
           ></PageHeader>
 
           <Row className="gx-d-flex">
-            {auctionListContext.auctionList.auctionList.map(
-              (auctionItem, index) => {
-                return (
-                  <Col
-                    key={index}
-                    xl={6}
-                    md={8}
-                    sm={12}
-                    xs={12}
-                    className="gx-mb-5"
-                  >
-                    <AuctionListItem1 key={index} auctionItem={auctionItem} />
-                  </Col>
-                );
-              }
-            )}
+            <Col key="dffdf" xs={24}>
+              <AuctionListItem3
+                key="newsListItem3"
+                auctionItem={auctionListContext.auctionList.auctionList}
+              />
+            </Col>
           </Row>
-          {/* <MotoPagination />
-          <FilterDrawer /> */}
+
+          {/* <MotoPagination myClass="gx-mt-2" /> */}
+          {/* <FilterDrawer /> */}
         </div>
       ) : (
-        <LoadingList />
+        // <div className="gx-main-content gx-p-2 gx-p-sm-0">
+
+        //   <PageHeader
+        //     title={<h3>Бараа</h3>}
+        //     className="gx-mb-3"
+        //     extra={[]}
+        //   ></PageHeader>
+
+        //   <Row className="gx-d-flex">
+        //     {auctionListContext.auctionList.auctionList.map(
+        //       (auctionItem, index) => {
+        //         return (
+        //           <Col
+        //             key={index}
+        //             xl={6}
+        //             md={8}
+        //             sm={12}
+        //             xs={12}
+        //             className="gx-mb-5"
+        //           >
+        //             <AuctionListItem3 key={index} auctionItem={auctionItem} />
+        //           </Col>
+        //         );
+        //       }
+        //     )}
+        //   </Row>
+        // </div>
+        <LoadingList type="table" />
       )}
     </div>
   );
 };
 
-export default AuctionListType1;
+export default AuctionListType3;
