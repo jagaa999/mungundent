@@ -13,11 +13,11 @@ const AuctionListPage = () => {
   const filterContext = useContext(FilterContext);
   const memberContext = useContext(MemberContext);
 
-  if (memberContext.state.isLogin) {
-    // return <AuctionListType1 />;
-    // return <AuctionListType2 />;
-    return <AuctionListType3 />;
-  }
+  // if (memberContext.state.isLogin) {
+  // return <AuctionListType1 />;
+  // return <AuctionListType2 />;
+  return <AuctionListType3 />;
+  // }
 
   return <PleaseLogin />;
 };

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { message } from "antd";
 
 import axiosAuction from "util/axiosAuctionConfig";
+import axios1 from "axios";
 
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
@@ -58,7 +59,12 @@ export const AuctionStore = (props) => {
     console.log("myParamsAuctionList", myParamsAuctionList);
 
     // axiosAuction
-    //   .get("", {})
+    //   .post("", myParamsAuctionList, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Origin": "*",
+    //     },
+    //   })
     //   .then((response) => {
     const response = [
       {
@@ -362,26 +368,13 @@ export const AuctionStore = (props) => {
           "https://8.ajes.com/imgs/pEb7y2CljloCuPTC8U99h1kMApRgX8E7MZ9&h=50",
       },
     ];
+
     console.log("GOOOOOOOOOOOOOO---------", response);
-    // const myData = response.data.response;
-    // const myData = response;
-    // if (myData.status === "error") {
-    //   // getError(myData.text);
-    //   message.error(myData.text);
-    // } else {
-    //   const myPaging = myData.result.paging || {};
-    //   const myArray = myData.result || [];
-
-    //   delete myArray["aggregatecolumns"];
-    //   delete myArray["paging"];
-
     setAuctionList({
       ...auctionList,
       loading: false,
-      // auctionList: Object.values(myArray),
       auctionList: response,
     });
-    // }
     // })
     // .catch((error) => {
     //   setAuctionList({ ...auctionList, loading: false, error });
@@ -504,3 +497,39 @@ export const AuctionStore = (props) => {
 };
 
 export default AuctionContext;
+
+// Бүх машин
+//select * from main limit 10
+
+//Фирм жагсаалт (Count)
+// select marka_id,marka_name from main group by marka_id order by marka_id ASC limit 0,50
+
+//Марк жагсаалт (Count)
+//select model_id,model_name from main where marka_name='toyota' group by model_id order by model_name
+
+//Шүүлтүүр бүхий жагсаалт
+// select * from main where model_name='corolla' and marka_name='toyota' and (rate>='3' and rate<='6') and year>=1990 order by year desc limit 4,50
+
+// select auction,auction_date,images from main WHERE id='123'
+// select auction_date,images from stats WHERE id='123'
+
+// select distinct marka_id,model_name from main order by marka_id,model_name
+
+// select marka_id,model_name from main group by model_id
+
+// select COUNT(distinct model_id) from main
+
+// select COUNT(*) from stats WHERE marka_name='toyota' group by marka_id
+
+//Маркийн жагсаалт (фирмээр шүүсэн)
+// select model_id,model_name,COUNT(model_id) from stats where marka_name='toyota' group by model_id order by model_name
+
+//Зарагдсан дундаж үнэ
+// select AVG(finish), model_name from stats WHERE marka_name='toyota' and status='sold' group by model_id
+
+// select auction, auction_date FROM main GROUP BY auction, DATE_FORMAT(auction_date,'%Y-%m-%d')
+
+//Тухайн өдрийн машинууд
+// select * from stats WHERE auction_date LIKE '2020-10-20%' limit 5
+
+// select * from stats WHERE DATE(auct_date) = '2020-10-20' limit 5

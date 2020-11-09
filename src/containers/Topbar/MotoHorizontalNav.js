@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { Menu, Avatar } from "antd";
+import { Menu, Avatar, Tooltip } from "antd";
 import { MailOutlined, CoffeeOutlined } from "@ant-design/icons";
 import { createFromIconfontCN } from "@ant-design/icons";
 import IntlMessages from "../../util/IntlMessages";
@@ -11,7 +11,7 @@ const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_2091278_yfwfncpm8r.js",
+  scriptUrl: "//at.alicdn.com/t/font_2091278_dap4xjf6m1.js",
 });
 
 const HorizontalNav = () => {
@@ -28,23 +28,68 @@ const HorizontalNav = () => {
     >
       <Menu.Item key="news" className="motoHeaderMenuItem">
         <Link to="/news" className="motoHeaderMenuItemLink">
-          <span className="gx-d-block gx-d-lg-none"></span>
+          <Tooltip title="Нийтлэл">
+            <span className="gx-d-block gx-d-lg-none">
+              <IconFont type="iconnews" />
+            </span>
+          </Tooltip>
           <div className="gx-d-none gx-d-lg-block">Нийтлэл</div>
         </Link>
       </Menu.Item>
 
       <Menu.Item key="carcatalog" className="motoHeaderMenuItem">
         <Link to="/carcatalog" className="motoHeaderMenuItemLink">
-          <span className="gx-d-block gx-d-lg-none">
-            {/* <Avatar
-              style={{ backgroundColor: "#262626" }}
-              icon={<CoffeeOutlined />}
-            /> */}
-            <IconFont type="iconclipboard-check-solid" />
-          </span>
+          <Tooltip title="Каталог">
+            <span className="gx-d-block gx-d-lg-none">
+              <IconFont type="iconcarcatalog" />
+            </span>
+          </Tooltip>
           <div className="gx-d-none gx-d-lg-block">Каталог</div>
         </Link>
       </Menu.Item>
+
+      <Menu.Item
+        key="member"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
+        <Link to="/member" className="motoHeaderMenuItemLink">
+          <Tooltip title="Гишүүн">
+            <span className="gx-d-block gx-d-lg-none">
+              <IconFont type="iconmember" />
+            </span>
+          </Tooltip>
+          <div className="gx-d-none gx-d-lg-block">Гишүүн</div>
+        </Link>
+      </Menu.Item>
+
+      <Menu.Item
+        key="product"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
+        <Link to="/product" className="motoHeaderMenuItemLink">
+          <Tooltip title="Дэлгүүр">
+            <span className="gx-d-block gx-d-lg-none">
+              <IconFont type="iconstore" />
+            </span>
+          </Tooltip>
+          <div className="gx-d-none gx-d-lg-block">Дэлгүүр</div>
+        </Link>
+      </Menu.Item>
+      {process.env.NODE_ENV === "development" && (
+        <Menu.Item
+          key="auction"
+          className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+        >
+          <Link to="/auction" className="motoHeaderMenuItemLink">
+            <Tooltip title="Япон аукшин">
+              <span className="gx-d-block gx-d-lg-none">
+                <IconFont type="iconauction" />
+              </span>
+            </Tooltip>
+            <div className="gx-d-none gx-d-lg-block">Аукшин</div>
+          </Link>
+        </Menu.Item>
+      )}
 
       {/* <SubMenu
         popupClassName={getNavStyleSubMenuClass(navStyle)}
@@ -99,34 +144,6 @@ const HorizontalNav = () => {
           </Menu.Item>
         </SubMenu>
       </SubMenu> */}
-
-      <Menu.Item
-        key="member"
-        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
-      >
-        <Link to="/member" className="motoHeaderMenuItemLink">
-          <span className="gx-d-block gx-d-lg-none">
-            {/* <Avatar
-              style={{ backgroundColor: "#262626" }}
-              icon={<CoffeeOutlined />}
-            /> */}
-            <IconFont type="iconuser-tie-solid" />
-          </span>
-          <div className="gx-d-none gx-d-lg-block">Гишүүн</div>
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item
-        key="product"
-        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
-      >
-        <Link to="/product" className="motoHeaderMenuItemLink">
-          <span className="gx-d-block gx-d-lg-none">
-            <IconFont type="iconuser-tie-solid" />
-          </span>
-          <div className="gx-d-none gx-d-lg-block">Бараа</div>
-        </Link>
-      </Menu.Item>
 
       {process.env.NODE_ENV === "development" && (
         <SubMenu

@@ -30,7 +30,7 @@ import {
 
 const { Header } = Layout;
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_2091278_sye7rymtcr.js",
+  scriptUrl: "//at.alicdn.com/t/font_2091278_6cuyfky257q.js",
 });
 
 const menu = (
@@ -110,9 +110,11 @@ const MotoHeader = () => {
               className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
             > */}
             <Link to="/" className="gx-d-block  gx-pointer gx-mr-xs-5 gx-logo">
-              <span className="gx-d-block gx-d-lg-none">
-                <IconFont type="iconhome-solid" />
-              </span>
+              <Tooltip title="Нүүр хуудас">
+                <span className="gx-d-block gx-d-lg-none">
+                  <IconFont type="iconhome" />
+                </span>
+              </Tooltip>
               <div className="gx-d-none gx-d-lg-block">
                 <img
                   alt=""

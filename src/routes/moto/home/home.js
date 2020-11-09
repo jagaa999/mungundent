@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
 
-import { Carousel, Card, Col, Row, Divider } from "antd";
+import { Col, Row, Divider } from "antd";
 
 import GreenStepItem from "./GreenStepItem";
 import HomeSponsor from "./HomeSponsor";
 import HomeNewsItems from "./HomeNewsItems";
 
 import MemberBox from "./MemberBox";
-import FacebookGadget from "./FacebookGadget";
+// import FacebookGadget from "./FacebookGadget";
 import HomeBanner from "../../../components/Banner/HomeBanner";
-import { LoadProcess, loadDataview, loadDVObject } from "util/axiosFunction";
-import classes from "./BackgroundVideo.module.css";
-import Vimeo from "@u-wave/react-vimeo";
+import { loadDataview, loadDVObject } from "util/axiosFunction";
+// import classes from "./BackgroundVideo.module.css";
+// import Vimeo from "@u-wave/react-vimeo";
 
 const HomePage = () => {
   const [newsSponsorItems, setNewsSponsorItems] = useState([]);
@@ -130,7 +129,7 @@ const HomePage = () => {
 
       <Divider orientation="center" plain={true} className="gx-my-5"></Divider>
 
-      <Row className="gx-d-flex  gx-d-none gx-d-sm-block">
+      {/* <Row className="gx-d-flex  gx-d-none gx-d-sm-block">
         <Col
           xl={24}
           lg={24}
@@ -142,7 +141,7 @@ const HomePage = () => {
           <h3>Facebook дэх манай пэйжийг дагаарай.</h3>
           <FacebookGadget />
         </Col>
-      </Row>
+      </Row> */}
     </>
   );
 };
