@@ -29,6 +29,7 @@ export const AuctionStore = (props) => {
     auctionList: [],
     loading: false,
     error: null,
+    isFilterDrawerOpen: true,
   };
 
   const initialAuctionDetail = {
@@ -383,8 +384,15 @@ export const AuctionStore = (props) => {
     // });
   };
 
-  const clearAuctionDetail = () => {
-    setAuctionDetail(initialAuctionDetail);
+  const clearAuctionList = () => {
+    setAuctionList(initialAuctionList);
+  };
+
+  const toggleFilterDrawerOpen = () => {
+    setAuctionList({
+      ...auctionList,
+      isFilterDrawerOpen: !auctionList.isFilterDrawerOpen,
+    });
   };
 
   // ######  ####### #######    #    ### #
@@ -480,12 +488,18 @@ export const AuctionStore = (props) => {
       });
   };
 
+  const clearAuctionDetail = () => {
+    setAuctionDetail(initialAuctionDetail);
+  };
+
   return (
     <AuctionContext.Provider
       value={{
         auctionList,
         auctionDetail,
         loadAuctionList,
+        clearAuctionList,
+        toggleFilterDrawerOpen,
         loadAuctionDetail,
         // saveAuctionDetail,
         clearAuctionDetail,

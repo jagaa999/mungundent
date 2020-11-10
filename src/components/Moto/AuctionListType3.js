@@ -8,7 +8,7 @@ import AuctionListItem3 from "./AuctionListItem3";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import AuctionContext from "context/AuctionContext";
 import FilterContext from "context/FilterContext";
-import FilterDrawer from "./Drawer/FilterDrawer";
+import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
@@ -56,36 +56,9 @@ const AuctionListType3 = () => {
           </Row>
 
           {/* <MotoPagination myClass="gx-mt-2" /> */}
-          {/* <FilterDrawer /> */}
+          <AuctionFilterDrawer />
         </div>
       ) : (
-        // <div className="gx-main-content gx-p-2 gx-p-sm-0">
-
-        //   <PageHeader
-        //     title={<h3>Бараа</h3>}
-        //     className="gx-mb-3"
-        //     extra={[]}
-        //   ></PageHeader>
-
-        //   <Row className="gx-d-flex">
-        //     {auctionListContext.auctionList.auctionList.map(
-        //       (auctionItem, index) => {
-        //         return (
-        //           <Col
-        //             key={index}
-        //             xl={6}
-        //             md={8}
-        //             sm={12}
-        //             xs={12}
-        //             className="gx-mb-5"
-        //           >
-        //             <AuctionListItem3 key={index} auctionItem={auctionItem} />
-        //           </Col>
-        //         );
-        //       }
-        //     )}
-        //   </Row>
-        // </div>
         <LoadingList type="table" />
       )}
     </div>

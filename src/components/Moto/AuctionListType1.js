@@ -8,7 +8,7 @@ import AuctionListItem1 from "./AuctionListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import AuctionContext from "context/AuctionContext";
 import FilterContext from "context/FilterContext";
-import FilterDrawer from "./Drawer/FilterDrawer";
+import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
@@ -66,7 +66,7 @@ const AuctionListType1 = () => {
             )}
           </Row>
           {/* <MotoPagination />
-          <FilterDrawer /> */}
+          <AuctionFilterDrawer /> */}
         </div>
       ) : (
         <LoadingList />

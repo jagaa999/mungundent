@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Button, Drawer } from "antd";
-import NewsFilter from "./NewsFilter";
-import NewsListContext from "context/NewsListContext";
+import AuctionFilter from "./AuctionFilter";
+import AuctionContext from "context/AuctionContext";
 
-const FilterDrawer = () => {
-  const newsListContext = useContext(NewsListContext);
+const AuctionFilterDrawer = () => {
+  const auctionListContext = useContext(AuctionContext);
 
   const toggleFilterDrawer = () => {
-    newsListContext.toggleFilterDrawerOpen();
+    auctionListContext.toggleFilterDrawerOpen();
   };
 
   return (
@@ -22,10 +22,10 @@ const FilterDrawer = () => {
         width="350"
         placement="left"
         closable={true}
-        visible={newsListContext.state.isFilterDrawerOpen}
+        visible={auctionListContext.auctionList.isFilterDrawerOpen}
         onClose={toggleFilterDrawer}
       >
-        <NewsFilter />
+        <AuctionFilter />
       </Drawer>
 
       <div className="moto-filter-button" style={{ top: "250px" }}>
@@ -37,4 +37,4 @@ const FilterDrawer = () => {
   );
 };
 
-export default FilterDrawer;
+export default AuctionFilterDrawer;

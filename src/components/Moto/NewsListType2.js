@@ -17,7 +17,7 @@ import NewsListItem2 from "./NewsListItem2";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "../../context/NewsListContext";
 import FilterContext from "context/FilterContext";
-import FilterDrawer from "./Drawer/FilterDrawer";
+import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "./Sort/MotoSort";
@@ -54,7 +54,7 @@ const NewsListType2 = () => {
             })}
           </Row>
           <MotoPagination />
-          <FilterDrawer />
+          <NewsFilterDrawer />
         </div>
       ) : (
         <LoadingList type="card" />

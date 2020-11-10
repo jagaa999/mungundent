@@ -7,7 +7,7 @@ import NewsListItem1 from "./NewsListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
 import FilterContext from "context/FilterContext";
-import FilterDrawer from "./Drawer/FilterDrawer";
+import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
@@ -42,7 +42,7 @@ const NewsListType1 = () => {
             })}
           </Row>
           <MotoPagination />
-          <FilterDrawer />
+          <NewsFilterDrawer />
         </div>
       ) : (
         <LoadingList />

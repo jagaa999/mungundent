@@ -5,7 +5,7 @@ import { Col, Row, Card } from "antd";
 import NewsListItem3 from "./NewsListItem3";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
-import FilterDrawer from "./Drawer/FilterDrawer";
+import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import LoadingList from "./Loading/LoadingList";
@@ -33,7 +33,7 @@ const NewsListType2 = () => {
           </Row>
 
           <MotoPagination myClass="gx-mt-2" />
-          <FilterDrawer />
+          <NewsFilterDrawer />
         </div>
       ) : (
         <LoadingList type="table" />
