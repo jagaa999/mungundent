@@ -19,16 +19,6 @@ const { Option } = Select;
 const AuctionListType1 = () => {
   const auctionListContext = useContext(AuctionContext);
 
-  useEffect(() => {
-    auctionListContext.loadAuctionList();
-  }, []);
-
-  console.log("auctionListContext.auctionList", auctionListContext.auctionList);
-
-  function handleChange(value) {
-    // console.log(`selected ${value}`);
-  }
-
   return (
     <div className="moto-list">
       {/* <div className="">

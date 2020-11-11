@@ -3,6 +3,7 @@ import { message } from "antd";
 
 import axiosAuction from "util/axiosAuctionConfig";
 import axios1 from "axios";
+import { stringify } from "query-string";
 
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
@@ -25,7 +26,7 @@ export const AuctionStore = (props) => {
     loadParams: {
       // code: "DvemR43s",
       code: "Lms7sw3_Cbna",
-      sql: "select * from main limit 10",
+      sql: "select * from main limit 24",
     },
     auctionList: [],
     loading: false,
@@ -43,6 +44,16 @@ export const AuctionStore = (props) => {
   const [auctionList, setAuctionList] = useState(initialAuctionList);
   const [auctionDetail, setAuctionDetail] = useState(initialAuctionDetail);
 
+  useEffect(() => {
+    loadAuctionList();
+  }, [
+    filterContext.state.filterList,
+    filterContext.state.paging,
+    filterContext.state.sorting,
+    filterContext.state.cardtype,
+    memberContext.state.isLogin,
+  ]);
+
   //  #       ###  #####  #######
   //  #        #  #     #    #
   //  #        #  #          #
@@ -54,34 +65,87 @@ export const AuctionStore = (props) => {
   const loadAuctionList = () => {
     setAuctionList({ ...auctionList, loading: true });
 
+    // const myWhere = "";
+
+    let myTempObject = {};
+
+    Object.keys(filterContext.state.filterList).map((val, k) => {
+      if (["marka_id", "model_id", "kuzov"].includes(val)) {
+        // val нь эдгээрийн аль нэг мөн эсэх?
+        // console.log("1-", val);
+        // console.log("2-", filterContext.state.filterList[val]);
+        myTempObject[val] = filterContext.state.filterList[val];
+      }
+    });
+
+    // console.log("myTempObject", myTempObject);
+
+    // convert objec to a query string
+    const qs = Object.keys(myTempObject)
+      .map((key) => `${key}='${myTempObject[key]}'`)
+      .join(" AND ");
+
+    // console.log("PPPPPPPPPPPPP", qs);
+
+    let myWhere = "";
+    if (qs !== "") {
+      myWhere = "where " + qs;
+    }
+
+    if (filterContext.state.filterList?.marka_id) {
+      myTempObject.marka_id = filterContext.state.filterList?.marka_id;
+    }
+
+    const mySQL = `select * from main ${myWhere} limit 24`;
+
     const myParamsAuctionList = {
       ...initialAuctionList.loadParams,
+      sql: mySQL,
     };
 
     console.log("myParamsAuctionList", myParamsAuctionList);
 
-    axios1
-      .get(
-        "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json?code=Lms7sw3_Cbna&sql=select%20*%20from%20main%20limit%2010",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            // "Content-Type": "application/x-www-form-urlencoded",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
-      .then((response) => {
-        console.log("DDDDDDDDDDD", response);
-        setAuctionList({
-          ...auctionList,
-          loading: false,
-          auctionList: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log("EEEEEEE", error);
-      });
+    const myParams = stringify(myParamsAuctionList);
+    // console.log("myParamsmyParams", myParams);
+
+    return (
+      axios1
+        .get(
+          "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json" +
+            "?" +
+            myParams,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        )
+
+        // axios1
+        //   .get(
+        //     "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json?code=Lms7sw3_Cbna&sql=select%20*%20from%20main%20where%20model_id=4%20order%20by%20year%20desc%20limit%2020",
+        //     // select * from main where mode4  order by year desc limit 20
+        //     {
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //         // "Content-Type": "application/x-www-form-urlencoded",
+        //         "Access-Control-Allow-Origin": "*",
+        //       },
+        //     }
+        //   )
+        .then((response) => {
+          // console.log("DDDDDDDDDDD", response);
+          setAuctionList({
+            ...auctionList,
+            loading: false,
+            auctionList: response.data,
+          });
+        })
+        .catch((error) => {
+          // console.log("EEEEEEE", error);
+        })
+    );
 
     return null;
     axiosAuction
@@ -245,6 +309,7 @@ export default AuctionContext;
 
 //Фирм жагсаалт (Count)
 // select marka_id,marka_name from main group by marka_id order by marka_id ASC limit 0,50
+// select marka_id,marka_name from main group by marka_id order by marka_name ASC
 
 //Марк жагсаалт (Count)
 //select model_id,model_name from main where marka_name='toyota' group by model_id order by model_name

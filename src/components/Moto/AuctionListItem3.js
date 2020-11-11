@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/mn";
 import toBoolean from "util/booleanFunction";
-import { Card, Image, Avatar, Divider, Table, Tooltip } from "antd";
+import { Card, Image, Avatar, Divider, Table, Tooltip, Tag } from "antd";
 import { MailOutlined, MobileOutlined } from "@ant-design/icons";
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
@@ -59,9 +59,14 @@ const AuctionListItem3 = ({ auctionItem }) => {
             />
 
             <div className="gx-media-body gx-align-self-center">
-              <Link
-                to={"/auction/" + record.ID}
-              >{`${record.YEAR} ${record.MODEL_NAME}`}</Link>
+              <Link to={"/auction/" + record.ID}>
+                {`${record.YEAR} ${record.MARKA_NAME} ${record.MODEL_NAME}`}
+              </Link>
+              <Tooltip title="LOT дугаар">
+                <Tag color="magenta" className="gx-ml-3">
+                  {record.LOT}
+                </Tag>
+              </Tooltip>
               {/* {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
               {!toBoolean(record.isactive) && <ActiveTag type="dot" />} */}
               <div className="gx-d-flex">
@@ -80,43 +85,45 @@ const AuctionListItem3 = ({ auctionItem }) => {
                     {record.KPP} {record.KPP_TYPE}
                   </span>
                 </Tooltip>
+                <Tooltip title="Арал">
+                  <span className="moto-label-main ant-tag">
+                    {record.KUZOV}
+                  </span>
+                </Tooltip>
               </div>
+              <Tooltip title="Хувилбар">
+                <div className="gx-d-flex gx-fs-sm">{record.GRADE}</div>
+              </Tooltip>
             </div>
           </li>
         </>
       ),
     },
     {
-      title: (
-        <>
-          <div>Үнэлгээ</div>
-          <div>LOT ID</div>
-        </>
-      ),
+      title: "Үнэлгээ",
       key: "car-rating",
       dataIndex: "RATE",
+      align: "center",
       render: (RATE, record) => (
         <>
           <div className="gx-text-black gx-fs-lg">{RATE}</div>
-          <div className="gx-text-danger">{record.LOT}</div>
+          <StarRatingComponent
+            name="Үнэлгээ"
+            value={RATE && Number(RATE)}
+            starCount={6}
+            editing={false}
+            // starColor={String}
+            emptyStarColor={"#d1d1d1"}
+          />
         </>
       ),
     },
     {
-      title: (
-        <>
-          <div>Арал</div>
-          <div>Гүйлт</div>
-        </>
-      ),
+      title: "Гүйлт",
       key: "car-frame",
       dataIndex: "KUZOV",
       render: (KUZOV, record) => (
-        <>
-          <div className="gx-text-grey">{KUZOV}</div>
-          {/* <div className="gx-text-grey">{record.MILEAGE} км</div> */}
-          <div className="gx-text-grey">120,000 км</div>
-        </>
+        <div className="gx-text-grey">{record.MILEAGE} км</div>
       ),
     },
     {
@@ -125,10 +132,12 @@ const AuctionListItem3 = ({ auctionItem }) => {
       dataIndex: "START",
       render: (START, record) => (
         <>
-          <div className="gx-text-success">{START}</div>
-          <div className="gx-text-grey">{record.AVG_PRICE}</div>
-          {/* <div className="gx-text-grey">{record.AUCTION}</div> */}
-          <div className="gx-text-grey">CAA Chubu*</div>
+          <Tooltip title="Дуудах эхлэх үнэ">
+            <div className="gx-text-grey">{START} иен</div>
+          </Tooltip>
+          <Tooltip title="Зарагддаг дундаж үнэ">
+            <div className="gx-text-grey gx-fs-sm">{record.AVG_PRICE} иен</div>
+          </Tooltip>
         </>
       ),
     },
@@ -137,12 +146,15 @@ const AuctionListItem3 = ({ auctionItem }) => {
       key: "car-date",
       dataIndex: "AUCTION_DATE",
       render: (AUCTION_DATE, record) => (
-        <Tooltip title={`Дуудлагын огноо (Япон цагаар) ${record.TIME}`}>
-          <span className="gx-fs-sm gx-text-warning">
-            <div>{moment(record.TIME).fromNow()}</div>
-            <div>{moment(record.TIME).format("HH:mm")}</div>
-          </span>
-        </Tooltip>
+        <>
+          <div className="gx-text-grey gx-fs-sm">{record.AUCTION}</div>
+          <Tooltip title={`Дуудлагын огноо (Япон цагаар) ${record.TIME}`}>
+            <span className="gx-fs-sm gx-text-grey">
+              <div>{moment(record.TIME).fromNow()}</div>
+              <div>{moment(record.TIME).format("HH:mm")}</div>
+            </span>
+          </Tooltip>
+        </>
       ),
     },
   ];

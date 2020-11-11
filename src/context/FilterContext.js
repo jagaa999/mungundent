@@ -174,7 +174,7 @@ export const FilterStore = (props) => {
           delete myObject.cardtype[myKey];
         }
       } else {
-        if (myValue !== "") {
+        if (myValue !== "" && myValue !== "undefined") {
           myObject.filterList = {
             ...myObject.filterList,
             [myKey]: myValue,
