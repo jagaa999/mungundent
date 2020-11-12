@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { isEmpty } from "lodash";
-import { Button, Input, Checkbox, Divider, Select } from "antd";
+import { Button, Input, Checkbox, Divider, Select, Radio } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
@@ -34,9 +34,10 @@ const AuctionFilter = (props) => {
     rateList: [],
     loading: false,
   });
-
-  const [newsSource, setNewsSource] = useState([]);
-  const [newsPublisher, setNewsPublisher] = useState([]);
+  const [caryearList, setCaryearList] = useState({
+    caryearList: [],
+    loading: false,
+  });
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
   const callAllDataAsync = async () => {
@@ -82,6 +83,16 @@ const AuctionFilter = (props) => {
         loading: false,
       });
     }
+
+    if (filterContext.state.filterList?.kuzov) {
+      setCaryearList({ ...caryearList, loading: true });
+      setCaryearList({
+        caryearList: await loadDataviewAuction({
+          sql: `select year from main where kuzov='${filterContext.state.filterList?.kuzov}' group by year order by year`,
+        }),
+        loading: false,
+      });
+    }
   };
 
   useEffect(() => {
@@ -90,6 +101,8 @@ const AuctionFilter = (props) => {
   }, [filterContext.state.filterList]);
 
   const prepareURL = (checkedValues, parameterLabel) => {
+    console.log("checkedValues", checkedValues);
+
     //multiple values || checkbox etc
     const param = checkedValues
       .map(function (itemvalue) {
@@ -119,7 +132,14 @@ const AuctionFilter = (props) => {
     filterContext.updateParams(tempObject);
   };
 
-  console.log("rateList", rateList);
+  const radioStyle = {
+    display: "block",
+    height: "30px",
+    lineHeight: "30px",
+  };
+
+  // console.log("rateList", rateList);
+  // console.log("caryearList", caryearList);
 
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "100%" }}>
@@ -128,7 +148,6 @@ const AuctionFilter = (props) => {
           placeholder="Гарчгаас хайх"
           onSearch={(value) => console.log(value)}
         /> */}
-
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Фирм
         </h6>
@@ -157,7 +176,6 @@ const AuctionFilter = (props) => {
             </Option>
           ))}
         </Select>
-
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Марк
         </h6>
@@ -186,7 +204,6 @@ const AuctionFilter = (props) => {
             </Option>
           ))}
         </Select>
-
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Цуврал Index
         </h6>
@@ -211,12 +228,39 @@ const AuctionFilter = (props) => {
         >
           {frameList.frameList.map((item, index) => (
             <Option key={index} value={item.KUZOV}>
-              {item.KUZOV}
+              <span dangerouslySetInnerHTML={{ __html: item.KUZOV }} />
             </Option>
           ))}
         </Select>
-
-        {rateList.rateList === [] ? (
+        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+          Үнэлгээ
+        </h6>
+        <Select
+          className="moto-select-firm gx-w-100"
+          loading={rateList.loading}
+          showSearch
+          allowClear
+          placeholder="Үнэлгээ"
+          optionFilterProp="children"
+          onChange={(e) => prepareURL2(e, "rate")} //нэмэлт параметр дамжуулж байгаа юм.
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
+          defaultValue={[filterContext.state.filterList?.rate || null]}
+        >
+          {rateList.rateList.map((item, index) => (
+            <Option key={index} value={item.RATE}>
+              {item.RATE}
+            </Option>
+          ))}
+        </Select>
+        {/* {rateList.rateList === [] ? (
           "Ачаалж байна"
         ) : (
           <>
@@ -224,48 +268,53 @@ const AuctionFilter = (props) => {
               Үнэлгээ
             </h6>
             <Checkbox.Group
-              onChange={(e) => prepareURL2(e, "rate")} //нэмэлт параметр дамжуулж байгаа юм.
-              className="moto-filter-checkbox"
+              onChange={(e) => prepareURL(e, "rate")} //нэмэлт параметр дамжуулж байгаа юм.
+              // className="moto-filter-checkbox"
               defaultValue={[filterContext.state.filterList?.rate || ""]}
+              buttonStyle="solid"
             >
               {rateList.rateList.map((item, index) => (
-                <Checkbox value={item.RATE} key={index}>
+                <Checkbox style={radioStyle} value={item.RATE} key={index}>
                   {item.RATE}
-                  {/* <span className="gx-fs-sm gx-text-light gx-ml-3">
-                    {item.count}
-                  </span> */}
                 </Checkbox>
               ))}
             </Checkbox.Group>
           </>
-        )}
-
-        {newsPublisher === [] ? (
-          "Ачаалж байна"
-        ) : (
-          <>
-            <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
-              Нийтлэгч
-            </h6>
-            <Checkbox.Group
-              onChange={(e) => prepareURL(e, "publisherid")} //нэмэлт параметр дамжуулж байгаа юм.
-              className="moto-filter-checkbox"
-              defaultValue={[filterContext.state.filterList?.publisherid || ""]}
-            >
-              {newsPublisher.map((item) => (
-                <Checkbox value={item.publisherid} key={item.publisherid}>
-                  {item.publishername}
-                  <span className="gx-fs-sm gx-text-light gx-ml-3">
-                    {item.publishercount}
-                  </span>
-                </Checkbox>
-              ))}
-            </Checkbox.Group>
-          </>
-        )}
-
-        {/* <MotoCheckBox title="Нийтлэлийн төрөл" /> */}
-        {/* <MotoCheckBox title="Нийтлэгч" /> */}
+        )} */}
+        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+          Үйлдвэрлэсэн он
+        </h6>
+        <Select
+          key="start-date"
+          className="gx-mr-2"
+          loading={caryearList.loading}
+          style={{ width: 120 }}
+          allowClear
+          placeholder="Доод"
+          onChange={(e) => prepareURL2(e, "yearstart")} //нэмэлт параметр дамжуулж байгаа юм.
+          defaultValue={[filterContext.state.filterList?.yearstart || null]}
+        >
+          {caryearList.caryearList.map((item, index) => (
+            <Option key={index} value={item.YEAR}>
+              {item.YEAR}
+            </Option>
+          ))}
+        </Select>
+        <Select
+          key="end-date"
+          loading={caryearList.loading}
+          style={{ width: 120 }}
+          allowClear
+          placeholder="Дээд"
+          onChange={(e) => prepareURL2(e, "yearend")} //нэмэлт параметр дамжуулж байгаа юм.
+          defaultValue={[filterContext.state.filterList?.yearend || null]}
+        >
+          {caryearList.caryearList.map((item, index) => (
+            <Option key={index} value={item.YEAR}>
+              {item.YEAR}
+            </Option>
+          ))}
+        </Select>
 
         {isEmpty(filterContext.state.filterList) ? (
           <></>

@@ -70,6 +70,9 @@ const ProductList = asyncComponent(() => {
   return import("./moto/product/productListPage");
 });
 
+const AuctionDetail = asyncComponent(() => {
+  return import("./moto/auction/auctionDetailPage");
+});
 const AuctionList = asyncComponent(() => {
   return import("./moto/auction/auctionListPage");
 });
@@ -101,6 +104,18 @@ const App = ({ match }) => (
       #     # #     # #     #    #     #  #     # #    ## 
       #     #  #####   #####     #    ### ####### #     # 
       */}
+      <Route
+        path={[
+          "/auction/:auctionId",
+          "/auction/:auctionId/detail",
+          "/auction/detail/:auctionId",
+          "/auctionlist/:auctionId",
+        ]}
+      >
+        <AuctionStore>
+          <AuctionDetail />
+        </AuctionStore>
+      </Route>
       <Route path={["/auction", "/japan", "/auctionlist", "/japanlist"]}>
         <AuctionStore>
           <AuctionList />

@@ -1,14 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+// import { unescape } from "lodash";
 
 import moment from "moment";
 import "moment/locale/mn";
-import toBoolean from "util/booleanFunction";
+
 import { Card, Image, Avatar, Divider, Table, Tooltip, Tag } from "antd";
 import { MailOutlined, MobileOutlined } from "@ant-design/icons";
 
-import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
-import StarRatingComponent from "react-star-rating-component";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 
 const { Meta } = Card;
@@ -87,8 +86,11 @@ const AuctionListItem3 = ({ auctionItem }) => {
                   </span>
                 </Tooltip>
                 <Tooltip title="Арал">
-                  <span className="moto-label-main ant-tag">
-                    {record.KUZOV}
+                  <span
+                    className="moto-label-main ant-tag"
+                    dangerouslySetInnerHTML={{ __html: record.KUZOV }}
+                  >
+                    {/* {unescape(react.KUZOV)} */}
                   </span>
                 </Tooltip>
               </div>

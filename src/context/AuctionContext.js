@@ -65,24 +65,42 @@ export const AuctionStore = (props) => {
   const loadAuctionList = () => {
     setAuctionList({ ...auctionList, loading: true });
 
-    // const myWhere = "";
-
-    let myTempObject = {};
+    let myTempObject = [];
 
     Object.keys(filterContext.state.filterList).map((val, k) => {
-      if (["marka_id", "model_id", "kuzov"].includes(val)) {
+      if (["marka_id", "model_id", "kuzov", "rate"].includes(val)) {
         // val нь эдгээрийн аль нэг мөн эсэх?
         // console.log("1-", val);
         // console.log("2-", filterContext.state.filterList[val]);
-        myTempObject[val] = filterContext.state.filterList[val];
+        myTempObject.push({
+          label: val,
+          value: filterContext.state.filterList[val],
+          operator: "=",
+        });
+      }
+      if (val === "yearstart") {
+        myTempObject.push({
+          label: "year",
+          value: filterContext.state.filterList[val],
+          operator: ">=",
+        });
+      }
+      if (val === "yearend") {
+        myTempObject.push({
+          label: "year",
+          value: filterContext.state.filterList[val],
+          operator: "<=",
+        });
       }
     });
+
+    // select * from main where model_name='corolla' and marka_name='toyota' and (rate>='3' and rate<='6') and year>=1990 order by year desc limit 4,50
 
     // console.log("myTempObject", myTempObject);
 
     // convert objec to a query string
-    const qs = Object.keys(myTempObject)
-      .map((key) => `${key}='${myTempObject[key]}'`)
+    const qs = myTempObject
+      .map((item) => `${item.label}${item.operator}'${item.value}'`)
       .join(" AND ");
 
     // console.log("PPPPPPPPPPPPP", qs);
@@ -96,7 +114,7 @@ export const AuctionStore = (props) => {
       myTempObject.marka_id = filterContext.state.filterList?.marka_id;
     }
 
-    const mySQL = `select * from main ${myWhere} limit 24`;
+    const mySQL = `select * from main ${myWhere} order by year desc limit 24`;
 
     const myParamsAuctionList = {
       ...initialAuctionList.loadParams,
@@ -106,7 +124,7 @@ export const AuctionStore = (props) => {
     console.log("myParamsAuctionList", myParamsAuctionList);
 
     const myParams = stringify(myParamsAuctionList);
-    // console.log("myParamsmyParams", myParams);
+    console.log("myParamsmyParams", myParams);
 
     return (
       axios1
@@ -197,32 +215,47 @@ export const AuctionStore = (props) => {
   // #     # #          #    #     #  #  #
   // ######  #######    #    #     # ### #######
   const loadAuctionDetail = (id = 0) => {
-    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
-
-    const myParamsAuctionDetail = {
-      request: {
-        username: memberContext.state.memberUID,
-        password: "89",
-        // username: "motoadmin",
-        // password: "moto123",
-        command: "PL_MDVIEW_004",
-        parameters: {
-          ...auctionDetail.loadParams,
-          criteria: {
-            id: {
-              0: {
-                operator: "=",
-                operand: id,
-              },
-            },
-          },
-        },
-      },
-    };
-
     // console.log("myParamsAuctionDetail", myParamsAuctionDetail);
     setAuctionDetail(initialAuctionDetail);
     setAuctionDetail({ ...auctionDetail, loading: true });
+
+    const myParamsAuctionDetail = {
+      ...initialAuctionList.loadParams,
+      sql: `select * from main where id='${id}'`,
+    };
+
+    console.log("myParamsAuctionDetail", myParamsAuctionDetail);
+
+    const myParams = stringify(myParamsAuctionDetail);
+    console.log("myParamsmyParams", myParams);
+
+    axios1
+      .get(
+        "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json" +
+          "?" +
+          myParams,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Headers":
+              "Origin, X-Requested-With, Content-Type, Accept",
+          },
+        }
+      )
+
+      .then((response) => {
+        console.log("DDDDDDDDDDD", response);
+        setAuctionDetail({
+          ...auctionDetail,
+          loading: false,
+          auctionDetail: response.data[0],
+        });
+      })
+      .catch((error) => {
+        console.log("EEEEEEE", error);
+      });
+
+    return;
 
     axiosAuction
       .post("", myParamsAuctionDetail)
