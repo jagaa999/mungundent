@@ -9,6 +9,7 @@ import { MailOutlined, MobileOutlined } from "@ant-design/icons";
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import StarRatingComponent from "react-star-rating-component";
+import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 
 const { Meta } = Card;
 
@@ -50,7 +51,7 @@ const AuctionListItem3 = ({ auctionItem }) => {
       key: "car-name",
       render: (MODEL_NAME, record) => (
         <>
-          <li className="gx-media">
+          <div className="gx-media gx-flex-nowrap">
             <Image
               // height={250}
               src={record.IMAGES}
@@ -95,7 +96,7 @@ const AuctionListItem3 = ({ auctionItem }) => {
                 <div className="gx-d-flex gx-fs-sm">{record.GRADE}</div>
               </Tooltip>
             </div>
-          </li>
+          </div>
         </>
       ),
     },
@@ -105,17 +106,22 @@ const AuctionListItem3 = ({ auctionItem }) => {
       dataIndex: "RATE",
       align: "center",
       render: (RATE, record) => (
-        <>
+        <div style={{ minWidth: "90px" }}>
           <div className="gx-text-black gx-fs-lg">{RATE}</div>
-          <StarRatingComponent
+          <MotoAuctionStarRatingComponent
+            starCount={6}
+            value={RATE}
+            emptyStarColor={"#d1d1d1"}
+          />
+          {/* <StarRatingComponent
             name="Үнэлгээ"
             value={RATE && Number(RATE)}
             starCount={6}
             editing={false}
             // starColor={String}
             emptyStarColor={"#d1d1d1"}
-          />
-        </>
+          /> */}
+        </div>
       ),
     },
     {
