@@ -17,10 +17,12 @@ import {
   Image,
   Descriptions,
   Divider,
+  Statistic,
 } from "antd";
 
 import MotoAuctionDetailImages from "./Auction/MotoAuctionDetailImages";
 import MotoAuctionDetailPrice from "./Auction/MotoAuctionDetailPrice";
+import MotoAuctionSameCars from "./Auction/MotoAuctionSameCars";
 // import AuctionDetailHeader from "./AuctionDetailHeader";
 // import AuctionHeaderButton from "./Button/AuctionHeaderButton";
 
@@ -31,7 +33,7 @@ const AuctionDetailComponent = () => {
   const auctionItem = auctionContext.auctionDetail.auctionDetail || {};
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
-  console.log("auctionItem", auctionItem);
+  // console.log("auctionItem", auctionItem);
 
   if (Object.keys(auctionItem).length !== 0) {
     // let myMainImage = "";
@@ -61,25 +63,53 @@ const AuctionDetailComponent = () => {
             </Col>
           </Row>
 
-          <Divider />
+          <Divider className="gx-my-5" />
 
           <Row>
-            <Col span={7}>
-              Үнэлгээ
-              <h1>{auctionItem.RATE}</h1>
-              Дуудлаганд орох огноо
-              <h1>{moment(auctionItem.AUCTION_DATE).format("YYYY-MM-DD")}</h1>
-              <br />
-              Дуудлаганд орох цаг
-              <h1>{moment(auctionItem.TIME).format("HH:mm")}</h1>
-              <br />
-              Дуудлага болох газар
-              <h1>{auctionItem.AUCTION}</h1>
-              <br />
-              Дуудлагын код
-              <h1 className="gx-text-danger">{auctionItem.LOT}</h1>
+            <Col span={8}>
+              <Row>
+                <Col span={12}>
+                  <Statistic title="LOT код" value={auctionItem.LOT} />
+                </Col>
+                <Col span={12}>
+                  <Statistic title="Үнэлгээ" value={auctionItem.RATE} />
+                </Col>
+              </Row>
+              <Divider />
+              <Row>
+                <Col span={12}>
+                  <Statistic
+                    title="Огноо"
+                    value={moment(auctionItem.AUCTION_DATE).format("MM-DD")}
+                  />
+                </Col>
+                <Col span={12}>
+                  <Statistic
+                    title="Цаг"
+                    value={moment(auctionItem.AUCTION_DATE).format("HH:mm")}
+                  />
+                </Col>
+              </Row>
+              <Divider />
+              <Row>
+                <Col span={24}>
+                  <Statistic
+                    title="Дуудлага болох газар"
+                    value={auctionItem.AUCTION}
+                  />
+                </Col>
+              </Row>
+              <Divider />
+              <Row>
+                <Col span={12}>
+                  <Statistic title="Эхлэх үнэ" value={auctionItem.START} />
+                </Col>
+                <Col span={12}>
+                  <Statistic title="Дундаж үнэ" value={auctionItem.AVG_PRICE} />
+                </Col>
+              </Row>
             </Col>
-            <Col span={17} className="gx-mb-3">
+            <Col span={16} className="gx-mb-3">
               <Image
                 src={myImages[1]}
                 loading="lazy"
@@ -94,15 +124,32 @@ const AuctionDetailComponent = () => {
             </Col>
           </Row>
 
+          <Divider />
+
           <Row>
-            <Col xl={16} lg={14} md={14} sm={24} xs={24}>
+            <Col
+              md={{ span: 14, offset: 5 }}
+              sm={{ span: 16, offset: 4 }}
+              xs={{ span: 20, offset: 2 }}
+            >
+              <MotoAuctionDetailImages
+                auctionItem={auctionItem}
+                myImages={myImages}
+              />
+            </Col>
+          </Row>
+
+          <Divider className="gx-my-5" />
+
+          <Row>
+            <Col md={12} sm={24} xs={24}>
               <h4>Автомашин</h4>
               <Descriptions
                 className="moto-car-spec1"
                 layout="horizontal"
                 bordered={true}
                 size="small"
-                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+                column={1}
               >
                 <Descriptions.Item label="Үйлдвэрлэсэн он">
                   {auctionItem.YEAR}
@@ -116,47 +163,7 @@ const AuctionDetailComponent = () => {
                 <Descriptions.Item label="Хувилбар">
                   {auctionItem.GRADE}
                 </Descriptions.Item>
-              </Descriptions>
 
-              <h4 className="gx-mt-4">Техник үзүүлэлт</h4>
-              <Descriptions
-                className="moto-car-spec1"
-                layout="horizontal"
-                bordered={true}
-                size="small"
-                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
-              >
-                <Descriptions.Item label="Хөдөлгүүр">
-                  {auctionItem.ENG_V}
-                </Descriptions.Item>
-                <Descriptions.Item label="Хөдөлгүүрийн чадал">
-                  {auctionItem.PW} kW
-                </Descriptions.Item>
-                <Descriptions.Item label="Арал">
-                  {auctionItem.KUZOV}
-                </Descriptions.Item>
-                <Descriptions.Item label="Өнгө">
-                  {auctionItem.COLOR}
-                </Descriptions.Item>
-                <Descriptions.Item label="Хроп">
-                  {auctionItem.KPP}
-                </Descriptions.Item>
-                <Descriptions.Item label="Хропын шатлал">
-                  {auctionItem.KPP_TYPE}
-                </Descriptions.Item>
-                <Descriptions.Item label="Хөтлөгч">
-                  {auctionItem.PRIV}
-                </Descriptions.Item>
-              </Descriptions>
-
-              <h4 className="gx-mt-4">Автомашины нөхцөл</h4>
-              <Descriptions
-                className="moto-car-spec1"
-                layout="horizontal"
-                bordered={true}
-                size="small"
-                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
-              >
                 <Descriptions.Item label="Гүйлт">
                   {auctionItem.MILEAGE} км
                 </Descriptions.Item>
@@ -197,17 +204,49 @@ const AuctionDetailComponent = () => {
                 })}
               </Descriptions> */}
             </Col>
-            <Col xl={8} lg={10} md={10} sm={24} xs={24}>
-              <MotoAuctionDetailImages
-                auctionItem={auctionItem}
-                myImages={myImages}
-              />
-              <MotoAuctionDetailPrice auctionItem={auctionItem} />
+            <Col md={12} sm={24} xs={24}>
+              <h4>Техник үзүүлэлт</h4>
+              <Descriptions
+                className="moto-car-spec1"
+                layout="horizontal"
+                bordered={true}
+                size="small"
+                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+              >
+                <Descriptions.Item label="Хөдөлгүүр">
+                  {auctionItem.ENG_V}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хөдөлгүүрийн чадал">
+                  {auctionItem.PW} kW
+                </Descriptions.Item>
+                <Descriptions.Item label="Арал">
+                  {auctionItem.KUZOV}
+                </Descriptions.Item>
+                <Descriptions.Item label="Өнгө">
+                  {auctionItem.COLOR}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хроп">
+                  {auctionItem.KPP}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хропын шатлал">
+                  {auctionItem.KPP_TYPE}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хөтлөгч">
+                  {auctionItem.PRIV}
+                </Descriptions.Item>
+              </Descriptions>
             </Col>
           </Row>
 
+          <Divider dashed className="gx-my-5" />
+
           <Row>
-            <Col xs={24}></Col>
+            <Col span={12}>
+              <MotoAuctionSameCars auctionItem={auctionItem} />
+            </Col>
+            <Col span={12}>
+              <MotoAuctionDetailPrice auctionItem={auctionItem} />
+            </Col>
           </Row>
           <div>{/* <AuctionHeaderButton item={auctionItem} /> */}</div>
         </div>

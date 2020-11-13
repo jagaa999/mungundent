@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Image as ImageAnt } from "antd";
 import { Image } from "cloudinary-react";
 import { defaultSrc } from "util/config";
 
@@ -40,7 +40,8 @@ const MotoMemberDetailProfileImage = ({ myMemberDetail }) => {
         <ul className="gx-gallery-list">
           {myMemberDetail.imageotherFileList.map((item, index) => (
             <li key={index}>
-              <img alt="..." src={item.thumbUrl} />
+              {/* <img alt="..." src={item.thumbUrl} /> */}
+              <ImageAnt src={item.thumbUrl} />
             </li>
           ))}
         </ul>

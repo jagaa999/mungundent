@@ -3,19 +3,20 @@ import { Card, Image } from "antd";
 import { defaultSrc } from "util/config";
 
 const MotoAuctionDetailImages = ({ auctionItem, myImages }) => {
-  console.table(auctionItem);
-  console.log("auctionItem.Images", auctionItem.IMAGES);
+  // console.table(auctionItem);
+  // console.log("auctionItem.Images", auctionItem.IMAGES);
 
   // const myImages = auctionItem.IMAGES.substr(
   //   auctionItem.IMAGES.indexOf("#") + 1
   // );
-  console.log("myImages", myImages);
+  // console.log("myImages", myImages);
 
   return (
     <ul className="gx-gallery-list">
       {myImages.map((item, index) => (
         <li key={index}>
-          <img alt="..." src={item} />
+          {/* <img alt="..." src={item} /> */}
+          <Image src={item} />
         </li>
       ))}
     </ul>

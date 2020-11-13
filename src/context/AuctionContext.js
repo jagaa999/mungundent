@@ -41,8 +41,21 @@ export const AuctionStore = (props) => {
     error: null,
   };
 
+  const initialAuctionSameList = {
+    loadParams: {
+      code: "Lms7sw3_Cbna",
+      sql: "select * from main limit 24",
+    },
+    auctionSameList: [],
+    loading: false,
+    error: null,
+  };
+
   const [auctionList, setAuctionList] = useState(initialAuctionList);
   const [auctionDetail, setAuctionDetail] = useState(initialAuctionDetail);
+  const [auctionSameList, setAuctionSameList] = useState(
+    initialAuctionSameList
+  );
 
   useEffect(() => {
     loadAuctionList();
@@ -163,37 +176,9 @@ export const AuctionStore = (props) => {
           });
         })
         .catch((error) => {
-          // console.log("EEEEEEE", error);
+          console.log("EEEEEEE", error);
         })
     );
-
-    return null;
-    axiosAuction
-      // .get("", myParamsAuctionList, {
-      .get(
-        "",
-        {},
-        {
-          headers: {
-            // "Content-Type": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
-      .then((response) => {
-        console.log("GOOOOOOOOOOOOOO---------", response);
-        setAuctionList({
-          ...auctionList,
-          loading: false,
-          auctionList: response,
-        });
-      });
-    // .catch((error) => {
-    //   setAuctionList({ ...auctionList, loading: false, error });
-    //   message.error(error);
-    //   console.log(error);
-    // });
   };
 
   const clearAuctionList = () => {
@@ -319,17 +304,69 @@ export const AuctionStore = (props) => {
     setAuctionDetail(initialAuctionDetail);
   };
 
+  //   #####     #    #     # #######
+  //  #     #   # #   ##   ## #
+  //  #        #   #  # # # # #
+  //   #####  #     # #  #  # #####
+  //        # ####### #     # #
+  //  #     # #     # #     # #
+  //   #####  #     # #     # #######
+
+  const loadAuctionSameList = (auctionItem) => {
+    setAuctionSameList({ ...auctionSameList, loading: true });
+
+    const myParamsAuctionSameList = {
+      ...initialAuctionList.loadParams,
+      // sql: `select * from stats WHERE marka_id='${auctionItem.MARKA_ID}' and model_id='${auctionItem.MODEL_ID}' and year='${auctionItem.YEAR}' and eng_v='${auctionItem.ENG_V}' and kuzov='${auctionItem.KUZOV}' and grade='${auctionItem.GRADE}' and rate='${auctionItem.RATE}' and status='sold'`,
+      sql: `select * from stats WHERE marka_id='${auctionItem.MARKA_ID}' and model_id='${auctionItem.MODEL_ID}' and year='${auctionItem.YEAR}' and kuzov='${auctionItem.KUZOV}' and finish<>'0' and rate='${auctionItem.RATE}' and status='sold'`,
+    };
+
+    console.log("myParamsAuctionSameList", myParamsAuctionSameList);
+
+    const myParams = stringify(myParamsAuctionSameList);
+    console.log("myParamsmyParams", myParams);
+
+    axios1
+      .get(
+        "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json" +
+          "?" +
+          myParams,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Headers":
+              "Origin, X-Requested-With, Content-Type, Accept",
+          },
+        }
+      )
+
+      .then((response) => {
+        console.log("DDDDDDDDDDD", response);
+
+        setAuctionSameList({
+          ...auctionSameList,
+          loading: false,
+          auctionSameList: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("EEEEEEE", error);
+      });
+  };
+
   return (
     <AuctionContext.Provider
       value={{
         auctionList,
         auctionDetail,
+        auctionSameList,
         loadAuctionList,
         clearAuctionList,
         toggleFilterDrawerOpen,
         loadAuctionDetail,
         // saveAuctionDetail,
         clearAuctionDetail,
+        loadAuctionSameList,
       }}
     >
       {props.children}
@@ -368,6 +405,8 @@ export default AuctionContext;
 
 //Зарагдсан дундаж үнэ
 // select AVG(finish), model_name from stats WHERE marka_name='toyota' and status='sold' group by model_id
+
+//select * from stats WHERE marka_id='5' and model_id='567' and year='2018' and eng_v='2000' and kuzov='FK8' and grade='TYPE R 5D' and status='sold' and rate='5'
 
 // select auction, auction_date FROM main GROUP BY auction, DATE_FORMAT(auction_date,'%Y-%m-%d')
 
