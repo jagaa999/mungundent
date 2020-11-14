@@ -29,8 +29,8 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
     auctionContext.loadAuctionSameList(auctionItem);
   }, []);
 
-  console.log("mySameCars", mySameCars);
-  console.table(mySameCars.auctionSameList);
+  // console.log("mySameCars", mySameCars);
+  // console.table(mySameCars.auctionSameList);
 
   return (
     <Card loading={auctionContext.auctionSameList.loading}>

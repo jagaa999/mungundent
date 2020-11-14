@@ -241,10 +241,10 @@ const AuctionDetailComponent = () => {
           <Divider dashed className="gx-my-5" />
 
           <Row>
-            <Col span={12}>
+            <Col span={10}>
               <MotoAuctionSameCars auctionItem={auctionItem} />
             </Col>
-            <Col span={12}>
+            <Col span={14}>
               <MotoAuctionDetailPrice auctionItem={auctionItem} />
             </Col>
           </Row>
