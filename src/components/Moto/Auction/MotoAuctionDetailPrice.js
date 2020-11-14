@@ -130,24 +130,25 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
           <InputNumber
             size="small"
             className=""
+            precision={1}
             defaultValue={yenRate}
             formatter={(value) =>
-              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
             }
-            parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+            parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
             onChange={(value) => setYenRate(Number(value))}
           />
           <InputNumber
             size="small"
             defaultValue={usdRate}
             formatter={(value) =>
-              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
             }
-            parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+            parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
             onChange={(value) => setUsdRate(Number(value))}
           />
           <Switch
-            size="small"
+            // size="small"
             unCheckedChildren="Энгийн"
             checkedChildren="Хайбрид"
             defaultChecked={isHybrid}
@@ -157,17 +158,20 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
       }
     >
       <Row className="gx-mt-3">
-        <Col span={8}>Аукшинаас авах үнэ</Col>
+        <Col span={8} className="gx-fs-sm">
+          Аукшинаас авах үнэ
+        </Col>
         <Col span={16}>
           <Row gutter={[8, 8]}>
             <Col span={12}>
               <InputNumber
                 className="gx-d-block gx-w-100"
+                precision={0}
                 defaultValue={yourPrice.JPY}
                 formatter={(value) =>
-                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
-                parser={(value) => value.replace(/\¥\s?|(,*)/g, "")}
+                parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
                 onChange={(value) =>
                   setYourPrice({ ...yourPrice, JPY: Number(value) })
                 }
@@ -177,27 +181,31 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100"
+                precision={0}
                 value={yourPrice.MNT}
                 formatter={(value) =>
-                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
-                parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+                parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
               />
             </Col>
           </Row>
         </Col>
       </Row>
       <Row className="gx-mt-3">
-        <Col span={8}>Худалдааны татвар</Col>
+        <Col span={8} className="gx-fs-sm">
+          Худалдааны татвар
+        </Col>
         <Col span={16}>
           <Row gutter={[8, 8]}>
             <Col span={12}>
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100"
+                precision={0}
                 value={specJapanTatvar.JPY}
                 formatter={(value) =>
-                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
                 parser={(value) => value.replace(/\¥\s?|(,*)/g, "")}
               />
@@ -206,27 +214,31 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100"
+                precision={0}
                 value={specJapanTatvar.MNT}
                 formatter={(value) =>
-                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
-                parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+                parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
               />
             </Col>
           </Row>
         </Col>
       </Row>
       <Row className="gx-mt-3">
-        <Col span={8}>Контейнерт орох зардал (FOB)</Col>
+        <Col span={8} className="gx-fs-sm">
+          Япон дах зардал (FOB)
+        </Col>
         <Col span={16}>
           <Row gutter={[8, 8]}>
             <Col span={12}>
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100"
+                precision={0}
                 value={specFOB.JPY}
                 formatter={(value) =>
-                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
                 parser={(value) => value.replace(/\¥\s?|(,*)/g, "")}
               />
@@ -235,11 +247,12 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100"
+                precision={0}
                 value={specFOB.MNT}
                 formatter={(value) =>
-                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
-                parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+                parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
               />
             </Col>
           </Row>
@@ -249,16 +262,19 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
       <Divider />
 
       <Row className="gx-mt-3">
-        <Col span={8}>Япон дахь эцсийн зардал</Col>
+        <Col span={8} className="gx-fs-sm">
+          Япон дах эцсийн зардал
+        </Col>
         <Col span={16}>
           <Row gutter={[8, 8]}>
             <Col span={12}>
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100"
+                precision={0}
                 value={specJapanLast.JPY}
                 formatter={(value) =>
-                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
                 parser={(value) => value.replace(/\¥\s?|(,*)/g, "")}
               />
@@ -267,11 +283,12 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100 gx-text-warning"
+                precision={0}
                 value={specJapanLast.MNT}
                 formatter={(value) =>
-                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
-                parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+                parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
               />
             </Col>
           </Row>
@@ -281,15 +298,18 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
       <Divider />
 
       <Row className="gx-mt-3">
-        <Col span={8}>Тээврийн зардал (Контейнер)</Col>
+        <Col span={8} className="gx-fs-sm">
+          Тээврийн зардал (Контейнер)
+        </Col>
         <Col span={16}>
           <Row gutter={[8, 8]}>
             <Col span={12}>
               <InputNumber
                 className="gx-d-block gx-w-100"
+                precision={0}
                 defaultValue={specCargo.USD}
                 formatter={(value) =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
                 parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
                 onChange={(value) =>
@@ -301,11 +321,12 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
               <InputNumber
                 disabled={true}
                 className="gx-d-block gx-w-100"
+                precision={0}
                 value={specCargo.MNT}
                 formatter={(value) =>
-                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
                 }
-                parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+                parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
               />
             </Col>
           </Row>
@@ -315,52 +336,63 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
       <Divider />
 
       <Row className="gx-mt-3">
-        <Col span={11}>Гааль дээр ирэх эцсийн үнэ (ГҮ)</Col>
+        <Col span={11} className="gx-fs-sm">
+          Гааль дээр ирэх эцсийн үнэ (ГҮ)
+        </Col>
         <Col span={13}>
           <InputNumber
             disabled={true}
             className="gx-d-block gx-w-100 gx-text-warning"
+            precision={0}
             value={specMongoliaLast}
             formatter={(value) =>
-              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
             }
-            parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+            parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
           />
         </Col>
       </Row>
 
       <Row className="gx-mt-3">
-        <Col span={11}>Гаалийн татвар (5%)</Col>
+        <Col span={11} className="gx-fs-sm">
+          Гаалийн татвар (5%)
+        </Col>
         <Col span={13}>
           <InputNumber
             disabled={true}
             className="gx-d-block gx-w-100"
+            precision={0}
             value={specCustomTax}
             formatter={(value) =>
-              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
             }
-            parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+            parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
           />
         </Col>
       </Row>
 
       <Row className="gx-mt-3">
-        <Col span={11}>Онцгой татвар (Хуульд заасны дагуу)</Col>
+        <Col span={11} className="gx-fs-sm">
+          Онцгой татвар (Хуульд заасны дагуу)
+        </Col>
         <Col span={13}>
           <InputNumber
             disabled={true}
             className="gx-d-block gx-w-100 gx-text-danger"
+            precision={0}
             value={specSpecialTax}
             formatter={(value) =>
-              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
             }
-            parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+            parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
           />
         </Col>
       </Row>
 
       <Row className="gx-mt-3">
-        <Col span={11}>НӨАТ (10%)</Col>
+        <Col span={11} className="gx-fs-sm">
+          НӨАТ (10%)
+        </Col>
         <Col span={13}>
           <InputNumber
             disabled={true}
@@ -368,9 +400,9 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
             precision={0}
             value={specVATTax}
             formatter={(value) =>
-              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
             }
-            parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+            parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
           />
         </Col>
       </Row>
@@ -378,16 +410,19 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
       <Divider />
 
       <Row className="gx-mt-3">
-        <Col span={11}>Эцсийн үнэ</Col>
+        <Col span={11} className="gx-fs-sm">
+          Эцсийн үнэ
+        </Col>
         <Col span={13}>
           <InputNumber
             disabled={true}
             className="gx-d-block gx-w-100 gx-text-success"
+            precision={0}
             value={specLastPrice}
             formatter={(value) =>
-              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              `₮ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, "'")
             }
-            parser={(value) => value.replace(/\₮\s?|(,*)/g, "")}
+            parser={(value) => value.replace(/\¥\s?|('*)/g, "")}
           />
         </Col>
       </Row>

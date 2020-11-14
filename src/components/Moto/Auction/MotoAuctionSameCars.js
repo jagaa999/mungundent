@@ -16,6 +16,7 @@ import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import moment from "moment";
 import "moment/locale/mn";
+import accounting from "accounting";
 
 import AuctionContext from "context/AuctionContext";
 
@@ -89,10 +90,13 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
           <List.Item
             extra={
               <>
-                <span className="gx-mr-2">
-                  <small>{item.START} иен</small>
-                </span>{" "}
-                → <span>{item.FINISH} иен</span>
+                <span className="gx-fs-sm">
+                  {accounting.formatMoney(item.START, "¥", 0, "'")}
+                </span>
+                <span className="gx-mx-2 gx-fs-xs gx-text-grey">→</span>
+                <span className="gx-text-success">
+                  {accounting.formatMoney(item.FINISH, "¥", 0, "'")}
+                </span>
               </>
             }
           >
@@ -102,16 +106,19 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
 
                 <Image width={50} src={item.IMAGES} />
               }
-              title={<span className="gx-fs-sm">{item.GRADE}</span>}
+              title={<span className="gx-fs-md">{item.GRADE}</span>}
               description={
                 <>
-                  <span className={`gx-mr-2`}>
-                    <small>{item.MILEAGE} км</small>
+                  <span className=" gx-fs-sm gx-mr-2">
+                    {accounting.formatMoney(item.MILEAGE, {
+                      symbol: "км",
+                      format: "%v %s",
+                      precision: 0,
+                      thousand: "'",
+                    })}
                   </span>
-                  <span className="gx-meta-date">
-                    <small>
-                      {moment(item.AUCTION_DATE).format("YYYY-MM-DD")}
-                    </small>
+                  <span className="gx-fs-sm">
+                    {moment(item.AUCTION_DATE).format("YYYY-MM-DD")}
                   </span>
                 </>
               }

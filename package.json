@@ -27,6 +27,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@u-wave/react-vimeo": "^0.9.1",
+    "accounting": "^0.4.1",
     "amcharts3": "^3.21.15",
     "antd": "^4.6.1",
     "antd-img-crop": "^3.9.0",

@@ -65,6 +65,16 @@ const AuctionFilter = (props) => {
     }
 
     if (filterContext.state.filterList?.model_id) {
+      setCaryearList({ ...caryearList, loading: true });
+      setCaryearList({
+        caryearList: await loadDataviewAuction({
+          sql: `select year from main where model_id='${filterContext.state.filterList?.model_id}' group by year order by year`,
+        }),
+        loading: false,
+      });
+    }
+
+    if (filterContext.state.filterList?.model_id) {
       setFrameList({ ...frameList, loading: true });
       setFrameList({
         frameList: await loadDataviewAuction({
@@ -74,21 +84,11 @@ const AuctionFilter = (props) => {
       });
     }
 
-    if (filterContext.state.filterList?.kuzov) {
+    if (filterContext.state.filterList?.model_id) {
       setRateList({ ...rateList, loading: true });
       setRateList({
         rateList: await loadDataviewAuction({
-          sql: `select rate from main where kuzov='${filterContext.state.filterList?.kuzov}' group by rate order by rate`,
-        }),
-        loading: false,
-      });
-    }
-
-    if (filterContext.state.filterList?.kuzov) {
-      setCaryearList({ ...caryearList, loading: true });
-      setCaryearList({
-        caryearList: await loadDataviewAuction({
-          sql: `select year from main where kuzov='${filterContext.state.filterList?.kuzov}' group by year order by year`,
+          sql: `select rate from main where model_id='${filterContext.state.filterList?.model_id}' group by rate order by rate`,
         }),
         loading: false,
       });
@@ -204,6 +204,44 @@ const AuctionFilter = (props) => {
             </Option>
           ))}
         </Select>
+
+        <Divider className="gx-my-5" />
+
+        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+          Үйлдвэрлэсэн он
+        </h6>
+        <Select
+          key="start-date"
+          className="gx-mr-2"
+          loading={caryearList.loading}
+          style={{ width: 120 }}
+          allowClear
+          placeholder="Доод"
+          onChange={(e) => prepareURL2(e, "yearstart")} //нэмэлт параметр дамжуулж байгаа юм.
+          defaultValue={[filterContext.state.filterList?.yearstart || null]}
+        >
+          {caryearList.caryearList.map((item, index) => (
+            <Option key={index} value={item.YEAR}>
+              {item.YEAR}
+            </Option>
+          ))}
+        </Select>
+        <Select
+          key="end-date"
+          loading={caryearList.loading}
+          style={{ width: 120 }}
+          allowClear
+          placeholder="Дээд"
+          onChange={(e) => prepareURL2(e, "yearend")} //нэмэлт параметр дамжуулж байгаа юм.
+          defaultValue={[filterContext.state.filterList?.yearend || null]}
+        >
+          {caryearList.caryearList.map((item, index) => (
+            <Option key={index} value={item.YEAR}>
+              {item.YEAR}
+            </Option>
+          ))}
+        </Select>
+
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Цуврал Index
         </h6>
@@ -281,40 +319,6 @@ const AuctionFilter = (props) => {
             </Checkbox.Group>
           </>
         )} */}
-        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
-          Үйлдвэрлэсэн он
-        </h6>
-        <Select
-          key="start-date"
-          className="gx-mr-2"
-          loading={caryearList.loading}
-          style={{ width: 120 }}
-          allowClear
-          placeholder="Доод"
-          onChange={(e) => prepareURL2(e, "yearstart")} //нэмэлт параметр дамжуулж байгаа юм.
-          defaultValue={[filterContext.state.filterList?.yearstart || null]}
-        >
-          {caryearList.caryearList.map((item, index) => (
-            <Option key={index} value={item.YEAR}>
-              {item.YEAR}
-            </Option>
-          ))}
-        </Select>
-        <Select
-          key="end-date"
-          loading={caryearList.loading}
-          style={{ width: 120 }}
-          allowClear
-          placeholder="Дээд"
-          onChange={(e) => prepareURL2(e, "yearend")} //нэмэлт параметр дамжуулж байгаа юм.
-          defaultValue={[filterContext.state.filterList?.yearend || null]}
-        >
-          {caryearList.caryearList.map((item, index) => (
-            <Option key={index} value={item.YEAR}>
-              {item.YEAR}
-            </Option>
-          ))}
-        </Select>
 
         {isEmpty(filterContext.state.filterList) ? (
           <></>

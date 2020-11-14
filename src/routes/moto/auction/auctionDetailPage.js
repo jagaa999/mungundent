@@ -21,14 +21,14 @@ const AuctionDetailPage = (props) => {
 
   useEffect(() => {
     if (auctionId !== 0) {
-      if (memberContext.state.memberCloudUserSysId !== 0) {
-        auctionContext.loadAuctionDetail(
-          auctionId,
-          memberContext.state.memberCloudUserSysId
-        );
-      } else {
-        // auctionContext.loadAuctionDetailOg(auctionId);
-      }
+      // if (memberContext.state.memberCloudUserSysId !== 0) {
+      auctionContext.loadAuctionDetail(
+        auctionId,
+        memberContext.state.memberCloudUserSysId
+      );
+      // } else {
+      //   // auctionContext.loadAuctionDetailOg(auctionId);
+      // }
     }
   }, [auctionId, memberContext.state.memberCloudUserSysId]);
 
@@ -49,17 +49,17 @@ const AuctionDetailPage = (props) => {
         <meta property="og:locale" content="mn_MN" /> */}
       </Helmet>
 
-      {memberContext.state.isLogin ? (
-        <>
-          {auctionContext.auctionDetail.loading ? (
-            <LoadingDetail />
-          ) : (
-            <AuctionDetail auctionId={auctionId} />
-          )}
-        </>
-      ) : (
+      {/* {memberContext.state.isLogin ? ( */}
+      <>
+        {auctionContext.auctionDetail.loading ? (
+          <LoadingDetail />
+        ) : (
+          <AuctionDetail auctionId={auctionId} />
+        )}
+      </>
+      {/* ) : (
         <PleaseLogin />
-      )}
+      )} */}
     </>
   );
 };

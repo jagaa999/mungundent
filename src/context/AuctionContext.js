@@ -31,7 +31,7 @@ export const AuctionStore = (props) => {
     auctionList: [],
     loading: false,
     error: null,
-    isFilterDrawerOpen: true,
+    isFilterDrawerOpen: false,
   };
 
   const initialAuctionDetail = {

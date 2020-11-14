@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import moment from "moment";
 import "moment/locale/mn";
+import accounting from "accounting";
 
 import { Card, Image, Avatar, Divider, Table, Tooltip, Tag } from "antd";
 import { MailOutlined, MobileOutlined } from "@ant-design/icons";
@@ -131,7 +132,14 @@ const AuctionListItem3 = ({ auctionItem }) => {
       key: "car-frame",
       dataIndex: "KUZOV",
       render: (KUZOV, record) => (
-        <div className="gx-text-grey">{record.MILEAGE} км</div>
+        <div className="gx-text-grey">
+          {accounting.formatMoney(record.MILEAGE, {
+            symbol: "км",
+            format: "%v %s",
+            precision: 0,
+            thousand: "'",
+          })}
+        </div>
       ),
     },
     {
@@ -141,10 +149,14 @@ const AuctionListItem3 = ({ auctionItem }) => {
       render: (START, record) => (
         <>
           <Tooltip title="Дуудах эхлэх үнэ">
-            <div className="gx-text-grey">{START} иен</div>
+            <div className="gx-text-grey gx-fs-sm">
+              {accounting.formatMoney(START, "¥", 0, "'")}
+            </div>
           </Tooltip>
           <Tooltip title="Зарагддаг дундаж үнэ">
-            <div className="gx-text-grey gx-fs-sm">{record.AVG_PRICE} иен</div>
+            <div className="gx-text-grey gx-fs-sm">
+              {accounting.formatMoney(record.AVG_PRICE, "¥", 0, "'")}
+            </div>
           </Tooltip>
         </>
       ),
@@ -156,10 +168,13 @@ const AuctionListItem3 = ({ auctionItem }) => {
       render: (AUCTION_DATE, record) => (
         <>
           <div className="gx-text-grey gx-fs-sm">{record.AUCTION}</div>
-          <Tooltip title={`Дуудлагын огноо (Япон цагаар) ${record.TIME}`}>
+          <Tooltip
+            title={`Дуудлагын огноо (Япон цагаар) ${record.AUCTION_DATE}`}
+          >
             <span className="gx-fs-sm gx-text-grey">
-              <div>{moment(record.TIME).fromNow()}</div>
-              <div>{moment(record.TIME).format("HH:mm")}</div>
+              <div>{moment(record.AUCTION_DATE).fromNow()}</div>
+              <div>{moment(record.AUCTION_DATE).format("HH:mm")}</div>
+              <div>{record.STATUS}</div>
             </span>
           </Tooltip>
         </>

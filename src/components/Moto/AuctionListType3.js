@@ -9,6 +9,7 @@ import NewsListIActionHeader from "./NewsListIActionHeader";
 import AuctionContext from "context/AuctionContext";
 import FilterContext from "context/FilterContext";
 import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
+import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
@@ -35,6 +36,8 @@ const AuctionListType3 = () => {
             className="gx-mb-3"
             extra={[]}
           ></PageHeader>
+
+          <AuctionFilterHeader />
 
           <Row className="gx-d-flex">
             <Col key="dffdf" xs={24}>

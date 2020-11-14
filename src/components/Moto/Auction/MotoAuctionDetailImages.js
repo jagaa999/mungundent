@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image } from "antd";
+import { Image, Row, Col } from "antd";
 import { defaultSrc } from "util/config";
 
 const MotoAuctionDetailImages = ({ auctionItem, myImages }) => {
@@ -12,14 +12,15 @@ const MotoAuctionDetailImages = ({ auctionItem, myImages }) => {
   // console.log("myImages", myImages);
 
   return (
-    <ul className="gx-gallery-list">
-      {myImages.map((item, index) => (
-        <li key={index}>
-          {/* <img alt="..." src={item} /> */}
-          <Image src={item} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <Row gutter={[8, 8]}>
+        {myImages.map((item, index) => (
+          <Col span={6}>
+            <Image src={item} />
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 };
 

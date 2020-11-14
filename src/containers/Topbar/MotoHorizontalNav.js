@@ -75,21 +75,20 @@ const HorizontalNav = () => {
           <div className="gx-d-none gx-d-lg-block">Дэлгүүр</div>
         </Link>
       </Menu.Item>
-      {process.env.NODE_ENV === "development" && (
-        <Menu.Item
-          key="auction"
-          className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
-        >
-          <Link to="/auction" className="motoHeaderMenuItemLink">
-            <Tooltip title="Япон аукшин">
-              <span className="gx-d-block gx-d-lg-none">
-                <IconFont type="iconauction" />
-              </span>
-            </Tooltip>
-            <div className="gx-d-none gx-d-lg-block">Аукшин</div>
-          </Link>
-        </Menu.Item>
-      )}
+
+      <Menu.Item
+        key="auction"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
+        <Link to="/auction" className="motoHeaderMenuItemLink">
+          <Tooltip title="Япон аукшин">
+            <span className="gx-d-block gx-d-lg-none">
+              <IconFont type="iconauction" />
+            </span>
+          </Tooltip>
+          <div className="gx-d-none gx-d-lg-block">Аукшин</div>
+        </Link>
+      </Menu.Item>
 
       {/* <SubMenu
         popupClassName={getNavStyleSubMenuClass(navStyle)}
