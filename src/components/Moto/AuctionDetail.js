@@ -63,10 +63,10 @@ const AuctionDetailComponent = () => {
         <Row>
           <Col span={24} className="gx-text-center">
             <h3>
-              {auctionItem.YEAR} {auctionItem.MARKA_NAME}{" "}
-              {auctionItem.MODEL_NAME}
+              {auctionItem.YEAR} {htmlEntities.decode(auctionItem.MARKA_NAME)}{" "}
+              {htmlEntities.decode(auctionItem.MODEL_NAME)}
               <span className="gx-text-grey gx-fs-sm gx-ml-2">
-                {auctionItem.GRADE}
+                {htmlEntities.decode(auctionItem.GRADE)}
               </span>
             </h3>
           </Col>
@@ -253,10 +253,10 @@ const AuctionDetailComponent = () => {
                 {auctionItem.MARKA_NAME}
               </Descriptions.Item>
               <Descriptions.Item label="Марк">
-                {auctionItem.MODEL_NAME}
+                {htmlEntities.decode(auctionItem.MODEL_NAME)}
               </Descriptions.Item>
               <Descriptions.Item label="Хувилбар">
-                {auctionItem.GRADE}
+                {htmlEntities.decode(auctionItem.GRADE)}
               </Descriptions.Item>
 
               <Descriptions.Item label="Гүйлт">
@@ -311,7 +311,7 @@ const AuctionDetailComponent = () => {
             className="gx-mt-4 gx-mt-md-0"
           >
             <h4>Техник үзүүлэлт</h4>
-            <Descriptions.Item
+            <Descriptions
               className="moto-car-spec1"
               layout="horizontal"
               bordered={true}
@@ -346,7 +346,7 @@ const AuctionDetailComponent = () => {
               <Descriptions.Item label="Хөтлөгч">
                 {auctionItem.PRIV}
               </Descriptions.Item>
-            </Descriptions.Item>
+            </Descriptions>
           </Col>
         </Row>
         <Divider dashed className="gx-my-5" />
@@ -380,7 +380,7 @@ const AuctionDetailComponent = () => {
 
         <Alert
           message="Японоос машин захиалгаар оруулж ирдэг бизнестэй хүмүүсийн анхааралд!"
-          description="Энэ системийг ашиглан хүмүүс машин захиалах хүсэлтэй юм. Хэрвээ та эдгээр захиалгыг өөртөө авахыг хүсвэл Moto.mn тантай хамтран ажиллахад бэлэн байна. Та цаг алдалгүй холбогдоно уу. Утас: 99902070"
+          description="Энэ системийг ашиглан хүмүүс машин захиалах хүсэлтэй юм. Хэрвээ та эдгээр захиалгыг өөртөө авахыг хүсвэл Moto.mn тантай хамтран ажиллахад бэлэн байна. Утас: 99902070"
           type="info"
           showIcon
         />

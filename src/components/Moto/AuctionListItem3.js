@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 // import { unescape } from "lodash";
+import { Html5Entities } from "html-entities";
 
 import moment from "moment";
 import "moment/locale/mn";
@@ -15,6 +16,8 @@ const { Meta } = Card;
 
 const AuctionListItem3 = ({ auctionItem }) => {
   console.log("Манай машин - ", auctionItem);
+
+  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   // //AUCTION: "http://avto.jp/get_code"
   // AUCTION_DATE: "http://avto.jp/get_code"
@@ -87,16 +90,15 @@ const AuctionListItem3 = ({ auctionItem }) => {
                   </span>
                 </Tooltip>
                 <Tooltip title="Арал">
-                  <span
-                    className="moto-label-main ant-tag"
-                    dangerouslySetInnerHTML={{ __html: record.KUZOV }}
-                  >
-                    {/* {unescape(react.KUZOV)} */}
+                  <span className="moto-label-main ant-tag">
+                    {htmlEntities.decode(record.KUZOV)}
                   </span>
                 </Tooltip>
               </div>
               <Tooltip title="Хувилбар">
-                <div className="gx-d-flex gx-fs-sm">{record.GRADE}</div>
+                <div className="gx-d-flex gx-fs-sm">
+                  {htmlEntities.decode(record.GRADE)}
+                </div>
               </Tooltip>
             </div>
           </div>

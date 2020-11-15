@@ -1,4 +1,6 @@
 const functions = require("firebase-functions");
+const axios = require("axios");
+// const { stringify } = require("query-string");
 const cors = require("cors")({
   origin: true,
   allowedHeaders: [
@@ -37,6 +39,13 @@ exports.addMessage = functions.https.onRequest((req, res) => {
   });
 });
 
+//  ####### #     # ####### #       #     # ######   #####
+//  #       #     # #       #       ##   ## #     # #     #
+//  #       #     # #       #       # # # # #     # #
+//  #####   #     # #####   #       #  #  # ######  #  ####
+//  #       #     # #       #       #     # #       #     #
+//  #       #     # #       #       #     # #       #     #
+//  #        #####  ####### ####### #     # #        #####
 exports.carFuelMPG = functions.https.onRequest((req, res) => {
   // Google Cloud Function res.methods
   res.set("Access-Control-Allow-Headers", "Content-Type");
@@ -119,5 +128,75 @@ exports.carFuelMPG = functions.https.onRequest((req, res) => {
       description,
       rating,
     });
+  });
+});
+
+//     #    #     #  #####  ####### ### ####### #     #
+//    # #   #     # #     #    #     #  #     # ##    #
+//   #   #  #     # #          #     #  #     # # #   #
+//  #     # #     # #          #     #  #     # #  #  #
+//  ####### #     # #          #     #  #     # #   # #
+//  #     # #     # #     #    #     #  #     # #    ##
+//  #     #  #####   #####     #    ### ####### #     #
+exports.loadAuction = functions.https.onRequest((req, res) => {
+  // Google Cloud Function res.methods
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.set("Content-Type", "Application/JSON");
+  // CORS-enabled req.methods, res.methods
+  cors(req, res, () => {
+    // your function body here - use the provided req and res from cors
+    const myQuery = req.query;
+
+    // console.log("req", req.query);
+
+    const myParams1 = {
+      code: "Lms7sw3_Cbna",
+      // sql: `select * from main where marka_id='5' AND model_id='567' order by year desc limit 24`,
+      ...myQuery,
+    };
+
+    // console.log("myParams1myParams1", myParams1);
+    // const myParams = stringify(myParams1);
+
+    // Object-ийг Query String болгоно.
+    let myParams = "";
+    for (var key in myParams1) {
+      if (myParams !== "") {
+        myParams += "&";
+      }
+      myParams += key + "=" + encodeURIComponent(myParams1[key]);
+    }
+
+    // console.log("myParamsmyParams", myParams);
+
+    axios
+      .get(
+        "http://50.23.198.149/xml/json" + "?" + myParams,
+        // .get(
+        //   "http://50.23.198.149/xml/json?code=Lms7sw3_Cbna&sql=select * from main where marka_id='5' AND model_id='567' order by year desc limit 24",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers":
+              "Origin, X-Requested-With, Content-Type, Accept",
+          },
+        }
+      )
+      .then((response) => {
+        // console.log("DDDDDDDDDDD", response);
+
+        return res.json({
+          message: "Амжилттай холбогдлоо",
+          response: response.data,
+        });
+      })
+      .catch((error) => {
+        return res.json({
+          message: "Алдаа гарлаа",
+          error: error,
+        });
+        // console.log("EEEEEEE", error);
+      });
   });
 });

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import { Html5Entities } from "html-entities";
+
 import {
   Card,
   Image,
@@ -22,6 +24,7 @@ import AuctionContext from "context/AuctionContext";
 
 const MotoAuctionSameCars = ({ auctionItem }) => {
   // console.table(auctionItem);
+  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   const auctionContext = useContext(AuctionContext);
   const mySameCars = auctionContext.auctionSameList;
@@ -42,7 +45,7 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
           {auctionItem.YEAR}
         </Descriptions.Item>
         <Descriptions.Item label={<span className="gx-text-grey">Арал</span>}>
-          {auctionItem.KUZOV}
+          {htmlEntities.decode(auctionItem.KUZOV)}
         </Descriptions.Item>
         <Descriptions.Item
           label={<span className="gx-text-grey">Үнэлгээ</span>}
@@ -106,7 +109,11 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
 
                 <Image width={50} src={item.IMAGES} />
               }
-              title={<span className="gx-fs-md">{item.GRADE}</span>}
+              title={
+                <span className="gx-fs-md">
+                  {htmlEntities.decode(item.GRADE)}
+                </span>
+              }
               description={
                 <>
                   <span className=" gx-fs-sm gx-mr-2">

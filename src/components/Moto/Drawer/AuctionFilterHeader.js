@@ -169,7 +169,8 @@ const AuctionFilter = (props) => {
             return false;
           }
         }}
-        defaultValue={[filterContext.state.filterList?.marka_id || null]}
+        defaultValue={filterContext.state.filterList?.marka_id || undefined}
+        // defaultValue={undefined}
       >
         {firmList.firmList.map((item, index) => (
           <Option key={index} value={item.MARKA_ID}>
@@ -196,7 +197,7 @@ const AuctionFilter = (props) => {
             return false;
           }
         }}
-        defaultValue={[filterContext.state.filterList?.model_id || null]}
+        defaultValue={filterContext.state.filterList?.model_id || undefined}
       >
         {markList.markList.map((item, index) => (
           <Option key={index} value={item.MODEL_ID}>
@@ -213,7 +214,7 @@ const AuctionFilter = (props) => {
         allowClear
         placeholder="Доод жил"
         onChange={(e) => prepareURL2(e, "yearstart")} //нэмэлт параметр дамжуулж байгаа юм.
-        defaultValue={[filterContext.state.filterList?.yearstart || null]}
+        defaultValue={filterContext.state.filterList?.yearstart || undefined}
       >
         {caryearList.caryearList.map((item, index) => (
           <Option key={index} value={item.YEAR}>
@@ -229,7 +230,7 @@ const AuctionFilter = (props) => {
         allowClear
         placeholder="Дээд жил"
         onChange={(e) => prepareURL2(e, "yearend")} //нэмэлт параметр дамжуулж байгаа юм.
-        defaultValue={[filterContext.state.filterList?.yearend || null]}
+        defaultValue={filterContext.state.filterList?.yearend || undefined}
       >
         {caryearList.caryearList.map((item, index) => (
           <Option key={index} value={item.YEAR}>
@@ -256,7 +257,7 @@ const AuctionFilter = (props) => {
             return false;
           }
         }}
-        defaultValue={[filterContext.state.filterList?.kuzov || null]}
+        defaultValue={filterContext.state.filterList?.kuzov || undefined}
       >
         {frameList.frameList.map((item, index) => (
           <Option key={index} value={item.KUZOV}>
@@ -283,7 +284,7 @@ const AuctionFilter = (props) => {
             return false;
           }
         }}
-        defaultValue={[filterContext.state.filterList?.rate || null]}
+        defaultValue={filterContext.state.filterList?.rate || undefined}
       >
         {rateList.rateList.map((item, index) => (
           <Option key={index} value={item.RATE}>

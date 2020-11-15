@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { message } from "antd";
 
-import axiosAuction from "util/axiosAuctionConfig";
-import axios1 from "axios";
+import axios from "axios";
 import { stringify } from "query-string";
 
 import MemberContext from "context/MemberContext";
@@ -24,8 +23,6 @@ export const AuctionStore = (props) => {
 
   const initialAuctionList = {
     loadParams: {
-      // code: "DvemR43s",
-      code: "Lms7sw3_Cbna",
       sql: "select * from main limit 24",
     },
     auctionList: [],
@@ -43,7 +40,6 @@ export const AuctionStore = (props) => {
 
   const initialAuctionSameList = {
     loadParams: {
-      code: "Lms7sw3_Cbna",
       sql: "select * from main limit 24",
     },
     auctionSameList: [],
@@ -109,8 +105,6 @@ export const AuctionStore = (props) => {
 
     // select * from main where model_name='corolla' and marka_name='toyota' and (rate>='3' and rate<='6') and year>=1990 order by year desc limit 4,50
 
-    // console.log("myTempObject", myTempObject);
-
     // convert objec to a query string
     const qs = myTempObject
       .map((item) => `${item.label}${item.operator}'${item.value}'`)
@@ -134,51 +128,22 @@ export const AuctionStore = (props) => {
       sql: mySQL,
     };
 
-    console.log("myParamsAuctionList", myParamsAuctionList);
-
-    const myParams = stringify(myParamsAuctionList);
-    console.log("myParamsmyParams", myParams);
-
-    return (
-      axios1
-        .get(
-          "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json" +
-            "?" +
-            myParams,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              // "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers":
-                "Origin, X-Requested-With, Content-Type, Accept",
-            },
-          }
-        )
-
-        // axios1
-        //   .get(
-        //     "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json?code=Lms7sw3_Cbna&sql=select%20*%20from%20main%20where%20model_id=4%20order%20by%20year%20desc%20limit%2020",
-        //     // select * from main where mode4  order by year desc limit 20
-        //     {
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //         // "Content-Type": "application/x-www-form-urlencoded",
-        //         "Access-Control-Allow-Origin": "*",
-        //       },
-        //     }
-        //   )
-        .then((response) => {
-          // console.log("DDDDDDDDDDD", response);
-          setAuctionList({
-            ...auctionList,
-            loading: false,
-            auctionList: response.data,
-          });
-        })
-        .catch((error) => {
-          console.log("EEEEEEE", error);
-        })
-    );
+    return axios
+      .get(
+        "https://us-central1-moto-86243.cloudfunctions.net/loadAuction?" +
+          stringify(myParamsAuctionList)
+      )
+      .then((response) => {
+        // console.log("DDDDDDDDDDD", response);
+        setAuctionList({
+          ...auctionList,
+          loading: false,
+          auctionList: response.data.response,
+        });
+      })
+      .catch((error) => {
+        console.log("error", error.data.message);
+      });
   };
 
   const clearAuctionList = () => {
@@ -209,94 +174,23 @@ export const AuctionStore = (props) => {
       sql: `select * from main where id='${id}'`,
     };
 
-    console.log("myParamsAuctionDetail", myParamsAuctionDetail);
+    // console.log("myParamsAuctionDetail", myParamsAuctionDetail);
 
-    const myParams = stringify(myParamsAuctionDetail);
-    console.log("myParamsmyParams", myParams);
-
-    axios1
+    axios
       .get(
-        "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json" +
-          "?" +
-          myParams,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Headers":
-              "Origin, X-Requested-With, Content-Type, Accept",
-          },
-        }
+        "https://us-central1-moto-86243.cloudfunctions.net/loadAuction?" +
+          stringify(myParamsAuctionDetail)
       )
-
       .then((response) => {
         console.log("DDDDDDDDDDD", response);
         setAuctionDetail({
           ...auctionDetail,
           loading: false,
-          auctionDetail: response.data[0],
+          auctionDetail: response.data.response[0],
         });
       })
       .catch((error) => {
         console.log("EEEEEEE", error);
-      });
-
-    return;
-
-    axiosAuction
-      .post("", myParamsAuctionDetail)
-      .then((response) => {
-        // console.log("PRODUCT DETAIL RESPONSE------------> ", response);
-        const myArray = response.data.response.result[0] || [];
-        // console.log("PRODUCT DETAIL myArray------------> ", myArray);
-        // myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
-        // myArray.caryearimport = moment(myArray.caryearimport);
-        // myArray.mglengine2disp = myArray.mglengine2disp * 1;
-        // myArray.carmilageimport = myArray.carmilageimport * 1;
-        // myArray.carmilagenow = myArray.carmilagenow * 1;
-        // myArray.mgldoor = myArray.mgldoor * 1;
-        // myArray.mglseat = myArray.mglseat * 1;
-        // myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
-        // myArray.isactive = myArray.isactive === "1" ? true : false;
-        // myArray.imagemainFileList = [];
-        // myArray.imagemainFileList =
-        //   myArray.imagemain !== undefined &&
-        //   (myArray.imagemain !== ""
-        //     ? [
-        //         {
-        //           uid: "-1",
-        //           name: "Тодорхойгүй",
-        //           status: "done",
-        //           url: myArray.imagemain || "",
-        //           thumbUrl: myArray.imagemain || "",
-        //           response: { url: myArray.imagemain || "" },
-        //         },
-        //       ]
-        //     : []);
-        // myArray.imageotherFileList = [];
-        // myArray.imageotherFileList =
-        //   myArray.imageother !== undefined &&
-        //   (myArray.imageother !== ""
-        //     ? JSON.parse(myArray.imageother).map((item, index) => ({
-        //         uid: index - 1,
-        //         name: item.replace(/^.*[\\\/]/, ""),
-        //         status: "done",
-        //         url: item || "",
-        //         thumbUrl: item || "",
-        //         response: { url: item || "" },
-        //       }))
-        //     : []);
-
-        // console.log("PRODUCT DETAIL------------> ", myArray);
-
-        setAuctionDetail({
-          ...auctionDetail,
-          loading: false,
-          auctionDetail: myArray,
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        message.error(error.toString(), 7);
       });
   };
 
@@ -318,26 +212,15 @@ export const AuctionStore = (props) => {
     const myParamsAuctionSameList = {
       ...initialAuctionList.loadParams,
       // sql: `select * from stats WHERE marka_id='${auctionItem.MARKA_ID}' and model_id='${auctionItem.MODEL_ID}' and year='${auctionItem.YEAR}' and eng_v='${auctionItem.ENG_V}' and kuzov='${auctionItem.KUZOV}' and grade='${auctionItem.GRADE}' and rate='${auctionItem.RATE}' and status='sold'`,
-      sql: `select * from stats WHERE marka_id='${auctionItem.MARKA_ID}' and model_id='${auctionItem.MODEL_ID}' and year='${auctionItem.YEAR}' and kuzov='${auctionItem.KUZOV}' and finish<>'0' and rate='${auctionItem.RATE}' and status='sold'`,
+      sql: `select * from stats WHERE marka_id='${auctionItem.MARKA_ID}' and model_id='${auctionItem.MODEL_ID}' and year='${auctionItem.YEAR}' and kuzov='${auctionItem.KUZOV}' and finish<>'0' and rate='${auctionItem.RATE}' and status='sold' limit 12`,
     };
 
-    console.log("myParamsAuctionSameList", myParamsAuctionSameList);
+    // console.log("myParamsAuctionSameList", myParamsAuctionSameList);
 
-    const myParams = stringify(myParamsAuctionSameList);
-    console.log("myParamsmyParams", myParams);
-
-    axios1
+    axios
       .get(
-        "https://cors-anywhere.herokuapp.com/http://50.23.198.149/xml/json" +
-          "?" +
-          myParams,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Headers":
-              "Origin, X-Requested-With, Content-Type, Accept",
-          },
-        }
+        "https://us-central1-moto-86243.cloudfunctions.net/loadAuction?" +
+          stringify(myParamsAuctionSameList)
       )
 
       .then((response) => {
@@ -346,11 +229,11 @@ export const AuctionStore = (props) => {
         setAuctionSameList({
           ...auctionSameList,
           loading: false,
-          auctionSameList: response.data,
+          auctionSameList: response.data.response,
         });
       })
       .catch((error) => {
-        console.log("EEEEEEE", error);
+        console.log("error", error);
       });
   };
 
