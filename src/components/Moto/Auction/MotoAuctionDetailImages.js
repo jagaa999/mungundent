@@ -12,15 +12,13 @@ const MotoAuctionDetailImages = ({ auctionItem, myImages }) => {
   // console.log("myImages", myImages);
 
   return (
-    <>
-      <Row gutter={[8, 8]}>
-        {myImages.map((item, index) => (
-          <Col span={6}>
-            <Image src={item} />
-          </Col>
-        ))}
-      </Row>
-    </>
+    <Row gutter={[8, 8]}>
+      {myImages.map((item, index) => (
+        <Col key={index} span={6}>
+          <Image src={item} />
+        </Col>
+      ))}
+    </Row>
   );
 };
 

@@ -32,7 +32,7 @@ const AuctionListType3 = () => {
         <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
           <PageHeader
-            title={<h3>Бараа</h3>}
+            title={<h3>Автомашинууд</h3>}
             className="gx-mb-3"
             extra={[]}
           ></PageHeader>

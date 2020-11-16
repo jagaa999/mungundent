@@ -151,160 +151,175 @@ const AuctionFilter = (props) => {
 
   return (
     <div className="gx-mb-3">
-      <Select
-        className="moto-select-firm gx-mr-3"
-        style={{ minWidth: "120px" }}
-        loading={firmList.loading}
-        showSearch
-        allowClear
-        placeholder="Фирм"
-        optionFilterProp="children"
-        onChange={(e) => prepareURL2(e, "marka_id")} //нэмэлт параметр дамжуулж байгаа юм.
-        filterOption={(input, option) => {
-          if (option.value) {
-            return (
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            );
-          } else {
-            return false;
-          }
-        }}
-        defaultValue={filterContext.state.filterList?.marka_id || undefined}
-        // defaultValue={undefined}
-      >
-        {firmList.firmList.map((item, index) => (
-          <Option key={index} value={item.MARKA_ID}>
-            {item.MARKA_NAME}
-          </Option>
-        ))}
-      </Select>
-
-      <Select
-        className="moto-select-firm gx-mr-3"
-        style={{ minWidth: "120px" }}
-        loading={markList.loading}
-        showSearch
-        allowClear
-        placeholder="Марк"
-        optionFilterProp="children"
-        onChange={(e) => prepareURL2(e, "model_id")} //нэмэлт параметр дамжуулж байгаа юм.
-        filterOption={(input, option) => {
-          if (option.value) {
-            return (
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            );
-          } else {
-            return false;
-          }
-        }}
-        defaultValue={filterContext.state.filterList?.model_id || undefined}
-      >
-        {markList.markList.map((item, index) => (
-          <Option key={index} value={item.MODEL_ID}>
-            {item.MODEL_NAME}
-          </Option>
-        ))}
-      </Select>
-
-      <Select
-        key="start-date"
-        className="moto-select-firm gx-mr-1"
-        style={{ width: "90px" }}
-        loading={caryearList.loading}
-        allowClear
-        placeholder="Доод жил"
-        onChange={(e) => prepareURL2(e, "yearstart")} //нэмэлт параметр дамжуулж байгаа юм.
-        defaultValue={filterContext.state.filterList?.yearstart || undefined}
-      >
-        {caryearList.caryearList.map((item, index) => (
-          <Option key={index} value={item.YEAR}>
-            {item.YEAR}
-          </Option>
-        ))}
-      </Select>
-      <Select
-        key="end-date"
-        className="moto-select-firm gx-mr-3"
-        style={{ width: "90px" }}
-        loading={caryearList.loading}
-        allowClear
-        placeholder="Дээд жил"
-        onChange={(e) => prepareURL2(e, "yearend")} //нэмэлт параметр дамжуулж байгаа юм.
-        defaultValue={filterContext.state.filterList?.yearend || undefined}
-      >
-        {caryearList.caryearList.map((item, index) => (
-          <Option key={index} value={item.YEAR}>
-            {item.YEAR}
-          </Option>
-        ))}
-      </Select>
-
-      <Select
-        className="moto-select-firm gx-mr-3"
-        style={{ minWidth: "120px" }}
-        loading={frameList.loading}
-        showSearch
-        allowClear
-        placeholder="Цуврал Index"
-        optionFilterProp="children"
-        onChange={(e) => prepareURL2(e, "kuzov")} //нэмэлт параметр дамжуулж байгаа юм.
-        filterOption={(input, option) => {
-          if (option.value) {
-            return (
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            );
-          } else {
-            return false;
-          }
-        }}
-        defaultValue={filterContext.state.filterList?.kuzov || undefined}
-      >
-        {frameList.frameList.map((item, index) => (
-          <Option key={index} value={item.KUZOV}>
-            <span dangerouslySetInnerHTML={{ __html: item.KUZOV }} />
-          </Option>
-        ))}
-      </Select>
-
-      <Select
-        className="moto-select-firm gx-mr-3"
-        style={{ minWidth: "120px" }}
-        loading={rateList.loading}
-        showSearch
-        allowClear
-        placeholder="Үнэлгээ"
-        optionFilterProp="children"
-        onChange={(e) => prepareURL2(e, "rate")} //нэмэлт параметр дамжуулж байгаа юм.
-        filterOption={(input, option) => {
-          if (option.value) {
-            return (
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            );
-          } else {
-            return false;
-          }
-        }}
-        defaultValue={filterContext.state.filterList?.rate || undefined}
-      >
-        {rateList.rateList.map((item, index) => (
-          <Option key={index} value={item.RATE}>
-            {item.RATE}
-          </Option>
-        ))}
-      </Select>
-      {isEmpty(filterContext.state.filterList) ? (
-        <></>
-      ) : (
-        <>
-          <Button
-            shape="circle"
-            className="gx-m-0"
-            icon={<ClearOutlined />}
-            onClick={(e) => {
-              filterContext.clearAll();
+      <div className="gx-text-grey gx-fs-sm gx-mr-2 gx-mb-2">Шүүлтүүр</div>
+      <div>
+        <Input.Group compact>
+          <Select
+            style={{ width: "175px" }}
+            loading={firmList.loading}
+            showSearch
+            allowClear
+            placeholder="Фирм"
+            optionFilterProp="children"
+            onChange={(e) => prepareURL2(e, "marka_id")} //нэмэлт параметр дамжуулж байгаа юм.
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                );
+              } else {
+                return false;
+              }
             }}
-          />
-        </>
+            defaultValue={filterContext.state.filterList?.marka_id || undefined}
+            // defaultValue={undefined}
+          >
+            {firmList.firmList.map((item, index) => (
+              <Option key={index} value={item.MARKA_ID}>
+                {item.MARKA_NAME}
+              </Option>
+            ))}
+          </Select>
+          <Select
+            style={{ width: "175px" }}
+            loading={markList.loading}
+            showSearch
+            allowClear
+            placeholder="Марк"
+            optionFilterProp="children"
+            onChange={(e) => prepareURL2(e, "model_id")} //нэмэлт параметр дамжуулж байгаа юм.
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                );
+              } else {
+                return false;
+              }
+            }}
+            defaultValue={filterContext.state.filterList?.model_id || undefined}
+          >
+            {markList.markList.map((item, index) => (
+              <Option key={index} value={item.MODEL_ID}>
+                {item.MODEL_NAME}
+              </Option>
+            ))}
+          </Select>
+        </Input.Group>
+      </div>
+      {filterContext.state.filterList?.model_id !== undefined && (
+        <div className="gx-mt-2">
+          <Input.Group compact>
+            <Select
+              key="start-date"
+              style={{ width: "95px" }}
+              loading={caryearList.loading}
+              allowClear
+              placeholder="Доод жил"
+              onChange={(e) => prepareURL2(e, "yearstart")} //нэмэлт параметр дамжуулж байгаа юм.
+              defaultValue={
+                filterContext.state.filterList?.yearstart || undefined
+              }
+            >
+              {caryearList.caryearList.map((item, index) => (
+                <Option key={index} value={item.YEAR}>
+                  {item.YEAR}
+                </Option>
+              ))}
+            </Select>
+            <Select
+              key="end-date"
+              style={{ width: "95px" }}
+              loading={caryearList.loading}
+              allowClear
+              placeholder="Дээд жил"
+              onChange={(e) => prepareURL2(e, "yearend")} //нэмэлт параметр дамжуулж байгаа юм.
+              defaultValue={
+                filterContext.state.filterList?.yearend || undefined
+              }
+            >
+              {caryearList.caryearList.map((item, index) => (
+                <Option key={index} value={item.YEAR}>
+                  {item.YEAR}
+                </Option>
+              ))}
+            </Select>
+
+            <Select
+              className="gx-ml-1"
+              // style={{ minWidth: "120px" }}
+              loading={frameList.loading}
+              showSearch
+              allowClear
+              placeholder="Арал"
+              optionFilterProp="children"
+              onChange={(e) => prepareURL2(e, "kuzov")} //нэмэлт параметр дамжуулж байгаа юм.
+              filterOption={(input, option) => {
+                if (option.value) {
+                  return (
+                    option.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                } else {
+                  return false;
+                }
+              }}
+              defaultValue={filterContext.state.filterList?.kuzov || undefined}
+            >
+              {frameList.frameList.map((item, index) => (
+                <Option key={index} value={item.KUZOV}>
+                  <span dangerouslySetInnerHTML={{ __html: item.KUZOV }} />
+                </Option>
+              ))}
+            </Select>
+            <Select
+              // className="moto-select-firm gx-mr-3"
+              // style={{ minWidth: "120px" }}
+              loading={rateList.loading}
+              showSearch
+              allowClear
+              placeholder="Үнэлгээ"
+              optionFilterProp="children"
+              onChange={(e) => prepareURL2(e, "rate")} //нэмэлт параметр дамжуулж байгаа юм.
+              filterOption={(input, option) => {
+                if (option.value) {
+                  return (
+                    option.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  );
+                } else {
+                  return false;
+                }
+              }}
+              defaultValue={filterContext.state.filterList?.rate || undefined}
+            >
+              {rateList.rateList.map((item, index) => (
+                <Option key={index} value={item.RATE}>
+                  {item.RATE}
+                </Option>
+              ))}
+            </Select>
+
+            {isEmpty(filterContext.state.filterList) ? (
+              <></>
+            ) : (
+              <>
+                <Button
+                  // shape="circle"
+                  // className="gx-m-0"
+                  icon={<ClearOutlined />}
+                  onClick={(e) => {
+                    filterContext.clearAll();
+                  }}
+                />
+              </>
+            )}
+          </Input.Group>
+        </div>
       )}
     </div>
   );

@@ -29,7 +29,7 @@ function formatNumber(value) {
 
 const NumericInput = (props) => {
   const onChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const { value } = e.target;
     const reg = /^-?\d*(\.\d*)?$/;
     if ((!isNaN(value) && reg.test(value)) || value === "" || value === "-") {

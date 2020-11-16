@@ -192,10 +192,8 @@ const AuctionDetailComponent = () => {
             <Image
               src={myImages[1]}
               loading="lazy"
-              responsive
               width="300"
               quality="auto"
-              responsiveUseBreakpoints="true"
               className="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
               alt={auctionItem.name}
               onError={defaultSrc}

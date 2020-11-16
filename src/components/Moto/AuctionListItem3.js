@@ -15,7 +15,7 @@ import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingCompo
 const { Meta } = Card;
 
 const AuctionListItem3 = ({ auctionItem }) => {
-  console.log("Манай машин - ", auctionItem);
+  // console.log("Манай машин - ", auctionItem);
 
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
@@ -58,7 +58,8 @@ const AuctionListItem3 = ({ auctionItem }) => {
             <Image
               // height={250}
               src={record.IMAGES}
-              className="gx-p-3"
+              className="gx-mr-2"
+              style={{ minWidth: "50px" }}
               fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             />
 
@@ -73,33 +74,42 @@ const AuctionListItem3 = ({ auctionItem }) => {
               </Tooltip>
               {/* {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
               {!toBoolean(record.isactive) && <ActiveTag type="dot" />} */}
-              <div className="gx-d-flex">
-                <Tooltip title="Өнгө">
+              <div>
+                <Tooltip title="Өнгө" placement="bottom">
                   <span className="moto-label-main ant-tag">
                     {record.COLOR}
                   </span>
                 </Tooltip>
-                <Tooltip title="Хөдөлгүүр">
+                <Tooltip title="Хөдөлгүүр" placement="bottom">
                   <span className="moto-label-main ant-tag">
-                    {record.ENG_V} cc
+                    {/* {record.ENG_V} cc */}
+                    {accounting.formatMoney(record.ENG_V, {
+                      symbol: "cc",
+                      format: "%v %s",
+                      precision: 0,
+                      thousand: "'",
+                    })}
                   </span>
                 </Tooltip>
-                <Tooltip title="Хроп">
+                <Tooltip title="Хроп" placement="bottom">
                   <span className="moto-label-main ant-tag">
                     {record.KPP} {record.KPP_TYPE}
                   </span>
                 </Tooltip>
-                <Tooltip title="Арал">
-                  <span className="moto-label-main ant-tag">
-                    {htmlEntities.decode(record.KUZOV)}
-                  </span>
+                <Tooltip title="Хөтлөгч" placement="bottom">
+                  <span className="moto-label-main ant-tag">{record.PRIV}</span>
                 </Tooltip>
               </div>
-              <Tooltip title="Хувилбар">
-                <div className="gx-d-flex gx-fs-sm">
-                  {htmlEntities.decode(record.GRADE)}
-                </div>
-              </Tooltip>
+
+              <div className="gx-d-flex gx-fs-sm">
+                <span className="gx-mr-2 gx-text-grey">Арал:</span>
+                {htmlEntities.decode(record.KUZOV)}
+              </div>
+
+              <div className="gx-d-flex gx-fs-sm">
+                <span className="gx-mr-2 gx-text-grey">Хувилбар:</span>
+                {htmlEntities.decode(record.GRADE)}
+              </div>
             </div>
           </div>
         </>
@@ -132,6 +142,7 @@ const AuctionListItem3 = ({ auctionItem }) => {
     {
       title: "Гүйлт",
       key: "car-frame",
+      responsive: ["md"],
       dataIndex: "KUZOV",
       render: (KUZOV, record) => (
         <div className="gx-text-grey">
@@ -147,6 +158,7 @@ const AuctionListItem3 = ({ auctionItem }) => {
     {
       title: "Үнэ",
       key: "car-price",
+      responsive: ["sm"],
       dataIndex: "START",
       render: (START, record) => (
         <>
@@ -166,6 +178,7 @@ const AuctionListItem3 = ({ auctionItem }) => {
     {
       title: "Огноо",
       key: "car-date",
+      responsive: ["lg"],
       dataIndex: "AUCTION_DATE",
       render: (AUCTION_DATE, record) => (
         <>

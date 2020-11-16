@@ -31,7 +31,7 @@ const AuctionDetailPage = (props) => {
   }, [auctionId, memberContext.state.memberCloudUserSysId]);
 
   // console.log("auctionContext", auctionContext.state);
-  console.log("auctionItem dfg dfg dfg", auctionItem);
+  // console.log("auctionItem dfg dfg dfg", auctionItem);
 
   return (
     <>

@@ -60,7 +60,7 @@ export function calculateSpecialTax(auctionItem, isHybrid = false) {
       break;
   }
 
-  console.log("myCol myCol", myCol);
+  // console.log("myCol myCol", myCol);
 
   switch (true) {
     case myEngine <= 1500:

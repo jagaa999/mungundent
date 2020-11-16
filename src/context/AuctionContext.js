@@ -182,7 +182,7 @@ export const AuctionStore = (props) => {
           stringify(myParamsAuctionDetail)
       )
       .then((response) => {
-        console.log("DDDDDDDDDDD", response);
+        // console.log("DDDDDDDDDDD", response);
         setAuctionDetail({
           ...auctionDetail,
           loading: false,
@@ -224,7 +224,7 @@ export const AuctionStore = (props) => {
       )
 
       .then((response) => {
-        console.log("DDDDDDDDDDD", response);
+        // console.log("DDDDDDDDDDD", response);
 
         setAuctionSameList({
           ...auctionSameList,

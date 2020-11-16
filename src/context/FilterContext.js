@@ -108,7 +108,7 @@ export const FilterStore = (props) => {
     Object.keys(state.cardtype).map((item) => {
       if (state.cardtype[item] !== "") {
         mySearchQueryParams.push(item + "=" + state.cardtype[item]);
-        console.log("myCardtype", state.cardtype[item]);
+        // console.log("myCardtype", state.cardtype[item]);
         localStorage.setItem("cardtype", state.cardtype[item]);
       }
     });

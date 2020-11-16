@@ -5,6 +5,7 @@ import { Col, Row, Divider } from "antd";
 import GreenStepItem from "./GreenStepItem";
 import HomeSponsor from "./HomeSponsor";
 import HomeNewsItems from "./HomeNewsItems";
+import HomeNewsItems2 from "./HomeNewsItems2";
 
 import MemberBox from "./MemberBox";
 // import FacebookGadget from "./FacebookGadget";
@@ -20,43 +21,43 @@ const HomePage = () => {
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
   const callAllDataAsync = async () => {
-    setNewsSponsorItems(
-      await loadDataview({
-        systemmetagroupid: "1587197820548033",
-        criteria: {
-          isfeatured: {
-            0: {
-              operator: "=",
-              operand: "1",
-            },
-          },
-        },
-        paging: {
-          offset: "1",
-          pageSize: "3",
-          sortColumnNames: {
-            publisheddate: {
-              sortType: "DESC",
-            },
-          },
-        },
-      })
-    );
+    // setNewsSponsorItems(
+    //   await loadDataview({
+    //     systemmetagroupid: "1587197820548033",
+    //     criteria: {
+    //       isfeatured: {
+    //         0: {
+    //           operator: "=",
+    //           operand: "1",
+    //         },
+    //       },
+    //     },
+    //     paging: {
+    //       offset: "1",
+    //       pageSize: "3",
+    //       sortColumnNames: {
+    //         publisheddate: {
+    //           sortType: "DESC",
+    //         },
+    //       },
+    //     },
+    //   })
+    // );
 
     setNewsItems(
       await loadDataview({
         systemmetagroupid: "1587197820548033",
         criteria: {
-          isfeatured: {
-            0: {
-              operator: "=",
-              operand: "0",
-            },
-          },
+          // isfeatured: {
+          //   0: {
+          //     operator: "=",
+          //     operand: "0",
+          //   },
+          // },
         },
         paging: {
           offset: "1",
-          pageSize: "10",
+          pageSize: "7",
           sortColumnNames: {
             publisheddate: {
               sortType: "DESC",
@@ -91,7 +92,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Row className="gx-d-flex gx-mb-5">
+      {/* <Row className="gx-d-flex gx-mb-5">
         <Col
           xl={{ span: 15, offset: 0 }}
           lg={{ span: 15, offset: 0 }}
@@ -103,6 +104,16 @@ const HomePage = () => {
           <HomeSponsor newsSponsorItems={newsSponsorItems} />
         </Col>
         <Col xl={9} lg={9} md={9} sm={12} xs={24} className="gx-mb-3">
+          <MemberBox newMembers={newMembers} />
+        </Col>
+      </Row> */}
+
+      <Row className="gx-d-flex gx-mb-5">
+        <Col
+          md={{ span: 18, offset: 3 }}
+          sm={{ span: 20, offset: 2 }}
+          xs={{ span: 22, offset: 1 }}
+        >
           <MemberBox newMembers={newMembers} />
         </Col>
       </Row>
@@ -123,7 +134,8 @@ const HomePage = () => {
           sm={{ span: 24, offset: 0 }}
           className="gx-bg-grey_none"
         >
-          <HomeNewsItems newsItems={newsItems} />
+          <HomeNewsItems2 newsItems={newsItems} />
+          {/* <HomeNewsItems newsItems={newsItems} /> */}
         </Col>
       </Row>
 

@@ -82,7 +82,7 @@ const MemberBox = ({ newMembers }) => {
 
   const nonMemberInfo = (
     <Card
-      className="gx-widget-bg moto-item-card gx-d-none gx-d-sm-block"
+      className="gx-widget-bg moto-item-card"
       style={{ minHeight: "430px" }}
     >
       <span
@@ -96,10 +96,10 @@ const MemberBox = ({ newMembers }) => {
       <h1 className="gx-fs-xxxl gx-font-weight-semi-bold gx-mb-3 gx-mb-sm-4">
         {myNewMemberTotal} хүн
       </h1>
-      <p>Мото гишүүн болжээ.</p>
+      <p>мото гишүүн болжээ.</p>
       <p>
-        Та бас элсэж гишүүн болоорой. Танаас төлбөр гарахгүй, юу ч шаардахгүй.
-        Одоогийн Facebook, Google-ийнхээ аль нэгээр шууд ороорой.
+        Одоогийн Facebook, Google бүртгэлийнхээ аль нэгээр шууд ороод мото
+        гишүүн болоорой.
       </p>
 
       <div className="gx-mt-5">

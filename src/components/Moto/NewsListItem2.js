@@ -31,8 +31,6 @@ import NewsDetailMore from "components/Moto/newsDetailMore";
 const { Meta } = Card;
 
 const NewsItem = ({ newsItem, grid }) => {
-  moment.locale("mn");
-
   // console.log("Манай Нийтлэл - ", newsItem);
 
   const truncatedDescription =
@@ -57,6 +55,7 @@ const NewsItem = ({ newsItem, grid }) => {
         toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""
       } ${!toBoolean(newsItem.isactive) ? "border-top" : ""}`}
       hoverable={true}
+      // style={{ margin: "0 10px", height: "380px" }}
       cover={
         <Image
           cloudName="motomn"
@@ -83,38 +82,28 @@ const NewsItem = ({ newsItem, grid }) => {
         />
       }
     >
-      <Meta
-        // avatar={
-        //   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-        // }
-        title={myTitle}
-        description={
-          <>
-            <div className="gx-d-flex">
-              <Tooltip title="Төрөл">
-                <span className="moto-label-main ant-tag">
-                  {newsItem.newstypename}
-                </span>
-              </Tooltip>
-              <Tooltip title="Эх сурвалж">
-                <span className="moto-label-main ant-tag">
-                  {newsItem.newssourcename}
-                </span>
-              </Tooltip>
-            </div>
+      <div className="gx-d-flex">
+        <Tooltip title="Төрөл">
+          <span className="moto-label-main ant-tag">
+            {newsItem.newstypename}
+          </span>
+        </Tooltip>
+        <Tooltip title="Эх сурвалж">
+          <span className="moto-label-main ant-tag">
+            {newsItem.newssourcename}
+          </span>
+        </Tooltip>
+      </div>
+      <span className="gx-text-grey gx-fs-sm">
+        {moment(newsItem.publisheddate).fromNow()}
+      </span>
+      <Tooltip title="Дэлгэрэнгүй унших">
+        <h4 className="gx-mt-2">{myTitle}</h4>
+      </Tooltip>
 
-            <span className="gx-text-grey gx-fs-sm">
-              {moment(newsItem.publisheddate).fromNow()}
-            </span>
-
-            <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
-              <span
-                dangerouslySetInnerHTML={{ __html: truncatedDescription }}
-              ></span>
-            </div>
-          </>
-        }
-      />
+      <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
+        <span dangerouslySetInnerHTML={{ __html: truncatedDescription }}></span>
+      </div>
     </Card>
   );
 };
