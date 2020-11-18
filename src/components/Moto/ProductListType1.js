@@ -1,9 +1,7 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext } from "react";
 
-import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Col, Row, PageHeader } from "antd";
 
-import toBoolean from "util/booleanFunction";
 import ProductListItem from "./ProductListItem";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import ProductContext from "context/ProductContext";
@@ -14,20 +12,9 @@ import MotoPagination from "./Pagination/MotoPagination";
 import MotoSort from "components/Moto/Sort/MotoSort";
 import LoadingList from "./Loading/LoadingList";
 
-const { Option } = Select;
-
 const ProductListType1 = () => {
   const productListContext = useContext(ProductContext);
-
-  useEffect(() => {
-    productListContext.loadProductList();
-  }, []);
-
-  console.log("productListContext.productList", productListContext.productList);
-
-  function handleChange(value) {
-    // console.log(`selected ${value}`);
-  }
+  const filterContext = useContext(FilterContext);
 
   return (
     <div className="moto-list">
@@ -42,7 +29,11 @@ const ProductListType1 = () => {
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
           <PageHeader
-            title={<h3>Бараа</h3>}
+            title={
+              <h3>
+                Бараа <small>({filterContext.totalcount})</small>
+              </h3>
+            }
             className="gx-mb-3"
             extra={[]}
           ></PageHeader>
@@ -65,11 +56,11 @@ const ProductListType1 = () => {
               }
             )}
           </Row>
-          {/* <MotoPagination />
-          <FilterDrawer /> */}
+          <MotoPagination />
+          {/* <FilterDrawer /> */}
         </div>
       ) : (
-        <LoadingList />
+        <LoadingList type="card" />
       )}
     </div>
   );

@@ -1,32 +1,17 @@
-import React, { useEffect, useContext, useState } from "react";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import React, { useContext } from "react";
 
-import { Col, Row, Button, Affix, Card, Avatar } from "antd";
-import {
-  SearchOutlined,
-  DownOutlined,
-  UserOutlined,
-  SettingOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-} from "@ant-design/icons";
-import { defaultSrc } from "util/config";
+import { Col, Row } from "antd";
 
 // import NewsListItem from "components/Moto/NewsListItem";
 import NewsListItem2 from "./NewsListItem2";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "../../context/NewsListContext";
-import FilterContext from "context/FilterContext";
 import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
-import MotoSort from "./Sort/MotoSort";
 import LoadingList from "./Loading/LoadingList";
 
-const { Meta } = Card;
-
 const NewsListType2 = () => {
-  const history = useHistory();
   const newsListContext = useContext(NewsListContext);
 
   return (

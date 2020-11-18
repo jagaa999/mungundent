@@ -118,6 +118,8 @@ const HomePage = () => {
         </Col>
       </Row>
 
+      <Divider className="gx-my-3" />
+
       <Row className="gx-d-flex gx-mb-5">
         <Col
           xs={{ span: 20, offset: 2 }}

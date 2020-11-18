@@ -134,7 +134,9 @@ const App = ({ match }) => (
       {/* <Route path={`${match.url}product/:productid`}>
         <MemberDetail />
       </Route> */}
-      <Route path={["/product", "/products", "/productlist"]}>
+      <Route
+        path={["/product", "/products", "/productlist", "/store", "/storelist"]}
+      >
         <ProductStore>
           <ProductList />
         </ProductStore>

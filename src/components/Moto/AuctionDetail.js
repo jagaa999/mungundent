@@ -25,26 +25,22 @@ import {
 import MotoAuctionDetailImages from "./Auction/MotoAuctionDetailImages";
 import MotoAuctionDetailPrice from "./Auction/MotoAuctionDetailPrice";
 import MotoAuctionSameCars from "./Auction/MotoAuctionSameCars";
-// import AuctionDetailHeader from "./AuctionDetailHeader";
-// import AuctionHeaderButton from "./Button/AuctionHeaderButton";
 
 import AuctionContext from "context/AuctionContext";
 
 const AuctionDetailComponent = () => {
   const auctionContext = useContext(AuctionContext);
   const auctionItem = auctionContext.auctionDetail.auctionDetail || {};
-  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
+  const htmlEntities = new Html5Entities();
 
   // console.log("auctionItem", auctionItem);
 
   if (Object.keys(auctionItem).length !== 0) {
-    // let myMainImage = "";
-    // try {
-    //   myMainImage = auctionItem.imagemain;
-    // } catch (e) {
-    //   myMainImage = "";
-    // }
     const myImages = auctionItem.IMAGES.split("#");
+
+    // MARKA_ID
+    // MODEL_ID
+    // AVG_STRING
 
     return (
       <div
@@ -83,101 +79,57 @@ const AuctionDetailComponent = () => {
 
         <Row>
           <Col sm={{ span: 9, offset: 0 }} xs={{ span: 8, offset: 1 }}>
-            <Descriptions column={1} layout="horizontal">
+            <Descriptions
+              column={1}
+              layout="horizontal"
+              className="moto-auction-head-description"
+            >
               <Descriptions.Item
-                label={<span className="gx-text-grey">LOT код</span>}
+                label={<span className="gx-text-grey">Хувилбар</span>}
               >
-                {auctionItem.LOT}
+                {auctionItem.GRADE}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Үнэлгээ</span>}
+                label={<span className="gx-text-grey">Тоноглол</span>}
               >
-                {auctionItem.RATE}
+                {auctionItem.EQUIP}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Огноо</span>}
+                label={<span className="gx-text-grey">Гүйлт</span>}
               >
-                {moment(auctionItem.AUCTION_DATE).format("MM-DD")}
+                {accounting.formatMoney(auctionItem.MILEAGE, {
+                  symbol: "км",
+                  format: "%v %s",
+                  precision: 0,
+                  thousand: "'",
+                })}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Цаг</span>}
+                label={<span className="gx-text-grey">Арал</span>}
               >
-                {moment(auctionItem.AUCTION_DATE).format("HH:mm")}
+                {auctionItem.KUZOV}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Газар</span>}
+                label={<span className="gx-text-grey">Хөдөлгүүр</span>}
               >
-                {auctionItem.AUCTION}
+                {accounting.formatMoney(auctionItem.ENG_V, {
+                  symbol: "cc",
+                  format: "%v %s",
+                  precision: 0,
+                  thousand: "'",
+                })}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Эхлэх</span>}
+                label={<span className="gx-text-grey">Хөтлөгч</span>}
               >
-                {accounting.formatMoney(auctionItem.START, "¥", 0, "'")}
+                {auctionItem.PRIV}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Дундаж</span>}
+                label={<span className="gx-text-grey">Хроп</span>}
               >
-                {accounting.formatMoney(auctionItem.AVG_PRICE, "¥", 0, "'")}
+                {auctionItem.KPP} {auctionItem.KPP_TYPE}
               </Descriptions.Item>
             </Descriptions>
-
-            {/* <Row>
-                <Col span={12}>
-                  <Statistic title="LOT код" value={auctionItem.LOT} />
-                </Col>
-                <Col span={12}>
-                  <Statistic title="Үнэлгээ" value={auctionItem.RATE} />
-                </Col>
-              </Row> */}
-            {/* <Divider /> */}
-            {/* <Row>
-                <Col span={12}>
-                  <Statistic
-                    title="Огноо"
-                    value={moment(auctionItem.AUCTION_DATE).format("MM-DD")}
-                  />
-                </Col>
-                <Col span={12}>
-                  <Statistic
-                    title="Цаг"
-                    value={moment(auctionItem.AUCTION_DATE).format("HH:mm")}
-                  />
-                </Col>
-              </Row> */}
-            {/* <Divider /> */}
-            {/* <Row>
-                <Col span={24}>
-                  <Statistic
-                    title="Дуудлага болох газар"
-                    value={auctionItem.AUCTION}
-                  />
-                </Col>
-              </Row>
-              <Divider /> */}
-            {/* <Row>
-                <Col span={12}>
-                  <Statistic
-                    title="Эхлэх үнэ"
-                    value={accounting.formatMoney(
-                      auctionItem.START,
-                      "¥",
-                      0,
-                      "'"
-                    )}
-                  />
-                </Col>
-                <Col span={12}>
-                  <Statistic
-                    title="Дундаж үнэ"
-                    value={accounting.formatMoney(
-                      auctionItem.AVG_PRICE,
-                      "¥",
-                      0,
-                      "'"
-                    )}
-                  />
-                </Col>
-              </Row> */}
           </Col>
           {/*
              ### #     #    #     #####  ####### 
@@ -188,7 +140,7 @@ const AuctionDetailComponent = () => {
               #  #     # #     # #     # #       
              ### #     # #     #  #####  #######  */}
 
-          <Col span={15} className="gx-mb-3">
+          <Col span={15}>
             <Image
               src={myImages[1]}
               loading="lazy"
@@ -210,11 +162,7 @@ const AuctionDetailComponent = () => {
             #  #     # #     # #     # #       #     # 
            ### #     # #     #  #####  #######  #####   */}
         <Row>
-          <Col
-            md={{ span: 18, offset: 3 }}
-            sm={{ span: 20, offset: 2 }}
-            xs={{ span: 22, offset: 1 }}
-          >
+          <Col span={24}>
             <MotoAuctionDetailImages
               auctionItem={auctionItem}
               myImages={myImages}
@@ -222,7 +170,109 @@ const AuctionDetailComponent = () => {
           </Col>
         </Row>
 
-        {/*
+        {/* <Descriptions
+                layout="horizontal"
+                bordered={true}
+                size="small"
+                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+              >
+                {Object.keys(auctionItem).map((val, k) => {
+                  return (
+                    <Descriptions.Item label={val}>
+                      {auctionItem[val]}
+                    </Descriptions.Item>
+                  );
+                })}
+              </Descriptions> */}
+
+        {/* FINISH
+              STATUS	
+              AVG_STRING
+              SERIAL	
+              INFO */}
+        {auctionItem.STATUS !== "" && (
+          <Alert
+            message="STATUS"
+            description={`Төлөв: ${auctionItem.STATUS}`}
+            type="warning"
+            showIcon={true}
+          />
+        )}
+        {auctionItem.FINISH !== "" && (
+          <Alert
+            message="FINISH"
+            description={`Зарагдсан үнэ: ${accounting.formatMoney(
+              auctionItem.FINISH,
+              "¥",
+              0,
+              "'"
+            )}`}
+            type="warning"
+            showIcon={true}
+          />
+        )}
+        {auctionItem.SERIAL !== "" && (
+          <Alert
+            message="Нэмэлт мэдээлэл"
+            description={`SERIAL: ${auctionItem.SERIAL}`}
+            type="info"
+            showIcon={true}
+          />
+        )}
+        {auctionItem.INFO !== "" && (
+          <Alert
+            message="Нэмэлт мэдээлэл"
+            description={`INFO: ${auctionItem.INFO}`}
+            type="info"
+            showIcon={true}
+          />
+        )}
+
+        {/* 
+            #       ####### ####### 
+            #       #     #    #    
+            #       #     #    #    
+            #       #     #    #    
+            #       #     #    #    
+            #       #     #    #    
+            ####### #######    #    */}
+        <Row className="gx-mt-4">
+          <Col
+            md={{ span: 8, offset: 0 }}
+            sm={{ span: 24, offset: 0 }}
+            xs={{ span: 22, offset: 1 }}
+            className="gx-mt-4 gx-mt-md-0"
+          >
+            <h4>Аукшин мэдээлэл</h4>
+            <Descriptions
+              className="moto-car-spec1"
+              layout="horizontal"
+              bordered={true}
+              size="small"
+              column={1}
+            >
+              <Descriptions.Item label="LOT код">
+                {auctionItem.LOT}
+              </Descriptions.Item>
+              <Descriptions.Item label="Үнэлгээ">
+                {auctionItem.RATE}
+              </Descriptions.Item>
+              <Descriptions.Item label="Огноо">
+                {moment(auctionItem.AUCTION_DATE).format("MM-DD HH:mm")}
+              </Descriptions.Item>
+              <Descriptions.Item label="Газар">
+                {htmlEntities.decode(auctionItem.AUCTION)}
+              </Descriptions.Item>
+              <Descriptions.Item label="Эхлэх үнэ">
+                {accounting.formatMoney(auctionItem.START, "¥", 0, "'")}
+              </Descriptions.Item>
+              <Descriptions.Item label="Дундаж үнэ">
+                {accounting.formatMoney(auctionItem.AVG_PRICE, "¥", 0, "'")}
+              </Descriptions.Item>
+            </Descriptions>
+          </Col>
+
+          {/*
             #####  ######  #######  #####  
           #     # #     # #       #     # 
           #       #     # #       #       
@@ -230,11 +280,12 @@ const AuctionDetailComponent = () => {
                 # #       #       #       
           #     # #       #       #     # 
            #####  #       #######  #####   */}
-        <Row>
+
           <Col
-            md={{ span: 12, offset: 0 }}
+            md={{ span: 8, offset: 0 }}
             sm={{ span: 24, offset: 0 }}
             xs={{ span: 22, offset: 1 }}
+            className="gx-mt-4 gx-mt-md-0"
           >
             <h4>Автомашин</h4>
             <Descriptions
@@ -269,41 +320,18 @@ const AuctionDetailComponent = () => {
                 {auctionItem.EQUIP}
               </Descriptions.Item>
             </Descriptions>
-
-            {/* 
-              ID
-              LOT
-              MARKA_ID
-              MODEL_ID
-
-              START	0
-              FINISH	0
-              STATUS	
-
-              AVG_PRICE
-              AVG_STRING
-              SERIAL	
-              INFO
-
-              */}
-
-            {/* <Descriptions
-                layout="horizontal"
-                bordered={true}
-                size="small"
-                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
-              >
-                {Object.keys(auctionItem).map((val, k) => {
-                  return (
-                    <Descriptions.Item label={val}>
-                      {auctionItem[val]}
-                    </Descriptions.Item>
-                  );
-                })}
-              </Descriptions> */}
           </Col>
+          {/* 
+           ####### #######  #####  #     # 
+              #    #       #     # #     # 
+              #    #       #       #     # 
+              #    #####   #       ####### 
+              #    #       #       #     # 
+              #    #       #     # #     # 
+              #    #######  #####  #     #  */}
+
           <Col
-            md={{ span: 12, offset: 0 }}
+            md={{ span: 8, offset: 0 }}
             sm={{ span: 24, offset: 0 }}
             xs={{ span: 22, offset: 1 }}
             className="gx-mt-4 gx-mt-md-0"

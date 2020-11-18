@@ -121,20 +121,52 @@ export const AuctionStore = (props) => {
       myTempObject.marka_id = filterContext.state.filterList?.marka_id;
     }
 
-    const mySQL = `select * from main ${myWhere} order by year desc limit 24`;
+    const mySQLCount = `select Count(*) from main ${myWhere} order by year desc limit 24`;
 
+    const myParamsAuctionListCount = {
+      ...initialAuctionList.loadParams,
+      sql: mySQLCount,
+    };
+
+    //FOR COUNT
+    axios
+      .get(
+        "https://us-central1-moto-86243.cloudfunctions.net/loadAuction?" +
+          stringify(myParamsAuctionListCount)
+      )
+      .then((response) => {
+        // console.log("DDDDDDDDDDD", response);
+        const myCount = response.data.response[0].TAG0;
+        filterContext.updateTotal(myCount);
+      })
+      .catch((error) => {
+        console.log("error", error.data.message);
+      });
+
+    //FOR LIST
+    const myPagesize = filterContext.state.paging.pagesize || "12";
+    const myOffset = String(
+      (Number(filterContext.state.paging.offset || "1") - 1) * 12
+    );
+    const mySortColumn = filterContext.state.sorting?.sortcolumnnames || "YEAR";
+    const mySortType = filterContext.state.sorting?.sorttype || "DESC";
+    //LIMIT 15, 10 (16 дах бичлэгээс эхлэн 10 мөрийг авчир)
+    // offset 1 гэдэг нь 0 гэж гарах ёстой. (1-1) * 12
+    // offset 2 гэдэг нь 12 гэж гарах ёстой. (2-1) * 12
+    // offset 3 гэдэг нь 24 гэж гарах ёстой. (3-1) * 12
+
+    const mySQL = `select * from main ${myWhere} order by ${mySortColumn} ${mySortType} limit ${myOffset}, ${myPagesize}`;
     const myParamsAuctionList = {
       ...initialAuctionList.loadParams,
       sql: mySQL,
     };
-
-    return axios
+    axios
       .get(
         "https://us-central1-moto-86243.cloudfunctions.net/loadAuction?" +
           stringify(myParamsAuctionList)
       )
       .then((response) => {
-        // console.log("DDDDDDDDDDD", response);
+        // console.log("OOOOPPPPPPPPPPPP", response);
         setAuctionList({
           ...auctionList,
           loading: false,
@@ -142,7 +174,7 @@ export const AuctionStore = (props) => {
         });
       })
       .catch((error) => {
-        console.log("error", error.data.message);
+        // console.log("error", error.data.message);
       });
   };
 

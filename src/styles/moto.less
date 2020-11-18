@@ -314,6 +314,7 @@ span.ant-page-header-heading-title {
 .moto-item-card {
   height: 100%;
   margin-bottom: 10px;
+  overflow: hidden;
   .ant-card-meta-title {
     white-space: normal;
   }
@@ -778,4 +779,67 @@ position it in the middle of its parent wrapper*/
   .ant-rate-star:not(:last-child) {
     margin-right: 1px;
   }
+}
+
+.moto-pageheader {
+  .ant-page-header-heading-extra {
+    display: inline-flex !important;
+    vertical-align: middle;
+  }
+}
+
+.moto-auction-head-description {
+  .ant-descriptions-item-content {
+    display: block;
+    text-align: right;
+  }
+}
+
+tr.ant-table-row {
+  .moto-auction-badge {
+    position: absolute;
+    top: 39px;
+    left: 12px;
+  }
+
+  &:hover,
+  &:focus {
+    .moto-auction-badge {
+      display: none;
+    }
+  }
+}
+
+.ant-card {
+  .moto-auction-badge {
+    position: absolute;
+    top: 88px;
+  }
+
+  &:hover,
+  &:focus {
+    .moto-auction-badge {
+      display: none;
+    }
+  }
+}
+
+.moto-auction-thumb-image {
+  display: block;
+  height: 77px;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+}
+
+.moto-auction-preview-modal {
+  .ant-modal-body {
+    padding: 0;
+  }
+}
+
+.moto-badge-1 {
+  position: absolute;
+  top: 9px;
 }

@@ -3,9 +3,10 @@ import React, { useEffect, useContext, useState } from "react";
 import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
+import accounting from "accounting";
 import toBoolean from "util/booleanFunction";
 import AuctionListItem3 from "./AuctionListItem3";
-import NewsListIActionHeader from "./NewsListIActionHeader";
+import AuctionListActionHeader from "./AuctionListActionHeader";
 import AuctionContext from "context/AuctionContext";
 import FilterContext from "context/FilterContext";
 import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
@@ -19,6 +20,7 @@ const { Option } = Select;
 
 const AuctionListType3 = () => {
   const auctionListContext = useContext(AuctionContext);
+  const filterContext = useContext(FilterContext);
 
   return (
     <div className="moto-list">
@@ -30,12 +32,7 @@ const AuctionListType3 = () => {
 
       {!auctionListContext.auctionList.loading ? (
         <div className="gx-main-content">
-          {/* <NewsListIActionHeader title="Нийтлэл" /> */}
-          <PageHeader
-            title={<h3>Автомашинууд</h3>}
-            className="gx-mb-3"
-            extra={[]}
-          ></PageHeader>
+          <AuctionListActionHeader />
 
           <AuctionFilterHeader />
 
@@ -48,7 +45,7 @@ const AuctionListType3 = () => {
             </Col>
           </Row>
 
-          {/* <MotoPagination myClass="gx-mt-2" /> */}
+          <MotoPagination myClass="gx-mt-2" />
           <AuctionFilterDrawer />
         </div>
       ) : (

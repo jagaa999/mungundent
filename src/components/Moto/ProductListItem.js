@@ -16,7 +16,10 @@ const NewsItem = ({ productItem }) => {
   return (
     <Card
       hoverable
-      // style={{ width: 240 }}
+      className={`moto-item-card ${
+        toBoolean(productItem.isfeatured) ? "moto-card-sponsor" : ""
+      } ${!toBoolean(productItem.isactive) ? "border-top" : ""}`}
+      hoverable={true}
       cover={
         <Image
           // height={250}
@@ -74,9 +77,6 @@ const NewsItem = ({ productItem }) => {
         )}
       /> */}
     </Card>
-
-    // </Badge.Ribbon>
-    // </Link>
   );
 };
 

@@ -1,24 +1,50 @@
-import React from "react";
-import { Image, Row, Col } from "antd";
+import React, { useState } from "react";
+import { Image, Row, Col, Modal } from "antd";
 import { defaultSrc } from "util/config";
 
 const MotoAuctionDetailImages = ({ auctionItem, myImages }) => {
-  // console.table(auctionItem);
-  // console.log("auctionItem.Images", auctionItem.IMAGES);
+  const [imageModal, setImageModal] = useState({
+    previewVisible: false,
+    previewImage: "",
+  });
 
-  // const myImages = auctionItem.IMAGES.substr(
-  //   auctionItem.IMAGES.indexOf("#") + 1
-  // );
-  // console.log("myImages", myImages);
+  const onImgClick = (e, item) => {
+    // console.log("item", item);
+    setImageModal({
+      ...imageModal,
+      previewVisible: true,
+      previewImage: item,
+    });
+  };
 
   return (
-    <Row gutter={[8, 8]}>
-      {myImages.map((item, index) => (
-        <Col key={index} span={6}>
-          <Image src={item} />
-        </Col>
-      ))}
-    </Row>
+    <>
+      <Row gutter={[8, 8]} justify="end">
+        {myImages.map((item, index) => (
+          <Col key={index} span={4}>
+            <div
+              className="moto-auction-thumb-image"
+              style={{ backgroundImage: `url(${item})` }}
+              onClick={(e) => onImgClick(e, item)}
+            ></div>
+          </Col>
+        ))}
+      </Row>
+
+      <Modal
+        width="70%"
+        visible={imageModal.previewVisible}
+        footer={null}
+        onCancel={() => setImageModal({ ...imageModal, previewVisible: false })}
+        className="moto-auction-preview-modal"
+      >
+        <img
+          alt={imageModal.previewTitle}
+          style={{ width: "100%" }}
+          src={imageModal.previewImage}
+        />
+      </Modal>
+    </>
   );
 };
 

@@ -1,21 +1,18 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 import { Button, PageHeader } from "antd";
-import { PlusOutlined, FilterOutlined } from "@ant-design/icons";
+import { FilterOutlined } from "@ant-design/icons";
 
 import FilterContext from "context/FilterContext";
-import NewsListContext from "context/NewsListContext";
-import MotoSort from "./Sort/MotoSort";
+import AuctionContext from "context/AuctionContext";
+import MotoAuctionSort from "./Sort/MotoAuctionSort";
 
-const NewsListIActionHeader = (props) => {
+const AuctionListActionHeader = (props) => {
   const filterContext = useContext(FilterContext);
-  const newsListContext = useContext(NewsListContext);
-  const history = useHistory();
+  const auctionListContext = useContext(AuctionContext);
 
   const toggleFilterDrawer = () => {
-    newsListContext.toggleFilterDrawerOpen();
+    auctionListContext.toggleFilterDrawerOpen();
   };
 
   return (
@@ -24,7 +21,7 @@ const NewsListIActionHeader = (props) => {
         className="moto-pageheader"
         title={
           <h3>
-            {props.title}
+            Аукшины автомашинууд
             {filterContext.totalcount > 0 ? (
               <span className="gx-ml-2 gx-text-grey gx-fs-sm">
                 ({filterContext.totalcount})
@@ -38,28 +35,14 @@ const NewsListIActionHeader = (props) => {
           <Button
             key="moto-filter-button"
             size="small"
-            // type="primary"
-            icon={
-              // <i className="icon icon-filter moto-animation-away gx-mr-1" />
-              <FilterOutlined />
-            }
+            icon={<FilterOutlined />}
             onClick={toggleFilterDrawer}
             className="gx-mr-1"
           >
             Шүүлтүүр
           </Button>,
 
-          <Link to={"/news/insert"} className="gx-ml-0">
-            <Button
-              size="small"
-              icon={<PlusOutlined />}
-              className="gx-btn-success"
-            >
-              Нийтлэл
-            </Button>
-          </Link>,
-
-          <MotoSort key="motosort" />,
+          <MotoAuctionSort key="motosort" />,
         ]}
       ></PageHeader>
 
@@ -73,4 +56,4 @@ const NewsListIActionHeader = (props) => {
   );
 };
 
-export default NewsListIActionHeader;
+export default AuctionListActionHeader;

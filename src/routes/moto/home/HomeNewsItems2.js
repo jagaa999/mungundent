@@ -34,7 +34,7 @@ const HomeNewsItems2 = (props) => {
       <Carousel
         autoplay={false}
         infinite={false}
-        speed={100}
+        speed={250}
         slidesToShow={4}
         slidesToScroll={1}
         dots={false}

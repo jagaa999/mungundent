@@ -249,7 +249,7 @@ const AuctionFilter = (props) => {
 
             <Select
               className="gx-ml-1"
-              // style={{ minWidth: "120px" }}
+              style={{ minWidth: "110px" }}
               loading={frameList.loading}
               showSearch
               allowClear

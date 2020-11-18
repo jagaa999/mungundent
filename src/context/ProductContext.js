@@ -2,9 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 
 import { message } from "antd";
 
-import axios from "util/axiosConfig";
-import axiosCloud from "util/axiosCloudConfig";
-// import axiosCloud from "util/axiosConfig";
+import axios from "../util/axiosConfig";
+import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
@@ -31,18 +30,22 @@ export const ProductStore = (props) => {
       //   itemtypeid: "1514183113705",
       // },
       paging: {
-        pageSize: "24",
-        offset: "1",
-        // sortcolumnnames: {
-        //   createddate: {
-        //     sorttype: "DESC", //эрэмбэлэх чиглэл
-        //   },
-        // },
+        // pageSize: "24",
+        // offset: "1",
+        pagesize: filterContext.state.paging?.pagesize || "24", //нийтлэлийн тоо
+        offset: filterContext.state.paging?.offset || "1", //хуудасны дугаар
+
+        sortcolumnnames: {
+          [filterContext.state.sorting?.sortcolumnnames || "itemid"]: {
+            sorttype: filterContext.state.sorting?.sorttype || "DESC",
+          },
+        },
       },
     },
     productList: [],
     loading: false,
     error: null,
+    isFilterDrawerOpen: false,
   };
 
   const initialProductDetail = {
@@ -63,6 +66,16 @@ export const ProductStore = (props) => {
   const [productList, setProductList] = useState(initialProductList);
   const [productDetail, setProductDetail] = useState(initialProductDetail);
 
+  useEffect(() => {
+    loadProductList();
+  }, [
+    filterContext.state.filterList,
+    filterContext.state.paging,
+    filterContext.state.sorting,
+    filterContext.state.cardtype,
+    memberContext.state.isLogin,
+  ]);
+
   //  #       ###  #####  #######
   //  #        #  #     #    #
   //  #        #  #          #
@@ -79,21 +92,37 @@ export const ProductStore = (props) => {
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
-        parameters: productList.loadParams,
+        // parameters: productList.loadParams,
+        parameters: {
+          ...productList.loadParams,
+          paging: {
+            ...productList.loadParams.paging,
+            pagesize: filterContext.state.paging.pagesize || "24",
+            offset: filterContext.state.paging.offset || "1",
+            sortcolumnnames: {
+              [filterContext.state.sorting.sortcolumnnames || "itemid"]: {
+                sorttype: filterContext.state.sorting.sorttype || "DESC",
+              },
+            },
+          },
+        },
       },
     };
 
     // axiosCloud
-    axios
-      .post("", myParamsProductList)
-      .then((response) => {
-        console.log("response---------", response);
-        const myData = response.data.response;
+    // axios
+    //   .post("", myParamsProductList)
+    myAxiosZ(myParamsProductList)
+      .then((myResponse) => {
+        console.log("response---------", myResponse);
+        const myData = myResponse.response;
+
         if (myData.status === "error") {
           // getError(myData.text);
           message.error(myData.text);
         } else {
           const myPaging = myData.result.paging || {};
+          console.log("myPaging myPaging", myPaging);
           const myArray = myData.result || [];
 
           delete myArray["aggregatecolumns"];
@@ -104,6 +133,8 @@ export const ProductStore = (props) => {
             loading: false,
             productList: Object.values(myArray),
           });
+
+          filterContext.updateTotal(myPaging.totalcount);
         }
       })
       .catch((error) => {

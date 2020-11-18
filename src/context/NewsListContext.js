@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 
+import { message } from "antd";
+
 import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
-import useDidMountEffect from "util/useDidMountEffect";
 
 const NewsListContext = React.createContext();
 
@@ -140,6 +141,7 @@ export const NewsListStore = (props) => {
       })
       .catch((error) => {
         setState({ ...state, loading: false, error });
+        message.error(error);
         console.log(error);
       });
   };

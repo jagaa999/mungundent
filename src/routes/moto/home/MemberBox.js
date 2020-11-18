@@ -24,60 +24,93 @@ const MemberBox = ({ newMembers }) => {
   }
 
   const memberInfo = (
-    <Card
-      className="gx-widget-bg moto-item-card gx-d-none gx-d-sm-block"
-      style={{ minHeight: "250px" }}
-    >
-      <span
-        className="gx-widget-badge"
-        style={{ borderRadius: "0 4px 0 10px" }}
+    <>
+      <div className="gx-text-center">
+        <Avatar
+          size="large"
+          src={memberContext.state.memberFirebaseProfile.photoURL}
+        />
+        <h4 className="gx-mt-3">
+          {memberContext.state.memberFirebaseProfile.displayName}
+        </h4>
+      </div>
+
+      <Row justify="center">
+        <Col>
+          <Link to={"/news"}>
+            <Button type="primary">Нийтлэл</Button>
+          </Link>
+        </Col>
+        <Col>
+          <Link to={"/carcatalog"}>
+            <Button type="primary" className="gx-ml-2">
+              Каталоги
+            </Button>
+          </Link>
+        </Col>
+        <Col>
+          <Link to={"/auction"}>
+            <Button type="primary" className="gx-ml-2">
+              Аукшин
+            </Button>
+          </Link>
+        </Col>
+        <Col>
+          <Link to={"/store"}>
+            <Button type="primary" className="gx-ml-2">
+              Дэлгүүр
+            </Button>
+          </Link>
+        </Col>
+      </Row>
+
+      {/* <Card
+        className="gx-widget-bg moto-item-card gx-d-none gx-d-sm-block"
+        style={{ minHeight: "250px" }}
       >
-        Moto гишүүн
-      </span>
+        <span
+          className="gx-widget-badge"
+          style={{ borderRadius: "0 4px 0 10px" }}
+        >
+          Moto гишүүн
+        </span>
 
-      <p>Сайн байна уу?</p>
+        <p>Сайн байна уу?</p>
+        <Avatar
+          shape="square"
+          size="large"
+          className="gx-mr-2 gx-mb-2"
+          src={memberContext.state.memberFirebaseProfile.photoURL}
+        />
+        <h1 className="gx-fs-xxxl gx-font-weight-semi-bold gx-mb-3 gx-mb-sm-4">
+          {memberContext.state.memberFirebaseProfile.displayName}
+        </h1>
+        <div className="gx-mt-5">
+          <Link to={"/news/insert"}>
+            <Button className="gx-mb-1 gx-btn-success" icon={<PlusOutlined />}>
+              Нийтлэл нэмэх
+            </Button>
+          </Link>
+        </div>
 
-      <Avatar
-        shape="square"
-        size="large"
-        className="gx-mr-2 gx-mb-2"
-        src={memberContext.state.memberFirebaseProfile.photoURL}
-      />
-
-      <h1 className="gx-fs-xxxl gx-font-weight-semi-bold gx-mb-3 gx-mb-sm-4">
-        {memberContext.state.memberFirebaseProfile.displayName}
-      </h1>
-      {/* <p>Мото гишүүн болжээ.</p>
-      <p>
-        Та бас элсэж гишүүн болоорой. Танаас төлбөр гарахгүй, юу ч шаардахгүй.
-        Одоогийн Facebook, Google-ийнхээ аль нэгээр шууд ороорой.
-      </p>*/}
-
-      <div className="gx-mt-5">
-        <Link to={"/news/insert"}>
-          <Button className="gx-mb-1 gx-btn-success" icon={<PlusOutlined />}>
-            Нийтлэл нэмэх
+        <div style={{ position: "absolute", bottom: "29px" }}>
+          <Button
+            className="gx-mb-1 gx-btn-warning"
+            icon={<HomeOutlined />}
+            disabled
+          >
+            Гарааш
           </Button>
-        </Link>
-      </div>
-
-      <div style={{ position: "absolute", bottom: "29px" }}>
-        <Button
-          className="gx-mb-1 gx-btn-warning"
-          icon={<HomeOutlined />}
-          disabled
-        >
-          Гарааш
-        </Button>
-        <Button
-          className="gx-mb-1 gx-btn-warning"
-          icon={<UserOutlined />}
-          disabled
-        >
-          Профайл
-        </Button>
-      </div>
-    </Card>
+          <Button
+            className="gx-mb-1 gx-btn-warning"
+            icon={<UserOutlined />}
+            disabled
+          >
+            Профайл
+          </Button>
+        </div>
+      </Card> */}
+    </>
   );
 
   const nonMemberInfo = (

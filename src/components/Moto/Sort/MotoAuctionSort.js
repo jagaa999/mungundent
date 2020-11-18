@@ -84,11 +84,14 @@ const MotoSort = () => {
   const menu = (
     <Menu selectable={true} selectedKeys={selectedKeys}>
       <Menu.ItemGroup key="sort1" title="Эрэмбэ">
-        <Menu.Item key="publisheddate" onClick={onChangeSort}>
-          Огноогоор <Sort ddd="publisheddate" />
+        <Menu.Item key="YEAR" onClick={onChangeSort}>
+          Оноор <Sort ddd="YEAR" />
         </Menu.Item>
-        <Menu.Item key="title" onClick={onChangeSort}>
-          Гарчгаар <Sort ddd="title" />
+        <Menu.Item key="RATE" onClick={onChangeSort}>
+          Үнэлгээгээр <Sort ddd="RATE" />
+        </Menu.Item>
+        <Menu.Item key="MILEAGE" onClick={onChangeSort}>
+          Гүйлтээр <Sort ddd="MILEAGE" />
         </Menu.Item>
       </Menu.ItemGroup>
       <Menu.ItemGroup key="type1" title="Төрөл">
