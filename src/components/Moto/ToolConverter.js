@@ -94,7 +94,7 @@ const ToolConverter = () => {
     <>
       <h2>Хөрвүүлэх багажууд</h2>
 
-      <Divider />
+      <Divider className="gx-my-4" />
 
       <Row>
         <Col span={8} className="gx-fs-sm">
@@ -138,7 +138,7 @@ const ToolConverter = () => {
         </Col>
       </Row>
 
-      <Divider />
+      <Divider className="gx-my-4" />
 
       <Row>
         <Col span={8} className="gx-fs-sm">
@@ -182,7 +182,7 @@ const ToolConverter = () => {
         </Col>
       </Row>
 
-      <Divider />
+      <Divider className="gx-my-4" />
 
       <Row>
         <Col span={8} className="gx-fs-sm">
