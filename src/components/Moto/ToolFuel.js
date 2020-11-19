@@ -1,14 +1,14 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+
 import _ from "lodash";
 import axios from "axios";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import MotoTinyBarChart from "routes/extensions/charts/recharts/bar/Components/MotoTinyBarChart";
 import MotoToolFuelTips from "../dashboard/Listing/MotoToolFuelTips";
 
-// import toBoolean from "util/booleanFunction";
 import {
-  Button,
   Card,
+  Button,
   message,
   Divider,
   Form,
@@ -21,18 +21,16 @@ import {
   Alert,
   Badge,
   Spin,
+  notification,
 } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { loadDataview } from "util/axiosFunction";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
-const { Option, OptGroup } = Select;
-
-const data = [
-  { name: "Normal", value: 58 },
-  { name: "Height", value: 20 },
-];
-
-const COLORS = ["#5797fc", "#FA8C16", "#f5222d", "#d9d9d9"];
+const giveInfo = (type, title, desc) => {
+  notification[type]({
+    message: title,
+    description: desc,
+  });
+};
 
 const ToolFuel = () => {
   const [myState, setMyState] = useState({
@@ -270,41 +268,47 @@ const ToolFuel = () => {
       <h2>Бензин идэлт хэмжих</h2>
       <Row>
         <Col span={16}>
-          <Card
-            className="gx-card_old "
-            style={{ backgroundColor: "#f0f0f0" }}
-            // title="Таны өгөгдлүүд"
-          >
+          <Card className="gx-card_old " style={{ backgroundColor: "#f0f0f0" }}>
             <Spin spinning={myState.loading} tip="Одоохон..." size="large">
               <Form
                 form={form}
                 name="toolFuelForm"
-                // onFinish={onFinish}
-                // onFinishFailed={onFinishFailed}
-                // onFieldsChange={onFieldsChange}
-
                 onValuesChange={onValuesChange}
                 initialValues={{ ...myState.mySpec }}
                 scrollToFirstError={true}
                 colon={false}
                 size="small"
               >
-                {/* <Form.Item
-                name="zaalt"
-                label="Идэх ёстой норм"
-                rules={[
-                  { required: true, message: "Стандарт нормыг бөглөнө үү" },
-                ]}
-              >
-                <Input />
-              </Form.Item> */}
-
                 <Form.Item
-                  labelCol={{ span: 7 }}
-                  wrapperCol={{ span: 17 }}
+                  labelCol={{ span: 12 }}
+                  wrapperCol={{ span: 12 }}
                   name="zaalt"
                   hasFeedback
-                  label="Идэх ёстой норм"
+                  label={
+                    <>
+                      Идэх ёстой норм
+                      <Button
+                        className="gx-m-0"
+                        size="small"
+                        type="link"
+                        icon={<InfoCircleOutlined />}
+                        onClick={() =>
+                          giveInfo(
+                            "info",
+                            "Идэх ёстой норм",
+                            <>
+                              Таны машин идэх ёстой стандарт нормыг бичнэ.
+                              Хэрвээ та мэдэхгүй бол{" "}
+                              <a href="/carcatalog">Каталог</a> цэснээс машинаа
+                              үзэж үйлдвэрийн стандарт нормыг мэдэж болно. Уг
+                              норм нь Японы стандарт тул түүнийг 2-оор үржүүлж
+                              Монголын стандарт нормыг гаргаж аваарай.
+                            </>
+                          )
+                        }
+                      />
+                    </>
+                  }
                   size="large"
                   rules={[
                     {
@@ -321,7 +325,6 @@ const ToolFuel = () => {
                     step={1}
                     min={1}
                     max={100}
-                    // formatter={(value) => `${value} км`}
                     decimalSeparator=","
                     className="gx-w-100"
                   />

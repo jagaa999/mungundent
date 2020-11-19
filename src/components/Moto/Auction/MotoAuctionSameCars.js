@@ -37,9 +37,12 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
   // console.table(mySameCars.auctionSameList);
 
   return (
-    <Card loading={auctionContext.auctionSameList.loading}>
-      Ижил машинуудын зарагдсан түүх
-      <Divider />
+    <Card
+      type="inner"
+      bordered={true}
+      title="Ижил машинуудын зарагдсан түүх"
+      loading={auctionContext.auctionSameList.loading}
+    >
       <Descriptions column={2} layout="horizontal" size="small">
         <Descriptions.Item label={<span className="gx-text-grey">Он</span>}>
           {auctionItem.YEAR}

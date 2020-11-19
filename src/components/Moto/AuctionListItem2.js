@@ -19,7 +19,7 @@ const AuctionListItem2 = ({ auctionItem }) => {
   const myTitle = (
     <>
       <Link
-        to={"/news/" + auctionItem.ID}
+        to={"/auction/" + auctionItem.ID}
       >{`${auctionItem.YEAR} ${auctionItem.MARKA_NAME} ${auctionItem.MODEL_NAME}`}</Link>
       {/* {toBoolean(auctionItem.isfeatured) && <FeaturedTag type="dot" />}
       {!toBoolean(auctionItem.isactive) && <ActiveTag type="dot" />} */}

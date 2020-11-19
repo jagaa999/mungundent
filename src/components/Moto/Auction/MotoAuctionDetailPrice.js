@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Card,
-  Image,
-  Input,
   InputNumber,
   notification,
   Row,
@@ -136,6 +134,8 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
   return (
     <Card
       title="Үнэ тооцоолох"
+      bordered={true}
+      type="inner"
       extra={
         <>
           <small className="gx-mr-1">Хайбрид</small>
@@ -180,7 +180,6 @@ const MotoAuctionDetailPrice = ({ auctionItem }) => {
           <Button
             className="gx-m-0"
             size="small"
-            // shape="circle"
             type="link"
             icon={<InfoCircleOutlined />}
             onClick={() =>

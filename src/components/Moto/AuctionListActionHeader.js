@@ -37,7 +37,7 @@ const AuctionListActionHeader = (props) => {
             size="small"
             icon={<FilterOutlined />}
             onClick={toggleFilterDrawer}
-            className="gx-mr-1"
+            className="gx-mr-0"
           >
             Шүүлтүүр
           </Button>,

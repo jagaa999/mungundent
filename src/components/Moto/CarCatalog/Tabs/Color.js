@@ -9,7 +9,7 @@ const DetailTabs = ({ detail }) => {
   return (
     <Row>
       <Col xl={12} md={12} sm={12} xs={24} className="gx-mb-4">
-        <h5>Гадна өнгө</h5>
+        <h4>Гадна өнгө</h4>
         <Descriptions
           layout="horizontal"
           bordered
@@ -31,7 +31,7 @@ const DetailTabs = ({ detail }) => {
         </Descriptions>
       </Col>
       <Col xl={12} md={12} sm={12} xs={24} className="gx-mb-4">
-        <h5>Салоны өнгө</h5>
+        <h4>Салоны өнгө</h4>
         <Descriptions
           layout="horizontal"
           bordered

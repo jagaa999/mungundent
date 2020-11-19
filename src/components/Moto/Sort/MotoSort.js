@@ -112,7 +112,7 @@ const MotoSort = () => {
           // type="primary"
           size="small"
           onClick={(e) => e.preventDefault()}
-          className="gx-mr-2"
+          className="gx-mr-0 gx-ml-1"
         >
           Эрэмбэ
           <CaretDownOutlined />
@@ -120,6 +120,7 @@ const MotoSort = () => {
       </Dropdown>
 
       <Radio.Group
+        className="gx-ml-1"
         defaultValue={selectedKeys[1]}
         buttonStyle="solid"
         size="small"

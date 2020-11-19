@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import accounting from "accounting";
 
 import toBoolean from "util/booleanFunction";
 import {
@@ -38,44 +39,80 @@ const { Paragraph } = Typography;
 const { TabPane } = Tabs;
 
 const MarkItem = ({ editionItem }) => {
-  // console.log("Манай Машин - ", editionItem);
+  // console.log("Манай Item - ", editionItem);
 
-  const otherImages = editionItem.imagesother.split(" | ");
-  otherImages.splice(-1, 1);
+  const [cardTabs, setCardTabs] = useState({
+    key: "tab1",
+  });
 
-  // console.log("otherImages", otherImages);
-  const operations = (
-    <>
-      {/* <img
-        src={editionItem.imagemain}
-        className="gx-mr-2"
-        style={{ maxHeight: "20px" }}
-      />
-      {editionItem.title} */}
-    </>
-  );
+  const tabList = [
+    {
+      key: "tab1",
+      tab: "Ерөнхий",
+    },
+    {
+      key: "tab2",
+      tab: "Агрегат",
+    },
+    {
+      key: "tab3",
+      tab: "Дугуй",
+    },
+    {
+      key: "tab4",
+      tab: "Тоног",
+    },
+    {
+      key: "tab5",
+      tab: "Салон",
+    },
+    {
+      key: "tab6",
+      tab: "Өнгө",
+    },
+  ];
+
+  const contentList = {
+    tab1: <TabGeneral detail={editionItem} />,
+    tab2: <TabMotor detail={editionItem} />,
+    tab3: <TabTire detail={editionItem} />,
+    tab4: <TabOption detail={editionItem} />,
+    tab5: <TabSalon detail={editionItem} />,
+    tab6: <TabColor detail={editionItem} />,
+  };
+
+  const onTabChange = (key, type) => {
+    // console.log(key, type);
+    setCardTabs({ ...cardTabs, [type]: key });
+  };
+  // const otherImages = editionItem.imagesother.split(" | ");
+  // otherImages.splice(-1, 1);
 
   return (
-    <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
-      <TabPane tab="Ерөнхий" key="1">
-        <TabGeneral detail={editionItem} />
-      </TabPane>
-      <TabPane tab="Агрегат" key="2">
-        <TabMotor detail={editionItem} />
-      </TabPane>
-      <TabPane tab="Дугуй" key="3">
-        <TabTire detail={editionItem} />
-      </TabPane>
-      <TabPane tab="Тоног" key="4">
-        <TabOption detail={editionItem} />
-      </TabPane>
-      <TabPane tab="Салон" key="5">
-        <TabSalon detail={editionItem} />
-      </TabPane>
-      <TabPane tab="Өнгө" key="6">
-        <TabColor detail={editionItem} />
-      </TabPane>
-    </Tabs>
+    <>
+      <div
+        key={editionItem.auctionid}
+        className="gx-main-content auction-detail"
+      >
+        <Card
+          style={{ width: "100%" }}
+          title={editionItem.title}
+          extra={`Үнэ: ${accounting.formatMoney(
+            editionItem.pricenewusd,
+            "$",
+            0,
+            "'"
+          )}`}
+          tabList={tabList}
+          activeTabKey={cardTabs.key}
+          onTabChange={(key) => {
+            onTabChange(key, "key");
+          }}
+        >
+          {contentList[cardTabs.key]}
+        </Card>
+      </div>
+    </>
   );
 };
 

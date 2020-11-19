@@ -44,12 +44,12 @@ const NewsListIActionHeader = (props) => {
               <FilterOutlined />
             }
             onClick={toggleFilterDrawer}
-            className="gx-mr-1"
+            className="gx-mr-0"
           >
             Шүүлтүүр
           </Button>,
 
-          <Link to={"/news/insert"} className="gx-ml-0">
+          <Link to={"/news/insert"} className="gx-ml-1 gx-mr-0">
             <Button
               size="small"
               icon={<PlusOutlined />}

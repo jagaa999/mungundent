@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import { prepareTitle } from "../../../util/config";
-import AuctionDetail from "../../../components/Moto/AuctionDetail";
+// import AuctionDetail from "../../../components/Moto/AuctionDetail";
+import AuctionDetail2 from "../../../components/Moto/AuctionDetail2";
 import { LogsStore } from "../../../context/LogsContext";
 import AuctionContext from "../../../context/AuctionContext";
 import MemberContext from "../../../context/MemberContext";
@@ -75,7 +76,7 @@ const AuctionDetailPage = (props) => {
         {auctionContext.auctionDetail.loading ? (
           <LoadingDetail />
         ) : (
-          <AuctionDetail auctionId={auctionId} />
+          <AuctionDetail2 auctionId={auctionId} />
         )}
       </>
       {/* ) : (

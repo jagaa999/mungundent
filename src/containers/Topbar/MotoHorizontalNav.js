@@ -48,19 +48,21 @@ const HorizontalNav = () => {
         </Link>
       </Menu.Item>
 
-      <Menu.Item
-        key="member"
-        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
-      >
-        <Link to="/member" className="motoHeaderMenuItemLink">
-          <Tooltip title="Гишүүн">
-            <span className="gx-d-block gx-d-lg-none">
-              <IconFont type="iconmember" />
-            </span>
-          </Tooltip>
-          <div className="gx-d-none gx-d-lg-block">Гишүүн</div>
-        </Link>
-      </Menu.Item>
+      {process.env.NODE_ENV === "development" && (
+        <Menu.Item
+          key="member"
+          className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+        >
+          <Link to="/member" className="motoHeaderMenuItemLink">
+            <Tooltip title="Гишүүн">
+              <span className="gx-d-block gx-d-lg-none">
+                <IconFont type="iconmember" />
+              </span>
+            </Tooltip>
+            <div className="gx-d-none gx-d-lg-block">Гишүүн</div>
+          </Link>
+        </Menu.Item>
+      )}
 
       <Menu.Item
         key="product"

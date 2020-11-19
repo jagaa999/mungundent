@@ -1,7 +1,7 @@
 import React from "react";
 
 import WidgetHeader from "components/WidgetHeader/index";
-import MotoSmartHomeCard from "components/Widgets/MotoSmartHomeCard";
+import MotoSmartHomeCard2 from "components/Widgets/MotoSmartHomeCard2";
 import { Row, Col } from "antd";
 
 const userImageList = [
@@ -180,7 +180,7 @@ const MotoToolFuelTips = () => {
             xs={12}
             className="gx-mb-5"
           >
-            <MotoSmartHomeCard item={item} />
+            <MotoSmartHomeCard2 item={item} />
           </Col>
         ))}
       </Row>

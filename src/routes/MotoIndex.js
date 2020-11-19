@@ -88,6 +88,9 @@ const MotocarForm = asyncComponent(() => {
 const ToolFuelPage = asyncComponent(() => {
   return import("./moto/tool/toolFuelPage");
 });
+const ToolConverterPage = asyncComponent(() => {
+  return import("./moto/tool/toolConverterPage");
+});
 
 const HomeIndex = asyncComponent(() => {
   return import("./moto/home/home");
@@ -288,6 +291,9 @@ const App = ({ match }) => (
       */}
       <Route path={["/tool/fuel", "/tool/fuelcheck"]}>
         <ToolFuelPage />
+      </Route>
+      <Route path={["/tool/converter", "/tool/convert"]}>
+        <ToolConverterPage />
       </Route>
       {/*
       ####### ####### #     # ####### ######  

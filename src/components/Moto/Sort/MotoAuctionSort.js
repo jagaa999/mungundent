@@ -22,8 +22,8 @@ const MotoSort = () => {
   const newsListContext = useContext(NewsListContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
-    filterContext.state.sorting.sortcolumnnames || "publisheddate",
-    filterContext.state.cardtype.cardtype || "typelist",
+    filterContext.state.sorting.sortcolumnnames || "YEAR",
+    filterContext.state.cardtype.cardtype || "typetable",
   ]);
   const [sortDirection, setSortDirection] = useState(
     filterContext.state.sorting.sorttype || "DESC"
@@ -31,7 +31,7 @@ const MotoSort = () => {
 
   useDidMountEffect(() => {
     //Анхны render дээр ажиллахгүй. https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
-    console.log("Sort-ийн useDidMountEffect ажиллаж байгаа эсэх??");
+    // console.log("Sort-ийн useDidMountEffect ажиллаж байгаа эсэх??");
     filterContext.updateParams({
       sortcolumnnames: selectedKeys[0],
       sorttype: sortDirection,
@@ -115,7 +115,7 @@ const MotoSort = () => {
           // type="primary"
           size="small"
           onClick={(e) => e.preventDefault()}
-          className="gx-mr-2"
+          className="gx-mr-0 gx-ml-1"
         >
           Эрэмбэ
           <CaretDownOutlined />
@@ -123,6 +123,7 @@ const MotoSort = () => {
       </Dropdown>
 
       <Radio.Group
+        className="gx-ml-1"
         defaultValue={selectedKeys[1]}
         buttonStyle="solid"
         size="small"

@@ -12,22 +12,18 @@ const { Footer } = Layout;
 const toolMenu = (
   <Menu>
     <Menu.Item key="1">
-      {/* <Badge count={<LikeFilled style={{ color: "#52c41a" }} />}> */}
-
       <Link to="/tool/fuel">
         Шатахууны тооцоолол <Badge status="processing" className="gx-ml-2" />
       </Link>
     </Menu.Item>
-    <Menu.Item key="2" disabled>
-      <Link to="/tool/fuel" disabled>
-        Хөрвүүлэх багажууд
-      </Link>
+    <Menu.Item key="2">
+      <Link to="/tool/converter">Хөрвүүлэх багажууд</Link>
     </Menu.Item>
-    <Menu.Item key="3" disabled>
+    {/* <Menu.Item key="3" disabled>
       <Link to="/tool/fuel" disabled>
         Зээлийн тооцоолол
       </Link>
-    </Menu.Item>
+    </Menu.Item> */}
   </Menu>
 );
 
