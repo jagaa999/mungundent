@@ -6,8 +6,6 @@ import toBoolean from "util/booleanFunction";
 import moment from "moment";
 
 import axios from "util/axiosConfig";
-import axiosCloud from "util/axiosCloudConfig";
-// import axiosCloud from "util/axiosConfig";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 

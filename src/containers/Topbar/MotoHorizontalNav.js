@@ -26,6 +26,20 @@ const HorizontalNav = () => {
       mode="horizontal"
       className="motoHeader"
     >
+      <Menu.Item
+        key="auction"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
+        <Link to="/auction" className="motoHeaderMenuItemLink">
+          <Tooltip title="Япон аукшин">
+            <span className="gx-d-block gx-d-lg-none">
+              <IconFont type="iconauction" />
+            </span>
+          </Tooltip>
+          <div className="gx-d-none gx-d-lg-block">Аукшин</div>
+        </Link>
+      </Menu.Item>
+
       <Menu.Item key="news" className="motoHeaderMenuItem">
         <Link to="/news" className="motoHeaderMenuItemLink">
           <Tooltip title="Нийтлэл">
@@ -48,6 +62,20 @@ const HorizontalNav = () => {
         </Link>
       </Menu.Item>
 
+      <Menu.Item
+        key="product"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
+        <Link to="/product" className="motoHeaderMenuItemLink">
+          <Tooltip title="Дэлгүүр">
+            <span className="gx-d-block gx-d-lg-none">
+              <IconFont type="iconstore" />
+            </span>
+          </Tooltip>
+          <div className="gx-d-none gx-d-lg-block">Дэлгүүр</div>
+        </Link>
+      </Menu.Item>
+
       {process.env.NODE_ENV === "development" && (
         <Menu.Item
           key="member"
@@ -64,33 +92,21 @@ const HorizontalNav = () => {
         </Menu.Item>
       )}
 
-      <Menu.Item
-        key="product"
-        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
-      >
-        <Link to="/product" className="motoHeaderMenuItemLink">
-          <Tooltip title="Дэлгүүр">
-            <span className="gx-d-block gx-d-lg-none">
-              <IconFont type="iconstore" />
-            </span>
-          </Tooltip>
-          <div className="gx-d-none gx-d-lg-block">Дэлгүүр</div>
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item
-        key="auction"
-        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
-      >
-        <Link to="/auction" className="motoHeaderMenuItemLink">
-          <Tooltip title="Япон аукшин">
-            <span className="gx-d-block gx-d-lg-none">
-              <IconFont type="iconauction" />
-            </span>
-          </Tooltip>
-          <div className="gx-d-none gx-d-lg-block">Аукшин</div>
-        </Link>
-      </Menu.Item>
+      {process.env.NODE_ENV === "development" && (
+        <Menu.Item
+          key="motocar"
+          className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+        >
+          <Link to="/motocar" className="motoHeaderMenuItemLink">
+            <Tooltip title="Motocar">
+              <span className="gx-d-block gx-d-lg-none">
+                <IconFont type="iconmember" />
+              </span>
+            </Tooltip>
+            <div className="gx-d-none gx-d-lg-block">Motocar</div>
+          </Link>
+        </Menu.Item>
+      )}
 
       {/* <SubMenu
         popupClassName={getNavStyleSubMenuClass(navStyle)}

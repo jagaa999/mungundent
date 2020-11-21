@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Col, Row, PageHeader } from "antd";
+import { Col, Row, PageHeader, Alert } from "antd";
 
 import ProductListItem from "./ProductListItem";
 import NewsListIActionHeader from "./NewsListIActionHeader";
@@ -21,6 +21,13 @@ const ProductListType1 = () => {
       {/* <div className="">
         <FilterTag />
       </div> */}
+
+      <Alert
+        type="warning"
+        showIcon
+        message="Анхаар"
+        description="Дэлгүүрийн хэсгийг яг одоо хөгжүүлж байна. Та автын бараа сэлбэг борлуулдаг бол холбогдохыг хүсье. Баярлалаа."
+      />
 
       <div className="gx-mb-2"></div>
 
