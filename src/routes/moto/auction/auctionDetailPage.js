@@ -73,11 +73,13 @@ const AuctionDetailPage = (props) => {
 
       {/* {memberContext.state.isLogin ? ( */}
       <>
+        {/* <LogsStore> */}
         {auctionContext.auctionDetail.loading ? (
           <LoadingDetail />
         ) : (
           <AuctionDetail2 auctionId={auctionId} />
         )}
+        {/* </LogsStore> */}
       </>
       {/* ) : (
         <PleaseLogin />

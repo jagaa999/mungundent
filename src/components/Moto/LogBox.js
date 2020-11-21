@@ -7,21 +7,21 @@ import LogBoxItems from "./LogBoxItems";
 
 const LogBox = (props) => {
   useEffect(() => {
-    if (props) logContext.loadLogs(props.recordId, props.tableName);
+    if (props) logContext.loadLogsRecordId(props.recordId, props.tableName);
   }, []);
 
   const logContext = useContext(LogsContext);
 
   return (
     <div className="gx-main-content news-detail">
-      {logContext.state.logItems.length && (
-        <LogBoxItems logBoxItems={logContext.state.logItems} />
+      {logContext.logList.logList.length && (
+        <LogBoxItems logBoxItems={logContext.logList.logList} />
       )}
 
-      {logContext.state.error !== null ? (
+      {logContext.logList.error !== null ? (
         <Alert
           message="Анхаар!"
-          description={logContext.state.error}
+          description={logContext.logList.error}
           type="warning"
           showIcon
           closable

@@ -18,12 +18,12 @@ const NewsListType2 = () => {
     <div>
       <FilterTag />
 
-      {!newsListContext.state.loading ? (
+      {!newsListContext.newsList.loading ? (
         <div className="gx-main-content gx-p-2 gx-p-sm-0">
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">
-            {newsListContext.state.newsList.map((newsItem, index) => {
+            {newsListContext.newsList.newsList.map((newsItem, index) => {
               return (
                 <Col
                   key={index}

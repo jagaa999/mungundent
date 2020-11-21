@@ -49,7 +49,11 @@ const NewsListIActionHeader = (props) => {
             Шүүлтүүр
           </Button>,
 
-          <Link to={"/news/insert"} className="gx-ml-1 gx-mr-0">
+          <Link
+            key="keynewsinsertbutton"
+            to={"/news/insert"}
+            className="gx-ml-1 gx-mr-0"
+          >
             <Button
               size="small"
               icon={<PlusOutlined />}

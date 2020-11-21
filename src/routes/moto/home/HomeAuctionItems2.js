@@ -2,30 +2,22 @@ import React, { useRef, useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Carousel, Button } from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  SearchOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import WidgetHeader from "components/WidgetHeader/index";
-import NewsItem2 from "./NewsItem2";
+import AuctionItem2 from "./AuctionItem2";
 
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 
-const HomeNewsItems2 = (props) => {
-  // const [newsItems, setNewsItems] = useState([]);
+const HomeAuctionItems2 = (props) => {
   const newsOtherSlider = useRef();
 
   return (
     <>
       <WidgetHeader
         styleName="gx-flex-row gx-mt-5"
-        title="Сүүлд нэмэгдсэн Нийтлэлүүд"
+        title="Гишүүдийн үзсэн Аукшин машинууд"
         extra={
-          <Link to={"/news"}>
+          <Link to={"/auction"}>
             Бүгдийг үзэх{" "}
             <i className="icon icon-long-arrow-right gx-fs-xxl gx-ml-1 gx-d-inline-flex gx-vertical-align-middle" />
           </Link>
@@ -63,12 +55,11 @@ const HomeNewsItems2 = (props) => {
         ]}
         className="moto-home-slider"
       >
-        {props.newsItems.map((newsItem, index) => (
-          <NewsItem2 key={index} newsItem={newsItem} />
+        {props.auctionItems.map((auctionItem, index) => (
+          <AuctionItem2 key={index} auctionItem={auctionItem} />
         ))}
       </Carousel>
 
-      {/* <div className="gx-d-none gx-d-sm-block "> */}
       <div className=" gx-d-sm-block moto-homecarousel-news-button">
         <Button
           type="primary"
@@ -93,4 +84,4 @@ const HomeNewsItems2 = (props) => {
   );
 };
 
-export default HomeNewsItems2;
+export default HomeAuctionItems2;

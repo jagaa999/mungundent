@@ -18,6 +18,7 @@ import { ProductStore } from "../context/ProductContext";
 import { AuctionStore } from "../context/AuctionContext";
 import { MotocarStore } from "../context/MotocarContext";
 import { FilterStore } from "../context/FilterContext";
+import { LogsStore } from "../context/LogsContext";
 
 import asyncComponent from "util/asyncComponent";
 
@@ -115,9 +116,11 @@ const App = ({ match }) => (
           "/auctionlist/:auctionId",
         ]}
       >
-        <AuctionStore>
-          <AuctionDetail />
-        </AuctionStore>
+        <LogsStore>
+          <AuctionStore>
+            <AuctionDetail />
+          </AuctionStore>
+        </LogsStore>
       </Route>
       <Route path={["/auction", "/japan", "/auctionlist", "/japanlist"]}>
         <AuctionStore>

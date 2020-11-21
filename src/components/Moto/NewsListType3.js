@@ -19,7 +19,7 @@ const NewsListType2 = () => {
         <FilterTag />
       </div>
 
-      {!newsListContext.state.loading ? (
+      {!newsListContext.newsList.loading ? (
         <div className="gx-main-content">
           <NewsListIActionHeader title="Нийтлэл" />
 
@@ -27,7 +27,7 @@ const NewsListType2 = () => {
             <Col key="dffdf" xs={24}>
               <NewsListItem3
                 key="newsListItem3"
-                newsItems={newsListContext.state.newsList}
+                newsItems={newsListContext.newsList.newsList}
               />
             </Col>
           </Row>

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { CommentListStore } from "context/CommentContext";
-import { LogsStore } from "context/LogsContext";
 import NewsDetailContext from "context/NewsDetailContext";
 import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";

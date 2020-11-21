@@ -6,12 +6,14 @@ import { stringify } from "query-string";
 
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
+import LogContext from "context/LogsContext";
 
 const AuctionContext = React.createContext();
 
 export const AuctionStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
+  const logContext = useContext(LogContext);
 
   // ### #     # ### #######
   // #  ##    #  #     #
@@ -215,12 +217,29 @@ export const AuctionStore = (props) => {
       )
       .then((response) => {
         // console.log("DDDDDDDDDDD", response);
+        const auctionDetail = response.data.response[0];
         setAuctionDetail({
           ...auctionDetail,
           loading: false,
-          auctionDetail: response.data.response[0],
+          auctionDetail: auctionDetail,
         });
+
+        //Гишүүн Detail дуудсан Log-ийг бичнэ.
+        if (
+          memberContext.state.memberCloudUserSysId !== 0 &&
+          memberContext.state.memberCloudUserSysId !== 1598935351417
+        ) {
+          logContext.insertLog({
+            // recordId: id, //string байгаа тул recordId болохгүй байна.
+            actionType: id, //string байгаа тул recordId болохгүй байна.
+            tableName: "Auction",
+            actionName: "Үзэв",
+            description: `${auctionDetail.YEAR}  ${auctionDetail.MARKA_NAME} ${auctionDetail.MODEL_NAME} ${auctionDetail.GRADE}`,
+            idstring: auctionDetail.IMAGES.split("#")[1],
+          });
+        }
       })
+
       .catch((error) => {
         console.log("EEEEEEE", error);
       });

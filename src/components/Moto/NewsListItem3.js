@@ -6,22 +6,15 @@ import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
 import { defaultSrc } from "util/config";
-import {
-  Button,
-  Badge,
-  Tooltip,
-  Row,
-  Col,
-  Dropdown,
-  Menu,
-  Avatar,
-  Table,
-} from "antd";
+import { Tooltip, Avatar, Table } from "antd";
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
-import { AlignCenterOutlined } from "@ant-design/icons";
+
+import NewsItemMainImage from "./NewsItemMainImage";
 
 const NewsItem = ({ newsItems }) => {
+  // console.log("newsItems", newsItems);
+
   const columns = [
     {
       title: "Гарчиг",
@@ -30,29 +23,7 @@ const NewsItem = ({ newsItems }) => {
       render: (title, record) => (
         <>
           <li className="gx-media">
-            <Image
-              cloudName="motomn"
-              publicId={record.imagemain
-                .slice(
-                  record.imagemain.indexOf("upload/") + 7,
-                  record.imagemain.length
-                )
-                .split(".")
-                .shift()}
-              crop="fill"
-              loading="lazy"
-              dpr="auto"
-              responsive
-              width="64"
-              gravity="face"
-              quality="auto"
-              // placeholder="blur"
-              responsiveUseBreakpoints="true"
-              className="gx-mr-3"
-              default_image="jhannw5jgo2mlvvkvke9"
-              alt={record.imagemain}
-              onError={defaultSrc}
-            />
+            <NewsItemMainImage width="64" imageMain={record.imagemain} />
 
             <div className="gx-media-body gx-align-self-center">
               <Link to={"/news/" + record.newsid}>{title}</Link>

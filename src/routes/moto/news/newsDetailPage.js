@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { prepareTitle } from "util/config";
 
-import NewsDetail from "components/Moto/NewsDetail";
-import { CommentListStore } from "context/CommentContext";
-import { LogsStore } from "context/LogsContext";
-import NewsDetailContext from "context/NewsDetailContext";
-import MemberContext from "context/MemberContext";
-import LoadingDetail from "components/Moto/Loading/LoadingDetail";
-import PleaseLogin from "components/Moto/Member/PleaseLogin";
+import NewsDetail from "../../../components/Moto/NewsDetail";
+import { CommentListStore } from "../../../context/CommentContext";
+import { LogsStore } from "../../../context/LogsContext";
+import NewsDetailContext from "../../../context/NewsDetailContext";
+import MemberContext from "../../../context/MemberContext";
+import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
+import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
 const NewsDetailPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID

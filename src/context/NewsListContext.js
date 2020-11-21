@@ -12,7 +12,7 @@ export const NewsListStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
 
-  const initialStateNewsList = {
+  const initialNewsList = {
     loadParams: {
       systemmetagroupid: "1587197820548033",
       showquery: "0",
@@ -51,7 +51,7 @@ export const NewsListStore = (props) => {
     isFilterDrawerOpen: false,
   };
 
-  const [state, setState] = useState(initialStateNewsList);
+  const [newsList, setNewsList] = useState(initialNewsList);
 
   // useDidMountEffect(() => {
   useEffect(() => {
@@ -73,12 +73,12 @@ export const NewsListStore = (props) => {
   //  ####### ####### #     # ######
 
   const loadNewsList = (queryString) => {
-    setState({ ...state, loading: true });
+    setNewsList({ ...newsList, loading: true });
 
     let tempFilter = {};
     Object.keys(filterContext.state.filterList).map((item) => {
       console.log(item, "----", filterContext.state.filterList[item]);
-      if (item !== "offset" && item !== "pagesize") {
+      if (item !== "offset" && item !== "pagesize" && item !== "title") {
         const myItem1 = {
           operator: "=",
           operand: filterContext.state.filterList[item],
@@ -89,18 +89,45 @@ export const NewsListStore = (props) => {
           },
         };
         tempFilter = Object.assign(tempFilter, myItem2);
+        //   newstypeid: {
+        //     0: {
+        //       operator: "=",
+        //       operand: "201",
+        //     },
+        //     1: {
+        //       operator: "=",
+        //       operand: "202",
+        //     },
+        //   },
+      } else if (item === "title") {
+        const myItem1 = {
+          operator: "like",
+          operand: `%${filterContext.state.filterList[item]}%`,
+        };
+        const myItem2 = {
+          [item]: {
+            0: myItem1,
+          },
+        };
+        tempFilter = Object.assign(tempFilter, myItem2);
+        //   title: {
+        //     0: {
+        //       operator: "like",
+        //       operand: "%toyota%",
+        //     },
+        //   },
       }
     });
     const dddd = {};
     const myTemp33 = Object.assign(dddd, { criteria: tempFilter });
 
     const myNewParam = {
-      ...state,
+      ...newsList,
       loadParams: {
-        ...state.loadParams,
+        ...newsList.loadParams,
         ...myTemp33,
         paging: {
-          ...state.loadParams.paging,
+          ...newsList.loadParams.paging,
           pagesize: filterContext.state.paging.pagesize || "10", //нийтлэлийн тоо
           offset: filterContext.state.paging.offset || "1", //хуудасны дугаар
           sortcolumnnames: {
@@ -131,7 +158,7 @@ export const NewsListStore = (props) => {
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
 
-        setState({
+        setNewsList({
           ...myNewParam,
           loading: false,
           newsList: Object.values(myArray),
@@ -140,22 +167,22 @@ export const NewsListStore = (props) => {
         filterContext.updateTotal(myPaging.totalcount);
       })
       .catch((error) => {
-        setState({ ...state, loading: false, error });
+        setNewsList({ ...newsList, loading: false, error });
         message.error(error);
         console.log(error);
       });
   };
 
   const toggleFilterDrawerOpen = () => {
-    setState({
-      ...state,
-      isFilterDrawerOpen: !state.isFilterDrawerOpen,
+    setNewsList({
+      ...newsList,
+      isFilterDrawerOpen: !newsList.isFilterDrawerOpen,
     });
   };
 
   return (
     <NewsListContext.Provider
-      value={{ state, loadNewsList, toggleFilterDrawerOpen }}
+      value={{ newsList, loadNewsList, toggleFilterDrawerOpen }}
     >
       {props.children}
     </NewsListContext.Provider>

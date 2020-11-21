@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Image } from "cloudinary-react";
@@ -7,26 +7,11 @@ import moment from "moment";
 import "moment/locale/mn";
 import { defaultSrc } from "util/config";
 
-import {
-  Button,
-  Badge,
-  Tooltip,
-  Row,
-  Col,
-  Dropdown,
-  Menu,
-  Avatar,
-  message,
-  Modal,
-  Divider,
-} from "antd";
-
+import { Button, Tooltip, Avatar, Modal, Divider } from "antd";
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
-import { SearchOutlined, DownOutlined, UserOutlined } from "@ant-design/icons";
-import AvatarMember from "./Member/MemberAvatar";
-import AvatarMember02 from "./Member/MemberAvatar02";
 import NewsDetailModal from "./newsDetailModal";
 import NewsDetailMore from "./newsDetailMore";
+import NewsItemMainImage from "./NewsItemMainImage";
 
 const NewsItem = ({ newsItem, grid }) => {
   moment.locale("mn");
@@ -74,29 +59,7 @@ const NewsItem = ({ newsItem, grid }) => {
         <div className="gx-grid-thumb-equal">
           <Link to={"/news/" + newsItem.newsid}>
             <span className="gx-link gx-grid-thumb-cover">
-              <Image
-                cloudName="motomn"
-                publicId={newsItem.imagemain
-                  .slice(
-                    newsItem.imagemain.indexOf("upload/") + 7,
-                    newsItem.imagemain.length
-                  )
-                  .split(".")
-                  .shift()}
-                crop="fill"
-                loading="lazy"
-                dpr="auto"
-                responsive
-                width="300"
-                gravity="face"
-                quality="auto"
-                // placeholder="blur"
-                responsiveUseBreakpoints="true"
-                className="gx-img-fluid gx-w-100"
-                default_image="jhannw5jgo2mlvvkvke9"
-                alt={newsItem.title}
-                onError={defaultSrc}
-              />
+              <NewsItemMainImage width="300" imageMain={newsItem.imagemain} />
             </span>
           </Link>
         </div>

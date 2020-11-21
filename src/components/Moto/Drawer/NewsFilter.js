@@ -14,6 +14,7 @@ const NewsFilter = (props) => {
   const newsListContext = useContext(NewsListContext);
   const filterContext = useContext(FilterContext);
 
+  const [newsTitle, setNewsTitle] = useState("");
   const [newsType, setNewsType] = useState([]);
   const [newsSource, setNewsSource] = useState([]);
   const [newsPublisher, setNewsPublisher] = useState([]);
@@ -23,31 +24,26 @@ const NewsFilter = (props) => {
     setNewsType(
       await loadDataview({
         systemmetagroupid: "1587100905303413",
-        criteria: newsListContext.state.loadParams.criteria,
+        criteria: newsListContext.newsList.loadParams.criteria,
       })
     );
     setNewsSource(
       await loadDataview({
         systemmetagroupid: "1585046479054",
-        criteria: newsListContext.state.loadParams.criteria,
+        criteria: newsListContext.newsList.loadParams.criteria,
       })
     );
     setNewsPublisher(
       await loadDataview({
         systemmetagroupid: "1585046481242",
-        criteria: newsListContext.state.loadParams.criteria,
+        criteria: newsListContext.newsList.loadParams.criteria,
       })
     );
   };
 
   useEffect(() => {
     callAllDataAsync();
-    console.log(
-      "newsListContext.state.loadParams.criterianewsListContext.state.loadParams.criterianewsListContext.state.loadParams.criteria",
-      newsListContext.state.loadParams.criteria
-    );
-    // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
-  }, [newsListContext.state.loadParams.criteria]);
+  }, [newsListContext.newsList.loadParams.criteria]);
 
   const prepareURL = (checkedValues, parameterLabel) => {
     const param = checkedValues
@@ -64,13 +60,24 @@ const NewsFilter = (props) => {
     filterContext.updateParams(tempObject);
   };
 
+  //  ######  ####### ####### #     # ######  #     #
+  //  #     # #          #    #     # #     # ##    #
+  //  #     # #          #    #     # #     # # #   #
+  //  ######  #####      #    #     # ######  #  #  #
+  //  #   #   #          #    #     # #   #   #   # #
+  //  #    #  #          #    #     # #    #  #    ##
+  //  #     # #######    #     #####  #     # #     #
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "100%" }}>
       <CustomScrollbars>
-        {/* <Search
-          placeholder="Гарчгаас хайх"
-          onSearch={(value) => console.log(value)}
-        /> */}
+        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+          Гарчгаас хайх
+        </h6>
+        <Search
+          placeholder="Текстээ бичнэ үү"
+          defaultValue={[filterContext.state.filterList?.title || undefined]}
+          onSearch={(value) => filterContext.updateParams({ title: value })}
+        />
 
         {newsType === [] ? (
           "Ачаалж байна"

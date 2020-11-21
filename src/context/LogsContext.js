@@ -9,21 +9,21 @@ export const LogsStore = (props) => {
   const memberContext = useContext(MemberContext);
 
   const initialStateLogs = {
-    logItems: {},
+    logList: {},
     total: 0,
     actionTypes: {},
     loading: false,
     error: null,
   };
 
-  const [state, setState] = useState(initialStateLogs);
+  const [logList, setLogList] = useState(initialStateLogs);
 
   const clearLogs = () => {
-    setState(initialStateLogs);
+    setLogList(initialStateLogs);
   };
 
   const getError = (error) => {
-    setState({ ...state, loading: false, error });
+    setLogList({ ...logList, loading: false, error });
     message.error(error.toString(), 7);
     console.log("error", error);
   };
@@ -35,17 +35,13 @@ export const LogsStore = (props) => {
   //  #       #     # ####### #     #
   //  #       #     # #     # #     #
   //  ####### ####### #     # ######
-  const loadLogs = (recordId, tableName) => {
+  const loadLogsRecordId = (recordId, tableName) => {
     if (recordId === undefined) return null;
 
     clearLogs();
 
     const myParamsLogs = {
       request: {
-        // sessionid: memberContext.state.memberCloudSessionId,
-        // sessionid: "03f7abf9-0371-4709-807e-7241143589d4", //! jargal@kt.mn session-ийг түрдээ хүчээр өгөв. Даваа гаригт Батаагаар Java-ийн login функцийг үзүүлж, user_id үүсэхгүй байгааг үүсгүүлдэг болгуулна.
-        // userid: memberContext.state.memberCloudUserId,
-        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         command: "PL_MDVIEW_004",
         username: memberContext.state.memberUID,
         password: "89",
@@ -54,7 +50,7 @@ export const LogsStore = (props) => {
           ignorepermission: "1",
           showQuery: "0",
           criteria: {
-            // memberId: memberContext.state.memberCloudUserSysId,
+            // memberId: memberContext.logList.memberCloudUserSysId,
             recordId: recordId || "", //Параметрээр орж ирэх ёстой
             tableName: tableName || "ECM_NEWS", //Параметрээр орж ирэх ёстой
           },
@@ -71,9 +67,8 @@ export const LogsStore = (props) => {
       },
     };
 
-    setState({ ...state, loading: true });
+    setLogList({ ...logList, loading: true });
 
-    // console.log("MYSTATE---------", state);
     // console.log("myParamsLogs.request---------", myParamsLogs.request);
 
     axios
@@ -108,10 +103,10 @@ export const LogsStore = (props) => {
               .length,
           }));
 
-          setState({
-            ...state,
+          setLogList({
+            ...logList,
             loading: false,
-            logItems: myArray,
+            logList: myArray,
             total: myArray.length,
             actionTypes: myCounts,
           });
@@ -133,31 +128,31 @@ export const LogsStore = (props) => {
   const insertLog = (values) => {
     // console.log("insertLoginsertLog ---", values);
 
-    const myParamsSendError = {
+    const myParamsLogInsert = {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
-        command: "motoMemberDV_LOG_002", //Log руу нэмэх
+        command: "motoMemberDV_LOG_002", //Log засах процесс
         parameters: {
-          // id: "",
+          id: values.id || undefined,
           tableName: values.tableName || "Тодорхойгүй",
-          recordId: values.id || "",
+          recordId: values.recordId || "",
           actionName: values.actionName || "Тодорхойгүй",
           // actionDate: "",
           actionType: values.actionType || "",
           description: values.description || "",
-          // memberId: "",
-          // userId: "",
-          // idString: "",
-          userSystemId: memberContext.state.memberCloudUserSysId,
+          userSystemId:
+            values.memberCloudUserSysId ||
+            memberContext.state.memberCloudUserSysId,
+          idstring: values.idstring || "",
         },
       },
     };
 
-    // console.log("insertLog ------", myParamsSendError);
+    // console.log("insertLog ------", myParamsLogInsert);
 
     axios
-      .post("", myParamsSendError)
+      .post("", myParamsLogInsert)
       .then((response) => {
         // console.log("LOG НЭМЭХ", response);
         const myData = response.data.response;
@@ -165,18 +160,18 @@ export const LogsStore = (props) => {
         if (myData.status === "error") {
           getError(myData.text);
         } else {
-          message.success("Алдааг амжилттай илгээлээ. Баярлалаа.");
+          // message.success("Амжилттай илгээлээ. Баярлалаа.");
         }
       })
       .catch((error) => {
         // getError(error);
-        message.error(error.toString(), 7);
+        // message.error(error.toString(), 7);
         console.log("error LOG ", error);
       });
   };
 
   return (
-    <LogsContext.Provider value={{ state, loadLogs, insertLog }}>
+    <LogsContext.Provider value={{ logList, loadLogsRecordId, insertLog }}>
       {props.children}
     </LogsContext.Provider>
   );

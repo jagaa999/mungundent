@@ -191,7 +191,7 @@ export const FilterStore = (props) => {
       }
     });
 
-    console.log("myObject", myObject);
+    // console.log("myObject", myObject);
 
     setState(myObject);
   };

@@ -91,7 +91,7 @@ export const FilterCheckBoxStore = (props) => {
   };
 
   return (
-    <FilterCheckBoxContext.Provider value={{ state, loadLogs }}>
+    <FilterCheckBoxContext.Provider value={{ state, loadLogsRecordId }}>
       {props.children}
     </FilterCheckBoxContext.Provider>
   );

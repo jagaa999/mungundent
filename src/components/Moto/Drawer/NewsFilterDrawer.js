@@ -22,7 +22,7 @@ const NewsFilterDrawer = () => {
         width="350"
         placement="left"
         closable={true}
-        visible={newsListContext.state.isFilterDrawerOpen}
+        visible={newsListContext.newsList.isFilterDrawerOpen}
         onClose={toggleFilterDrawer}
       >
         <NewsFilter />

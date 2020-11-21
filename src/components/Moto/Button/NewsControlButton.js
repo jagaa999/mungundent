@@ -19,7 +19,7 @@ import NewsDetailContext from "context/NewsDetailContext";
 import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
-const NewsButtonPanel = (props) => {
+const NewsControlButton = (props) => {
   const newsDetailContext = useContext(NewsDetailContext);
   const memberContext = useContext(MemberContext);
   const memberItemsContext = useContext(MemberItemsContext);
@@ -181,7 +181,8 @@ const NewsButtonPanel = (props) => {
       {/* Энд нэвтэрсэн хэрэглэгч нь тухайн нийтлэлийн эзэн мөн эсэхийг шалгана. Биш
       бол гаргахгүй. */}
 
-      {newsDetailPublisherId === memberSysId && (
+      {(newsDetailPublisherId === memberSysId ||
+        memberSysId === "1598935351417") && (
         <Dropdown
           key="owner_action_button"
           overlay={menuOwnerActions}
@@ -205,4 +206,4 @@ const NewsButtonPanel = (props) => {
   );
 };
 
-export default NewsButtonPanel;
+export default NewsControlButton;

@@ -13,10 +13,11 @@ import { Card, Row, Col, Typography, Tabs } from "antd";
 import LogBox from "./LogBox";
 import CommentBox from "./CommentBox";
 import NewsDetailHeader from "./NewsDetailHeader";
-import NewsHeaderButton from "./Button/NewsHeaderButton";
+import NewsControlButton from "./Button/NewsControlButton";
 
 import LogsContext from "context/LogsContext";
 import NewsDetailContext from "context/NewsDetailContext";
+import NewsItemMainImage from "./NewsItemMainImage";
 
 const NewsDetailComponent = () => {
   const newsDetailContext = useContext(NewsDetailContext);
@@ -130,33 +131,9 @@ const NewsDetailComponent = () => {
                   (!toBoolean(newsItem.isactive) ? "gx-border-danger" : "")
                 }
                 cover={
-                  // <img
-                  //   alt={newsItem.title}
-                  //   src={newsItem.imagemain}
-                  //   onError={defaultSrc}
-                  // />
-                  <Image
-                    cloudName="motomn"
-                    publicId={newsItem.imagemain
-                      .slice(
-                        newsItem.imagemain.indexOf("upload/") + 7,
-                        newsItem.imagemain.length
-                      )
-                      .split(".")
-                      .shift()}
-                    crop="fill"
-                    loading="lazy"
-                    dpr="auto"
-                    responsive
+                  <NewsItemMainImage
                     width="auto"
-                    gravity="face"
-                    quality="auto"
-                    // placeHolder="blur"
-                    responsiveUseBreakpoints="true"
-                    className="gx-img-fluid gx-w-100"
-                    default_image="jhannw5jgo2mlvvkvke9"
-                    alt={newsItem.title}
-                    onError={defaultSrc}
+                    imageMain={newsItem.imagemain}
                   />
                 }
               >
@@ -168,7 +145,7 @@ const NewsDetailComponent = () => {
           <MemberCard02 member={member} maxWidth="250px" />
         </div> */}
           <div>
-            <NewsHeaderButton item={newsItem} />
+            <NewsControlButton item={newsItem} />
           </div>
           {/* Одоогоор TableName-ийг хоосон орхив */}
           <CommentBox recordId={newsItem.newsid} tableName="" />

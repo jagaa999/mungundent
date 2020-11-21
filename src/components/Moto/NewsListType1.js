@@ -22,12 +22,12 @@ const NewsListType1 = () => {
         <FilterTag />
       </div>
 
-      {!newsListContext.state.loading ? (
+      {!newsListContext.newsList.loading ? (
         <div className="gx-main-content gx-p-2 gx-p-sm-0">
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">
-            {newsListContext.state.newsList.map((el, index) => {
+            {newsListContext.newsList.newsList.map((el, index) => {
               const newsItem = el;
               // const myMainImage = el.imagemain
               //   .split("storage")

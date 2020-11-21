@@ -21,7 +21,7 @@ import {
   ArrowUpOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import NewsHeaderButton from "components/Moto/Button/NewsHeaderButton";
+import NewsControlButton from "components/Moto/Button/NewsControlButton";
 import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 import LogsContext from "context/LogsContext";
 
@@ -63,7 +63,7 @@ const NewsDetailHeader = (props) => {
         justifyContent: "flex-end",
       }}
     >
-      {Object.entries(logsContext.state.actionTypes).map(function (item, i) {
+      {Object.entries(logsContext.logItems.actionTypes).map(function (item, i) {
         if (item[1].type !== "Идэвхтэй" && item[1].type !== "Спонсор")
           return (
             <Statistic
@@ -99,7 +99,7 @@ const NewsDetailHeader = (props) => {
         </h1>
       }
       // subTitle="This is a subtitle"
-      extra={<NewsHeaderButton />}
+      extra={<NewsControlButton />}
     >
       <Content extra={extraContent}>{renderContent()}</Content>
 

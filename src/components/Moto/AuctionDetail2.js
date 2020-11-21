@@ -9,7 +9,7 @@ import accounting from "accounting";
 import toBoolean from "util/booleanFunction";
 import { defaultSrc } from "util/config";
 
-import { Card, Alert } from "antd";
+import { Card, Alert, Badge } from "antd";
 
 import MotoAuctionDetailImages from "./Auction/MotoAuctionDetailImages";
 
@@ -32,19 +32,24 @@ const AuctionDetail2 = () => {
   const tabList = [
     {
       key: "tab1",
-      tab: "Автомашин",
+      tab: <span className="gx-fs-md">Автомашин</span>,
     },
     {
       key: "tab2",
-      tab: "Аукшин",
+      tab: <span className="gx-fs-md">Аукшин</span>,
     },
     {
       key: "tab3",
-      tab: "Түүх",
+      tab: <span className="gx-fs-md">Түүх</span>,
     },
     {
       key: "tab4",
-      tab: "Үнэ",
+      tab: (
+        <span className="gx-fs-md">
+          Үнэ
+          <Badge status="processing" className="gx-m-0 gx-ml-1" />
+        </span>
+      ),
     },
   ];
 
@@ -75,6 +80,7 @@ const AuctionDetail2 = () => {
         className="gx-main-content auction-detail"
       >
         <Card
+          className="moto-auction-detail-card"
           style={{ width: "100%" }}
           title={
             <>

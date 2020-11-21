@@ -180,16 +180,16 @@ const NewsButtonPanel = () => {
         </div>
         <div className="gx-ml-auto">
           <span style={{ display: "inline-flex" }}>
-            <Dropdown
-              overlay={menuMemberActions}
-              placement="bottomRight"
-              trigger={["click"]}
-              arrow
-            >
-              <Tooltip title="Таны үйлдлүүд">
+            <Tooltip title="Таны үйлдлүүд">
+              <Dropdown
+                overlay={menuMemberActions}
+                placement="bottomRight"
+                trigger={["click"]}
+                arrow
+              >
                 <i className="gx-icon-btn icon icon-wall" />
-              </Tooltip>
-            </Dropdown>
+              </Dropdown>
+            </Tooltip>
           </span>
           <span style={{ display: "inline-flex" }}>
             <Dropdown

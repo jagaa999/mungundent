@@ -3,28 +3,7 @@ import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
 
-import {
-  PageHeader,
-  Button,
-  Descriptions,
-  Statistic,
-  Tooltip,
-  Badge,
-  Avatar,
-  Divider,
-} from "antd";
-import {
-  ClockCircleOutlined,
-  MinusCircleOutlined,
-  WarningTwoTone,
-  SearchOutlined,
-  DownOutlined,
-  UserOutlined,
-  DeleteOutlined,
-  ArrowUpOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
-import NewsHeaderButton from "components/Moto/Button/NewsHeaderButton";
+import { Statistic, Tooltip, Avatar } from "antd";
 import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 import LogsContext from "context/LogsContext";
 
@@ -55,7 +34,7 @@ const NewsDetailHeader = (props) => {
         }
         value=" "
       />
-      {Object.entries(logsContext.state.actionTypes).map(function (item, i) {
+      {Object.entries(logsContext.logList.actionTypes).map(function (item, i) {
         if (item[1].type !== "Идэвхтэй" && item[1].type !== "Спонсор")
           return (
             <Statistic
@@ -110,8 +89,6 @@ const NewsDetailHeader = (props) => {
           </p>
         </div>
       </div>
-
-      {/* <div className="gx-mt-4 gx-mb-3">{extraContent}</div> */}
     </>
   );
 };
