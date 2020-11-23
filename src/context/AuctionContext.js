@@ -218,6 +218,12 @@ export const AuctionStore = (props) => {
       .then((response) => {
         // console.log("DDDDDDDDDDD", response);
         const auctionDetail = response.data.response[0];
+        console.log("auctionDetail", auctionDetail);
+        console.log(
+          "memberContext.state.memberCloudUserSysId",
+          memberContext.state.memberCloudUserSysId
+        );
+
         setAuctionDetail({
           ...auctionDetail,
           loading: false,
@@ -225,16 +231,23 @@ export const AuctionStore = (props) => {
         });
 
         //Гишүүн Detail дуудсан Log-ийг бичнэ.
+
         if (
-          memberContext.state.memberCloudUserSysId !== 0 &&
-          memberContext.state.memberCloudUserSysId !== 1598935351417
+          memberContext.state.memberCloudUserSysId != 0 &&
+          memberContext.state.memberCloudUserSysId != 1598935351417 &&
+          auctionDetail != undefined &&
+          auctionDetail != null
         ) {
+          console.log("Ийшээ ороод бйана шдээ");
+
           logContext.insertLog({
             // recordId: id, //string байгаа тул recordId болохгүй байна.
             actionType: id, //string байгаа тул recordId болохгүй байна.
             tableName: "Auction",
             actionName: "Үзэв",
-            description: `${auctionDetail.YEAR}  ${auctionDetail.MARKA_NAME} ${auctionDetail.MODEL_NAME} ${auctionDetail.GRADE}`,
+            description: `${auctionDetail.YEAR || ""}  ${
+              auctionDetail.MARKA_NAME || ""
+            } ${auctionDetail.MODEL_NAME || ""} ${auctionDetail.GRADE || ""}`,
             idstring: auctionDetail.IMAGES.split("#")[1],
           });
         }

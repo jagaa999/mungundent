@@ -3,15 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 
-import moment from "moment";
-import "moment/locale/mn";
-import accounting from "accounting";
-import toBoolean from "util/booleanFunction";
-import { defaultSrc } from "util/config";
-
 import { Card, Alert, Badge } from "antd";
-
-import MotoAuctionDetailImages from "./Auction/MotoAuctionDetailImages";
 
 import AuctionDetail2General from "./Auction/AuctionDetail2General";
 import AuctionDetail2Lot from "./Auction/AuctionDetail2Lot";

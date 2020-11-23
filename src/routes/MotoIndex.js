@@ -17,6 +17,7 @@ import { MemberListStore } from "../context/MemberListContext";
 import { ProductStore } from "../context/ProductContext";
 import { AuctionStore } from "../context/AuctionContext";
 import { MotocarStore } from "../context/MotocarContext";
+import { AutozarStore } from "../context/AutozarContext";
 import { FilterStore } from "../context/FilterContext";
 import { LogsStore } from "../context/LogsContext";
 
@@ -86,6 +87,14 @@ const MotocarForm = asyncComponent(() => {
   return import("./moto/motocar/motocarFormPage");
 });
 
+const AutozarList = asyncComponent(() => {
+  return import("./moto/autozar/autozarListPage");
+});
+
+// const AutozarForm = asyncComponent(() => {
+//   return import("./moto/autozar/autozarFormPage");
+// });
+
 const ToolFuelPage = asyncComponent(() => {
   return import("./moto/tool/toolFuelPage");
 });
@@ -127,7 +136,6 @@ const App = ({ match }) => (
           <AuctionList />
         </AuctionStore>
       </Route>
-
       {/*}
       ######  ######  ####### ######  #     #  #####  ####### 
       #     # #     # #     # #     # #     # #     #    #    
@@ -147,6 +155,34 @@ const App = ({ match }) => (
           <ProductList />
         </ProductStore>
       </Route>
+
+      {/*
+         #    #     # ####### ####### #######    #    ######  
+        # #   #     #    #    #     #      #    # #   #     # 
+       #   #  #     #    #    #     #     #    #   #  #     # 
+      #     # #     #    #    #     #    #    #     # ######  
+      ####### #     #    #    #     #   #     ####### #   #   
+      #     # #     #    #    #     #  #      #     # #    #  
+      #     #  #####     #    ####### ####### #     # #     #  */}
+      {/* <Route
+        path={[
+          "/autozar/edit/:autozarId",
+          "/autozar/:autozarId/edit",
+          "/autozar/insert",
+          "/autozar/add",
+        ]}
+      >
+        <AutozarStore>
+          <AutozarForm />
+        </AutozarStore>
+      </Route> */}
+      <Route path={["/autozar", "/autozarlist"]}>
+        <AutozarStore>
+          <AutozarList />
+        </AutozarStore>
+      </Route>
+      {/*}
+
       {/*
       #     # ####### ####### #######  #####     #    ######  
       ##   ## #     #    #    #     # #     #   # #   #     # 

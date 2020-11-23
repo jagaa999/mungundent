@@ -46,7 +46,7 @@ const NewsItem2 = ({ newsItem }) => {
             crop="fill"
             loading="lazy"
             dpr="auto"
-            responsive
+            // responsive={true}
             width="300"
             gravity="face"
             quality="auto"

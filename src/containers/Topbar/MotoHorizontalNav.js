@@ -108,6 +108,22 @@ const HorizontalNav = () => {
         </Menu.Item>
       )}
 
+      {process.env.NODE_ENV === "development" && (
+        <Menu.Item
+          key="autozar"
+          className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+        >
+          <Link to="/autozar" className="motoHeaderMenuItemLink">
+            <Tooltip title="Автозар">
+              <span className="gx-d-block gx-d-lg-none">
+                <IconFont type="iconmember" />
+              </span>
+            </Tooltip>
+            <div className="gx-d-none gx-d-lg-block">Автозар</div>
+          </Link>
+        </Menu.Item>
+      )}
+
       {/* <SubMenu
         popupClassName={getNavStyleSubMenuClass(navStyle)}
         key="salon"

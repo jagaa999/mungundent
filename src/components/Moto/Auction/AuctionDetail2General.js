@@ -43,12 +43,17 @@ const AuctionDetail2 = ({ auctionItem }) => {
               <Descriptions.Item
                 label={<span className="gx-text-grey">Хувилбар</span>}
               >
-                {auctionItem.GRADE}
+                {htmlEntities.decode(auctionItem.GRADE)}
               </Descriptions.Item>
               <Descriptions.Item
                 label={<span className="gx-text-grey">Тоноглол</span>}
               >
-                {auctionItem.EQUIP}
+                {htmlEntities.decode(auctionItem.EQUIP)}
+              </Descriptions.Item>
+              <Descriptions.Item
+                label={<span className="gx-text-grey">Арал</span>}
+              >
+                {htmlEntities.decode(auctionItem.KUZOV)}
               </Descriptions.Item>
               <Descriptions.Item
                 label={<span className="gx-text-grey">Гүйлт</span>}
@@ -60,11 +65,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
                   thousand: "'",
                 })}
               </Descriptions.Item>
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Арал</span>}
-              >
-                {auctionItem.KUZOV}
-              </Descriptions.Item>
+
               <Descriptions.Item
                 label={<span className="gx-text-grey">Хөдөлгүүр</span>}
               >

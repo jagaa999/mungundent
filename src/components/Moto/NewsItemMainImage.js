@@ -6,7 +6,7 @@ import { defaultSrc } from "util/config";
 import { Image as ImageAnt } from "antd";
 
 const NewsItemMainImage = ({ width, imageMain }) => {
-  console.log("imageMain", imageMain);
+  // console.log("imageMain", imageMain);
 
   return (
     <>
