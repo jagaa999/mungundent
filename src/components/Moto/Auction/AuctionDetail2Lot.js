@@ -8,7 +8,6 @@ import "moment/locale/mn";
 import accounting from "accounting";
 
 import { Alert, Row, Col, Image, Descriptions } from "antd";
-import MotoAuctionDetailImages from "./MotoAuctionDetailImages";
 
 const AuctionDetail2 = ({ auctionItem }) => {
   const htmlEntities = new Html5Entities();

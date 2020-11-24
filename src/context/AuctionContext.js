@@ -31,6 +31,7 @@ export const AuctionStore = (props) => {
     loading: false,
     error: null,
     isFilterDrawerOpen: false,
+    where: "",
   };
 
   const initialAuctionDetail = {
@@ -173,6 +174,7 @@ export const AuctionStore = (props) => {
           ...auctionList,
           loading: false,
           auctionList: response.data.response,
+          where: myWhere,
         });
       })
       .catch((error) => {

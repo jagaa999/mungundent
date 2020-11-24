@@ -46,7 +46,7 @@ export const AutozarStore = (props) => {
   };
   const initialStateAutozarDetail = {
     loadParams: {
-      systemmetagroupid: "",
+      systemmetagroupid: "1605592797379",
       showquery: "0",
       ignorepermission: "1",
       paging: {
@@ -138,7 +138,7 @@ export const AutozarStore = (props) => {
         parameters: {
           ...autozarDetail.loadParams,
           criteria: {
-            id: {
+            autozarid: {
               0: {
                 operator: "=",
                 operand: id,
@@ -158,44 +158,44 @@ export const AutozarStore = (props) => {
       .then((response) => {
         // console.log("MOTOCAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
-        // console.log("MOTOCAR DETAIL myArray------------> ", myArray);
-        myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
-        myArray.caryearimport = moment(myArray.caryearimport);
-        myArray.mglengine2disp = myArray.mglengine2disp * 1;
-        myArray.carmilageimport = myArray.carmilageimport * 1;
-        myArray.carmilagenow = myArray.carmilagenow * 1;
-        myArray.mgldoor = myArray.mgldoor * 1;
-        myArray.mglseat = myArray.mglseat * 1;
-        myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
-        myArray.isactive = myArray.isactive === "1" ? true : false;
-        myArray.imagemainFileList = [];
-        myArray.imagemainFileList =
-          myArray.imagemain !== undefined &&
-          (myArray.imagemain !== ""
-            ? [
-                {
-                  uid: "-1",
-                  name: "Тодорхойгүй",
-                  status: "done",
-                  url: myArray.imagemain || "",
-                  thumbUrl: myArray.imagemain || "",
-                  response: { url: myArray.imagemain || "" },
-                },
-              ]
-            : []);
-        myArray.imageotherFileList = [];
-        myArray.imageotherFileList =
-          myArray.imageother !== undefined &&
-          (myArray.imageother !== ""
-            ? JSON.parse(myArray.imageother).map((item, index) => ({
-                uid: index - 1,
-                name: item.replace(/^.*[\\\/]/, ""),
-                status: "done",
-                url: item || "",
-                thumbUrl: item || "",
-                response: { url: item || "" },
-              }))
-            : []);
+        console.log("MOTOCAR DETAIL myArray------------> ", myArray);
+        // myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
+        // myArray.caryearimport = moment(myArray.caryearimport);
+        // myArray.mglengine2disp = myArray.mglengine2disp * 1;
+        // myArray.carmilageimport = myArray.carmilageimport * 1;
+        // myArray.carmilagenow = myArray.carmilagenow * 1;
+        // myArray.mgldoor = myArray.mgldoor * 1;
+        // myArray.mglseat = myArray.mglseat * 1;
+        // myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
+        // myArray.isactive = myArray.isactive === "1" ? true : false;
+        // myArray.imagemainFileList = [];
+        // myArray.imagemainFileList =
+        //   myArray.imagemain !== undefined &&
+        //   (myArray.imagemain !== ""
+        //     ? [
+        //         {
+        //           uid: "-1",
+        //           name: "Тодорхойгүй",
+        //           status: "done",
+        //           url: myArray.imagemain || "",
+        //           thumbUrl: myArray.imagemain || "",
+        //           response: { url: myArray.imagemain || "" },
+        //         },
+        //       ]
+        //     : []);
+        // myArray.imageotherFileList = [];
+        // myArray.imageotherFileList =
+        //   myArray.imageother !== undefined &&
+        //   (myArray.imageother !== ""
+        //     ? JSON.parse(myArray.imageother).map((item, index) => ({
+        //         uid: index - 1,
+        //         name: item.replace(/^.*[\\\/]/, ""),
+        //         status: "done",
+        //         url: item || "",
+        //         thumbUrl: item || "",
+        //         response: { url: item || "" },
+        //       }))
+        //     : []);
 
         // console.log("MOTOCAR DETAIL------------> ", myArray);
 

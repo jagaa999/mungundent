@@ -11,7 +11,7 @@ const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_2091278_dap4xjf6m1.js",
+  scriptUrl: "//at.alicdn.com/t/font_2091278_4eyv5p1ov74.js",
 });
 
 const HorizontalNav = () => {
@@ -100,7 +100,7 @@ const HorizontalNav = () => {
           <Link to="/motocar" className="motoHeaderMenuItemLink">
             <Tooltip title="Motocar">
               <span className="gx-d-block gx-d-lg-none">
-                <IconFont type="iconmember" />
+                <IconFont type="iconmotocar" />
               </span>
             </Tooltip>
             <div className="gx-d-none gx-d-lg-block">Motocar</div>
@@ -116,7 +116,7 @@ const HorizontalNav = () => {
           <Link to="/autozar" className="motoHeaderMenuItemLink">
             <Tooltip title="Автозар">
               <span className="gx-d-block gx-d-lg-none">
-                <IconFont type="iconmember" />
+                <IconFont type="iconautozar" />
               </span>
             </Tooltip>
             <div className="gx-d-none gx-d-lg-block">Автозар</div>

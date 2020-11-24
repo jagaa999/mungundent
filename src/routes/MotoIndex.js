@@ -87,6 +87,9 @@ const MotocarForm = asyncComponent(() => {
   return import("./moto/motocar/motocarFormPage");
 });
 
+const AutozarDetail = asyncComponent(() => {
+  return import("./moto/autozar/autozarDetailPage");
+});
 const AutozarList = asyncComponent(() => {
   return import("./moto/autozar/autozarListPage");
 });
@@ -100,6 +103,10 @@ const ToolFuelPage = asyncComponent(() => {
 });
 const ToolConverterPage = asyncComponent(() => {
   return import("./moto/tool/toolConverterPage");
+});
+
+const TopAuctionPage = asyncComponent(() => {
+  return import("./moto/top/topAuctionPage");
 });
 
 const HomeIndex = asyncComponent(() => {
@@ -155,7 +162,6 @@ const App = ({ match }) => (
           <ProductList />
         </ProductStore>
       </Route>
-
       {/*
          #    #     # ####### ####### #######    #    ######  
         # #   #     #    #    #     #      #    # #   #     # 
@@ -164,6 +170,18 @@ const App = ({ match }) => (
       ####### #     #    #    #     #   #     ####### #   #   
       #     # #     #    #    #     #  #      #     # #    #  
       #     #  #####     #    ####### ####### #     # #     #  */}
+      <Route
+        path={[
+          "/autozar/:autozarId",
+          "/autozar/:autozarId/detail",
+          "/autozar/detail/:autozarId",
+          "/autozarlist/:autozarId",
+        ]}
+      >
+        <AutozarStore>
+          <AutozarDetail />
+        </AutozarStore>
+      </Route>
       {/* <Route
         path={[
           "/autozar/edit/:autozarId",
@@ -333,6 +351,18 @@ const App = ({ match }) => (
       </Route>
       <Route path={["/tool/converter", "/tool/convert"]}>
         <ToolConverterPage />
+      </Route>
+      {/*
+      ####### ####### ######  
+          #    #     # #     # 
+          #    #     # #     # 
+          #    #     # ######  
+          #    #     # #       
+          #    #     # #       
+          #    ####### #       
+      */}
+      <Route path={["/top/auction", "/top/auctionlist"]}>
+        <TopAuctionPage />
       </Route>
       {/*
       ####### ####### #     # ####### ######  

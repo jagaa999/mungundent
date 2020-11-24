@@ -9,6 +9,16 @@ import MemberContext from "context/MemberContext";
 import { footerText } from "util/config";
 const { Footer } = Layout;
 
+const topMenu = (
+  <Menu>
+    <Menu.Item key="topAuction">
+      <Link to="/top/auction">
+        Аукшины топууд <Badge status="success" className="gx-ml-2" />
+      </Link>
+    </Menu.Item>
+  </Menu>
+);
+
 const toolMenu = (
   <Menu>
     <Menu.Item key="1">
@@ -27,10 +37,6 @@ const toolMenu = (
   </Menu>
 );
 
-// function handleMenuClick(e) {
-//   message.info("Click on toolMenu item.");
-// }
-
 const MotoFooter = () => {
   const memberContext = useContext(MemberContext);
 
@@ -43,29 +49,26 @@ const MotoFooter = () => {
               <div className="">{footerText}</div>
             </div>
             <ul className="gx-ml-auto gx-header-notifications">
-              {memberContext.state.isLogin ? (
-                <li className="gx-msg">
-                  <Popover
-                    overlayClassName="gx-popover-horizantal"
-                    placement="bottomRight"
-                    content={<MemberItems />}
-                    trigger="click"
-                  >
-                    <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
-                      Таны цүнх
-                      {/* <span className="gx-status gx-status-rtl gx-small gx-orange" /> */}
-                    </span>
-                  </Popover>
-                </li>
-              ) : (
-                ""
-              )}
               <li className="gx-msg">
                 <Dropdown
                   overlayClassName="gx-popover-horizantal"
-                  // placement="bottomRight"
+                  placement="topRight"
+                  overlay={topMenu}
+                  trigger="click"
+                >
+                  <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
+                    Шилдгүүд
+                    <span className="gx-status gx-status-rtl gx-small gx-success" />
+                  </span>
+                </Dropdown>
+              </li>
+
+              <li className="gx-msg">
+                <Dropdown
+                  overlayClassName="gx-popover-horizantal"
+                  placement="topRight"
                   overlay={toolMenu}
-                  trigger={["click"]}
+                  trigger="click"
                 >
                   <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
                     Багаж

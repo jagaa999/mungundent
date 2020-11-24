@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { isEmpty } from "lodash";
 import { Button, Input, Checkbox, Divider, Select, Radio } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
+import { Html5Entities } from "html-entities";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -15,6 +16,7 @@ const { Search } = Input;
 const { Option } = Select;
 
 const AuctionFilter = (props) => {
+  const htmlEntities = new Html5Entities();
   const auctionListContext = useContext(AuctionContext);
   const filterContext = useContext(FilterContext);
 
@@ -68,7 +70,7 @@ const AuctionFilter = (props) => {
       setCaryearList({ ...caryearList, loading: true });
       setCaryearList({
         caryearList: await loadDataviewAuction({
-          sql: `select year from main where model_id='${filterContext.state.filterList?.model_id}' group by year order by year`,
+          sql: `select year from main ${auctionListContext.auctionList.where} group by year order by year`,
         }),
         loading: false,
       });
@@ -78,7 +80,7 @@ const AuctionFilter = (props) => {
       setFrameList({ ...frameList, loading: true });
       setFrameList({
         frameList: await loadDataviewAuction({
-          sql: `select kuzov from main where model_id='${filterContext.state.filterList?.model_id}' group by kuzov order by kuzov`,
+          sql: `select kuzov from main ${auctionListContext.auctionList.where} group by kuzov order by kuzov`,
         }),
         loading: false,
       });
@@ -88,7 +90,7 @@ const AuctionFilter = (props) => {
       setRateList({ ...rateList, loading: true });
       setRateList({
         rateList: await loadDataviewAuction({
-          sql: `select rate from main where model_id='${filterContext.state.filterList?.model_id}' group by rate order by rate`,
+          sql: `select rate from main ${auctionListContext.auctionList.where} group by rate order by rate`,
         }),
         loading: false,
       });
@@ -193,8 +195,8 @@ const AuctionFilter = (props) => {
           showSearch
           allowClear
           placeholder="Марк"
-          optionFilterProp="children"
           onChange={(e) => prepareURL2(e, "model_id")} //нэмэлт параметр дамжуулж байгаа юм.
+          optionFilterProp="children"
           filterOption={(input, option) => {
             if (option.value) {
               return (
@@ -226,6 +228,15 @@ const AuctionFilter = (props) => {
           allowClear
           placeholder="Доод"
           onChange={(e) => prepareURL2(e, "yearstart")} //нэмэлт параметр дамжуулж байгаа юм.
+          optionFilterProp="children"
+          showSearch
+          filterOption={(input, option) => {
+            if (option.value) {
+              return option.children.indexOf(input) >= 0;
+            } else {
+              return false;
+            }
+          }}
           defaultValue={filterContext.state.filterList?.yearstart || undefined}
         >
           {caryearList.caryearList.map((item, index) => (
@@ -241,6 +252,17 @@ const AuctionFilter = (props) => {
           allowClear
           placeholder="Дээд"
           onChange={(e) => prepareURL2(e, "yearend")} //нэмэлт параметр дамжуулж байгаа юм.
+          optionFilterProp="children"
+          showSearch
+          filterOption={(input, option) => {
+            if (option.value) {
+              return (
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            } else {
+              return false;
+            }
+          }}
           defaultValue={filterContext.state.filterList?.yearend || undefined}
         >
           {caryearList.caryearList.map((item, index) => (
@@ -251,16 +273,16 @@ const AuctionFilter = (props) => {
         </Select>
 
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
-          Цуврал Index
+          Арал
         </h6>
         <Select
           className="moto-select-firm gx-w-100"
           loading={frameList.loading}
-          showSearch
           allowClear
-          placeholder="Цуврал Index"
-          optionFilterProp="children"
+          placeholder="Арал"
           onChange={(e) => prepareURL2(e, "kuzov")} //нэмэлт параметр дамжуулж байгаа юм.
+          optionFilterProp="children"
+          showSearch
           filterOption={(input, option) => {
             if (option.value) {
               return (
@@ -273,8 +295,8 @@ const AuctionFilter = (props) => {
           defaultValue={filterContext.state.filterList?.kuzov || undefined}
         >
           {frameList.frameList.map((item, index) => (
-            <Option key={index} value={item.KUZOV}>
-              <span dangerouslySetInnerHTML={{ __html: item.KUZOV }} />
+            <Option key={index} value={htmlEntities.decode(item.KUZOV)}>
+              {htmlEntities.decode(item.KUZOV)}
             </Option>
           ))}
         </Select>
