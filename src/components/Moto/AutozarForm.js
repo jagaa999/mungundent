@@ -4,10 +4,10 @@ import React, { useState, useContext, useEffect } from "react";
 // import { Html5Entities } from "html-entities";
 // import toBoolean from "util/booleanFunction";
 
-import MotocarForm1General from "./MotocarForm1General";
-// import MotocarFormTech from "./MotocarFormTech";
-import MotocarFormThecar from "./MotocarFormThecar";
-import MotocarFormSpec from "./MotocarFormSpec";
+import AutozarForm1General from "./Autozar/AutozarForm1General";
+import AutozarForm1Autocar from "./Autozar/AutozarForm1Autocar";
+import AutozarForm1Autozar from "./Autozar/AutozarForm1Autozar";
+import AutozarFormSpec from "./Autozar/AutozarFormSpec";
 
 import {
   Button,
@@ -158,7 +158,10 @@ const AutozarForm = () => {
       title: "Ерөнхий",
     },
     {
-      title: "Үзүүлэлт",
+      title: "Машин",
+    },
+    {
+      title: "Автозар",
     },
     {
       title: "Бусад",
@@ -181,7 +184,7 @@ const AutozarForm = () => {
     console.log("AFTER SUBMIT --------- ");
     console.table(values);
 
-    autozarDetailContext.saveMotocarDetail(values);
+    // autozarDetailContext.saveMotocarDetail(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -240,33 +243,33 @@ const AutozarForm = () => {
         </Steps>
         <div className="gx-mt-5">
           <div className={currentStep !== 0 ? "gx-d-none" : ""}>
-            <MotocarForm1General
+            <AutozarForm1General form={form} mglFuelList={mglFuelList} />
+          </div>
+          <div className={currentStep !== 1 ? "gx-d-none" : ""}>
+            <AutozarForm1Autocar
               form={form}
               mglFirmList={mglFirmList}
               setMglFirmList={setMglFirmList}
               mglMarkList={mglMarkList}
               setMglMarkList={setMglMarkList}
               mglBodyList={mglBodyList}
-              mglFuelList={mglFuelList}
-            />
-          </div>
-          <div className={currentStep !== 1 ? "gx-d-none" : ""}>
-            <MotocarFormThecar
-              form={form}
+              countryList={countryList}
               techTranstypeList={techTranstypeList}
               techDriveList={techDriveList}
-              countryList={countryList}
             />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
-            <MotocarFormSpec
+            <AutozarForm1Autozar form={form} />
+          </div>
+          <div className={currentStep !== 3 ? "gx-d-none" : ""}>
+            <AutozarFormSpec
               form={form}
               imagemainFileList={autozarItem.imagemainFileList || []}
               imageotherFileList={autozarItem.imageotherFileList || []}
             />
           </div>
-          <div className={currentStep !== 3 ? "gx-d-none" : ""}>
-            {/* <MotocarFormTech form={form} /> */}
+          <div className={currentStep !== 4 ? "gx-d-none" : ""}>
+            {/* <AutozarFormTech form={form} /> */}
           </div>
         </div>
 

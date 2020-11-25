@@ -87,13 +87,13 @@ const AutozarDetail2General = ({ autozarItem }) => {
               <Descriptions.Item
                 label={<span className="gx-text-grey">Үйлдвэрлэсэн он</span>}
               >
-                {autozarItem.mglyearmanufactured}
+                {moment(autozarItem.mglyearmanufactured).format("YYYY")}
               </Descriptions.Item>
 
               <Descriptions.Item
                 label={<span className="gx-text-grey">Орж ирсэн он</span>}
               >
-                {autozarItem.mglyearimport}
+                {moment(autozarItem.mglyearimport).format("YYYY")}
               </Descriptions.Item>
 
               <Descriptions.Item
@@ -105,7 +105,7 @@ const AutozarDetail2General = ({ autozarItem }) => {
               <Descriptions.Item
                 label={<span className="gx-text-grey">Жолоо</span>}
               >
-                {autozarItem.mgldrivepos}
+                {autozarItem.mgldrivepos ? "Зөв" : "Буруу"}
               </Descriptions.Item>
             </Descriptions>
           </Col>

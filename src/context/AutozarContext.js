@@ -126,7 +126,7 @@ export const AutozarStore = (props) => {
   // ######  #######    #    #     # ### #######
 
   const loadAutozarDetail = (id = 0) => {
-    console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
+    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
 
     const myParamsAutozarDetail = {
       request: {
@@ -156,18 +156,18 @@ export const AutozarStore = (props) => {
     axios
       .post("", myParamsAutozarDetail)
       .then((response) => {
-        console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
+        // console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
-        console.log("AUTOZAR DETAIL myArray------------> ", myArray);
-        // myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
-        // myArray.caryearimport = moment(myArray.caryearimport);
-        // myArray.mglengine2disp = myArray.mglengine2disp * 1;
+        // console.log("AUTOZAR DETAIL myArray------------> ", myArray);
+        myArray.mglyearmanufactured = moment(myArray.mglyearmanufactured);
+        myArray.mglyearimport = moment(myArray.mglyearimport);
+        myArray.mglengine2disp = myArray.mglengine2disp * 1;
         // myArray.carmilageimport = myArray.carmilageimport * 1;
-        // myArray.carmilagenow = myArray.carmilagenow * 1;
-        // myArray.mgldoor = myArray.mgldoor * 1;
-        // myArray.mglseat = myArray.mglseat * 1;
-        // myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
-        // myArray.isactive = myArray.isactive === "1" ? true : false;
+        myArray.autozarmilage = myArray.autozarmilage * 1;
+        myArray.mgldoor = myArray.mgldoor * 1;
+        myArray.mglseat = myArray.mglseat * 1;
+        myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
+        myArray.isactive = myArray.isactive === "1" ? true : false;
         // myArray.imagemainFileList = [];
         // myArray.imagemainFileList =
         //   myArray.imagemain !== undefined &&
