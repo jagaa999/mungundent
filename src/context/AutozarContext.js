@@ -126,7 +126,7 @@ export const AutozarStore = (props) => {
   // ######  #######    #    #     # ### #######
 
   const loadAutozarDetail = (id = 0) => {
-    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
+    console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
 
     const myParamsAutozarDetail = {
       request: {
@@ -156,9 +156,9 @@ export const AutozarStore = (props) => {
     axios
       .post("", myParamsAutozarDetail)
       .then((response) => {
-        // console.log("MOTOCAR DETAIL RESPONSE------------> ", response);
+        console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
-        console.log("MOTOCAR DETAIL myArray------------> ", myArray);
+        console.log("AUTOZAR DETAIL myArray------------> ", myArray);
         // myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
         // myArray.caryearimport = moment(myArray.caryearimport);
         // myArray.mglengine2disp = myArray.mglengine2disp * 1;

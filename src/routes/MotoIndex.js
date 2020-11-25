@@ -94,9 +94,9 @@ const AutozarList = asyncComponent(() => {
   return import("./moto/autozar/autozarListPage");
 });
 
-// const AutozarForm = asyncComponent(() => {
-//   return import("./moto/autozar/autozarFormPage");
-// });
+const AutozarForm = asyncComponent(() => {
+  return import("./moto/autozar/autozarFormPage");
+});
 
 const ToolFuelPage = asyncComponent(() => {
   return import("./moto/tool/toolFuelPage");
@@ -172,6 +172,18 @@ const App = ({ match }) => (
       #     #  #####     #    ####### ####### #     # #     #  */}
       <Route
         path={[
+          "/autozar/edit/:autozarId",
+          "/autozar/:autozarId/edit",
+          "/autozar/insert",
+          "/autozar/add",
+        ]}
+      >
+        <AutozarStore>
+          <AutozarForm />
+        </AutozarStore>
+      </Route>
+      <Route
+        path={[
           "/autozar/:autozarId",
           "/autozar/:autozarId/detail",
           "/autozar/detail/:autozarId",
@@ -182,18 +194,6 @@ const App = ({ match }) => (
           <AutozarDetail />
         </AutozarStore>
       </Route>
-      {/* <Route
-        path={[
-          "/autozar/edit/:autozarId",
-          "/autozar/:autozarId/edit",
-          "/autozar/insert",
-          "/autozar/add",
-        ]}
-      >
-        <AutozarStore>
-          <AutozarForm />
-        </AutozarStore>
-      </Route> */}
       <Route path={["/autozar", "/autozarlist"]}>
         <AutozarStore>
           <AutozarList />

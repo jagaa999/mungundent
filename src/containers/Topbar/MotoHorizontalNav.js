@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 
 import { Menu, Avatar, Tooltip } from "antd";
 import { MailOutlined, CoffeeOutlined } from "@ant-design/icons";
-import { createFromIconfontCN } from "@ant-design/icons";
 import IntlMessages from "../../util/IntlMessages";
 import FilterContext from "context/FilterContext";
+import MyIcon from "../../util/iconFunction";
 
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
-
-const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_2091278_4eyv5p1ov74.js",
-});
 
 const HorizontalNav = () => {
   const filterContext = useContext(FilterContext);
@@ -33,7 +29,7 @@ const HorizontalNav = () => {
         <Link to="/auction" className="motoHeaderMenuItemLink">
           <Tooltip title="Япон аукшин">
             <span className="gx-d-block gx-d-lg-none">
-              <IconFont type="iconauction" />
+              <MyIcon type="iconauction" />
             </span>
           </Tooltip>
           <div className="gx-d-none gx-d-lg-block">Аукшин</div>
@@ -44,7 +40,7 @@ const HorizontalNav = () => {
         <Link to="/news" className="motoHeaderMenuItemLink">
           <Tooltip title="Нийтлэл">
             <span className="gx-d-block gx-d-lg-none">
-              <IconFont type="iconnews" />
+              <MyIcon type="iconnews" />
             </span>
           </Tooltip>
           <div className="gx-d-none gx-d-lg-block">Нийтлэл</div>
@@ -55,7 +51,7 @@ const HorizontalNav = () => {
         <Link to="/carcatalog" className="motoHeaderMenuItemLink">
           <Tooltip title="Каталог">
             <span className="gx-d-block gx-d-lg-none">
-              <IconFont type="iconcarcatalog" />
+              <MyIcon type="iconcarcatalog" />
             </span>
           </Tooltip>
           <div className="gx-d-none gx-d-lg-block">Каталог</div>
@@ -69,7 +65,7 @@ const HorizontalNav = () => {
         <Link to="/product" className="motoHeaderMenuItemLink">
           <Tooltip title="Дэлгүүр">
             <span className="gx-d-block gx-d-lg-none">
-              <IconFont type="iconstore" />
+              <MyIcon type="iconstore" />
             </span>
           </Tooltip>
           <div className="gx-d-none gx-d-lg-block">Дэлгүүр</div>
@@ -84,7 +80,7 @@ const HorizontalNav = () => {
           <Link to="/member" className="motoHeaderMenuItemLink">
             <Tooltip title="Гишүүн">
               <span className="gx-d-block gx-d-lg-none">
-                <IconFont type="iconmember" />
+                <MyIcon type="iconmember" />
               </span>
             </Tooltip>
             <div className="gx-d-none gx-d-lg-block">Гишүүн</div>
@@ -100,7 +96,7 @@ const HorizontalNav = () => {
           <Link to="/motocar" className="motoHeaderMenuItemLink">
             <Tooltip title="Motocar">
               <span className="gx-d-block gx-d-lg-none">
-                <IconFont type="iconmotocar" />
+                <MyIcon type="iconmotocar" />
               </span>
             </Tooltip>
             <div className="gx-d-none gx-d-lg-block">Motocar</div>
@@ -116,7 +112,7 @@ const HorizontalNav = () => {
           <Link to="/autozar" className="motoHeaderMenuItemLink">
             <Tooltip title="Автозар">
               <span className="gx-d-block gx-d-lg-none">
-                <IconFont type="iconautozar" />
+                <MyIcon type="iconcar2" />
               </span>
             </Tooltip>
             <div className="gx-d-none gx-d-lg-block">Автозар</div>

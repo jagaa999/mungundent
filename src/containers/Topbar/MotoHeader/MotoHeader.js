@@ -1,37 +1,17 @@
 import React, { useState, useContext } from "react";
 
 import MemberContext from "context/MemberContext";
-import {
-  Button,
-  Dropdown,
-  Layout,
-  Menu,
-  message,
-  Popover,
-  Tooltip,
-} from "antd";
-import Icon from "@ant-design/icons";
-import { createFromIconfontCN } from "@ant-design/icons";
+import { Layout, Menu, message, Popover, Tooltip } from "antd";
+import { Link } from "react-router-dom";
 
-import { connect, useDispatch, useSelector } from "react-redux";
-import CustomScrollbars from "util/CustomScrollbars";
-import languageData from "../languageData";
-import SearchBox from "components/SearchBox";
 import MenuMember from "components/Moto/Menu/MenuMember";
 import AppNotification from "components/AppNotification";
 import MemberItems from "components/Moto/Member/MemberItems/MemberItems";
 import MailNotification from "components/MailNotification";
 import MotoHorizontalNav from "../MotoHorizontalNav";
-import { Link } from "react-router-dom";
-import {
-  switchLanguage,
-  toggleCollapsedSideNav,
-} from "../../../appRedux/actions/Setting";
+import MyIcon from "util/iconFunction";
 
 const { Header } = Layout;
-const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_2091278_6cuyfky257q.js",
-});
 
 const menu = (
   <Menu onClick={handleMenuClick}>
@@ -47,8 +27,6 @@ function handleMenuClick(e) {
 
 const MotoHeader = () => {
   const memberContext = useContext(MemberContext);
-
-  const dispatch = useDispatch();
 
   const [searchText, setSearchText] = useState("");
   // const locale = useSelector(({ settings }) => settings.locale);
@@ -112,7 +90,7 @@ const MotoHeader = () => {
             <Link to="/" className="gx-d-block  gx-pointer gx-mr-xs-5 gx-logo">
               <Tooltip title="Нүүр хуудас">
                 <span className="gx-d-block gx-d-lg-none">
-                  <IconFont type="iconhome" />
+                  <MyIcon type="iconhome" />
                 </span>
               </Tooltip>
               <div className="gx-d-none gx-d-lg-block">
@@ -242,14 +220,6 @@ const MotoHeader = () => {
   );
 };
 
-const mapStateToProps = ({ settings }) => {
-  const { locale, navCollapsed } = settings;
-  return { locale, navCollapsed };
-};
-
-export default connect(mapStateToProps, {
-  toggleCollapsedSideNav,
-  switchLanguage,
-})(MotoHeader);
+export default MotoHeader;
 
 // export default MotoHeader;

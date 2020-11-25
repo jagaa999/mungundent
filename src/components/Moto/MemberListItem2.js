@@ -1,24 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 
 import moment from "moment";
 import "moment/locale/mn";
 import toBoolean from "util/booleanFunction";
 import { Card, Badge, Avatar, Tag } from "antd";
-import {
-  MailOutlined,
-  MobileOutlined,
-  FacebookOutlined,
-  GoogleOutlined,
-  ArrowRightOutlined,
-  StarOutlined,
-} from "@ant-design/icons";
-
-import { createFromIconfontCN } from "@ant-design/icons";
-
-const IconFont = createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_2091278_q2vy66k6jxr.js",
-});
+import { MailOutlined, MobileOutlined, StarOutlined } from "@ant-design/icons";
+import MyIcon from "../../util/iconFunction";
 
 const { Meta } = Card;
 
@@ -35,7 +22,7 @@ const MemberListItem = ({ memberItem, isSpecial }) => {
           return (
             <Avatar
               style={{ backgroundColor: "#3b5998" }}
-              icon={<IconFont type="iconfacebook1" />}
+              icon={<MyIcon type="iconfacebook1" />}
             />
           );
 
@@ -43,7 +30,7 @@ const MemberListItem = ({ memberItem, isSpecial }) => {
           return (
             <Avatar
               style={{ backgroundColor: "#fbbc05" }}
-              icon={<IconFont type="icongoogle" />}
+              icon={<MyIcon type="icongoogle" />}
             />
           );
 

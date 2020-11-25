@@ -1,35 +1,36 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import MotocarForm from "components/Moto/MotocarForm";
-import MotocarContext from "context/MotocarContext";
+import AutozarForm from "components/Moto/AutozarForm";
+import AutozarContext from "context/AutozarContext";
 import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
-const MotocarFormPage = (props) => {
-  const { motocarId = 0 } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
-  const motocarDetailContext = useContext(MotocarContext);
+const AutozarFormPage = (props) => {
+  const { autozarId = 0 } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
+  const autozarDetailContext = useContext(AutozarContext);
   const memberContext = useContext(MemberContext);
+  console.log("ЭНД БАЙНА УУ", autozarId);
 
   useEffect(() => {
-    if (motocarId !== 0 && memberContext.state.memberCloudUserSysId !== 0) {
-      console.log("Машин байгаа юм байна.", motocarId);
-      motocarDetailContext.loadMotocarDetail(motocarId);
+    if (autozarId !== 0 && memberContext.state.memberCloudUserSysId !== 0) {
+      console.log("Машин байгаа юм байна.", autozarId);
+      autozarDetailContext.loadAutozarDetail(autozarId);
     } else {
       console.log("ХОосон объект");
-      motocarDetailContext.clearMotocarDetail();
+      autozarDetailContext.clearAutozarDetail();
     }
-  }, [motocarId, memberContext.state.memberCloudUserSysId]);
+  }, [autozarId, memberContext.state.memberCloudUserSysId]);
 
   return (
     <>
       {memberContext.state.isLogin ? (
         <>
-          {motocarDetailContext.motocarDetail.loading ? (
+          {autozarDetailContext.autozarDetail.loading ? (
             <LoadingDetail />
           ) : (
-            <MotocarForm motocarId={motocarId} />
+            <AutozarForm autozarId={autozarId} />
           )}
         </>
       ) : (
@@ -39,4 +40,4 @@ const MotocarFormPage = (props) => {
   );
 };
 
-export default MotocarFormPage;
+export default AutozarFormPage;
