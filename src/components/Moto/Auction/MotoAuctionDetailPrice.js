@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Card,
   InputNumber,
@@ -13,6 +13,7 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 
 import { calculateSpecialTax } from "util/auctionFunction";
 import MotoAuctionDetailPriceInput from "./MotoAuctionDetailPriceInput";
+import GeneralDataContext from "context/GeneralDataContext";
 
 const giveInfo = (type, title, desc) => {
   notification[type]({
@@ -22,9 +23,15 @@ const giveInfo = (type, title, desc) => {
 };
 
 const MotoAuctionDetailPrice = ({ auctionItem }) => {
+  const generalDataContext = useContext(GeneralDataContext);
+
   // console.table(auctionItem);
-  const [yenRate, setYenRate] = useState(27.7);
-  const [usdRate, setUsdRate] = useState(2850);
+  const [yenRate, setYenRate] = useState(
+    generalDataContext.rateMoneyList.rateMoneyList?.JPY.rate || 27.5
+  );
+  const [usdRate, setUsdRate] = useState(
+    generalDataContext.rateMoneyList.rateMoneyList?.USD.rate || 2850
+  );
 
   const [isHybrid, setIsHybrid] = useState(false);
 

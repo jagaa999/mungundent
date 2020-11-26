@@ -7,7 +7,8 @@ import React, { useState, useContext, useEffect } from "react";
 import AutozarForm1General from "./Autozar/AutozarForm1General";
 import AutozarForm1Autocar from "./Autozar/AutozarForm1Autocar";
 import AutozarForm1Autozar from "./Autozar/AutozarForm1Autozar";
-import AutozarFormSpec from "./Autozar/AutozarFormSpec";
+import AutozarForm1Other from "./Autozar/AutozarForm1Other";
+import AutozarForm1Seller from "./Autozar/AutozarForm1Seller";
 
 import {
   Button,
@@ -90,6 +91,10 @@ const AutozarForm = () => {
     loading: false,
     countryList: [],
   });
+  const [conditionList, setConditionList] = useState({
+    loading: false,
+    conditionList: [],
+  });
 
   // * axios-оор ERP-аас дуудна.
   const callFunctionAsync = async () => {
@@ -147,6 +152,14 @@ const AutozarForm = () => {
       }),
       loading: false,
     });
+
+    setConditionList({ ...conditionList, loading: true });
+    setConditionList({
+      conditionList: await loadDataview({
+        systemmetagroupid: "1586958495924255",
+      }),
+      loading: false,
+    });
   };
 
   useEffect(() => {
@@ -165,6 +178,9 @@ const AutozarForm = () => {
     },
     {
       title: "Бусад",
+    },
+    {
+      title: "Борлуулагч",
     },
   ];
 
@@ -259,17 +275,17 @@ const AutozarForm = () => {
             />
           </div>
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
-            <AutozarForm1Autozar form={form} />
+            <AutozarForm1Autozar form={form} conditionList={conditionList} />
           </div>
           <div className={currentStep !== 3 ? "gx-d-none" : ""}>
-            <AutozarFormSpec
+            <AutozarForm1Other
               form={form}
               imagemainFileList={autozarItem.imagemainFileList || []}
               imageotherFileList={autozarItem.imageotherFileList || []}
             />
           </div>
           <div className={currentStep !== 4 ? "gx-d-none" : ""}>
-            {/* <AutozarFormTech form={form} /> */}
+            <AutozarForm1Seller form={form} />
           </div>
         </div>
 

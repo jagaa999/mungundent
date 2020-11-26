@@ -1,6 +1,6 @@
 {
-  "name": "moto-wieldy",
-  "version": "0.1.0",
+  "name": "moto-react",
+  "version": "0.0.9",
   "private": true,
   "dependencies": {
     "@amcharts/amcharts3-react": "^3.1.0",

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import moment from "moment";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 
-import { Card, Alert, Badge } from "antd";
+import { Card, Alert, Badge, Table } from "antd";
 
 import AuctionDetail2General from "./Auction/AuctionDetail2General";
 import AuctionDetail2Lot from "./Auction/AuctionDetail2Lot";
@@ -11,11 +11,19 @@ import MotoAuctionDetailPrice from "./Auction/MotoAuctionDetailPrice";
 import MotoAuctionSameCars from "./Auction/MotoAuctionSameCars";
 
 import AuctionContext from "context/AuctionContext";
+import GeneralDataContext from "context/GeneralDataContext";
 
 const AuctionDetail2 = () => {
   const auctionContext = useContext(AuctionContext);
   const auctionItem = auctionContext.auctionDetail.auctionDetail || {};
   const htmlEntities = new Html5Entities();
+  const generalDataContext = useContext(GeneralDataContext);
+
+  useEffect(() => {
+    generalDataContext.loadRateMoneyList();
+  }, []);
+
+  console.log("generaldata", generalDataContext.rateMoneyList);
 
   const [cardTabs, setCardTabs] = useState({
     key: "tab1",
@@ -53,19 +61,10 @@ const AuctionDetail2 = () => {
   };
 
   const onTabChange = (key, type) => {
-    // console.log(key, type);
     setCardTabs({ ...cardTabs, [type]: key });
   };
 
-  // console.log("auctionItem", auctionItem);
-
   if (Object.keys(auctionItem).length !== 0) {
-    const myImages = auctionItem.IMAGES.split("#");
-
-    // MARKA_ID
-    // MODEL_ID
-    // AVG_STRING
-
     return (
       <div
         key={auctionItem.auctionid}
@@ -91,6 +90,45 @@ const AuctionDetail2 = () => {
           }}
         >
           {contentList[cardTabs.key]}
+        </Card>
+
+        <Card
+          className="gx-order-history"
+          title="Албан ханш"
+          extra={
+            <span className=" gx-mb-0">
+              Огноо:{" "}
+              {moment(
+                generalDataContext.rateMoneyList.rateMoneyList[1]?.bankdate
+              ).format("MM-DD")}
+            </span>
+          }
+        >
+          <div className="gx-table-responsive">
+            <Table
+              className="gx-table-no-bordered"
+              columns={[
+                {
+                  title: "Валют",
+                  dataIndex: "currencycode",
+                },
+                {
+                  title: "Нэршил",
+                  dataIndex: "currencyname",
+                },
+                {
+                  title: "Ханш",
+                  dataIndex: "rate",
+                },
+              ]}
+              dataSource={Object.values(
+                generalDataContext.rateMoneyList.rateMoneyList
+              )}
+              pagination={false}
+              bordered={false}
+              size="small"
+            />
+          </div>
         </Card>
 
         <Alert

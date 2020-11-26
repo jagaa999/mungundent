@@ -108,35 +108,23 @@ function checkValidServiceWorker(swUrl) {
     });
 }
 
-// export function unregister() {
-//   console.log("1-р");
-//   // if ("serviceWorker" in navigator) {
-//   //   console.log("2-р");
-//   //   navigator.serviceWorker.ready.then((registration) => {
-//   //     console.log("3-р");
-//   //     registration.unregister();
-//   //     console.log("4-р");
-//   //   });
-//   // }
-
-//   navigator.serviceWorker.getRegistrations().then(function (registrations) {
-//     console.log("2-р");
-//     for (let registration of registrations) {
-//       console.log("3-р");
-//       registration.unregister();
-//     }
-//     console.log("4-р");
-//   });
-// }
-
 export function unregister() {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      registrations.forEach((registration) => {
-        if (registration?.active?.scriptURL.includes("service-worker.js")) {
-          registration.unregister();
-        }
-      });
-    });
-  }
+  console.log("1-р");
+  // if ("serviceWorker" in navigator) {
+  //   console.log("2-р");
+  //   navigator.serviceWorker.ready.then((registration) => {
+  //     console.log("3-р");
+  //     registration.unregister();
+  //     console.log("4-р");
+  //   });
+  // }
+
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    console.log("2-р");
+    for (let registration of registrations) {
+      console.log("3-р");
+      registration.unregister();
+    }
+    console.log("4-р");
+  });
 }

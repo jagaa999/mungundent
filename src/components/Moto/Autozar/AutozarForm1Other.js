@@ -33,38 +33,8 @@ const MotocarFormSpec = ({ form, imagemainFileList, imageotherFileList }) => {
           // onChange={titleOnChange}
         />
       </Form.Item>
-
-      <Form.Item
-        name="isactive"
-        label="Идэвхтэй?"
-        valuePropName="checked"
-        // initialValue={true}
-      >
-        <Switch />
-      </Form.Item>
     </>
   );
 };
 
 export default MotocarFormSpec;
-
-{
-  /* <Form.Item name="engine2PowerHp" label="Морины хүч">
-          <Input />
-        </Form.Item> */
-}
-{
-  /* <Form.Item name="engineTurboid" label="Турбо">
-          <Input />
-        </Form.Item> */
-}
-{
-  /* <Form.Item name="engine2Type" label="engine2Type">
-          <Input />
-        </Form.Item> */
-}
-{
-  /* <Form.Item name="vehicletype" label="vehicletype">
-          <Input />
-        </Form.Item> */
-}

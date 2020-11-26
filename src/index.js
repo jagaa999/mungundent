@@ -1,13 +1,11 @@
-import { AppContainer } from "react-hot-loader";
 import React from "react";
-
-// https://www.npmjs.com/package/react-snap
 import ReactDOM from "react-dom";
-// import { hydrate, render } from "react-dom";
 
 import NextApp from "./NextApp";
-import registerServiceWorker from "./registerServiceWorker";
+// import registerServiceWorker from "./registerServiceWorker";
+import { register, unregister } from "./registerServiceWorker";
 // Add this import:
+import { AppContainer } from "react-hot-loader";
 
 // Wrap the rendering in a function:
 const render = (Component) => {
@@ -20,40 +18,17 @@ const render = (Component) => {
   );
 };
 
-// // https://www.npmjs.com/package/react-snap
-// const rootElement = document.getElementById("root");
-
-// const myRender = (Component) => {
-//   if (rootElement.hasChildNodes()) {
-//     hydrate(
-//       <AppContainer>
-//         <Component />
-//       </AppContainer>,
-//       rootElement
-//     );
-//   } else {
-//     render(
-//       <AppContainer>
-//         <Component />
-//       </AppContainer>,
-//       rootElement
-//     );
-//   }
-// };
-
 // Do this once
-registerServiceWorker();
+// registerServiceWorker();
+// registerServiceWorker.unregister();
+unregister();
 
 // Render once
-// myRender(NextApp);
 render(NextApp);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
   module.hot.accept("./NextApp", () => {
-    // myRender(NextApp);
     render(NextApp);
   });
 }
-
-// Бас нэг туршилт

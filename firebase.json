@@ -6,8 +6,14 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "rewrites": [
+      {
+          "source": "**",
+          "destination": "/index.html"
+      }
+    ],
     "headers": [
-      {"source": "/registerServiceWorker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
+      {"source": "/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
     ]
   },
   "functions": {

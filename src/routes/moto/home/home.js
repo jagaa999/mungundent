@@ -125,7 +125,6 @@ const HomePage = () => {
           <MemberBox newMembers={newMembers} />
         </Col>
       </Row> */}
-
       <Row className="gx-d-flex">
         <Col
           md={{ span: 18, offset: 3 }}
@@ -135,9 +134,7 @@ const HomePage = () => {
           <MemberBox newMembers={newMembers} />
         </Col>
       </Row>
-
       <Divider className="gx-my-3" />
-
       <Row className="gx-d-flex gx-mt-5">
         <Col
           xs={{ span: 20, offset: 2 }}
@@ -147,7 +144,6 @@ const HomePage = () => {
           <HomeBanner />
         </Col>
       </Row>
-
       <Row className="gx-d-flex gx-mt-5">
         <Col
           xs={{ span: 20, offset: 2 }}
@@ -158,9 +154,7 @@ const HomePage = () => {
           {/* <HomeNewsItems newsItems={newsItems} /> */}
         </Col>
       </Row>
-
       {/* <Divider className="gx-my-3" /> */}
-
       <Row className="gx-d-flex gx-mt-4">
         <Col
           xs={{ span: 20, offset: 2 }}
@@ -170,9 +164,8 @@ const HomePage = () => {
           <HomeAuctionItems2 auctionItems={auctionItems} />
         </Col>
       </Row>
-
       <Divider orientation="center" plain={true} className="gx-my-5"></Divider>
-
+      2020.11.27 01:00
       {/* <Row className="gx-d-flex  gx-d-none gx-d-sm-block">
         <Col
           xl={24}
