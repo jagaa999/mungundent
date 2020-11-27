@@ -165,7 +165,7 @@ const HomePage = () => {
         </Col>
       </Row>
       <Divider orientation="center" plain={true} className="gx-my-5"></Divider>
-      2020.11.27 01:00
+      2020.11.27 17:00
       {/* <Row className="gx-d-flex  gx-d-none gx-d-sm-block">
         <Col
           xl={24}

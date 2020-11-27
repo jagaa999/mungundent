@@ -1,68 +1,59 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 
-import {
-  Card,
-  Button,
-  message,
-  Divider,
-  Form,
-  Input,
-  InputNumber,
-  Select,
-  Radio,
-  Row,
-  Col,
-  Tabs,
-  Alert,
-  Badge,
-  Spin,
-  notification,
-} from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
-import WidgetHeader from "components/WidgetHeader/index";
-import MotoSmartHomeCard2 from "components/Widgets/MotoSmartHomeCard2";
+import { Row, Col, Tabs } from "antd";
+import MotoSmartHomeCard2 from "../Widgets/MotoSmartHomeCard2";
+import MotoSmartHomeCard3 from "../Widgets/MotoSmartHomeCard3";
 
 const sedanList = [
   {
-    image: "",
+    image: "crown.jpg",
     desc: "Toyota Crown",
+    link: "/auction?marka_id=1&model_id=60&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "coroallaxio.jpg",
     desc: "Toyota Corolla",
+    link: "/auction?marka_id=1&model_id=41&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "camry.jpg",
     desc: "Toyota Camry",
+    link: "/auction?marka_id=1&model_id=25&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "sai.jpg",
     desc: "Toyota Sai",
+    link: "/auction?marka_id=1&model_id=6356&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "allion.jpg",
     desc: "Toyota Allion",
+    link: "/auction?marka_id=1&model_id=3&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "premio.jpg",
     desc: "Toyota Premio",
+    link: "/auction?marka_id=1&model_id=55&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
-    desc: "Toyota Mark",
+    image: "markx.jpg",
+    desc: "Toyota Mark X",
+    link: "/auction?marka_id=1&model_id=122&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
-    desc: "Subaru Impreza",
+    image: "imprezag4.jpg",
+    desc: "Subaru Impreza G4",
+    link: "/auction?marka_id=7&model_id=9997&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
-    desc: "Nissan Tiida",
+    image: "teana.jpg",
+    desc: "Nissan Teana",
+    link: "/auction?marka_id=2&model_id=339&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "fuga.jpg",
     desc: "Nissan Fuga",
+    link: "/auction?marka_id=2&model_id=257&yearstart=2011&yearend=2014",
   },
 ];
 
@@ -71,44 +62,54 @@ const sedanList = [
 
 const hatchbackList = [
   {
-    image: "",
-    desc: "Toyota Prius 20",
+    image: "prius.jpg",
+    desc: "Toyota Prius",
+    link: "/auction?marka_id=1&model_id=139&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
-    desc: "Toyota Prius 30",
+    image: "priusalpha.jpg",
+    desc: "Toyota Prius Alpha",
+    link: "/auction?marka_id=1&model_id=9245&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "insihgt.jpg",
     desc: "Honda Insight",
+    link: "/auction?marka_id=5&model_id=587&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "aqua.jpg",
     desc: "Toyota Aqua",
+    link: "/auction?marka_id=1&model_id=9580&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "leaf.jpg",
     desc: "Nissan Leaf",
+    link: "/auction?marka_id=2&model_id=9209&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "fit.jpg",
     desc: "Honda Fit",
+    link: "/auction?marka_id=5&model_id=582&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "vitz.jpg",
     desc: "Toyota Vitz",
+    link: "/auction?marka_id=1&model_id=205&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "march.jpg",
     desc: "Nissan March",
+    link: "/auction?marka_id=2&model_id=284&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
-    desc: "Subaru Impreza (hatchback)",
+    image: "impreza.jpg",
+    desc: "Subaru Impreza",
+    link: "/auction?marka_id=7&model_id=705&yearstart=2011&yearend=2014",
   },
   {
-    image: "",
+    image: "note.jpg",
     desc: "Nissan Note",
+    link: "/auction?marka_id=2&model_id=296&yearstart=2011&yearend=2014",
   },
 ];
 
@@ -212,9 +213,9 @@ const TopAuction = () => {
     <>
       <h2>Монголчуудын нийтлэг авдаг автомашинууд</h2>
 
-      <Tabs defaultActiveKey="1" centered className="gx-mt-5">
+      <Tabs defaultActiveKey="2" centered className="gx-mt-5">
         <Tabs.TabPane tab="Сэдан" key="1">
-          <Row className="gx-d-flex">
+          <Row className="gx-d-flex gx-mt-5">
             {sedanList.map((item, index) => (
               <Col
                 key={index}
@@ -225,13 +226,13 @@ const TopAuction = () => {
                 xs={12}
                 className="gx-mb-5"
               >
-                <MotoSmartHomeCard2 item={item} />
+                <MotoSmartHomeCard3 item={item} />
               </Col>
             ))}
           </Row>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Хэчбэк" key="2">
-          <Row className="gx-d-flex">
+          <Row className="gx-d-flex gx-mt-5">
             {hatchbackList.map((item, index) => (
               <Col
                 key={index}
@@ -242,13 +243,13 @@ const TopAuction = () => {
                 xs={12}
                 className="gx-mb-5"
               >
-                <MotoSmartHomeCard2 item={item} />
+                <MotoSmartHomeCard3 item={item} />
               </Col>
             ))}
           </Row>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Кроссовер" key="3">
-          <Row className="gx-d-flex">
+          <Row className="gx-d-flex gx-mt-5">
             {crossoverList.map((item, index) => (
               <Col
                 key={index}
@@ -265,7 +266,7 @@ const TopAuction = () => {
           </Row>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Жийп" key="34">
-          <Row className="gx-d-flex">
+          <Row className="gx-d-flex gx-mt-5">
             {suvList.map((item, index) => (
               <Col
                 key={index}
@@ -286,7 +287,7 @@ const TopAuction = () => {
       <div>via https://www.facebook.com/aimar.munhuu.9</div>
 
       {/* <WidgetHeader styleName="gx-flex-row gx-mt-5" title="Сэдан" />
-      <Row className="gx-d-flex">
+      <Row className="gx-d-flex gx-mt-5">
         {sedanList.map((item, index) => (
           <Col
             key={index}
