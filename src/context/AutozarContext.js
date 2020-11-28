@@ -126,7 +126,7 @@ export const AutozarStore = (props) => {
   // ######  #######    #    #     # ### #######
 
   const loadAutozarDetail = (id = 0) => {
-    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
+    console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
 
     const myParamsAutozarDetail = {
       request: {
@@ -138,7 +138,7 @@ export const AutozarStore = (props) => {
         parameters: {
           ...autozarDetail.loadParams,
           criteria: {
-            autozarid: {
+            id: {
               0: {
                 operator: "=",
                 operand: id,
@@ -156,13 +156,14 @@ export const AutozarStore = (props) => {
     axios
       .post("", myParamsAutozarDetail)
       .then((response) => {
-        // console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
+        console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
-        // console.log("AUTOZAR DETAIL myArray------------> ", myArray);
+        console.log("AUTOZAR DETAIL myArray------------> ", myArray);
         myArray.mglyearmanufactured = moment(myArray.mglyearmanufactured);
         myArray.mglyearimport = moment(myArray.mglyearimport);
         myArray.createddate = moment(myArray.createddate);
         myArray.modifieddate = moment(myArray.modifieddate);
+
         myArray.mglengine2disp = myArray.mglengine2disp * 1;
         // myArray.carmilageimport = myArray.carmilageimport * 1;
         myArray.autozarmilage = myArray.autozarmilage * 1;
@@ -226,32 +227,45 @@ export const AutozarStore = (props) => {
   //  #     # #     #   # #   #
   //   #####  #     #    #    #######
   const saveAutozarDetail = (values) => {
-    // title
-    // body2Door: 5
-    // body2Seat: 8
-    // body2VinNumber: "ATH100007261"
-    // carCountryImport: "Япон"
-    // mglCountyOrigin: "Япон"
-    // carcolorinside: "Шаргал"
-    // carcoloroutside: "Ягаан"
-    // carmilageimport: 138000
-    // carmilagenow: 220000
-    // caryearimport: moment {_isAmomentObject: true, _i: "2013-09-25", _f: "YYYY-MM-DD", _isUTC: false, _pf: {…}, …}
-    // caryearmanufactured: moment {_isAmomentObject: true, _i: "2004-01-01", _f: "YYYY-MM", _isUTC: false, _pf: {…}, …}
-    // description: "Японоос захиж авч байсан."
-    // driveid: "58170471"
-    // driverPosId: false
-    // isactive: true
-    // imagemain: {fileList: Array(1)} → values.imagemain.fileList[0].response.url
-    // mgllicensenumberfull: "2527УНГ"
-    // mglbody: "Минивэн"
-    // mglfuel: "Энгийн бензин"
-    // mglengine2disp: 2362
-    // mglfirm: "TOYOTA"
-    // mglmark: "Alphard"
+    // autozarconditionid: "1030"
+    // id: "1587535609962815"
+    // autozarinspection: "1"
+    // autozarleasing: false
+    // autozarmilage: 115537
+    // autozarpenalty: true
+    // autozartax: true
+    // body2vinnumber: "TRN2150019334"
+    // createddate: Moment {_isAMomentObject: true, _i: "2020-04-22 14:06:49", _f: "YYYY-MM-DD HH:mm:ss", _isUTC: false, _pf: {…}, …}
+    // description: "Сайхан тэрэг байна."
+    // driveid: "95798500"
+    // email: "khiddaa01@gmail.com"
+    // financecondition: "Бэлнээр ярина"
+    // financepricerr: "39000000"
     // id: undefined
-    // imageother: {fileList: Array(2)} → values.imageother.fileList.map(item)  → item.response.url
-    // transtypeid: "1002"
+    // imagemain: {fileList: Array(1)}
+    // imageother: {fileList: Array(0)}
+    // isactive: true
+    // iscomment: true
+    // isfeatured: false
+    // memberfirebaseuid: ""
+    // mglbody: "SUV"
+    // mglcoloroutside: "Хар"
+    // mglcountryorigin: "Япон"
+    // mgldoor: 4
+    // mgldrivepos: true
+    // mglengine2disp: 2693
+    // mglfirm: "TOYOTA"
+    // mglfuel: "Бензин"
+    // mgllicensenumberfull: "2825УАА"
+    // mglmark: "Hilux"
+    // mglseat: 5
+    // mglyearimport: Moment {_isAMomentObject: true, _i: "2019-06-02", _f: "YYYY-MM-DD", _isUTC: false, _pf: {…}, …}
+    // mglyearmanufactured: Moment {_isAMomentObject: true, _i: "2007-01-01", _f: "YYYY-MM-DD", _isUTC: false, _pf: {…}, …}
+    // mobile1rr: "99031547"
+    // mobile2: "99031547"
+    // modifieddate: Moment {_isAMomentObject: true, _i: "2020-04-22 14:06:49", _f: "YYYY-MM-DD HH:mm:ss", _isUTC: false, _pf: {…}, …}
+    // systemuserid: ""
+    // transtypeid: "1001"
 
     console.log("saveAutozarDetail дотор орж ирсэн values--", values);
     const mytitle = `${moment(values.caryearmanufactured).format("YYYY")} ${
@@ -277,30 +291,48 @@ export const AutozarStore = (props) => {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
-        command: "motoAutozarDV_002",
+        command: "motoAutozar_DV_002",
         parameters: {
           ...values,
           id: values.id || "",
-          title: mytitle,
+          mglyearmanufactured: moment(values.mglyearmanufactured).format(
+            "YYYY-MM-DD HH:mm:ss"
+          ),
+          mglyearimport: moment(values.mglyearimport).format(
+            "YYYY-MM-DD HH:mm:ss"
+          ),
+          createddate: values.id
+            ? null
+            : moment(values.createddate).format("YYYY-MM-DD HH:mm:ss"),
+          modifieddate: moment(values.modifieddate).format(
+            "YYYY-MM-DD HH:mm:ss"
+          ),
+
+          mgldrivepos: toBoolean(values.mgldrivepos) ? "1" : "0",
+          autozarleasing: toBoolean(values.autozarleasing) ? "1" : "0",
+          autozarpenalty: toBoolean(values.autozarpenalty) ? "1" : "0",
+          autozartax: toBoolean(values.autozartax) ? "1" : "0",
           isactive: toBoolean(values.isactive) ? "1" : "0",
-          mgldrivepos: toBoolean(values.mgldrivepos) ? "1" : "2",
-          caryearimport: moment(values.caryearimport).format(
-            "YYYY-MM-DD HH:mm:ss"
-          ),
-          caryearmanufactured: moment(values.caryearmanufactured).format(
-            "YYYY-MM-DD HH:mm:ss"
-          ),
+          iscomment: toBoolean(values.iscomment) ? "1" : "0",
+          isfeatured: toBoolean(values.isfeatured) ? "1" : "0",
+
           imagemain: myimagemain,
           imageother: myimageother,
 
-          createdby: memberContext.state.memberCloudUserSysId,
+          createdby: values.id
+            ? null
+            : memberContext.state.memberCloudUserSysId,
           modifiedby: memberContext.state.memberCloudUserSysId,
           ownerid: memberContext.state.memberCloudUserSysId,
+          systemuserid: memberContext.state.memberCloudUserSysId,
         },
       },
     };
 
-    console.table(myParamsAutozarDetail.request.parameters);
+    console.log(
+      "myParamsAutozarDetail",
+      myParamsAutozarDetail.request.parameters
+    );
 
     // return;
 
@@ -324,79 +356,6 @@ export const AutozarStore = (props) => {
       .catch((error) => {
         message.error(error, 7);
       });
-
-    //MOTOCAR НЭМЭХ ПРОЦЕСС
-    // id
-    // mglLicensenumberFull
-    // title
-    // firmId
-    // markId
-    // mainId
-    // carId
-    // carYearManufactured
-    // carYearImport
-    // carMilageImport
-    // carMilageNow
-    // carColorOutside
-    // carColorInside
-    // bodyid
-    // mglEngine2Disp
-    // engine2Cylinder
-    // fueltypeid
-    // engine2PowerHp
-    // mglCountyOrigin
-    // carCountryImport
-    // body2Door
-    // body2Seat
-    // transtypeid
-    // drive2TransmissionStep
-    // driveId
-    // driverPosId
-    // engineTurboid
-    // engine2Type
-    // mglLicensenumberNumber
-    // mglLicensenumberSeries
-    // vehicleType
-    // imageMain
-    // createdDate
-    // createdBy
-    // mglMark
-    // mglFirm
-    // carTrim
-    // tempLeasing
-    // tempSalecondition
-    // tempPrice
-    // tempPhone
-    // tempUnaaid
-    // tempUneguiid
-    // tempNuxtsul
-    // tempMiningurl
-    // tempMiningpagetitle
-    // tempMiningdate
-    // imageOther
-    // description
-    // body2ModelCodeFull
-    // modelCode
-    // body2VinNumber
-    // engine2Code
-    // temp
-    // oldMotoGooAllcarCarid
-    // modifiedDate
-    // modifiedBy
-    // isActive
-    // ownerid
-    // personId
-    // companyId
-    // systemUserId
-    // mglLicenseClassification
-    // mglFuel
-    // mglDrivePos
-    // mglDoor
-    // mglSeat
-    // mglWeight
-    // mglHeight
-    // mglWidth
-    // mglLength
   };
 
   return (

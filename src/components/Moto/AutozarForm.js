@@ -198,9 +198,9 @@ const AutozarForm = () => {
 
   const onFinish = (values) => {
     console.log("AFTER SUBMIT --------- ");
-    console.table(values);
+    console.log(values);
 
-    // autozarDetailContext.saveMotocarDetail(values);
+    autozarDetailContext.saveAutozarDetail(values);
   };
 
   const onFinishFailed = (errorInfo) => {

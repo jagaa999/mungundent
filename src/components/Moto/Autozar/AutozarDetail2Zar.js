@@ -16,7 +16,7 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
     // autozarconditionid: "1030"
     //! autozarconditionname: "Монголд бага явсан"
 
-    //! autozarid: "1587535609962815"
+    //! id: "1587535609962815"
 
     //! financecondition: "Бэлнээр ярина"
     //! autozarleasing: ""
@@ -56,7 +56,7 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
                 {autozarItem.autozarconditionname}
               </Descriptions.Item>
               <Descriptions.Item label="Зарын дугаар">
-                {autozarItem.autozarid}
+                {autozarItem.id}
               </Descriptions.Item>
 
               <Descriptions.Item label="Зарах нөхцөл">

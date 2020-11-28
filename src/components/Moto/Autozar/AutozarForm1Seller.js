@@ -48,7 +48,12 @@ const AutozarForm1Seller = ({ form }) => {
       <Form.Item name="email" hasFeedback label="Имэйл">
         <Input />
       </Form.Item>
-      <Form.Item name="mobile1rr" hasFeedback label="Гар утас">
+      <Form.Item
+        name="mobile1rr"
+        hasFeedback
+        label="Гар утас"
+        rules={[{ required: true, message: "Гар утас заавал оруулна!" }]}
+      >
         <Input />
       </Form.Item>
       <Form.Item name="mobile2" hasFeedback label="Гар утас 2">

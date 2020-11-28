@@ -172,8 +172,8 @@ const App = ({ match }) => (
       #     #  #####     #    ####### ####### #     # #     #  */}
       <Route
         path={[
-          "/autozar/edit/:autozarId",
-          "/autozar/:autozarId/edit",
+          "/autozar/edit/:id",
+          "/autozar/:id/edit",
           "/autozar/insert",
           "/autozar/add",
         ]}
@@ -184,10 +184,10 @@ const App = ({ match }) => (
       </Route>
       <Route
         path={[
-          "/autozar/:autozarId",
-          "/autozar/:autozarId/detail",
-          "/autozar/detail/:autozarId",
-          "/autozarlist/:autozarId",
+          "/autozar/:id",
+          "/autozar/:id/detail",
+          "/autozar/detail/:id",
+          "/autozarlist/:id",
         ]}
       >
         <AutozarStore>

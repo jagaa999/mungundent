@@ -106,7 +106,7 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
         label={
           <span>
             Улсын дугаар
-            <Tooltip title="Зөв, гүйцэт бичээрэй. 2527УНГ">
+            <Tooltip title="Зөв, гүйцэт бичээрэй. 0000ААА">
               <QuestionCircleOutlined className="gx-ml-2" />
             </Tooltip>
           </span>
@@ -118,7 +118,7 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
       >
         <Input
           size="large"
-          placeholder="1234УНГ"
+          placeholder="0000ААА"
           onChange={mgllicensenumberfullChange}
           className="gx-border-success"
         />

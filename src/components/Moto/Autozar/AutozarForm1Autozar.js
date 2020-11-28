@@ -51,7 +51,7 @@ const AutozarFormAutozar = ({ form, conditionList }) => {
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="autozarid" hasFeedback label="Зарын дугаар">
+      <Form.Item name="id" hasFeedback label="Зарын дугаар">
         <Input disabled />
       </Form.Item>
 
@@ -69,7 +69,12 @@ const AutozarFormAutozar = ({ form, conditionList }) => {
 
       <Divider className="gx-my-3" />
 
-      <Form.Item name="financepricerr" hasFeedback label="Зарах үнэ">
+      <Form.Item
+        name="financepricerr"
+        hasFeedback
+        label="Зарах үнэ"
+        rules={[{ required: true, message: "Зарах үнэ заавал оруулна!" }]}
+      >
         <Input />
       </Form.Item>
 
@@ -99,13 +104,28 @@ const AutozarFormAutozar = ({ form, conditionList }) => {
 
       <Divider className="gx-my-3" />
 
-      <Form.Item name="isactive" label="Идэвхтэй?" valuePropName="checked">
+      <Form.Item
+        name="isactive"
+        label="Идэвхтэй?"
+        valuePropName="checked"
+        initialValue={true}
+      >
         <Switch />
       </Form.Item>
-      <Form.Item name="iscomment" label="Коммент?" valuePropName="checked">
+      <Form.Item
+        name="iscomment"
+        label="Коммент?"
+        valuePropName="checked"
+        initialValue={true}
+      >
         <Switch />
       </Form.Item>
-      <Form.Item name="isfeatured" label="Спонсор?" valuePropName="checked">
+      <Form.Item
+        name="isfeatured"
+        label="Спонсор?"
+        valuePropName="checked"
+        initialValue={false}
+      >
         <Switch />
       </Form.Item>
     </>

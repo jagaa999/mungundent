@@ -12,24 +12,24 @@ import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
 const AutozarDetailPage = (props) => {
-  const { autozarId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
+  const { id } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
   const autozarContext = useContext(AutozarContext);
   const memberContext = useContext(MemberContext);
 
   const autozarItem = autozarContext.autozarDetail.autozarDetail || {};
 
   useEffect(() => {
-    if (autozarId !== 0) {
+    if (id !== 0) {
       // if (memberContext.state.memberCloudUserSysId !== 0) {
       autozarContext.loadAutozarDetail(
-        autozarId,
+        id,
         memberContext.state.memberCloudUserSysId
       );
       // } else {
-      //   // autozarContext.loadAutozarDetailOg(autozarId);
+      //   // autozarContext.loadAutozarDetailOg(id);
       // }
     }
-  }, [autozarId, memberContext.state.memberCloudUserSysId]);
+  }, [id, memberContext.state.memberCloudUserSysId]);
 
   // console.log("autozarContext", autozarContext.state);
   // console.log("autozarItem dfg dfg dfg", autozarItem);
@@ -77,7 +77,7 @@ const AutozarDetailPage = (props) => {
         {autozarContext.autozarDetail.loading ? (
           <LoadingDetail />
         ) : (
-          <AutozarDetail2 autozarId={autozarId} />
+          <AutozarDetail2 id={id} />
         )}
         {/* </LogsStore> */}
       </>

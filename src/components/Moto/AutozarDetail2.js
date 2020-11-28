@@ -63,10 +63,7 @@ const AutozarDetail2 = () => {
     const myImages = (autozarItem.IMAGES || "").split("#");
 
     return (
-      <div
-        key={autozarItem.autozarid}
-        className="gx-main-content autozar-detail"
-      >
+      <div key={autozarItem.id} className="gx-main-content autozar-detail">
         <Card
           className="moto-autozar-detail-card"
           style={{ width: "100%" }}
@@ -143,7 +140,7 @@ autozarmilage: "115537"
 autozarconditionid: "1030"
 
 autozarconditionname: "Монголд бага явсан"
-autozarid: "1587535609962815"
+id: "1587535609962815"
 financecondition: "Бэлнээр ярина"
 autozarleasing: ""
 financepricerr: "39000000"

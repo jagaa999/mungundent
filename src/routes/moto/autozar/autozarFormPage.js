@@ -8,20 +8,20 @@ import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
 const AutozarFormPage = (props) => {
-  const { autozarId = 0 } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
+  const { id = 0 } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
   const autozarDetailContext = useContext(AutozarContext);
   const memberContext = useContext(MemberContext);
-  console.log("ЭНД БАЙНА УУ", autozarId);
+  console.log("ЭНД БАЙНА УУ", id);
 
   useEffect(() => {
-    if (autozarId !== 0 && memberContext.state.memberCloudUserSysId !== 0) {
-      console.log("Машин байгаа юм байна.", autozarId);
-      autozarDetailContext.loadAutozarDetail(autozarId);
+    if (id !== 0 && memberContext.state.memberCloudUserSysId !== 0) {
+      console.log("Машин байгаа юм байна.", id);
+      autozarDetailContext.loadAutozarDetail(id);
     } else {
       console.log("ХОосон объект");
       autozarDetailContext.clearAutozarDetail();
     }
-  }, [autozarId, memberContext.state.memberCloudUserSysId]);
+  }, [id, memberContext.state.memberCloudUserSysId]);
 
   return (
     <>
@@ -30,7 +30,7 @@ const AutozarFormPage = (props) => {
           {autozarDetailContext.autozarDetail.loading ? (
             <LoadingDetail />
           ) : (
-            <AutozarForm autozarId={autozarId} />
+            <AutozarForm id={id} />
           )}
         </>
       ) : (

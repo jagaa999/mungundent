@@ -33,7 +33,7 @@ const AuctionListItem3 = ({ autozarItem }) => {
           />
 
           <div className="gx-media-body gx-align-self-center">
-            <Link to={"/autozar/" + record.autozarid}>
+            <Link to={"/autozar/" + record.id}>
               {moment(record.mglyearmanufactured || "1980-12-31").format(
                 "YYYY"
               )}{" "}
@@ -159,7 +159,7 @@ const AuctionListItem3 = ({ autozarItem }) => {
 
   return (
     <Table
-      rowKey="autozarid"
+      rowKey="id"
       columns={columns}
       dataSource={autozarItem}
       pagination={false}
