@@ -44,7 +44,7 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
             xs={{ span: 22, offset: 1 }}
             className="gx-mt-4 gx-mt-md-0"
           >
-            <h4>Аукшин мэдээлэл</h4>
+            <h4>Зарах мэдээлэл</h4>
             <Descriptions
               className="moto-car-spec1"
               layout="horizontal"
@@ -64,7 +64,7 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
               </Descriptions.Item>
 
               <Descriptions.Item label="Лизингтэй?">
-                {autozarItem.autozarinspection}
+                {autozarItem.autozarleasing ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
 
               <Descriptions.Item label="Зарах үнэ">
@@ -84,7 +84,7 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
             xs={{ span: 22, offset: 1 }}
             className="gx-mt-4 gx-mt-md-0"
           >
-            <h4>Аукшин мэдээлэл</h4>
+            <h4>Нэмэлт мэдээлэл</h4>
             <Descriptions
               className="moto-car-spec1"
               layout="horizontal"
@@ -93,28 +93,24 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
               column={1}
             >
               <Descriptions.Item label="Оношилгоо?">
-                {autozarItem.autozarinspection}
+                {autozarItem.autozarinspection ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Торгуульгүй?">
-                {autozarItem.autozarpenalty}
+                {autozarItem.autozarpenalty ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Татвар төлсөн?">
-                {autozarItem.autozartax}
+                {autozarItem.autozartax ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
 
-              {/* <Descriptions.Item label="Дундаж үнэ">
-                {moment(autozarItem.financecondition).format("MM-DD HH:mm")}
-              </Descriptions.Item> */}
-
-              <Descriptions.Item label="Идэвхтэй?">
-                {autozarItem.isactive}
+              {/* <Descriptions.Item label="Идэвхтэй?">
+                {autozarItem.isactive ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Коммент?">
-                {autozarItem.iscomment}
+                {autozarItem.iscomment ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Спонсор?">
-                {autozarItem.isfeatured}
-              </Descriptions.Item>
+                {autozarItem.isfeatured ? "Тийм" : "Үгүй"}
+              </Descriptions.Item> */}
             </Descriptions>
           </Col>
         </Row>
@@ -122,8 +118,14 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
 
         <Row>
           <Col span={24}>
-            <div>Үүсгэсэн огноо: {autozarItem.createddate}</div>
-            <div>Шинэчилсэн огноо: {autozarItem.modifieddate}</div>
+            <div>
+              Үүсгэсэн огноо:{" "}
+              {moment(autozarItem.createddate).format("YYYY-MM-DD")}
+            </div>
+            <div>
+              Шинэчилсэн огноо:{" "}
+              {moment(autozarItem.modifieddate).format("YYYY-MM-DD")}
+            </div>
           </Col>
         </Row>
       </div>

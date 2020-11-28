@@ -2,14 +2,7 @@ import React, { useRef, useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Carousel, Button } from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  SearchOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import WidgetHeader from "components/WidgetHeader/index";
 import NewsItem2 from "./NewsItem2";
 
@@ -33,9 +26,10 @@ const HomeNewsItems2 = (props) => {
       />
       <Carousel
         autoplay={false}
-        infinite={false}
+        infinite={true}
         speed={250}
-        slidesToShow={4}
+        centerMode={true}
+        slidesToShow={5}
         slidesToScroll={1}
         dots={false}
         arrows={false}
@@ -56,7 +50,7 @@ const HomeNewsItems2 = (props) => {
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: 1,
               slidesToScroll: 1,
             },
           },

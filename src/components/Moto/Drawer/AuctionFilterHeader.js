@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { isEmpty } from "lodash";
-import { Button, Input, Divider, Select, Tooltip } from "antd";
+import { Button, Input, Divider, Select, Tooltip, Radio } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
 
@@ -122,16 +122,23 @@ const AuctionFilter = (props) => {
   };
 
   const prepareURL2 = (checkedValues, parameterLabel) => {
-    console.log("checkedValues", checkedValues);
-
-    //multiple values || checkbox etc
-    console.log("checkedValues", checkedValues);
-    console.log("parameterLabel", parameterLabel);
+    // console.log("checkedValues", checkedValues.target.value);
+    // console.log("parameterLabel", parameterLabel);
 
     const tempObject = {
       [parameterLabel]: checkedValues,
     };
 
+    // console.log("tempObjecttempObject", tempObject);
+    filterContext.updateParams(tempObject);
+  };
+
+  const prepareURL3 = (checkedValues, parameterLabel) => {
+    // console.log("checkedValues", checkedValues);
+    // console.log("parameterLabel", parameterLabel);
+    const tempObject = {
+      [parameterLabel]: checkedValues.target.value,
+    };
     // console.log("tempObjecttempObject", tempObject);
     filterContext.updateParams(tempObject);
   };
@@ -160,6 +167,7 @@ const AuctionFilter = (props) => {
         <Input.Group compact>
           <Select
             style={{ width: "175px" }}
+            className="moto-mobile-mw-50"
             loading={firmList.loading}
             showSearch
             allowClear
@@ -187,6 +195,7 @@ const AuctionFilter = (props) => {
           </Select>
           <Select
             style={{ width: "175px" }}
+            className="moto-mobile-mw-50"
             loading={markList.loading}
             allowClear
             placeholder="Марк"
@@ -219,6 +228,7 @@ const AuctionFilter = (props) => {
             <Select
               key="start-date"
               style={{ width: "95px" }}
+              className="moto-mobile-mw-50"
               loading={caryearList.loading}
               allowClear
               placeholder="Доод жил"
@@ -249,6 +259,7 @@ const AuctionFilter = (props) => {
             <Select
               key="end-date"
               style={{ width: "95px" }}
+              className="moto-mobile-mw-50"
               loading={caryearList.loading}
               allowClear
               placeholder="Дээд жил"
@@ -280,6 +291,7 @@ const AuctionFilter = (props) => {
             <Select
               className="gx-ml-1"
               style={{ minWidth: "110px" }}
+              className="moto-mobile-mw-50"
               loading={frameList.loading}
               allowClear
               placeholder="Арал"
@@ -305,9 +317,28 @@ const AuctionFilter = (props) => {
                 </Option>
               ))}
             </Select>
+
+            {/* ! түр авчихъя
+             <Radio.Group
+              buttonStyle="solid"
+              className="gx-w-100"
+              loading={frameList.loading}
+              onChange={(e) => prepareURL3(e, "kuzov")}
+            >
+              {frameList.frameList.map((item, index) => (
+                <Radio.Button
+                  key={index}
+                  value={htmlEntities.decode(item.KUZOV)}
+                >
+                  {htmlEntities.decode(item.KUZOV)}
+                </Radio.Button>
+              ))}
+            </Radio.Group> */}
+
             <Select
               // className="moto-select-firm gx-mr-3"
               style={{ minWidth: "110px" }}
+              className="moto-mobile-mw-50"
               loading={rateList.loading}
               showSearch
               allowClear

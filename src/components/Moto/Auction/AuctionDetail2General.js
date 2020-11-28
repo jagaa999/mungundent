@@ -34,7 +34,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
            #####     #    #     #    #     */}
 
         <Row>
-          <Col sm={{ span: 9, offset: 0 }} xs={{ span: 8, offset: 1 }}>
+          <Col sm={{ span: 9, offset: 0 }} xs={{ span: 22, offset: 1 }}>
             <Descriptions
               column={1}
               layout="horizontal"
@@ -97,7 +97,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
               #  #     # #     # #     # #       
              ### #     # #     #  #####  #######  */}
 
-          <Col span={15}>
+          <Col sm={{ span: 15, offset: 0 }} xs={{ span: 22, offset: 1 }}>
             <Image
               src={myImages[1]}
               loading="lazy"

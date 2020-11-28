@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, Row, Col, Modal } from "antd";
 import { defaultSrc } from "util/config";
 
-const AutozarDetailImages = ({ auctionItem, myImages }) => {
+const AutozarDetailImages = ({ auctionItem, imageotherFileList }) => {
   const [imageModal, setImageModal] = useState({
     previewVisible: false,
     previewImage: "",
@@ -17,15 +17,17 @@ const AutozarDetailImages = ({ auctionItem, myImages }) => {
     });
   };
 
+  console.log("imageotherFileList", imageotherFileList);
+
   return (
     <>
       <Row gutter={[8, 8]} justify="end">
-        {myImages.map((item, index) => (
+        {imageotherFileList.map((item, index) => (
           <Col key={index} span={4}>
             <div
               className="moto-auction-thumb-image"
-              style={{ backgroundImage: `url(${item})` }}
-              onClick={(e) => onImgClick(e, item)}
+              style={{ backgroundImage: `url(${item.url})` }}
+              onClick={(e) => onImgClick(e, item.url)}
             ></div>
           </Col>
         ))}

@@ -3,22 +3,22 @@ import { Skeleton, Divider, Typography, Button, Avatar } from "antd";
 
 const { Text, Link } = Typography;
 
-const MemberAvatar = (props) => {
+const MemberAvatar = ({ memberPhoto, memberName }) => {
   // memberName={newsItem.publisherpositionname}
   // memberPhoto={newsItem.publisherphoto}
   // memberPosition={newsItem.publisherpositionname}
-  // console.log(props);
+  // console.log(;
 
   return (
     <div className="gx-chat-user-hd">
       <div className="gx-chat-avatar gx-mr-3" onClick={null}>
         <div className="gx-status-pos">
-          {props.memberPhoto !== null ? (
+          {memberPhoto !== null ? (
             <Avatar
               id="avatar-button"
-              src={props.memberPhoto || "https://via.placeholder.com/150"}
+              src={memberPhoto || "https://via.placeholder.com/150"}
               className="gx-size-50"
-              alt={props.memberName}
+              alt={memberName}
             />
           ) : (
             <Avatar
@@ -27,9 +27,7 @@ const MemberAvatar = (props) => {
               gap={2}
               className="gx-size-50"
             >
-              {props.memberName !== null
-                ? props.memberName.substring(0, 3)
-                : "Тодорхойгүй"}
+              {memberName !== null ? memberName.substring(0, 3) : "Тодорхойгүй"}
             </Avatar>
           )}
 
@@ -39,7 +37,7 @@ const MemberAvatar = (props) => {
 
       <div className="gx-module-user-info gx-flex-column gx-justify-content-center">
         <div className="gx-module-title">
-          <h5 className="gx-mb-0">{props.memberName}</h5>
+          <h5 className="gx-mb-0">{memberName}</h5>
         </div>
       </div>
     </div>

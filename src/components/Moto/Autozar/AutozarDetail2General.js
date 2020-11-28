@@ -9,6 +9,7 @@ import accounting from "accounting";
 
 import { Alert, Row, Col, Image, Descriptions } from "antd";
 import AutozarDetailImages from "./AutozarDetailImages";
+import AutozarListItemMainImage from "./AutozarListItemMainImage";
 
 const AutozarDetail2General = ({ autozarItem }) => {
   const htmlEntities = new Html5Entities();
@@ -119,13 +120,19 @@ const AutozarDetail2General = ({ autozarItem }) => {
              ### #     # #     #  #####  #######  */}
 
           <Col span={15}>
-            <Image
+            {/* <Image
               src={`https://cloudapi.moto.mn/${autozarItem.imagemain}`}
               loading="lazy"
               width="300"
               quality="auto"
               className="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
               alt={autozarItem.mglmark}
+            /> */}
+
+            <AutozarListItemMainImage
+              myClass="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
+              width="300"
+              imageMain={autozarItem.imagemain}
             />
           </Col>
         </Row>
@@ -142,7 +149,8 @@ const AutozarDetail2General = ({ autozarItem }) => {
           <Col span={24}>
             <AutozarDetailImages
               autozarItem={autozarItem}
-              myImages={myImages}
+              // myImages={myImages}
+              imageotherFileList={autozarItem.imageotherFileList}
               // myImages={autozarItem.imageother}
             />
           </Col>

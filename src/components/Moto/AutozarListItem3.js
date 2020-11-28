@@ -8,9 +8,8 @@ import "moment/locale/mn";
 import accounting from "accounting";
 
 import { Image, Table, Tooltip, Tag } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
 
-import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
+import AutozarListItemMainImage from "./Autozar/AutozarListItemMainImage";
 
 const AuctionListItem3 = ({ autozarItem }) => {
   console.log("Манай машин - ", autozarItem);
@@ -23,13 +22,18 @@ const AuctionListItem3 = ({ autozarItem }) => {
       key: "car-name",
       render: (mglmark, record) => (
         <div className="gx-media gx-flex-nowrap">
-          <Image
-            // height={250}
+          {/* <Image
             width={70}
             src={`https://cloudapi.moto.mn/${record.imagemain}`}
             className="gx-mr-2"
             style={{ minWidth: "50px" }}
             fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=50"
+          /> */}
+
+          <AutozarListItemMainImage
+            width="64"
+            imageMain={record.imagemain}
+            myClass="gx-mr-3"
           />
 
           <div className="gx-media-body gx-align-self-center">

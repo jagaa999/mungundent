@@ -20,6 +20,8 @@ const NewsFilterDrawer = () => {
           </>
         }
         width="350"
+        // width="40%"
+        // style={{ maxWidth: "350px" }}
         placement="left"
         closable={true}
         visible={newsListContext.newsList.isFilterDrawerOpen}

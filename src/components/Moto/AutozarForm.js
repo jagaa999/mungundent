@@ -168,10 +168,10 @@ const AutozarForm = () => {
 
   const stepList = [
     {
-      title: "Ерөнхий",
+      title: "Машин",
     },
     {
-      title: "Машин",
+      title: "Ерөнхий",
     },
     {
       title: "Автозар",
@@ -232,7 +232,7 @@ const AutozarForm = () => {
     <Card
       className="gx-card_old "
       style={{ backgroundColor: "#f0f0f0" }}
-      title="Автомашины мэдээлэл"
+      title="Автозарын мэдээлэл"
     >
       <Form
         {...formItemLayout}
@@ -259,9 +259,6 @@ const AutozarForm = () => {
         </Steps>
         <div className="gx-mt-5">
           <div className={currentStep !== 0 ? "gx-d-none" : ""}>
-            <AutozarForm1General form={form} mglFuelList={mglFuelList} />
-          </div>
-          <div className={currentStep !== 1 ? "gx-d-none" : ""}>
             <AutozarForm1Autocar
               form={form}
               mglFirmList={mglFirmList}
@@ -274,9 +271,15 @@ const AutozarForm = () => {
               techDriveList={techDriveList}
             />
           </div>
+
+          <div className={currentStep !== 1 ? "gx-d-none" : ""}>
+            <AutozarForm1General form={form} mglFuelList={mglFuelList} />
+          </div>
+
           <div className={currentStep !== 2 ? "gx-d-none" : ""}>
             <AutozarForm1Autozar form={form} conditionList={conditionList} />
           </div>
+
           <div className={currentStep !== 3 ? "gx-d-none" : ""}>
             <AutozarForm1Other
               form={form}
@@ -284,6 +287,7 @@ const AutozarForm = () => {
               imageotherFileList={autozarItem.imageotherFileList || []}
             />
           </div>
+
           <div className={currentStep !== 4 ? "gx-d-none" : ""}>
             <AutozarForm1Seller form={form} />
           </div>
