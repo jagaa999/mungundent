@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import { Button, PageHeader } from "antd";
 import { FilterOutlined } from "@ant-design/icons";
+import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
 import AuctionContext from "context/AuctionContext";
@@ -35,7 +36,7 @@ const AuctionListActionHeader = (props) => {
           <Button
             key="moto-filter-button"
             size="small"
-            icon={<FilterOutlined />}
+            icon={<MyIcon type="iconfilter" />}
             onClick={toggleFilterDrawer}
             className="gx-mr-0"
           >

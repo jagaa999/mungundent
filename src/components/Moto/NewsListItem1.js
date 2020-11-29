@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Image } from "cloudinary-react";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
@@ -14,7 +13,6 @@ import NewsDetailMore from "./newsDetailMore";
 import NewsItemMainImage from "./NewsItemMainImage";
 
 const NewsItem = ({ newsItem, grid }) => {
-  moment.locale("mn");
   const [showModal, setShowModal] = useState(false);
   const [showMore, setShowMore] = useState(false);
 

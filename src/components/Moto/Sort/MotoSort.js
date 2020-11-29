@@ -1,25 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Menu, Dropdown, Button, Radio } from "antd";
-import {
-  DownOutlined,
-  CaretUpOutlined,
-  CaretDownOutlined,
-  PlusOutlined,
-  UnorderedListOutlined,
-  CreditCardOutlined,
-  TableOutlined,
-  SortAscendingOutlined,
-  SlidersOutlined,
-  DashOutlined,
-  VerticalAlignBottomOutlined,
-} from "@ant-design/icons";
+import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
+import MyIcon from "util/iconFunction";
+
 import FilterContext from "context/FilterContext";
-import NewsListContext from "context/NewsListContext";
 import useDidMountEffect from "util/useDidMountEffect";
 
 const MotoSort = () => {
   const filterContext = useContext(FilterContext);
-  const newsListContext = useContext(NewsListContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
     filterContext.state.sorting.sortcolumnnames || "publisheddate",
@@ -91,14 +79,30 @@ const MotoSort = () => {
           Гарчгаар <Sort ddd="title" />
         </Menu.Item>
       </Menu.ItemGroup>
-      <Menu.ItemGroup key="type1" title="Төрөл">
-        <Menu.Item key="typelist" onClick={onChangeType}>
+      <Menu.ItemGroup
+        key="type1"
+        title="Төрөл"
+        className="gx-mt-3 gx-text-grey"
+      >
+        <Menu.Item
+          key="typelist"
+          onClick={onChangeType}
+          icon={<MyIcon type="iconlistlist" />}
+        >
           Жагсаалт
         </Menu.Item>
-        <Menu.Item key="typecard" onClick={onChangeType}>
+        <Menu.Item
+          key="typecard"
+          onClick={onChangeType}
+          icon={<MyIcon type="iconlistcard" />}
+        >
           Карт
         </Menu.Item>
-        <Menu.Item key="typetable" onClick={onChangeType}>
+        <Menu.Item
+          key="typetable"
+          onClick={onChangeType}
+          icon={<MyIcon type="iconlisttable" />}
+        >
           Хүснэгт
         </Menu.Item>
       </Menu.ItemGroup>
@@ -127,13 +131,13 @@ const MotoSort = () => {
         onChange={onChangeTypeRadio}
       >
         <Radio.Button value="typelist">
-          <UnorderedListOutlined />
+          <MyIcon type="iconlistlist" />
         </Radio.Button>
         <Radio.Button value="typecard">
-          <CreditCardOutlined />
+          <MyIcon type="iconlistcard" />
         </Radio.Button>
         <Radio.Button value="typetable">
-          <TableOutlined />
+          <MyIcon type="iconlisttable" />
         </Radio.Button>
       </Radio.Group>
     </>

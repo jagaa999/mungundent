@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { Button, PageHeader } from "antd";
 import { PlusOutlined, FilterOutlined } from "@ant-design/icons";
+import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
 import NewsListContext from "context/NewsListContext";
@@ -38,11 +39,7 @@ const NewsListIActionHeader = (props) => {
           <Button
             key="moto-filter-button"
             size="small"
-            // type="primary"
-            icon={
-              // <i className="icon icon-filter moto-animation-away gx-mr-1" />
-              <FilterOutlined />
-            }
+            icon={<MyIcon type="iconfilter" />}
             onClick={toggleFilterDrawer}
             className="gx-mr-0"
           >

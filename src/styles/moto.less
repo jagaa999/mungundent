@@ -268,6 +268,12 @@ li.gx-user-nav {
   }
 }
 
+.moto-top-right {
+  top: 17px;
+  right: 19px;
+  position: absolute;
+}
+
 .moto-bottom-right {
   bottom: 17px;
   right: 19px;
@@ -824,6 +830,21 @@ tr.ant-table-row {
   }
 }
 
+.gx-product-item {
+  .moto-auction-badge {
+    position: absolute;
+    top: 85px;
+    left: 40px;
+  }
+
+  &:hover,
+  &:focus {
+    .moto-auction-badge {
+      display: none;
+    }
+  }
+}
+
 .moto-auction-thumb-image {
   display: block;
   height: 77px;
@@ -842,6 +863,12 @@ tr.ant-table-row {
 .moto-badge-1 {
   position: absolute;
   top: 9px;
+}
+.moto-badge-2 {
+  position: absolute;
+  top: 15px;
+  z-index: 20;
+  left: 40px;
 }
 
 .moto-auction-detail-card {

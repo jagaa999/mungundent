@@ -15,6 +15,9 @@ const { Content } = Layout;
 const KiaK5Detail = asyncComponent(() => {
   return import("content/kia/k5/index");
 });
+const KiaCarnivalDetail = asyncComponent(() => {
+  return import("content/kia/Carnival/index.js");
+});
 
 const MainApp = () => {
   const memberContext = useContext(MemberContext);
@@ -32,12 +35,17 @@ const MainApp = () => {
       <Route path={["/salon/kia/k5", "/salon/kia/optima"]}>
         <MotoHeader />
         <KiaK5Detail />
+        <MotoFooter />
+      </Route>
+      <Route path={["/salon/kia/carnival"]}>
+        <MotoHeader />
+        <KiaCarnivalDetail />
+        <MotoFooter />
       </Route>
 
       <Route>
         <Layout className="gx-app-layout">
           <MotoHeader />
-
           <Content className="gx-layout-content gx-container-wrap">
             <MotoIndex match={match} />
 

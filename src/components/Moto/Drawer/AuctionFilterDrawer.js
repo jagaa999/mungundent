@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Button, Drawer } from "antd";
+import MyIcon from "util/iconFunction";
+
 import AuctionFilter from "./AuctionFilter";
 import AuctionContext from "context/AuctionContext";
 
@@ -15,7 +17,10 @@ const AuctionFilterDrawer = () => {
       <Drawer
         title={
           <>
-            <i className="icon icon-filter gx-d-inline-flex gx-vertical-align-middle gx-mr-3" />{" "}
+            <MyIcon
+              type="iconfilter"
+              className="gx-d-inline-flex gx-vertical-align-middle gx-mr-3"
+            />
             Шүүлтүүр
           </>
         }
@@ -30,7 +35,10 @@ const AuctionFilterDrawer = () => {
 
       <div className="moto-filter-button" style={{ top: "250px" }}>
         <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
-          <i className="icon icon-filter gx-d-block moto-animation-away" />
+          <MyIcon
+            type="iconfilter"
+            className="gx-d-block moto-animation-away"
+          />
         </Button>
       </div>
     </div>

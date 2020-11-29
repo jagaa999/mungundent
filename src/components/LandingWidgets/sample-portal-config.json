@@ -1,0 +1,283 @@
+const portalMetaHome = {
+	id: 123, 
+	title: 'Home page', 
+	layoutcode: '001'
+};
+
+const portalMetaNews = [{
+	id: 456, 
+	title: 'News page', 
+	layoutcode: '002'
+}];
+
+const portalMetaHeader = [
+	{
+		sectioncode: '1', 
+		widgetcode: 'Menu01', 
+		metatypeid: 'dataview', 
+		metametaid: 456789, 
+		widgetdtl: [
+			{
+				positioncode: '1', 
+				fieldpath: 'menuicon'
+			}, 
+			{
+				positioncode: '2', 
+				fieldpath: 'menuname'
+			},
+		], 
+	}
+];
+
+const portalMetaFooter = [
+	{
+		sectioncode: '1', 
+		widgetcode: 'Footer01', 
+		metatypeid: 'dataview', 
+		metametaid: 456789, 
+		widgetdtl: [
+			{
+				positioncode: '1', 
+				fieldPath: 'menuicon'
+			}, 
+			{
+				positionCode: '2', 
+				fieldPath: 'menuname'
+			},
+		], 
+	}
+];
+
+portalMetaHome.configHome = [{
+
+	{
+		metaTypeId: 'portal', 
+		metaMetaId: 789456
+	}, 
+	
+	{
+		sectionCode: '1',
+		
+	}
+
+	{
+		sectionCode: '2', 
+		widgetCode: 'Banner01', 
+		metaTypeId: 'dataview', 
+		metaMetaId: 789456, 
+		pageSize: 4, 
+		widgetDtl: [
+			{
+				positionCode: '1', 
+				fieldPath: 'title'
+			}, 
+			{
+				positionCode: '2', 
+				fieldPath: 'description'
+			}, 
+			{
+				positionCode: '3', 
+				fieldPath: 'buttonText'
+			}
+		], 
+		result: [
+			total: 8, 
+			rows: [
+				{
+					title: 'fgbfdbdf', 
+					description: 'fgbfdbdf', 
+					buttontext: 'fgbfdbdf', 
+				}, 
+				{
+					title: 'fgbfdbdf', 
+					description: 'fgbfdbdf', 
+					buttontext: 'fgbfdbdf', 
+				}, 
+				{
+					title: 'fgbfdbdf', 
+					description: 'fgbfdbdf', 
+					buttontext: 'fgbfdbdf', 
+				}, 
+				{
+					title: 'fgbfdbdf', 
+					description: 'fgbfdbdf', 
+					buttontext: 'fgbfdbdf', 
+				}
+			]
+		]
+	}, 
+	
+	{
+		sectionCode: '3', 
+		widgetCode: 'Slider01', 
+		metaTypeId: 'process', 
+		metaMetaId: 789456, 
+		pageSize: 10, 
+		widgetDtl: [
+			{
+				positionCode: '1', 
+				fieldPath: 'title'
+			}, 
+			{
+				positionCode: '2', 
+				fieldPath: 'description'
+			}, 
+			{
+				positionCode: '3', 
+				fieldPath: 'buttontext'
+			}
+		], 
+		result: [
+			total: 8, 
+			aggregate_columns: {}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}
+		]
+	}, 
+	
+	{
+		widgetCode: 'Intro01', 
+		metaTypeId: 'dataview', 
+		metaMetaId: 789456, 
+		pageSize: 10, 
+		widgetDtl: [
+			{
+				positionCode: '1', 
+				fieldPath: 'title'
+			}, 
+			{
+				positionCode: '2', 
+				fieldPath: 'description'
+			}, 
+			{
+				positionCode: '3', 
+				fieldPath: 'buttonText'
+			}
+		]
+	}, 
+	
+	{
+		widgetCode: 'CeoGreetings01', 
+		metaTypeId: 'process', 
+		metaMetaId: 789456, 
+		pageSize: null, 
+		widgetDtl: [
+			{
+				positionCode: '1', 
+				fieldPath: 'photo'
+			}, 
+			{
+				positionCode: '2', 
+				fieldPath: 'greetingtitle'
+			}, 
+			{
+				positionCode: '3', 
+				fieldPath: 'greetingbody'
+			}, 
+			{
+				positionCode: '4', 
+				widgetCode: 'CeoGreetings01-01', 
+				widgetDtl: [
+					{
+						positionCode: '1', 
+						fieldPath: 'photo'
+					}, 
+					{
+						positionCode: '2', 
+						fieldPath: 'greetingtitle'
+					}, 
+					{
+						positionCode: '3', 
+						fieldPath: 'greetingbody'
+					}
+				], 
+			}
+		], 
+		result: [
+			{
+				photo: 'storage/uploads/process/emp-uugan.png', 
+				greetingtitle: 'Та бүхний өдрийн мэнд хүргэе!!!', 
+				greetingbody: 'Миний бие Ууганбаяр ...', 
+			}
+		]
+	}, 
+	
+	{
+		metaTypeId: 'portal', 
+		metaMetaId: 258978
+	}, 
+}]
+
+portalMetaHome.configNews = [{
+	{
+		metaTypeId: 'portal', 
+		metaMetaId: 789456
+	}, 
+	{
+		sectionCode: '3', 
+		widgetCode: 'Slider01', 
+		metaTypeId: 'process', 
+		metaMetaId: 789456, 
+		pageSize: 10, 
+		widgetDtl: [
+			{
+				positionCode: '1', 
+				fieldPath: 'title'
+			}, 
+			{
+				positionCode: '2', 
+				fieldPath: 'description'
+			}, 
+			{
+				positionCode: '3', 
+				fieldPath: 'buttontext'
+			}
+		], 
+		result: [
+			total: 8, 
+			aggregate_columns: {}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}, 
+			{
+				title: 'fgbfdbdf', 
+				description: 'fgbfdbdf', 
+				buttontext: 'fgbfdbdf', 
+			}
+		]
+	}, 
+	{
+		metaTypeId: 'portal', 
+		metaMetaId: 258978
+	}
+}];

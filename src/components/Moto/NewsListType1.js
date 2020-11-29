@@ -1,16 +1,13 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { Col, Row, Button, Affix } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 
 import NewsListItem1 from "./NewsListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
-import FilterContext from "context/FilterContext";
 import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
-import MotoSort from "components/Moto/Sort/MotoSort";
 import LoadingList from "./Loading/LoadingList";
 
 const NewsListType1 = () => {
@@ -27,13 +24,8 @@ const NewsListType1 = () => {
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">
-            {newsListContext.newsList.newsList.map((el, index) => {
-              const newsItem = el;
-              // const myMainImage = el.imagemain
-              //   .split("storage")
-              //   .join("https://www.moto.mn/storage");
-              // newsItem.imageMain = myMainImage;
-              newsItem.imageMain = el.imagemain;
+            {newsListContext.newsList.newsList.map((newsItem, index) => {
+              newsItem.imageMain = newsItem.imagemain;
               return (
                 <Col key={index} span={24}>
                   <NewsListItem1 key={index} newsItem={newsItem} />
