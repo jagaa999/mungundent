@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import QueueAnim from "rc-queue-anim";
 
 import { Col, Row } from "antd";
 

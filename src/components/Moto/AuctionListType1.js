@@ -1,4 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
+import QueueAnim from "rc-queue-anim";
+import TweenOne from "rc-tween-one";
+import { OverPack } from "rc-scroll-anim";
 
 import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -19,6 +22,7 @@ const AuctionListType1 = () => {
   const auctionListContext = useContext(AuctionContext);
 
   return (
+    // <OverPack>
     <div className="moto-list">
       {/* <div className="">
         <FilterTag />
@@ -30,18 +34,53 @@ const AuctionListType1 = () => {
         <div className="gx-main-content gx-p-2 gx-p-sm-0">
           <AuctionListActionHeader />
           <AuctionFilterHeader />
-
-          <Row className="gx-d-flex">
+          {/* <OverPack playScale={0.3} key="queueAnim"> */}
+          {/* <OverPack style={{ overflow: "hidden", height: 200 }}> */}
+          {/* <QueueAnim key="u" type="bottom"> */}
+          <Row key="row" className="gx-d-flex">
             {auctionListContext.auctionList.auctionList.map(
               (auctionItem, index) => {
                 return (
                   <Col key={index} span={24}>
                     <AuctionListItem1 key={index} auctionItem={auctionItem} />
                   </Col>
+
+                  // <TweenOne
+                  //   component={Col}
+                  //   animation={{
+                  //     opacity: 0.1,
+                  //     marginLeft: 100,
+                  //     type: "from",
+                  //     ease: "easeOutQuad",
+                  //     // delay: 50,
+                  //     duration: 90,
+                  //   }}
+                  //   key={index}
+                  //   componentProps={{ span: 24 }}
+                  // >
+                  //   <AuctionListItem1 key={index} auctionItem={auctionItem} />
+                  // </TweenOne>
+
+                  // <QueueAnim
+                  //   component={Col}
+                  //   key={index}
+                  //   componentProps={{ span: 24 }}
+                  //   animConfig={[
+                  //     { opacity: [1, 0.5], translateY: [0, 30] },
+                  //     { height: 0 },
+                  //   ]}
+                  //   ease={["easeOutQuart", "easeInOutQuart"]}
+                  //   duration={[550, 450]}
+                  //   interval={150}
+                  // >
+                  //   <AuctionListItem1 key={index} auctionItem={auctionItem} />
+                  // </QueueAnim>
                 );
               }
             )}
           </Row>
+          {/* </QueueAnim> */}
+          {/* </OverPack> */}
           <MotoPagination />
           <AuctionFilterDrawer />
         </div>
@@ -49,6 +88,7 @@ const AuctionListType1 = () => {
         <LoadingList />
       )}
     </div>
+    // </OverPack>
   );
 };
 
