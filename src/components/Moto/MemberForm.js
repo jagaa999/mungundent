@@ -5,26 +5,10 @@ import MemberFormContact from "./MemberFormContact";
 import MemberFormAddress from "./MemberFormAddress";
 import MemberFormOther from "./MemberFormOther";
 
-import {
-  Button,
-  Card,
-  message,
-  Divider,
-  Form,
-  Input,
-  Select,
-  Steps,
-} from "antd";
-import {
-  PlusOutlined,
-  UploadOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
+import { Button, Card, message, Divider, Form, Steps } from "antd";
+import { UploadOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
 import MemberContext from "context/MemberContext";
-
-const { Step } = Steps;
 
 const formItemLayout = {
   labelCol: {
@@ -244,7 +228,7 @@ const MotocarForm = (prps) => {
           className="site-navigation-steps"
         >
           {stepList.map((item) => (
-            <Step key={item.title} title={item.title} />
+            <Steps.Step key={item.title} title={item.title} />
           ))}
         </Steps>
         <div className="gx-mt-5">

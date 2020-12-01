@@ -17,12 +17,11 @@ export const NewsListStore = (props) => {
       systemmetagroupid: "1587197820548033",
       showquery: "0",
       paging: {
-        pagesize: filterContext.state.paging?.pagesize || "12", //нийтлэлийн тоо
-        offset: filterContext.state.paging?.offset || "1", //хуудасны дугаар
+        pagesize: filterContext.state.paging?.pagesize || "12",
+        offset: filterContext.state.paging?.offset || "1",
         sortcolumnnames: {
           [filterContext.state.sorting?.sortcolumnnames || "publisheddate"]: {
-            //эрэмбэлэх талбар
-            sorttype: filterContext.state.sorting?.sorttype || "DESC", //эрэмбэлэх чиглэл
+            sorttype: filterContext.state.sorting?.sorttype || "DESC",
           },
         },
       },
@@ -128,12 +127,11 @@ export const NewsListStore = (props) => {
         ...myTemp33,
         paging: {
           ...newsList.loadParams.paging,
-          pagesize: filterContext.state.paging.pagesize || "10", //нийтлэлийн тоо
-          offset: filterContext.state.paging.offset || "1", //хуудасны дугаар
+          pagesize: filterContext.state.paging.pagesize || "10",
+          offset: filterContext.state.paging.offset || "1",
           sortcolumnnames: {
             [filterContext.state.sorting.sortcolumnnames || "publisheddate"]: {
-              //эрэмбэлэх талбар
-              sorttype: filterContext.state.sorting.sorttype || "DESC", //эрэмбэлэх чиглэл
+              sorttype: filterContext.state.sorting.sorttype || "DESC",
             },
           },
         },
@@ -152,7 +150,7 @@ export const NewsListStore = (props) => {
 
     myAxiosZ(myParamsNewsList)
       .then((myData) => {
-        const myPaging = myData.response.result.paging || {};
+        const myPaging = myData.response?.result?.paging || {};
         const myArray = myData.response.result || [];
 
         delete myArray["aggregatecolumns"];

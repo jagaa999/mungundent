@@ -6,6 +6,7 @@ import toBoolean from "util/booleanFunction";
 import moment from "moment";
 
 import axios from "util/axiosConfig";
+import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
@@ -29,13 +30,20 @@ export const AutozarStore = (props) => {
       systemmetagroupid: "1605592797379",
       showquery: "0",
       ignorepermission: "1",
-      criteria: {},
+      criteria: {
+        isactive: {
+          0: {
+            operator: "=",
+            operand: "1", // зөвхөн идэвхтэйг харуулна
+          },
+        },
+      },
       paging: {
-        pageSize: "12",
-        offset: "1",
+        pagesize: filterContext.state.paging?.pagesize || "12",
+        offset: filterContext.state.paging?.offset || "1",
         sortcolumnnames: {
-          modifieddate: {
-            sorttype: "DESC", //эрэмбэлэх чиглэл
+          [filterContext.state.sorting?.sortcolumnnames || "modifieddate"]: {
+            sorttype: filterContext.state.sorting?.sorttype || "DESC",
           },
         },
       },
@@ -43,6 +51,7 @@ export const AutozarStore = (props) => {
     autozarList: [],
     loading: false,
     error: null,
+    isFilterDrawerOpen: false,
   };
   const initialStateAutozarDetail = {
     loadParams: {
@@ -62,6 +71,16 @@ export const AutozarStore = (props) => {
   const [autozarList, setAutozarList] = useState(initialStateAutozarList);
   const [autozarDetail, setAutozarDetail] = useState(initialStateAutozarDetail);
 
+  useEffect(() => {
+    loadAutozarList();
+  }, [
+    filterContext.state.filterList,
+    filterContext.state.paging,
+    filterContext.state.sorting,
+    filterContext.state.cardtype,
+    memberContext.state.isLogin,
+  ]);
+
   //  #       ###  #####  #######
   //  #        #  #     #    #
   //  #        #  #          #
@@ -73,38 +92,129 @@ export const AutozarStore = (props) => {
   const loadAutozarList = () => {
     setAutozarList({ ...autozarList, loading: true });
 
+    let tempFilter = {};
+    Object.keys(filterContext.state.filterList).map((item) => {
+      console.log(item, "----", filterContext.state.filterList[item]);
+      if (item !== "offset" && item !== "pagesize" && item !== "title") {
+        const myItem1 = {
+          operator: "=",
+          operand: filterContext.state.filterList[item],
+        };
+        const myItem2 = {
+          [item]: {
+            0: myItem1,
+          },
+        };
+        tempFilter = Object.assign(tempFilter, myItem2);
+        //   newstypeid: {
+        //     0: {
+        //       operator: "=",
+        //       operand: "201",
+        //     },
+        //     1: {
+        //       operator: "=",
+        //       operand: "202",
+        //     },
+        //   },
+      } else if (item === "title") {
+        const myItem1 = {
+          operator: "like",
+          operand: `%${filterContext.state.filterList[item]}%`,
+        };
+        const myItem2 = {
+          [item]: {
+            0: myItem1,
+          },
+        };
+        tempFilter = Object.assign(tempFilter, myItem2);
+
+        //   title: {
+        //     0: {
+        //       operator: "like",
+        //       operand: "%toyota%",
+        //     },
+        //   },
+      }
+    });
+
+    //criteria-д isactive = 1 утга нэмж өгнө.
+    tempFilter = Object.assign(tempFilter, {
+      isactive: {
+        0: {
+          operator: "=",
+          operand: "1",
+        },
+      },
+    });
+    // console.log("tempFilter", tempFilter);
+    const dddd = {};
+    const myTemp33 = Object.assign(dddd, { criteria: tempFilter });
+
+    const myNewParam = {
+      ...autozarList,
+      loadParams: {
+        ...autozarList.loadParams,
+        ...myTemp33,
+        paging: {
+          ...autozarList.loadParams.paging,
+          pagesize: filterContext.state.paging.pagesize || "12",
+          offset: filterContext.state.paging.offset || "1",
+          sortcolumnnames: {
+            [filterContext.state.sorting.sortcolumnnames || "modifieddate"]: {
+              sorttype: filterContext.state.sorting.sorttype || "DESC",
+            },
+          },
+        },
+      },
+      loading: true,
+    };
+
     const myParamsAutozarList = {
       request: {
-        username: memberContext.state.memberUID,
+        // username: memberContext.state.memberUID,
+        username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",
         // username: "motoadmin",
         // password: "moto123",
         command: "PL_MDVIEW_004",
-        parameters: autozarList.loadParams,
+        parameters: myNewParam.loadParams,
       },
     };
 
     // axiosCloud
-    axios
-      .post("", myParamsAutozarList)
-      .then((response) => {
-        // console.log("response---------", response);
-        const myData = response.data.response;
-        if (myData.status === "error") {
-          message.error(myData.text);
-        } else {
-          const myPaging = myData.result.paging || {};
-          const myArray = myData.result || [];
+    myAxiosZ(myParamsAutozarList)
+      .then((myData) => {
+        // console.log("myData---------", myData);
+        const myPaging = myData.response?.result?.paging || {};
+        const myArray = myData.response.result || [];
 
-          delete myArray["aggregatecolumns"];
-          delete myArray["paging"];
+        delete myArray["aggregatecolumns"];
+        delete myArray["paging"];
 
-          setAutozarList({
-            ...autozarList,
-            loading: false,
-            autozarList: Object.values(myArray),
-          });
-        }
+        setAutozarList({
+          ...myNewParam,
+          loading: false,
+          autozarList: Object.values(myArray),
+        });
+
+        filterContext.updateTotal(myPaging.totalcount);
+
+        // const myData = response.data.response;
+        // if (myData.status === "error") {
+        //   message.error(myData.text);
+        // } else {
+        //   const myPaging = myData.result.paging || {};
+        //   const myArray = myData.result || [];
+
+        //   delete myArray["aggregatecolumns"];
+        //   delete myArray["paging"];
+
+        //   setAutozarList({
+        //     ...autozarList,
+        //     loading: false,
+        //     autozarList: Object.values(myArray),
+        //   });
+        // }
       })
       .catch((error) => {
         setAutozarList({ ...autozarList, loading: false, error });
@@ -126,11 +236,10 @@ export const AutozarStore = (props) => {
   // ######  #######    #    #     # ### #######
 
   const loadAutozarDetail = (id = 0) => {
-    console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
-
     const myParamsAutozarDetail = {
       request: {
-        username: memberContext.state.memberUID,
+        // username: memberContext.state.memberUID,
+        username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",
         // username: "motoadmin",
         // password: "moto123",
@@ -156,9 +265,9 @@ export const AutozarStore = (props) => {
     axios
       .post("", myParamsAutozarDetail)
       .then((response) => {
-        console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
+        // console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
-        console.log("AUTOZAR DETAIL myArray------------> ", myArray);
+        // console.log("AUTOZAR DETAIL myArray------------> ", myArray);
         myArray.mglyearmanufactured = moment(myArray.mglyearmanufactured);
         myArray.mglyearimport = moment(myArray.mglyearimport);
         myArray.createddate = moment(myArray.createddate);
@@ -358,6 +467,13 @@ export const AutozarStore = (props) => {
       });
   };
 
+  const toggleFilterDrawerOpen = () => {
+    setAutozarList({
+      ...autozarList,
+      isFilterDrawerOpen: !autozarList.isFilterDrawerOpen,
+    });
+  };
+
   return (
     <AutozarContext.Provider
       value={{
@@ -367,6 +483,7 @@ export const AutozarStore = (props) => {
         loadAutozarDetail,
         saveAutozarDetail,
         clearAutozarDetail,
+        toggleFilterDrawerOpen,
       }}
     >
       {props.children}

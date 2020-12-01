@@ -20,7 +20,7 @@ const AutozarDetail2 = () => {
   const htmlEntities = new Html5Entities();
 
   const [cardTabs, setCardTabs] = useState({
-    key: "tab4",
+    key: "tab1",
   });
 
   const tabList = [

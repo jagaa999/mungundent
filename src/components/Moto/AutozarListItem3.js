@@ -118,16 +118,14 @@ const AuctionListItem3 = ({ autozarItem }) => {
       dataIndex: "autozarmilage",
       render: (autozarmilage, record) => (
         <>
-          <Tooltip title="Дуудах эхлэх үнэ">
-            <div className="gx-text-grey gx-fs-sm">
-              {accounting.formatMoney(record.autozarmilage, {
-                symbol: "cc",
-                format: "%v %s",
-                precision: 0,
-                thousand: "'",
-              })}
-            </div>
-          </Tooltip>
+          <div className="gx-text-grey gx-fs-sm">
+            {accounting.formatMoney(record.autozarmilage, {
+              symbol: "км",
+              format: "%v %s",
+              precision: 0,
+              thousand: "'",
+            })}
+          </div>
         </>
       ),
     },

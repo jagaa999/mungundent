@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { Menu, Avatar, Tooltip } from "antd";
+import { Menu, Avatar, Tooltip, Badge } from "antd";
 import { MailOutlined, CoffeeOutlined } from "@ant-design/icons";
 import IntlMessages from "../../util/IntlMessages";
 import FilterContext from "context/FilterContext";
@@ -59,6 +59,20 @@ const HorizontalNav = () => {
       </Menu.Item>
 
       <Menu.Item
+        key="autozar"
+        className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
+      >
+        <Link to="/autozar" className="motoHeaderMenuItemLink">
+          <Tooltip title="Автозар">
+            <span className="gx-d-block gx-d-lg-none">
+              <MyIcon type="iconcar2" />
+            </span>
+          </Tooltip>
+          <div className="gx-d-none gx-d-lg-block">Автозар</div>
+        </Link>
+      </Menu.Item>
+
+      <Menu.Item
         key="product"
         className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
       >
@@ -100,22 +114,6 @@ const HorizontalNav = () => {
               </span>
             </Tooltip>
             <div className="gx-d-none gx-d-lg-block">Motocar</div>
-          </Link>
-        </Menu.Item>
-      )}
-
-      {process.env.NODE_ENV === "development" && (
-        <Menu.Item
-          key="autozar"
-          className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
-        >
-          <Link to="/autozar" className="motoHeaderMenuItemLink">
-            <Tooltip title="Автозар">
-              <span className="gx-d-block gx-d-lg-none">
-                <MyIcon type="iconcar2" />
-              </span>
-            </Tooltip>
-            <div className="gx-d-none gx-d-lg-block">Автозар</div>
           </Link>
         </Menu.Item>
       )}

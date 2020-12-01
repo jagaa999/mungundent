@@ -76,7 +76,18 @@ const MenuMember = () => {
         </Button>
       </Link>
 
-      <Link to={"/motocar/insert"}>
+      <Link to={"/autozar/insert"}>
+        <Button
+          className="gx-mb-1 gx-mt-2 gx-btn-success gx-ml-3"
+          icon={<PlusOutlined />}
+          type="text"
+          size="small"
+        >
+          Автозар
+        </Button>
+      </Link>
+
+      {/* <Link to={"/motocar/insert"}>
         <Button
           className="gx-mb-1 gx-mt-2 gx-btn-success gx-ml-3"
           icon={<PlusOutlined />}
@@ -85,7 +96,7 @@ const MenuMember = () => {
         >
           Машин
         </Button>
-      </Link>
+      </Link> */}
       <Link to={"/member/edit/" + memberContext.state.memberCloudUserSysId}>
         <Button
           className="gx-mb-1 gx-mt-2 gx-btn-success gx-ml-3"

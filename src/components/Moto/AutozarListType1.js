@@ -11,10 +11,6 @@ const { Option } = Select;
 const AutozarListType1 = () => {
   const autozarListContext = useContext(AutozarContext);
 
-  useEffect(() => {
-    autozarListContext.loadAutozarList();
-  }, []);
-
   return (
     <div className="moto-list">
       {/* <div className="">

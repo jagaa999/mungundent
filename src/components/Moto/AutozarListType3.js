@@ -6,7 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import accounting from "accounting";
 import toBoolean from "util/booleanFunction";
 import AutozarListItem3 from "./AutozarListItem3";
-import AuctionListActionHeader from "./AuctionListActionHeader";
+import AutozarListActionHeader from "./AutozarListActionHeader";
 import AutozarContext from "context/AutozarContext";
 import FilterContext from "context/FilterContext";
 import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
@@ -20,10 +20,6 @@ const AutozarListType3 = () => {
   const autozarListContext = useContext(AutozarContext);
   const filterContext = useContext(FilterContext);
 
-  useEffect(() => {
-    autozarListContext.loadAutozarList();
-  }, []);
-
   return (
     <div className="moto-list">
       {/* <div className="">
@@ -34,7 +30,7 @@ const AutozarListType3 = () => {
 
       {!autozarListContext.autozarList.loading ? (
         <div className="gx-main-content">
-          {/* <AuctionListActionHeader /> */}
+          <AutozarListActionHeader title="Автозар" />
 
           {/* <AuctionFilterHeader /> */}
 

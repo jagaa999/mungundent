@@ -1,26 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 
-//Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
-// import { Html5Entities } from "html-entities";
-// import toBoolean from "util/booleanFunction";
-
 import AutozarForm1General from "./Autozar/AutozarForm1General";
 import AutozarForm1Autocar from "./Autozar/AutozarForm1Autocar";
 import AutozarForm1Autozar from "./Autozar/AutozarForm1Autozar";
 import AutozarForm1Other from "./Autozar/AutozarForm1Other";
 import AutozarForm1Seller from "./Autozar/AutozarForm1Seller";
 
-import {
-  Button,
-  Card,
-  message,
-  Divider,
-  Form,
-  Input,
-  Select,
-  Steps,
-} from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Button, Card, message, Divider, Form, Steps } from "antd";
+import { UploadOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
 import AutozarContext from "context/AutozarContext";
 
@@ -138,10 +125,18 @@ const AutozarForm = () => {
     });
 
     setTechDriveList({ ...techDriveList, loading: true });
+    const myTempTechDriveList = await loadDataview({
+      systemmetagroupid: "1586958538229243",
+    });
+    let myArray = [];
+    myTempTechDriveList.map((item, index) => {
+      if (!["85947896", "10614146", "10748554", "47190415"].includes(item.id)) {
+        myArray.push(item);
+      }
+    });
+
     setTechDriveList({
-      techDriveList: await loadDataview({
-        systemmetagroupid: "1586958538229243",
-      }),
+      techDriveList: myArray,
       loading: false,
     });
 
@@ -188,6 +183,13 @@ const AutozarForm = () => {
     setCurrentStep(current);
   };
 
+  const nextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const prevStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
   //  #####  #     # ######  #     # ### #######
   // #     # #     # #     # ##   ##  #     #
   // #       #     # #     # # # # #  #     #
@@ -211,15 +213,7 @@ const AutozarForm = () => {
     });
   };
 
-  // const onFieldsChange = (changedFields, allFields) => {
-  //   console.log("onFieldsChange onFieldsChange ", changedFields);
-  // };
-  // const onValuesChange = (changedValues, allValues) => {
-  //   console.log("onValuesChange onValuesChange ", changedValues);
-  // };
-
-  // console.log("mglFuelList", mglFuelList);
-  console.log(autozarItem);
+  // console.log("autozarItem FORM", autozarItem);
 
   // #####  ###### ##### #    # #####  #    #
   // #    # #        #   #    # #    # ##   #
@@ -240,8 +234,6 @@ const AutozarForm = () => {
         name="autozarDetailForm"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        // onFieldsChange={onFieldsChange}
-        // onValuesChange={onValuesChange}
         initialValues={autozarItem}
         scrollToFirstError={true}
         colon={false}
@@ -254,7 +246,7 @@ const AutozarForm = () => {
           className="site-navigation-steps"
         >
           {stepList.map((item) => (
-            <Step key={item.title} title={item.title} />
+            <Steps.Step key={item.title} title={item.title} />
           ))}
         </Steps>
         <div className="gx-mt-5">
@@ -295,16 +287,32 @@ const AutozarForm = () => {
 
         <Divider className="gx-my-5" />
 
-        <Form.Item {...tailFormItemLayout}>
-          <Button
-            type="primary"
-            size="large"
-            htmlType="submit"
-            icon={<PlusOutlined />}
-          >
-            Илгээх
-          </Button>
-        </Form.Item>
+        <div className="gx-float-right">
+          {currentStep > 0 && (
+            <Button onClick={prevStep} size="large" icon={<LeftOutlined />}>
+              Өмнөх
+            </Button>
+          )}
+
+          {currentStep < stepList.length - 1 && (
+            <Button onClick={nextStep} size="large" icon={<RightOutlined />}>
+              Дараах
+            </Button>
+          )}
+
+          {currentStep === stepList.length - 1 && (
+            <Form.Item noStyle={true}>
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                icon={<UploadOutlined />}
+              >
+                Илгээх
+              </Button>
+            </Form.Item>
+          )}
+        </div>
       </Form>
     </Card>
   );

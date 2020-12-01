@@ -164,23 +164,20 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
          #    #       ####### #   #   
          #    #       #     # #    #  
          #    ####### #     # #     #  */}
-      <Form.Item
-        name="mglyearmanufactured"
-        hasFeedback
-        label="Үйлдвэрлэсэн Он-Сар"
-      >
+      <Form.Item name="mglyearmanufactured" hasFeedback label="Үйлдвэрлэсэн Он">
         <DatePicker
           className="gx-w-100"
-          picker="month"
-          placeholder="2012-12"
-          format="YYYY-MM"
+          picker="year"
+          placeholder="Он"
+          format="YYYY"
         />
       </Form.Item>
-      <Form.Item name="mglyearimport" hasFeedback label="Импортолсон огноо">
+      <Form.Item name="mglyearimport" hasFeedback label="Орж ирсэн Он">
         <DatePicker
           className="gx-w-100"
-          placeholder="2018-12-31"
-          format="YYYY-MM-DD"
+          picker="year"
+          placeholder="Он"
+          format="YYYY"
         />
       </Form.Item>
       {/* 

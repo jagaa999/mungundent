@@ -59,13 +59,13 @@ const AutozarForm1Seller = ({ form }) => {
       <Form.Item name="mobile2" hasFeedback label="Гар утас 2">
         <Input />
       </Form.Item>
-      <Divider className="gx-my-4" />
+      {/* <Divider className="gx-my-4" />
       <Form.Item name="memberfirebaseuid" hasFeedback label="UID">
         <Input disabled />
       </Form.Item>
       <Form.Item name="systemuserid" hasFeedback label="Sys ID">
         <Input disabled />
-      </Form.Item>
+      </Form.Item> */}
     </>
   );
 };

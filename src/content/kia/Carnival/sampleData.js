@@ -1,70 +1,96 @@
-export const portalMetaHome = {
-  id: 123,
-  title: "Home page",
-  layoutcode: "001",
+export const configHome001 = {
+  portalpagecode: "001",
+  layoutcode: "LandingPage01", //5 section-тэй
+  portalpagename: "Portal 001",
+  detailconfigs: [
+    {
+      sectioncode: "01",
+      widgetcode: "WidgetMenu01",
+      widgetconfigs: {
+        position1: "title",
+        position2: "link",
+      },
+      data: {
+        total: 3,
+        rows: [
+          {
+            id: "101",
+            title: "Request 311",
+            link: "/",
+            parentid: "",
+          },
+          {
+            id: "102",
+            title: "Administration",
+            link: "/admin",
+            parentid: "",
+          },
+          {
+            id: "103",
+            title: "How do I..",
+            link: "/howdoi",
+            parentid: "",
+          },
+        ],
+      },
+    },
+    {
+      sectionCode: "01",
+      widgetcode: "WidgetCarousel01",
+      widgetconfigs: {
+        position1: "title",
+        position2: "description",
+        position3: "backphoto",
+      },
+      data: {
+        total: 10,
+        rows: [
+          {
+            title: "A vibrant city nestled against the Mountains.",
+            description:
+              "Drawn by clean air and mythical light, visitors come to experience traditions, fine art, great cuisine and natural beauty of the landscape.",
+            backphoto:
+              "https://media-exp1.licdn.com/dms/image/C4E1BAQFL2EtHrlva6A/company-background_10000/0?e=2159024400&v=beta&t=5Zlfb2tA558GUxmPtTHYtcgr9RQAo1u7zkAdQMKZ8W8",
+          },
+          {
+            title: "Far away from the every day!",
+            description:
+              "Beautiful neighborhoods, extraordinary schools, great restaurants and a rich cultural history make our city an ideal place to call home.",
+            backphoto:
+              "https://d374nmyjid5pr9.cloudfront.net/styles/property_listing/s3/garden-city_preview.jpg?itok=Ll5ckVeT",
+          },
+        ],
+      },
+    },
+    {
+      sectioncode: "01",
+      widgetcode: "Banner02",
+      widgetconfigs: {
+        position1: "title",
+        position2: "description",
+        position3: "photo",
+      },
+      data: {
+        total: 4,
+        rows: [
+          { title: "009", description: "description 009", photo: "" },
+          { title: "009", description: "description 009", photo: "" },
+          { title: "009", description: "description 009", photo: "" },
+        ],
+      },
+    },
+  ],
 };
-
-export const portalMetaNews = [
-  {
-    id: 456,
-    title: "News page",
-    layoutcode: "002",
-  },
-];
-
-export const portalMetaHeader = [
-  {
-    sectioncode: "1",
-    widgetcode: "Menu01",
-    metatypeid: "dataview",
-    metametaid: 456789,
-    widgetdtl: [
-      {
-        positioncode: "1",
-        fieldpath: "menuicon",
-      },
-      {
-        positioncode: "2",
-        fieldpath: "menuname",
-      },
-    ],
-  },
-];
-
-export const portalMetaFooter = [
-  {
-    sectioncode: "1",
-    widgetcode: "Footer01",
-    metatypeid: "dataview",
-    metametaid: 456789,
-    widgetdtl: [
-      {
-        positioncode: "1",
-        fieldPath: "menuicon",
-      },
-      {
-        positionCode: "2",
-        fieldPath: "menuname",
-      },
-    ],
-  },
-];
 
 export const configHome = [
   {
-    metaTypeId: "portal",
-    metaMetaId: 789456,
-  },
+    layoutName: "LandingPage01", //5 section-тэй
 
-  {
-    sectionCode: "1",
-  },
+    // sectionCode: {
+    // code: "2",
+    // widgetCode: "Banner101",
+    // }
 
-  {
-    sectionCode: "2",
-    widgetCode: "Banner101",
-    metaTypeId: "dataview",
-    metaMetaId: 789456,
     pageSize: 4,
     widgetDtl: [
       {
@@ -127,174 +153,5 @@ export const configHome = [
         ],
       },
     ],
-  },
-
-  {
-    sectionCode: "3",
-    widgetCode: "Slider01",
-    metaTypeId: "process",
-    metaMetaId: 789456,
-    pageSize: 10,
-    widgetDtl: [
-      {
-        positionCode: "1",
-        fieldPath: "title",
-      },
-      {
-        positionCode: "2",
-        fieldPath: "description",
-      },
-      {
-        positionCode: "3",
-        fieldPath: "buttontext",
-      },
-    ],
-    result: [
-      { total: 8 },
-      { aggregate_columns: {} },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-    ],
-  },
-
-  {
-    widgetCode: "Intro01",
-    metaTypeId: "dataview",
-    metaMetaId: 789456,
-    pageSize: 10,
-    widgetDtl: [
-      {
-        positionCode: "1",
-        fieldPath: "title",
-      },
-      {
-        positionCode: "2",
-        fieldPath: "description",
-      },
-      {
-        positionCode: "3",
-        fieldPath: "buttonText",
-      },
-    ],
-  },
-
-  {
-    widgetCode: "CeoGreetings01",
-    metaTypeId: "process",
-    metaMetaId: 789456,
-    pageSize: null,
-    widgetDtl: [
-      {
-        positionCode: "1",
-        fieldPath: "photo",
-      },
-      {
-        positionCode: "2",
-        fieldPath: "greetingtitle",
-      },
-      {
-        positionCode: "3",
-        fieldPath: "greetingbody",
-      },
-      {
-        positionCode: "4",
-        widgetCode: "CeoGreetings01-01",
-        widgetDtl: [
-          {
-            positionCode: "1",
-            fieldPath: "photo",
-          },
-          {
-            positionCode: "2",
-            fieldPath: "greetingtitle",
-          },
-          {
-            positionCode: "3",
-            fieldPath: "greetingbody",
-          },
-        ],
-      },
-    ],
-    result: [
-      {
-        photo: "storage/uploads/process/emp-uugan.png",
-        greetingtitle: "Та бүхний өдрийн мэнд хүргэе!!!",
-        greetingbody: "Миний бие Ууганбаяр ...",
-      },
-    ],
-  },
-];
-
-export const configNews = [
-  {
-    metaTypeId: "portal",
-    metaMetaId: 789456,
-  },
-  {
-    sectionCode: "3",
-    widgetCode: "Slider01",
-    metaTypeId: "process",
-    metaMetaId: 789456,
-    pageSize: 10,
-    widgetDtl: [
-      {
-        positionCode: "1",
-        fieldPath: "title",
-      },
-      {
-        positionCode: "2",
-        fieldPath: "description",
-      },
-      {
-        positionCode: "3",
-        fieldPath: "buttontext",
-      },
-    ],
-    result: [
-      { total: 8 },
-      { aggregate_columns: {} },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-      {
-        title: "fgbfdbdf",
-        description: "fgbfdbdf",
-        buttontext: "fgbfdbdf",
-      },
-    ],
-  },
-  {
-    metaTypeId: "portal",
-    metaMetaId: 258978,
   },
 ];
