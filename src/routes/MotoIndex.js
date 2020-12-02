@@ -109,6 +109,10 @@ const TopAuctionPage = asyncComponent(() => {
   return import("./moto/top/topAuctionPage");
 });
 
+const PrivacyPolicyPage = asyncComponent(() => {
+  return import("../content/static/officialinfo/PrivacyPolicy");
+});
+
 const HomeIndex = asyncComponent(() => {
   return import("./moto/home/home");
 });
@@ -364,6 +368,18 @@ const App = ({ match }) => (
       <Route path={["/top/auction", "/top/auctionlist"]}>
         <TopAuctionPage />
       </Route>
+      {/* 
+       #####  #######    #    ####### ###  #####  
+      #     #    #      # #      #     #  #     # 
+      #          #     #   #     #     #  #       
+       #####     #    #     #    #     #  #       
+            #    #    #######    #     #  #       
+      #     #    #    #     #    #     #  #     # 
+       #####     #    #     #    #    ###  #####  */}
+      <Route path={["/static/privacy", "/static/privacypolicy"]}>
+        <PrivacyPolicyPage />
+      </Route>
+
       {/*
       ####### ####### #     # ####### ######  
       #     #    #    #     # #       #     # 

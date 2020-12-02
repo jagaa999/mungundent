@@ -9,6 +9,14 @@ import MemberContext from "context/MemberContext";
 import { footerText } from "util/config";
 const { Footer } = Layout;
 
+const staticMenu = (
+  <Menu>
+    <Menu.Item key="staticAuction">
+      <Link to="/static/privacy">Privacy Policy</Link>
+    </Menu.Item>
+  </Menu>
+);
+
 const topMenu = (
   <Menu>
     <Menu.Item key="topAuction">
@@ -49,6 +57,19 @@ const MotoFooter = () => {
               <div className="">{footerText}</div>
             </div>
             <ul className="gx-ml-auto gx-header-notifications">
+              <li className="gx-msg">
+                <Dropdown
+                  overlayClassName="gx-popover-horizantal"
+                  placement="topRight"
+                  overlay={staticMenu}
+                  trigger="click"
+                >
+                  <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
+                    Мэдээлэл
+                  </span>
+                </Dropdown>
+              </li>
+
               <li className="gx-msg">
                 <Dropdown
                   overlayClassName="gx-popover-horizantal"

@@ -51,6 +51,13 @@ export const configHome001 = {
               "Drawn by clean air and mythical light, visitors come to experience traditions, fine art, great cuisine and natural beauty of the landscape.",
             backphoto:
               "https://media-exp1.licdn.com/dms/image/C4E1BAQFL2EtHrlva6A/company-background_10000/0?e=2159024400&v=beta&t=5Zlfb2tA558GUxmPtTHYtcgr9RQAo1u7zkAdQMKZ8W8",
+            style: {
+              height: "360px",
+              color: "#fff",
+              textAlign: "left",
+              background: "#364d79",
+              padding: "7% 13%",
+            },
           },
           {
             title: "Far away from the every day!",
@@ -58,6 +65,13 @@ export const configHome001 = {
               "Beautiful neighborhoods, extraordinary schools, great restaurants and a rich cultural history make our city an ideal place to call home.",
             backphoto:
               "https://d374nmyjid5pr9.cloudfront.net/styles/property_listing/s3/garden-city_preview.jpg?itok=Ll5ckVeT",
+            style: {
+              height: "360px",
+              color: "#fff",
+              textAlign: "center",
+              background: "#364d79",
+              padding: "7% 13%",
+            },
           },
         ],
       },
