@@ -59,7 +59,7 @@ export const AutozarStore = (props) => {
       showquery: "0",
       ignorepermission: "1",
       paging: {
-        pageSize: "1",
+        pagesize: "1",
         offset: "1",
       },
     },

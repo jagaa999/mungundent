@@ -9,7 +9,7 @@ import AutozarListItem3 from "./AutozarListItem3";
 import AutozarListActionHeader from "./AutozarListActionHeader";
 import AutozarContext from "context/AutozarContext";
 import FilterContext from "context/FilterContext";
-import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
+import AutozarFilterDrawer from "./Drawer/AutozarFilterDrawer";
 import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
@@ -43,8 +43,8 @@ const AutozarListType3 = () => {
             </Col>
           </Row>
 
-          {/* <MotoPagination myClass="gx-mt-2" /> */}
-          {/* <AuctionFilterDrawer /> */}
+          <MotoPagination myClass="gx-mt-2" />
+          <AutozarFilterDrawer />
         </div>
       ) : (
         <LoadingList type="table" />

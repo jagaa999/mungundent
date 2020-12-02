@@ -8,7 +8,7 @@ import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
 import AutozarContext from "context/AutozarContext";
-import MotoSort from "./Sort/MotoSort";
+import MotoAutozarSort from "./Sort/MotoAutozarSort";
 
 const AutozarListActionHeader = (props) => {
   const filterContext = useContext(FilterContext);
@@ -36,15 +36,15 @@ const AutozarListActionHeader = (props) => {
           </h3>
         }
         extra={[
-          // <Button
-          //   key="moto-filter-button"
-          //   size="small"
-          //   icon={<MyIcon type="iconfilter" />}
-          //   onClick={toggleFilterDrawer}
-          //   className="gx-mr-0"
-          // >
-          //   Шүүлтүүр
-          // </Button>,
+          <Button
+            key="moto-filter-button"
+            size="small"
+            icon={<MyIcon type="iconfilter" />}
+            onClick={toggleFilterDrawer}
+            className="gx-mr-0"
+          >
+            Шүүлтүүр
+          </Button>,
 
           <Link
             key="keyautozarinsertbutton"
@@ -60,7 +60,7 @@ const AutozarListActionHeader = (props) => {
             </Button>
           </Link>,
 
-          // <MotoSort key="motosort" />,
+          <MotoAutozarSort key="motosort" />,
         ]}
       ></PageHeader>
     </>

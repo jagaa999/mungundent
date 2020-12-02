@@ -115,6 +115,7 @@ const AuctionListItem3 = ({ autozarItem }) => {
       title: "Гүйлт",
       key: "car-milage",
       responsive: ["sm"],
+      width: "90px",
       dataIndex: "autozarmilage",
       render: (autozarmilage, record) => (
         <>
@@ -132,10 +133,11 @@ const AuctionListItem3 = ({ autozarItem }) => {
     {
       title: "Үнэ",
       key: "car-rating",
+      width: "110px",
       dataIndex: "financepricerr",
       align: "center",
       render: (financepricerr, record) => (
-        <div style={{ minWidth: "90px" }}>
+        <div className="gx-text-success">
           {/* <div className="gx-fs-md"> */}
           {accounting.formatMoney(record.financepricerr, "₮", 0, "'")}
           {/* </div> */}

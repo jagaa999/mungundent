@@ -12,7 +12,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 
 const AuctionListItem2 = ({ auctionItem }) => {
-  console.log("Манай Item - ", auctionItem);
+  // console.log("Манай Item - ", auctionItem);
 
   const htmlEntities = new Html5Entities();
 
