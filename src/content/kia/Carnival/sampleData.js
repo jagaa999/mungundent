@@ -76,96 +76,112 @@ export const configHome001 = {
         ],
       },
     },
+
     {
-      sectioncode: "01",
-      widgetcode: "Banner02",
+      sectionCode: "01",
+      widgetcode: "WidgetCard07",
       widgetconfigs: {
         position1: "title",
         position2: "description",
-        position3: "photo",
+        position3: "icon",
+        position4: "colprops",
+        position5: "link",
+        position6: "cardprops",
       },
       data: {
         total: 4,
         rows: [
-          { title: "009", description: "description 009", photo: "" },
-          { title: "009", description: "description 009", photo: "" },
-          { title: "009", description: "description 009", photo: "" },
+          {
+            title: "Departments & Facility Hours",
+            description:
+              "Access City’s service offerings and check hours for all facilities.",
+            icon:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/monument.png",
+            colprops: { span: 6 },
+            cardprops: {
+              className: "gx-bg-success",
+              style: { height: "100%" },
+            },
+            link: "/department",
+          },
+          {
+            title: "Traffic, Transit & Parking",
+            description:
+              "Traffic and road closure news and local traffic conditions",
+            icon:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bus.png",
+            colprops: { span: 6 },
+            cardprops: {
+              className: "gx-bg-warning",
+              style: { height: "100%" },
+            },
+            link: "/buses",
+          },
+          {
+            title: "Employment & Job Listings",
+            description:
+              "The City employment opportunities & position descriptions are listed here.",
+            icon:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/exam.png",
+            colprops: { span: 6 },
+            cardprops: {
+              className: "gx-bg-success",
+              style: { height: "100%" },
+            },
+            link: "/job",
+          },
+          {
+            title: "Parks, Fields & Recreation",
+            description:
+              "Information on the parks, their locations, and the amenities they offer.",
+            icon:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bench.png",
+            colprops: { span: 6 },
+            cardprops: { className: "gx-bg-grey", style: { height: "100%" } },
+            link: "/park",
+          },
+        ],
+      },
+    },
+
+    {
+      sectionCode: "01",
+      widgetcode: "WidgetBanner07",
+      widgetconfigs: {
+        position1: "title",
+        position2: "description",
+        position3: "photo",
+        position4: "bannerprops",
+        position5: "leftprops",
+        position6: "rightprops",
+      },
+      data: {
+        total: 1,
+        rows: [
+          {
+            title:
+              "Thank you for allowing me to serve as your mayor. Together, let's keep the momentum going.",
+            description: "Best regards, Mayor Lisa F. Matt",
+            photo:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/mayor-5b.jpg",
+            bannerprops: {
+              style: {
+                height: "350px",
+                backgroundColor: "#222933",
+                overflow: "hidden",
+              },
+              className: " gx-px-5",
+            },
+            leftprops: {
+              className: "gx-text-white gx-p-3 gx-mt-5",
+              style: {
+                border: "1px solid #fff",
+              },
+            },
+            rightprops: {},
+          },
         ],
       },
     },
   ],
 };
-
-export const configHome = [
-  {
-    layoutName: "LandingPage01", //5 section-тэй
-
-    // sectionCode: {
-    // code: "2",
-    // widgetCode: "Banner101",
-    // }
-
-    pageSize: 4,
-    widgetDtl: [
-      {
-        positionCode: "1",
-        fieldPath: "photo",
-      },
-      {
-        positionCode: "2",
-        fieldPath: "title",
-      },
-      {
-        positionCode: "3",
-        fieldPath: "description",
-      },
-      {
-        positionCode: "4",
-        fieldPath: "buttontext",
-      },
-    ],
-    result: [
-      { total: 8 },
-      {
-        rows: [
-          {
-            photo:
-              "https://i.pinimg.com/originals/a6/8e/4b/a68e4bd0885a7d1de90a2c265ebc8131.jpg",
-            avatar:
-              "https://www.noiseguard.com.au/wp-content/uploads/2017/10/IMG_3502.png",
-            title: "Гарчиг 01",
-            description: "2021 онд шинээр гарна",
-            buttontext: "Үзэх",
-          },
-          {
-            photo:
-              "https://images.unsplash.com/photo-1506111583091-becfd4bfa05d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80",
-            avatar:
-              "https://img1.looper.com/img/gallery/the-complicated-terminator-franchise-timeline-explained/intro-1595349245.jpg",
-            title: "Гарчиг 02",
-            description: "Европийн шилдэг автомашин",
-            buttontext: "Унших",
-          },
-          {
-            photo:
-              "https://images.unsplash.com/photo-1497334426377-e0794ccee290?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1064&q=80",
-            avatar:
-              "https://api.time.com/wp-content/uploads/2014/12/godfather-ii.jpeg",
-            title: "Гарчиг 03",
-            description: "Солонгост эхний өдрөө 20,000 ширхэг захиалга авав",
-            buttontext: "Захиалах",
-          },
-          {
-            photo:
-              "https://carnetwork.s3.ap-southeast-1.amazonaws.com/file/9cc7bcde7bfe47ebb5d67cd63ce87ade.jpg",
-            avatar:
-              "https://www.thehindubusinessline.com/migration_catalog/article22386513.ece/ALTERNATES/LANDSCAPE_1200/ksh",
-            title: "Гарчиг 04",
-            description: "7 хүний тав тухтай аялал",
-            buttontext: "Туршилтын жолоодлого",
-          },
-        ],
-      },
-    ],
-  },
-];

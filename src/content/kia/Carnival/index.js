@@ -4,10 +4,14 @@ import AntBanner101 from "./AntBanner101.js";
 import WidgetBanner101 from "./WidgetBanner101.js";
 import WidgetMenu01 from "./WidgetMenu01.js";
 import WidgetCarousel01 from "./WidgetCarousel01.js";
+import WidgetCard07 from "./WidgetCard07.js";
+import WidgetBanner07 from "./WidgetBanner07.js";
 import { configHome001, configHome } from "./sampleData";
 
-import { Menu, Avatar, Button, Divider } from "antd";
+import { Menu, Avatar, Layout, Button, Divider } from "antd";
 import "./less/antMotionStyle.less";
+
+const { Header, Footer, Sider, Content } = Layout;
 
 const { detailconfigs } = configHome001;
 
@@ -18,15 +22,17 @@ const HomePage = () => {
   // console.table("myResult", myResult);
 
   return (
-    <div>
+    <Layout>
       {detailconfigs.map((widget, index) => {
         if (widget.widgetcode === "WidgetMenu01") {
           return (
-            <WidgetMenu01
-              key={index}
-              widgetconfigs={widget.widgetconfigs}
-              data={widget.data}
-            />
+            <Header>
+              <WidgetMenu01
+                key={index}
+                widgetconfigs={widget.widgetconfigs}
+                data={widget.data}
+              />
+            </Header>
           );
         }
 
@@ -39,8 +45,28 @@ const HomePage = () => {
             />
           );
         }
+
+        if (widget.widgetcode === "WidgetCard07") {
+          return (
+            <WidgetCard07
+              key={index}
+              widgetconfigs={widget.widgetconfigs}
+              data={widget.data}
+            />
+          );
+        }
+
+        if (widget.widgetcode === "WidgetBanner07") {
+          return (
+            <WidgetBanner07
+              key={index}
+              widgetconfigs={widget.widgetconfigs}
+              data={widget.data}
+            />
+          );
+        }
       })}
-    </div>
+    </Layout>
   );
 };
 

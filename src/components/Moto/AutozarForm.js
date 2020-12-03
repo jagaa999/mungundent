@@ -244,6 +244,7 @@ const AutozarForm = () => {
           current={currentStep}
           onChange={onStepChange}
           className="site-navigation-steps"
+          // style={{ flexDirection: "row" }}
         >
           {stepList.map((item) => (
             <Steps.Step key={item.title} title={item.title} />
