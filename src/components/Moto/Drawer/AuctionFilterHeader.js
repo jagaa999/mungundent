@@ -220,6 +220,14 @@ const AuctionFilter = (props) => {
               </Option>
             ))}
           </Select>
+
+          <Input
+            style={{ width: "163px" }}
+            className="gx-ml-1"
+            placeholder="LOT, Арал, Хувилбар"
+            defaultValue={filterContext.state.filterList?.search || undefined}
+            onPressEnter={(e) => prepareURL3(e, "search")}
+          />
         </Input.Group>
       </div>
       {filterContext.state.filterList?.model_id !== undefined && (

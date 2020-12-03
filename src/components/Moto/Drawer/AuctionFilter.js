@@ -103,7 +103,7 @@ const AuctionFilter = (props) => {
   }, [filterContext.state.filterList]);
 
   const prepareURL = (checkedValues, parameterLabel) => {
-    console.log("checkedValues", checkedValues);
+    // console.log("checkedValues", checkedValues);
 
     //multiple values || checkbox etc
     const param = checkedValues
@@ -120,17 +120,20 @@ const AuctionFilter = (props) => {
   };
 
   const prepareURL2 = (checkedValues, parameterLabel) => {
-    console.log("checkedValues", checkedValues);
-
     //multiple values || checkbox etc
-    console.log("checkedValues", checkedValues);
-    console.log("parameterLabel", parameterLabel);
-
+    // console.log("checkedValues", checkedValues);
+    // console.log("parameterLabel", parameterLabel);
     const tempObject = {
       [parameterLabel]: checkedValues,
     };
-
     // console.log("tempObjecttempObject", tempObject);
+    filterContext.updateParams(tempObject);
+  };
+
+  const prepareURL3 = (checkedValues, parameterLabel) => {
+    const tempObject = {
+      [parameterLabel]: checkedValues.target.value,
+    };
     filterContext.updateParams(tempObject);
   };
 
@@ -154,15 +157,16 @@ const AuctionFilter = (props) => {
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "100%" }}>
       <CustomScrollbars>
-        {/* <Search
-          placeholder="Гарчгаас хайх"
-          onSearch={(value) => console.log(value)}
-        /> */}
-        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
-          Фирм
-        </h6>
+        <Input
+          style={{ width: "163px" }}
+          className="gx-w-100"
+          placeholder="LOT, Арал, Хувилбар"
+          defaultValue={filterContext.state.filterList?.search || undefined}
+          onPressEnter={(e) => prepareURL3(e, "search")}
+        />
+
         <Select
-          className="moto-select-firm gx-w-100"
+          className="moto-select-firm gx-w-100 gx-mt-3"
           loading={firmList.loading}
           showSearch
           allowClear
@@ -186,11 +190,11 @@ const AuctionFilter = (props) => {
             </Option>
           ))}
         </Select>
-        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+        {/* <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Марк
-        </h6>
+        </h6> */}
         <Select
-          className="moto-select-firm gx-w-100"
+          className="moto-select-firm gx-w-100 gx-mt-1"
           loading={markList.loading}
           showSearch
           allowClear
@@ -215,7 +219,7 @@ const AuctionFilter = (props) => {
           ))}
         </Select>
 
-        <Divider className="gx-my-5" />
+        {/* <Divider className="gx-my-5" /> */}
 
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Үйлдвэрлэсэн он
@@ -272,11 +276,11 @@ const AuctionFilter = (props) => {
           ))}
         </Select>
 
-        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+        {/* <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Арал
-        </h6>
+        </h6> */}
         <Select
-          className="moto-select-firm gx-w-100"
+          className="moto-select-firm gx-w-100 gx-mt-3"
           loading={frameList.loading}
           allowClear
           placeholder="Арал"
@@ -300,11 +304,11 @@ const AuctionFilter = (props) => {
             </Option>
           ))}
         </Select>
-        <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+        {/* <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Үнэлгээ
-        </h6>
+        </h6> */}
         <Select
-          className="moto-select-firm gx-w-100"
+          className="moto-select-firm gx-w-100 gx-mt-3"
           loading={rateList.loading}
           showSearch
           allowClear
@@ -356,6 +360,7 @@ const AuctionFilter = (props) => {
           <>
             <Divider dashed className="gx-mt-5" />
             <Button
+              className="gx-float-right"
               type="dashed"
               icon={<ClearOutlined />}
               onClick={(e) => {

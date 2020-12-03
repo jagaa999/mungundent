@@ -23,7 +23,7 @@ const AuctionDetail2 = () => {
     generalDataContext.loadRateMoneyList();
   }, []);
 
-  console.log("generaldata", generalDataContext.rateMoneyList);
+  // console.log("generaldata", generalDataContext.rateMoneyList);
 
   const [cardTabs, setCardTabs] = useState({
     key: "tab1",

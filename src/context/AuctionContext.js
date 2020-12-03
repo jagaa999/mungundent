@@ -78,6 +78,7 @@ export const AuctionStore = (props) => {
     setAuctionList({ ...auctionList, loading: true });
 
     let myTempObject = [];
+    let myTempObject2 = "";
 
     Object.keys(filterContext.state.filterList).map((val, k) => {
       if (["marka_id", "model_id", "kuzov", "rate"].includes(val)) {
@@ -104,16 +105,20 @@ export const AuctionStore = (props) => {
           operator: "<=",
         });
       }
+      if (val === "search") {
+        myTempObject2 = `(kuzov like '%${filterContext.state.filterList[val]}%' or grade like '%${filterContext.state.filterList[val]}%' or lot like '%${filterContext.state.filterList[val]}%')`;
+      }
     });
 
     // select * from main where model_name='corolla' and marka_name='toyota' and (rate>='3' and rate<='6') and year>=1990 order by year desc limit 4,50
 
     // convert objec to a query string
-    const qs = myTempObject
-      .map((item) => `${item.label}${item.operator}'${item.value}'`)
-      .join(" AND ");
+    const qs =
+      myTempObject
+        .map((item) => `${item.label}${item.operator}'${item.value}'`)
+        .join(" AND ") + myTempObject2;
 
-    // console.log("PPPPPPPPPPPPP", qs);
+    console.log("PPPPPPPPPPPPP", qs);
 
     let myWhere = "";
     if (qs !== "") {
