@@ -119,7 +119,7 @@ const uiConfig = {
       // Do something with the returned AuthResult.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
-      console.log("UI Config Доторх user---------", authResult);
+      // console.log("UI Config Доторх user---------", authResult);
       // console.log("UI Config Доторх userredirectUrl---------", redirectUrl);
       //!!user && memberContext.setFirebaseProfile(user);
 
@@ -138,7 +138,7 @@ const uiConfig = {
       // The widget is rendered.
       // Hide the loader.
       document.getElementById("myUIloader").style.display = "none";
-      console.log("ХАРАГДСАН УУУУУУУУУУУУУУУУ??");
+      // console.log("ХАРАГДСАН УУУУУУУУУУУУУУУУ??");
       return true;
     },
   },

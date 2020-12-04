@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import MemberContext from "context/MemberContext";
-import { Skeleton, Divider, Typography, Button, Modal } from "antd";
+import { Modal } from "antd";
 import SignIn from "../../../containers/SignIn";
 import { CloseCircleOutlined } from "@ant-design/icons";
 
@@ -9,7 +9,7 @@ const SigninModal = () => {
 
   return (
     <Modal
-      title="Гишүүн нэвтрэх"
+      // title="Гишүүн нэвтрэх"
       visible={memberContext.state.isModal}
       onOk={(e) => {
         memberContext.isModal(false);
@@ -19,9 +19,10 @@ const SigninModal = () => {
       }}
       footer={null}
       header={null}
-      width="700px"
+      width="90%"
       z-index="5000"
-      closeIcon={<CloseCircleOutlined />}
+      closeIcon={<CloseCircleOutlined className="gx-text-white" size={64} />}
+      bodyStyle={{ padding: "0" }}
     >
       <SignIn />
     </Modal>

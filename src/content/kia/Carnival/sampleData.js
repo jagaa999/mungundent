@@ -183,5 +183,45 @@ export const configHome001 = {
         ],
       },
     },
+
+    {
+      sectionCode: "01",
+      widgetcode: "WidgetBanner07",
+      widgetconfigs: {
+        position1: "title",
+        position2: "description",
+        position3: "photo",
+        position4: "bannerprops",
+        position5: "leftprops",
+        position6: "rightprops",
+      },
+      data: {
+        total: 1,
+        rows: [
+          {
+            title:
+              "Thank you for allowing me to serve as your mayor. Together, let's keep the momentum going.",
+            description: "Best regards, Mayor Lisa F. Matt",
+            photo:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/mayor-5b.jpg",
+            bannerprops: {
+              style: {
+                height: "350px",
+                backgroundColor: "#222933",
+                overflow: "hidden",
+              },
+              className: " gx-px-5",
+            },
+            leftprops: {
+              className: "gx-text-white gx-p-3 gx-mt-5",
+              style: {
+                border: "1px solid #fff",
+              },
+            },
+            rightprops: {},
+          },
+        ],
+      },
+    },
   ],
 };

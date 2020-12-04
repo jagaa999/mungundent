@@ -71,19 +71,19 @@ const AuctionDetailPage = (props) => {
         <meta property="og:locale" content="mn_MN" />
       </Helmet>
 
-      {/* {memberContext.state.isLogin ? ( */}
-      <>
-        {/* <LogsStore> */}
-        {auctionContext.auctionDetail.loading ? (
-          <LoadingDetail />
-        ) : (
-          <AuctionDetail2 auctionId={auctionId} />
-        )}
-        {/* </LogsStore> */}
-      </>
-      {/* ) : (
+      {memberContext.state.isLogin ? (
+        <>
+          {/* <LogsStore> */}
+          {auctionContext.auctionDetail.loading ? (
+            <LoadingDetail />
+          ) : (
+            <AuctionDetail2 auctionId={auctionId} />
+          )}
+          {/* </LogsStore> */}
+        </>
+      ) : (
         <PleaseLogin />
-      )} */}
+      )}
     </>
   );
 };
