@@ -66,7 +66,7 @@ const AutozarDetail2 = () => {
       <div key={autozarItem.id} className="gx-main-content autozar-detail">
         <Card
           className="moto-autozar-detail-card"
-          style={{ width: "100%" }}
+          style={{ width: "100%", height: "100%" }}
           title={
             <>
               {moment(autozarItem.mglyearmanufactured).format("YYYY")}{" "}
@@ -88,12 +88,12 @@ const AutozarDetail2 = () => {
           {contentList[cardTabs.key]}
         </Card>
 
-        <Alert
+        {/* <Alert
           message="Зарын тухай нэмэлт мэдээлэл"
           description={autozarItem.description}
           type="info"
           showIcon
-        />
+        /> */}
       </div>
     );
   } else {

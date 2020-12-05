@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { Html5Entities } from "html-entities";
+import { Scrollbars } from "react-custom-scrollbars";
 
 import { Card, Image, List, Alert } from "antd";
 import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -37,13 +38,29 @@ const AutozarGoonet = ({ autozarItem }) => {
   // goountilnow: "";
 
   return (
-    <Alert
-      message="Удахгүй хийгдэнэ."
-      description="Энэ автозарыг япон автомашины дэлгэрэнгүй техник үзүүлэлттэй холбож харуулах системийг хийж байгааг мэдэгдэхэд таатай байна."
-      type="warning"
-      showIcon={true}
-    />
-    // <Card type="inner" bordered={true} title="Мото каталоги" loading={false}>
+    <div>
+      <Scrollbars
+        autoHeight
+        autoHeightMin={100}
+        autoHeightMax="calc(80vh - 36px - 35px - 75px)"
+        autoHide
+        autoHideTimeout={2000}
+        universal
+        renderTrackHorizontal={(props) => (
+          <div
+            {...props}
+            style={{ display: "none" }}
+            className="track-horizontal"
+          />
+        )}
+      >
+        <Alert
+          message="Удахгүй хийгдэнэ."
+          description="Энэ автозарыг япон автомашины дэлгэрэнгүй техник үзүүлэлттэй холбож харуулах системийг хийж байгааг мэдэгдэхэд таатай байна."
+          type="warning"
+          showIcon={true}
+        />
+        {/* // <Card type="inner" bordered={true} title="Мото каталоги" loading={false}>
     //   <Descriptions column={2} layout="horizontal" size="small">
     //     <Descriptions.Item
     //       label={<span className="gx-text-grey">Фирм</span>}
@@ -81,7 +98,9 @@ const AutozarGoonet = ({ autozarItem }) => {
     //   <div>goomodelcode: {autozarItem.goomodelcode}</div>
     //   <div>goopricenewusd: {autozarItem.goopricenewusd}</div>
     //   <div>goountilnow: {autozarItem.goountilnow}</div>
-    // </Card>
+    // </Card> */}
+      </Scrollbars>
+    </div>
   );
 };
 

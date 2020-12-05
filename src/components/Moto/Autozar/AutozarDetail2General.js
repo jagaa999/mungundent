@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
+// import CustomScrollbars from "util/CustomScrollbars";
+import { Scrollbars } from "react-custom-scrollbars";
 
 import moment from "moment";
 import "moment/locale/mn";
@@ -49,7 +51,22 @@ const AutozarDetail2General = ({ autozarItem }) => {
 
     return (
       <div>
-        {/* 
+        <Scrollbars
+          autoHeight
+          autoHeightMin={100}
+          autoHeightMax="calc(80vh - 36px - 35px - 75px)"
+          autoHide
+          autoHideTimeout={2000}
+          universal
+          renderTrackHorizontal={(props) => (
+            <div
+              {...props}
+              style={{ display: "none" }}
+              className="track-horizontal"
+            />
+          )}
+        >
+          {/* 
            #####  #######    #    ####### 
           #     #    #      # #      #    
           #          #     #   #     #    
@@ -58,59 +75,59 @@ const AutozarDetail2General = ({ autozarItem }) => {
           #     #    #    #     #    #    
            #####     #    #     #    #     */}
 
-        <Row>
-          <Col sm={{ span: 9, offset: 0 }} xs={{ span: 8, offset: 1 }}>
-            <Descriptions
-              column={1}
-              layout="horizontal"
-              className="moto-auction-head-description"
-            >
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Улсын дугаар</span>}
+          <Row>
+            <Col sm={{ span: 9, offset: 0 }} xs={{ span: 22, offset: 1 }}>
+              <Descriptions
+                column={1}
+                layout="horizontal"
+                className="moto-auction-head-description"
               >
-                {autozarItem.mgllicensenumberfull}
-              </Descriptions.Item>
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Арал</span>}
-              >
-                {autozarItem.body2vinnumber}
-              </Descriptions.Item>
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Гүйлт</span>}
-              >
-                {accounting.formatMoney(autozarItem.autozarmilage, {
-                  symbol: "км",
-                  format: "%v %s",
-                  precision: 0,
-                  thousand: "'",
-                })}
-              </Descriptions.Item>
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Үйлдвэрлэсэн он</span>}
-              >
-                {moment(autozarItem.mglyearmanufactured).format("YYYY")}
-              </Descriptions.Item>
+                <Descriptions.Item
+                  label={<span className="gx-text-grey">Улсын дугаар</span>}
+                >
+                  {autozarItem.mgllicensenumberfull}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label={<span className="gx-text-grey">Арал</span>}
+                >
+                  {autozarItem.body2vinnumber}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label={<span className="gx-text-grey">Гүйлт</span>}
+                >
+                  {accounting.formatMoney(autozarItem.autozarmilage, {
+                    symbol: "км",
+                    format: "%v %s",
+                    precision: 0,
+                    thousand: "'",
+                  })}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label={<span className="gx-text-grey">Үйлдвэрлэсэн он</span>}
+                >
+                  {moment(autozarItem.mglyearmanufactured).format("YYYY")}
+                </Descriptions.Item>
 
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Орж ирсэн он</span>}
-              >
-                {moment(autozarItem.mglyearimport).format("YYYY")}
-              </Descriptions.Item>
+                <Descriptions.Item
+                  label={<span className="gx-text-grey">Орж ирсэн он</span>}
+                >
+                  {moment(autozarItem.mglyearimport).format("YYYY")}
+                </Descriptions.Item>
 
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Шатахуун</span>}
-              >
-                {autozarItem.mglfuel}
-              </Descriptions.Item>
+                <Descriptions.Item
+                  label={<span className="gx-text-grey">Шатахуун</span>}
+                >
+                  {autozarItem.mglfuel}
+                </Descriptions.Item>
 
-              <Descriptions.Item
-                label={<span className="gx-text-grey">Жолоо</span>}
-              >
-                {autozarItem.mgldrivepos ? "Зөв" : "Буруу"}
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
-          {/*
+                <Descriptions.Item
+                  label={<span className="gx-text-grey">Жолоо</span>}
+                >
+                  {autozarItem.mgldrivepos ? "Зөв" : "Буруу"}
+                </Descriptions.Item>
+              </Descriptions>
+            </Col>
+            {/*
              ### #     #    #     #####  ####### 
               #  ##   ##   # #   #     # #       
               #  # # # #  #   #  #       #       
@@ -119,8 +136,8 @@ const AutozarDetail2General = ({ autozarItem }) => {
               #  #     # #     # #     # #       
              ### #     # #     #  #####  #######  */}
 
-          <Col span={15}>
-            {/* <Image
+            <Col sm={{ span: 15, offset: 0 }} xs={{ span: 22, offset: 1 }}>
+              {/* <Image
               src={`https://cloudapi.moto.mn/${autozarItem.imagemain}`}
               loading="lazy"
               width="300"
@@ -129,15 +146,15 @@ const AutozarDetail2General = ({ autozarItem }) => {
               alt={autozarItem.mglmark}
             /> */}
 
-            <AutozarListItemMainImage
-              myClass="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
-              width="300"
-              imageMain={autozarItem.imagemain}
-            />
-          </Col>
-        </Row>
+              <AutozarListItemMainImage
+                myClass="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
+                width="300"
+                imageMain={autozarItem.imagemain}
+              />
+            </Col>
+          </Row>
 
-        {/* 
+          {/* 
            ### #     #    #     #####  #######  #####  
             #  ##   ##   # #   #     # #       #     # 
             #  # # # #  #   #  #       #       #       
@@ -145,18 +162,18 @@ const AutozarDetail2General = ({ autozarItem }) => {
             #  #     # ####### #     # #             # 
             #  #     # #     # #     # #       #     # 
            ### #     # #     #  #####  #######  #####   */}
-        <Row>
-          <Col span={24}>
-            <AutozarDetailImages
-              autozarItem={autozarItem}
-              // myImages={myImages}
-              imageotherFileList={autozarItem.imageotherFileList}
-              // myImages={autozarItem.imageother}
-            />
-          </Col>
-        </Row>
+          <Row>
+            <Col span={24}>
+              <AutozarDetailImages
+                autozarItem={autozarItem}
+                // myImages={myImages}
+                imageotherFileList={autozarItem.imageotherFileList}
+                // myImages={autozarItem.imageother}
+              />
+            </Col>
+          </Row>
 
-        {/* <Descriptions
+          {/* <Descriptions
           layout="horizontal"
           bordered={true}
           size="small"
@@ -171,12 +188,12 @@ const AutozarDetail2General = ({ autozarItem }) => {
           })}
         </Descriptions> */}
 
-        {/* FINISH
+          {/* FINISH
               STATUS	
               AVG_STRING
               SERIAL	
               INFO */}
-        {/* {autozarItem.STATUS !== "" && (
+          {/* {autozarItem.STATUS !== "" && (
           <Alert
             message="STATUS"
             description={`Төлөв: ${autozarItem.STATUS}`}
@@ -214,8 +231,8 @@ const AutozarDetail2General = ({ autozarItem }) => {
           />
         )} */}
 
-        <Row className="gx-mt-4">
-          {/*
+          <Row className="gx-mt-4">
+            {/*
             #####  ######  #######  #####  
           #     # #     # #       #     # 
           #       #     # #       #       
@@ -224,38 +241,38 @@ const AutozarDetail2General = ({ autozarItem }) => {
           #     # #       #       #     # 
            #####  #       #######  #####   */}
 
-          <Col
-            md={{ span: 12, offset: 0 }}
-            sm={{ span: 24, offset: 0 }}
-            xs={{ span: 22, offset: 1 }}
-            className="gx-mt-4 gx-mt-md-0"
-          >
-            <h4>Автомашин</h4>
-            <Descriptions
-              className="moto-car-spec1"
-              layout="horizontal"
-              bordered={true}
-              size="small"
-              column={1}
+            <Col
+              md={{ span: 12, offset: 0 }}
+              sm={{ span: 24, offset: 0 }}
+              xs={{ span: 22, offset: 1 }}
+              className="gx-mt-4 gx-mt-md-0"
             >
-              <Descriptions.Item label="Фирм">
-                {autozarItem.mglfirm}
-              </Descriptions.Item>
-              <Descriptions.Item label="Марк">
-                {autozarItem.mglmark}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хийц">
-                {autozarItem.mglbody}
-              </Descriptions.Item>
-              <Descriptions.Item label="Гадна өнгө">
-                {autozarItem.mglcoloroutside}
-              </Descriptions.Item>
-              <Descriptions.Item label="Улс">
-                {autozarItem.mglcountryorigin}
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
-          {/* 
+              <h4>Автомашин</h4>
+              <Descriptions
+                className="moto-car-spec1"
+                layout="horizontal"
+                bordered={true}
+                size="small"
+                column={1}
+              >
+                <Descriptions.Item label="Фирм">
+                  {autozarItem.mglfirm}
+                </Descriptions.Item>
+                <Descriptions.Item label="Марк">
+                  {autozarItem.mglmark}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хийц">
+                  {autozarItem.mglbody}
+                </Descriptions.Item>
+                <Descriptions.Item label="Гадна өнгө">
+                  {autozarItem.mglcoloroutside}
+                </Descriptions.Item>
+                <Descriptions.Item label="Улс">
+                  {autozarItem.mglcountryorigin}
+                </Descriptions.Item>
+              </Descriptions>
+            </Col>
+            {/* 
            ####### #######  #####  #     # 
               #    #       #     # #     # 
               #    #       #       #     # 
@@ -264,43 +281,44 @@ const AutozarDetail2General = ({ autozarItem }) => {
               #    #       #     # #     # 
               #    #######  #####  #     #  */}
 
-          <Col
-            md={{ span: 12, offset: 0 }}
-            sm={{ span: 24, offset: 0 }}
-            xs={{ span: 22, offset: 1 }}
-            className="gx-mt-4 gx-mt-md-0"
-          >
-            <h4>Агрегат</h4>
-            <Descriptions
-              className="moto-car-spec1"
-              layout="horizontal"
-              bordered={true}
-              size="small"
-              column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+            <Col
+              md={{ span: 12, offset: 0 }}
+              sm={{ span: 24, offset: 0 }}
+              xs={{ span: 22, offset: 1 }}
+              className="gx-mt-4 gx-mt-md-0"
             >
-              <Descriptions.Item label="Хөдөлгүүр">
-                {accounting.formatMoney(autozarItem.mglengine2disp, {
-                  symbol: "cc",
-                  format: "%v %s",
-                  precision: 0,
-                  thousand: "'",
-                })}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хроп">
-                {autozarItem.drive2transtypename}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хөтлөгч">
-                {autozarItem.drive2drivename}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хаалга">
-                {autozarItem.mgldoor}
-              </Descriptions.Item>
-              <Descriptions.Item label="Суудал">
-                {autozarItem.mglseat}
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
-        </Row>
+              <h4>Агрегат</h4>
+              <Descriptions
+                className="moto-car-spec1"
+                layout="horizontal"
+                bordered={true}
+                size="small"
+                column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+              >
+                <Descriptions.Item label="Хөдөлгүүр">
+                  {accounting.formatMoney(autozarItem.mglengine2disp, {
+                    symbol: "cc",
+                    format: "%v %s",
+                    precision: 0,
+                    thousand: "'",
+                  })}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хроп">
+                  {autozarItem.drive2transtypename}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хөтлөгч">
+                  {autozarItem.drive2drivename}
+                </Descriptions.Item>
+                <Descriptions.Item label="Хаалга">
+                  {autozarItem.mgldoor}
+                </Descriptions.Item>
+                <Descriptions.Item label="Суудал">
+                  {autozarItem.mglseat}
+                </Descriptions.Item>
+              </Descriptions>
+            </Col>
+          </Row>
+        </Scrollbars>
       </div>
     );
   } else {

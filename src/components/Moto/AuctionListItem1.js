@@ -17,7 +17,7 @@ const { Meta } = Card;
 const ScrollOverPack = ScrollAnim.OverPack;
 
 const AuctionListItem1 = ({ auctionItem }) => {
-  console.log("Манай бараа - ", auctionItem);
+  // console.log("Манай бараа - ", auctionItem);
   const htmlEntities = new Html5Entities();
 
   return (

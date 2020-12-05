@@ -16,6 +16,7 @@ export const FilterStore = (props) => {
   // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
   const searchParams = parse(search);
   const [state, setState] = useState({
+    menu: "home",
     filterList: {},
     paging: {
       offset: "1",
