@@ -72,14 +72,9 @@ export const AutozarStore = (props) => {
   const [autozarDetail, setAutozarDetail] = useState(initialStateAutozarDetail);
 
   useEffect(() => {
+    if (filterContext.state.menu !== "autozar") return;
     loadAutozarList();
-  }, [
-    filterContext.state.filterList,
-    filterContext.state.paging,
-    filterContext.state.sorting,
-    filterContext.state.cardtype,
-    memberContext.state.isLogin,
-  ]);
+  }, [filterContext.state, memberContext.state.isLogin]);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #

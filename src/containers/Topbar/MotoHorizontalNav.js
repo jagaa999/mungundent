@@ -12,12 +12,12 @@ const MenuItemGroup = Menu.ItemGroup;
 
 const HorizontalNav = () => {
   const filterContext = useContext(FilterContext);
-  const selectedKeys = filterContext.urlPath.substr(1);
-  const defaultOpenKeys = selectedKeys.split("/")[1];
+  const selectedKeys = filterContext.state.menu;
+  // const defaultOpenKeys = selectedKeys.split("/")[1];
 
   return (
     <Menu
-      defaultOpenKeys={[defaultOpenKeys]}
+      // defaultOpenKeys={[defaultOpenKeys]}
       selectedKeys={[selectedKeys]}
       mode="horizontal"
       className="motoHeader"

@@ -54,12 +54,14 @@ export const NewsListStore = (props) => {
 
   // useDidMountEffect(() => {
   useEffect(() => {
+    if (filterContext.state.menu !== "news") return;
     loadNewsList();
   }, [
-    filterContext.state.filterList,
-    filterContext.state.paging,
-    filterContext.state.sorting,
-    filterContext.state.cardtype,
+    filterContext.state,
+    // filterContext.state.filterList,
+    // filterContext.state.paging,
+    // filterContext.state.sorting,
+    // filterContext.state.cardtype,
     memberContext.state.isLogin,
   ]);
 

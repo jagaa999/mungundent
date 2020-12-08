@@ -12,48 +12,46 @@ export const FilterStore = (props) => {
   const history = useHistory();
   const { pathname, search } = useLocation();
   const searchParams = parse(search);
+  // * queryString гэдэг нь ?newstypeid=206&newssourceid=1516239256080
 
-  // const [urlParams, setUrlParams] = useState({});
+  const [urlParams, setUrlParams] = useState({});
 
-  // const initialParams = {
-  //   filterList: {},
-  //   paging: {
-  //     offset: "1",
-  //     pagesize: "12",
-  //   },
-  //   sorting: {},
-  //   cardtype: {
-  //     cardtype: localStorage.getItem(pathname + "cardtype") || "typelist",
-  //   },
-  //   loading: false,
-  //   error: null,
-  // };
+  const initialParams = {
+    filterList: {},
+    paging: {
+      offset: "1",
+      pagesize: "12",
+    },
+    sorting: {},
+    cardtype: {
+      cardtype: localStorage.getItem(urlParams.menu + "cardtype") || "typelist",
+    },
+    loading: false,
+    error: null,
+  };
 
-  const [state, setState] = useState({});
+  const [state, setState] = useState(initialParams);
   const [searchQuery, setSearchQuery] = useState("");
   const [totalcount, setTotalcount] = useState("0");
 
-  console.log("history", history);
-  console.log("pathname", pathname);
-  console.log("filterContext.state", state);
+  console.log("urlParams.menu", urlParams.menu);
 
-  // useEffect(() => {
-  //   setUrlParams({
-  //     motoUrl: pathname.split("/"),
-  //     menu: pathname.split("/")[1],
-  //     pathName: pathname,
-  //     search: search,
-  //     searchParams: parse(search),
-  //   });
-  //   // setState(initialParams);
-  // }, [pathname]);
-
+  useEffect(() => {
+    setUrlParams({
+      motoUrl: pathname.split("/"),
+      menu: pathname.split("/")[1],
+      pathName: pathname,
+      search: search,
+      searchParams: parse(search),
+    });
+    setState(initialParams);
+  }, [pathname]);
   useEffect(() => {
     let myFilterList = {};
     let myPaging = { offset: "1", pagesize: "12" };
     let mySorting = {};
     let myCardtype = {
-      cardtype: localStorage.getItem(pathname + "cardtype") || "typelist",
+      cardtype: localStorage.getItem(urlParams.menu + "cardtype") || "typelist",
     };
 
     Object.keys(searchParams).map((item) => {
@@ -80,59 +78,57 @@ export const FilterStore = (props) => {
       }
     });
 
-    setState({
-      motoUrl: pathname.split("/"),
-      menu: pathname.split("/")[1],
-      pathName: pathname,
-      search: search,
+    const initialStateFilterList = {
       filterList: myFilterList,
       paging: myPaging,
       sorting: mySorting,
       cardtype: myCardtype,
       loading: false,
       error: null,
+    };
+
+    setState(initialStateFilterList);
+  }, [urlParams]);
+
+  useEffect(() => {
+    const mySearchQueryParams = [];
+
+    Object.keys(state.filterList).map((item) => {
+      if (state.filterList[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.filterList[item]);
+      }
     });
-  }, [pathname, search]);
 
-  // useEffect(() => {
-  //   const mySearchQueryParams = [];
+    Object.keys(state.paging).map((item) => {
+      if (state.paging[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.paging[item]);
+      }
+    });
 
-  //   Object.keys(state.filterList || {}).map((item) => {
-  //     if (state.filterList[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.filterList[item]);
-  //     }
-  //   });
+    Object.keys(state.sorting).map((item) => {
+      if (state.sorting[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.sorting[item]);
+      }
+    });
 
-  //   Object.keys(state.paging || {}).map((item) => {
-  //     if (state.paging[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.paging[item]);
-  //     }
-  //   });
+    Object.keys(state.cardtype).map((item) => {
+      if (state.cardtype[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.cardtype[item]);
+        // console.log("myCardtype", state.cardtype[item]);
+        localStorage.setItem(urlParams.menu + "cardtype", state.cardtype[item]);
+      }
+    });
 
-  //   Object.keys(state.sorting || {}).map((item) => {
-  //     if (state.sorting[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.sorting[item]);
-  //     }
-  //   });
+    setSearchQuery(mySearchQueryParams.join("&"));
+  }, [state.filterList, state.paging, state.sorting, state.cardtype]);
 
-  //   Object.keys(state.cardtype || {}).map((item) => {
-  //     if (state.cardtype[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.cardtype[item]);
-  //       // console.log("myCardtype", state.cardtype[item]);
-  //       localStorage.setItem(pathname + "cardtype", state.cardtype[item]);
-  //     }
-  //   });
-
-  //   setSearchQuery(mySearchQueryParams.join("&"));
-  // }, [state.filterList, state.paging, state.sorting, state.cardtype]);
-
-  // useEffect(() => {
-  //   history.push({
-  //     // pathname: "/news",
-  //     pathname: "/" + pathname,
-  //     search: searchQuery,
-  //   });
-  // }, [searchQuery]);
+  useEffect(() => {
+    history.push({
+      // pathname: "/news",
+      pathname: "/" + urlParams.menu,
+      search: searchQuery,
+    });
+  }, [searchQuery]);
 
   // console.log("urlParams", urlParams);
 
@@ -221,6 +217,7 @@ export const FilterStore = (props) => {
       value={{
         state,
         totalcount,
+        urlParams,
         loadFilterList,
         updateParams,
         clearAll,

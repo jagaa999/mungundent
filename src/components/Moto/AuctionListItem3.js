@@ -13,7 +13,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 
 const AuctionListItem3 = ({ auctionItem }) => {
-  // console.log("Манай машин - ", auctionItem);
+  console.log("Манай машин - ", auctionItem);
   const htmlEntities = new Html5Entities();
 
   const columns = [
@@ -168,7 +168,7 @@ const AuctionListItem3 = ({ auctionItem }) => {
     <Table
       rowKey="LOT"
       columns={columns}
-      dataSource={auctionItem}
+      dataSource={auctionItem || {}}
       pagination={false}
       showHeader={true}
     />

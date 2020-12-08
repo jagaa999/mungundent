@@ -67,14 +67,9 @@ export const ProductStore = (props) => {
   const [productDetail, setProductDetail] = useState(initialProductDetail);
 
   useEffect(() => {
+    if (filterContext.state.menu !== "product") return;
     loadProductList();
-  }, [
-    filterContext.state.filterList,
-    filterContext.state.paging,
-    filterContext.state.sorting,
-    filterContext.state.cardtype,
-    memberContext.state.isLogin,
-  ]);
+  }, [filterContext.state, memberContext.state.isLogin]);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #

@@ -57,12 +57,14 @@ export const AuctionStore = (props) => {
   );
 
   useEffect(() => {
+    if (filterContext.state.menu !== "auction") return;
     loadAuctionList();
   }, [
-    filterContext.state.filterList,
-    filterContext.state.paging,
-    filterContext.state.sorting,
-    filterContext.state.cardtype,
+    filterContext.state,
+    // filterContext.state.filterList,
+    // filterContext.state.paging,
+    // filterContext.state.sorting,
+    // filterContext.state.cardtype,
     memberContext.state.isLogin,
   ]);
 
@@ -168,17 +170,20 @@ export const AuctionStore = (props) => {
       ...initialAuctionList.loadParams,
       sql: mySQL,
     };
+
+    console.log("myParamsAuctionList", myParamsAuctionList);
+
     axios
       .get(
         "https://us-central1-moto-86243.cloudfunctions.net/loadAuction?" +
           stringify(myParamsAuctionList)
       )
       .then((response) => {
-        // console.log("OOOOPPPPPPPPPPPP", response);
+        console.log("OOOOPPPPPPPPPPPP", response);
         setAuctionList({
           ...auctionList,
           loading: false,
-          auctionList: response.data.response,
+          auctionList: response.data.response || [],
           where: myWhere,
         });
       })
