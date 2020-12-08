@@ -8,6 +8,7 @@ import accounting from "accounting";
 import { Html5Entities } from "html-entities";
 import { Tooltip, Card, Tag, Image } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import TweenOne from "rc-tween-one";
 
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 
@@ -27,91 +28,103 @@ const AuctionListItem2 = ({ auctionItem }) => {
   );
 
   return (
-    <Card
-      className={`moto-item-card ${
-        toBoolean(auctionItem.isfeatured) ? "moto-card-sponsor" : ""
-      } ${!toBoolean(auctionItem.isactive) ? "border-top" : ""}`}
-      hoverable={true}
-      // style={{ margin: "0 10px", height: "380px" }}
-      cover={
-        <Image
-          // height={250}
-          src={auctionItem.IMAGES.replace("h=50", "w=320")}
-          className="gx-mr-2"
-          fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-        />
-      }
+    <TweenOne
+      key={auctionItem.ID}
+      animation={{
+        opacity: 0.1,
+        marginTop: 100,
+        type: "from",
+        ease: "easeOutQuad",
+        // delay: 50,
+        // duration: 50,
+      }}
     >
-      {/* <span className="moto-badge-1">{auctionItem.LOT}</span> */}
-      <Tag color="warning" className="moto-badge-1">
-        {auctionItem.LOT}
-      </Tag>
+      <Card
+        className={`moto-item-card ${
+          toBoolean(auctionItem.isfeatured) ? "moto-card-sponsor" : ""
+        } ${!toBoolean(auctionItem.isactive) ? "border-top" : ""}`}
+        hoverable={true}
+        // style={{ margin: "0 10px", height: "380px" }}
+        cover={
+          <Image
+            // height={250}
+            src={auctionItem.IMAGES.replace("h=50", "w=320")}
+            className="gx-mr-2"
+            fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          />
+        }
+      >
+        {/* <span className="moto-badge-1">{auctionItem.LOT}</span> */}
+        <Tag color="warning" className="moto-badge-1">
+          {auctionItem.LOT}
+        </Tag>
 
-      <div className="gx-d-inline-flex gx-vertical-align-middle">
-        <span className="gx-text-black gx-fs-lg gx-mr-2">
-          {auctionItem.RATE}
-        </span>
-        <MotoAuctionStarRatingComponent
-          starCount={6}
-          value={auctionItem.RATE}
-          emptyStarColor={"#d1d1d1"}
-        />
-      </div>
-      <h4 className="gx-mt-2">{myTitle}</h4>
-
-      <div className="gx-text-grey gx-fs-sm">
-        {accounting.formatMoney(auctionItem.MILEAGE, {
-          symbol: "км",
-          format: "%v %s",
-          precision: 0,
-          thousand: "'",
-        })}
-      </div>
-
-      <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
-        <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">Өнгө:</span>
-          {auctionItem.COLOR}
+        <div className="gx-d-inline-flex gx-vertical-align-middle">
+          <span className="gx-text-black gx-fs-lg gx-mr-2">
+            {auctionItem.RATE}
+          </span>
+          <MotoAuctionStarRatingComponent
+            starCount={6}
+            value={auctionItem.RATE}
+            emptyStarColor={"#d1d1d1"}
+          />
         </div>
-        <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">Хөдөлгүүр:</span>
-          {accounting.formatMoney(auctionItem.ENG_V, {
-            symbol: "cc",
+        <h4 className="gx-mt-2">{myTitle}</h4>
+
+        <div className="gx-text-grey gx-fs-sm">
+          {accounting.formatMoney(auctionItem.MILEAGE, {
+            symbol: "км",
             format: "%v %s",
             precision: 0,
             thousand: "'",
           })}
         </div>
-        <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">Хроп:</span>
-          {auctionItem.KPP} {auctionItem.KPP_TYPE}
-        </div>
-        <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">Хөтлөгч:</span>
-          {auctionItem.PRIV}
+
+        <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
+          <div className="gx-d-flex gx-fs-sm">
+            <span className="gx-mr-2 gx-text-grey">Өнгө:</span>
+            {auctionItem.COLOR}
+          </div>
+          <div className="gx-d-flex gx-fs-sm">
+            <span className="gx-mr-2 gx-text-grey">Хөдөлгүүр:</span>
+            {accounting.formatMoney(auctionItem.ENG_V, {
+              symbol: "cc",
+              format: "%v %s",
+              precision: 0,
+              thousand: "'",
+            })}
+          </div>
+          <div className="gx-d-flex gx-fs-sm">
+            <span className="gx-mr-2 gx-text-grey">Хроп:</span>
+            {auctionItem.KPP} {auctionItem.KPP_TYPE}
+          </div>
+          <div className="gx-d-flex gx-fs-sm">
+            <span className="gx-mr-2 gx-text-grey">Хөтлөгч:</span>
+            {auctionItem.PRIV}
+          </div>
+
+          <div className="gx-d-flex gx-fs-sm">
+            <span className="gx-mr-2 gx-text-grey">Арал:</span>
+            {htmlEntities.decode(auctionItem.KUZOV)}
+          </div>
+
+          <div className="gx-d-flex gx-fs-sm">
+            <span className="gx-mr-2 gx-text-grey">Хувилбар:</span>
+            {htmlEntities.decode(auctionItem.GRADE)}
+          </div>
         </div>
 
-        <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">Арал:</span>
-          {htmlEntities.decode(auctionItem.KUZOV)}
-        </div>
-
-        <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">Хувилбар:</span>
-          {htmlEntities.decode(auctionItem.GRADE)}
-        </div>
-      </div>
-
-      {auctionItem.STATUS !== "" && (
-        <div className="moto-auction-badge">
-          <Tag color="processing">Төлөв: {auctionItem.STATUS}</Tag>
-          <Tag icon={<ExclamationCircleOutlined />} color="warning">
-            Сүүлийн үнэ:{" "}
-            {accounting.formatMoney(auctionItem.FINISH, "¥", 0, "'")}
-          </Tag>
-        </div>
-      )}
-    </Card>
+        {auctionItem.STATUS !== "" && (
+          <div className="moto-auction-badge">
+            <Tag color="processing">Төлөв: {auctionItem.STATUS}</Tag>
+            <Tag icon={<ExclamationCircleOutlined />} color="warning">
+              Сүүлийн үнэ:{" "}
+              {accounting.formatMoney(auctionItem.FINISH, "¥", 0, "'")}
+            </Tag>
+          </div>
+        )}
+      </Card>
+    </TweenOne>
   );
 };
 

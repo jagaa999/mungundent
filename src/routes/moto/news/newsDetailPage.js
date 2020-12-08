@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { prepareTitle } from "util/config";
 
-import NewsDetail from "../../../components/Moto/NewsDetail";
+import NewsDetail from "../../../components/Moto/NewsDetail2";
 import { CommentListStore } from "../../../context/CommentContext";
 import { LogsStore } from "../../../context/LogsContext";
 import NewsDetailContext from "../../../context/NewsDetailContext";

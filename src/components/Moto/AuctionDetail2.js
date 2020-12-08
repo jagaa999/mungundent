@@ -12,6 +12,7 @@ import MotoAuctionSameCars from "./Auction/MotoAuctionSameCars";
 
 import AuctionContext from "context/AuctionContext";
 import GeneralDataContext from "context/GeneralDataContext";
+import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 
 const AuctionDetail2 = () => {
   const auctionContext = useContext(AuctionContext);
@@ -82,7 +83,19 @@ const AuctionDetail2 = () => {
               </span>
             </>
           }
-          extra={`LOT: ${auctionItem.LOT}`}
+          extra={[
+            `LOT: ${auctionItem.LOT}`,
+            <div className="gx-d-inline-flex gx-vertical-align-middle">
+              <span className="gx-text-black gx-fs-lg gx-mr-2 gx-ml-3 ">
+                {auctionItem.RATE}
+              </span>
+              <MotoAuctionStarRatingComponent
+                starCount={6}
+                value={auctionItem.RATE}
+                emptyStarColor={"#d1d1d1"}
+              />
+            </div>,
+          ]}
           tabList={tabList}
           activeTabKey={cardTabs.key}
           onTabChange={(key) => {
@@ -134,7 +147,7 @@ const AuctionDetail2 = () => {
         <Alert
           message="Японоос машин захиалгаар оруулж ирдэг бизнестэй хүмүүсийн анхааралд!"
           description="Энэ системийг ашиглан хүмүүс машин захиалах хүсэлтэй юм. Хэрвээ та эдгээр захиалгыг өөртөө авахыг хүсвэл Moto.mn тантай хамтран ажиллахад бэлэн байна. Утас: 99902070"
-          type="info"
+          type="warning"
           showIcon
         />
       </div>

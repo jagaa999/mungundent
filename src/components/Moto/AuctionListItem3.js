@@ -9,6 +9,7 @@ import accounting from "accounting";
 
 import { Image, Table, Tooltip, Tag } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import TweenOne from "rc-tween-one";
 
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 
@@ -22,72 +23,86 @@ const AuctionListItem3 = ({ auctionItem }) => {
       dataIndex: "MODEL_NAME",
       key: "car-name",
       render: (MODEL_NAME, record) => (
-        <div className="gx-media gx-flex-nowrap">
-          <Image
-            // height={250}
-            src={record.IMAGES}
-            className="gx-mr-2"
-            style={{ minWidth: "50px" }}
-            fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          />
+        <TweenOne
+          key={record.ID}
+          animation={{
+            opacity: 0.1,
+            marginLeft: 100,
+            type: "from",
+            ease: "easeOutQuad",
+            // delay: 50,
+            // duration: 50,
+          }}
+        >
+          <div className="gx-media gx-flex-nowrap">
+            <Image
+              // height={250}
+              src={record.IMAGES}
+              className="gx-mr-2"
+              style={{ minWidth: "50px" }}
+              fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            />
 
-          <div className="gx-media-body gx-align-self-center">
-            <Link to={"/auction/" + record.ID}>
-              {`${record.YEAR} ${record.MARKA_NAME} ${record.MODEL_NAME}`}
-            </Link>
-            <Tooltip title="LOT дугаар">
-              <Tag color="magenta" className="gx-ml-3">
-                {record.LOT}
-              </Tag>
-            </Tooltip>
-            {/* {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
+            <div className="gx-media-body gx-align-self-center">
+              <Link to={"/auction/" + record.ID}>
+                {`${record.YEAR} ${record.MARKA_NAME} ${record.MODEL_NAME}`}
+              </Link>
+              <Tooltip title="LOT дугаар">
+                <Tag color="magenta" className="gx-ml-3">
+                  {record.LOT}
+                </Tag>
+              </Tooltip>
+              {/* {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
               {!toBoolean(record.isactive) && <ActiveTag type="dot" />} */}
-            <div>
-              <Tooltip title="Өнгө" placement="bottom">
-                <span className="moto-label-main ant-tag">{record.COLOR}</span>
-              </Tooltip>
-              <Tooltip title="Хөдөлгүүр" placement="bottom">
-                <span className="moto-label-main ant-tag">
-                  {/* {record.ENG_V} cc */}
-                  {accounting.formatMoney(record.ENG_V, {
-                    symbol: "cc",
-                    format: "%v %s",
-                    precision: 0,
-                    thousand: "'",
-                  })}
-                </span>
-              </Tooltip>
-              <Tooltip title="Хроп" placement="bottom">
-                <span className="moto-label-main ant-tag">
-                  {record.KPP} {record.KPP_TYPE}
-                </span>
-              </Tooltip>
-              <Tooltip title="Хөтлөгч" placement="bottom">
-                <span className="moto-label-main ant-tag">{record.PRIV}</span>
-              </Tooltip>
+              <div>
+                <Tooltip title="Өнгө" placement="bottom">
+                  <span className="moto-label-main ant-tag">
+                    {record.COLOR}
+                  </span>
+                </Tooltip>
+                <Tooltip title="Хөдөлгүүр" placement="bottom">
+                  <span className="moto-label-main ant-tag">
+                    {/* {record.ENG_V} cc */}
+                    {accounting.formatMoney(record.ENG_V, {
+                      symbol: "cc",
+                      format: "%v %s",
+                      precision: 0,
+                      thousand: "'",
+                    })}
+                  </span>
+                </Tooltip>
+                <Tooltip title="Хроп" placement="bottom">
+                  <span className="moto-label-main ant-tag">
+                    {record.KPP} {record.KPP_TYPE}
+                  </span>
+                </Tooltip>
+                <Tooltip title="Хөтлөгч" placement="bottom">
+                  <span className="moto-label-main ant-tag">{record.PRIV}</span>
+                </Tooltip>
+              </div>
+
+              <div className="gx-d-flex gx-fs-sm">
+                <span className="gx-mr-2 gx-text-grey">Арал:</span>
+                {htmlEntities.decode(record.KUZOV)}
+              </div>
+
+              <div className="gx-d-flex gx-fs-sm">
+                <span className="gx-mr-2 gx-text-grey">Хувилбар:</span>
+                {htmlEntities.decode(record.GRADE)}
+              </div>
             </div>
 
-            <div className="gx-d-flex gx-fs-sm">
-              <span className="gx-mr-2 gx-text-grey">Арал:</span>
-              {htmlEntities.decode(record.KUZOV)}
-            </div>
-
-            <div className="gx-d-flex gx-fs-sm">
-              <span className="gx-mr-2 gx-text-grey">Хувилбар:</span>
-              {htmlEntities.decode(record.GRADE)}
-            </div>
+            {record.STATUS !== "" && (
+              <div className="moto-auction-badge">
+                <Tag color="processing">Төлөв: {record.STATUS}</Tag>
+                <Tag icon={<ExclamationCircleOutlined />} color="warning">
+                  Сүүлийн үнэ:{" "}
+                  {accounting.formatMoney(record.FINISH, "¥", 0, "'")}
+                </Tag>
+              </div>
+            )}
           </div>
-
-          {record.STATUS !== "" && (
-            <div className="moto-auction-badge">
-              <Tag color="processing">Төлөв: {record.STATUS}</Tag>
-              <Tag icon={<ExclamationCircleOutlined />} color="warning">
-                Сүүлийн үнэ:{" "}
-                {accounting.formatMoney(record.FINISH, "¥", 0, "'")}
-              </Tag>
-            </div>
-          )}
-        </div>
+        </TweenOne>
       ),
     },
     {

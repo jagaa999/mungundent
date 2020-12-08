@@ -5,6 +5,8 @@ import toBoolean from "util/booleanFunction";
 import moment from "moment";
 import "moment/locale/mn";
 import { Tooltip, Card } from "antd";
+import TweenOne from "rc-tween-one";
+
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import NewsItemMainImage from "./NewsItemMainImage";
 
@@ -28,37 +30,51 @@ const NewsItem = ({ newsItem, grid }) => {
       : newsItem.imagemain;
 
   return (
-    <Card
-      className={`moto-item-card ${
-        toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""
-      } ${!toBoolean(newsItem.isactive) ? "border-top" : ""}`}
-      hoverable={true}
-      // style={{ margin: "0 10px", height: "380px" }}
-      cover={<NewsItemMainImage width="300" imageMain={newsItem.imagemain} />}
+    <TweenOne
+      key={newsItem.newsid}
+      animation={{
+        opacity: 0.1,
+        marginTop: 100,
+        type: "from",
+        ease: "easeOutQuad",
+        // delay: 50,
+        // duration: 50,
+      }}
     >
-      <div className="gx-d-flex">
-        <Tooltip title="Төрөл">
-          <span className="moto-label-main ant-tag">
-            {newsItem.newstypename}
-          </span>
+      <Card
+        className={`moto-item-card ${
+          toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""
+        } ${!toBoolean(newsItem.isactive) ? "border-top" : ""}`}
+        hoverable={true}
+        // style={{ margin: "0 10px", height: "380px" }}
+        cover={<NewsItemMainImage width="300" imageMain={newsItem.imagemain} />}
+      >
+        <div className="gx-d-flex">
+          <Tooltip title="Төрөл">
+            <span className="moto-label-main ant-tag">
+              {newsItem.newstypename}
+            </span>
+          </Tooltip>
+          <Tooltip title="Эх сурвалж">
+            <span className="moto-label-main ant-tag">
+              {newsItem.newssourcename}
+            </span>
+          </Tooltip>
+        </div>
+        <span className="gx-text-grey gx-fs-sm">
+          {moment(newsItem.publisheddate).fromNow()}
+        </span>
+        <Tooltip title="Дэлгэрэнгүй унших">
+          <h4 className="gx-mt-2">{myTitle}</h4>
         </Tooltip>
-        <Tooltip title="Эх сурвалж">
-          <span className="moto-label-main ant-tag">
-            {newsItem.newssourcename}
-          </span>
-        </Tooltip>
-      </div>
-      <span className="gx-text-grey gx-fs-sm">
-        {moment(newsItem.publisheddate).fromNow()}
-      </span>
-      <Tooltip title="Дэлгэрэнгүй унших">
-        <h4 className="gx-mt-2">{myTitle}</h4>
-      </Tooltip>
 
-      <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
-        <span dangerouslySetInnerHTML={{ __html: truncatedDescription }}></span>
-      </div>
-    </Card>
+        <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
+          <span
+            dangerouslySetInnerHTML={{ __html: truncatedDescription }}
+          ></span>
+        </div>
+      </Card>
+    </TweenOne>
   );
 };
 

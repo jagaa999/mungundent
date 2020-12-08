@@ -7,6 +7,7 @@ import moment from "moment";
 import "moment/locale/mn";
 import { defaultSrc } from "util/config";
 import { Tooltip, Avatar, Table } from "antd";
+import TweenOne from "rc-tween-one";
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 
@@ -22,30 +23,42 @@ const NewsItem = ({ newsItems }) => {
       key: "title",
       render: (title, record) => (
         <>
-          <li className="gx-media">
-            <NewsItemMainImage width="64" imageMain={record.imagemain} />
+          <TweenOne
+            key={record.newsid}
+            animation={{
+              opacity: 0.1,
+              marginLeft: 100,
+              type: "from",
+              ease: "easeOutQuad",
+              // delay: 50,
+              // duration: 50,
+            }}
+          >
+            <span className="gx-media">
+              <NewsItemMainImage width="64" imageMain={record.imagemain} />
 
-            <div className="gx-media-body gx-align-self-center">
-              <Link to={"/news/" + record.newsid}>{title}</Link>
-              {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
-              {!toBoolean(record.isactive) && <ActiveTag type="dot" />}
-              <div className="gx-d-flex">
-                <Tooltip title="Төрөл">
-                  <span className="moto-label-main ant-tag">
-                    {record.newstypename}
+              <div className="gx-media-body gx-align-self-center">
+                <Link to={"/news/" + record.newsid}>{title}</Link>
+                {toBoolean(record.isfeatured) && <FeaturedTag type="dot" />}
+                {!toBoolean(record.isactive) && <ActiveTag type="dot" />}
+                <div className="gx-d-flex">
+                  <Tooltip title="Төрөл">
+                    <span className="moto-label-main ant-tag">
+                      {record.newstypename}
+                    </span>
+                  </Tooltip>
+                  <Tooltip title="Эх сурвалж">
+                    <span className="moto-label-main ant-tag">
+                      {record.newssourcename}
+                    </span>
+                  </Tooltip>
+                  <span className="gx-fs-sm">
+                    {moment(record.publisheddate).fromNow()}
                   </span>
-                </Tooltip>
-                <Tooltip title="Эх сурвалж">
-                  <span className="moto-label-main ant-tag">
-                    {record.newssourcename}
-                  </span>
-                </Tooltip>
-                <span className="gx-fs-sm">
-                  {moment(record.publisheddate).fromNow()}
-                </span>
+                </div>
               </div>
-            </div>
-          </li>
+            </span>
+          </TweenOne>
         </>
       ),
     },

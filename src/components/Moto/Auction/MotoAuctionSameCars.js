@@ -56,7 +56,7 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
           {auctionItem.RATE}
         </Descriptions.Item>
         <Descriptions.Item label={<span className="gx-text-grey">Төлөв</span>}>
-          <span className="gx-text-success">Зарагдсан</span>
+          Зарагдсан (өмнө зарагдаж байсан)
         </Descriptions.Item>
       </Descriptions>
       <Divider />
