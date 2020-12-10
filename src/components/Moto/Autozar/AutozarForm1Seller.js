@@ -45,9 +45,7 @@ const AutozarForm1Seller = ({ form }) => {
       #       #     # #   # #    #    ####### #          #    
       #     # #     # #    ##    #    #     # #     #    #    
        #####  ####### #     #    #    #     #  #####     #    */}
-      <Form.Item name="email" hasFeedback label="Имэйл">
-        <Input />
-      </Form.Item>
+
       <Form.Item
         name="mobile1rr"
         hasFeedback
@@ -57,6 +55,10 @@ const AutozarForm1Seller = ({ form }) => {
         <Input />
       </Form.Item>
       <Form.Item name="mobile2" hasFeedback label="Гар утас 2">
+        <Input />
+      </Form.Item>
+
+      <Form.Item name="email" hasFeedback label="Имэйл">
         <Input />
       </Form.Item>
       {/* <Divider className="gx-my-4" />

@@ -25,7 +25,7 @@ const MemberBox = ({ newMembers }) => {
 
   const memberInfo = (
     <>
-      <div className="gx-text-center">
+      <div className="gx-text-center gx-my-5">
         <Avatar
           size="large"
           src={memberContext.state.memberFirebaseProfile.photoURL}
@@ -35,7 +35,7 @@ const MemberBox = ({ newMembers }) => {
         </h4>
       </div>
 
-      <Row justify="center">
+      {/* <Row justify="center">
         <Col>
           <Link to={"/news"}>
             <Button type="primary">Нийтлэл</Button>
@@ -62,7 +62,7 @@ const MemberBox = ({ newMembers }) => {
             </Button>
           </Link>
         </Col>
-      </Row>
+      </Row> */}
 
       {/* <Card
         className="gx-widget-bg moto-item-card gx-d-none gx-d-sm-block"

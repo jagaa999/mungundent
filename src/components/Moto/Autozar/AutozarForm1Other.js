@@ -29,7 +29,10 @@ const MotocarFormSpec = ({ form, imagemainFileList, imageotherFileList }) => {
       <Form.Item name="description" hasFeedback label="Машины тухай">
         <TextArea
           placeholder="Машиныхаа тухай бичнэ үү"
-          autoSize
+          autoSize={{ minRows: 3, maxRows: 19 }}
+          showCount
+          maxLength={2000}
+          // rows={5}
           // onChange={titleOnChange}
         />
       </Form.Item>

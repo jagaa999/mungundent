@@ -37,6 +37,7 @@ const LogBoxItems = ({ logBoxItems }) => {
       title: "Үйлдэл",
       dataIndex: "actionname",
       key: "action",
+      align: "right",
       sorter: (a, b) => a.actionname.length - b.actionname.length,
     },
   ];
