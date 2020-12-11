@@ -80,6 +80,8 @@ export const FilterStore = (props) => {
       }
     });
 
+    window.scrollTo(0, 0);
+
     setState({
       motoUrl: pathname.split("/"),
       menu: pathname.split("/")[1],
@@ -204,7 +206,7 @@ export const FilterStore = (props) => {
     });
 
     // console.log("myObject", myObject);
-
+    window.scrollTo(0, 0);
     setState(myObject);
   };
 
@@ -215,6 +217,10 @@ export const FilterStore = (props) => {
   const updateTotal = (totalcount) => {
     setTotalcount(totalcount);
   };
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [state]);
 
   return (
     <FilterContext.Provider

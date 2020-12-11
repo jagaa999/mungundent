@@ -17,10 +17,10 @@ const CarCatalogDetailType1 = ({ carId }) => {
     carCatalogListContext.loadCarDetail(carId);
   }, []);
 
-  console.log(
-    "carCatalogListContext.carDetailList",
-    carCatalogListContext.carDetail
-  );
+  // console.log(
+  //   "carCatalogListContext.carDetailList",
+  //   carCatalogListContext.carDetail
+  // );
 
   return (
     <div className="moto-list gx-mb-5">

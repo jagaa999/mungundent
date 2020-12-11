@@ -1,32 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import moment from "moment";
 import accounting from "accounting";
 
 import toBoolean from "util/booleanFunction";
-import {
-  Card,
-  Badge,
-  Typography,
-  Avatar,
-  Row,
-  Col,
-  Button,
-  Descriptions,
-  Statistic,
-  Divider,
-  Tabs,
-} from "antd";
+import { Card, Typography, Tabs } from "antd";
 
-import {
-  MailOutlined,
-  MessageOutlined,
-  BellOutlined,
-  UnorderedListOutlined,
-  CaretRightOutlined,
-} from "@ant-design/icons";
-
-import CarCatalogImagesSlider from "./Image/CarCatalogImagesSlider";
 import TabGeneral from "./CarCatalog/Tabs/General";
 import TabMotor from "./CarCatalog/Tabs/Motor";
 import TabTire from "./CarCatalog/Tabs/Tire";
