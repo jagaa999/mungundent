@@ -16,7 +16,8 @@ const DetailTabs = ({ detail }) => {
   return (
     <div>
       <Row>
-        <Col sm={{ span: 9, offset: 0 }} xs={{ span: 8, offset: 1 }}>
+        {/* <Col sm={{ span: 9, offset: 0 }} xs={{ span: 8, offset: 1 }}> */}
+        <Col sm={{ span: 9, offset: 0 }} xs={{ span: 22, offset: 1 }}>
           <Descriptions
             column={1}
             layout="horizontal"
@@ -54,7 +55,7 @@ const DetailTabs = ({ detail }) => {
             </Descriptions.Item>
           </Descriptions>
         </Col>
-        <Col span={15}>
+        <Col sm={{ span: 15, offset: 0 }} xs={{ span: 22, offset: 1 }}>
           {/* <Image
             className="gx-img-fluid gx-w-100 gx-pointer gx-dot-arrow-hover"
             src={detail.imagemain}

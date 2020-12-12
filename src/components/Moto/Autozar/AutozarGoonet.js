@@ -39,7 +39,7 @@ const AutozarGoonet = ({ autozarItem }) => {
 
   return (
     <div>
-      <Scrollbars
+      {/* <Scrollbars
         autoHeight
         autoHeightMin={100}
         autoHeightMax="calc(80vh - 36px - 35px - 75px)"
@@ -53,14 +53,14 @@ const AutozarGoonet = ({ autozarItem }) => {
             className="track-horizontal"
           />
         )}
-      >
-        <Alert
-          message="Удахгүй хийгдэнэ."
-          description="Энэ автозарыг япон автомашины дэлгэрэнгүй техник үзүүлэлттэй холбож харуулах системийг хийж байгааг мэдэгдэхэд таатай байна."
-          type="warning"
-          showIcon={true}
-        />
-        {/* // <Card type="inner" bordered={true} title="Мото каталоги" loading={false}>
+      > */}
+      <Alert
+        message="Удахгүй хийгдэнэ."
+        description="Энэ автозарыг япон автомашины дэлгэрэнгүй техник үзүүлэлттэй холбож харуулах системийг хийж байгааг мэдэгдэхэд таатай байна."
+        type="warning"
+        showIcon={true}
+      />
+      {/* // <Card type="inner" bordered={true} title="Мото каталоги" loading={false}>
     //   <Descriptions column={2} layout="horizontal" size="small">
     //     <Descriptions.Item
     //       label={<span className="gx-text-grey">Фирм</span>}
@@ -99,7 +99,7 @@ const AutozarGoonet = ({ autozarItem }) => {
     //   <div>goopricenewusd: {autozarItem.goopricenewusd}</div>
     //   <div>goountilnow: {autozarItem.goountilnow}</div>
     // </Card> */}
-      </Scrollbars>
+      {/* </Scrollbars> */}
     </div>
   );
 };

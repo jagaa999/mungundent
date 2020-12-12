@@ -7,6 +7,7 @@ import { Col, Row, Divider } from "antd";
 // import HomeNewsItems from "./HomeNewsItems";
 import HomeNewsItems2 from "./HomeNewsItems2";
 import HomeAuctionItems2 from "./HomeAuctionItems2";
+import HomeAutozarItems2 from "./HomeAutozarItems2";
 
 import MemberBox from "./MemberBox";
 // import FacebookGadget from "./FacebookGadget";
@@ -20,6 +21,7 @@ const HomePage = () => {
   const [newsItems, setNewsItems] = useState([]);
   const [newMembers, setNewMembers] = useState({});
   const [auctionItems, setAuctionItems] = useState([]);
+  const [autozarItems, setAutozarItems] = useState([]);
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
   const callAllDataAsync = async () => {
@@ -100,6 +102,29 @@ const HomePage = () => {
         },
       })
     );
+
+    setAutozarItems(
+      await loadDataview({
+        systemmetagroupid: "1605592797379",
+        criteria: {
+          isactive: {
+            0: {
+              operator: "=",
+              operand: "1", // зөвхөн идэвхтэйг харуулна
+            },
+          },
+        },
+        paging: {
+          offset: "1",
+          pageSize: "7",
+          sortColumnNames: {
+            modifieddate: {
+              sortType: "DESC",
+            },
+          },
+        },
+      })
+    );
   };
 
   useEffect(() => {
@@ -164,8 +189,19 @@ const HomePage = () => {
           <HomeAuctionItems2 auctionItems={auctionItems} />
         </Col>
       </Row>
-      <Divider orientation="center" plain={true} className="gx-my-5"></Divider>
-      2020.11.27 17:00
+
+      <Row className="gx-d-flex gx-mt-4">
+        <Col
+          xs={{ span: 20, offset: 2 }}
+          sm={{ span: 24, offset: 0 }}
+          className="gx-bg-grey_none"
+        >
+          <HomeAutozarItems2 autozarItems={autozarItems} />
+        </Col>
+      </Row>
+
+      <Divider orientation="center" plain={true} className="gx-my-5" />
+
       {/* <Row className="gx-d-flex  gx-d-none gx-d-sm-block">
         <Col
           xl={24}

@@ -38,7 +38,7 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
 
     return (
       <div>
-        <Scrollbars
+        {/* <Scrollbars
           autoHeight
           autoHeightMin={100}
           autoHeightMax="calc(80vh - 36px - 35px - 75px)"
@@ -52,73 +52,73 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
               className="track-horizontal"
             />
           )}
-        >
-          <Row>
-            <Col
-              md={{ span: 12, offset: 0 }}
-              sm={{ span: 24, offset: 0 }}
-              xs={{ span: 22, offset: 1 }}
-              className="gx-mt-4 gx-mt-md-0"
+        > */}
+        <Row>
+          <Col
+            md={{ span: 12, offset: 0 }}
+            sm={{ span: 24, offset: 0 }}
+            xs={{ span: 22, offset: 1 }}
+            className="gx-mt-4 gx-mt-md-0"
+          >
+            <h4>Зарах мэдээлэл</h4>
+            <Descriptions
+              className="moto-car-spec1"
+              layout="horizontal"
+              bordered={true}
+              size="small"
+              column={1}
             >
-              <h4>Зарах мэдээлэл</h4>
-              <Descriptions
-                className="moto-car-spec1"
-                layout="horizontal"
-                bordered={true}
-                size="small"
-                column={1}
-              >
-                <Descriptions.Item label="Нөхцөл">
-                  {autozarItem.autozarconditionname}
-                </Descriptions.Item>
-                <Descriptions.Item label="Зарын дугаар">
-                  {autozarItem.id}
-                </Descriptions.Item>
+              <Descriptions.Item label="Нөхцөл">
+                {autozarItem.autozarconditionname}
+              </Descriptions.Item>
+              <Descriptions.Item label="Зарын дугаар">
+                {autozarItem.id}
+              </Descriptions.Item>
 
-                <Descriptions.Item label="Зарах нөхцөл">
-                  {autozarItem.financecondition}
-                </Descriptions.Item>
+              <Descriptions.Item label="Зарах нөхцөл">
+                {autozarItem.financecondition}
+              </Descriptions.Item>
 
-                <Descriptions.Item label="Лизингтэй?">
-                  {autozarItem.autozarleasing ? "Тийм" : "Үгүй"}
-                </Descriptions.Item>
+              <Descriptions.Item label="Лизингтэй?">
+                {autozarItem.autozarleasing ? "Тийм" : "Үгүй"}
+              </Descriptions.Item>
 
-                <Descriptions.Item label="Зарах үнэ">
-                  {accounting.formatMoney(
-                    autozarItem.financepricerr,
-                    "₮",
-                    0,
-                    "'"
-                  )}
-                </Descriptions.Item>
-              </Descriptions>
-            </Col>
+              <Descriptions.Item label="Зарах үнэ">
+                {accounting.formatMoney(
+                  autozarItem.financepricerr,
+                  "₮",
+                  0,
+                  "'"
+                )}
+              </Descriptions.Item>
+            </Descriptions>
+          </Col>
 
-            <Col
-              md={{ span: 12, offset: 0 }}
-              sm={{ span: 24, offset: 0 }}
-              xs={{ span: 22, offset: 1 }}
-              className="gx-mt-4 gx-mt-md-0"
+          <Col
+            md={{ span: 12, offset: 0 }}
+            sm={{ span: 24, offset: 0 }}
+            xs={{ span: 22, offset: 1 }}
+            className="gx-mt-4 gx-mt-md-0"
+          >
+            <h4>Нэмэлт мэдээлэл</h4>
+            <Descriptions
+              className="moto-car-spec1"
+              layout="horizontal"
+              bordered={true}
+              size="small"
+              column={1}
             >
-              <h4>Нэмэлт мэдээлэл</h4>
-              <Descriptions
-                className="moto-car-spec1"
-                layout="horizontal"
-                bordered={true}
-                size="small"
-                column={1}
-              >
-                <Descriptions.Item label="Оношилгоо?">
-                  {autozarItem.autozarinspection ? "Тийм" : "Үгүй"}
-                </Descriptions.Item>
-                <Descriptions.Item label="Торгуульгүй?">
-                  {autozarItem.autozarpenalty ? "Тийм" : "Үгүй"}
-                </Descriptions.Item>
-                <Descriptions.Item label="Татвар төлсөн?">
-                  {autozarItem.autozartax ? "Тийм" : "Үгүй"}
-                </Descriptions.Item>
+              <Descriptions.Item label="Оношилгоо?">
+                {autozarItem.autozarinspection ? "Тийм" : "Үгүй"}
+              </Descriptions.Item>
+              <Descriptions.Item label="Торгуульгүй?">
+                {autozarItem.autozarpenalty ? "Тийм" : "Үгүй"}
+              </Descriptions.Item>
+              <Descriptions.Item label="Татвар төлсөн?">
+                {autozarItem.autozartax ? "Тийм" : "Үгүй"}
+              </Descriptions.Item>
 
-                {/* <Descriptions.Item label="Идэвхтэй?">
+              {/* <Descriptions.Item label="Идэвхтэй?">
                 {autozarItem.isactive ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Коммент?">
@@ -127,25 +127,25 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
               <Descriptions.Item label="Спонсор?">
                 {autozarItem.isfeatured ? "Тийм" : "Үгүй"}
               </Descriptions.Item> */}
-              </Descriptions>
-            </Col>
-          </Row>
+            </Descriptions>
+          </Col>
+        </Row>
 
-          <Divider className="gx-my-4" />
+        <Divider className="gx-my-4" />
 
-          <Row>
-            <Col span={24}>
-              <div>
-                Үүсгэсэн огноо:{" "}
-                {moment(autozarItem.createddate).format("YYYY-MM-DD")}
-              </div>
-              <div>
-                Шинэчилсэн огноо:{" "}
-                {moment(autozarItem.modifieddate).format("YYYY-MM-DD")}
-              </div>
-            </Col>
-          </Row>
-        </Scrollbars>
+        <Row>
+          <Col span={24}>
+            <div>
+              Үүсгэсэн огноо:{" "}
+              {moment(autozarItem.createddate).format("YYYY-MM-DD")}
+            </div>
+            <div>
+              Шинэчилсэн огноо:{" "}
+              {moment(autozarItem.modifieddate).format("YYYY-MM-DD")}
+            </div>
+          </Col>
+        </Row>
+        {/* </Scrollbars> */}
       </div>
     );
   } else {

@@ -26,27 +26,27 @@ const MarkItem = ({ editionItem }) => {
   const tabList = [
     {
       key: "tab1",
-      tab: "Ерөнхий",
+      tab: <span className="gx-fs-md">Ерөнхий</span>,
     },
     {
       key: "tab2",
-      tab: "Агрегат",
+      tab: <span className="gx-fs-md">Агрегат</span>,
     },
     {
       key: "tab3",
-      tab: "Дугуй",
+      tab: <span className="gx-fs-md">Дугуй</span>,
     },
     {
       key: "tab4",
-      tab: "Тоног",
+      tab: <span className="gx-fs-md">Тоног</span>,
     },
     {
       key: "tab5",
-      tab: "Салон",
+      tab: <span className="gx-fs-md">Салон</span>,
     },
     {
       key: "tab6",
-      tab: "Өнгө",
+      tab: <span className="gx-fs-md">Өнгө</span>,
     },
   ];
 
@@ -70,9 +70,10 @@ const MarkItem = ({ editionItem }) => {
     <>
       <div
         key={editionItem.auctionid}
-        className="gx-main-content auction-detail"
+        className="gx-main-content autozar-detail"
       >
         <Card
+          className="moto-autozar-detail-card"
           style={{ width: "100%" }}
           title={editionItem.title}
           extra={`Үнэ: ${accounting.formatMoney(

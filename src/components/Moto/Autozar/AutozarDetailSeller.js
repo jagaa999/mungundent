@@ -17,7 +17,7 @@ const AutozarDetailSeller = ({ autozarItem }) => {
 
   return (
     <div>
-      <Scrollbars
+      {/* <Scrollbars
         autoHeight
         autoHeightMin={100}
         autoHeightMax="calc(80vh - 36px - 35px - 75px)"
@@ -31,72 +31,76 @@ const AutozarDetailSeller = ({ autozarItem }) => {
             className="track-horizontal"
           />
         )}
-      >
-        <Row>
-          <Col
-            md={{ span: 12, offset: 0 }}
-            sm={{ span: 24, offset: 0 }}
-            xs={{ span: 22, offset: 1 }}
-            className="gx-mt-4 gx-mt-md-0"
-          >
-            <h4>Борлуулагч</h4>
-            <div>
+      > */}
+      <Row>
+        <Col
+          md={{ span: 12, offset: 0 }}
+          sm={{ span: 24, offset: 0 }}
+          xs={{ span: 22, offset: 1 }}
+          className="gx-mt-4 gx-mt-md-0"
+        >
+          <h4>Борлуулагч</h4>
+          <div>
+            {autozarItem.memberpersonid != "1598935351415" ? (
               <AvatarMember03
                 memberPhoto={autozarItem.memberprofilephoto}
                 memberName={autozarItem.memberuserfullname}
               />
+            ) : (
+              ""
+            )}
 
-              <div className="gx-media gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
-                <div className="gx-mr-3">
-                  <MyIcon
-                    type="iconmail-bulk"
-                    className="gx-fs-xxl gx-text-grey"
-                  />
-                </div>
-                <div className="gx-media-body">
-                  <span className="gx-mb-0 gx-text-grey gx-fs-sm">Имэйл</span>
-                  <p className="gx-mb-0">{autozarItem.email || "..."}</p>
-                </div>
+            <div className="gx-media gx-mt-4 gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
+              <div className="gx-mr-3">
+                <MyIcon
+                  type="iconmail-bulk"
+                  className="gx-fs-xxl gx-text-grey"
+                />
               </div>
-
-              <div className="gx-media gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
-                <div className="gx-mr-3">
-                  <MyIcon
-                    type="iconphone-up"
-                    className="gx-fs-xxl gx-text-grey"
-                  />
-                </div>
-                <div className="gx-media-body">
-                  <span className="gx-mb-0 gx-text-grey gx-fs-sm">Утас 1</span>
-                  <p className="gx-mb-0">{autozarItem.mobile1rr || "..."}</p>
-                </div>
-              </div>
-
-              <div className="gx-media gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
-                <div className="gx-mr-3">
-                  <MyIcon type="iconphone" className="gx-fs-xxl gx-text-grey" />
-                </div>
-                <div className="gx-media-body">
-                  <span className="gx-mb-0 gx-text-grey gx-fs-sm">Утас 2</span>
-                  <p className="gx-mb-0">{autozarItem.mobile2 || "..."}</p>
-                </div>
+              <div className="gx-media-body">
+                <span className="gx-mb-0 gx-text-grey gx-fs-sm">Имэйл</span>
+                <p className="gx-mb-0">{autozarItem.email || "..."}</p>
               </div>
             </div>
-          </Col>
 
-          <Col
-            md={{ span: 12, offset: 0 }}
-            sm={{ span: 24, offset: 0 }}
-            xs={{ span: 22, offset: 1 }}
-            className="gx-mt-4 gx-mt-md-0"
-          >
-            <h4>Тэмдэглэл</h4>
-            <div className="gx-bg-primary-light gx-p-5 gx-border-radius-top-left-0 gx-rounded-lg ">
-              {autozarItem.description}
+            <div className="gx-media gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
+              <div className="gx-mr-3">
+                <MyIcon
+                  type="iconphone-up"
+                  className="gx-fs-xxl gx-text-grey"
+                />
+              </div>
+              <div className="gx-media-body">
+                <span className="gx-mb-0 gx-text-grey gx-fs-sm">Утас 1</span>
+                <p className="gx-mb-0">{autozarItem.mobile1rr || "..."}</p>
+              </div>
             </div>
-          </Col>
-        </Row>
-      </Scrollbars>
+
+            <div className="gx-media gx-align-items-center gx-flex-nowrap gx-pro-contact-list">
+              <div className="gx-mr-3">
+                <MyIcon type="iconphone" className="gx-fs-xxl gx-text-grey" />
+              </div>
+              <div className="gx-media-body">
+                <span className="gx-mb-0 gx-text-grey gx-fs-sm">Утас 2</span>
+                <p className="gx-mb-0">{autozarItem.mobile2 || "..."}</p>
+              </div>
+            </div>
+          </div>
+        </Col>
+
+        <Col
+          md={{ span: 12, offset: 0 }}
+          sm={{ span: 24, offset: 0 }}
+          xs={{ span: 22, offset: 1 }}
+          className="gx-mt-4 gx-mt-md-0"
+        >
+          <h4>Тэмдэглэл</h4>
+          <div className="gx-bg-primary-light gx-p-5 gx-border-radius-top-left-0 gx-rounded-lg ">
+            {autozarItem.description}
+          </div>
+        </Col>
+      </Row>
+      {/* </Scrollbars> */}
     </div>
   );
 };

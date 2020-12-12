@@ -19,6 +19,10 @@ const KiaCarnivalDetail = asyncComponent(() => {
   return import("content/kia/Carnival/index.js");
 });
 
+const WidgetPage = asyncComponent(() => {
+  return import("content/widget/index");
+});
+
 const MainApp = () => {
   const memberContext = useContext(MemberContext);
   const memberItemsContext = useContext(MemberItemsContext);
@@ -41,6 +45,18 @@ const MainApp = () => {
         <MotoHeader />
         <KiaCarnivalDetail />
         <MotoFooter />
+      </Route>
+
+      {/*       
+       #     # ### ######   #####  ####### ####### 
+       #  #  #  #  #     # #     # #          #    
+       #  #  #  #  #     # #       #          #    
+       #  #  #  #  #     # #  #### #####      #    
+       #  #  #  #  #     # #     # #          #    
+       #  #  #  #  #     # #     # #          #    
+        ## ##  ### ######   #####  #######    #     */}
+      <Route path={["/widget/", "/widgets"]}>
+        <WidgetPage />
       </Route>
 
       <Route>

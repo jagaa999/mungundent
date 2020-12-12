@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Helmet } from "react-helmet";
+import { prepareTitle } from "util/config";
 
 import FilterContext from "../../../context/FilterContext";
 import MemberContext from "../../../context/MemberContext";
@@ -13,14 +15,50 @@ const NewsListPage = () => {
   const memberContext = useContext(MemberContext);
 
   // filterContext.state.cardtype = "typecard, typelist";
+  const MyHelmet = () => {
+    return (
+      <Helmet>
+        <title>{prepareTitle(`Нийтлэл (${filterContext.totalcount})`)}</title>
+        <meta property="fb:app_id" content="186294318100220" />
+        <meta
+          name="description"
+          content="Автомашины ертөнцийн мэдээ нийтлэлүүд"
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:title" content="Нийтлэлүүд" />
+        <meta
+          property="og:description"
+          content="Автомашины ертөнцийн мэдээ нийтлэлүүд"
+        />
+        <meta property="og:image" content="" />
+        <meta property="og:locale" content="mn_MN" />
+      </Helmet>
+    );
+  };
 
   if (memberContext.state.isLogin) {
     if (filterContext.state.cardtype.cardtype === "typecard") {
-      return <NewsListType2 />;
+      return (
+        <>
+          <MyHelmet />
+          <NewsListType2 />
+        </>
+      );
     } else if (filterContext.state.cardtype.cardtype === "typetable") {
-      return <NewsListType3 />;
+      return (
+        <>
+          <MyHelmet />
+          <NewsListType3 />
+        </>
+      );
     } else {
-      return <NewsListType1 />;
+      return (
+        <>
+          <MyHelmet />
+          <NewsListType1 />
+        </>
+      );
     }
   }
 

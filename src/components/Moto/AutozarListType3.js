@@ -1,6 +1,16 @@
 import React, { useEffect, useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
+import {
+  Col,
+  Row,
+  Button,
+  Switch,
+  Select,
+  PageHeader,
+  Affix,
+  Tooltip,
+} from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import accounting from "accounting";
@@ -45,6 +55,23 @@ const AutozarListType3 = () => {
 
           <MotoPagination myClass="gx-mt-2" />
           <AutozarFilterDrawer />
+          <Affix
+            style={{ position: "absolute", bottom: "30px", right: "30px" }}
+          >
+            <Link
+              key="keyautozarinsertbutton"
+              to={"/autozar/insert"}
+              className="gx-ml-1 gx-mr-0"
+            >
+              <Tooltip title="Автозар нэмэх">
+                <Button
+                  icon={<PlusOutlined />}
+                  className="gx-border-success gx-text-success"
+                  shape="circle"
+                />
+              </Tooltip>
+            </Link>
+          </Affix>
         </div>
       ) : (
         <LoadingList type="table" />
