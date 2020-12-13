@@ -32,7 +32,7 @@ const ImageCrop3 = ({ onChange, imagemainFileList }) => {
   const uploadButton = (
     <div>
       <PlusOutlined className="gx-text-light-grey" />
-      <div className="ant-upload-text gx-text-light-grey">Илгээх</div>
+      <div className="ant-upload-text gx-text-light-grey">Фото зураг</div>
     </div>
   );
 

@@ -26,7 +26,7 @@ const MotocarFormSpec = ({ form, imagemainFileList, imageotherFileList }) => {
         <ImageDragger3 imageotherFileList={imageotherFileList} />
       </Form.Item>
 
-      <Form.Item name="description" hasFeedback label="Машины тухай">
+      <Form.Item name="description" hasFeedback label="Машины, автозарын тухай">
         <TextArea
           placeholder="Машиныхаа тухай бичнэ үү"
           autoSize={{ minRows: 3, maxRows: 19 }}

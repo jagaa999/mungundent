@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 
+import moment from "moment";
+
 import AutozarForm1General from "./Autozar/AutozarForm1General";
 import AutozarForm1Autocar from "./Autozar/AutozarForm1Autocar";
 import AutozarForm1Autozar from "./Autozar/AutozarForm1Autozar";
@@ -7,54 +9,10 @@ import AutozarForm1Other from "./Autozar/AutozarForm1Other";
 import AutozarForm1Seller from "./Autozar/AutozarForm1Seller";
 
 import { Button, Card, message, Divider, Form, Steps } from "antd";
-import {
-  UploadOutlined,
-  LeftOutlined,
-  RightOutlined,
-  LoadingOutlined,
-} from "@ant-design/icons";
+import { UploadOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
+import { formStandardLayout, formCompactLayout } from "util/config";
 import AutozarContext from "context/AutozarContext";
-
-const { Step } = Steps;
-
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 7 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 17 },
-  },
-  // labelCol: {
-  //   xs: { span: 0 },
-  //   sm: { span: 7 },
-  // },
-  // wrapperCol: {
-  //   xs: { span: 24 },
-  //   sm: { span: 17 },
-  // },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 17,
-      offset: 7,
-    },
-  },
-};
-
-//  ####   ####  #    #  ####  #####
-// #    # #    # ##   # #        #
-// #      #    # # #  #  ####    #
-// #      #    # #  # #      #   #
-// #    # #    # #   ## #    #   #
-//  ####   ####  #    #  ####    #
 
 const AutozarForm = () => {
   const [form] = Form.useForm();
@@ -244,12 +202,16 @@ const AutozarForm = () => {
       title="Автозарын мэдээлэл"
     >
       <Form
-        {...formItemLayout}
+        {...formStandardLayout}
         form={form}
         name="autozarDetailForm"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        initialValues={autozarItem}
+        initialValues={{
+          createddate: moment(),
+          modifieddate: moment(),
+          ...autozarItem,
+        }}
         scrollToFirstError={true}
         colon={false}
       >

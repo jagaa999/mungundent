@@ -13,6 +13,7 @@ import {
 } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
+import { formCompactLayout } from "util/config";
 import moment from "moment";
 import "moment/locale/mn";
 
@@ -123,8 +124,13 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
           className="gx-border-success"
         />
       </Form.Item>
-      <Form.Item name="body2vinnumber" hasFeedback label="Арлын дугаар">
-        <Input />
+      <Form.Item
+        name="body2vinnumber"
+        hasFeedback
+        label="Арлын дугаар"
+        {...formCompactLayout}
+      >
+        <Input placeholder="Арлын дугаар" />
       </Form.Item>
       {/*
       #     # ### #          #     #####  ####### 
@@ -138,6 +144,7 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
         name="autozarmilage"
         hasFeedback
         label="Одоогийн гүйлт (км)"
+        {...formCompactLayout}
         rules={[
           {
             type: "number",
@@ -154,6 +161,7 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
           // formatter={(value) => `${value} км`}
           decimalSeparator=","
           className="gx-w-100"
+          placeholder="Одоогийн гүйлт (км)"
         />
       </Form.Item>
       {/* 
@@ -164,19 +172,29 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
          #    #       ####### #   #   
          #    #       #     # #    #  
          #    ####### #     # #     #  */}
-      <Form.Item name="mglyearmanufactured" hasFeedback label="Үйлдвэрлэсэн он">
+      <Form.Item
+        name="mglyearmanufactured"
+        hasFeedback
+        label="Үйлдвэрлэсэн он"
+        {...formCompactLayout}
+      >
         <DatePicker
           className="gx-w-100"
           picker="year"
-          placeholder="Он"
+          placeholder="Үйлдвэрлэсэн он"
           format="YYYY"
         />
       </Form.Item>
-      <Form.Item name="mglyearimport" hasFeedback label="Орж ирсэн он">
+      <Form.Item
+        name="mglyearimport"
+        hasFeedback
+        label="Орж ирсэн он"
+        {...formCompactLayout}
+      >
         <DatePicker
           className="gx-w-100"
           picker="year"
-          placeholder="Он"
+          placeholder="Орж ирсэн он"
           format="YYYY"
         />
       </Form.Item>
@@ -188,7 +206,12 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
       #       #     # #       #       
       #       #     # #       #       
       #        #####  ####### ####### */}
-      <Form.Item name="mglfuel" hasFeedback label="Шатахуун">
+      <Form.Item
+        name="mglfuel"
+        hasFeedback
+        label="Шатахуун"
+        {...formCompactLayout}
+      >
         <Select
           className="moto-select-firm"
           loading={mglFuelList.loading}

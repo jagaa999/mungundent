@@ -137,6 +137,8 @@ const NewsForm = () => {
 
   useEffect(() => {
     callFunctionAsync();
+    // form.title.focus();
+    console.log("FFFFFFFFF", form);
   }, []);
 
   const onFinish = (values) => {
@@ -346,6 +348,7 @@ const NewsForm = () => {
         <Form.Item name="imgurl" label="Зураг" valuePropName="fileList">
           <ImageCrop1 imagemainFileList={newsItem.imagemainFileList || []} />
         </Form.Item>
+
         <Form.Item
           name="tempbody"
           label="Нийтлэл"

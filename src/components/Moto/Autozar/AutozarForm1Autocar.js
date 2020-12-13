@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Form, Input, InputNumber, Select, Radio, Divider } from "antd";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 
+import { formCompactLayout } from "util/config";
+
 const { Option } = Select;
 
 const AutozarForm1Autocar = ({
@@ -71,6 +73,7 @@ const AutozarForm1Autocar = ({
       #        #  #    #  #     # 
       #       ### #     # #     #  */}
       <Form.Item
+        {...formCompactLayout}
         name="mglfirm"
         hasFeedback
         label="Фирм"
@@ -120,6 +123,7 @@ const AutozarForm1Autocar = ({
        #     # #     # #     # #    #  */}
       <Form.Item
         name="mglmark"
+        {...formCompactLayout}
         hasFeedback
         label="Марк"
         rules={[{ required: true, message: "Маркаа сонгоно уу!" }]}
@@ -157,7 +161,7 @@ const AutozarForm1Autocar = ({
        #     # #     # #     #    #    
        #     # #     # #     #    #    
        ######  ####### ######     #    */}
-      <Form.Item name="mglbody" hasFeedback label="Хийц">
+      <Form.Item name="mglbody" hasFeedback label="Хийц" {...formCompactLayout}>
         <Select
           className="moto-select-firm"
           loading={mglBodyList.loading}
@@ -191,8 +195,13 @@ const AutozarForm1Autocar = ({
       #       #     # #       #     # #   #   
       #     # #     # #       #     # #    #  
        #####  ####### ####### ####### #     # */}
-      <Form.Item name="mglcoloroutside" hasFeedback label="Гадна өнгө">
-        <Input />
+      <Form.Item
+        name="mglcoloroutside"
+        hasFeedback
+        label="Гадна өнгө"
+        {...formCompactLayout}
+      >
+        <Input placeholder="Гадна өнгө" />
       </Form.Item>
       {/*
        #####  ####### #     # #     # ####### ######  #     # 
@@ -202,7 +211,12 @@ const AutozarForm1Autocar = ({
       #       #     # #     # #   # #    #    #   #      #    
       #     # #     # #     # #    ##    #    #    #     #    
        #####  #######  #####  #     #    #    #     #    #    */}
-      <Form.Item name="mglcountryorigin" hasFeedback label="Үйлдвэрлэсэн улс">
+      <Form.Item
+        name="mglcountryorigin"
+        hasFeedback
+        label="Үйлдвэрлэсэн улс"
+        {...formCompactLayout}
+      >
         <Select
           className="moto-select-firm"
           loading={countryList.loading}
@@ -232,6 +246,7 @@ const AutozarForm1Autocar = ({
       <Form.Item
         name="mglengine2disp"
         hasFeedback
+        {...formCompactLayout}
         label="Хөдөлгүүрийн cc"
         rules={[
           {
@@ -242,7 +257,7 @@ const AutozarForm1Autocar = ({
           },
         ]}
       >
-        <InputNumber className="gx-w-100" />
+        <InputNumber className="gx-w-100" placeholder="Хөдөлгүүрийн cc" />
       </Form.Item>
       {/* <Form.Item name="body2ModelCodeFull" label="body2ModelCodeFull">
         <Input />
@@ -260,7 +275,12 @@ const AutozarForm1Autocar = ({
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item name="driveid" hasFeedback label="Хөтлөгч">
+      <Form.Item
+        name="driveid"
+        hasFeedback
+        label="Хөтлөгч"
+        {...formCompactLayout}
+      >
         <Select
           className="moto-select-firm"
           loading={techDriveList.loading}

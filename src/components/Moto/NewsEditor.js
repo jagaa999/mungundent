@@ -51,7 +51,7 @@ const NewsEditor = (props) => {
     <>
       <EditorJs
         tools={EDITOR_JS_TOOLS}
-        autofocus="false"
+        autofocus={false}
         placeholder="Нийтлэлээ оруулна уу."
         logLevel="VERBOSE"
         data={myOutputBody}

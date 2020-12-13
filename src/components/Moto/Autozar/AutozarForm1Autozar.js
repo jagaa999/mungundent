@@ -11,6 +11,7 @@ import {
   Divider,
 } from "antd";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
+import { formCompactLayout } from "util/config";
 
 const { Option, OptGroup } = Select;
 
@@ -27,7 +28,16 @@ const AutozarFormAutozar = ({ form, conditionList }) => {
       #       #     # #   # # #     #  #     #     #  #     # #   # # 
       #     # #     # #    ## #     #  #     #     #  #     # #    ## 
        #####  ####### #     # ######  ###    #    ### ####### #     # */}
-      <Form.Item name="autozarconditionid" hasFeedback label="Нөхцөл">
+      <Form.Item name="id" hasFeedback label="Зарын дугаар" hidden={true}>
+        <Input disabled />
+      </Form.Item>
+
+      <Form.Item
+        name="autozarconditionid"
+        hasFeedback
+        label="Нөхцөл"
+        {...formCompactLayout}
+      >
         <Select
           className="moto-select-firm"
           loading={conditionList.loading}
@@ -51,12 +61,14 @@ const AutozarFormAutozar = ({ form, conditionList }) => {
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="id" hasFeedback label="Зарын дугаар">
-        <Input disabled />
-      </Form.Item>
 
-      <Form.Item name="financecondition" hasFeedback label="Зарах нөхцөл">
-        <Input />
+      <Form.Item
+        name="financecondition"
+        hasFeedback
+        label="Зарах нөхцөл"
+        {...formCompactLayout}
+      >
+        <Input placeholder="Зарах нөхцөл" />
       </Form.Item>
 
       <Form.Item

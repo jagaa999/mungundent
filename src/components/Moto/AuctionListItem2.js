@@ -38,6 +38,7 @@ const AuctionListItem2 = ({ auctionItem }) => {
         // delay: 50,
         // duration: 50,
       }}
+      className="moto-item-card"
     >
       <Card
         className={`moto-item-card ${

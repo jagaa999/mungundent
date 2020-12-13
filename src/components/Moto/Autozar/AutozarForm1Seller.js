@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import {
-  Form,
-  Input,
-  InputNumber,
-  Select,
-  Radio,
-  Badge,
-  Switch,
-  Divider,
-  DatePicker,
-} from "antd";
+import { Form, Input, Select, Divider, DatePicker } from "antd";
+
+import moment from "moment";
 
 const { Option, OptGroup } = Select;
 
@@ -19,24 +11,6 @@ const AutozarForm1Seller = ({ form }) => {
 
   return (
     <>
-      <Divider className="gx-my-3" />
-      <Form.Item name="createddate" hasFeedback label="Зарыг үүсгэсэн огноо">
-        <DatePicker
-          disabled
-          className="gx-w-100"
-          placeholder="2018-12-31"
-          format="YYYY-MM-DD"
-        />
-      </Form.Item>
-      <Form.Item name="modifieddate" hasFeedback label="Зарыг шинэчилсэн огноо">
-        <DatePicker
-          disabled
-          className="gx-w-100"
-          placeholder="2018-12-31"
-          format="YYYY-MM-DD"
-        />
-      </Form.Item>
-      <Divider className="gx-my-4" />
       {/*
        #####  ####### #     # #######    #     #####  ####### 
       #     # #     # ##    #    #      # #   #     #    #    
@@ -61,6 +35,28 @@ const AutozarForm1Seller = ({ form }) => {
       <Form.Item name="email" hasFeedback label="Имэйл">
         <Input />
       </Form.Item>
+
+      <Divider className="gx-my-4" />
+
+      <Form.Item name="createddate" hasFeedback label="Зарыг үүсгэсэн огноо">
+        <DatePicker
+          disabled
+          className="gx-w-100"
+          placeholder="2018-12-31"
+          format="YYYY-MM-DD"
+          // defaultValue={moment()}
+        />
+      </Form.Item>
+      <Form.Item name="modifieddate" hasFeedback label="Зарыг шинэчилсэн огноо">
+        <DatePicker
+          disabled
+          className="gx-w-100"
+          placeholder="2018-12-31"
+          format="YYYY-MM-DD"
+          // defaultValue={moment()}
+        />
+      </Form.Item>
+
       {/* <Divider className="gx-my-4" />
       <Form.Item name="memberfirebaseuid" hasFeedback label="UID">
         <Input disabled />

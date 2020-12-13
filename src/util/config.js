@@ -28,4 +28,26 @@ module.exports = {
 
     return mySrc;
   },
+
+  formStandardLayout: {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 7 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 17 },
+    },
+  },
+
+  formCompactLayout: {
+    labelCol: {
+      xs: { span: 0 },
+      sm: { span: 7 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 17 },
+    },
+  },
 };
