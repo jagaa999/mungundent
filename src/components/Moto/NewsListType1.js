@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
-import { Col, Row, Button, Affix, BackTop } from "antd";
+import { Col, Row, Button, Affix, BackTop, Tooltip } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 import NewsListItem1 from "./NewsListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
 import NewsListContext from "context/NewsListContext";
 import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
+import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import LoadingList from "./Loading/LoadingList";
@@ -35,6 +38,7 @@ const NewsListType1 = () => {
           </Row>
           <MotoPagination />
           <NewsFilterDrawer />
+          <AffixButtonInsert link="news" />
         </div>
       ) : (
         <LoadingList />

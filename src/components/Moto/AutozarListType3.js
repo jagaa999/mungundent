@@ -20,6 +20,7 @@ import AutozarListActionHeader from "./AutozarListActionHeader";
 import AutozarContext from "context/AutozarContext";
 import FilterContext from "context/FilterContext";
 import AutozarFilterDrawer from "./Drawer/AutozarFilterDrawer";
+import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
@@ -41,9 +42,7 @@ const AutozarListType3 = () => {
       {!autozarListContext.autozarList.loading ? (
         <div className="gx-main-content">
           <AutozarListActionHeader title="Автозар" />
-
           {/* <AuctionFilterHeader /> */}
-
           <Row className="gx-d-flex">
             <Col key="dffdf" xs={24}>
               <AutozarListItem3
@@ -52,26 +51,9 @@ const AutozarListType3 = () => {
               />
             </Col>
           </Row>
-
           <MotoPagination myClass="gx-mt-2" />
           <AutozarFilterDrawer />
-          <Affix
-            style={{ position: "absolute", bottom: "30px", right: "30px" }}
-          >
-            <Link
-              key="keyautozarinsertbutton"
-              to={"/autozar/insert"}
-              className="gx-ml-1 gx-mr-0"
-            >
-              <Tooltip title="Автозар нэмэх">
-                <Button
-                  icon={<PlusOutlined />}
-                  className="gx-border-success gx-text-success"
-                  shape="circle"
-                />
-              </Tooltip>
-            </Link>
-          </Affix>
+          <AffixButtonInsert link="autozar" />
         </div>
       ) : (
         <LoadingList type="table" />

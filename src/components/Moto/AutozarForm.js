@@ -7,7 +7,12 @@ import AutozarForm1Other from "./Autozar/AutozarForm1Other";
 import AutozarForm1Seller from "./Autozar/AutozarForm1Seller";
 
 import { Button, Card, message, Divider, Form, Steps } from "antd";
-import { UploadOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
+import {
+  UploadOutlined,
+  LeftOutlined,
+  RightOutlined,
+  LoadingOutlined,
+} from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
 import AutozarContext from "context/AutozarContext";
 
@@ -22,6 +27,14 @@ const formItemLayout = {
     xs: { span: 24 },
     sm: { span: 17 },
   },
+  // labelCol: {
+  //   xs: { span: 0 },
+  //   sm: { span: 7 },
+  // },
+  // wrapperCol: {
+  //   xs: { span: 24 },
+  //   sm: { span: 17 },
+  // },
 };
 const tailFormItemLayout = {
   wrapperCol: {
@@ -163,19 +176,21 @@ const AutozarForm = () => {
 
   const stepList = [
     {
-      title: "Машин",
+      title: <span className="gx-d-none gx-d-sm-block">Машин</span>,
     },
     {
-      title: "Ерөнхий",
+      title: <span className="gx-d-none gx-d-sm-block">Ерөнхий</span>,
     },
     {
-      title: "Автозар",
+      title: <span className="gx-d-none gx-d-sm-block">Автозар</span>,
+      // status: "process",
+      // icon: <LoadingOutlined />,
     },
     {
-      title: "Бусад",
+      title: <span className="gx-d-none gx-d-sm-block">Бусад</span>,
     },
     {
-      title: "Борлуулагч",
+      title: <span className="gx-d-none gx-d-sm-block">Борлуулагч</span>,
     },
   ];
 
@@ -239,15 +254,24 @@ const AutozarForm = () => {
         colon={false}
       >
         <Steps
+          // type="default"
           type="navigation"
+          // direction="vertical"
+          direction="horizontal"
+          labelPlacement="horizontal"
           size="small"
           current={currentStep}
           onChange={onStepChange}
-          className="site-navigation-steps"
+          className="moto-horizontal-steps"
           // style={{ flexDirection: "row" }}
         >
           {stepList.map((item) => (
-            <Steps.Step key={item.title} title={item.title} />
+            <Steps.Step
+              key={item.title}
+              title={item.title}
+              status={item.status || null}
+              icon={item.icon || null}
+            />
           ))}
         </Steps>
         <div className="gx-mt-5">

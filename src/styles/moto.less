@@ -912,6 +912,12 @@ tr.ant-table-row {
   }
 }
 
+.button-pulse-animation {
+  transform: scale(1);
+  box-shadow: 0 0 0 0 rgba(52, 172, 224, 1);
+  animation: pulse-blue 2s infinite;
+}
+
 .firebaseui-idp-button {
   transform: scale(1);
   box-shadow: 0 0 0 0 rgba(52, 172, 224, 1);
@@ -932,5 +938,50 @@ tr.ant-table-row {
   100% {
     transform: scale(0.98);
     box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
+  }
+}
+
+.moto-horizontal-steps {
+  @media screen and (max-width: @screen-xs-max) {
+    display: flex;
+    flex-direction: row;
+
+    .ant-steps-item.ant-steps-item-active::before {
+      top: unset;
+      right: 0;
+      left: 0;
+      display: block;
+      height: 2px;
+      width: 73%;
+      bottom: 14px;
+    }
+
+    .ant-steps-item::after {
+      // position: relative;
+      // top: -2px;
+      // left: 50%;
+      // display: block;
+      // width: 8px;
+      // height: 8px;
+      // margin-bottom: 8px;
+
+      position: absolute;
+      top: 18%;
+      left: 74%;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-top: 0;
+      margin-left: 0;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      border-bottom: none;
+      border-left: none;
+      transform: rotate(45deg);
+      content: "";
+    }
+
+    .ant-steps-item-tail {
+      display: none;
+    }
   }
 }
