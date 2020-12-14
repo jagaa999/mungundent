@@ -15,19 +15,19 @@ export const configHome001 = {
         rows: [
           {
             id: "101",
-            title: "Request 311",
-            link: "/",
+            title: "СӨХ-ны тухай",
+            link: "/widget",
             parentid: "",
           },
           {
             id: "102",
-            title: "Administration",
-            link: "/admin",
+            title: "Систем",
+            link: "/widget",
             parentid: "",
           },
           {
             id: "103",
-            title: "How do I..",
+            title: "Асуулт?",
             link: "/howdoi",
             parentid: "",
           },
@@ -46,46 +46,48 @@ export const configHome001 = {
         total: 10,
         rows: [
           {
-            title: "A vibrant city nestled against the Mountains.",
-            description: "Drawn by clean air and mythical light, visitors come to experience traditions, fine art, great cuisine and natural beauty of the landscape.",
-            backphoto: "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/emerald-bay-1938963_1920-edit-1920x900.jpg",
+            title: "Сууц Өмчлөгчдийн Холбоо гэдэг нь..",
+            description:
+              "Оршин суугчдын аятай тухтай, цэвэр, үзэмжтэй нөхцөлийг бүрдүүлэхийн төлөө дундын өмчлөлийн эд хөрөнгийн ашиглалт үйлчилгээг хариуцан ажилладгаас гадна үл хөдлөх хөрөнгийн зах зээлийн үнэ ханшийг тогтоодог.",
+            backphoto:
+              "https://images.unsplash.com/photo-1584792095318-ddb688f67c1a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
             style: {
               height: "720px",
               color: "#fff",
               textAlign: "left",
               background: "#364d79",
               padding: "7% 13%",
-              fontSize: '22px'
+              fontSize: "22px",
             },
           },
           {
-            title: "A vibrant city nestled against the Mountains.",
+            title: "Сууц өмчлөгчдийн холбоо гэдэг нь..",
             description:
-              "Drawn by clean air and mythical light, visitors come to experience traditions, fine art, great cuisine and natural beauty of the landscape.",
+              "Нийтийн зориулалттай орон сууцны байшингийн дундын өмчлөлийн эд хөрөнгийг дундаа хамтран өмчлөх эрхийг хэрэгжүүлэх, ашиглалтын хэвийн байдлыг хангах, сууц өмчлөгчдийн эрх, ашиг сонирхлыг хамгаалах зорилго бүхий, хуулийн этгээдийн эрхгүй, заавал гишүүнчлэлтэй холбоог хэлдэг.",
             backphoto:
-              "https://media-exp1.licdn.com/dms/image/C4E1BAQFL2EtHrlva6A/company-background_10000/0?e=2159024400&v=beta&t=5Zlfb2tA558GUxmPtTHYtcgr9RQAo1u7zkAdQMKZ8W8",
+              "https://images.unsplash.com/photo-1495245088094-68be8de6b55e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
             style: {
               height: "720px",
               color: "#fff",
               textAlign: "left",
               background: "#364d79",
               padding: "7% 13%",
-              fontSize: '22px'
+              fontSize: "22px",
             },
           },
           {
-            title: "Far away from the every day!",
+            title: "СӨХ-ийн эзэд..",
             description:
-              "Beautiful neighborhoods, extraordinary schools, great restaurants and a rich cultural history make our city an ideal place to call home.",
+              "Орон сууцны байшинд хоёр буюу түүнээс дээш өрх сууц өмчлөгч болсон тохиолдолд СӨХ-той болох хэрэгцээ үүсдэг бөгөөд зэрэгцэн орших барилгын сууц өмчлөгчид нэгдэн нэг СӨХ байгуулж болдог.",
             backphoto:
-              "https://d374nmyjid5pr9.cloudfront.net/styles/property_listing/s3/garden-city_preview.jpg?itok=Ll5ckVeT",
+              "https://images.unsplash.com/photo-1495122255346-a63176da9893?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
             style: {
               height: "720px",
               color: "#fff",
               textAlign: "center",
               background: "#364d79",
               padding: "7% 13%",
-              fontSize: '22px'
+              fontSize: "22px",
             },
           },
         ],
@@ -107,9 +109,9 @@ export const configHome001 = {
         total: 4,
         rows: [
           {
-            title: "Departments & Facility Hours",
+            title: "Барилгынхаа бүх хэсгийг хянах",
             description:
-              "Access City’s service offerings and check hours for all facilities.",
+              "Цахилгаан шат, тоглоомын талбай, зогсоол зэрэг бүгдийг хянах боломжтой.",
             icon:
               "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/monument.png",
             colprops: { span: 6 },
@@ -120,9 +122,9 @@ export const configHome001 = {
             link: "/department",
           },
           {
-            title: "Traffic, Transit & Parking",
+            title: "Хотхон доторх хөдөлгөөн",
             description:
-              "Traffic and road closure news and local traffic conditions",
+              "Гадна зогсоол болон дулаан гараашийн бүх хөдөлгөөнийг удирдах",
             icon:
               "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bus.png",
             colprops: { span: 6 },
@@ -133,9 +135,9 @@ export const configHome001 = {
             link: "/buses",
           },
           {
-            title: "Employment & Job Listings",
+            title: "Оршин суугчдын зар, мэдээлэл",
             description:
-              "The City employment opportunities & position descriptions are listed here.",
+              "Танай гэрт хэрэг болсон ойр зуурын ажил үйлчилгээг мэдэгдэх зарын систем",
             icon:
               "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/exam.png",
             colprops: { span: 6 },
@@ -146,9 +148,9 @@ export const configHome001 = {
             link: "/job",
           },
           {
-            title: "Parks, Fields & Recreation",
+            title: "Парк, Сандал, Амрах хэсэг",
             description:
-              "Information on the parks, their locations, and the amenities they offer.",
+              "Амрах гарын мэдээлэл, тэнд тавигдах дүрэм журмыг нэг дороос",
             icon:
               "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bench.png",
             colprops: { span: 6 },
@@ -181,9 +183,10 @@ export const configHome001 = {
               "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/mayor-5b.jpg",
             bannerprops: {
               style: {
-                height: "350px",
+                height: "450px",
                 backgroundColor: "#222933",
-                overflow: "hidden",
+                // overflow: "hidden",
+                marginBottom: "20px",
               },
               className: " gx-px-5",
             },
@@ -201,62 +204,63 @@ export const configHome001 = {
 
     {
       sectioncode: "02",
-      widgetcode: 'WidgetBanner02',
+      widgetcode: "WidgetBanner02",
       widgetconfigs: {
-        position1: 'title',
-        position2: 'titleProps',
-        position3: 'backgroundProps',
-        position4: 'container'
+        position1: "title",
+        position2: "titleProps",
+        position3: "backgroundProps",
+        position4: "container",
       },
       data: {
         total: 1,
         rows: [
           {
-            title: 'A vibrant city nestled against the San Bernardino Mountains.',
+            title:
+              "A vibrant city nestled against the San Bernardino Mountains.",
             titleProps: {
               style: {
-                border: '1px solid #fff',
-                fontSize: '40px',
+                border: "1px solid #fff",
+                fontSize: "40px",
                 fontWeight: "bold",
-                left: '50%',
-                top: '30%',
-                padding: '1rem',
+                left: "50%",
+                top: "30%",
+                padding: "1rem",
                 width: "350px",
-                position: 'relative'
+                position: "relative",
               },
-              className: 'gx-text-white'
+              className: "gx-text-white",
             },
             backgroundProps: {
               style: {
                 backgroundColor: "#fff",
-                backgroundImage: "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/street-932082_1920-edit.jpg)",
+                backgroundImage:
+                  "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/street-932082_1920-edit.jpg)",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top left",
                 height: "768px",
-                backgroundAttachment: "scroll"
+                backgroundAttachment: "scroll",
               },
-              className: ""
+              className: "",
             },
             container: {
-              style: {
-              }
-            }
-          }
-        ]
-      }
+              style: {},
+            },
+          },
+        ],
+      },
     },
 
     {
       sectioncode: "01",
       widgetcode: "WidgetList01",
       widgetconfigs: {
-        position1: 'title',
-        position2: 'description',
-        position3: 'list',
-        position4: 'moreFrom',
-        position5: 'listProps',
-        position6: 'mainProps',
+        position1: "title",
+        position2: "description",
+        position3: "list",
+        position4: "moreFrom",
+        position5: "listProps",
+        position6: "mainProps",
       },
       data: {
         total: 1,
@@ -266,107 +270,118 @@ export const configHome001 = {
             description: "Find out what’s going on & stay up to date.",
             list: [
               {
-                cover: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg',
-                title: 'Annual Water Quality Report (Gallery Post)',
-                date: 'AUGUST 14, 2018',
-                type: 'TOWN NEWS',
-                description: 'The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public',
-                link: 'http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/'
-              },{
-                cover: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg',
-                title: 'Annual Water Quality Report (Gallery Post)',
-                date: 'AUGUST 14, 2018',
-                type: 'TOWN NEWS',
-                description: 'The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public',
-                link: 'http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/'
-              },{
-                cover: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg',
-                title: 'Annual Water Quality Report (Gallery Post)',
-                date: 'AUGUST 14, 2018',
-                type: 'TOWN NEWS',
-                description: 'The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public',
-                link: 'http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/'
-              }
+                cover:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
+                title: "Annual Water Quality Report (Gallery Post)",
+                date: "AUGUST 14, 2018",
+                type: "TOWN NEWS",
+                description:
+                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
+                link:
+                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
+              },
+              {
+                cover:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
+                title: "Annual Water Quality Report (Gallery Post)",
+                date: "AUGUST 14, 2018",
+                type: "TOWN NEWS",
+                description:
+                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
+                link:
+                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
+              },
+              {
+                cover:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
+                title: "Annual Water Quality Report (Gallery Post)",
+                date: "AUGUST 14, 2018",
+                type: "TOWN NEWS",
+                description:
+                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
+                link:
+                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
+              },
             ],
             moreFrom: "http://dannci.wpmasters.org/citygov/#",
             listProps: {
               justify: "left",
               gutter: [0, 0],
               style: {
-                backgroundColor: '#fff',
-                color: '#111',
-                margin: '0 !important',
-                position: 'relative'
+                backgroundColor: "#fff",
+                color: "#111",
+                margin: "0 !important",
+                position: "relative",
               },
-              className: 'gx-ml-4'
+              className: "gx-ml-4",
             },
             mainProps: {
               style: {
-                margin: "3rem 5rem"
-              }
-            }
+                margin: "3rem 5rem",
+              },
+            },
           },
-
-        ]
-      }
+        ],
+      },
     },
     {
       sectioncode: "02",
-      widgetcode: 'WidgetBanner03',
+      widgetcode: "WidgetBanner03",
       widgetconfigs: {
-        position1: 'title',
-        position2: 'titleProps',
-        position3: 'backgroundProps',
-        position4: 'container'
+        position1: "title",
+        position2: "titleProps",
+        position3: "backgroundProps",
+        position4: "container",
       },
       data: {
         total: 1,
         rows: [
           {
-            title: 'A vibrant city nestled against the San Bernardino Mountains.',
+            title:
+              "A vibrant city nestled against the San Bernardino Mountains.",
             titleProps: {
               style: {
-                border: '1px solid #fff',
-                fontSize: '40px',
+                border: "1px solid #fff",
+                fontSize: "40px",
                 fontWeight: "bold",
-                left: '20%',
-                top: '30%',
-                padding: '1rem',
+                left: "20%",
+                top: "30%",
+                padding: "1rem",
                 width: "350px",
-                position: 'relative'
+                position: "relative",
               },
-              className: 'gx-text-white'
+              className: "gx-text-white",
             },
             backgroundProps: {
               style: {
                 backgroundColor: "#fff",
-                backgroundImage: "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg)",
+                backgroundImage:
+                  "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg)",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top right",
                 height: "768px",
-                backgroundAttachment: "scroll"
+                backgroundAttachment: "scroll",
               },
-              className: ""
+              className: "",
             },
             container: {
-              style: {
-              }
-            }
-          }
-        ]
-      }
+              style: {},
+            },
+          },
+        ],
+      },
     },
     {
       sectioncode: "01",
       widgetcode: "WidgetList02",
       widgetconfigs: {
-        position1: 'title',
-        position2: 'description',
-        position3: 'list',
-        position4: 'moreFrom',
-        position5: 'listProps',
-        position6: 'mainProps',
+        position1: "title",
+        position2: "description",
+        position3: "list",
+        position4: "moreFrom",
+        position5: "listProps",
+        position6: "mainProps",
       },
       data: {
         total: 1,
@@ -376,217 +391,249 @@ export const configHome001 = {
             description: "Join the fun in our city!",
             list: [
               {
-                cover: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/sports-210661_1920-150x150.jpg',
-                title: 'Along Pines Run',
-                date: '11 Aug',
-                time: '9:00 am - 5:00 pm',
+                cover:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/sports-210661_1920-150x150.jpg",
+                title: "Along Pines Run",
+                date: "11 Aug",
+                time: "9:00 am - 5:00 pm",
                 location: "Baker Hall",
-                link: 'http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/'
-              },{
-                cover: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/football-2391697_1920-150x150.jpg',
-                title: 'Sport Games for Children',
-                date: '11 Aug',
-                time: '9:00 am - 5:00 pm',
+                link:
+                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
+              },
+              {
+                cover:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/football-2391697_1920-150x150.jpg",
+                title: "Sport Games for Children",
+                date: "11 Aug",
+                time: "9:00 am - 5:00 pm",
                 location: "Baker Hall",
-                description: 'The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public',
-                link: 'http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/'
-              },{
-                cover: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/police-224426_1920-150x150.jpg',
-                title: 'Touch A Truck',
-                date: '11 Aug',
-                time: '9:00 am - 5:00 pm',
+                description:
+                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
+                link:
+                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
+              },
+              {
+                cover:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/police-224426_1920-150x150.jpg",
+                title: "Touch A Truck",
+                date: "11 Aug",
+                time: "9:00 am - 5:00 pm",
                 location: "Baker Hall",
-                description: 'The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public',
-                link: 'http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/'
-              },{
-                cover: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/arches-1850730_1920-1-150x150.jpg',
-                title: 'Heritage 10th Anniversary',
-                date: '11 Aug',
-                time: '9:00 am - 5:00 pm',
+                description:
+                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
+                link:
+                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
+              },
+              {
+                cover:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/arches-1850730_1920-1-150x150.jpg",
+                title: "Heritage 10th Anniversary",
+                date: "11 Aug",
+                time: "9:00 am - 5:00 pm",
                 location: "Baker Hall",
-                description: 'The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public',
-                link: 'http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/'
-              }
+                description:
+                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
+                link:
+                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
+              },
             ],
             moreFrom: "http://dannci.wpmasters.org/citygov/#",
             listProps: {
               justify: "left",
               gutter: [0, 0],
               style: {
-                backgroundColor: '#222933',
-                color: '#fff',
-                margin: '0 !important',
-                position: 'relative'
+                backgroundColor: "#222933",
+                color: "#fff",
+                margin: "0 !important",
+                position: "relative",
               },
-              className: 'gx-ml-4'
+              className: "gx-ml-4",
             },
             mainProps: {
               style: {
-                backgroundColor: '#222933',
+                backgroundColor: "#222933",
                 padding: "5rem 7rem",
                 left: "0%",
-                position: 'relative'
-              }
-            }
+                position: "relative",
+              },
+            },
           },
-
-        ]
-      }
+        ],
+      },
     },
 
     {
-      sectioncode: '01',
-      widgetcode: 'WidgetCard01',
+      sectioncode: "01",
+      widgetcode: "WidgetCard01",
       widgetconfigs: {
-        position1: 'title',
-        position2: 'highlight',
-        position3: 'description1',
-        position4: 'image1',
-        position5: 'image2',
-        position6: 'link',
-        position7: 'mainProps',
-        position8: 'description2',
-        position9: 'leftProps',
-        position10: 'rightProps'
+        position1: "title",
+        position2: "highlight",
+        position3: "description1",
+        position4: "image1",
+        position5: "image2",
+        position6: "link",
+        position7: "mainProps",
+        position8: "description2",
+        position9: "leftProps",
+        position10: "rightProps",
       },
       data: {
         total: 1,
         rows: [
           {
-            title: 'Become a Volunteer!',
-            highlight: 'And make a difference!',
-            description1: 'Volunteers are the heart of a community. Our volunteers are a valuable resource for our fast-growing, fast-paced city.',
-            description2: 'Our city relies on our volunteers for everything from staffing special event, such as Freedom Fest and Merry Main Street, to assisting departments with daily activities, such as shelving library books, filing records or using GIS equipment.',
-            link: 'http://dannci.wpmasters.org/citygov/#',
-            image1: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bodyworn-794111_1920.jpg',
-            image2: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg',
+            title: "Become a Volunteer!",
+            highlight: "And make a difference!",
+            description1:
+              "Volunteers are the heart of a community. Our volunteers are a valuable resource for our fast-growing, fast-paced city.",
+            description2:
+              "Our city relies on our volunteers for everything from staffing special event, such as Freedom Fest and Merry Main Street, to assisting departments with daily activities, such as shelving library books, filing records or using GIS equipment.",
+            link: "http://dannci.wpmasters.org/citygov/#",
+            image1:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bodyworn-794111_1920.jpg",
+            image2:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg",
             mainProps: {
               style: {
                 padding: "5% 7%",
-              }
+              },
             },
             leftProps: {
               style: {
                 padding: "60px",
-                margin: '20px 120px 20px 20px',
+                margin: "20px 120px 20px 20px",
                 border: "1px solid rgba(12,12,12,.12)",
-                width: '40vh'
+                width: "40vh",
               },
               span: 10,
             },
             rightProps: {
               span: 10,
               style: {
-                width: '350px',
-                position: 'relative',
-                textAlign: 'right',
-                verticalAlign: 'middle',
-                display: 'inlince-block'
+                width: "350px",
+                position: "relative",
+                textAlign: "right",
+                verticalAlign: "middle",
+                display: "inlince-block",
               },
               // className: "gx-d-flex gx-align-content-center gx-flex-wrap"
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     },
 
     {
-      sectioncode: '01',
-      widgetcode: 'WidgetFooter01',
+      sectioncode: "01",
+      widgetcode: "WidgetFooter01",
       widgetconfigs: {
-        position1: 'logo',
-        position2: 'main',
-        position3: 'links',
-        position4: 'logoProps',
-        position5: 'mainProps',
-        position6: 'linkProps',
-        position7: 'containerProps'
+        position1: "logo",
+        position2: "main",
+        position3: "links",
+        position4: "logoProps",
+        position5: "mainProps",
+        position6: "linkProps",
+        position7: "containerProps",
       },
       data: {
         total: 1,
         rows: [
           {
             logo: {
-              alt: 'alt title',
-              src: 'http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/logo.png',
+              alt: "alt title",
+              src:
+                "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/logo.png",
             },
             main: {
-              title: 'Frisco City Hall',
-              state: '8353 Sierra Avenue',
-              address: 'Frisco, CA 91335',
-              phone: 'Phone: (907) 350-7400',
-              timetable: 'Monday – Thursday, 8:00 am – 6:00 pm'
+              title: "Frisco City Hall",
+              state: "8353 Sierra Avenue",
+              address: "Frisco, CA 91335",
+              phone: "Phone: (907) 350-7400",
+              timetable: "Monday – Thursday, 8:00 am – 6:00 pm",
             },
             links: [
               {
-                title: 'Living Here',
+                title: "Living Here",
                 links: [
                   {
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  }
-                ]
-              },{
-                title: 'Useful Links',
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                ],
+              },
+              {
+                title: "Useful Links",
                 links: [
                   {
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  }
-                ]
-              },{
-                title: 'Quick Links',
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                ],
+              },
+              {
+                title: "Quick Links",
                 links: [
                   {
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  },{
-                    to: '',
-                    title: 'Government'
-                  }
-                ]
-              }
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                  {
+                    to: "",
+                    title: "Government",
+                  },
+                ],
+              },
             ],
             logoProps: {
               style: {
                 width: "100px",
-                position: 'relative',
-                top: '-20%',
-                marginBottom: '1rem'
-              }
+                position: "relative",
+                top: "-20%",
+                marginBottom: "1rem",
+              },
             },
             mainProps: {
               xs: 24,
@@ -596,8 +643,8 @@ export const configHome001 = {
               xl: 10,
               style: {
                 top: "-10%",
-                position: "relative"
-              }
+                position: "relative",
+              },
             },
             linkProps: {
               xs: 24,
@@ -605,21 +652,21 @@ export const configHome001 = {
               md: 14,
               lg: 14,
               xl: 14,
-              className: "gx-mt-4"
+              className: "gx-mt-4",
             },
             containerProps: {
               gutter: [0, 0],
               style: {
                 padding: "1rem",
-                backgroundColor: '#10354c',
-                color: '#fff',
+                backgroundColor: "#10354c",
+                color: "#fff",
                 // display: 'inline-block'
               },
-              className: ""
+              className: "",
             },
-          }
-        ]
-      }
-    }
+          },
+        ],
+      },
+    },
   ],
 };

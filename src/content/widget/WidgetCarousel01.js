@@ -27,7 +27,7 @@ const WidgetCarousel01 = ({ widgetconfigs, data }) => {
             <div
               style={{
                 ...item.style,
-                background: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6) ), url(${position3})`,
+                background: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2) ), url(${position3})`,
                 backgroundPosition: "center top",
                 backgroundSize: "cover",
               }}

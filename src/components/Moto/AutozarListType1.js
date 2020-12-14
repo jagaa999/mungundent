@@ -3,8 +3,12 @@ import React, { useEffect, useContext } from "react";
 import { Col, Row, Select, PageHeader } from "antd";
 
 import AutozarListItem1 from "./AutozarListItem1";
+import AutozarListActionHeader from "./AutozarListActionHeader";
 import AutozarContext from "context/AutozarContext";
 import LoadingList from "./Loading/LoadingList";
+import MotoPagination from "./Pagination/MotoPagination";
+import AutozarFilterDrawer from "./Drawer/AutozarFilterDrawer";
+import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 
 const { Option } = Select;
 
@@ -19,13 +23,7 @@ const AutozarListType1 = () => {
 
       {!autozarListContext.autozarList.loading ? (
         <div className="gx-main-content">
-          {/* <NewsListIActionHeader title="Нийтлэл" /> */}
-
-          <PageHeader
-            title={<h3>Автомашинууд</h3>}
-            className="gx-mb-3"
-            extra={[]}
-          ></PageHeader>
+          <AutozarListActionHeader title="Автозар" />
 
           <Row className="gx-d-flex">
             {autozarListContext.autozarList.autozarList.map(
@@ -38,8 +36,9 @@ const AutozarListType1 = () => {
               }
             )}
           </Row>
-          {/* <MotoPagination />
-          <FilterDrawer /> */}
+          <MotoPagination myClass="gx-mt-2" />
+          <AutozarFilterDrawer />
+          <AffixButtonInsert link="autozar" />
         </div>
       ) : (
         <LoadingList />

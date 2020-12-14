@@ -15,19 +15,19 @@ export const configHome001 = {
         rows: [
           {
             id: "101",
-            title: "Request 311",
+            title: "СӨХ-ны тухай",
             link: "/",
             parentid: "",
           },
           {
             id: "102",
-            title: "Administration",
+            title: "Систем",
             link: "/admin",
             parentid: "",
           },
           {
             id: "103",
-            title: "How do I..",
+            title: "Асуулт?",
             link: "/howdoi",
             parentid: "",
           },

@@ -4,11 +4,12 @@ import QueueAnim from "rc-queue-anim";
 import { Col, Row } from "antd";
 
 import AutozarListItem2 from "./AutozarListItem2";
-import AuctionListActionHeader from "./AuctionListActionHeader";
-import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
+import AutozarListActionHeader from "./AutozarListActionHeader";
 import AutozarContext from "context/AutozarContext";
 import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
 import MotoPagination from "./Pagination/MotoPagination";
+import AutozarFilterDrawer from "./Drawer/AutozarFilterDrawer";
+import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 import LoadingList from "./Loading/LoadingList";
 
 const AutozarListType2 = () => {
@@ -22,8 +23,7 @@ const AutozarListType2 = () => {
 
       {!autozarListContext.autozarList.loading ? (
         <div className="gx-main-content gx-p-2 gx-p-sm-0">
-          {/* <AuctionListActionHeader />
-          <AuctionFilterHeader /> */}
+          <AutozarListActionHeader title="Автозар" />
 
           <Row className="gx-d-flex">
             {autozarListContext.autozarList.autozarList.map(
@@ -44,8 +44,9 @@ const AutozarListType2 = () => {
             )}
           </Row>
 
-          {/* <MotoPagination myClass="gx-mt-2" />
-          <AuctionFilterDrawer /> */}
+          <MotoPagination myClass="gx-mt-2" />
+          <AutozarFilterDrawer />
+          <AffixButtonInsert link="autozar" />
         </div>
       ) : (
         <LoadingList type="card" />

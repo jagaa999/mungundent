@@ -24,7 +24,6 @@ import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
-import MotoSort from "components/Moto/Sort/MotoSort";
 import LoadingList from "./Loading/LoadingList";
 
 const AutozarListType3 = () => {

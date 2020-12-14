@@ -35,6 +35,7 @@ const WidgetBanner07 = ({ widgetconfigs, data }) => {
 
     return (
       <>
+        fg gfd gfd gfdg fdg
         <div {...position4}>
           <Row justify="center" gutter={[0, 0]}>
             <Col span={12}>
