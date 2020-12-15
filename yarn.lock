@@ -13374,6 +13374,11 @@ react-dnd@^10.0.2:
     dnd-core "^10.0.2"
     hoist-non-react-statics "^3.3.0"
 
+react-dom-factories@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-dom-factories/-/react-dom-factories-1.0.2.tgz#eb7705c4db36fb501b3aa38ff759616aa0ff96e0"
+  integrity sha1-63cFxNs2+1AbOqOP91lhaqD/luA=
+
 react-dom@16.13.1, react-dom@^16.12.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
@@ -13589,6 +13594,13 @@ react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-json-schema@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-json-schema/-/react-json-schema-1.2.2.tgz#b24a46f049066ac78d0138bcd4f5504cda2381e9"
+  integrity sha512-aQDeTQPWVhFfy/hZygPgp9imhkkWtF83OF8/I4EfgS5MY0UbiSVZp0HGhH16dB0YoqIFzJ5Bl507iu6L0+GxWg==
+  dependencies:
+    react-dom-factories "^1.0.2"
 
 react-json-view@1.19.1:
   version "1.19.1"

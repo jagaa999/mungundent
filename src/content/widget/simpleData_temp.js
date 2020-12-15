@@ -1,11 +1,4 @@
 export const schema = [
-  //  #     # ####### #     # #     #
-  //  ##   ## #       ##    # #     #
-  //  # # # # #       # #   # #     #
-  //  #  #  # #####   #  #  # #     #
-  //  #     # #       #   # # #     #
-  //  #     # #       #    ## #     #
-  //  #     # ####### #     #  #####
   {
     component: "Header",
     children: [
@@ -35,14 +28,6 @@ export const schema = [
       },
     ],
   },
-
-  //  ######     #    #     # #     # ####### ######
-  //  #     #   # #   ##    # ##    # #       #     #
-  //  #     #  #   #  # #   # # #   # #       #     #
-  //  ######  #     # #  #  # #  #  # #####   ######
-  //  #     # ####### #   # # #   # # #       #   #
-  //  #     # #     # #    ## #    ## #       #    #
-  //  ######  #     # #     # #     # ####### #     #
 
   {
     component: "Carousel",
@@ -138,116 +123,6 @@ export const schema = [
     ],
   },
 
-  //  #     # ####### #     #  #####
-  //  ##    # #       #  #  # #     #
-  //  # #   # #       #  #  # #
-  //  #  #  # #####   #  #  #  #####
-  //  #   # # #       #  #  #       #
-  //  #    ## #       #  #  # #     #
-  //  #     # #######  ## ##   #####
-  {
-    component: "Row",
-    style: { minHeight: "450px" },
-    children: [
-      {
-        component: "Col",
-        span: 9,
-        style: {
-          background:
-            "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/street-932082_1920-edit.jpg)",
-          backgroundPosition: "left center",
-          backgroundSize: "cover",
-          height: "100%",
-          display: "inline-block",
-          width: "100%",
-        },
-        children: [
-          {
-            component: "div",
-            style: {
-              border: "1px solid #fff",
-
-              margin: "30px auto",
-              width: "70%",
-            },
-            className: "gx-text-white gx-p-3",
-            children: [
-              {
-                component: "div",
-                style: { fontSize: "36px", fontWeight: "bold" },
-                text: "Манай байранд юу болов?",
-              },
-              {
-                component: "div",
-                style: { fontSize: "16px", fontWeight: "normal" },
-                className: "gx-mt-3",
-                text: "Бидний байр бид бүгдэд хамаатай",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        component: "Col",
-        span: 15,
-        style: {
-          height: "100%",
-          display: "inline-block",
-          background: "yellow",
-          padding: "100px 30px 100px 50px",
-        },
-        children: [
-          {
-            component: "div",
-            style: { fontSize: "40px", fontWeight: "bold" },
-            text: "Мэдээ, нийтлэл",
-          },
-          {
-            component: "div",
-            style: { fontSize: "17px", fontWeight: "bold" },
-            text: "Бид бүгдийн сайн сайхан амьдралд нэмэр болох материалууд",
-          },
-          { component: "Divider", className: "gx-my-3" },
-          {
-            component: "div",
-            style: { background: "#d1d1d1" },
-            children: {
-              component: "List",
-              itemLayout: "vertical",
-              size: "large",
-              children: [
-                {
-                  component: "ListItem",
-                  key: "d01",
-                  children: {
-                    component: "ListItemMeta",
-                    // avatar: [
-                    //   {
-                    //     component: "Image",
-                    //     key: "dfxc",
-                    //     src:
-                    //       "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
-                    //   },
-                    // ],
-                    title: "dsfg dgf dgdfg fdg",
-                    description: "dfdxxxxxxxxxxxx xc cxc xc x",
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    ],
-  },
-
-  //  #           #####     #    ######  ######
-  //  #    #     #     #   # #   #     # #     #
-  //  #    #     #        #   #  #     # #     #
-  //  #    #     #       #     # ######  #     #
-  //  #######    #       ####### #   #   #     #
-  //       #     #     # #     # #    #  #     #
-  //       #      #####  #     # #     # ######
   {
     component: "Row",
     gutter: [8, 8],
@@ -375,74 +250,6 @@ export const schema = [
     ],
   },
 
-  //  ######     #    #     # #     # ####### ######
-  //  #     #   # #   ##    # ##    # #       #     #
-  //  #     #  #   #  # #   # # #   # #       #     #
-  //  ######  #     # #  #  # #  #  # #####   ######
-  //  #     # ####### #   # # #   # # #       #   #
-  //  #     # #     # #    ## #    ## #       #    #
-  //  ######  #     # #     # #     # ####### #     #
-  {
-    component: "Row",
-    gutter: [0, 0],
-    justify: "center",
-    style: {
-      height: "450px",
-      width: "100%",
-      backgroundColor: "#222933",
-      marginBottom: "20px",
-    },
-    className: " gx-px-5",
-    children: [
-      {
-        component: "Col",
-        span: 12,
-        style: { height: "100%" },
-        children: [
-          {
-            component: "div",
-            className: "gx-text-white gx-p-5 gx-mt-5",
-            style: {
-              border: "1px solid #fff",
-              width: "80%",
-            },
-            children: [
-              {
-                component: "div",
-                className: "gx-fs-xxl gx-font-weight-bold",
-                text:
-                  "СӨХ-ийн бүх ажлаа нэг дор амжуулна гэхээр үнэхээр таатай байна.",
-              },
-              {
-                component: "div",
-                className: "gx-mt-3",
-                text: "Хүндэтгэсэн,",
-              },
-              {
-                component: "div",
-                className: "gx-mt-1",
-                text: "оршин суугч Mayor Lisa F. Matt",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        component: "Col",
-        span: 12,
-        style: {
-          background:
-            "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/mayor-5b.jpg)",
-          backgroundPosition: "center center",
-          backgroundSize: "cover",
-          height: "100%",
-          display: "inline-block",
-          width: "100%",
-        },
-      },
-    ],
-  },
-
   {
     component: "Button",
     type: "primary",
@@ -455,6 +262,254 @@ export const configHome001 = {
   layoutcode: "LandingPage01", //5 section-тэй
   portalpagename: "Portal 001",
   detailconfigs: [
+    // {
+    //   sectioncode: "01",
+    //   widgetcode: "WidgetMenu01",
+    //   widgetconfigs: {
+    //     position1: "title",
+    //     position2: "link",
+    //   },
+    //   data: {
+    //     total: 3,
+    //     rows: [
+    //       {
+    //         id: "101",
+    //         title: "СӨХ-ны тухай",
+    //         link: "/widget",
+    //         parentid: "",
+    //       },
+    //       {
+    //         id: "102",
+    //         title: "Систем",
+    //         link: "/widget",
+    //         parentid: "",
+    //       },
+    //       {
+    //         id: "103",
+    //         title: "Асуулт?",
+    //         link: "/howdoi",
+    //         parentid: "",
+    //       },
+    //     ],
+    //   },
+    // },
+    // {
+    //   sectionCode: "01",
+    //   widgetcode: "WidgetCarousel01",
+    //   widgetconfigs: {
+    //     position1: "title",
+    //     position2: "description",
+    //     position3: "backphoto",
+    //   },
+    //   data: {
+    //     total: 10,
+    //     rows: [
+    //       {
+    //         title: "Сууц Өмчлөгчдийн Холбоо гэдэг нь..",
+    //         description:
+    //           "Оршин суугчдын аятай тухтай, цэвэр, үзэмжтэй нөхцөлийг бүрдүүлэхийн төлөө дундын өмчлөлийн эд хөрөнгийн ашиглалт үйлчилгээг хариуцан ажилладгаас гадна үл хөдлөх хөрөнгийн зах зээлийн үнэ ханшийг тогтоодог.",
+    //         backphoto:
+    //           "https://images.unsplash.com/photo-1584792095318-ddb688f67c1a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    //         style: {
+    //           height: "720px",
+    //           color: "#fff",
+    //           textAlign: "left",
+    //           background: "#364d79",
+    //           padding: "7% 13%",
+    //           fontSize: "22px",
+    //         },
+    //       },
+    //       {
+    //         title: "Сууц өмчлөгчдийн холбоо гэдэг нь..",
+    //         description:
+    //           "Нийтийн зориулалттай орон сууцны байшингийн дундын өмчлөлийн эд хөрөнгийг дундаа хамтран өмчлөх эрхийг хэрэгжүүлэх, ашиглалтын хэвийн байдлыг хангах, сууц өмчлөгчдийн эрх, ашиг сонирхлыг хамгаалах зорилго бүхий, хуулийн этгээдийн эрхгүй, заавал гишүүнчлэлтэй холбоог хэлдэг.",
+    //         backphoto:
+    //           "https://images.unsplash.com/photo-1495245088094-68be8de6b55e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    //         style: {
+    //           height: "720px",
+    //           color: "#fff",
+    //           textAlign: "left",
+    //           background: "#364d79",
+    //           padding: "7% 13%",
+    //           fontSize: "22px",
+    //         },
+    //       },
+    //       {
+    //         title: "СӨХ-ийн эзэд..",
+    //         description:
+    //           "Орон сууцны байшинд хоёр буюу түүнээс дээш өрх сууц өмчлөгч болсон тохиолдолд СӨХ-той болох хэрэгцээ үүсдэг бөгөөд зэрэгцэн орших барилгын сууц өмчлөгчид нэгдэн нэг СӨХ байгуулж болдог.",
+    //         backphoto:
+    //           "https://images.unsplash.com/photo-1495122255346-a63176da9893?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    //         style: {
+    //           height: "720px",
+    //           color: "#fff",
+    //           textAlign: "center",
+    //           background: "#364d79",
+    //           padding: "7% 13%",
+    //           fontSize: "22px",
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
+
+    // {
+    //   sectionCode: "01",
+    //   widgetcode: "WidgetCard07",
+    //   widgetconfigs: {
+    //     position1: "title",
+    //     position2: "description",
+    //     position3: "icon",
+    //     position4: "colprops",
+    //     position5: "link",
+    //     position6: "cardprops",
+    //   },
+    //   data: {
+    //     total: 4,
+    //     rows: [
+    //       {
+    //         title: "Барилгынхаа бүх хэсгийг хянах",
+    //         description:
+    //           "Цахилгаан шат, тоглоомын талбай, зогсоол зэрэг бүгдийг хянах боломжтой.",
+    //         icon:
+    //           "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/monument.png",
+    //         colprops: { span: 6 },
+    //         cardprops: {
+    //           className: "gx-bg-success",
+    //           style: { height: "100%" },
+    //         },
+    //         link: "/department",
+    //       },
+    //       {
+    //         title: "Хотхон доторх хөдөлгөөн",
+    //         description:
+    //           "Гадна зогсоол болон дулаан гараашийн бүх хөдөлгөөнийг удирдах",
+    //         icon:
+    //           "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bus.png",
+    //         colprops: { span: 6 },
+    //         cardprops: {
+    //           className: "gx-bg-warning",
+    //           style: { height: "100%" },
+    //         },
+    //         link: "/buses",
+    //       },
+    //       {
+    //         title: "Оршин суугчдын зар, мэдээлэл",
+    //         description:
+    //           "Танай гэрт хэрэг болсон ойр зуурын ажил үйлчилгээг мэдэгдэх зарын систем",
+    //         icon:
+    //           "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/exam.png",
+    //         colprops: { span: 6 },
+    //         cardprops: {
+    //           className: "gx-bg-success",
+    //           style: { height: "100%" },
+    //         },
+    //         link: "/job",
+    //       },
+    //       {
+    //         title: "Парк, Сандал, Амрах хэсэг",
+    //         description:
+    //           "Амрах гарын мэдээлэл, тэнд тавигдах дүрэм журмыг нэг дороос",
+    //         icon:
+    //           "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bench.png",
+    //         colprops: { span: 6 },
+    //         cardprops: { className: "gx-bg-grey", style: { height: "100%" } },
+    //         link: "/park",
+    //       },
+    //     ],
+    //   },
+    // },
+
+    {
+      sectionCode: "01",
+      widgetcode: "WidgetBanner07",
+      widgetconfigs: {
+        position1: "title",
+        position2: "description",
+        position3: "photo",
+        position4: "bannerprops",
+        position5: "leftprops",
+        position6: "rightprops",
+      },
+      data: {
+        total: 1,
+        rows: [
+          {
+            title:
+              "Thank you for allowing me to serve as your mayor. Together, let's keep the momentum going.",
+            description: "Best regards, Mayor Lisa F. Matt",
+            photo:
+              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/mayor-5b.jpg",
+            bannerprops: {
+              style: {
+                height: "450px",
+                backgroundColor: "#222933",
+                // overflow: "hidden",
+                marginBottom: "20px",
+              },
+              className: " gx-px-5",
+            },
+            leftprops: {
+              className: "gx-text-white gx-p-3 gx-mt-5",
+              style: {
+                border: "1px solid #fff",
+              },
+            },
+            rightprops: {},
+          },
+        ],
+      },
+    },
+
+    {
+      sectioncode: "02",
+      widgetcode: "WidgetBanner02",
+      widgetconfigs: {
+        position1: "title",
+        position2: "titleProps",
+        position3: "backgroundProps",
+        position4: "container",
+      },
+      data: {
+        total: 1,
+        rows: [
+          {
+            title:
+              "A vibrant city nestled against the San Bernardino Mountains.",
+            titleProps: {
+              style: {
+                border: "1px solid #fff",
+                fontSize: "40px",
+                fontWeight: "bold",
+                left: "50%",
+                top: "30%",
+                padding: "1rem",
+                width: "350px",
+                position: "relative",
+              },
+              className: "gx-text-white",
+            },
+            backgroundProps: {
+              style: {
+                backgroundColor: "#fff",
+                backgroundImage:
+                  "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/street-932082_1920-edit.jpg)",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "top left",
+                height: "768px",
+                backgroundAttachment: "scroll",
+              },
+              className: "",
+            },
+            container: {
+              style: {},
+            },
+          },
+        ],
+      },
+    },
+
     {
       sectioncode: "01",
       widgetcode: "WidgetList01",

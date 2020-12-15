@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { Menu, Avatar, Tooltip, Badge } from "antd";
-import { MailOutlined, CoffeeOutlined } from "@ant-design/icons";
+import { Menu, Tooltip } from "antd";
 import IntlMessages from "../../util/IntlMessages";
 import FilterContext from "context/FilterContext";
 import MyIcon from "../../util/iconFunction";

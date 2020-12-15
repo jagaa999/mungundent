@@ -1,46 +1,60 @@
 import React from "react";
+import ReactJsonSchema from "react-json-schema";
 
-// import AntBanner101 from "./AntBanner101";
-// import WidgetBanner101 from "./WidgetBanner101";
 import WidgetMenu01 from "./WidgetMenu01";
 import WidgetCarousel01 from "./WidgetCarousel01";
 import WidgetCard07 from "./WidgetCard07";
 import WidgetBanner07 from "./WidgetBanner07";
-
-/*
- * Section imports
- */
 import WidgetBanner01 from "./Banner/Banner01";
 import WidgetBanner02 from "./Banner/Banner02";
 import WidgetBanner03 from "./Banner/Banner03";
-
-/**
- * Banner imports
- */
 import WidgetSection02 from "./Section/Section02";
-
-/**
- * List imports
- */
 import WidgetList01 from "./List/List01";
 import WidgetList02 from "./List/List02";
-
-/**
- * Card imports
- */
 import WidgetCard01 from "./Card/Card01";
-
-/**
- * Footer imports
- */
 import WidgetFooter01 from "./Footer/Footer01";
+import { configHome001, schema } from "./simpleData";
 
-import { configHome001, configHome } from "./simpleData";
-
-import { Menu, Avatar, Layout, Button, Divider } from "antd";
-// import "./less/antMotionStyle.less";
-
+import {
+  Layout,
+  Menu,
+  Carousel,
+  Row,
+  Col,
+  Card,
+  Image,
+  Button,
+  Avatar,
+  Divider,
+  List,
+} from "antd";
 const { Header, Footer, Sider, Content } = Layout;
+const MenuItem = Menu.Item;
+const SubMenu = Menu.SubMenu;
+const ListItem = List.Item;
+const ListItemMeta = List.Item.Meta;
+const view = new ReactJsonSchema();
+view.setComponentMap({
+  Layout,
+  Header,
+  Footer,
+  Sider,
+  Content,
+  Menu,
+  MenuItem,
+  SubMenu,
+  Carousel,
+  Row,
+  Col,
+  Card,
+  Image,
+  Button,
+  Avatar,
+  Divider,
+  List,
+  ListItem,
+  ListItemMeta,
+});
 
 const { detailconfigs } = configHome001;
 
@@ -53,6 +67,8 @@ const HomePage = () => {
   return (
     <Layout className="gx-app-layout">
       <Content className="gx-layout-content gx-container-wrap">
+        {view.parseSchema(schema)}
+
         {detailconfigs.map((widget, index) => {
           if (widget.widgetcode === "WidgetMenu01") {
             return (

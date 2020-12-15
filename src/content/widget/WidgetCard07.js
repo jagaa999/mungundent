@@ -33,30 +33,30 @@ const WidgetCard07 = ({ widgetconfigs, data }) => {
   // position6: "cardprops",
 
   return (
-    <div>
-      <Row gutter={[8, 8]} type="flex">
-        {data.rows.map((item, index) => {
-          const position1 = item[widgetconfigs.position1] || "";
-          const position2 = item[widgetconfigs.position2] || "";
-          const position3 = item[widgetconfigs.position3] || "";
-          const position4 = item[widgetconfigs.position4] || "";
-          const position5 = item[widgetconfigs.position5] || "";
-          const position6 = item[widgetconfigs.position6] || "";
+    // <div>
+    <Row gutter={[8, 8]} type="flex">
+      {data.rows.map((item, index) => {
+        const position1 = item[widgetconfigs.position1] || "";
+        const position2 = item[widgetconfigs.position2] || "";
+        const position3 = item[widgetconfigs.position3] || "";
+        const position4 = item[widgetconfigs.position4] || "";
+        const position5 = item[widgetconfigs.position5] || "";
+        const position6 = item[widgetconfigs.position6] || "";
 
-          return (
-            <Col {...position4}>
-              <Card {...position6}>
-                <Image src={position3} />
-                <div className="gx-mt-3 gx-fs-xxl gx-font-weight-bold">
-                  {position1}
-                </div>
-                <div className="gx-mt-3">{position2}</div>
-              </Card>
-            </Col>
-          );
-        })}
-      </Row>
-    </div>
+        return (
+          <Col {...position4}>
+            <Card {...position6}>
+              <Image src={position3} />
+              <div className="gx-mt-3 gx-fs-xxl gx-font-weight-bold">
+                {position1}
+              </div>
+              <div className="gx-mt-3">{position2}</div>
+            </Card>
+          </Col>
+        );
+      })}
+    </Row>
+    // </div>
   );
 };
 
