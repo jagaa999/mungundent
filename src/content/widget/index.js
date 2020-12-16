@@ -13,7 +13,12 @@ import WidgetList01 from "./List/List01";
 import WidgetList02 from "./List/List02";
 import WidgetCard01 from "./Card/Card01";
 import WidgetFooter01 from "./Footer/Footer01";
-import { configHome001, schema } from "./simpleData";
+import {
+  configHome001,
+  schemaHeader,
+  schemaContent,
+  schemaFooter,
+} from "./simpleData";
 
 import {
   Layout,
@@ -65,124 +70,128 @@ const HomePage = () => {
   // console.table("myResult", myResult);
 
   return (
-    <Layout className="gx-app-layout">
-      <Content className="gx-layout-content gx-container-wrap">
-        {view.parseSchema(schema)}
+    <Layout className="gx-app-layouts">
+      <Header>{view.parseSchema(schemaHeader)}</Header>
+      <Layout className="ant-layout-content gx-layout-content gx-container-wrap">
+        <Content className=" gx-main-content-wrapper">
+          {view.parseSchema(schemaContent)}
 
-        {detailconfigs.map((widget, index) => {
-          if (widget.widgetcode === "WidgetMenu01") {
-            return (
-              <Header>
-                <WidgetMenu01
+          {detailconfigs.map((widget, index) => {
+            if (widget.widgetcode === "WidgetMenu01") {
+              return (
+                <Header>
+                  <WidgetMenu01
+                    key={index}
+                    widgetconfigs={widget.widgetconfigs}
+                    data={widget.data}
+                  />
+                </Header>
+              );
+            }
+
+            if (widget.widgetcode === "WidgetCarousel01") {
+              return (
+                <WidgetCarousel01
                   key={index}
                   widgetconfigs={widget.widgetconfigs}
                   data={widget.data}
                 />
-              </Header>
-            );
-          }
+              );
+            }
 
-          if (widget.widgetcode === "WidgetCarousel01") {
-            return (
-              <WidgetCarousel01
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetCard07") {
+              return (
+                <WidgetCard07
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetCard07") {
-            return (
-              <WidgetCard07
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetBanner07") {
+              return (
+                <WidgetBanner07
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetBanner07") {
-            return (
-              <WidgetBanner07
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetBanner01") {
+              return (
+                <WidgetBanner01
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetBanner01") {
-            return (
-              <WidgetBanner01
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetBanner02") {
+              return (
+                <WidgetBanner02
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetBanner02") {
-            return (
-              <WidgetBanner02
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetList01") {
+              return (
+                <WidgetList01
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetList01") {
-            return (
-              <WidgetList01
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetBanner03") {
+              return (
+                <WidgetBanner03
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetBanner03") {
-            return (
-              <WidgetBanner03
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetList02") {
+              return (
+                <WidgetList02
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetList02") {
-            return (
-              <WidgetList02
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
+            if (widget.widgetcode === "WidgetCard01") {
+              return (
+                <WidgetCard01
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
 
-          if (widget.widgetcode === "WidgetCard01") {
-            return (
-              <WidgetCard01
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
-
-          if (widget.widgetcode === "WidgetFooter01") {
-            return (
-              <WidgetFooter01
-                key={index}
-                widgetconfigs={widget.widgetconfigs}
-                data={widget.data}
-              />
-            );
-          }
-        })}
-      </Content>
+            if (widget.widgetcode === "WidgetFooter01") {
+              return (
+                <WidgetFooter01
+                  key={index}
+                  widgetconfigs={widget.widgetconfigs}
+                  data={widget.data}
+                />
+              );
+            }
+          })}
+        </Content>
+      </Layout>
+      <Footer>{view.parseSchema(schemaFooter)}</Footer>
     </Layout>
   );
 };

@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 
-import { Button, PageHeader } from "antd";
-import { FilterOutlined } from "@ant-design/icons";
+import { Button, PageHeader, Typography, Row, Col, Divider } from "antd";
+import { FilterOutlined, EllipsisOutlined } from "@ant-design/icons";
 import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
 import AuctionContext from "context/AuctionContext";
 import MotoAuctionSort from "./Sort/MotoAuctionSort";
+
+const { Paragraph } = Typography;
 
 const AuctionListActionHeader = (props) => {
   const filterContext = useContext(FilterContext);
@@ -18,6 +20,22 @@ const AuctionListActionHeader = (props) => {
 
   return (
     <>
+      <div className="gx-text-grey gx-fs-sm">
+        <Paragraph>
+          Япон улсын аукшин системд яг одоогоор тавигдсан байгаа автомашинуудыг
+          та харж байна. Японоос орж ирж буй бүх автомашиныг эндээс авдаг билээ.
+          Та өөрт таалагдсан хамгийн онцгой автомашиныг эндээс шууд үнэ тавин
+          авах боломжтой.
+        </Paragraph>
+        <Paragraph>
+          Энэ системийг ашигласнаар дундаж үнэлгээтэй энгийн автомашиныг хямдхан
+          авах эсвэл маш сайн тоноглолтой сайхан автомашиныг боломжийн үнээр олж
+          авах нөхцөл бүрдэж байгаа юм.
+        </Paragraph>
+      </div>
+
+      <Divider className="gx-my-3" />
+
       <PageHeader
         className="moto-pageheader"
         title={

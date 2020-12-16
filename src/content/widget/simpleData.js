@@ -1,4 +1,4 @@
-export const schema = [
+export const schemaHeader = [
   //  #     # ####### #     # #     #
   //  ##   ## #       ##    # #     #
   //  # # # # #       # #   # #     #
@@ -7,35 +7,32 @@ export const schema = [
   //  #     # #       #    ## #     #
   //  #     # ####### #     #  #####
   {
-    component: "Header",
+    component: "Menu",
+    mode: "horizontal",
+    // theme: "dark",
     children: [
       {
-        component: "Menu",
-        mode: "horizontal",
-        // theme: "dark",
-        children: [
-          {
-            component: "MenuItem",
+        component: "MenuItem",
 
-            key: "mail",
-            text: "СӨХ",
-          },
-          {
-            component: "MenuItem",
+        key: "mail",
+        text: "СӨХ",
+      },
+      {
+        component: "MenuItem",
 
-            key: "ddd",
-            text: "Системийн тухай",
-          },
-          {
-            component: "MenuItem",
-            key: "faq",
-            text: "Асуулт хариулт?",
-          },
-        ],
+        key: "ddd",
+        text: "Системийн тухай",
+      },
+      {
+        component: "MenuItem",
+        key: "faq",
+        text: "Асуулт хариулт?",
       },
     ],
   },
+];
 
+export const schemaContent = [
   //  ######     #    #     # #     # ####### ######
   //  #     #   # #   ##    # ##    # #       #     #
   //  #     #  #   #  # #   # # #   # #       #     #
@@ -132,109 +129,6 @@ export const schema = [
                   "Нийтийн зориулалттай орон сууцны байшингийн дундын өмчлөлийн эд хөрөнгийг дундаа хамтран өмчлөх эрхийг хэрэгжүүлэх, ашиглалтын хэвийн байдлыг хангах, сууц өмчлөгчдийн эрх, ашиг сонирхлыг хамгаалах зорилго бүхий, хуулийн этгээдийн эрхгүй, заавал гишүүнчлэлтэй холбоог хэлдэг.",
               },
             ],
-          },
-        ],
-      },
-    ],
-  },
-
-  //  #     # ####### #     #  #####
-  //  ##    # #       #  #  # #     #
-  //  # #   # #       #  #  # #
-  //  #  #  # #####   #  #  #  #####
-  //  #   # # #       #  #  #       #
-  //  #    ## #       #  #  # #     #
-  //  #     # #######  ## ##   #####
-  {
-    component: "Row",
-    style: { minHeight: "450px" },
-    children: [
-      {
-        component: "Col",
-        span: 9,
-        style: {
-          background:
-            "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/street-932082_1920-edit.jpg)",
-          backgroundPosition: "left center",
-          backgroundSize: "cover",
-          height: "100%",
-          display: "inline-block",
-          width: "100%",
-        },
-        children: [
-          {
-            component: "div",
-            style: {
-              border: "1px solid #fff",
-
-              margin: "30px auto",
-              width: "70%",
-            },
-            className: "gx-text-white gx-p-3",
-            children: [
-              {
-                component: "div",
-                style: { fontSize: "36px", fontWeight: "bold" },
-                text: "Манай байранд юу болов?",
-              },
-              {
-                component: "div",
-                style: { fontSize: "16px", fontWeight: "normal" },
-                className: "gx-mt-3",
-                text: "Бидний байр бид бүгдэд хамаатай",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        component: "Col",
-        span: 15,
-        style: {
-          height: "100%",
-          display: "inline-block",
-          background: "yellow",
-          padding: "100px 30px 100px 50px",
-        },
-        children: [
-          {
-            component: "div",
-            style: { fontSize: "40px", fontWeight: "bold" },
-            text: "Мэдээ, нийтлэл",
-          },
-          {
-            component: "div",
-            style: { fontSize: "17px", fontWeight: "bold" },
-            text: "Бид бүгдийн сайн сайхан амьдралд нэмэр болох материалууд",
-          },
-          { component: "Divider", className: "gx-my-3" },
-          {
-            component: "div",
-            style: { background: "#d1d1d1" },
-            children: {
-              component: "List",
-              itemLayout: "vertical",
-              size: "large",
-              children: [
-                {
-                  component: "ListItem",
-                  key: "d01",
-                  children: {
-                    component: "ListItemMeta",
-                    // avatar: [
-                    //   {
-                    //     component: "Image",
-                    //     key: "dfxc",
-                    //     src:
-                    //       "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
-                    //   },
-                    // ],
-                    title: "dsfg dgf dgdfg fdg",
-                    description: "dfdxxxxxxxxxxxx xc cxc xc x",
-                  },
-                },
-              ],
-            },
           },
         ],
       },
@@ -385,68 +279,687 @@ export const schema = [
   {
     component: "Row",
     gutter: [0, 0],
+    type: "flex",
     justify: "center",
+    // align: "top",
     style: {
-      height: "450px",
-      width: "100%",
-      backgroundColor: "#222933",
-      marginBottom: "20px",
+      // height: "450px",
+      // width: "100%",
+      // backgroundColor: "#222933",
+      // marginBottom: "20px",
     },
-    className: " gx-px-5",
+    // className: " gx-px-5",
     children: [
       {
         component: "Col",
         span: 12,
-        style: { height: "100%" },
-        children: [
-          {
-            component: "div",
-            className: "gx-text-white gx-p-5 gx-mt-5",
-            style: {
-              border: "1px solid #fff",
-              width: "80%",
-            },
-            children: [
-              {
-                component: "div",
-                className: "gx-fs-xxl gx-font-weight-bold",
-                text:
-                  "СӨХ-ийн бүх ажлаа нэг дор амжуулна гэхээр үнэхээр таатай байна.",
-              },
-              {
-                component: "div",
-                className: "gx-mt-3",
-                text: "Хүндэтгэсэн,",
-              },
-              {
-                component: "div",
-                className: "gx-mt-1",
-                text: "оршин суугч Mayor Lisa F. Matt",
-              },
-            ],
+        style: { paddingRight: "0" },
+        children: {
+          component: "div",
+          style: {
+            backgroundColor: "#222933",
+            height: "100%",
+            width: "100%",
+            display: "inline-block",
           },
-        ],
+          children: [
+            {
+              component: "div",
+              className: "gx-text-white gx-p-5 gx-mx-auto gx-mt-5",
+              style: {
+                border: "1px solid #fff",
+                width: "80%",
+                marginBottom: "155px",
+              },
+              children: [
+                {
+                  component: "div",
+                  className: "gx-fs-xxl gx-font-weight-bold",
+                  text:
+                    "СӨХ-ийн бүх ажлаа нэг дор амжуулна гэхээр үнэхээр таатай байна.",
+                },
+                {
+                  component: "div",
+                  className: "gx-mt-3",
+                  text: "Хүндэтгэсэн,",
+                },
+                {
+                  component: "div",
+                  className: "gx-mt-1",
+                  text: "оршин суугч Mayor Lisa F. Matt",
+                },
+              ],
+            },
+          ],
+        },
       },
       {
         component: "Col",
         span: 12,
-        style: {
-          background:
-            "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/mayor-5b.jpg)",
-          backgroundPosition: "center center",
-          backgroundSize: "cover",
-          height: "100%",
-          display: "inline-block",
-          width: "100%",
+        style: { paddingLeft: "0" },
+        children: {
+          component: "div",
+          style: {
+            background:
+              "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/mayor-5b.jpg)",
+            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            height: "100%",
+            width: "100%",
+            display: "inline-block",
+          },
         },
       },
     ],
   },
 
+  //  #     # ####### #     #  #####
+  //  ##    # #       #  #  # #     #
+  //  # #   # #       #  #  # #
+  //  #  #  # #####   #  #  #  #####
+  //  #   # # #       #  #  #       #
+  //  #    ## #       #  #  # #     #
+  //  #     # #######  ## ##   #####
   {
-    component: "Button",
-    type: "primary",
-    children: [{ component: "span", text: "Энд дараарай" }],
+    component: "Row",
+    // style: { minHeight: "450px" },
+    className: "gx-d-flex",
+    children: [
+      {
+        component: "Col",
+        span: 9,
+        children: {
+          component: "div",
+          style: {
+            background:
+              "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/street-932082_1920-edit.jpg)",
+            backgroundPosition: "left center",
+            backgroundSize: "cover",
+            height: "100%",
+            display: "inline-block",
+            width: "100%",
+          },
+
+          children: [
+            {
+              component: "div",
+              style: {
+                border: "1px solid #fff",
+
+                margin: "30px auto",
+                width: "70%",
+              },
+              className: "gx-text-white gx-p-3",
+              children: [
+                {
+                  component: "div",
+                  style: { fontSize: "36px", fontWeight: "bold" },
+                  text: "Манай байранд юу болов?",
+                },
+                {
+                  component: "div",
+                  style: { fontSize: "16px", fontWeight: "normal" },
+                  className: "gx-mt-3",
+                  text: "Бидний байр бид бүгдэд хамаатай",
+                },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        component: "Col",
+        span: 15,
+        style: {
+          height: "100%",
+          display: "inline-block",
+          // background: "yellow",
+          padding: "100px 30px 100px 50px",
+        },
+        children: [
+          {
+            component: "div",
+            style: { fontSize: "40px", fontWeight: "bold" },
+            text: "Мэдээ, нийтлэл",
+          },
+          {
+            component: "div",
+            style: { fontSize: "17px", fontWeight: "bold" },
+            text: "Бид бүгдийн сайн сайхан амьдралд нэмэр болох материалууд",
+          },
+          { component: "Divider", className: "gx-my-3" },
+          {
+            component: "div",
+            // style: { background: "#b1b1b1" },
+            children: [
+              {
+                component: "div",
+                key: "d01",
+                style: {
+                  borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+                  paddingBottom: "30px",
+                  marginBottom: "30px",
+                },
+                children: {
+                  component: "Row",
+                  children: [
+                    {
+                      component: "Col",
+                      span: 8,
+                      children: {
+                        component: "Image",
+                        className: "gx-w-100",
+                        src:
+                          "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
+                      },
+                    },
+                    {
+                      component: "Col",
+                      span: 16,
+                      children: [
+                        {
+                          component: "h3",
+                          className: "gx-fs-xxl gx-font-weight-bold",
+                          text: "Annual Water Quality Report (Gallery Post)",
+                        },
+                        {
+                          component: "div",
+                          className: "gx-text-grey",
+                          text: "meta texts",
+                        },
+                        {
+                          component: "div",
+                          className: "",
+                          text:
+                            "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public...",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              },
+              {
+                component: "div",
+                key: "d02",
+                style: {
+                  borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+                  paddingBottom: "30px",
+                  marginBottom: "30px",
+                },
+                children: {
+                  component: "Row",
+                  children: [
+                    {
+                      component: "Col",
+                      span: 8,
+                      children: {
+                        component: "Image",
+                        className: "gx-w-100",
+                        src:
+                          "http://dannci.wpmasters.org/citygov/wp-content/uploads/2017/03/corridor-1045441_1920-150x150.jpg",
+                      },
+                    },
+                    {
+                      component: "Col",
+                      span: 16,
+                      children: [
+                        {
+                          component: "h3",
+                          className: "gx-fs-xxl gx-font-weight-bold",
+                          text: "Waste Industries Garbage Pick Up: Embeds",
+                        },
+                        {
+                          component: "div",
+                          className: "gx-text-grey",
+                          text: "meta texts",
+                        },
+                        {
+                          component: "div",
+                          className: "",
+                          text:
+                            "A moderate incline runs towards the foot of Maybury Hill, and down this we clattered. Once the lightning had begun, it went on in as rapid...",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              },
+              {
+                component: "div",
+                key: "d03",
+                style: {
+                  borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+                  paddingBottom: "30px",
+                  marginBottom: "30px",
+                },
+                children: {
+                  component: "Row",
+                  children: [
+                    {
+                      component: "Col",
+                      span: 8,
+                      children: {
+                        component: "Image",
+                        className: "gx-w-100",
+                        src:
+                          "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/city-street-1082278_1920-150x150.jpg",
+                      },
+                    },
+                    {
+                      component: "Col",
+                      span: 16,
+                      children: [
+                        {
+                          component: "h3",
+                          className: "gx-fs-xxl gx-font-weight-bold",
+                          text:
+                            "Traffic Pattern Changes (Testing A Pagination)",
+                        },
+                        {
+                          component: "div",
+                          className: "gx-text-grey",
+                          text: "meta texts",
+                        },
+                        {
+                          component: "div",
+                          className: "",
+                          text:
+                            "The roundabout at South Lamar and Belk will become operational on Friday, August 17th. Though the roundabout will be functional and provide...",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+
+          {
+            component: "Button",
+            text: "Бусдыг нь унших",
+          },
+        ],
+      },
+    ],
+  },
+
+  //  #     # ####### #     #  #####      #####
+  //  ##    # #       #  #  # #     #    #     #
+  //  # #   # #       #  #  # #                #
+  //  #  #  # #####   #  #  #  #####      #####
+  //  #   # # #       #  #  #       #    #
+  //  #    ## #       #  #  # #     #    #
+  //  #     # #######  ## ##   #####     #######
+
+  {
+    component: "Row",
+    // gutter: [0],
+    // style: { minHeight: "450px" },
+    children: [
+      {
+        component: "Col",
+        span: 15,
+        style: {
+          paddingRight: "0",
+        },
+
+        children: {
+          component: "div",
+          style: {
+            height: "100%",
+            display: "inline-block",
+            background: "#222933",
+            padding: "100px 30px 100px 50px",
+            color: "#fff",
+          },
+
+          children: [
+            {
+              component: "div",
+              style: { fontSize: "40px", fontWeight: "bold" },
+              text: "Юу болов?",
+            },
+            {
+              component: "div",
+              style: { fontSize: "17px", fontWeight: "bold" },
+              text: "Байрныхаа эргэн тойрны сонин сайхныг мэдэцгээе",
+            },
+            {
+              component: "Divider",
+              className: "gx-my-3",
+              style: { borderColor: "#555" },
+            },
+            {
+              component: "div",
+              // style: { background: "#b1b1b1" },
+              children: [
+                {
+                  component: "div",
+                  key: "d01",
+                  style: {
+                    borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+                    paddingBottom: "30px",
+                    marginBottom: "30px",
+                  },
+                  children: {
+                    component: "Row",
+                    children: [
+                      {
+                        component: "Col",
+                        span: 8,
+                        children: {
+                          component: "Image",
+                          className: "gx-w-100",
+                          src:
+                            "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/sports-210661_1920-150x150.jpg",
+                        },
+                      },
+                      {
+                        component: "Col",
+                        span: 16,
+                        children: [
+                          {
+                            component: "h3",
+                            className:
+                              "gx-fs-xxl gx-font-weight-bold gx-text-white",
+                            text: "Along Pines Run",
+                          },
+                          {
+                            component: "div",
+                            className: "gx-text-grey",
+                            text: "meta texts",
+                          },
+                          {
+                            component: "div",
+                            className: "",
+                            text:
+                              "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public...",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                {
+                  component: "div",
+                  key: "d02",
+                  style: {
+                    borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+                    paddingBottom: "30px",
+                    marginBottom: "30px",
+                  },
+                  children: {
+                    component: "Row",
+                    children: [
+                      {
+                        component: "Col",
+                        span: 8,
+                        children: {
+                          component: "Image",
+                          className: "gx-w-100",
+                          src:
+                            "http://dannci.wpmasters.org/citygov/wp-content/uploads/2017/03/corridor-1045441_1920-150x150.jpg",
+                        },
+                      },
+                      {
+                        component: "Col",
+                        span: 16,
+                        children: [
+                          {
+                            component: "h3",
+                            className:
+                              "gx-fs-xxl gx-font-weight-bold gx-text-white",
+                            text: "Sport Games for Children",
+                          },
+                          {
+                            component: "div",
+                            className: "gx-text-grey",
+                            text: "meta texts",
+                          },
+                          {
+                            component: "div",
+                            className: "",
+                            text:
+                              "A moderate incline runs towards the foot of Maybury Hill, and down this we clattered. Once the lightning had begun, it went on in as rapid...",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                {
+                  component: "div",
+                  key: "d03",
+                  style: {
+                    borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+                    paddingBottom: "30px",
+                    marginBottom: "30px",
+                  },
+                  children: {
+                    component: "Row",
+                    children: [
+                      {
+                        component: "Col",
+                        span: 8,
+                        children: {
+                          component: "Image",
+                          className: "gx-w-100",
+                          src:
+                            "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/city-street-1082278_1920-150x150.jpg",
+                        },
+                      },
+                      {
+                        component: "Col",
+                        span: 16,
+                        children: [
+                          {
+                            component: "h3",
+                            className:
+                              "gx-fs-xxl gx-font-weight-bold gx-text-white",
+                            text: "Touch A Truck",
+                          },
+                          {
+                            component: "div",
+                            className: "gx-text-grey",
+                            text: "meta texts",
+                          },
+                          {
+                            component: "div",
+                            className: "",
+                            text:
+                              "The roundabout at South Lamar and Belk will become operational on Friday, August 17th. Though the roundabout will be functional and provide...",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+
+            {
+              component: "Button",
+              text: "Бусдыг нь унших",
+            },
+          ],
+        },
+      },
+      {
+        component: "Col",
+        span: 9,
+        style: {
+          paddingLeft: "0",
+        },
+
+        children: {
+          component: "div",
+          style: {
+            background:
+              "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg)",
+            backgroundPosition: "left center",
+            backgroundSize: "cover",
+            height: "100%",
+            display: "inline-block",
+            width: "100%",
+          },
+
+          children: [
+            {
+              component: "div",
+              style: {
+                border: "1px solid #fff",
+
+                margin: "30px auto",
+                width: "70%",
+              },
+              className: "gx-text-white gx-p-3",
+              children: [
+                {
+                  component: "div",
+                  style: { fontSize: "36px", fontWeight: "bold" },
+                  text:
+                    "A vibrant city nestled against the San Bernardino Mountains.",
+                },
+                {
+                  component: "div",
+                  style: { fontSize: "16px", fontWeight: "normal" },
+                  className: "gx-mt-3",
+                  text: "Сонирхол татаж, анхаарал хандуулъя.",
+                },
+              ],
+            },
+          ],
+        },
+      },
+    ],
+  },
+
+  //####### ####### #     # #######    ######  ####### #     #
+  //   #    #        #   #     #       #     # #     #  #   #
+  //   #    #         # #      #       #     # #     #   # #
+  //   #    #####      #       #       ######  #     #    #
+  //   #    #         # #      #       #     # #     #   # #
+  //   #    #        #   #     #       #     # #     #  #   #
+  //   #    ####### #     #    #       ######  ####### #     #
+
+  {
+    component: "Row",
+    className: "gx-mt-5",
+    children: [
+      {
+        component: "Col",
+        span: 10,
+        children: {
+          component: "div",
+          style: { border: "1px solid #d1d1d1", padding: "70px 40px" },
+          children: [
+            {
+              component: "div",
+              className: "gx-fs-xxl gx-font-weight-bold gx-text-uppercase",
+              text: "Сайн дурынхан хэрэгтэй байна!",
+            },
+            { component: "Divider" },
+            {
+              component: "div",
+              className: "gx-fs-lg gx-font-weight-bold",
+              text: "Орчноо өөрсдөө өөрчилцгөөе!",
+            },
+            {
+              component: "div",
+              className: "gx-mt-4",
+              text:
+                "Volunteers are the heart of a community. Our volunteers are a valuable resource for our fast-growing, fast-paced city. Our city relies on our volunteers for everything from staffing special event, such as Freedom Fest and Merry Main Street, to assisting departments with daily activities, such as shelving library books, filing records or using GIS equipment.",
+            },
+            { component: "Divider", className: "gx-mt-4" },
+            {
+              component: "Button",
+              type: "primary",
+              className: "gx-mt-4",
+              text: "Бүртгүүлэх",
+            },
+          ],
+        },
+      },
+      {
+        component: "Col",
+        style: { overflow: "hidden" },
+        span: 14,
+        children: {
+          component: "div",
+          style: { position: "relative", height: "100%", width: "100%" },
+          children: [
+            {
+              component: "div",
+              style: { width: "70%", position: "absolute", top: 0, right: 0 },
+              children: {
+                component: "Image",
+
+                src:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg",
+              },
+            },
+            {
+              component: "div",
+              style: {
+                width: "63%",
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                borderTop: "15px solid #fff",
+                borderRight: "15px solid #fff",
+              },
+              children: {
+                component: "Image",
+
+                src:
+                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bodyworn-794111_1920.jpg",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+
+  // {
+  //   component: "Button",
+  //   type: "primary",
+  //   children: [{ component: "span", text: "Энд дараарай" }],
+  // },
+];
+
+export const schemaFooter = [
+  //  ####### ####### ####### ####### ####### ######
+  //  #       #     # #     #    #    #       #     #
+  //  #       #     # #     #    #    #       #     #
+  //  #####   #     # #     #    #    #####   ######
+  //  #       #     # #     #    #    #       #   #
+  //  #       #     # #     #    #    #       #    #
+  //  #       ####### #######    #    ####### #     #
+
+  {
+    component: "Menu",
+    mode: "horizontal",
+    // theme: "dark",
+    children: [
+      {
+        component: "MenuItem",
+
+        key: "mail",
+        text: "СӨХ",
+      },
+      {
+        component: "MenuItem",
+
+        key: "ddd",
+        text: "Системийн тухай",
+      },
+      {
+        component: "MenuItem",
+        key: "faq",
+        text: "Асуулт хариулт?",
+      },
+    ],
   },
 ];
 
@@ -455,277 +968,6 @@ export const configHome001 = {
   layoutcode: "LandingPage01", //5 section-тэй
   portalpagename: "Portal 001",
   detailconfigs: [
-    {
-      sectioncode: "01",
-      widgetcode: "WidgetList01",
-      widgetconfigs: {
-        position1: "title",
-        position2: "description",
-        position3: "list",
-        position4: "moreFrom",
-        position5: "listProps",
-        position6: "mainProps",
-      },
-      data: {
-        total: 1,
-        rows: [
-          {
-            title: "Town Highlights",
-            description: "Find out what’s going on & stay up to date.",
-            list: [
-              {
-                cover:
-                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
-                title: "Annual Water Quality Report (Gallery Post)",
-                date: "AUGUST 14, 2018",
-                type: "TOWN NEWS",
-                description:
-                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
-                link:
-                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
-              },
-              {
-                cover:
-                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
-                title: "Annual Water Quality Report (Gallery Post)",
-                date: "AUGUST 14, 2018",
-                type: "TOWN NEWS",
-                description:
-                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
-                link:
-                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
-              },
-              {
-                cover:
-                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/stockholm-1824368_1920-150x150.jpg",
-                title: "Annual Water Quality Report (Gallery Post)",
-                date: "AUGUST 14, 2018",
-                type: "TOWN NEWS",
-                description:
-                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
-                link:
-                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
-              },
-            ],
-            moreFrom: "http://dannci.wpmasters.org/citygov/#",
-            listProps: {
-              justify: "left",
-              gutter: [0, 0],
-              style: {
-                backgroundColor: "#fff",
-                color: "#111",
-                margin: "0 !important",
-                position: "relative",
-              },
-              className: "gx-ml-4",
-            },
-            mainProps: {
-              style: {
-                margin: "3rem 5rem",
-              },
-            },
-          },
-        ],
-      },
-    },
-    {
-      sectioncode: "02",
-      widgetcode: "WidgetBanner03",
-      widgetconfigs: {
-        position1: "title",
-        position2: "titleProps",
-        position3: "backgroundProps",
-        position4: "container",
-      },
-      data: {
-        total: 1,
-        rows: [
-          {
-            title:
-              "A vibrant city nestled against the San Bernardino Mountains.",
-            titleProps: {
-              style: {
-                border: "1px solid #fff",
-                fontSize: "40px",
-                fontWeight: "bold",
-                left: "20%",
-                top: "30%",
-                padding: "1rem",
-                width: "350px",
-                position: "relative",
-              },
-              className: "gx-text-white",
-            },
-            backgroundProps: {
-              style: {
-                backgroundColor: "#fff",
-                backgroundImage:
-                  "url(http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg)",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "top right",
-                height: "768px",
-                backgroundAttachment: "scroll",
-              },
-              className: "",
-            },
-            container: {
-              style: {},
-            },
-          },
-        ],
-      },
-    },
-    {
-      sectioncode: "01",
-      widgetcode: "WidgetList02",
-      widgetconfigs: {
-        position1: "title",
-        position2: "description",
-        position3: "list",
-        position4: "moreFrom",
-        position5: "listProps",
-        position6: "mainProps",
-      },
-      data: {
-        total: 1,
-        rows: [
-          {
-            title: "What's Happening",
-            description: "Join the fun in our city!",
-            list: [
-              {
-                cover:
-                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/sports-210661_1920-150x150.jpg",
-                title: "Along Pines Run",
-                date: "11 Aug",
-                time: "9:00 am - 5:00 pm",
-                location: "Baker Hall",
-                link:
-                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
-              },
-              {
-                cover:
-                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/football-2391697_1920-150x150.jpg",
-                title: "Sport Games for Children",
-                date: "11 Aug",
-                time: "9:00 am - 5:00 pm",
-                location: "Baker Hall",
-                description:
-                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
-                link:
-                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
-              },
-              {
-                cover:
-                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/police-224426_1920-150x150.jpg",
-                title: "Touch A Truck",
-                date: "11 Aug",
-                time: "9:00 am - 5:00 pm",
-                location: "Baker Hall",
-                description:
-                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
-                link:
-                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
-              },
-              {
-                cover:
-                  "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/arches-1850730_1920-1-150x150.jpg",
-                title: "Heritage 10th Anniversary",
-                date: "11 Aug",
-                time: "9:00 am - 5:00 pm",
-                location: "Baker Hall",
-                description:
-                  "The Annual Water Quality Report is designed to provide consumers with information on the quality of the water delivered by their public",
-                link:
-                  "http://dannci.wpmasters.org/citygov/blog/2018/08/14/gallery-post-down-the-hill-i-saw-a-bevy-of-hussars-ride-under-the-railway-bridge/",
-              },
-            ],
-            moreFrom: "http://dannci.wpmasters.org/citygov/#",
-            listProps: {
-              justify: "left",
-              gutter: [0, 0],
-              style: {
-                backgroundColor: "#222933",
-                color: "#fff",
-                margin: "0 !important",
-                position: "relative",
-              },
-              className: "gx-ml-4",
-            },
-            mainProps: {
-              style: {
-                backgroundColor: "#222933",
-                padding: "5rem 7rem",
-                left: "0%",
-                position: "relative",
-              },
-            },
-          },
-        ],
-      },
-    },
-
-    {
-      sectioncode: "01",
-      widgetcode: "WidgetCard01",
-      widgetconfigs: {
-        position1: "title",
-        position2: "highlight",
-        position3: "description1",
-        position4: "image1",
-        position5: "image2",
-        position6: "link",
-        position7: "mainProps",
-        position8: "description2",
-        position9: "leftProps",
-        position10: "rightProps",
-      },
-      data: {
-        total: 1,
-        rows: [
-          {
-            title: "Become a Volunteer!",
-            highlight: "And make a difference!",
-            description1:
-              "Volunteers are the heart of a community. Our volunteers are a valuable resource for our fast-growing, fast-paced city.",
-            description2:
-              "Our city relies on our volunteers for everything from staffing special event, such as Freedom Fest and Merry Main Street, to assisting departments with daily activities, such as shelving library books, filing records or using GIS equipment.",
-            link: "http://dannci.wpmasters.org/citygov/#",
-            image1:
-              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/bodyworn-794111_1920.jpg",
-            image2:
-              "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/09/dresden-3681378_1920-edit.jpg",
-            mainProps: {
-              style: {
-                padding: "5% 7%",
-              },
-            },
-            leftProps: {
-              style: {
-                padding: "60px",
-                margin: "20px 120px 20px 20px",
-                border: "1px solid rgba(12,12,12,.12)",
-                width: "40vh",
-              },
-              span: 10,
-            },
-            rightProps: {
-              span: 10,
-              style: {
-                width: "350px",
-                position: "relative",
-                textAlign: "right",
-                verticalAlign: "middle",
-                display: "inlince-block",
-              },
-              // className: "gx-d-flex gx-align-content-center gx-flex-wrap"
-            },
-          },
-        ],
-      },
-    },
-
     {
       sectioncode: "01",
       widgetcode: "WidgetFooter01",

@@ -3,7 +3,7 @@ import moment from "moment";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 
-import { Card, Alert, Badge, Table } from "antd";
+import { Card, Alert, Badge, Table, Row, Col, PageHeader } from "antd";
 
 import AuctionDetail2General from "./Auction/AuctionDetail2General";
 import AuctionDetail2Lot from "./Auction/AuctionDetail2Lot";
@@ -71,6 +71,18 @@ const AuctionDetail2 = () => {
         key={auctionItem.auctionid}
         className="gx-main-content auction-detail"
       >
+        <PageHeader
+          className="site-page-header gx-mb-5"
+          onBack={() => window.history.back()}
+          title="Аукшин"
+          subTitle={
+            auctionItem.YEAR +
+            " " +
+            htmlEntities.decode(auctionItem.MARKA_NAME) +
+            " " +
+            htmlEntities.decode(auctionItem.MODEL_NAME)
+          }
+        />
         <Card
           className="moto-auction-detail-card"
           style={{ width: "100%" }}
@@ -105,51 +117,56 @@ const AuctionDetail2 = () => {
           {contentList[cardTabs.key]}
         </Card>
 
-        <Card
-          className="gx-order-history"
-          title="Албан ханш"
-          extra={
-            <span className=" gx-mb-0">
-              Огноо:{" "}
-              {moment(
-                generalDataContext.rateMoneyList.rateMoneyList[1]?.bankdate
-              ).format("MM-DD")}
-            </span>
-          }
-        >
-          <div className="gx-table-responsive">
-            <Table
-              className="gx-table-no-bordered"
-              columns={[
-                {
-                  title: "Валют",
-                  dataIndex: "currencycode",
-                },
-                {
-                  title: "Нэршил",
-                  dataIndex: "currencyname",
-                },
-                {
-                  title: "Ханш",
-                  dataIndex: "rate",
-                },
-              ]}
-              dataSource={Object.values(
-                generalDataContext.rateMoneyList.rateMoneyList
-              )}
-              pagination={false}
-              bordered={false}
-              size="small"
+        <Row>
+          <Col span={12}>
+            <Card
+              className="gx-order-history"
+              title="Албан ханш"
+              extra={
+                <span className=" gx-mb-0">
+                  Огноо:{" "}
+                  {moment(
+                    generalDataContext.rateMoneyList.rateMoneyList[1]?.bankdate
+                  ).format("MM-DD")}
+                </span>
+              }
+            >
+              <div className="gx-table-responsive">
+                <Table
+                  className="gx-table-no-bordered"
+                  columns={[
+                    {
+                      title: "Валют",
+                      dataIndex: "currencycode",
+                    },
+                    {
+                      title: "Нэршил",
+                      dataIndex: "currencyname",
+                    },
+                    {
+                      title: "Ханш",
+                      dataIndex: "rate",
+                    },
+                  ]}
+                  dataSource={Object.values(
+                    generalDataContext.rateMoneyList.rateMoneyList
+                  )}
+                  pagination={false}
+                  bordered={false}
+                  size="small"
+                />
+              </div>
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Alert
+              message="Японоос машин захиалгаар оруулж ирдэг бизнестэй хүмүүсийн анхааралд!"
+              description="Энэ системийг ашиглан хүмүүс машин захиалах хүсэлтэй юм. Хэрвээ та эдгээр захиалгыг өөртөө авахыг хүсвэл Moto.mn тантай хамтран ажиллахад бэлэн байна. Утас: 99902070"
+              type="success"
+              showIcon
             />
-          </div>
-        </Card>
-
-        <Alert
-          message="Японоос машин захиалгаар оруулж ирдэг бизнестэй хүмүүсийн анхааралд!"
-          description="Энэ системийг ашиглан хүмүүс машин захиалах хүсэлтэй юм. Хэрвээ та эдгээр захиалгыг өөртөө авахыг хүсвэл Moto.mn тантай хамтран ажиллахад бэлэн байна. Утас: 99902070"
-          type="warning"
-          showIcon
-        />
+          </Col>
+        </Row>
       </div>
     );
   } else {

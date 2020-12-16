@@ -5,7 +5,7 @@ import { Html5Entities } from "html-entities";
 import moment from "moment";
 import accounting from "accounting";
 
-import { Card, Alert, Badge } from "antd";
+import { Card, Alert, Badge, PageHeader } from "antd";
 
 import AutozarDetail2General from "./Autozar/AutozarDetail2General";
 import AutozarDetail2Zar from "./Autozar/AutozarDetail2Zar";
@@ -64,6 +64,18 @@ const AutozarDetail2 = () => {
 
     return (
       <div key={autozarItem.id} className="gx-main-content autozar-detail">
+        <PageHeader
+          className="site-page-header gx-mb-5"
+          onBack={() => window.history.back()}
+          title="Автозар"
+          subTitle={
+            moment(autozarItem.mglyearmanufactured).format("YYYY") +
+            " " +
+            autozarItem.mglfirm +
+            " " +
+            autozarItem.mglmark
+          }
+        />
         <Card
           className="moto-autozar-detail-card"
           style={{ width: "100%", height: "100%" }}
