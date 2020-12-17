@@ -59,9 +59,9 @@ const AuctionListInfo = (props) => {
       </Button>
       <Button disabled>Өвөрмөц машинууд</Button>
       <Drawer
+        className="moto-big-drawer"
         title="Нийтлэг машинууд"
         placement="right"
-        width={500}
         closable={true}
         onClose={onClose}
         visible={visible}

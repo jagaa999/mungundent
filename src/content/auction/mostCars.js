@@ -69,51 +69,61 @@ export const hatchbackList = [
     image: "prius.jpg",
     title: "Toyota Prius",
     link: "/auction?marka_id=1&model_id=139&yearstart=2011&yearend=2014",
+    desc: "Дунд гарын хэчбэк, 2011-2014",
   },
   {
     image: "priusalpha.jpg",
     title: "Toyota Prius Alpha",
     link: "/auction?marka_id=1&model_id=9245&yearstart=2011&yearend=2014",
+    desc: "Дунд гарын хэчбэк, 2011-2014",
   },
   {
     image: "insihgt.jpg",
     title: "Honda Insight",
     link: "/auction?marka_id=5&model_id=587&yearstart=2011&yearend=2014",
+    desc: "Дунд гарын хэчбэк, 2011-2014",
   },
   {
     image: "aqua.jpg",
     title: "Toyota Aqua",
     link: "/auction?marka_id=1&model_id=9580&yearstart=2011&yearend=2014",
+    desc: "Бага гарын хэчбэк, 2011-2014",
   },
   {
     image: "leaf.jpg",
     title: "Nissan Leaf",
     link: "/auction?marka_id=2&model_id=9209&yearstart=2011&yearend=2014",
+    desc: "Дунд гарын хэчбэк, 2011-2014",
   },
   {
     image: "fit.jpg",
     title: "Honda Fit",
     link: "/auction?marka_id=5&model_id=582&yearstart=2011&yearend=2014",
+    desc: "Бага гарын хэчбэк, 2011-2014",
   },
   {
     image: "vitz.jpg",
     title: "Toyota Vitz",
     link: "/auction?marka_id=1&model_id=205&yearstart=2011&yearend=2014",
+    desc: "Бага гарын хэчбэк, 2011-2014",
   },
   {
     image: "march.jpg",
     title: "Nissan March",
     link: "/auction?marka_id=2&model_id=284&yearstart=2011&yearend=2014",
+    desc: "Бага гарын хэчбэк, 2011-2014",
   },
   {
     image: "impreza.jpg",
     title: "Subaru Impreza",
     link: "/auction?marka_id=7&model_id=705&yearstart=2011&yearend=2014",
+    desc: "Бага, дунд гарын хэчбэк, 2011-2014",
   },
   {
     image: "note.jpg",
     title: "Nissan Note",
     link: "/auction?marka_id=2&model_id=296&yearstart=2011&yearend=2014",
+    desc: "Бага гарын хэчбэк, 2011-2014",
   },
 ];
 
@@ -125,42 +135,52 @@ export const crossoverList = [
   {
     image: "",
     title: "Toyota Harrier",
+    desc: "Дунд гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Subaru Forester",
+    desc: "Бага, дунд гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Lexus RX",
+    desc: "Дунд гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Nissan X-Trail",
+    desc: "Бага, дунд гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Kluger",
+    desc: "Дунд гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Vanguard",
+    desc: "Бага гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Nissan Juke",
+    desc: "Бага гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Mitsubishi Outback",
+    desc: "Бага, дунд гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Rav4",
+    desc: "Бага гарын кроссовер, 2011-2014",
   },
   {
     image: "",
     title: "Honda C-RV",
+    desc: "Бага, дунд гарын кроссовер, 2011-2014",
   },
 ];
 
@@ -171,42 +191,52 @@ export const suvList = [
   {
     image: "",
     title: "Toyota Land Cruiser 200",
+    desc: "Их гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Land Cruiser Prado",
+    desc: "Дунд гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Land Cruiser 100",
+    desc: "Дунд гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Lexus LX570",
+    desc: "Их гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Highlander ",
+    desc: "Бага, дунд гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Hilux",
+    desc: "Дунд гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Land Rover Range Rover",
+    desc: "Их гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Nissan Patrol",
+    desc: "Их гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Lexus LX470",
+    desc: "Их, дунд гарын жийп, 2011-2014",
   },
   {
     image: "",
     title: "Toyota Land Cruiser 80",
+    desc: "Дунд гарын жийп, 2011-2014",
   },
 ];
 

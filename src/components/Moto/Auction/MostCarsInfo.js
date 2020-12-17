@@ -15,8 +15,7 @@ const MostCarsInfo = () => {
   return (
     <div className="gx-mt-3">
       <div>Монголчуудын нийтлэг худалдан авч унадаг машинуудын жагсаалт</div>
-      <div>Та сонирхож буй хийцээ сонгож жагсаалтаа хараарай.</div>
-      <Tabs defaultActiveKey="1" centered className="gx-mt-2" size="small">
+      <Tabs defaultActiveKey="1" centered className="gx-mt-3" size="small">
         <Tabs.TabPane tab="Сэдан" key="1">
           <List
             itemLayout="horizontal"

@@ -986,3 +986,29 @@ tr.ant-table-row {
     }
   }
 }
+
+.moto-big-drawer {
+  .ant-drawer-content-wrapper {
+    width: unset;
+
+    @media (max-width: @screen-xl-max) {
+      width: 40% !important;
+    }
+
+    @media screen and (max-width: @screen-lg-max) {
+      width: 55% !important;
+    }
+
+    @media screen and (max-width: @screen-md-max) {
+      width: 63% !important;
+    }
+
+    @media screen and (max-width: @screen-sm-max) {
+      width: 80% !important;
+    }
+
+    @media screen and (max-width: @screen-xs-max) {
+      width: 90% !important;
+    }
+  }
+}
