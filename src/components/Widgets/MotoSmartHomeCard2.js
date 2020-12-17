@@ -17,7 +17,7 @@ const MotoSmartHomeCard2 = ({ item }) => {
       ></div>
 
       <div className="gx-p-3">
-        <p>{item.desc}</p>
+        <p>{item.title}</p>
       </div>
     </div>
   );

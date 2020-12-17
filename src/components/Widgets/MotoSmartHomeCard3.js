@@ -13,7 +13,7 @@ const MotoSmartHomeCard2 = ({ item }) => {
     >
       <div className="gx-px-2">
         <div className="gx-separator gx-mt-4 gx-bg-success-dark" />
-        <h4 className="gx-mb-4 ">{item.desc}</h4>
+        <h4 className="gx-mb-4 ">{item.title}</h4>
       </div>
 
       <Link to={item.link || "/auction"}>

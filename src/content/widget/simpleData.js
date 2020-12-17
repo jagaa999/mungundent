@@ -10,23 +10,94 @@ export const schemaHeader = [
     component: "Menu",
     mode: "horizontal",
     // theme: "dark",
+    defaultSelectedKeys: ["home"],
     children: [
       {
         component: "MenuItem",
 
-        key: "mail",
-        text: "СӨХ",
+        key: "home",
+        children: [
+          {
+            component: "Image",
+            height: 16,
+            width: 16,
+            style: {
+              top: "-2px",
+            },
+            className: "gx-mr-3",
+            src:
+              "https://www.flaticon.com/svg/static/icons/svg/1946/1946488.svg",
+          },
+          {
+            component: "span",
+            text: "Нүүр",
+          },
+        ],
       },
       {
         component: "MenuItem",
 
-        key: "ddd",
-        text: "Системийн тухай",
+        key: "mail",
+        children: [
+          {
+            component: "Image",
+            height: 16,
+            width: 16,
+            style: {
+              top: "-2px",
+            },
+            className: "gx-mr-3",
+            src:
+              "https://www.flaticon.com/svg/static/icons/svg/1946/1946412.svg",
+          },
+          {
+            component: "span",
+            text: "СӨХ",
+          },
+        ],
+      },
+      {
+        component: "MenuItem",
+
+        key: "about",
+        children: [
+          {
+            component: "Image",
+            height: 16,
+            width: 16,
+            style: {
+              top: "-2px",
+            },
+            className: "gx-mr-3",
+            src:
+              "https://www.flaticon.com/svg/static/icons/svg/1946/1946408.svg",
+          },
+          {
+            component: "span",
+            text: "Системийн тухай",
+          },
+        ],
       },
       {
         component: "MenuItem",
         key: "faq",
-        text: "Асуулт хариулт?",
+        children: [
+          {
+            component: "Image",
+            height: 16,
+            width: 16,
+            style: {
+              top: "-2px",
+            },
+            className: "gx-mr-3",
+            src:
+              "https://www.flaticon.com/svg/static/icons/svg/1946/1946412.svg",
+          },
+          {
+            component: "span",
+            text: "Асуулт хариулт?",
+          },
+        ],
       },
     ],
   },
@@ -43,7 +114,7 @@ export const schemaContent = [
 
   {
     component: "Carousel",
-    // style: { height: "250px" },
+    autoplay: true,
     children: [
       {
         component: "div",

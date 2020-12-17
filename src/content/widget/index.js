@@ -53,7 +53,9 @@ view.setComponentMap({
 const HomePage = () => {
   return (
     <Layout className="gx-app-layouts">
-      <Header>{view.parseSchema(schemaHeader)}</Header>
+      <Header style={{ height: "48px" }}>
+        {view.parseSchema(schemaHeader)}
+      </Header>
       <Layout className="ant-layout-content gx-layout-content gx-container-wrap">
         <Content className=" gx-main-content-wrapper">
           {view.parseSchema(schemaContent)}
