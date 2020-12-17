@@ -936,183 +936,513 @@ export const schemaFooter = [
   //  #       #     # #     #    #    #       #   #
   //  #       #     # #     #    #    #       #    #
   //  #       ####### #######    #    ####### #     #
-
   {
-    component: "Menu",
-    mode: "horizontal",
-    // theme: "dark",
+    component: "div",
+    style: {
+      padding: "1rem",
+      backgroundColor: "#10354c",
+      color: "#fff",
+      // display: 'inline-block'
+    },
     children: [
       {
-        component: "MenuItem",
-
-        key: "mail",
-        text: "СӨХ",
-      },
-      {
-        component: "MenuItem",
-
-        key: "ddd",
-        text: "Системийн тухай",
-      },
-      {
-        component: "MenuItem",
-        key: "faq",
-        text: "Асуулт хариулт?",
-      },
-    ],
-  },
-];
-
-export const configHome001 = {
-  portalpagecode: "001",
-  layoutcode: "LandingPage01", //5 section-тэй
-  portalpagename: "Portal 001",
-  detailconfigs: [
-    {
-      sectioncode: "01",
-      widgetcode: "WidgetFooter01",
-      widgetconfigs: {
-        position1: "logo",
-        position2: "main",
-        position3: "links",
-        position4: "logoProps",
-        position5: "mainProps",
-        position6: "linkProps",
-        position7: "containerProps",
-      },
-      data: {
-        total: 1,
-        rows: [
+        component: "Row",
+        className: "gx-container",
+        gutter: [0, 0],
+        children: [
           {
-            logo: {
-              alt: "alt title",
-              src:
-                "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/logo.png",
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 10,
+            lg: 10,
+            xl: 10,
+            style: {
+              top: "-10%",
+              position: "relative",
             },
-            main: {
-              title: "Frisco City Hall",
-              state: "8353 Sierra Avenue",
-              address: "Frisco, CA 91335",
-              phone: "Phone: (907) 350-7400",
-              timetable: "Monday – Thursday, 8:00 am – 6:00 pm",
-            },
-            links: [
+            children: [
               {
-                title: "Living Here",
-                links: [
+                component: "div",
+                style: {
+                  width: "100px",
+                  position: "relative",
+                  top: "-20%",
+                  marginBottom: "1rem",
+                },
+                children: [
                   {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
+                    component: "img",
+                    src:
+                      "http://dannci.wpmasters.org/citygov/wp-content/uploads/2018/11/logo.png",
+                    alt: "title",
                   },
                 ],
               },
               {
-                title: "Useful Links",
-                links: [
+                component: "div",
+                style: {
+                  position: "relative",
+                  top: "-15%",
+                },
+                children: [
                   {
-                    to: "",
-                    title: "Government",
+                    component: "h3",
+                    className: "gx-text-white gx-mb-3",
+                    text: "Frisco City Hall",
                   },
                   {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
+                    component: "div",
+                    style: {
+                      fontSize: "14px",
+                      fontWeight: "200",
+                      marginBottom: "5px !important",
+                    },
+                    children: [
+                      {
+                        component: "span",
+                        text: "8353 Sierra Avenue",
+                      },
+                      {
+                        component: "span",
+                        className: "gx-ml-2",
+                        text: "•",
+                      },
+                      {
+                        component: "span",
+                        text: "Frisco, CA 91335",
+                      },
+                    ],
                   },
                 ],
               },
               {
-                title: "Quick Links",
-                links: [
+                component: "div",
+                className: "gx-d-flex",
+                style: {
+                  fontSize: "14px",
+                  fontWeight: "200",
+                },
+                children: [
                   {
-                    to: "",
-                    title: "Government",
+                    component: "p",
+                    className: "gx-mr-2",
+                    text: "Phone: (907) 350-7400",
                   },
                   {
-                    to: "",
-                    title: "Government",
+                    component: "p",
+                    className: "gx-mr-2",
+                    text: "•",
                   },
                   {
-                    to: "",
-                    title: "Government",
+                    component: "p",
+                    text: "Monday – Thursday, 8:00 am – 6:00 pm",
                   },
+                ],
+              },
+              {
+                component: "div",
+                children: [
                   {
-                    to: "",
-                    title: "Government",
-                  },
-                  {
-                    to: "",
-                    title: "Government",
+                    component: "Search",
+                    placeholder: "I am looking for",
+                    enterButton: "Search",
+                    size: "large",
                   },
                 ],
               },
             ],
-            logoProps: {
-              style: {
-                width: "100px",
-                position: "relative",
-                top: "-20%",
-                marginBottom: "1rem",
+          },
+          {
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 14,
+            lg: 14,
+            xl: 14,
+            className: "gx-mt-4",
+            children: [
+              {
+                component: "Row",
+                children: [
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 8,
+                    xl: 8,
+                    children: [
+                      {
+                        component: "h5",
+                        className: "gx-text-white",
+                        text: "Living Here",
+                      },
+                      {
+                        component: "hr",
+                        style: {
+                          marginTop: "5px",
+                          color: "#fff",
+                          height: "2px",
+                        },
+                      },
+                      {
+                        component: "div",
+                        children: [
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 8,
+                    xl: 8,
+                    children: [
+                      {
+                        component: "h5",
+                        className: "gx-text-white",
+                        text: "Living Here",
+                      },
+                      {
+                        component: "hr",
+                        style: {
+                          marginTop: "5px",
+                          color: "#fff",
+                          height: "2px",
+                        },
+                      },
+                      {
+                        component: "div",
+                        children: [
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 8,
+                    xl: 8,
+                    children: [
+                      {
+                        component: "h5",
+                        className: "gx-text-white",
+                        text: "Living Here",
+                      },
+                      {
+                        component: "hr",
+                        style: {
+                          marginTop: "5px",
+                          color: "#fff",
+                          height: "2px",
+                        },
+                      },
+                      {
+                        component: "div",
+                        children: [
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                          {
+                            component: "Link",
+                            to: "#",
+                            children: [
+                              {
+                                component: "span",
+                                style: {
+                                  color: "#fff",
+                                  fontWeight: "100",
+                                  display: "block",
+                                  marginBottom: "5px",
+                                },
+                                text: "Goverment",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
               },
-            },
-            mainProps: {
-              xs: 24,
-              sm: 24,
-              md: 10,
-              lg: 10,
-              xl: 10,
-              style: {
-                top: "-10%",
-                position: "relative",
-              },
-            },
-            linkProps: {
-              xs: 24,
-              sm: 24,
-              md: 14,
-              lg: 14,
-              xl: 14,
-              className: "gx-mt-4",
-            },
-            containerProps: {
-              gutter: [0, 0],
-              style: {
-                padding: "1rem",
-                backgroundColor: "#10354c",
-                color: "#fff",
-                // display: 'inline-block'
-              },
-              className: "",
-            },
+            ],
           },
         ],
       },
-    },
-  ],
-};
+    ],
+  },
+];
