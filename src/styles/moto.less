@@ -442,13 +442,23 @@ span.ant-page-header-heading-title {
   .horizontal-layout.full-scroll & {
     top: 200px;
   }
+  .ant-button {
+    padding: 0 7px;
+    font-size: 19px;
+    height: 33px;
+    line-height: 33px;
+  }
 }
 .ant-btn {
   .moto-filter-button & {
-    padding: 0 @padding-md + 2px;
-    font-size: @font-size-lg + 2px;
-    height: @btn-height-lg + 2px;
-    line-height: @btn-height-lg + 2px;
+    padding: 0 7px;
+    font-size: 19px;
+    height: 33px;
+    line-height: 33px;
+    // padding: 0 @padding-md + 2px;
+    // font-size: @font-size-lg + 2px;
+    // height: @btn-height-lg + 2px;
+    // line-height: @btn-height-lg + 2px;
     margin: 0;
     .box-shadow(@gx-card-shadow-md);
     .border-radius( 0 30px 30px 0);
@@ -456,6 +466,10 @@ span.ant-page-header-heading-title {
     color: @white-color;
     & .icon:before {
       display: block;
+    }
+    &:hover,
+    &:focus {
+      padding-left: 27px;
     }
   }
   .horizontal-layout.full-scroll .moto-filter-button & {

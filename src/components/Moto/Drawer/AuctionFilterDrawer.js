@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Tooltip } from "antd";
 import MyIcon from "util/iconFunction";
 
 import AuctionFilter from "./AuctionFilter";
@@ -34,12 +34,14 @@ const AuctionFilterDrawer = () => {
       </Drawer>
 
       <div className="moto-filter-button" style={{ top: "250px" }}>
-        <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
-          <MyIcon
-            type="iconfilter"
-            className="gx-d-block moto-animation-away"
-          />
-        </Button>
+        <Tooltip title="Шүүлтүүрийн багаж" placement="right">
+          <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
+            <MyIcon
+              type="iconfilter"
+              className="gx-d-block moto-animation-away"
+            />
+          </Button>
+        </Tooltip>
       </div>
     </div>
   );

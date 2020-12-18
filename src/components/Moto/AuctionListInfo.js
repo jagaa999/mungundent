@@ -1,35 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
-import {
-  Button,
-  PageHeader,
-  Typography,
-  Row,
-  Col,
-  Divider,
-  Drawer,
-} from "antd";
-import { FilterOutlined, EllipsisOutlined } from "@ant-design/icons";
+import { Button, Typography, Drawer, Tooltip } from "antd";
+import Joyride, { STATUS } from "react-joyride";
 import MyIcon from "util/iconFunction";
 
-import FilterContext from "context/FilterContext";
-import AuctionContext from "context/AuctionContext";
-import MotoAuctionSort from "./Sort/MotoAuctionSort";
-import TopAuction from "./TopAuction";
 import MostCarsInfo from "./Auction/MostCarsInfo";
 import RareCarsInfo from "./Auction/RareCarsInfo";
-import {
-  sedanList,
-  hatchbackList,
-  crossoverList,
-  suvList,
-} from "content/auction/mostCars";
 
 const { Paragraph } = Typography;
 
 const AuctionListInfo = (props) => {
-  const filterContext = useContext(FilterContext);
-  const auctionListContext = useContext(AuctionContext);
+  const joySteps = [
+    {
+      target: ".JOY-STEP-FILTER",
+      content: "Эндээс янз бүрээр шүүж, хүссэн машинаа олоорой",
+    },
+    {
+      target: ".JOY-STEP-CARDTYPE",
+      content: "Эндээс харагдах хэлбэрийг сонгоорой",
+    },
+    {
+      target: ".JOY-STEP-CHOOSE",
+      content:
+        "Авч болох машинуудын зарим сонирхолтой сонголтыг эндээс хараарай",
+    },
+  ];
+  const [runJoyride, setRunJoyride] = useState(false);
+  const handleJoyrideCallback = (data) => {
+    const { status, type } = data;
+    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+      setRunJoyride(false);
+    }
+  };
 
   const [topCarsVisible, setTopCarsVisible] = useState(false);
   const [rareCarsVisible, setRareCarsVisible] = useState(false);
@@ -48,6 +50,49 @@ const AuctionListInfo = (props) => {
 
   return (
     <>
+      <Joyride
+        steps={joySteps}
+        continuous={true}
+        showProgress={true}
+        scrollToFirstStep={true}
+        showSkipButton={true}
+        run={runJoyride}
+        scrollOffset={120}
+        locale={{
+          back: "өмнөх",
+          close: "Хаах",
+          last: "Дуусгах",
+          next: "Дараах",
+          skip: "Болих",
+        }}
+        styles={{
+          options: {
+            primaryColor: "#588bae",
+            // zIndex: 10000,
+            fontSize: "10px",
+          },
+        }}
+        callback={handleJoyrideCallback}
+      />
+
+      <div className="moto-filter-button" style={{ top: "291px" }}>
+        <Tooltip title="Энэ хуудасны зааварчилгээ үзэх" placement="right">
+          <Button
+            onClick={() => {
+              setRunJoyride(!runJoyride);
+            }}
+            className={`${!runJoyride ? "gx-btn-grey" : "gx-btn-primary"}`}
+          >
+            <MyIcon
+              type="iconhand"
+              className={`gx-d-block ${
+                !runJoyride ? "gx-text-grey" : "gx-text-white"
+              }`}
+            />
+          </Button>
+        </Tooltip>
+      </div>
+
       <div className="gx-text-grey gx-fs-sm">
         <Paragraph>
           Япон улсын аукшин системд яг одоогоор тавигдсан байгаа автомашинуудыг
@@ -62,10 +107,12 @@ const AuctionListInfo = (props) => {
         </Paragraph>
       </div>
 
-      <Button type="primary" onClick={showTopCars}>
-        Нийтлэг машинууд
-      </Button>
-      <Button onClick={showRareCars}>Өвөрмөц машинууд</Button>
+      <div className="JOY-STEP-CHOOSE">
+        <Button type="primary" onClick={showTopCars}>
+          Нийтлэг машинууд
+        </Button>
+        <Button onClick={showRareCars}>Өвөрмөц машинууд</Button>
+      </div>
       <Drawer
         className="moto-big-drawer"
         title="Нийтлэг машинууд"

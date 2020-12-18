@@ -135,7 +135,7 @@ const MotoSort = () => {
       </Dropdown>
 
       <Radio.Group
-        className="gx-ml-1"
+        className="gx-ml-1 JOY-STEP-CARDTYPE"
         defaultValue={selectedKeys[1]}
         buttonStyle="solid"
         size="small"

@@ -4,6 +4,7 @@ import moment from "moment";
 import { Html5Entities } from "html-entities";
 
 import { Card, Alert, Badge, Table, Row, Col, PageHeader } from "antd";
+import Joyride from "react-joyride";
 
 import AuctionDetail2General from "./Auction/AuctionDetail2General";
 import AuctionDetail2Lot from "./Auction/AuctionDetail2Lot";
@@ -26,6 +27,23 @@ const AuctionDetail2 = () => {
 
   // console.log("generaldata", generalDataContext.rateMoneyList);
 
+  const joySteps = [
+    {
+      target: ".JOY-STEP-CAR",
+      content: "Эндээс автомашины техник мэдээллийг хараарай.",
+    },
+    {
+      target: ".JOY-STEP-HISTORY",
+      content:
+        "Эндээс яг ижил автомашинуудын зарагдсан үнийг харж, энэ автомашиныг аукшинаас авч болох үнийн баримжаа аваарай.",
+    },
+    {
+      target: ".JOY-STEP-PRICE",
+      content:
+        "Эндээс аукшины үнийн тооцоолол хийж, Монголд гар дээр ирэх эцсийн үнийг тооцож хараарай.",
+    },
+  ];
+
   const [cardTabs, setCardTabs] = useState({
     key: "tab1",
   });
@@ -33,7 +51,7 @@ const AuctionDetail2 = () => {
   const tabList = [
     {
       key: "tab1",
-      tab: <span className="gx-fs-md">Автомашин</span>,
+      tab: <span className="gx-fs-md JOY-STEP-CAR">Автомашин</span>,
     },
     {
       key: "tab2",
@@ -41,12 +59,12 @@ const AuctionDetail2 = () => {
     },
     {
       key: "tab3",
-      tab: <span className="gx-fs-md">Түүх</span>,
+      tab: <span className="gx-fs-md JOY-STEP-HISTORY">Түүх</span>,
     },
     {
       key: "tab4",
       tab: (
-        <span className="gx-fs-md">
+        <span className="gx-fs-md JOY-STEP-PRICE">
           Үнэ
           <Badge status="processing" className="gx-m-0 gx-ml-1" />
         </span>
@@ -71,6 +89,30 @@ const AuctionDetail2 = () => {
         key={auctionItem.auctionid}
         className="gx-main-content auction-detail"
       >
+        <Joyride
+          steps={joySteps}
+          continuous={true}
+          showProgress={true}
+          // scrollToFirstStep={true}
+          // disableScrollParentFix={true}
+          // run={false}
+          scrollOffset={120}
+          locale={{
+            back: "өмнөх",
+            close: "Хаах",
+            last: "Дуусгах",
+            next: "Дараах",
+            skip: "Болих",
+          }}
+          styles={{
+            options: {
+              primaryColor: "#588bae",
+              // zIndex: 10000,
+              fontSize: "10px",
+            },
+          }}
+        />
+
         <PageHeader
           className="site-page-header gx-mb-5"
           onBack={() => window.history.back()}
