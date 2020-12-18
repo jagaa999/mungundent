@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 
 import { Tabs, List, Image } from "antd";
 import {
-  sedanList,
-  hatchbackList,
-  crossoverList,
-  suvList,
-} from "content/auction/mostCars";
+  sportList,
+  germanList,
+  rareList,
+  luxuryList,
+} from "content/auction/specialCars";
 
-const MostCarsInfo = () => {
+const SpecialCarsInfo = () => {
   return (
     <div className="gx-mt-3">
-      <div>Монголчуудын нийтлэг худалдан авч унадаг машинуудын жагсаалт</div>
+      <div>Худалдан авахад сонирхолтой өвөрмөц, ховор машинуудын жагсаалт</div>
       <Tabs defaultActiveKey="1" centered className="gx-mt-3" size="small">
-        <Tabs.TabPane tab="Сэдан" key="1">
+        <Tabs.TabPane tab="Спорт" key="1">
           <List
             itemLayout="horizontal"
-            dataSource={sedanList}
+            dataSource={sportList}
             renderItem={(item) => (
               <List.Item
                 actions={[
@@ -48,10 +48,10 @@ const MostCarsInfo = () => {
             )}
           />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Хэчбэк" key="2">
+        <Tabs.TabPane tab="Герман" key="2">
           <List
             itemLayout="horizontal"
-            dataSource={hatchbackList}
+            dataSource={germanList}
             renderItem={(item) => (
               <List.Item
                 actions={[
@@ -82,10 +82,10 @@ const MostCarsInfo = () => {
             )}
           />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Кроссовер" key="3">
+        <Tabs.TabPane tab="Ховор" key="3">
           <List
             itemLayout="horizontal"
-            dataSource={crossoverList}
+            dataSource={rareList}
             renderItem={(item) => (
               <List.Item
                 actions={[
@@ -120,10 +120,10 @@ const MostCarsInfo = () => {
             )}
           />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Жийп" key="34">
+        <Tabs.TabPane tab="Тансаг" key="34">
           <List
             itemLayout="horizontal"
-            dataSource={suvList}
+            dataSource={luxuryList}
             renderItem={(item) => (
               <List.Item
                 actions={[
@@ -163,4 +163,4 @@ const MostCarsInfo = () => {
   );
 };
 
-export default MostCarsInfo;
+export default SpecialCarsInfo;

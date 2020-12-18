@@ -1517,3 +1517,1489 @@ export const schemaFooter = [
     ],
   },
 ];
+
+//  ####### #     #  #####  ### ####### #######  #####  #     #
+//  #       ##    # #     #  #     #    #       #     # #     #
+//  #       # #   # #        #     #    #       #       #     #
+//  #####   #  #  # #  ####  #     #    #####   #       #######
+//  #       #   # # #     #  #     #    #       #       #     #
+//  #       #    ## #     #  #     #    #       #     # #     #
+//  ####### #     #  #####  ###    #    #######  #####  #     #
+
+//   #####     #    ######  ####### #     #  #####  ####### #        #####
+//  #     #   # #   #     # #     # #     # #     # #       #       #     #
+//  #        #   #  #     # #     # #     # #       #       #             #
+//  #       #     # ######  #     # #     #  #####  #####   #        #####
+//  #       ####### #   #   #     # #     #       # #       #       #
+//  #     # #     # #    #  #     # #     # #     # #       #       #
+//   #####  #     # #     # #######  #####   #####  ####### ####### #######
+
+export const engitechCarousel02 = [
+  {
+    component: "Carousel",
+    className: "gx-mt-4",
+    children: [
+      {
+        component: "div",
+        children: [
+          {
+            component: "div",
+            style: {
+              backgroundImage:
+                "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/slide1-home1.jpg)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              /** Дэлгэцийн өргөнөөс хамаараад өндрийг тохируулав */
+              height: window.innerWidth > 1280 ? "720px" : "360px",
+            },
+            children: [
+              {
+                component: "div",
+                className: "gx-container",
+                children: [
+                  {
+                    component: "div",
+                    style:
+                      window.innerWidth > 1280
+                        ? {
+                            width: "50%",
+                            paddingTop: "8rem",
+                          }
+                        : {
+                            width: "80%",
+                            paddingTop: "3rem",
+                          },
+                    children: [
+                      {
+                        component: "span",
+                        className: "gx-text-white",
+                        style: {
+                          fontSize: "24px",
+                          fontWeight: "lighter",
+                        },
+                        text: "// Full cycle software development",
+                      },
+                      {
+                        component: "h1",
+                        style:
+                          window.innerWidth > 1280
+                            ? {
+                                color: "#fff",
+                                fontSize: "70px",
+                                fontWeight: "bold",
+                                marginBottom: "2rem",
+                                position: "relative",
+                              }
+                            : {
+                                color: "#fff",
+                                fontSize: "40px",
+                                fontWeight: "bold",
+                                marginBottom: "1rem",
+                                position: "relative",
+                              },
+                        text: "From idea to product",
+                      },
+                      {
+                        component: "p",
+                        style:
+                          window.innerWidth > 1280
+                            ? {
+                                fontSize: "20px",
+                                fontWeight: "lighter",
+                                color: "#fff",
+                                position: "relative",
+                              }
+                            : {
+                                fontSize: "16px",
+                                fontWeight: "lighter",
+                                color: "#fff",
+                                position: "relative",
+                              },
+                        text:
+                          "We are 100+ professional software engineers with more than 10 years of experience in delivering superior products.",
+                      },
+                      {
+                        component: "Link",
+                        style: {
+                          padding: "1rem 2rem",
+                          backgroundColor: "#111",
+                          color: "#fff",
+                          top: "2rem",
+                          position: "relative",
+                        },
+                        to: "#",
+                        text: "Learn more",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        component: "div",
+        children: [
+          {
+            component: "div",
+            style: {
+              backgroundImage:
+                "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/slide1-home1.jpg)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              /** Дэлгэцийн өргөнөөс хамаараад өндрийг тохируулав */
+              height: window.innerWidth > 1280 ? "720px" : "360px",
+            },
+            children: [
+              {
+                component: "div",
+                className: "gx-container",
+                children: [
+                  {
+                    component: "div",
+                    style:
+                      window.innerWidth > 1280
+                        ? {
+                            width: "50%",
+                            paddingTop: "8rem",
+                          }
+                        : {
+                            width: "80%",
+                            paddingTop: "3rem",
+                          },
+                    children: [
+                      {
+                        component: "span",
+                        className: "gx-text-white",
+                        style: {
+                          fontSize: "24px",
+                          fontWeight: "lighter",
+                        },
+                        text: "// Full cycle software development",
+                      },
+                      {
+                        component: "h1",
+                        style:
+                          window.innerWidth > 1280
+                            ? {
+                                color: "#fff",
+                                fontSize: "70px",
+                                fontWeight: "bold",
+                                marginBottom: "2rem",
+                                position: "relative",
+                              }
+                            : {
+                                color: "#fff",
+                                fontSize: "40px",
+                                fontWeight: "bold",
+                                marginBottom: "1rem",
+                                position: "relative",
+                              },
+                        text: "From idea to product",
+                      },
+                      {
+                        component: "p",
+                        style:
+                          window.innerWidth > 1280
+                            ? {
+                                fontSize: "20px",
+                                fontWeight: "lighter",
+                                color: "#fff",
+                                position: "relative",
+                              }
+                            : {
+                                fontSize: "16px",
+                                fontWeight: "lighter",
+                                color: "#fff",
+                                position: "relative",
+                              },
+                        text:
+                          "We are 100+ professional software engineers with more than 10 years of experience in delivering superior products.",
+                      },
+                      {
+                        component: "Link",
+                        style: {
+                          padding: "1rem 2rem",
+                          backgroundColor: "#111",
+                          color: "#fff",
+                          top: "2rem",
+                          position: "relative",
+                        },
+                        to: "#",
+                        text: "Learn more",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        component: "div",
+        children: [
+          {
+            component: "div",
+            style: {
+              backgroundImage:
+                "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/slide1-home1.jpg)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              /** Дэлгэцийн өргөнөөс хамаараад өндрийг тохируулав */
+              height: window.innerWidth > 1280 ? "720px" : "360px",
+            },
+            children: [
+              {
+                component: "div",
+                className: "gx-container",
+                children: [
+                  {
+                    component: "div",
+                    style:
+                      window.innerWidth > 1280
+                        ? {
+                            width: "50%",
+                            paddingTop: "8rem",
+                          }
+                        : {
+                            width: "80%",
+                            paddingTop: "3rem",
+                          },
+                    children: [
+                      {
+                        component: "span",
+                        className: "gx-text-white",
+                        style: {
+                          fontSize: "24px",
+                          fontWeight: "lighter",
+                        },
+                        text: "// Full cycle software development",
+                      },
+                      {
+                        component: "h1",
+                        style:
+                          window.innerWidth > 1280
+                            ? {
+                                color: "#fff",
+                                fontSize: "70px",
+                                fontWeight: "bold",
+                                marginBottom: "2rem",
+                                position: "relative",
+                              }
+                            : {
+                                color: "#fff",
+                                fontSize: "40px",
+                                fontWeight: "bold",
+                                marginBottom: "1rem",
+                                position: "relative",
+                              },
+                        text: "From idea to product",
+                      },
+                      {
+                        component: "p",
+                        style:
+                          window.innerWidth > 1280
+                            ? {
+                                fontSize: "20px",
+                                fontWeight: "lighter",
+                                color: "#fff",
+                                position: "relative",
+                              }
+                            : {
+                                fontSize: "16px",
+                                fontWeight: "lighter",
+                                color: "#fff",
+                                position: "relative",
+                              },
+                        text:
+                          "We are 100+ professional software engineers with more than 10 years of experience in delivering superior products.",
+                      },
+                      {
+                        component: "Link",
+                        style: {
+                          padding: "1rem 2rem",
+                          backgroundColor: "#111",
+                          color: "#fff",
+                          top: "2rem",
+                          position: "relative",
+                        },
+                        to: "#",
+                        text: "Learn more",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//   #####     #    ######  ####### #     #  #####  ####### #        #####
+//  #     #   # #   #     # #     # #     # #     # #       #       #     #
+//  #        #   #  #     # #     # #     # #       #       #             #
+//  #       #     # ######  #     # #     #  #####  #####   #        #####
+//  #       ####### #   #   #     # #     #       # #       #             #
+//  #     # #     # #    #  #     # #     # #     # #       #       #     #
+//   #####  #     # #     # #######  #####   #####  ####### #######  #####
+export const engitechCarousel03 = [
+  {
+    component: "div",
+    className: "gx-container",
+    children: [
+      {
+        component: "Carousel",
+        autoplay: true,
+        cellSpacing: 4,
+        sliceWidth: 0.2,
+        slidesToShow:
+          window.innerWidth > 1280 ? 7 : window.innerWidth < 680 ? 2 : 5,
+        children: [
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  ["0:hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    style: {},
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "div",
+                style: {
+                  padding: "0 2rem",
+                  margin: "3rem 0",
+                  filter: "contrast(0%)",
+                  opacity: 0.7,
+                  [":hover"]: {
+                    filter: "contrast(100%)",
+                    opacity: 1,
+                  },
+                },
+                children: [
+                  {
+                    component: "Link",
+                    to: "#",
+                    children: [
+                      {
+                        component: "img",
+                        src:
+                          "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/03/client2.svg",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//   #####     #    ######  ######   #####
+//  #     #   # #   #     # #     # #     #
+//  #        #   #  #     # #     #       #
+//  #       #     # ######  #     #  #####
+//  #       ####### #   #   #     # #
+//  #     # #     # #    #  #     # #
+//   #####  #     # #     # ######  #######
+export const engitechCard02 = [
+  {
+    component: "Row",
+    className: "gx-container gx-mt-4 gx-mb-4",
+    children: [
+      {
+        component: "Col",
+        sx: 24,
+        sm: 24,
+        md: 24,
+        lg: 12,
+        xl: 12,
+        children: [
+          {
+            component: "div",
+            children: [
+              {
+                component: "p",
+                style: {
+                  color: "#7141b1",
+                  fontSize: "24px",
+                  fontWeight: "lighter",
+                },
+                text: "// ABOUT COMPANY",
+              },
+              {
+                component: "h1",
+                style: {
+                  fontSize: "36px",
+                  fontWeight: "bold",
+                  marginBottom: "1rem",
+                },
+                text: "Your Partner for Software Innovation",
+              },
+              {
+                component: "hr",
+                style: { width: "30%" },
+              },
+              {
+                component: "p",
+                text:
+                  "Engitech is the partner of choice for many of the world’s leading enterprises, SMEs and technology challengers. We help businesses elevate their value through custom software development, product design, QA and consultancy services.",
+              },
+              {
+                component: "Row",
+                children: [
+                  {
+                    component: "Col",
+                    span: 12,
+                    children: [
+                      {
+                        component: "i",
+                        style: { fontSize: "300%", color: "#7141b1" },
+                        className: "icon icon-star",
+                      },
+                      {
+                        component: "h2",
+                        style: { testTransform: "capitalize" },
+                        text: "experience",
+                      },
+                      {
+                        component: "hr",
+                        style: { width: "30%" },
+                      },
+                      {
+                        component: "p",
+                        text:
+                          "Our great team of more than 1400 software experts.",
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    span: 12,
+                    children: [
+                      {
+                        component: "i",
+                        style: { fontSize: "300%", color: "#7141b1" },
+                        className: "icon icon-team",
+                      },
+                      {
+                        component: "h2",
+                        style: { testTransform: "capitalize" },
+                        text: "Quick support",
+                      },
+                      {
+                        component: "hr",
+                        style: { width: "30%" },
+                      },
+                      {
+                        component: "p",
+                        text:
+                          "We’ll help you test bold new ideas while sharing your.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        component: "Col",
+        sx: 24,
+        sm: 24,
+        md: 24,
+        lg: 12,
+        xl: 12,
+        children: [
+          {
+            component: "img",
+            src:
+              "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/02/image1-home1.png",
+          },
+          window.innerWidth > 900
+            ? {
+                component: "Link",
+                style: {
+                  position: "relative",
+                  bottom: "10%",
+                  left: "10%",
+                  fontSize: "16px",
+                  textTransform: "uppercase",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "#43baff",
+                },
+                to: "#",
+                children: [
+                  {
+                    component: "i",
+                    className: "icon icon-arrow-right",
+                  },
+                  {
+                    component: "span",
+                    className: "gx-ml-2",
+                    text: "Learn more about us",
+                  },
+                ],
+              }
+            : null,
+        ],
+      },
+    ],
+  },
+];
+
+//   #####     #    ######  ######   #####
+//  #     #   # #   #     # #     # #     #
+//  #        #   #  #     # #     #       #
+//  #       #     # ######  #     #  #####
+//  #       ####### #   #   #     #       #
+//  #     # #     # #    #  #     # #     #
+//   #####  #     # #     # ######   #####
+export const engitechCard03 = [
+  {
+    component: "div",
+    style: { backgroundColor: "#221F3C", padding: "120px 0" },
+    children: [
+      {
+        component: "div",
+        className: "gx-container",
+        children: [
+          {
+            component: "div",
+            className: "gx-text-center",
+            children: [
+              {
+                component: "p",
+                style: {
+                  color: "#8E88B8",
+                  fontSize: "16px",
+                  fontWeight: "regular",
+                  textTransform: "upperCase",
+                },
+                text: "// WHY CHOOSE US",
+              },
+              {
+                component: "h1",
+                style: {
+                  color: "#fff",
+                  fontWeight: "bold",
+                  fontSize: "48px",
+                  padding: "0 15%",
+                },
+                text: "Design the Concept of Your Business Idea Now",
+              },
+            ],
+          },
+          {
+            component: "Row",
+            children: [
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 12,
+                lg: 12,
+                xl: 6,
+                children: [
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              fontWeight: 800,
+                              fontSize: "100px",
+                              color: "#fff",
+                              opacity: 0.1,
+                              top: 0,
+                              left: "-11px",
+                              lineHeight: "72px",
+                            },
+                            text: "01",
+                          },
+                          {
+                            component: "h5",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Product Design",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              lineHeight: "1.8",
+                            },
+                            text:
+                              "Our product design service lets you prototype, test and validate your ideas.",
+                          },
+                          {
+                            component: "Link",
+                            style: {
+                              position: "relative",
+                              // bottom: "10%",
+                              fontSize: "20px",
+                              textTransform: "uppercase",
+                              display: "flex",
+                              alignItems: "center",
+                              color: "#43baff",
+                            },
+                            to: "#",
+                            children: [
+                              {
+                                component: "i",
+                                className: "icon icon-arrow-right",
+                              },
+                              {
+                                component: "span",
+                                className: "gx-ml-2",
+                                text: "Learn more",
+                              },
+                            ],
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              bottom: "-88px",
+                              right: "-88px",
+                              backgroundColor: "#332d5f",
+                              width: "188px",
+                              height: "188px",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  bottom: "104px",
+                                  right: "115px",
+                                  color: "#fff",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-data-display",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 12,
+                lg: 12,
+                xl: 6,
+                children: [
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              fontWeight: 800,
+                              fontSize: "100px",
+                              color: "#fff",
+                              opacity: 0.1,
+                              top: 0,
+                              left: "-11px",
+                              lineHeight: "72px",
+                            },
+                            text: "01",
+                          },
+                          {
+                            component: "h5",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Product Design",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              lineHeight: "1.8",
+                            },
+                            text:
+                              "Our product design service lets you prototype, test and validate your ideas.",
+                          },
+                          {
+                            component: "Link",
+                            style: {
+                              position: "relative",
+                              // bottom: "10%",
+                              fontSize: "20px",
+                              textTransform: "uppercase",
+                              display: "flex",
+                              alignItems: "center",
+                              color: "#43baff",
+                            },
+                            to: "#",
+                            children: [
+                              {
+                                component: "i",
+                                className: "icon icon-arrow-right",
+                              },
+                              {
+                                component: "span",
+                                className: "gx-ml-2",
+                                text: "Learn more",
+                              },
+                            ],
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              bottom: "-88px",
+                              right: "-88px",
+                              backgroundColor: "#332d5f",
+                              width: "188px",
+                              height: "188px",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  bottom: "104px",
+                                  right: "115px",
+                                  color: "#fff",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-data-display",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 12,
+                lg: 12,
+                xl: 6,
+                children: [
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              fontWeight: 800,
+                              fontSize: "100px",
+                              color: "#fff",
+                              opacity: 0.1,
+                              top: 0,
+                              left: "-11px",
+                              lineHeight: "72px",
+                            },
+                            text: "01",
+                          },
+                          {
+                            component: "h5",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Product Design",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              lineHeight: "1.8",
+                            },
+                            text:
+                              "Our product design service lets you prototype, test and validate your ideas.",
+                          },
+                          {
+                            component: "Link",
+                            style: {
+                              position: "relative",
+                              // bottom: "10%",
+                              fontSize: "20px",
+                              textTransform: "uppercase",
+                              display: "flex",
+                              alignItems: "center",
+                              color: "#43baff",
+                            },
+                            to: "#",
+                            children: [
+                              {
+                                component: "i",
+                                className: "icon icon-arrow-right",
+                              },
+                              {
+                                component: "span",
+                                className: "gx-ml-2",
+                                text: "Learn more",
+                              },
+                            ],
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              bottom: "-88px",
+                              right: "-88px",
+                              backgroundColor: "#332d5f",
+                              width: "188px",
+                              height: "188px",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  bottom: "104px",
+                                  right: "115px",
+                                  color: "#fff",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-data-display",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 12,
+                lg: 12,
+                xl: 6,
+                children: [
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              fontWeight: 800,
+                              fontSize: "100px",
+                              color: "#fff",
+                              opacity: 0.1,
+                              top: 0,
+                              left: "-11px",
+                              lineHeight: "72px",
+                            },
+                            text: "01",
+                          },
+                          {
+                            component: "h5",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Product Design",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              lineHeight: "1.8",
+                            },
+                            text:
+                              "Our product design service lets you prototype, test and validate your ideas.",
+                          },
+                          {
+                            component: "Link",
+                            style: {
+                              position: "relative",
+                              // bottom: "10%",
+                              fontSize: "20px",
+                              textTransform: "uppercase",
+                              display: "flex",
+                              alignItems: "center",
+                              color: "#43baff",
+                            },
+                            to: "#",
+                            children: [
+                              {
+                                component: "i",
+                                className: "icon icon-arrow-right",
+                              },
+                              {
+                                component: "span",
+                                className: "gx-ml-2",
+                                text: "Learn more",
+                              },
+                            ],
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              bottom: "-88px",
+                              right: "-88px",
+                              backgroundColor: "#332d5f",
+                              width: "188px",
+                              height: "188px",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  bottom: "104px",
+                                  right: "115px",
+                                  color: "#fff",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-data-display",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "Row",
+            children: [
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 12,
+                lg: 12,
+                xl: 12,
+                children: [
+                  {
+                    component: "div",
+                    style: {
+                      backgroundImage:
+                        "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/01/bg-counter-1.jpg)",
+                      backgroundSize: "cover",
+                      margin: "1rem",
+                      padding: "3rem",
+                    },
+                    children: [
+                      {
+                        component: "h1",
+                        style: {
+                          color: "#fff",
+                          fontSize: "48px",
+                          fontWeight: "800",
+                        },
+                        text: "15+",
+                      },
+                      {
+                        component: "h1",
+                        style: {
+                          color: "#fff",
+                          fontSize: "36px",
+                          fontWeight: "bold",
+                        },
+                        text: "Countries Worldwide",
+                      },
+                      {
+                        component: "p",
+                        style: {
+                          color: "#fff",
+                          fontSize: "20px",
+                          lineHeight: "1.5",
+                        },
+                        text:
+                          "To succeed, every software solution must be deeply integrated into the existing tech environment..",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 12,
+                lg: 12,
+                xl: 12,
+                children: [
+                  {
+                    component: "div",
+                    style: {
+                      backgroundImage:
+                        "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/01/bg-counter-1.jpg)",
+                      backgroundSize: "cover",
+                      margin: "1rem",
+                      padding: "3rem",
+                    },
+                    children: [
+                      {
+                        component: "h1",
+                        style: {
+                          color: "#fff",
+                          fontSize: "48px",
+                          fontWeight: "800",
+                        },
+                        text: "15+",
+                      },
+                      {
+                        component: "h1",
+                        style: {
+                          color: "#fff",
+                          fontSize: "36px",
+                          fontWeight: "bold",
+                        },
+                        text: "Countries Worldwide",
+                      },
+                      {
+                        component: "p",
+                        style: {
+                          color: "#fff",
+                          fontSize: "20px",
+                          lineHeight: "1.5",
+                        },
+                        text:
+                          "To succeed, every software solution must be deeply integrated into the existing tech environment..",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];

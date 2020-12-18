@@ -17,6 +17,7 @@ import AuctionContext from "context/AuctionContext";
 import MotoAuctionSort from "./Sort/MotoAuctionSort";
 import TopAuction from "./TopAuction";
 import MostCarsInfo from "./Auction/MostCarsInfo";
+import RareCarsInfo from "./Auction/RareCarsInfo";
 import {
   sedanList,
   hatchbackList,
@@ -30,12 +31,19 @@ const AuctionListInfo = (props) => {
   const filterContext = useContext(FilterContext);
   const auctionListContext = useContext(AuctionContext);
 
-  const [visible, setVisible] = useState(false);
-  const showDrawer = () => {
-    setVisible(true);
+  const [topCarsVisible, setTopCarsVisible] = useState(false);
+  const [rareCarsVisible, setRareCarsVisible] = useState(false);
+  const showTopCars = () => {
+    setTopCarsVisible(true);
   };
-  const onClose = () => {
-    setVisible(false);
+  const onCloseTopCars = () => {
+    setTopCarsVisible(false);
+  };
+  const showRareCars = () => {
+    setRareCarsVisible(true);
+  };
+  const onCloseRareCars = () => {
+    setRareCarsVisible(false);
   };
 
   return (
@@ -54,19 +62,29 @@ const AuctionListInfo = (props) => {
         </Paragraph>
       </div>
 
-      <Button type="primary" onClick={showDrawer}>
+      <Button type="primary" onClick={showTopCars}>
         Нийтлэг машинууд
       </Button>
-      <Button disabled>Өвөрмөц машинууд</Button>
+      <Button onClick={showRareCars}>Өвөрмөц машинууд</Button>
       <Drawer
         className="moto-big-drawer"
         title="Нийтлэг машинууд"
         placement="right"
         closable={true}
-        onClose={onClose}
-        visible={visible}
+        onClose={onCloseTopCars}
+        visible={topCarsVisible}
       >
         <MostCarsInfo />
+      </Drawer>
+      <Drawer
+        className="moto-big-drawer"
+        title="Өвөрмөц машинууд"
+        placement="right"
+        closable={true}
+        onClose={onCloseRareCars}
+        visible={rareCarsVisible}
+      >
+        <RareCarsInfo />
       </Drawer>
     </>
   );

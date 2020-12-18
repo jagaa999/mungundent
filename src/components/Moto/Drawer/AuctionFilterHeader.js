@@ -167,7 +167,7 @@ const AuctionFilter = (props) => {
         <Input.Group compact>
           <Select
             style={{ width: "175px" }}
-            className="moto-mobile-mw-50"
+            className="moto-mobile-mw-50 JOY-STEP-FIRM"
             loading={firmList.loading}
             showSearch
             allowClear
@@ -195,7 +195,7 @@ const AuctionFilter = (props) => {
           </Select>
           <Select
             style={{ width: "175px" }}
-            className="moto-mobile-mw-50"
+            className="moto-mobile-mw-50 JOY-STEP-MARK"
             loading={markList.loading}
             allowClear
             placeholder="Марк"

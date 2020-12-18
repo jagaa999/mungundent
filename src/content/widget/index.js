@@ -2,7 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ReactJsonSchema from "react-json-schema";
 
-import { schemaHeader, schemaContent, schemaFooter } from "./simpleData";
+import {
+  schemaHeader,
+  schemaContent,
+  schemaFooter,
+  engitechCarousel02,
+  engitechCarousel03,
+  engitechCard02,
+  engitechCard03,
+} from "./simpleData";
 
 import {
   Layout,
@@ -61,6 +69,16 @@ const HomePage = () => {
           {view.parseSchema(schemaContent)}
         </Content>
       </Layout>
+
+      <Layout>
+        <Content>
+          {view.parseSchema(engitechCarousel02)}
+          {view.parseSchema(engitechCarousel03)}
+          {view.parseSchema(engitechCard02)}
+          {view.parseSchema(engitechCard03)}
+        </Content>
+      </Layout>
+
       <Footer>{view.parseSchema(schemaFooter)}</Footer>
     </Layout>
   );

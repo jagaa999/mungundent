@@ -426,3 +426,8 @@ const App = ({ match }) => (
 );
 
 export default App;
+
+// Git-ээс хард татаж авах
+// $ git fetch --all
+// $ git reset --hard origin/master
+// $ git pull

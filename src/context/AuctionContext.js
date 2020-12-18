@@ -115,12 +115,14 @@ export const AuctionStore = (props) => {
     // select * from main where model_name='corolla' and marka_name='toyota' and (rate>='3' and rate<='6') and year>=1990 order by year desc limit 4,50
 
     // convert objec to a query string
-    const qs =
-      myTempObject
-        .map((item) => `${item.label}${item.operator}'${item.value}'`)
-        .join(" AND ") + myTempObject2;
+    const qs0 = myTempObject
+      .map((item) => `${item.label}${item.operator}'${item.value}'`)
+      .join(" AND ");
 
-    console.log("PPPPPPPPPPPPP", qs);
+    const qs =
+      qs0 + (qs0 !== "" && myTempObject2 !== "" ? " AND " : "") + myTempObject2; //Аль аль нь хоосон биш байвал дунд нь AND залгаж өгнө.
+
+    // console.log("PPPPPPPPPPPPP", qs);
 
     let myWhere = "";
     if (qs !== "") {
@@ -131,7 +133,7 @@ export const AuctionStore = (props) => {
       myTempObject.marka_id = filterContext.state.filterList?.marka_id;
     }
 
-    const mySQLCount = `select Count(*) from main ${myWhere} order by year desc limit 24`;
+    const mySQLCount = `select Count(*) from main ${myWhere}`;
 
     const myParamsAuctionListCount = {
       ...initialAuctionList.loadParams,
@@ -146,11 +148,11 @@ export const AuctionStore = (props) => {
       )
       .then((response) => {
         // console.log("DDDDDDDDDDD", response);
-        const myCount = response.data.response[0].TAG0;
+        const myCount = response.data.response[0]?.TAG0 || "0";
         filterContext.updateTotal(myCount);
       })
       .catch((error) => {
-        console.log("error", error.data.message);
+        console.log("error", error);
       });
 
     //FOR LIST
@@ -171,7 +173,7 @@ export const AuctionStore = (props) => {
       sql: mySQL,
     };
 
-    console.log("myParamsAuctionList", myParamsAuctionList);
+    // console.log("myParamsAuctionList", myParamsAuctionList);
 
     axios
       .get(
@@ -179,7 +181,7 @@ export const AuctionStore = (props) => {
           stringify(myParamsAuctionList)
       )
       .then((response) => {
-        console.log("OOOOPPPPPPPPPPPP", response);
+        // console.log("OOOOPPPPPPPPPPPP", response);
         setAuctionList({
           ...auctionList,
           loading: false,
@@ -188,7 +190,7 @@ export const AuctionStore = (props) => {
         });
       })
       .catch((error) => {
-        // console.log("error", error.data.message);
+        console.log("error", error);
       });
   };
 

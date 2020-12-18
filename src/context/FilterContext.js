@@ -3,6 +3,7 @@ import { Redirect, useHistory, Link, useLocation } from "react-router-dom";
 import { parse } from "query-string";
 import axios from "util/axiosConfig";
 import MemberContext from "context/MemberContext";
+import useDidMountEffect from "util/useDidMountEffect";
 
 const FilterContext = React.createContext();
 
@@ -33,9 +34,9 @@ export const FilterStore = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [totalcount, setTotalcount] = useState("0");
 
-  console.log("history", history);
-  console.log("pathname", pathname);
-  console.log("filterContext.state", state);
+  // console.log("history", history);
+  // console.log("pathname", pathname);
+  // console.log("filterContext.state", state);
 
   // useEffect(() => {
   //   setUrlParams({
@@ -80,7 +81,7 @@ export const FilterStore = (props) => {
       }
     });
 
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     setState({
       motoUrl: pathname.split("/"),
@@ -96,45 +97,50 @@ export const FilterStore = (props) => {
     });
   }, [pathname, search]);
 
-  // useEffect(() => {
-  //   const mySearchQueryParams = [];
+  // Энийг сэргээлээ, Хэрвээ Filter, CardType өөрчлөгдөх юм бол тэрийг URL руу тавьж өгье.
+  useDidMountEffect(() => {
+    //Анхны render дээр ажиллахгүй. https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
+    const mySearchQueryParams = [];
 
-  //   Object.keys(state.filterList || {}).map((item) => {
-  //     if (state.filterList[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.filterList[item]);
-  //     }
-  //   });
+    Object.keys(state.filterList || {}).map((item) => {
+      if (state.filterList[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.filterList[item]);
+      }
+    });
 
-  //   Object.keys(state.paging || {}).map((item) => {
-  //     if (state.paging[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.paging[item]);
-  //     }
-  //   });
+    Object.keys(state.paging || {}).map((item) => {
+      if (state.paging[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.paging[item]);
+      }
+    });
 
-  //   Object.keys(state.sorting || {}).map((item) => {
-  //     if (state.sorting[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.sorting[item]);
-  //     }
-  //   });
+    Object.keys(state.sorting || {}).map((item) => {
+      if (state.sorting[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.sorting[item]);
+      }
+    });
 
-  //   Object.keys(state.cardtype || {}).map((item) => {
-  //     if (state.cardtype[item] !== "") {
-  //       mySearchQueryParams.push(item + "=" + state.cardtype[item]);
-  //       // console.log("myCardtype", state.cardtype[item]);
-  //       localStorage.setItem(pathname + "cardtype", state.cardtype[item]);
-  //     }
-  //   });
+    Object.keys(state.cardtype || {}).map((item) => {
+      if (state.cardtype[item] !== "") {
+        mySearchQueryParams.push(item + "=" + state.cardtype[item]);
+        // console.log("myCardtype", state.cardtype[item]);
+        localStorage.setItem(pathname + "cardtype", state.cardtype[item]);
+      }
+    });
 
-  //   setSearchQuery(mySearchQueryParams.join("&"));
-  // }, [state.filterList, state.paging, state.sorting, state.cardtype]);
+    // console.log('mySearchQueryParams.join("&")', mySearchQueryParams.join("&"));
 
-  // useEffect(() => {
-  //   history.push({
-  //     // pathname: "/news",
-  //     pathname: "/" + pathname,
-  //     search: searchQuery,
-  //   });
-  // }, [searchQuery]);
+    setSearchQuery(mySearchQueryParams.join("&"));
+  }, [state]);
+
+  useDidMountEffect(() => {
+    // console.log("ЭНД ОРСОН", searchQuery);
+    history.push({
+      // pathname: "/news",
+      pathname: pathname,
+      search: searchQuery,
+    });
+  }, [searchQuery]);
 
   // console.log("urlParams", urlParams);
 
@@ -150,16 +156,12 @@ export const FilterStore = (props) => {
 
   const updateParams = (tempObject) => {
     // console.log("FilterContext → updateParams", tempObject);
-
     let myObject = { ...state };
-
     Object.entries(tempObject).map((item, i) => {
       const myKey = item[0]; //"newstypeid"
       const myValue = "" + item[1]; //"206"
-
       // console.log(item);
       // console.log(myKey, myValue);
-
       if (myKey === "offset" || myKey === "pagesize") {
         if (myValue !== "") {
           myObject.paging = {
@@ -204,9 +206,8 @@ export const FilterStore = (props) => {
         }
       }
     });
-
     // console.log("myObject", myObject);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     setState(myObject);
   };
 
