@@ -6,6 +6,7 @@ import AuctionListType1 from "../../../components/Moto/AuctionListType1";
 import AuctionListType3 from "../../../components/Moto/AuctionListType3";
 import AuctionListType2 from "../../../components/Moto/AuctionListType2";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
+import MyHelmet from "./auctionHelmet";
 
 const AuctionListPage = () => {
   // const newsListContext = useContext(CarCatalogContext);
@@ -15,11 +16,26 @@ const AuctionListPage = () => {
   // if (memberContext.state.isLogin) {
 
   if (filterContext.state.cardtype.cardtype === "typecard") {
-    return <AuctionListType2 />;
+    return (
+      <>
+        <MyHelmet />
+        <AuctionListType2 />
+      </>
+    );
   } else if (filterContext.state.cardtype.cardtype === "typetable") {
-    return <AuctionListType3 />;
+    return (
+      <>
+        <MyHelmet />
+        <AuctionListType3 />
+      </>
+    );
   } else {
-    return <AuctionListType1 />;
+    return (
+      <>
+        <MyHelmet />
+        <AuctionListType1 />
+      </>
+    );
   }
 
   // }

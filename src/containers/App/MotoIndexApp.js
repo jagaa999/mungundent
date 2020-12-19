@@ -22,19 +22,21 @@ const tagManagerArgs = {
   gtmId: "GTM-NNHQ4BB",
 };
 
+const locale = {
+  languageId: "mongolia",
+  locale: "en",
+  name: "Mongolia",
+  icon: "en",
+};
+
 const MotoIndexApp = (props) => {
-  const locale = {
-    languageId: "mongolia",
-    locale: "en",
-    name: "Mongolia",
-    icon: "en",
-  };
+  useEffect(() => {
+    initializeReactGA();
+    TagManager.initialize(tagManagerArgs);
+  }, []);
 
   const match = useRouteMatch();
   const currentAppLocale = AppLocale[locale.locale];
-
-  initializeReactGA();
-  TagManager.initialize(tagManagerArgs);
 
   return (
     <ConfigProvider locale={currentAppLocale.antd}>
