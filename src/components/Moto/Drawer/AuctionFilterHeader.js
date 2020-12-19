@@ -161,9 +161,9 @@ const AuctionFilter = (props) => {
   //  #     # #######    #     #####  #     # #     #
 
   return (
-    <div className="gx-mb-3">
+    <div className="gx-mb-3 JOY-STEP-FILTER">
       <div className="gx-text-grey gx-fs-sm gx-mr-2 gx-mb-2">Шүүлтүүр</div>
-      <div className="JOY-STEP-FILTER">
+      <div>
         <Input.Group compact>
           <Select
             style={{ width: "175px" }}
@@ -230,9 +230,18 @@ const AuctionFilter = (props) => {
           />
         </Input.Group>
       </div>
-      {filterContext.state.filterList?.model_id !== undefined && (
-        <div className="gx-mt-2">
-          <Input.Group compact>
+      {/* {filterContext.state.filterList?.model_id !== undefined && ( */}
+      <div className="gx-mt-2">
+        <Input.Group compact>
+          {/*
+           #     # #######    #    ######  
+            #   #  #         # #   #     # 
+             # #   #        #   #  #     # 
+              #    #####   #     # ######  
+              #    #       ####### #   #   
+              #    #       #     # #    #  
+              #    ####### #     # #     # */}
+          <Tooltip title="Энэ оноос дээш онтой машинуудыг шүүх">
             <Select
               key="start-date"
               style={{ width: "95px" }}
@@ -264,6 +273,8 @@ const AuctionFilter = (props) => {
                 </Option>
               ))}
             </Select>
+          </Tooltip>
+          <Tooltip title="Энэ оноос доош онтой машинуудыг шүүх">
             <Select
               key="end-date"
               style={{ width: "95px" }}
@@ -295,7 +306,8 @@ const AuctionFilter = (props) => {
                 </Option>
               ))}
             </Select>
-
+          </Tooltip>
+          <Tooltip title="Арлын дугаараар шүүх">
             <Select
               className="gx-ml-1"
               style={{ minWidth: "110px" }}
@@ -325,26 +337,9 @@ const AuctionFilter = (props) => {
                 </Option>
               ))}
             </Select>
-
-            {/* ! түр авчихъя
-             <Radio.Group
-              buttonStyle="solid"
-              className="gx-w-100"
-              loading={frameList.loading}
-              onChange={(e) => prepareURL3(e, "kuzov")}
-            >
-              {frameList.frameList.map((item, index) => (
-                <Radio.Button
-                  key={index}
-                  value={htmlEntities.decode(item.KUZOV)}
-                >
-                  {htmlEntities.decode(item.KUZOV)}
-                </Radio.Button>
-              ))}
-            </Radio.Group> */}
-
+          </Tooltip>
+          <Tooltip title="Машины үнэлгээгээр шүүх">
             <Select
-              // className="moto-select-firm gx-mr-3"
               style={{ minWidth: "110px" }}
               className="moto-mobile-mw-50"
               loading={rateList.loading}
@@ -372,24 +367,24 @@ const AuctionFilter = (props) => {
                 </Option>
               ))}
             </Select>
-
-            {isEmpty(filterContext.state.filterList) ? (
-              <></>
-            ) : (
-              <>
-                <Button
-                  // shape="circle"
-                  // className="gx-m-0"
-                  icon={<ClearOutlined />}
-                  onClick={(e) => {
-                    filterContext.clearAll();
-                  }}
-                />
-              </>
-            )}
-          </Input.Group>
-        </div>
-      )}
+          </Tooltip>
+          {isEmpty(filterContext.state.filterList) ? (
+            <></>
+          ) : (
+            <>
+              <Button
+                // shape="circle"
+                // className="gx-m-0"
+                icon={<ClearOutlined />}
+                onClick={(e) => {
+                  filterContext.clearAll();
+                }}
+              />
+            </>
+          )}
+        </Input.Group>
+      </div>
+      {/* )} */}
     </div>
   );
 };

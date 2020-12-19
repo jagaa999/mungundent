@@ -25,7 +25,7 @@ const HorizontalNav = () => {
         key="auction"
         className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
       >
-        <Link to="/auction" className="motoHeaderMenuItemLink">
+        <Link to="/auction?yearend=2014" className="motoHeaderMenuItemLink">
           <Tooltip title="Япон аукшин">
             <span className="gx-d-block gx-d-lg-none">
               <MyIcon type="iconauction" />

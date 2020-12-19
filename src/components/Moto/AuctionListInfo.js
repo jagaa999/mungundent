@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-import { Button, Typography, Drawer, Tooltip } from "antd";
+import { Button, Typography, Drawer, Tooltip, Row, Col, Card } from "antd";
 import Joyride, { STATUS } from "react-joyride";
 import MyIcon from "util/iconFunction";
 
 import MostCarsInfo from "./Auction/MostCarsInfo";
 import RareCarsInfo from "./Auction/RareCarsInfo";
+import FaqInfo from "./Auction/FaqInfo";
 
 const { Paragraph } = Typography;
 
@@ -13,16 +14,20 @@ const AuctionListInfo = (props) => {
   const joySteps = [
     {
       target: ".JOY-STEP-FILTER",
-      content: "Эндээс янз бүрээр шүүж, хүссэн машинаа олоорой",
+      content: "Эндээс янз бүрээр шүүж, хүссэн машинаа олоорой.",
     },
     {
       target: ".JOY-STEP-CARDTYPE",
-      content: "Эндээс харагдах хэлбэрийг сонгоорой",
+      content: "Эндээс харагдах хэлбэрийг сонгоорой.",
     },
     {
       target: ".JOY-STEP-CHOOSE",
       content:
-        "Авч болох машинуудын зарим сонирхолтой сонголтыг эндээс хараарай",
+        "Авч болох машинуудын зарим сонирхолтой сонголтыг эндээс хараарай.",
+    },
+    {
+      target: ".JOY-STEP-FAQ",
+      content: "Аукшинтай холбоотой асуултуудаа эндээс хариулт аваарай.",
     },
   ];
   const [runJoyride, setRunJoyride] = useState(false);
@@ -35,6 +40,7 @@ const AuctionListInfo = (props) => {
 
   const [topCarsVisible, setTopCarsVisible] = useState(false);
   const [rareCarsVisible, setRareCarsVisible] = useState(false);
+  const [faqVisible, setFaqVisible] = useState(false);
   const showTopCars = () => {
     setTopCarsVisible(true);
   };
@@ -46,6 +52,12 @@ const AuctionListInfo = (props) => {
   };
   const onCloseRareCars = () => {
     setRareCarsVisible(false);
+  };
+  const showFaq = () => {
+    setFaqVisible(true);
+  };
+  const onCloseFaq = () => {
+    setFaqVisible(false);
   };
 
   return (
@@ -68,7 +80,6 @@ const AuctionListInfo = (props) => {
         styles={{
           options: {
             primaryColor: "#588bae",
-            // zIndex: 10000,
             fontSize: "10px",
           },
         }}
@@ -93,26 +104,88 @@ const AuctionListInfo = (props) => {
         </Tooltip>
       </div>
 
-      <div className="gx-text-grey gx-fs-sm">
-        <Paragraph>
-          Япон улсын аукшин системд яг одоогоор тавигдсан байгаа автомашинуудыг
-          та харж байна. Японоос орж ирж буй бүх автомашиныг эндээс авдаг билээ.
-          Та өөрт таалагдсан хамгийн онцгой автомашиныг эндээс шууд үнэ тавин
-          авах боломжтой.
-        </Paragraph>
-        <Paragraph>
-          Энэ системийг ашигласнаар дундаж үнэлгээтэй энгийн автомашиныг хямдхан
-          авах эсвэл маш сайн тоноглолтой сайхан автомашиныг боломжийн үнээр олж
-          авах нөхцөл бүрдэж байгаа юм.
-        </Paragraph>
-      </div>
+      <Row>
+        {/* <Col span={17}> */}
+        <Col xl={16} lg={14} md={12} sm={12} xs={24}>
+          <div className="gx-text-grey gx-fs-sm">
+            <Paragraph>
+              Япон улсын аукшин системд яг одоогоор тавигдсан байгаа
+              автомашинуудыг та харж байна. Японоос орж ирж буй бүх автомашиныг
+              эндээс авдаг билээ. Та өөрт таалагдсан хамгийн онцгой автомашиныг
+              эндээс шууд үнэ тавин авах боломжтой.
+            </Paragraph>
+            <Paragraph>
+              Энэ системийг ашигласнаар дундаж үнэлгээтэй энгийн автомашиныг
+              хямдхан авах эсвэл маш сайн тоноглолтой сайхан автомашиныг
+              боломжийн үнээр олж авах нөхцөл бүрдэж байгаа юм.
+            </Paragraph>
+          </div>
+        </Col>
+        {/* <Col span={7}> */}
+        <Col xl={8} lg={10} md={12} sm={12} xs={24}>
+          <Row gutter={[4, 4]}>
+            <Col
+              className="JOY-STEP-CHOOSE"
+              xl={8}
+              lg={8}
+              md={12}
+              sm={12}
+              xs={12}
+            >
+              <Card
+                hoverable
+                onClick={showTopCars}
+                className="gx-card-widget gx-card-full gx-p-3 gx-bg-cyan gx-text-white gx-mb-0"
+              >
+                <div className="gx-media gx-align-items-center gx-flex-nowrap">
+                  {/* <div className="gx-mr-2">
+                      <i className={`icon icon-diamond gx-fs-icon-lg`} />
+                    </div> */}
+                  <div className="gx-media-body">
+                    <h1 className="gx-fs-lg gx-font-weight-semi-bold gx-mb-1 gx-text-white">
+                      Нийтлэг
+                    </h1>
+                    <p className="gx-mb-0">машинууд</p>
+                  </div>
+                </div>
+              </Card>
+            </Col>
+            <Col xl={8} lg={8} md={12} sm={12} xs={12}>
+              <Card
+                hoverable
+                onClick={showRareCars}
+                className="gx-card-widget gx-card-full gx-p-3 gx-bg-teal gx-text-white gx-mb-0"
+              >
+                <div className="gx-media gx-align-items-center gx-flex-nowrap">
+                  <div className="gx-media-body">
+                    <h1 className="gx-fs-lg gx-font-weight-semi-bold gx-mb-1 gx-text-white">
+                      Өвөрмөц
+                    </h1>
+                    <p className="gx-mb-0">машинууд</p>
+                  </div>
+                </div>
+              </Card>
+            </Col>
+            <Col className="JOY-STEP-FAQ" xl={8} lg={8} md={24} sm={24} xs={24}>
+              <Card
+                hoverable
+                onClick={showFaq}
+                className="gx-card-widget gx-card-full gx-p-3 gx-bg-orange gx-text-white gx-mb-0"
+              >
+                <div className="gx-media gx-align-items-center gx-flex-nowrap">
+                  <div className="gx-media-body">
+                    <h1 className="gx-fs-lg gx-font-weight-semi-bold gx-mb-1 gx-text-white">
+                      Аукшины
+                    </h1>
+                    <p className="gx-mb-0">асуулт</p>
+                  </div>
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
 
-      <div className="JOY-STEP-CHOOSE">
-        <Button type="primary" onClick={showTopCars}>
-          Нийтлэг машинууд
-        </Button>
-        <Button onClick={showRareCars}>Өвөрмөц машинууд</Button>
-      </div>
       <Drawer
         className="moto-big-drawer"
         title="Нийтлэг машинууд"
@@ -132,6 +205,16 @@ const AuctionListInfo = (props) => {
         visible={rareCarsVisible}
       >
         <RareCarsInfo />
+      </Drawer>
+      <Drawer
+        className="moto-big-drawer"
+        title="Аукшины асуулт, хариулт"
+        placement="right"
+        closable={true}
+        onClose={onCloseFaq}
+        visible={faqVisible}
+      >
+        <FaqInfo />
       </Drawer>
     </>
   );
