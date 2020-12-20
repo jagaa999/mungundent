@@ -177,8 +177,10 @@ export const CompareStore = (props) => {
     return (
       <Drawer
         // title="Харьцуулах"
+        className="moto-drawer-bottom-full"
         placement="bottom"
         height="350px"
+        width="100%"
         closable={true}
         onClose={(e) => setCompareList({ ...compareList, isOpen: false })}
         visible={compareList.isOpen}
