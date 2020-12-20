@@ -12,6 +12,7 @@ import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 
 import { MemberItemsStore } from "context/MemberItemsContext";
+import { CompareStore } from "context/CompareContext";
 
 function initializeReactGA() {
   ReactGA.initialize("UA-19432730-1");
@@ -49,7 +50,9 @@ const MotoIndexApp = (props) => {
           <Route exact path="/signup" component={SignUp} />
 
           <MemberItemsStore>
-            <Route path={`${match.url}`} component={MainApp} />
+            <CompareStore>
+              <Route path={`${match.url}`} component={MainApp} />
+            </CompareStore>
           </MemberItemsStore>
         </Switch>
       </IntlProvider>

@@ -1,48 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { Card, Avatar, Popover, Divider, Descriptions, Button } from "antd";
 import {
-  Card,
-  Modal,
-  Avatar,
-  Popover,
-  Tooltip,
-  Divider,
-  Descriptions,
-  Button,
-  List,
-} from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  CloseCircleOutlined,
-  SearchOutlined,
   LogoutOutlined,
   UserOutlined,
   HomeOutlined,
-  ProfileOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
 
 import MemberContext from "context/MemberContext";
-import SignIn from "../../../containers/SignIn";
 import AvatarMember from "../Member/MemberAvatar";
 import SigninModal from "../Member/SigninModal";
-
-const { Meta } = Card;
 
 const MenuMember = () => {
   const memberContext = useContext(MemberContext);
   console.log("МИНИЙ ПРОФАЙЛ", memberContext.state);
-
-  //    ###     #
-  //   #   #   ##
-  //  #     # # #
-  //  #     #   #
-  //  #     #   #
-  //   #   #    #
-  //    ###   #####
 
   const withMemberOptions = (
     <>

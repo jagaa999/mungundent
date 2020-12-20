@@ -16,7 +16,7 @@ const AuctionHelmet = (props) => {
       <meta property="og:url" content={window.location.href} />
 
       {auctionList.property.map((item, index) => (
-        <meta property={item.title} content={item.content} />
+        <meta property={item.title} content={item.content} key={index} />
       ))}
     </Helmet>
   );

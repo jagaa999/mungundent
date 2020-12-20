@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { Button, Typography, Drawer, Tooltip, Row, Col, Card } from "antd";
 import Joyride, { STATUS } from "react-joyride";
@@ -7,6 +7,8 @@ import MyIcon from "util/iconFunction";
 import MostCarsInfo from "./Auction/MostCarsInfo";
 import RareCarsInfo from "./Auction/RareCarsInfo";
 import FaqInfo from "./Auction/FaqInfo";
+
+import CompareContext from "context/CompareContext";
 
 const { Paragraph } = Typography;
 
@@ -37,6 +39,8 @@ const AuctionListInfo = (props) => {
       setRunJoyride(false);
     }
   };
+
+  const compareContext = useContext(CompareContext);
 
   const [topCarsVisible, setTopCarsVisible] = useState(false);
   const [rareCarsVisible, setRareCarsVisible] = useState(false);
@@ -185,6 +189,8 @@ const AuctionListInfo = (props) => {
           </Row>
         </Col>
       </Row>
+
+      <Button onClick={compareContext.toggleDrawer}>dfd fdsf </Button>
 
       <Drawer
         className="moto-big-drawer"

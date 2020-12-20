@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useRouteMatch, Route, Switch } from "react-router-dom";
-import { Layout, BackTop } from "antd";
+import { Layout } from "antd";
 
 import MotoHeader from "../Topbar/MotoHeader/MotoHeader";
 import MotoFooter from "../Topbar/MotoHeader/MotoFooter";
@@ -61,7 +61,7 @@ const MainApp = () => {
 
       <Route>
         <Layout className="gx-app-layout">
-          <BackTop>dfdfdf</BackTop>
+          {/* <BackTop>dfdfdf</BackTop> */}
           <MotoHeader />
           <Content className="gx-layout-content gx-container-wrap">
             <MotoIndex match={match} />
