@@ -100,6 +100,10 @@ const AutozarForm = asyncComponent(() => {
   return import("./moto/autozar/autozarFormPage");
 });
 
+const ComparePage = asyncComponent(() => {
+  return import("./moto/compare/comparePage");
+});
+
 const ToolFuelPage = asyncComponent(() => {
   return import("./moto/tool/toolFuelPage");
 });
@@ -343,6 +347,17 @@ const App = ({ match }) => (
           <CarCatalogFirmList />
         </CarCatalogListStore>
       </Route>
+      {/* 
+       #####  ####### #     # ######     #    ######  ####### 
+      #     # #     # ##   ## #     #   # #   #     # #       
+      #       #     # # # # # #     #  #   #  #     # #       
+      #       #     # #  #  # ######  #     # ######  #####   
+      #       #     # #     # #       ####### #   #   #       
+      #     # #     # #     # #       #     # #    #  #       
+       #####  ####### #     # #       #     # #     # ####### */}
+      <Route path={["/compare", "/itemcompare"]}>
+        <ComparePage />
+      </Route>
       {/*
       ####### ####### ####### #       
          #    #     # #     # #       
@@ -381,7 +396,6 @@ const App = ({ match }) => (
       <Route path={["/static/privacy", "/static/privacypolicy"]}>
         <PrivacyPolicyPage />
       </Route>
-
       {/*
       ####### ####### #     # ####### ######  
       #     #    #    #     # #       #     # 

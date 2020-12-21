@@ -35,6 +35,7 @@ const AuctionListType2 = () => {
                     <Col
                       key={index}
                       xl={6}
+                      lg={8}
                       md={8}
                       sm={12}
                       xs={12}

@@ -190,7 +190,7 @@ const AuctionListInfo = (props) => {
         </Col>
       </Row>
 
-      <Button onClick={compareContext.toggleDrawer}>dfd fdsf </Button>
+      <Button onClick={compareContext.toggleDrawer}>Харьцуулах </Button>
 
       <Drawer
         className="moto-big-drawer"

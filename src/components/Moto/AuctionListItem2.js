@@ -6,14 +6,20 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 import { Html5Entities } from "html-entities";
-import { Tooltip, Card, Tag, Image } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { Tooltip, Card, Tag, Image, Button } from "antd";
+import {
+  ExclamationCircleOutlined,
+  DeleteOutlined,
+  ApartmentOutlined,
+} from "@ant-design/icons";
 import TweenOne from "rc-tween-one";
 
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
+import CompareContext from "context/CompareContext";
 
 const AuctionListItem2 = ({ auctionItem }) => {
   // console.log("Манай Item - ", auctionItem);
+  const compareContext = useContext(CompareContext);
 
   const htmlEntities = new Html5Entities();
 
@@ -50,7 +56,6 @@ const AuctionListItem2 = ({ auctionItem }) => {
           <Image
             // height={250}
             src={auctionItem.IMAGES.replace("h=50", "w=320")}
-            className="gx-mr-2"
             fallback="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
           />
         }
@@ -124,6 +129,18 @@ const AuctionListItem2 = ({ auctionItem }) => {
             </Tag>
           </div>
         )}
+
+        <Tooltip title="Харьцуулж харах хайрцагт нэмэх">
+          <Button
+            type="text"
+            className="moto-badge-4"
+            size="small"
+            onClick={(e) => compareContext.addItem(auctionItem, "auction")}
+          >
+            {/* <ApartmentOutlined /> */}
+            Харьцуулах
+          </Button>
+        </Tooltip>
       </Card>
     </TweenOne>
   );
