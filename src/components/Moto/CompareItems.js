@@ -13,7 +13,7 @@ const CompareItems = () => {
       <h2>Харьцуулах</h2>
       <Button onClick={compareContext.toggleDrawer}>Харьцуулах </Button>
       {compareContext.compareList.compareList.map((item, index) => (
-        <>ddsf dsf ds</>
+        <div key={index}>ddsf dsf ds</div>
       ))}
 
       <Table dataSource={compareContext.compareList.compareList} />

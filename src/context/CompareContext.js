@@ -11,6 +11,8 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 
+import AutozarListItemMainImage from "components/Moto/Autozar/AutozarListItemMainImage";
+
 const CompareContext = React.createContext();
 
 export const CompareStore = (props) => {
@@ -93,6 +95,32 @@ export const CompareStore = (props) => {
             {
               title: "Хувилбар",
               value: htmlEntities.decode(item.GRADE),
+            },
+          ],
+          originalItem: item,
+        };
+        break;
+      case "autozar":
+        myItem = {
+          title: item.myTitle,
+          // image: (
+          //   <AutozarListItemMainImage
+          //     myClass="gx-img-fluid gx-w-100"
+          //     width="auto"
+          //     imageMain={item.imagemain}
+          //   />
+          // ),
+          image: item.imagemain,
+          mainSpec: item.financepricerr, //Үнэ
+          link: "/autozar/" + item.id,
+          subSpecs: [
+            {
+              title: "Шатахуун",
+              value: htmlEntities.decode(item.mglfuel),
+            },
+            {
+              title: "Хөтлөгч",
+              value: htmlEntities.decode(item.drive2drivename),
             },
           ],
           originalItem: item,

@@ -141,6 +141,7 @@ exports.carFuelMPG = functions.https.onRequest((req, res) => {
 exports.loadAuction = functions.https.onRequest((req, res) => {
   // Google Cloud Function res.methods
   res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.set("Access-Control-Allow-Origin", "*");
   res.set("Content-Type", "Application/JSON");
   // CORS-enabled req.methods, res.methods
   cors(req, res, () => {

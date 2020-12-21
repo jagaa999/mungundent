@@ -6,16 +6,18 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 import { Html5Entities } from "html-entities";
-import { Tooltip, Card, Tag, Image, Badge } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { Tooltip, Card, Tag, Image, Badge, Button } from "antd";
+// import { ExclamationCircleOutlined } from "@ant-design/icons";
 import TweenOne from "rc-tween-one";
 
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import AutozarListItemMainImage from "./Autozar/AutozarListItemMainImage";
-import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
+// import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
+import CompareContext from "context/CompareContext";
 
 const AutozarListItem2 = ({ autozarItem }) => {
-  console.log("Манай Item - ", autozarItem);
+  // console.log("Манай Item - ", autozarItem);
+  const compareContext = useContext(CompareContext);
 
   const htmlEntities = new Html5Entities();
 
@@ -24,12 +26,13 @@ const AutozarListItem2 = ({ autozarItem }) => {
       ? moment(autozarItem.mglyearmanufactured).format("YYYY")
       : "";
 
+  autozarItem.myTitle = `${myYear} ${autozarItem.mglfirm} ${
+    autozarItem.mglmark
+  } ${autozarItem.cartrim || ""}`;
+
   const myTitle = (
     <>
-      <Link to={"/autozar/" + autozarItem.id}>
-        {myYear} {autozarItem.mglfirm} {autozarItem.mglmark}{" "}
-        {autozarItem.cartrim}
-      </Link>
+      <Link to={"/autozar/" + autozarItem.id}>{autozarItem.myTitle}</Link>
       {toBoolean(autozarItem.isfeatured) && <FeaturedTag type="dot" />}
       {!toBoolean(autozarItem.isactive) && <ActiveTag type="dot" />}
     </>
@@ -145,6 +148,18 @@ const AutozarListItem2 = ({ autozarItem }) => {
             </Tag>
           </div>
         )} */}
+
+        <Tooltip title="Харьцуулж харах хайрцагт нэмэх">
+          <Button
+            type="text"
+            className="moto-badge-4"
+            size="small"
+            onClick={(e) => compareContext.addItem(autozarItem, "autozar")}
+          >
+            {/* <ApartmentOutlined /> */}
+            Харьцуулах
+          </Button>
+        </Tooltip>
       </Card>
     </TweenOne>
   );
