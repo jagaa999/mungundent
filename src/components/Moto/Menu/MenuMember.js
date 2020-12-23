@@ -10,11 +10,13 @@ import {
 } from "@ant-design/icons";
 
 import MemberContext from "context/MemberContext";
+import CompareContext from "context/CompareContext";
 import AvatarMember from "../Member/MemberAvatar";
 import SigninModal from "../Member/SigninModal";
 
 const MenuMember = () => {
   const memberContext = useContext(MemberContext);
+  const compareContext = useContext(CompareContext);
   console.log("МИНИЙ ПРОФАЙЛ", memberContext.state);
 
   const withMemberOptions = (
@@ -81,6 +83,18 @@ const MenuMember = () => {
           Анкет
         </Button>
       </Link>
+
+      <Divider className="gx-mt-3 gx-mb-3" />
+
+      <Button
+        className="gx-mb-1 gx-mt-2 gx-btn-info"
+        // icon={<PlusOutlined />}
+        type="text"
+        size="small"
+        onClick={compareContext.toggleDrawer}
+      >
+        Харьцуулах
+      </Button>
 
       <Divider className="gx-mt-3 gx-mb-3" />
       <div className="gx-d-flex">

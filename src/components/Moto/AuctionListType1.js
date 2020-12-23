@@ -25,7 +25,7 @@ const AuctionListType1 = () => {
           <AuctionListActionHeader />
           <AuctionFilterHeader />
 
-          <div className="gx-main-content gx-p-2 gx-p-sm-0">
+          <div className="gx-main-content">
             <Row key="row" className="gx-d-flex">
               {auctionListContext.auctionList.auctionList.map(
                 (auctionItem, index) => {

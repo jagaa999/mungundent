@@ -8,6 +8,7 @@ import "moment/locale/mn";
 import accounting from "accounting";
 
 import { Alert, Row, Col, Image, Descriptions } from "antd";
+import { motoSpecAuction } from "util/carSpecTranslation";
 
 const AuctionDetail2 = ({ auctionItem }) => {
   const htmlEntities = new Html5Entities();
@@ -37,22 +38,28 @@ const AuctionDetail2 = ({ auctionItem }) => {
               size="small"
               column={1}
             >
-              <Descriptions.Item label="LOT код">
+              <Descriptions.Item label={motoSpecAuction.LOT.title || "LOT"}>
                 {auctionItem.LOT}
               </Descriptions.Item>
-              <Descriptions.Item label="Үнэлгээ">
+              <Descriptions.Item label={motoSpecAuction.RATE.title || "RATE"}>
                 {auctionItem.RATE}
               </Descriptions.Item>
-              <Descriptions.Item label="Огноо">
+              <Descriptions.Item
+                label={motoSpecAuction.AUCTION_DATE.title || "AUCTION_DATE"}
+              >
                 {moment(auctionItem.AUCTION_DATE).format("MM-DD HH:mm")}
               </Descriptions.Item>
-              <Descriptions.Item label="Газар">
+              <Descriptions.Item
+                label={motoSpecAuction.AUCTION.title || "AUCTION"}
+              >
                 {htmlEntities.decode(auctionItem.AUCTION)}
               </Descriptions.Item>
-              <Descriptions.Item label="Эхлэх үнэ">
+              <Descriptions.Item label={motoSpecAuction.START.title || "START"}>
                 {accounting.formatMoney(auctionItem.START, "¥", 0, "'")}
               </Descriptions.Item>
-              <Descriptions.Item label="Дундаж үнэ">
+              <Descriptions.Item
+                label={motoSpecAuction.AVG_PRICE.title || "AVG_PRICE"}
+              >
                 {accounting.formatMoney(auctionItem.AVG_PRICE, "¥", 0, "'")}
               </Descriptions.Item>
             </Descriptions>

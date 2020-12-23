@@ -32,7 +32,7 @@ const ProductListType1 = () => {
       <div className="gx-mb-2"></div>
 
       {!productListContext.productList.loading ? (
-        <div className="gx-main-content gx-p-2 gx-p-sm-0">
+        <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
           <PageHeader

@@ -114,7 +114,8 @@ export const schemaContent = [
 
   {
     component: "Carousel",
-    autoplay: true,
+    autoplay: false,
+    widgetCode: "Banner_01",
     children: [
       {
         component: "div",
@@ -277,7 +278,6 @@ export const schemaContent = [
           },
         ],
       },
-
       {
         component: "Col",
         span: "6",
@@ -307,7 +307,6 @@ export const schemaContent = [
           },
         ],
       },
-
       {
         component: "Col",
         span: "6",
@@ -2333,33 +2332,31 @@ export const engitechCard02 = [
             src:
               "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/02/image1-home1.png",
           },
-          window.innerWidth > 900
-            ? {
-                component: "Link",
-                style: {
-                  position: "relative",
-                  bottom: "10%",
-                  left: "10%",
-                  fontSize: "16px",
-                  textTransform: "uppercase",
-                  display: "flex",
-                  alignItems: "center",
-                  color: "#43baff",
-                },
-                to: "#",
-                children: [
-                  {
-                    component: "i",
-                    className: "icon icon-arrow-right",
-                  },
-                  {
-                    component: "span",
-                    className: "gx-ml-2",
-                    text: "Learn more about us",
-                  },
-                ],
-              }
-            : null,
+          {
+            component: "Link",
+            style: {
+              position: "relative",
+              bottom: "10%",
+              left: "10%",
+              fontSize: "16px",
+              textTransform: "uppercase",
+              display: "flex",
+              alignItems: "center",
+              color: "#43baff",
+            },
+            to: "#",
+            children: [
+              {
+                component: "i",
+                className: "icon icon-arrow-right",
+              },
+              {
+                component: "span",
+                className: "gx-ml-2",
+                text: "Learn more about us",
+              },
+            ],
+          },
         ],
       },
     ],
@@ -2993,6 +2990,1738 @@ export const engitechCard03 = [
                           "To succeed, every software solution must be deeply integrated into the existing tech environment..",
                       },
                     ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//   #####     #    ######  ######     #
+//  #     #   # #   #     # #     #    #    #
+//  #        #   #  #     # #     #    #    #
+//  #       #     # ######  #     #    #    #
+//  #       ####### #   #   #     #    #######
+//  #     # #     # #    #  #     #         #
+//   #####  #     # #     # ######          #
+export const engitechCard04 = [
+  {
+    component: "div",
+    className: "gx-container gx-mt-4 gx-mb-4",
+    children: [
+      {
+        component: "div",
+        className:
+          "gx-d-flex gx-align-items-center gx-justify-content-between gx-mb-4",
+        children: [
+          {
+            component: "div",
+            children: [
+              {
+                component: "Title",
+                level: 5,
+                className: "gx-text-transform-uppercase",
+                style: {
+                  color: "#7141b1",
+                  margin: "0",
+                },
+                text: "// Our service",
+              },
+              {
+                component: "Title",
+                className: "gx-text-transform-capitalize gx-font-weight-bold",
+                level: 1,
+                style: {
+                  color: "#111",
+                  margin: "10px 0 0 0",
+                  textTransform: "capitalize",
+                  width: "60%",
+                },
+                text: "we offer a wide variaty of IT services",
+              },
+            ],
+          },
+          {
+            component: "Link",
+            to: "#",
+            children: [
+              {
+                component: "Button",
+                size: "large",
+                type: "primary",
+                style: {
+                  borderRadius: "0px",
+                  backgroundColor: "#43baff",
+                  borderColor: "#43baff !important",
+                },
+                text: "ALL SERVICES",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        component: "Row",
+        gutter: [8, 8, 8],
+        children: [
+          {
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 12,
+            lg: 8,
+            xl: 8,
+            style: {
+              padding: "1rem",
+            },
+            children: [
+              {
+                component: "div",
+                className:
+                  "gx-d-flex gx-align-items-top gx-justify-content-left",
+                children: [
+                  {
+                    component: "div",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-crm",
+                        style: {
+                          fontSize: "48px",
+                          color: "#7141b1",
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    component: "div",
+                    className: "gx-ml-3",
+                    children: [
+                      {
+                        component: "Title",
+                        level: 3,
+                        className:
+                          "gx-font-weight-bold gx-text-transform-capitalize",
+                        text: "Web development",
+                      },
+                      {
+                        component: "Paragraph",
+                        text:
+                          "We carry more than just good coding skills. Our experience makes us stand out from other web development.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 12,
+            lg: 8,
+            xl: 8,
+            style: {
+              padding: "1rem",
+            },
+            children: [
+              {
+                component: "div",
+                className:
+                  "gx-d-flex gx-align-items-top gx-justify-content-left",
+                children: [
+                  {
+                    component: "div",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-crm",
+                        style: {
+                          fontSize: "48px",
+                          color: "#7141b1",
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    component: "div",
+                    className: "gx-ml-3",
+                    children: [
+                      {
+                        component: "Title",
+                        level: 3,
+                        className:
+                          "gx-font-weight-bold gx-text-transform-capitalize",
+                        text: "Web development",
+                      },
+                      {
+                        component: "Paragraph",
+                        text:
+                          "We carry more than just good coding skills. Our experience makes us stand out from other web development.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 12,
+            lg: 8,
+            xl: 8,
+            style: {
+              padding: "1rem",
+            },
+            children: [
+              {
+                component: "div",
+                className:
+                  "gx-d-flex gx-align-items-top gx-justify-content-left",
+                children: [
+                  {
+                    component: "div",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-crm",
+                        style: {
+                          fontSize: "48px",
+                          color: "#7141b1",
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    component: "div",
+                    className: "gx-ml-3",
+                    children: [
+                      {
+                        component: "Title",
+                        level: 3,
+                        className:
+                          "gx-font-weight-bold gx-text-transform-capitalize",
+                        text: "Web development",
+                      },
+                      {
+                        component: "Paragraph",
+                        text:
+                          "We carry more than just good coding skills. Our experience makes us stand out from other web development.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 12,
+            lg: 8,
+            xl: 8,
+            style: {
+              padding: "1rem",
+            },
+            children: [
+              {
+                component: "div",
+                className:
+                  "gx-d-flex gx-align-items-top gx-justify-content-left",
+                children: [
+                  {
+                    component: "div",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-crm",
+                        style: {
+                          fontSize: "48px",
+                          color: "#7141b1",
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    component: "div",
+                    className: "gx-ml-3",
+                    children: [
+                      {
+                        component: "Title",
+                        level: 3,
+                        className:
+                          "gx-font-weight-bold gx-text-transform-capitalize",
+                        text: "Web development",
+                      },
+                      {
+                        component: "Paragraph",
+                        text:
+                          "We carry more than just good coding skills. Our experience makes us stand out from other web development.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 12,
+            lg: 8,
+            xl: 8,
+            style: {
+              padding: "1rem",
+            },
+            children: [
+              {
+                component: "div",
+                className:
+                  "gx-d-flex gx-align-items-top gx-justify-content-left",
+                children: [
+                  {
+                    component: "div",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-crm",
+                        style: {
+                          fontSize: "48px",
+                          color: "#7141b1",
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    component: "div",
+                    className: "gx-ml-3",
+                    children: [
+                      {
+                        component: "Title",
+                        level: 3,
+                        className:
+                          "gx-font-weight-bold gx-text-transform-capitalize",
+                        text: "Web development",
+                      },
+                      {
+                        component: "Paragraph",
+                        text:
+                          "We carry more than just good coding skills. Our experience makes us stand out from other web development.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "Col",
+            xs: 24,
+            sm: 24,
+            md: 12,
+            lg: 8,
+            xl: 8,
+            style: {
+              padding: "1rem",
+            },
+            children: [
+              {
+                component: "div",
+                className:
+                  "gx-d-flex gx-align-items-top gx-justify-content-left",
+                children: [
+                  {
+                    component: "div",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-crm",
+                        style: {
+                          fontSize: "48px",
+                          color: "#7141b1",
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    component: "div",
+                    className: "gx-ml-3",
+                    children: [
+                      {
+                        component: "Title",
+                        level: 3,
+                        className:
+                          "gx-font-weight-bold gx-text-transform-capitalize",
+                        text: "Web development",
+                      },
+                      {
+                        component: "Paragraph",
+                        text:
+                          "We carry more than just good coding skills. Our experience makes us stand out from other web development.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//  ######     #    #     # #     # ####### ######      #####
+//  #     #   # #   ##    # ##    # #       #     #    #     #
+//  #     #  #   #  # #   # # #   # #       #     #          #
+//  ######  #     # #  #  # #  #  # #####   ######      #####
+//  #     # ####### #   # # #   # # #       #   #      #
+//  #     # #     # #    ## #    ## #       #    #     #
+//  ######  #     # #     # #     # ####### #     #    #######
+
+export const engitechBanner02 = [
+  {
+    component: "div",
+    className: "gx-container",
+    style: {
+      height: "256px",
+    },
+    children: [
+      {
+        component: "div",
+        style: {
+          backgroundImage:
+            "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/02/bg-cta1-home1.jpg)",
+          backgroundSize: "cover",
+          height: "100%",
+        },
+        children: [
+          {
+            component: "div",
+            className:
+              "gx-d-flex gx-align-items-center gx-justify-content-between gx-mb-4",
+            style: {
+              padding: "2rem",
+            },
+            children: [
+              {
+                component: "div",
+                children: [
+                  {
+                    component: "Title",
+                    level: 5,
+                    className: "gx-text-transform-uppercase",
+                    style: {
+                      color: "#fff",
+                      margin: "0",
+                    },
+                    text: "// Our service",
+                  },
+                  {
+                    component: "Title",
+                    className:
+                      "gx-text-transform-capitalize gx-font-weight-bold",
+                    level: 1,
+                    style: {
+                      color: "#fff",
+                      margin: "10px 0 0 0",
+                      textTransform: "capitalize",
+                      width: "100%",
+                    },
+                    text: "we offer a wide variaty of IT services",
+                  },
+                ],
+              },
+              {
+                component: "Link",
+                to: "#",
+                children: [
+                  {
+                    component: "Button",
+                    outlined: true,
+                    size: "large",
+                    type: "primary",
+                    style: {
+                      color: "#fff",
+                      borderRadius: "0px",
+                      backgroundColor: "none",
+                      borderColor: "#fff !important",
+                    },
+                    text: "ALL SERVICES",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//   #####     #    ######  ####### #     #  #####  #
+//  #     #   # #   #     # #     # #     # #     # #    #
+//  #        #   #  #     # #     # #     # #       #    #
+//  #       #     # ######  #     # #     #  #####  #    #
+//  #       ####### #   #   #     # #     #       # #######
+//  #     # #     # #    #  #     # #     # #     #      #
+//   #####  #     # #     # #######  #####   #####       #
+export const engitechCarousel04 = [
+  {
+    component: "div",
+    className: "gx-mt-4 gx-mb-4",
+    children: [
+      {
+        component: "div",
+        className:
+          "gx-container gx-mb-4 gx-d-flex gx-jusitfy-content-between gx-align-items-center",
+        children: [
+          {
+            component: "div",
+            children: [
+              {
+                component: "Title",
+                level: 5,
+                className: "gx-text-transform-uppercase",
+                style: {
+                  color: "#7141b1",
+                  margin: "0",
+                },
+                text: "// LATEST CASE STUDIES",
+              },
+              {
+                component: "Title",
+                className: "gx-text-transform-capitalize gx-font-weight-bold",
+                level: 1,
+                style: {
+                  color: "#111",
+                  margin: "10px 0 0 0",
+                  textTransform: "capitalize",
+                  width: "100%",
+                },
+                text: "Introduce Our Projects",
+              },
+            ],
+          },
+          {
+            component: "Paragraph",
+            style: {
+              width: "80%",
+            },
+            text:
+              "Software development outsourcing is just a tool to achieve business goals. But there is no way to get worthwhile results without cooperation and trust between a client company.",
+          },
+        ],
+      },
+      {
+        component: "Carousel",
+        autoplay: true,
+        cellSpacing: 4,
+        sliceWidth: 0.2,
+        slidesToShow:
+          window.innerWidth > 1280 ? 5 : window.innerWidth < 680 ? 1 : 3,
+        children: [
+          {
+            component: "div",
+            children: [
+              {
+                component: "Link",
+                to: "#",
+                children: [
+                  {
+                    component: "img",
+                    style: {
+                      width: "100%",
+                      height: "auto",
+                      marginBottom: "-150px",
+                    },
+                    src:
+                      "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2019/11/project7-720x520.jpg",
+                  },
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "h1",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Social media app",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              textTransform: "uppercase",
+                            },
+                            text: "design/technology",
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              top: "-88px",
+                              right: "-88px",
+                              width: "188px",
+                              height: "188px",
+                              backgroundColor: "#332d5f",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  top: "115px",
+                                  right: "104px",
+                                  color: "blue",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-arrow-right",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "Link",
+                to: "#",
+                children: [
+                  {
+                    component: "img",
+                    style: {
+                      width: "100%",
+                      height: "auto",
+                      marginBottom: "-150px",
+                    },
+                    src:
+                      "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2019/11/project7-720x520.jpg",
+                  },
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "h1",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Social media app",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              textTransform: "uppercase",
+                            },
+                            text: "design/technology",
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              top: "-88px",
+                              right: "-88px",
+                              width: "188px",
+                              height: "188px",
+                              backgroundColor: "#332d5f",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  top: "115px",
+                                  right: "104px",
+                                  color: "blue",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-arrow-right",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "Link",
+                to: "#",
+                children: [
+                  {
+                    component: "img",
+                    style: {
+                      width: "100%",
+                      height: "auto",
+                      marginBottom: "-150px",
+                    },
+                    src:
+                      "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2019/11/project7-720x520.jpg",
+                  },
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "h1",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Social media app",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              textTransform: "uppercase",
+                            },
+                            text: "design/technology",
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              top: "-88px",
+                              right: "-88px",
+                              width: "188px",
+                              height: "188px",
+                              backgroundColor: "#332d5f",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  top: "115px",
+                                  right: "104px",
+                                  color: "blue",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-arrow-right",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            children: [
+              {
+                component: "Link",
+                to: "#",
+                children: [
+                  {
+                    component: "img",
+                    style: {
+                      width: "100%",
+                      height: "auto",
+                      marginBottom: "-150px",
+                    },
+                    src:
+                      "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2019/11/project7-720x520.jpg",
+                  },
+                  {
+                    component: "div",
+                    style: {
+                      border: "1px solid #46416B",
+                      boxSizing: "border-box",
+                      display: "block",
+                      backgroundColor: "#262051",
+                      // padding: "43px 30px 65px",
+                      position: "inherit",
+                      margin: "1rem",
+                    },
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          overflow: "hidden",
+                          position: "relative",
+                          padding: "43px 30px 65px",
+                          background: "#262051",
+                          color: "#aeaacb",
+                        },
+                        children: [
+                          {
+                            component: "h1",
+                            style: {
+                              position: "relative",
+                              color: "#fff",
+                              fontSize: "32px",
+                              marginBottom: "1rem",
+                            },
+                            text: "Social media app",
+                          },
+                          {
+                            component: "p",
+                            style: {
+                              color: "#aeaacb",
+                              fontSize: "16px",
+                              textTransform: "uppercase",
+                            },
+                            text: "design/technology",
+                          },
+                          {
+                            component: "div",
+                            style: {
+                              position: "absolute",
+                              top: "-88px",
+                              right: "-88px",
+                              width: "188px",
+                              height: "188px",
+                              backgroundColor: "#332d5f",
+                              ["-webkit-border-radius"]: "50%",
+                              ["-webkit-transition"]: "all 0.3s linear",
+                            },
+                            children: [
+                              {
+                                component: "i",
+                                style: {
+                                  position: "absolute",
+                                  top: "115px",
+                                  right: "104px",
+                                  color: "blue",
+                                  fontSize: "32px",
+                                },
+                                className: "icon icon-arrow-right",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//  ######     #    #     # #     # ####### ######      #####
+//  #     #   # #   ##    # ##    # #       #     #    #     #
+//  #     #  #   #  # #   # # #   # #       #     #          #
+//  ######  #     # #  #  # #  #  # #####   ######      #####
+//  #     # ####### #   # # #   # # #       #   #            #
+//  #     # #     # #    ## #    ## #       #    #     #     #
+//  ######  #     # #     # #     # ####### #     #     #####
+export const engitechBanner03 = [
+  {
+    component: "div",
+    className: "gx-text-center",
+    style: {
+      // height: '256px'
+    },
+    children: [
+      {
+        component: "div",
+        style: {
+          backgroundImage:
+            "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/02/bg-tech-home1.jpg)",
+          backgroundSize: "cover",
+          height: "100%",
+        },
+        children: [
+          {
+            component: "div",
+            className: "gx-mb-4 gx-container",
+            style: {
+              padding: "7rem 0rem 3rem 0rem",
+            },
+            children: [
+              {
+                component: "div",
+                className: "gx-mb-4",
+                children: [
+                  {
+                    component: "Title",
+                    level: 5,
+                    className: "gx-text-transform-uppercase",
+                    style: {
+                      color: "#fff",
+                      margin: "0",
+                    },
+                    text: "// Our service",
+                  },
+                  {
+                    component: "Title",
+                    className:
+                      "gx-text-transform-capitalize gx-font-weight-bold",
+                    level: 1,
+                    style: {
+                      color: "#fff",
+                      margin: "10px 0 0 0",
+                      textTransform: "capitalize",
+                      width: "100%",
+                    },
+                    text: "we offer a wide variaty of IT services",
+                  },
+                ],
+              },
+              {
+                component: "Row",
+                className: "gx-container gx-text-center gx-mb-4",
+
+                children: [
+                  {
+                    component: "Col",
+
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 4,
+                    xs: 4,
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          border: "0.1px solid #ffffff8a",
+                          padding: "2rem 1rem",
+                          width: "100%",
+                        },
+                        children: [
+                          {
+                            component: "i",
+                            className: "icon icon-crm",
+                            style: {
+                              fontSize: "32px",
+                              color: "#fff",
+                              fontWeight: "lighter",
+                            },
+                          },
+                          {
+                            component: "h6",
+                            style: {
+                              textTransform: "uppercase",
+                              fontSize: "18px",
+                              color: "#fff",
+                            },
+                            text: "Web",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 4,
+                    xs: 4,
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          border: "0.1px solid #ffffff8a",
+                          padding: "2rem 1rem",
+                          width: "100%",
+                        },
+                        children: [
+                          {
+                            component: "i",
+                            className: "icon icon-crm",
+                            style: {
+                              fontSize: "32px",
+                              color: "#fff",
+                              fontWeight: "lighter",
+                            },
+                          },
+                          {
+                            component: "h6",
+                            style: {
+                              textTransform: "uppercase",
+                              fontSize: "18px",
+                              color: "#fff",
+                            },
+                            text: "Web",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 4,
+                    xs: 4,
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          border: "0.1px solid #ffffff8a",
+                          padding: "2rem 1rem",
+                          width: "100%",
+                        },
+                        children: [
+                          {
+                            component: "i",
+                            className: "icon icon-crm",
+                            style: {
+                              fontSize: "32px",
+                              color: "#fff",
+                              fontWeight: "lighter",
+                            },
+                          },
+                          {
+                            component: "h6",
+                            style: {
+                              textTransform: "uppercase",
+                              fontSize: "18px",
+                              color: "#fff",
+                            },
+                            text: "Web",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 4,
+                    xs: 4,
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          border: "0.1px solid #ffffff8a",
+                          padding: "2rem 1rem",
+                          width: "100%",
+                        },
+                        children: [
+                          {
+                            component: "i",
+                            className: "icon icon-crm",
+                            style: {
+                              fontSize: "32px",
+                              color: "#fff",
+                              fontWeight: "lighter",
+                            },
+                          },
+                          {
+                            component: "h6",
+                            style: {
+                              textTransform: "uppercase",
+                              fontSize: "18px",
+                              color: "#fff",
+                            },
+                            text: "Web",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 4,
+                    xs: 4,
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          border: "0.1px solid #ffffff8a",
+                          padding: "2rem 1rem",
+                          width: "100%",
+                        },
+                        children: [
+                          {
+                            component: "i",
+                            className: "icon icon-crm",
+                            style: {
+                              fontSize: "32px",
+                              color: "#fff",
+                              fontWeight: "lighter",
+                            },
+                          },
+                          {
+                            component: "h6",
+                            style: {
+                              textTransform: "uppercase",
+                              fontSize: "18px",
+                              color: "#fff",
+                            },
+                            text: "Web",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 8,
+                    lg: 4,
+                    xs: 4,
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          border: "0.1px solid #ffffff8a",
+                          padding: "2rem 1rem",
+                          width: "100%",
+                        },
+                        children: [
+                          {
+                            component: "i",
+                            className: "icon icon-crm",
+                            style: {
+                              fontSize: "32px",
+                              color: "#fff",
+                              fontWeight: "lighter",
+                            },
+                          },
+                          {
+                            component: "h6",
+                            style: {
+                              textTransform: "uppercase",
+                              fontSize: "18px",
+                              color: "#fff",
+                            },
+                            text: "Web",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//  ######     #    #     # #     # ####### ######     #######
+//  #     #   # #   ##    # ##    # #       #     #    #
+//  #     #  #   #  # #   # # #   # #       #     #    #
+//  ######  #     # #  #  # #  #  # #####   ######     ######
+//  #     # ####### #   # # #   # # #       #   #            #
+//  #     # #     # #    ## #    ## #       #    #     #     #
+//  ######  #     # #     # #     # ####### #     #     #####
+export const engitechBanner05 = [
+  {
+    component: "div",
+    className: "gx-text-center",
+    style: {
+      // height: '256px'
+    },
+    children: [
+      {
+        component: "div",
+        style: {
+          backgroundImage:
+            "url(http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2020/01/bg-maps-dots.jpg)",
+          backgroundSize: "cover",
+          height: "100%",
+        },
+        children: [
+          {
+            component: "div",
+            className: "gx-mb-4 gx-container",
+            style: {
+              padding: "7rem 0rem 5rem 0rem",
+            },
+            children: [
+              {
+                component: "div",
+                className: "gx-text-center",
+                style: { marginBottom: "5rem" },
+                children: [
+                  {
+                    component: "Title",
+                    level: 5,
+                    className: "gx-text-transform-uppercase",
+                    style: {
+                      color: "#7141b1",
+                      margin: "0",
+                    },
+                    text: "// Our service",
+                  },
+                  {
+                    component: "Title",
+                    className:
+                      "gx-text-transform-capitalize gx-font-weight-bold",
+                    level: 1,
+                    style: {
+                      color: "#111",
+                      margin: "10px 0 0 0",
+                      textTransform: "capitalize",
+                    },
+                    text: "We are Trusted 15+ Countries Worldwide",
+                  },
+                ],
+              },
+              {
+                component: "Row",
+                className: "gx-mb-4",
+                gutter: [0, 0],
+                children: [
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 12,
+                    lg: 12,
+                    xs: 12,
+
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          backgroundColor: "#fff",
+                          padding: "1rem",
+                          borderRadius: "15px",
+                          filter: "drop-shadow(10px 10px 4px rgb(0 0 0 / 44%))",
+                        },
+                        children: [
+                          {
+                            component: "div",
+                            className:
+                              "gx-d-flex gx-align-items-center gx-justify-content-left",
+                            children: [
+                              {
+                                component: "img",
+                                src:
+                                  "https://engitech.s3.amazonaws.com/images/testi1.png",
+                                // width: "25px",
+                                height: "auto",
+                              },
+                              {
+                                component: "div",
+                                style: {
+                                  padding: "1rem",
+                                },
+                                children: [
+                                  {
+                                    component: "h2",
+                                    text: "Mookle LTD,",
+                                  },
+                                  {
+                                    component: "p",
+                                    text: "Client of company",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                          {
+                            component: "p",
+                            className: "gx-text-left gx-mt-3",
+                            text:
+                              "Very well thought out and articulate communication. Clear milestones, deadlines and fast work. Patience. Infinite patience. No shortcuts. Even if the client is being careless. The best part...always solving problems with great original ideas!.",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    component: "Col",
+                    xs: 24,
+                    sm: 24,
+                    md: 12,
+                    lg: 12,
+                    xs: 12,
+
+                    children: [
+                      {
+                        component: "div",
+                        style: {
+                          backgroundColor: "#fff",
+                          padding: "1rem",
+                          borderRadius: "15px",
+                          filter: "drop-shadow(10px 10px 4px rgb(0 0 0 / 44%))",
+                        },
+                        children: [
+                          {
+                            component: "div",
+                            className:
+                              "gx-d-flex gx-align-items-center gx-justify-content-left",
+                            children: [
+                              {
+                                component: "img",
+                                src:
+                                  "https://engitech.s3.amazonaws.com/images/testi1.png",
+                                // width: "25px",
+                                height: "auto",
+                              },
+                              {
+                                component: "div",
+                                style: {
+                                  padding: "1rem",
+                                },
+                                children: [
+                                  {
+                                    component: "h2",
+                                    text: "Mookle LTD,",
+                                  },
+                                  {
+                                    component: "p",
+                                    text: "Client of company",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                          {
+                            component: "p",
+                            className: "gx-text-left gx-mt-3",
+                            text:
+                              "Very well thought out and articulate communication. Clear milestones, deadlines and fast work. Patience. Infinite patience. No shortcuts. Even if the client is being careless. The best part...always solving problems with great original ideas!.",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+//  ####### ####### ####### #######     #####
+//  #       #     # #     #    #       #     #
+//  #       #     # #     #    #             #
+//  #####   #     # #     #    #        #####
+//  #       #     # #     #    #       #
+//  #       #     # #     #    #       #
+//  #       ####### #######    #       #######
+export const engitechFooter02 = [
+  {
+    component: "div",
+    style: {
+      backgroundColor: "#221F3C",
+      padding: "120px 0 70px 0",
+    },
+    children: [
+      {
+        component: "div",
+        className: "gx-container",
+        children: [
+          {
+            component: "div",
+            className: "gx-text-center",
+            style: {
+              marginBottom: "3rem",
+            },
+            children: [
+              {
+                component: "img",
+                src:
+                  "http://wpdemo.archiwp.com/engitech/wp-content/uploads/sites/4/2019/12/logo-light.png",
+              },
+            ],
+          },
+          {
+            component: "Row",
+            children: [
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 8,
+                lg: 8,
+                xl: 8,
+                children: [
+                  {
+                    component: "div",
+                    className: "gx-text-center",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-chart-composed",
+                        style: {
+                          color: "#43baff",
+                          fontSize: "32px",
+                        },
+                      },
+                      {
+                        component: "h3",
+                        style: {
+                          color: "#fff",
+                          fontSize: "22px",
+                          marginTop: "1.3rem",
+                          marginBottom: "1rem",
+                          textTransform: "capitalize",
+                        },
+                        text: "411 univercity st, seattle USA",
+                      },
+                      {
+                        component: "p",
+                        style: {
+                          color: "#AEAACB",
+                          textTransform: "capitalize",
+                        },
+                        text: "Our address",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 8,
+                lg: 8,
+                xl: 8,
+                children: [
+                  {
+                    component: "div",
+                    className: "gx-text-center",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-chart-composed",
+                        style: {
+                          color: "#43baff",
+                          fontSize: "32px",
+                        },
+                      },
+                      {
+                        component: "h3",
+                        style: {
+                          color: "#fff",
+                          fontSize: "22px",
+                          marginTop: "2rem",
+                          marginBottom: "1rem",
+                          textTransform: "capitalize",
+                        },
+                        text: "411 univercity st, seattle USA",
+                      },
+                      {
+                        component: "p",
+                        style: {
+                          color: "#AEAACB",
+                          textTransform: "capitalize",
+                        },
+                        text: "Our address",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                component: "Col",
+                xs: 24,
+                sm: 24,
+                md: 8,
+                lg: 8,
+                xl: 8,
+                children: [
+                  {
+                    component: "div",
+                    className: "gx-text-center",
+                    children: [
+                      {
+                        component: "i",
+                        className: "icon icon-chart-composed",
+                        style: {
+                          color: "#43baff",
+                          fontSize: "32px",
+                        },
+                      },
+                      {
+                        component: "h3",
+                        style: {
+                          color: "#fff",
+                          fontSize: "22px",
+                          marginTop: "2rem",
+                          marginBottom: "1rem",
+                          textTransform: "capitalize",
+                        },
+                        text: "411 univercity st, seattle USA",
+                      },
+                      {
+                        component: "p",
+                        style: {
+                          color: "#AEAACB",
+                          textTransform: "capitalize",
+                        },
+                        text: "Our address",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            component: "div",
+            className:
+              "gx-text-center gx-d-flex gx-justify-content-center gx-align-items-center",
+            children: [
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  color: "#fff",
+                  fontSize: "18px",
+                  margin: "2rem",
+                },
+                text: "Home",
+              },
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  color: "#fff",
+                  fontSize: "18px",
+                  margin: "2rem",
+                },
+                text: "Home",
+              },
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  color: "#fff",
+                  fontSize: "18px",
+                  margin: "2rem",
+                },
+                text: "Home",
+              },
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  color: "#fff",
+                  fontSize: "18px",
+                  margin: "2rem",
+                },
+                text: "Home",
+              },
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  color: "#fff",
+                  fontSize: "18px",
+                  margin: "2rem",
+                },
+                text: "Home",
+              },
+            ],
+          },
+          {
+            component: "p",
+            className: "gx-text-center",
+            style: {
+              color: "#AEAACB",
+            },
+            text:
+              "Copyright © 2020 Engitech by OceanThemes. All Rights Reserved.",
+          },
+          {
+            component: "div",
+            className:
+              "gx-text-center gx-d-flex gx-justify-content-center gx-align-items-center",
+            children: [
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  backgroundColor: "#FFF",
+                  width: "23px",
+                  paddingTop: "3px",
+                  margin: "5px",
+                  borderRadius: "50% 50% 50% 50%",
+                },
+                children: [
+                  {
+                    component: "i",
+                    style: {
+                      color: "#43baff",
+                      width: "1em",
+                      height: "1em",
+                    },
+                    className: "icon icon-facebook",
+                  },
+                ],
+              },
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  backgroundColor: "#FFF",
+                  width: "23px",
+                  margin: "5px",
+                  paddingTop: "3px",
+                  borderRadius: "50% 50% 50% 50%",
+                },
+                children: [
+                  {
+                    component: "i",
+                    style: {
+                      color: "#43baff",
+                      width: "1em",
+                      height: "1em",
+                    },
+                    className: "icon icon-facebook",
+                  },
+                ],
+              },
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  backgroundColor: "#FFF",
+                  width: "23px",
+                  margin: "5px",
+                  paddingTop: "3px",
+                  borderRadius: "50% 50% 50% 50%",
+                },
+                children: [
+                  {
+                    component: "i",
+                    style: {
+                      color: "#43baff",
+                      width: "1em",
+                      height: "1em",
+                    },
+                    className: "icon icon-facebook",
+                  },
+                ],
+              },
+              {
+                component: "Link",
+                to: "#",
+                style: {
+                  backgroundColor: "#FFF",
+                  width: "23px",
+                  margin: "5px",
+                  paddingTop: "3px",
+                  borderRadius: "50% 50% 50% 50%",
+                },
+                children: [
+                  {
+                    component: "i",
+                    style: {
+                      color: "#43baff",
+                      width: "1em",
+                      height: "1em",
+                    },
+                    className: "icon icon-facebook",
                   },
                 ],
               },

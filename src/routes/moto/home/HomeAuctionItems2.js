@@ -5,6 +5,7 @@ import { Carousel, Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import WidgetHeader from "components/WidgetHeader/index";
 import AuctionItem2 from "./AuctionItem2";
+import { isMobile } from "util/config";
 
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 
@@ -27,7 +28,7 @@ const HomeAuctionItems2 = (props) => {
         autoplay={false}
         infinite={true}
         speed={250}
-        centerMode={true}
+        centerMode={isMobile()}
         slidesToShow={5}
         slidesToScroll={1}
         dots={false}

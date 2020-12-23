@@ -1058,6 +1058,7 @@ tr.ant-table-row {
     }
 
     @media screen and (max-width: @screen-xs-max) {
+      // 576-аас бага
       width: 90% !important;
     }
   }
@@ -1077,4 +1078,19 @@ tr.ant-table-row {
 
 .ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
   top: 20px;
+}
+
+.gx-main-content-wrapper {
+  @media screen and (max-width: @screen-xs-max) {
+    // 576-аас бага
+    // width: 90% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
+
+.moto-compare-table {
+  th {
+    vertical-align: top;
+  }
 }

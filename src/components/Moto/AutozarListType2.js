@@ -22,7 +22,7 @@ const AutozarListType2 = () => {
       </div> */}
 
       {!autozarListContext.autozarList.loading ? (
-        <div className="gx-main-content gx-p-2 gx-p-sm-0">
+        <div className="gx-main-content">
           <AutozarListActionHeader title="Автозар" />
 
           <Row className="gx-d-flex">

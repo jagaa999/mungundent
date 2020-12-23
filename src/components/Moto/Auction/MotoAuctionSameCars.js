@@ -15,6 +15,7 @@ import {
   Descriptions,
 } from "antd";
 import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
+import { motoSpecAuction } from "util/carSpecTranslation";
 
 import moment from "moment";
 import "moment/locale/mn";
@@ -44,14 +45,30 @@ const MotoAuctionSameCars = ({ auctionItem }) => {
       loading={auctionContext.auctionSameList.loading}
     >
       <Descriptions column={2} layout="horizontal" size="small">
-        <Descriptions.Item label={<span className="gx-text-grey">Он</span>}>
+        <Descriptions.Item
+          label={
+            <span className="gx-text-grey">
+              {motoSpecAuction.YEAR.title || "YEAR"}
+            </span>
+          }
+        >
           {auctionItem.YEAR}
         </Descriptions.Item>
-        <Descriptions.Item label={<span className="gx-text-grey">Арал</span>}>
+        <Descriptions.Item
+          label={
+            <span className="gx-text-grey">
+              {motoSpecAuction.KUZOV.title || "KUZOV"}
+            </span>
+          }
+        >
           {htmlEntities.decode(auctionItem.KUZOV)}
         </Descriptions.Item>
         <Descriptions.Item
-          label={<span className="gx-text-grey">Үнэлгээ</span>}
+          label={
+            <span className="gx-text-grey">
+              {motoSpecAuction.RATE.title || "RATE"}
+            </span>
+          }
         >
           {auctionItem.RATE}
         </Descriptions.Item>

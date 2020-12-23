@@ -14,6 +14,7 @@ import MotoAuctionSameCars from "./Auction/MotoAuctionSameCars";
 import AuctionContext from "context/AuctionContext";
 import GeneralDataContext from "context/GeneralDataContext";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
+import { motoSpecAuction } from "util/carSpecTranslation";
 
 const AuctionDetail2 = () => {
   const auctionContext = useContext(AuctionContext);
@@ -138,7 +139,7 @@ const AuctionDetail2 = () => {
             </>
           }
           extra={[
-            `LOT: ${auctionItem.LOT}`,
+            `${motoSpecAuction.LOT.title || "LOT"}: ${auctionItem.LOT}`,
             <div className="gx-d-inline-flex gx-vertical-align-middle">
               <span className="gx-text-black gx-fs-lg gx-mr-2 gx-ml-3 ">
                 {auctionItem.RATE}

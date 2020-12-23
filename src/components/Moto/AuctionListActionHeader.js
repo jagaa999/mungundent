@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 
-import { Button, PageHeader } from "antd";
+import { Button, PageHeader, Tooltip } from "antd";
 import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
 import AuctionContext from "context/AuctionContext";
+import CompareContext from "context/CompareContext";
 import MotoAuctionSort from "./Sort/MotoAuctionSort";
 
 const AuctionListActionHeader = (props) => {
   const filterContext = useContext(FilterContext);
   const auctionListContext = useContext(AuctionContext);
+  const compareContext = useContext(CompareContext);
 
   const toggleFilterDrawer = () => {
     auctionListContext.toggleFilterDrawerOpen();
@@ -31,15 +33,26 @@ const AuctionListActionHeader = (props) => {
         </h3>
       }
       extra={[
-        <Button
-          key="moto-filter-button"
-          size="small"
-          icon={<MyIcon type="iconfilter" />}
-          onClick={toggleFilterDrawer}
-          className="gx-mr-0"
-        >
-          Шүүлтүүр
-        </Button>,
+        <Tooltip title="Шүүлтүүр нээх">
+          <Button
+            key="moto-filter-button"
+            size="small"
+            icon={<MyIcon type="iconfilter" />}
+            onClick={toggleFilterDrawer}
+            className="gx-mr-0"
+            style={{ width: "40px" }}
+          ></Button>
+        </Tooltip>,
+        <Tooltip title="Харьцуулалт нээх">
+          <Button
+            key="moto-filter-button"
+            size="small"
+            icon={<MyIcon type="iconcompare" />}
+            onClick={compareContext.toggleDrawer}
+            className="gx-ml-1 gx-mr-0"
+            style={{ width: "40px" }}
+          ></Button>
+        </Tooltip>,
 
         <MotoAuctionSort key="motosort" />,
       ]}

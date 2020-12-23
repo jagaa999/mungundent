@@ -8,6 +8,8 @@ import "moment/locale/mn";
 import accounting from "accounting";
 
 import { Alert, Row, Col, Image, Descriptions } from "antd";
+import { motoSpecAuction } from "util/carSpecTranslation";
+
 import MotoAuctionDetailImages from "./MotoAuctionDetailImages";
 
 const AuctionDetail2 = ({ auctionItem }) => {
@@ -41,22 +43,38 @@ const AuctionDetail2 = ({ auctionItem }) => {
               className="moto-auction-head-description"
             >
               <Descriptions.Item
-                label={<span className="gx-text-grey">Хувилбар</span>}
+                label={
+                  <span className="gx-text-grey">
+                    {motoSpecAuction.GRADE.title || "GRADE"}
+                  </span>
+                }
               >
                 {htmlEntities.decode(auctionItem.GRADE)}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Тоноглол</span>}
+                label={
+                  <span className="gx-text-grey">
+                    {motoSpecAuction.EQUIP.title || "EQUIP"}
+                  </span>
+                }
               >
                 {htmlEntities.decode(auctionItem.EQUIP)}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Арал</span>}
+                label={
+                  <span className="gx-text-grey">
+                    {motoSpecAuction.KUZOV.title || "KUZOV"}
+                  </span>
+                }
               >
                 {htmlEntities.decode(auctionItem.KUZOV)}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Гүйлт</span>}
+                label={
+                  <span className="gx-text-grey">
+                    {motoSpecAuction.MILEAGE.title || "MILEAGE"}
+                  </span>
+                }
               >
                 {accounting.formatMoney(auctionItem.MILEAGE, {
                   symbol: "км",
@@ -67,7 +85,11 @@ const AuctionDetail2 = ({ auctionItem }) => {
               </Descriptions.Item>
 
               <Descriptions.Item
-                label={<span className="gx-text-grey">Хөдөлгүүр</span>}
+                label={
+                  <span className="gx-text-grey">
+                    {motoSpecAuction.ENG_V.title || "ENG_V"}
+                  </span>
+                }
               >
                 {accounting.formatMoney(auctionItem.ENG_V, {
                   symbol: "cc",
@@ -77,12 +99,20 @@ const AuctionDetail2 = ({ auctionItem }) => {
                 })}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Хөтлөгч</span>}
+                label={
+                  <span className="gx-text-grey">
+                    {motoSpecAuction.PRIV.title || "PRIV"}
+                  </span>
+                }
               >
                 {auctionItem.PRIV}
               </Descriptions.Item>
               <Descriptions.Item
-                label={<span className="gx-text-grey">Хроп</span>}
+                label={
+                  <span className="gx-text-grey">
+                    {motoSpecAuction.KPP.title || "KPP"}
+                  </span>
+                }
               >
                 {auctionItem.KPP} {auctionItem.KPP_TYPE}
               </Descriptions.Item>
@@ -148,7 +178,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
               INFO */}
         {auctionItem.STATUS !== "" && (
           <Alert
-            message="STATUS"
+            message={motoSpecAuction.STATUS.title || "STATUS"}
             description={`Төлөв: ${auctionItem.STATUS}`}
             type="warning"
             showIcon={true}
@@ -156,7 +186,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
         )}
         {auctionItem.FINISH !== "" && (
           <Alert
-            message="FINISH"
+            message={motoSpecAuction.FINISH.title || "FINISH"}
             description={`Зарагдсан үнэ: ${accounting.formatMoney(
               auctionItem.FINISH,
               "¥",
@@ -169,7 +199,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
         )}
         {auctionItem.SERIAL !== "" && (
           <Alert
-            message="Нэмэлт мэдээлэл"
+            message={motoSpecAuction.SERIAL.title || "SERIAL"}
             description={`SERIAL: ${auctionItem.SERIAL}`}
             type="info"
             showIcon={true}
@@ -177,7 +207,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
         )}
         {auctionItem.INFO !== "" && (
           <Alert
-            message="Нэмэлт мэдээлэл"
+            message={motoSpecAuction.INFO.title || "INFO"}
             description={`INFO: ${auctionItem.INFO}`}
             type="info"
             showIcon={true}
@@ -208,20 +238,26 @@ const AuctionDetail2 = ({ auctionItem }) => {
               size="small"
               column={1}
             >
-              <Descriptions.Item label="Он">
+              <Descriptions.Item label={motoSpecAuction.YEAR.title || "YEAR"}>
                 {auctionItem.YEAR}
               </Descriptions.Item>
-              <Descriptions.Item label="Фирм">
+              <Descriptions.Item
+                label={motoSpecAuction.MARKA_NAME.title || "MARKA_NAME"}
+              >
                 {auctionItem.MARKA_NAME}
               </Descriptions.Item>
-              <Descriptions.Item label="Марк">
+              <Descriptions.Item
+                label={motoSpecAuction.MODEL_NAME.title || "MODEL_NAME"}
+              >
                 {htmlEntities.decode(auctionItem.MODEL_NAME)}
               </Descriptions.Item>
-              <Descriptions.Item label="Хувилбар">
+              <Descriptions.Item label={motoSpecAuction.GRADE.title || "GRADE"}>
                 {htmlEntities.decode(auctionItem.GRADE)}
               </Descriptions.Item>
 
-              <Descriptions.Item label="Гүйлт">
+              <Descriptions.Item
+                label={motoSpecAuction.MILEAGE.title || "MILEAGE"}
+              >
                 {accounting.formatMoney(auctionItem.MILEAGE, {
                   symbol: "км",
                   format: "%v %s",
@@ -229,7 +265,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
                   thousand: "'",
                 })}
               </Descriptions.Item>
-              <Descriptions.Item label="Тоноглол">
+              <Descriptions.Item label={motoSpecAuction.EQUIP.title || "EQUIP"}>
                 {auctionItem.EQUIP}
               </Descriptions.Item>
             </Descriptions>
@@ -257,7 +293,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
               size="small"
               column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
             >
-              <Descriptions.Item label="Хөдөлгүүр">
+              <Descriptions.Item label={motoSpecAuction.ENG_V.title || "ENG_V"}>
                 {accounting.formatMoney(auctionItem.ENG_V, {
                   symbol: "cc",
                   format: "%v %s",
@@ -265,7 +301,7 @@ const AuctionDetail2 = ({ auctionItem }) => {
                   thousand: "'",
                 })}
               </Descriptions.Item>
-              <Descriptions.Item label="Чадал">
+              <Descriptions.Item label={motoSpecAuction.PW.title || "PW"}>
                 {accounting.formatMoney(auctionItem.PW, {
                   symbol: "kW",
                   format: "%v %s",
@@ -273,16 +309,16 @@ const AuctionDetail2 = ({ auctionItem }) => {
                   thousand: "'",
                 })}
               </Descriptions.Item>
-              <Descriptions.Item label="Арал">
+              <Descriptions.Item label={motoSpecAuction.KUZOV.title || "KUZOV"}>
                 {auctionItem.KUZOV}
               </Descriptions.Item>
-              <Descriptions.Item label="Өнгө">
+              <Descriptions.Item label={motoSpecAuction.COLOR.title || "COLOR"}>
                 {auctionItem.COLOR}
               </Descriptions.Item>
-              <Descriptions.Item label="Хроп">
+              <Descriptions.Item label={motoSpecAuction.KPP.title || "KPP"}>
                 {auctionItem.KPP} {auctionItem.KPP_TYPE}
               </Descriptions.Item>
-              <Descriptions.Item label="Хөтлөгч">
+              <Descriptions.Item label={motoSpecAuction.PRIV.title || "PRIV"}>
                 {auctionItem.PRIV}
               </Descriptions.Item>
             </Descriptions>

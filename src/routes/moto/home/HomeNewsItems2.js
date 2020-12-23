@@ -5,12 +5,15 @@ import { Carousel, Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import WidgetHeader from "components/WidgetHeader/index";
 import NewsItem2 from "./NewsItem2";
+import { isMobile } from "util/config";
 
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 
 const HomeNewsItems2 = (props) => {
   // const [newsItems, setNewsItems] = useState([]);
   const newsOtherSlider = useRef();
+
+  console.log("isMobile", isMobile());
 
   return (
     <>
@@ -28,7 +31,10 @@ const HomeNewsItems2 = (props) => {
         autoplay={false}
         infinite={true}
         speed={250}
-        centerMode={true}
+        centerMode={isMobile()}
+        // centerMode={false}
+        // centerMode={true}
+        // centerMode={null}
         slidesToShow={5}
         slidesToScroll={1}
         dots={false}

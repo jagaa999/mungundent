@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // import { unescape } from "lodash";
 import { Html5Entities } from "html-entities";
@@ -7,14 +7,17 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 
-import { Image, Table, Tooltip, Tag } from "antd";
+import { Image, Table, Tooltip, Tag, Button } from "antd";
+import MyIcon from "util/iconFunction";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import TweenOne from "rc-tween-one";
 
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
+import CompareContext from "context/CompareContext";
 
 const AuctionListItem3 = ({ auctionItem }) => {
-  console.log("Манай машин - ", auctionItem);
+  // console.log("Манай машин - ", auctionItem);
+  const compareContext = useContext(CompareContext);
   const htmlEntities = new Html5Entities();
 
   const columns = [
@@ -101,6 +104,18 @@ const AuctionListItem3 = ({ auctionItem }) => {
                 </Tag>
               </div>
             )}
+
+            <Tooltip title="Харьцуулалтад нэмэх">
+              <Button
+                key="moto-filter-button"
+                size="small"
+                icon={<MyIcon type="iconcompare" />}
+                onClick={(e) => compareContext.addItem(record, "auction")}
+                className="moto-badge-4"
+                // className="gx-mt-2"
+                style={{ width: "40px" }}
+              ></Button>
+            </Tooltip>
           </div>
         </TweenOne>
       ),

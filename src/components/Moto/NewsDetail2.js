@@ -128,10 +128,7 @@ const NewsDetailComponent = () => {
         : newsItem.imagemain;
 
     return (
-      <div
-        key={newsItem.newsid}
-        className="gx-main-content news-detail gx-p-2 gx-p-sm-0"
-      >
+      <div key={newsItem.newsid} className="gx-main-content news-detail">
         {/* <NewsDetailHeader newsItem={newsItem} member={member} /> */}
 
         {/* <NewsButtonPanel newsItem={newsItem} /> */}

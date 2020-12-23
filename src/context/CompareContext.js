@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 
 import { Html5Entities } from "html-entities";
 import { Button, Drawer, Tooltip, Row, Col, Card, Image, Tag } from "antd";
-import {
-  CloseCircleOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import MyIcon from "util/iconFunction";
+import { CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import AutozarListItemMainImage from "components/Moto/Autozar/AutozarListItemMainImage";
 
@@ -243,7 +238,13 @@ export const CompareStore = (props) => {
         title={
           <>
             <Link to="/compare">
-              <Button type="primary" size="small" className="gx-m-0">
+              <Button
+                type="primary"
+                size="small"
+                className="gx-m-0"
+                icon={<MyIcon type="iconcompare" />}
+                onClick={toggleDrawer}
+              >
                 Харьцуулах
               </Button>
             </Link>

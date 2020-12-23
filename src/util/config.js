@@ -50,4 +50,10 @@ module.exports = {
       sm: { span: 17 },
     },
   },
+
+  isMobile: () => {
+    if (window.innerWidth < 576) {
+      return true;
+    } else return false;
+  },
 };

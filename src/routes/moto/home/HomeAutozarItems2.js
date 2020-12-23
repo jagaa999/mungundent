@@ -5,6 +5,7 @@ import { Carousel, Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import WidgetHeader from "components/WidgetHeader/index";
 import AutozarItem2 from "./AutozarItem2";
+import { isMobile } from "util/config";
 
 const HomeAutozarItems2 = (props) => {
   const newsOtherSlider = useRef();
@@ -25,7 +26,7 @@ const HomeAutozarItems2 = (props) => {
         autoplay={false}
         infinite={true}
         speed={250}
-        centerMode={true}
+        centerMode={isMobile()}
         slidesToShow={5}
         slidesToScroll={1}
         dots={false}

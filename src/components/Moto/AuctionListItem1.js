@@ -9,15 +9,18 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 import toBoolean from "util/booleanFunction";
-import { Card, Badge, Tag, Tooltip, Image, List, Avatar, Divider } from "antd";
+import { Card, Tag, Tooltip, Button } from "antd";
+import MyIcon from "util/iconFunction";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
+import CompareContext from "context/CompareContext";
 
 const { Meta } = Card;
 // const ScrollOverPack = ScrollAnim.OverPack;
 
 const AuctionListItem1 = ({ auctionItem }) => {
   // console.log("Манай бараа - ", auctionItem);
+  const compareContext = useContext(CompareContext);
   const htmlEntities = new Html5Entities();
 
   return (
@@ -143,6 +146,17 @@ const AuctionListItem1 = ({ auctionItem }) => {
                 <div>{moment(auctionItem.AUCTION_DATE).format("HH:mm")}</div>
                 <div>{auctionItem.STATUS}</div>
               </span>
+            </Tooltip>
+            <Tooltip title="Харьцуулалтад нэмэх">
+              <Button
+                key="moto-filter-button"
+                size="small"
+                icon={<MyIcon type="iconcompare" />}
+                onClick={(e) => compareContext.addItem(auctionItem, "auction")}
+                // className="moto-badge-4"
+                className="gx-mt-2"
+                style={{ width: "40px" }}
+              ></Button>
             </Tooltip>
           </div>
         </div>

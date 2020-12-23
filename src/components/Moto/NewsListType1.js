@@ -23,7 +23,7 @@ const NewsListType1 = () => {
       </div>
 
       {!newsListContext.newsList.loading ? (
-        <div className="gx-main-content gx-p-2 gx-p-sm-0">
+        <div className="gx-main-content">
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">

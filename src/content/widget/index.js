@@ -10,6 +10,12 @@ import {
   engitechCarousel03,
   engitechCard02,
   engitechCard03,
+  engitechCard04,
+  engitechBanner02,
+  engitechCarousel04,
+  engitechBanner03,
+  engitechBanner05,
+  engitechFooter02,
 } from "./simpleData";
 
 import {
@@ -25,8 +31,10 @@ import {
   Divider,
   List,
   Input,
+  Typography,
 } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
+const { Title, Paragraph } = Typography;
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
 const ListItem = List.Item;
@@ -56,6 +64,8 @@ view.setComponentMap({
   ListItemMeta,
   Input,
   Search,
+  Title,
+  Paragraph,
 });
 
 const HomePage = () => {
@@ -76,6 +86,12 @@ const HomePage = () => {
           {view.parseSchema(engitechCarousel03)}
           {view.parseSchema(engitechCard02)}
           {view.parseSchema(engitechCard03)}
+          {view.parseSchema(engitechCard04)}
+          {view.parseSchema(engitechBanner02)}
+          {view.parseSchema(engitechCarousel04)}
+          {view.parseSchema(engitechBanner03)}
+          {view.parseSchema(engitechBanner05)}
+          {view.parseSchema(engitechFooter02)}
         </Content>
       </Layout>
 

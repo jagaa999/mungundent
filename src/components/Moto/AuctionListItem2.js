@@ -7,6 +7,7 @@ import "moment/locale/mn";
 import accounting from "accounting";
 import { Html5Entities } from "html-entities";
 import { Tooltip, Card, Tag, Image, Button } from "antd";
+import MyIcon from "util/iconFunction";
 import {
   ExclamationCircleOutlined,
   DeleteOutlined,
@@ -129,7 +130,7 @@ const AuctionListItem2 = ({ auctionItem }) => {
             </Tag>
           </div>
         )}
-
+        {/* 
         <Tooltip title="Харьцуулж харах хайрцагт нэмэх">
           <Button
             type="text"
@@ -137,9 +138,18 @@ const AuctionListItem2 = ({ auctionItem }) => {
             size="small"
             onClick={(e) => compareContext.addItem(auctionItem, "auction")}
           >
-            {/* <ApartmentOutlined /> */}
             Харьцуулах
           </Button>
+        </Tooltip> */}
+        <Tooltip title="Харьцуулалтад нэмэх">
+          <Button
+            key="moto-filter-button"
+            size="small"
+            icon={<MyIcon type="iconcompare" />}
+            onClick={(e) => compareContext.addItem(auctionItem, "auction")}
+            className="moto-badge-4"
+            style={{ width: "40px" }}
+          ></Button>
         </Tooltip>
       </Card>
     </TweenOne>
