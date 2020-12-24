@@ -83,7 +83,7 @@ const uiConfig = {
     {
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       // scopes: ["public_profile", "email", "user_likes", "user_friends"],
-      scopes: ["public_profile", "email", "user_likes"],
+      scopes: ["public_profile", "email"],
       // customParameters: {
       //   // Forces password re-entry.
       //   auth_type: 'reauthenticate'

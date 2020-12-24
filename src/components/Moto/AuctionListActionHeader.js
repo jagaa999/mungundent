@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
-import { Button, PageHeader, Tooltip } from "antd";
+import { Button, PageHeader, Tooltip, Divider } from "antd";
 import MyIcon from "util/iconFunction";
+
+import AuctionListInfo from "./AuctionListInfo";
 
 import FilterContext from "context/FilterContext";
 import AuctionContext from "context/AuctionContext";
@@ -17,46 +19,67 @@ const AuctionListActionHeader = (props) => {
     auctionListContext.toggleFilterDrawerOpen();
   };
 
-  return (
-    <PageHeader
-      className="moto-pageheader"
-      title={
-        <h3>
-          Аукшины автомашинууд
-          {filterContext.totalcount > 0 ? (
-            <span className="gx-ml-2 gx-text-grey gx-fs-sm">
-              ({filterContext.totalcount})
-            </span>
-          ) : (
-            ""
-          )}
-        </h3>
-      }
-      extra={[
-        <Tooltip title="Шүүлтүүр нээх">
-          <Button
-            key="moto-filter-button"
-            size="small"
-            icon={<MyIcon type="iconfilter" />}
-            onClick={toggleFilterDrawer}
-            className="gx-mr-0"
-            style={{ width: "40px" }}
-          ></Button>
-        </Tooltip>,
-        <Tooltip title="Харьцуулалт нээх">
-          <Button
-            key="moto-filter-button"
-            size="small"
-            icon={<MyIcon type="iconcompare" />}
-            onClick={compareContext.toggleDrawer}
-            className="gx-ml-1 gx-mr-0"
-            style={{ width: "40px" }}
-          ></Button>
-        </Tooltip>,
+  const [showInfo, setShowInfo] = useState(false);
 
-        <MotoAuctionSort key="motosort" />,
-      ]}
-    ></PageHeader>
+  return (
+    <>
+      {showInfo && (
+        <div>
+          <AuctionListInfo />
+          <Divider className="gx-my-3" />
+        </div>
+      )}
+
+      <PageHeader
+        className="moto-pageheader"
+        title={
+          <h3>
+            Аукшины автомашинууд
+            {filterContext.totalcount > 0 ? (
+              <span className="gx-ml-2 gx-text-grey gx-fs-sm">
+                ({filterContext.totalcount})
+              </span>
+            ) : (
+              ""
+            )}
+          </h3>
+        }
+        extra={[
+          <Tooltip title="Зөвлөмж нээх">
+            <Button
+              key="moto-filter-button"
+              size="small"
+              icon={<MyIcon type="iconhelp" />}
+              onClick={(e) => setShowInfo(!showInfo)}
+              className="gx-mr-0"
+              style={{ width: "40px" }}
+            ></Button>
+          </Tooltip>,
+          <Tooltip title="Шүүлтүүр нээх">
+            <Button
+              key="moto-filter-button"
+              size="small"
+              icon={<MyIcon type="iconfilter" />}
+              onClick={toggleFilterDrawer}
+              className="gx-ml-1 gx-mr-0"
+              style={{ width: "40px" }}
+            ></Button>
+          </Tooltip>,
+          <Tooltip title="Харьцуулалт нээх">
+            <Button
+              key="moto-filter-button"
+              size="small"
+              icon={<MyIcon type="iconcompare" />}
+              onClick={compareContext.toggleDrawer}
+              className="gx-ml-1 gx-mr-0"
+              style={{ width: "40px" }}
+            ></Button>
+          </Tooltip>,
+
+          <MotoAuctionSort key="motosort" />,
+        ]}
+      ></PageHeader>
+    </>
   );
 };
 

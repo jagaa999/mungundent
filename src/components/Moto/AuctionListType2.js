@@ -5,7 +5,6 @@ import { Col, Row, Divider } from "antd";
 
 import AuctionListItem2 from "./AuctionListItem2";
 import AuctionListActionHeader from "./AuctionListActionHeader";
-import AuctionListInfo from "./AuctionListInfo";
 import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
 import AuctionContext from "context/AuctionContext";
 import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
@@ -23,8 +22,6 @@ const AuctionListType2 = () => {
 
       {!auctionListContext.auctionList.loading ? (
         <>
-          <AuctionListInfo />
-          <Divider className="gx-my-3" />
           <AuctionListActionHeader />
           <AuctionFilterHeader />
           <div className="gx-main-content">

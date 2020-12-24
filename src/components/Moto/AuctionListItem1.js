@@ -125,7 +125,7 @@ const AuctionListItem1 = ({ auctionItem }) => {
             {accounting.formatMoney(auctionItem.AVG_PRICE, "¥", 0, "'")}
           </div>
 
-          <div className="moto-top-right">
+          <div className="moto-top-right gx-d-none gx-d-sm-block">
             <div style={{ minWidth: "90px" }}>
               <div className="gx-text-black gx-fs-lg">{auctionItem.RATE}</div>
               <MotoAuctionStarRatingComponent
@@ -136,7 +136,7 @@ const AuctionListItem1 = ({ auctionItem }) => {
             </div>
           </div>
 
-          <div className="moto-bottom-right">
+          <div className="moto-bottom-right gx-d-none gx-d-sm-block">
             <div className="gx-text-grey gx-fs-sm">{auctionItem.AUCTION}</div>
             <Tooltip
               title={`Дуудлагын огноо (Япон цагаар) ${auctionItem.AUCTION_DATE}`}
@@ -147,18 +147,19 @@ const AuctionListItem1 = ({ auctionItem }) => {
                 <div>{auctionItem.STATUS}</div>
               </span>
             </Tooltip>
-            <Tooltip title="Харьцуулалтад нэмэх">
-              <Button
-                key="moto-filter-button"
-                size="small"
-                icon={<MyIcon type="iconcompare" />}
-                onClick={(e) => compareContext.addItem(auctionItem, "auction")}
-                // className="moto-badge-4"
-                className="gx-mt-2"
-                style={{ width: "40px" }}
-              ></Button>
-            </Tooltip>
           </div>
+
+          <Tooltip title="Харьцуулалтад нэмэх">
+            <Button
+              key="moto-filter-button"
+              size="small"
+              icon={<MyIcon type="iconcompare" />}
+              onClick={(e) => compareContext.addItem(auctionItem, "auction")}
+              // className="moto-badge-4"
+              className="gx-mt-2"
+              style={{ width: "40px" }}
+            ></Button>
+          </Tooltip>
         </div>
         {auctionItem.STATUS !== "" && (
           <div className="moto-auction-badge">
