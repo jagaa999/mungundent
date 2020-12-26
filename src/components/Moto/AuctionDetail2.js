@@ -11,6 +11,8 @@ import AuctionDetail2Lot from "./Auction/AuctionDetail2Lot";
 import MotoAuctionDetailPrice from "./Auction/MotoAuctionDetailPrice";
 import MotoAuctionSameCars from "./Auction/MotoAuctionSameCars";
 
+import AuctionControlButton from "./Auction/AuctionControlButton";
+
 import AuctionContext from "context/AuctionContext";
 import GeneralDataContext from "context/GeneralDataContext";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
@@ -210,6 +212,13 @@ const AuctionDetail2 = () => {
             />
           </Col>
         </Row>
+
+        <div>
+          <AuctionControlButton
+            auctionItem={auctionItem}
+            tableName="MOTO_AUCTION"
+          />
+        </div>
       </div>
     );
   } else {

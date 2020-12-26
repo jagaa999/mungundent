@@ -38,7 +38,7 @@ const MemberItems = () => {
           </Scrollbars>
         </TabPane> */}
 
-        <TabPane tab="Нийтлэл" key="Нийтлэл">
+        <TabPane tab="Нийтлэл" key="news">
           <Scrollbars
             autoHeight
             autoHeightMin={200}
@@ -47,17 +47,20 @@ const MemberItems = () => {
             autoHideTimeout={2000}
             universal
           >
-            <MemberItemsList memberItems={memberItems} />
+            <MemberItemsList tableName="ECM_NEWS" menu="news" />
           </Scrollbars>
         </TabPane>
 
-        <TabPane tab="Автозар" key="2" disabled>
-          <Scrollbars autoHeight>
-            <ul className="gx-sub-popover">
-              {notifications.map((memberItem, index) => (
-                <MemberItem key={index} memberItem={memberItem} />
-              ))}
-            </ul>
+        <TabPane tab="Аукшин" key="auction">
+          <Scrollbars
+            autoHeight
+            autoHeightMin={200}
+            autoHeightMax={400}
+            autoHide
+            autoHideTimeout={2000}
+            universal
+          >
+            <MemberItemsList tableName="MOTO_AUCTION" menu="auction" />
           </Scrollbars>
         </TabPane>
         <TabPane tab="Tab 3" key="3" disabled>

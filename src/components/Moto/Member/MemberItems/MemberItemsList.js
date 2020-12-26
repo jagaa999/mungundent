@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import { Image } from "cloudinary-react";
-import { defaultSrc } from "util/config";
-import { Avatar, List, Tooltip } from "antd";
+import { Avatar, List, Tooltip, Image as ImageAnt } from "antd";
 import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
 import MemberItemsContext from "context/MemberItemsContext";
 import moment from "moment";
 import "moment/locale/mn";
 
-const MemberItemsList = (props) => {
+const MemberItemsList = ({ tableName, menu }) => {
   const memberItemsContext = useContext(MemberItemsContext);
 
   const myColor = (actionName) => {
@@ -28,13 +26,18 @@ const MemberItemsList = (props) => {
     return myTextColor;
   };
 
-  var MemberItemsList = Object.keys(props.memberItems).map(function (name) {
-    var obj = {};
-    obj = props.memberItems[name];
-    return obj;
+  let MemberItemsList = [];
+
+  Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
+    if (
+      memberItemsContext.state.memberItems[item].tablename === tableName &&
+      memberItemsContext.state.memberItems[item].actionname === "Жоорлох"
+    ) {
+      MemberItemsList.push(memberItemsContext.state.memberItems[item]);
+    }
   });
 
-  console.log("MemberItemsList", MemberItemsList);
+  // console.log("MemberItemsList", MemberItemsList);
 
   return (
     <List
@@ -59,37 +62,11 @@ const MemberItemsList = (props) => {
           ]}
         >
           <List.Item.Meta
-            avatar={
-              // <Avatar shape="square" size="large" src={`${item.imagemain}`} />
-
-              <Image
-                cloudName="motomn"
-                publicId={item.imagemain
-                  .slice(
-                    item.imagemain.indexOf("upload/") + 7,
-                    item.imagemain.length
-                  )
-                  .split(".")
-                  .shift()}
-                crop="fill"
-                loading="lazy"
-                dpr="auto"
-                responsive
-                width="64"
-                gravity="face"
-                quality="auto"
-                placeHolder="blur"
-                responsiveUseBreakpoints="true"
-                className="gx-d-block"
-                default_image="jhannw5jgo2mlvvkvke9"
-                alt={item.imagemain}
-                onError={defaultSrc}
-              />
-            }
+            avatar={<ImageAnt src={item.mainimg} width={64} />}
             title={
               <Tooltip title={moment(item.modifieddate).fromNow()}>
-                <Link to={"/news/" + item.recordid}>
-                  <span className="gx-fs-sm">{item.title}</span>
+                <Link to={`/${menu}/${item.recordid}`}>
+                  <span className="gx-fs-sm">{item.description}</span>
                 </Link>
               </Tooltip>
             }

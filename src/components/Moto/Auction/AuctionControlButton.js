@@ -12,31 +12,38 @@ import {
   ArrowUpOutlined,
   EditOutlined,
 } from "@ant-design/icons";
+import { Html5Entities } from "html-entities";
 
 import ErrorReportModal from "components/Moto/Error/ErrorReportModal";
 
-import NewsDetailContext from "context/NewsDetailContext";
+import AuctionContext from "context/AuctionContext";
 import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
-const NewsControlButton = (props) => {
-  const newsDetailContext = useContext(NewsDetailContext);
+const AuctionControlButton = ({ auctionItem, tableName }) => {
+  const htmlEntities = new Html5Entities();
+
+  const auctionDetailContext = useContext(AuctionContext);
   const memberContext = useContext(MemberContext);
   const memberItemsContext = useContext(MemberItemsContext);
-  const newsItem = newsDetailContext.state.newsDetail;
+  // const auctionItem = auctionDetailContext.auctionDetail.auctionDetail;
 
   const [showErrorReportModal, setShowErrorReportModal] = useState(false);
 
-  // console.log(newsItem);
+  // console.log(auctionItem);
   const actionSave = (actionname) => {
+    const myImages = auctionItem.IMAGES.split("#");
+
     const myValues = {
       id: "",
-      tablename: "ECM_NEWS",
-      recordid: newsItem.newsid || "",
+      tablename: "MOTO_AUCTION",
+      recordid: auctionItem.ID || "",
       actionname: actionname || "Таалагдлаа",
       actiondata: "1",
-      description: newsItem.title,
-      mainimg: newsItem.imagemain || "",
+      description: `${auctionItem.YEAR} ${htmlEntities.decode(
+        auctionItem.MARKA_NAME
+      )} ${htmlEntities.decode(auctionItem.MODEL_NAME)}`,
+      mainimg: myImages[1],
     };
 
     memberItemsContext.saveMemberItem(myValues);
@@ -67,8 +74,7 @@ const NewsControlButton = (props) => {
 
   Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
     const myItem = memberItemsContext.state.memberItems[index];
-    // console.log("memberItemsContext.state.memberItems", myItem);
-    if (myItem.recordid === newsItem.newsid) {
+    if (myItem.recordid === auctionItem.ID && myItem.tablename === tableName) {
       switch (myItem.actionname) {
         case "Таалагдлаа":
           myIsLike.id = myItem.id;
@@ -117,53 +123,6 @@ const NewsControlButton = (props) => {
     </Menu>
   );
 
-  const menuOwnerActions = () => (
-    <Menu>
-      <Menu.Item key="Дээшлүүлэх" onClick={newsDetailContext.upPublishedDate}>
-        <ArrowUpOutlined /> Дээшлүүлэх
-      </Menu.Item>
-
-      <Menu.Item key="Спонсор">
-        <Checkbox
-          checked={toBoolean(newsItem.isfeatured)}
-          onChange={newsDetailContext.toggleIsFeatured}
-        >
-          Спонсор
-        </Checkbox>
-      </Menu.Item>
-
-      <Menu.Item key="Идэвхтэй">
-        <Checkbox
-          checked={toBoolean(newsItem.isactive)}
-          onChange={newsDetailContext.toggleIsActive}
-        >
-          Идэвхтэй
-        </Checkbox>
-      </Menu.Item>
-
-      <Menu.Divider />
-
-      <Menu.Item key="Засах">
-        <Link to={"/news/edit/" + newsItem.newsid}>
-          <EditOutlined /> Засах
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item key="Устгах" onClick={handleMenuClick} danger disabled>
-        <DeleteOutlined /> Устгах
-      </Menu.Item>
-    </Menu>
-  );
-
-  function handleMenuClick(e) {
-    message.info("Click on menu item.");
-    console.log(e);
-  }
-
-  const newsDetailPublisherId =
-    newsDetailContext.state.newsDetail.userpublisherid;
-  const memberSysId = memberContext.state.memberCloudUserSysId;
-
   return (
     <div className="moto-detail-buttons">
       <Dropdown
@@ -180,31 +139,28 @@ const NewsControlButton = (props) => {
       {/* Энд нэвтэрсэн хэрэглэгч нь тухайн нийтлэлийн эзэн мөн эсэхийг шалгана. Биш
       бол гаргахгүй. */}
 
-      {(newsDetailPublisherId === memberSysId ||
-        memberSysId === "1598935351417") && (
-        <Dropdown
-          key="owner_action_button"
-          overlay={menuOwnerActions}
-          placement="bottomRight"
-          trigger={["click"]}
-          // visible="true"
-          arrow
-        >
-          <Button type="primary">
-            <SettingOutlined />
-          </Button>
-        </Dropdown>
-      )}
+      {/* <Dropdown
+        key="owner_action_button"
+        overlay={menuOwnerActions}
+        placement="bottomRight"
+        trigger={["click"]}
+        // visible="true"
+        arrow
+      >
+        <Button type="primary">
+          <SettingOutlined />
+        </Button>
+      </Dropdown> */}
 
       <ErrorReportModal
         showErrorReportModal={showErrorReportModal}
         setShowErrorReportModal={setShowErrorReportModal}
-        item={props.item}
-        tableName="ECM_NEWS"
-        idField="newsid"
+        item={auctionItem}
+        tableName="MOTO_AUCTION"
+        idField="ID"
       />
     </div>
   );
 };
 
-export default NewsControlButton;
+export default AuctionControlButton;

@@ -14,6 +14,7 @@ import MyIcon from "util/iconFunction";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 import CompareContext from "context/CompareContext";
+import AuctionItemButton from "./Auction/AuctionItemButton";
 
 const { Meta } = Card;
 // const ScrollOverPack = ScrollAnim.OverPack;
@@ -149,7 +150,9 @@ const AuctionListItem1 = ({ auctionItem }) => {
             </Tooltip>
           </div>
 
-          <Tooltip title="Харьцуулалтад нэмэх">
+          <AuctionItemButton auctionItem={auctionItem} />
+
+          {/* <Tooltip title="Харьцуулалтад нэмэх">
             <Button
               key="moto-filter-button"
               size="small"
@@ -159,7 +162,7 @@ const AuctionListItem1 = ({ auctionItem }) => {
               className="gx-mt-2"
               style={{ width: "40px" }}
             ></Button>
-          </Tooltip>
+          </Tooltip> */}
         </div>
         {auctionItem.STATUS !== "" && (
           <div className="moto-auction-badge">

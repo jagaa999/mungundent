@@ -43,9 +43,12 @@ export const MemberItemsStore = (props) => {
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
+
         parameters: {
-          systemmetagroupid: "1588074509203718",
+          // systemmetagroupid: "1588074509203718", //Хадгалсан нийтлэл
+          systemmetagroupid: "1588073051944136", //Хадгалсан зүйлс
           showQuery: "0",
+          ignorepermission: "1",
           paging: {
             pageSize: "", //нийтлэлийн тоо
             offset: "1", //хуудасны дугаар
@@ -71,7 +74,7 @@ export const MemberItemsStore = (props) => {
     axios
       .post("", myParamsMemberItems)
       .then((response) => {
-        // console.log("ИРСЭН loadMemberItems response:   ", response);
+        console.log("ИРСЭН loadMemberItems response:   ", response);
 
         const myPaging = response.data.response.result.paging;
         const myArray = response.data.response.result;
@@ -79,7 +82,7 @@ export const MemberItemsStore = (props) => {
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
 
-        // console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
+        console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
 
         setState({
           ...state,
@@ -122,6 +125,7 @@ export const MemberItemsStore = (props) => {
           modifierid: memberContext.state.memberCloudUserSysId,
           modifieddate: Moment().format("YYYY-MM-DD HH:mm:ss"),
           description: values.description || "",
+          mainimg: values.mainimg || "",
         },
       },
     };

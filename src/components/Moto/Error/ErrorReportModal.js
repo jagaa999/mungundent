@@ -2,7 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 
 import NewsDetailContext from "context/NewsDetailContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
-import { Modal, Divider, Button, Form, Input, Radio, Select } from "antd";
+import {
+  Modal,
+  Divider,
+  Button,
+  Form,
+  Input,
+  Radio,
+  Select,
+  message,
+} from "antd";
 import LogsContext from "context/LogsContext";
 
 const { TextArea } = Input;
@@ -30,19 +39,25 @@ const formLayout = {
   wrapperCol: { span: 19 },
 };
 
-const ErrorReportModal = (props) => {
-  console.log("ErrorReportModal props", props);
-
+const ErrorReportModal = ({
+  showErrorReportModal,
+  setShowErrorReportModal,
+  item,
+  tableName,
+  idField = "id",
+}) => {
   const logContext = useContext(LogsContext);
   const [form] = Form.useForm();
 
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
     values.actionName = "Алдаа илгээв";
-    values.tableName = "ECM_NEWS";
+    values.tableName = tableName || "ECM_NEWS";
     values.actionType = values.errorList.join("&");
+    // values.recordId = idField || "id";
     logContext.insertLog(values);
-    props.setShowErrorReportModal(false);
+    setShowErrorReportModal(false);
+    message.success("Алдаа илгээсэнд баярлалаа. Админ шалгаж үзэх болно.");
   };
 
   function handleErrorChange(value) {
@@ -51,12 +66,12 @@ const ErrorReportModal = (props) => {
 
   return (
     <Modal
-      visible={props.showErrorReportModal}
+      visible={showErrorReportModal}
       title="Алдаа илгээх"
       okText="Илгээх"
       cancelText="Болих"
       onCancel={() => {
-        props.setShowErrorReportModal(false);
+        setShowErrorReportModal(false);
       }}
       onOk={() => {
         form
@@ -70,7 +85,7 @@ const ErrorReportModal = (props) => {
           });
       }}
     >
-      <div className="gx-mb-4">{props.item?.title}</div>
+      <div className="gx-mb-4">{item?.title}</div>
 
       <Form
         form={form}
@@ -78,12 +93,12 @@ const ErrorReportModal = (props) => {
         layout="horizontal"
         name="error_modal"
         initialValues={{
-          id: props.item.newsid,
-          title: props.item.title,
+          recordId: item[idField],
+          title: item.title,
           modifier: "public",
         }}
       >
-        <Form.Item name="id" label="ID" hidden={true}>
+        <Form.Item name="recordId" label="ID" hidden={true}>
           <Input />
         </Form.Item>
 

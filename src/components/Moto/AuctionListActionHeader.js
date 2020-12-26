@@ -45,7 +45,7 @@ const AuctionListActionHeader = (props) => {
           </h3>
         }
         extra={[
-          <Tooltip title="Зөвлөмж нээх">
+          <Tooltip title="Зөвлөмж нээх" key="01">
             <Button
               key="moto-filter-button"
               size="small"
@@ -55,7 +55,7 @@ const AuctionListActionHeader = (props) => {
               style={{ width: "40px" }}
             ></Button>
           </Tooltip>,
-          <Tooltip title="Шүүлтүүр нээх">
+          <Tooltip title="Шүүлтүүр нээх" key="02">
             <Button
               key="moto-filter-button"
               size="small"
@@ -65,7 +65,7 @@ const AuctionListActionHeader = (props) => {
               style={{ width: "40px" }}
             ></Button>
           </Tooltip>,
-          <Tooltip title="Харьцуулалт нээх">
+          <Tooltip title="Харьцуулалт нээх" key="03">
             <Button
               key="moto-filter-button"
               size="small"

@@ -49,7 +49,7 @@ const SignIn = () => {
     <>
       <div
         style={{
-          backgroundImage: `url(${"https://i.pinimg.com/originals/fc/32/b4/fc32b40e6b1fe09baf6fbef825f61173.jpg"})`,
+          backgroundImage: `url(${"https://cdn.hipwallpaper.com/i/57/29/QALwRr.jpg"})`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           padding: "10% 5%",

@@ -126,7 +126,7 @@ export const LogsStore = (props) => {
   //   #####  #     #    #    #######
 
   const insertLog = (values) => {
-    // console.log("insertLoginsertLog ---", values);
+    console.log("insertLoginsertLog ---", values);
 
     const myParamsLogInsert = {
       request: {
@@ -149,14 +149,14 @@ export const LogsStore = (props) => {
       },
     };
 
-    // console.log("insertLog ------", myParamsLogInsert);
+    console.log("insertLog ------", myParamsLogInsert);
 
     axios
       .post("", myParamsLogInsert)
       .then((response) => {
-        // console.log("LOG НЭМЭХ", response);
+        console.log("LOG НЭМЭХ", response);
         const myData = response.data.response;
-        // console.log("LOG НЭМЭХ myData", myData);
+        console.log("LOG НЭМЭХ myData", myData);
         if (myData.status === "error") {
           getError(myData.text);
         } else {
