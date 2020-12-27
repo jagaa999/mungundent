@@ -3,7 +3,7 @@ import moment from "moment";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 
-import { Card, Alert, Badge, Table, Row, Col, PageHeader } from "antd";
+import { Card, Alert, Badge, Table, Row, Col, PageHeader, Button } from "antd";
 import Joyride from "react-joyride";
 
 import AuctionDetail2General from "./Auction/AuctionDetail2General";
@@ -17,6 +17,7 @@ import AuctionContext from "context/AuctionContext";
 import GeneralDataContext from "context/GeneralDataContext";
 import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 import { motoSpecAuction } from "util/carSpecTranslation";
+import AuctionItemButton from "./Auction/AuctionItemButton";
 
 const AuctionDetail2 = () => {
   const auctionContext = useContext(AuctionContext);
@@ -127,6 +128,7 @@ const AuctionDetail2 = () => {
             " " +
             htmlEntities.decode(auctionItem.MODEL_NAME)
           }
+          extra={[<AuctionItemButton auctionItem={auctionItem} />]}
         />
         <Card
           className="moto-auction-detail-card"

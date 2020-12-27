@@ -3,15 +3,8 @@ import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
 import { Button, Dropdown, Menu, Checkbox, message } from "antd";
-
-import {
-  WarningTwoTone,
-  UserOutlined,
-  SettingOutlined,
-  DeleteOutlined,
-  ArrowUpOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
+import MyIcon from "util/iconFunction";
+import { UserOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
 
 import ErrorReportModal from "components/Moto/Error/ErrorReportModal";
@@ -36,6 +29,7 @@ const AuctionControlButton = ({ auctionItem, tableName }) => {
 
     const myValues = {
       id: "",
+
       tablename: "MOTO_AUCTION",
       recordid: auctionItem.ID || "",
       actionname: actionname || "Таалагдлаа",
@@ -97,7 +91,7 @@ const AuctionControlButton = ({ auctionItem, tableName }) => {
           checked={myIsLike.checked}
           onChange={(e) => actionMine(e, "Таалагдлаа", myIsLike.id)}
         >
-          Таалагдлаа
+          <MyIcon type="iconlove" className="moto-icon-1-1" /> Таалагдлаа
         </Checkbox>
       </Menu.Item>
 
@@ -106,7 +100,7 @@ const AuctionControlButton = ({ auctionItem, tableName }) => {
           checked={myIsSave.checked}
           onChange={(e) => actionMine(e, "Жоорлох", myIsSave.id)}
         >
-          Жоорлох
+          <MyIcon type="iconbox" className="moto-icon-1-1" /> Жоорлох
         </Checkbox>
       </Menu.Item>
 
@@ -118,7 +112,7 @@ const AuctionControlButton = ({ auctionItem, tableName }) => {
           setShowErrorReportModal(true);
         }}
       >
-        <WarningTwoTone twoToneColor="#eb2f96" /> Алдаа мэдэгдэх
+        <MyIcon type="iconrecycle" className="moto-icon-1-3" /> Алдаа мэдэгдэх
       </Menu.Item>
     </Menu>
   );

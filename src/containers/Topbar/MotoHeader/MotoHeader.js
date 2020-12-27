@@ -50,7 +50,8 @@ const MotoHeader = () => {
                     trigger="click"
                   >
                     <span className="gx-pointer gx-status-pos gx-d-block">
-                      <i className="icon icon-inbox" />
+                      {/* <i className="icon icon-inbox" /> */}
+                      <MyIcon type="iconbox" className="moto-icon-1-5" />
                     </span>
                   </Popover>
                 </li>

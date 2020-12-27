@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
 import { Button, Dropdown, Menu, Checkbox, message } from "antd";
-
+import MyIcon from "util/iconFunction";
 import {
   WarningTwoTone,
   UserOutlined,
@@ -91,7 +91,7 @@ const NewsControlButton = (props) => {
           checked={myIsLike.checked}
           onChange={(e) => actionMine(e, "Таалагдлаа", myIsLike.id)}
         >
-          Таалагдлаа
+          <MyIcon type="iconlove" className="moto-icon-1-1" /> Таалагдлаа
         </Checkbox>
       </Menu.Item>
 
@@ -100,7 +100,7 @@ const NewsControlButton = (props) => {
           checked={myIsSave.checked}
           onChange={(e) => actionMine(e, "Жоорлох", myIsSave.id)}
         >
-          Жоорлох
+          <MyIcon type="iconbox" className="moto-icon-1-1" /> Жоорлох
         </Checkbox>
       </Menu.Item>
 
@@ -112,7 +112,7 @@ const NewsControlButton = (props) => {
           setShowErrorReportModal(true);
         }}
       >
-        <WarningTwoTone twoToneColor="#eb2f96" /> Алдаа мэдэгдэх
+        <MyIcon type="iconrecycle" className="moto-icon-1-3" /> Алдаа мэдэгдэх
       </Menu.Item>
     </Menu>
   );
