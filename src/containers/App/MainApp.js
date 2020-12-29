@@ -23,6 +23,14 @@ const WidgetPage = asyncComponent(() => {
   return import("content/widget/index");
 });
 
+const OboCustomPage = asyncComponent(() => {
+  return import("content/obocustom/index");
+});
+
+const SuxPage = asyncComponent(() => {
+  return import("content/sux/SuhPage");
+});
+
 const MainApp = () => {
   const memberContext = useContext(MemberContext);
   const memberItemsContext = useContext(MemberItemsContext);
@@ -57,6 +65,14 @@ const MainApp = () => {
         ## ##  ### ######   #####  #######    #     */}
       <Route path={["/widget/", "/widgets"]}>
         <WidgetPage />
+      </Route>
+
+      <Route path={["/obocustom/", "/obocustoms"]}>
+        <OboCustomPage />
+      </Route>
+
+      <Route path={["/suh/", "/sux/", "sukh", "sox"]}>
+        <SuxPage />
       </Route>
 
       <Route>
