@@ -1,5 +1,7 @@
 export const schemaContentStatistic01 = {
   component: "div",
+  className: "gx-my-5, gx-py-5",
+  style: { backgroundColor: "#f1f1f1", borderRadius: "15px" },
   children: [
     {
       component: "div",

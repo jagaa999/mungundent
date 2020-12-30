@@ -1,5 +1,6 @@
 export const schemaContentLogin = {
   component: "div",
+  className: "gx-my-5 gx-py-5",
   children: [
     {
       component: "div",
@@ -18,9 +19,11 @@ export const schemaContentLogin = {
             component: "div",
             className: "gx-p-4 gx-text-center",
             style: {
+              float: "right",
               backgroundColor: "#213b7c",
               borderRadius: "27px",
               minHeight: "150px",
+              maxWidth: "300px",
               color: "#fff",
             },
             children: [
@@ -58,8 +61,9 @@ export const schemaContentLogin = {
             component: "div",
             className: "gx-p-4 gx-text-center",
             style: {
-              // backgroundColor: "#d1d1d1",
               minHeight: "150px",
+              maxWidth: "300px",
+              float: "left",
               color: "#555",
             },
             children: [
@@ -91,5 +95,6 @@ export const schemaContentLogin = {
         },
       ],
     },
+    { component: "div", className: "gx-mb-5" },
   ],
 };

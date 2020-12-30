@@ -59,16 +59,15 @@ view.setComponentMap({
 const SuhPage = () => {
   return (
     <Layout className="gx-app-layouts">
-      <Header style={{ height: "48px" }}>
-        {view.parseSchema(schemaHeader)}
-      </Header>
+      {view.parseSchema(schemaHeader)}
+
       <Layout className="ant-layout-content gx-layout-content gx-container-wrap">
         <Content className=" gx-main-content-wrapper">
           {view.parseSchema(schemaContent)}
         </Content>
       </Layout>
 
-      <Footer>{view.parseSchema(schemaFooter)}</Footer>
+      {view.parseSchema(schemaFooter)}
     </Layout>
   );
 };

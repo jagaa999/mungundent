@@ -19,6 +19,7 @@ export const schemaContentBanner01 = {
           },
           children: [
             {
+              // position: "Position2",
               component: "div",
               style: {
                 fontSize: "28px",
@@ -28,6 +29,7 @@ export const schemaContentBanner01 = {
                 maxWidth: "350px",
               },
               text: "Сууц Өмчлөгчдийн Холбоо гэдэг нь..",
+              // text: position2_path,
             },
             {
               component: "div",

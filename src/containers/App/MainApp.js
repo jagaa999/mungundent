@@ -24,7 +24,7 @@ const WidgetPage = asyncComponent(() => {
 });
 
 const OboCustomPage = asyncComponent(() => {
-  return import("content/obocustom/index");
+  return import("content/obocustom/ObocustomPage");
 });
 
 const SuxPage = asyncComponent(() => {

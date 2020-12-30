@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 
 import {
   schemaHeader,
+  schemaBody,
+  schemaBodyParams,
+  schemaContent,
   xminHome01,
-  xminAbout01,
-  xminPorfolio01,
-} from "./simpleData";
+  // xminAbout01,
+  // xminPorfolio01,
+} from "./obocustomJsonData";
 
 import {
   Button,
@@ -61,19 +64,22 @@ view.setComponentMap({
   CustomScrollbars,
 });
 
-const HomePage = () => {
+const ObocustomPage = () => {
   return (
     <Layout className="gx-app-layouts">
-      <Header>{view.parseSchema(schemaHeader)}</Header>
+      {view.parseSchema(schemaHeader)}
       <Layout>
         <Content>
-          {view.parseSchema(xminHome01)}
-          {view.parseSchema(xminAbout01)}
-          {view.parseSchema(xminPorfolio01)}
+          <div {...schemaBodyParams}>
+            {view.parseSchema(schemaContent)}
+            {view.parseSchema(xminHome01)}
+            {/* {view.parseSchema(xminAbout01)}
+          {view.parseSchema(xminPorfolio01)} */}
+          </div>
         </Content>
       </Layout>
     </Layout>
   );
 };
 
-export default HomePage;
+export default ObocustomPage;
