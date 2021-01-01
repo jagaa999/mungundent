@@ -1,5 +1,6 @@
 import { schemaHeaderData } from "./schemaHeaderData";
 // import { schemaBodyData } from "./schemaBodyData";
+import { schemaContentBanner01 } from "./schemaContentBanner01";
 
 export const schemaHeader = schemaHeaderData;
 
@@ -15,7 +16,6 @@ export const schemaBodyParams = {
 };
 
 export const schemaContent = [schemaContentBanner01];
-0000;
 
 //  #     # ####### #     # #######
 //  #     # #     # ##   ## #

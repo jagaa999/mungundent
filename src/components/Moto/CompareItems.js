@@ -128,7 +128,7 @@ const CompareItems = () => {
               key="moto-filter-button"
               // size="small"
               type="primary"
-              icon={<MyIcon type="iconcompare" />}
+              icon={<MyIcon type="iconcrosshairs" />}
               onClick={compareContext.toggleDrawer}
               // className="gx-ml-1 gx-mr-0"
               // style={{ width: "40px" }}

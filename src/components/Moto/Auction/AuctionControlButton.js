@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import toBoolean from "util/booleanFunction";
-import { Button, Dropdown, Menu, Checkbox, message } from "antd";
+import { Button, Dropdown, Menu, Checkbox, message, Switch } from "antd";
 import MyIcon from "util/iconFunction";
 import { UserOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
@@ -12,11 +12,13 @@ import ErrorReportModal from "components/Moto/Error/ErrorReportModal";
 import AuctionContext from "context/AuctionContext";
 import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
+import CompareContext from "context/CompareContext";
 
 const AuctionControlButton = ({ auctionItem, tableName }) => {
   const htmlEntities = new Html5Entities();
 
   const auctionDetailContext = useContext(AuctionContext);
+  const compareContext = useContext(CompareContext);
   const memberContext = useContext(MemberContext);
   const memberItemsContext = useContext(MemberItemsContext);
   // const auctionItem = auctionDetailContext.auctionDetail.auctionDetail;
@@ -85,34 +87,56 @@ const AuctionControlButton = ({ auctionItem, tableName }) => {
   });
 
   const menuMemberActions = () => (
-    <Menu>
-      <Menu.Item key="Таалагдлаа">
-        <Checkbox
-          checked={myIsLike.checked}
-          onChange={(e) => actionMine(e, "Таалагдлаа", myIsLike.id)}
-        >
-          <MyIcon type="iconlove" className="moto-icon-1-1" /> Таалагдлаа
-        </Checkbox>
+    <Menu
+    // selectable={true}
+    // selectedKeys={["compare", "box"]}
+    >
+      <Menu.Item
+        key="compare"
+        onClick={(e) => compareContext.addItem(auctionItem, "auction")}
+        icon={<MyIcon type="iconcrosshairs" />}
+      >
+        Харьцуулах
       </Menu.Item>
 
-      <Menu.Item key="Жоорлох">
-        <Checkbox
+      <Menu.Item
+        key="love"
+        onClick={(e) => actionMine(e, "Таалагдлаа", myIsLike.id)}
+        icon={<MyIcon type="iconlove" />}
+        selected={true}
+      >
+        {/* <Checkbox
+          checked={myIsLike.checked}
+          icon={<MyIcon type="iconlov" />}
+        > */}
+        Таалагдлаа
+        {/* </Checkbox> */}
+      </Menu.Item>
+
+      <Menu.Item
+        key="box"
+        onClick={(e) => actionMine(e, "Жоорлох", myIsSave.id)}
+        icon={<MyIcon type="iconbox" />}
+      >
+        {/* <Checkbox
           checked={myIsSave.checked}
-          onChange={(e) => actionMine(e, "Жоорлох", myIsSave.id)}
-        >
-          <MyIcon type="iconbox" className="moto-icon-1-1" /> Жоорлох
-        </Checkbox>
+          
+        > */}
+        Жоорлох
+        {/* </Checkbox> */}
       </Menu.Item>
 
       <Menu.Divider />
 
       <Menu.Item
-        key="Алдаатай"
+        key="error"
         onClick={() => {
           setShowErrorReportModal(true);
         }}
+        icon={<MyIcon type="iconrecycle" className="gx-text-danger" />}
       >
-        <MyIcon type="iconrecycle" className="moto-icon-1-3" /> Алдаа мэдэгдэх
+        {/* <MyIcon type="iconrecycle" className="moto-icon-1-3 gx-text-danger" />{" "} */}
+        Алдаа мэдэгдэх
       </Menu.Item>
     </Menu>
   );

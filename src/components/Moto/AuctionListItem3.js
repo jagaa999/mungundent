@@ -109,7 +109,7 @@ const AuctionListItem3 = ({ auctionItem }) => {
               <Button
                 key="moto-filter-button"
                 size="small"
-                icon={<MyIcon type="iconcompare" />}
+                icon={<MyIcon type="iconcrosshairs" />}
                 onClick={(e) => compareContext.addItem(record, "auction")}
                 className="moto-badge-4"
                 // className="gx-mt-2"

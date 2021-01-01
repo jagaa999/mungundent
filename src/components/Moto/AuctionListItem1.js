@@ -151,18 +151,6 @@ const AuctionListItem1 = ({ auctionItem }) => {
           </div>
 
           <AuctionItemButton auctionItem={auctionItem} />
-
-          {/* <Tooltip title="Харьцуулалтад нэмэх">
-            <Button
-              key="moto-filter-button"
-              size="small"
-              icon={<MyIcon type="iconcompare" />}
-              onClick={(e) => compareContext.addItem(auctionItem, "auction")}
-              // className="moto-badge-4"
-              className="gx-mt-2"
-              style={{ width: "40px" }}
-            ></Button>
-          </Tooltip> */}
         </div>
         {auctionItem.STATUS !== "" && (
           <div className="moto-auction-badge">

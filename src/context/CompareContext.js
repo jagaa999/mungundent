@@ -242,7 +242,7 @@ export const CompareStore = (props) => {
                 type="primary"
                 size="small"
                 className="gx-m-0"
-                icon={<MyIcon type="iconcompare" />}
+                icon={<MyIcon type="iconcrosshairs" />}
                 onClick={toggleDrawer}
               >
                 Харьцуулах
