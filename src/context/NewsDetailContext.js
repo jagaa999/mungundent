@@ -258,8 +258,10 @@ export const NewsDetailStore = (props) => {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
-        command: "motoNewsDV_001",
+        command: "motoNewsDV_002",
+        ignorepermission: "1",
         parameters: {
+          ignorepermission: "1",
           id: values.newsid || "",
           title: values.title,
           // imgUrl: JSON.stringify(values.images), //JSON.parse
