@@ -237,7 +237,7 @@ export const NewsDetailStore = (props) => {
   //   #####  #     #    #    #######
 
   const saveNewsDetail = (values) => {
-    console.log("saveNewsDetail дотор орж ирсэн values--", values);
+    // console.log("saveNewsDetail дотор орж ирсэн values--", values);
 
     // const myImgUrl =
     //   values.images && values.images.length > 0 ? values.images[0].url : "";
@@ -259,9 +259,9 @@ export const NewsDetailStore = (props) => {
         username: memberContext.state.memberUID,
         password: "89",
         command: "motoNewsDV_002",
-        ignorepermission: "1",
+        // ignorepermission: "1",
         parameters: {
-          ignorepermission: "1",
+          // ignorepermission: "1",
           id: values.newsid || "",
           title: values.title,
           // imgUrl: JSON.stringify(values.images), //JSON.parse
