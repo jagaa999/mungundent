@@ -5,15 +5,13 @@ import "moment/locale/mn";
 import { defaultSrc } from "util/config";
 import { Image as ImageAnt } from "antd";
 
-const NewsItemMainImage = ({
-  width,
+const UniversalListItemMainImage = ({
+  width = "auto",
   imageMain,
   cloudName = "duznp4bqa",
   myClass = "",
 }) => {
-  console.log("imageMain", imageMain);
-
-  // action={`https://api.cloudinary.com/v1_1/duznp4bqa/image/upload?upload_preset=autozar&folder=autozar/${memberContext.state.memberUID}`}
+  // console.log("imageMain", imageMain);
 
   return (
     <>
@@ -51,4 +49,4 @@ const NewsItemMainImage = ({
   );
 };
 
-export default NewsItemMainImage;
+export default UniversalListItemMainImage;

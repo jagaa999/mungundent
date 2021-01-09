@@ -16,6 +16,7 @@ import { NewsDetailStore } from "../context/NewsDetailContext";
 import { CarCatalogListStore } from "../context/CarCatalogListContext";
 import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
+import { CompanyStore } from "../context/CompanyContext";
 import { ProductStore } from "../context/ProductContext";
 import { AuctionStore } from "../context/AuctionContext";
 import { MotocarStore } from "../context/MotocarContext";
@@ -68,6 +69,10 @@ const MemberDetail = asyncComponent(() => {
 
 const MemberForm = asyncComponent(() => {
   return import("./moto/member/memberFormPage");
+});
+
+const CompanyList = asyncComponent(() => {
+  return import("./moto/company/companyListPage");
 });
 
 const ProductList = asyncComponent(() => {
@@ -313,6 +318,20 @@ const App = ({ match }) => (
           <MemberList />
         </MemberListStore>
       </Route>
+      {/* 
+       #####  ####### #     # ######     #    #     # #     # 
+      #     # #     # ##   ## #     #   # #   ##    #  #   #  
+      #       #     # # # # # #     #  #   #  # #   #   # #   
+      #       #     # #  #  # ######  #     # #  #  #    #    
+      #       #     # #     # #       ####### #   # #    #    
+      #     # #     # #     # #       #     # #    ##    #    
+       #####  ####### #     # #       #     # #     #    #    */}
+      <Route path={["/company", "/companylist"]}>
+        <CompanyStore>
+          <CompanyList />
+        </CompanyStore>
+      </Route>
+
       {/*
        #####     #    ######   #####     #    #######
       #     #   # #   #     # #     #   # #      #   
