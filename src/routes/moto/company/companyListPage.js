@@ -19,7 +19,8 @@ const CompanyListPage = () => {
       <UniversalListType1
         myListContext={companyContext}
         myListContextLoading={companyContext.companyList.loading}
-        myListContextList={companyContext.companyList.companyList}
+        myListContextList={companyContext.companyList}
+        myListContextListList={companyContext.companyList.companyList}
       />
     );
   } else if (filterContext.state.cardtype.cardtype === "typetable") {
@@ -27,7 +28,7 @@ const CompanyListPage = () => {
       <UniversalListType1
         myListContext={companyContext}
         myListContextLoading={companyContext.companyList.loading}
-        myListContextList={companyContext.companyList.companyList}
+        myListContextList={companyContext.companyList}
       />
     );
   } else {
@@ -35,7 +36,7 @@ const CompanyListPage = () => {
       <UniversalListType1
         myListContext={companyContext}
         myListContextLoading={companyContext.companyList.loading}
-        myListContextList={companyContext.companyList.companyList}
+        myListContextListList={companyContext.companyList.companyList}
       />
     );
   }

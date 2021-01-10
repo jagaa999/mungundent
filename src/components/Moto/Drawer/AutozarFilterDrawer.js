@@ -29,6 +29,9 @@ const AutozarFilterDrawer = () => {
         closable={true}
         visible={autozarContext.autozarList.isFilterDrawerOpen}
         onClose={toggleFilterDrawer}
+        closeIcon={
+          <MyIcon type="iconangleleft" style={{ marginTop: "10px" }} />
+        }
       >
         <AutozarFilter />
       </Drawer>

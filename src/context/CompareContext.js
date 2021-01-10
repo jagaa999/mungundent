@@ -162,65 +162,30 @@ export const CompareStore = (props) => {
     isOpen: false,
   });
 
+  //     #    ######  ######
+  //    # #   #     # #     #
+  //   #   #  #     # #     #
+  //  #     # #     # #     #
+  //  ####### #     # #     #
+  //  #     # #     # #     #
+  //  #     # ######  ######
   const addItem = (item, menu) => {
-    let myItem = {};
-
-    switch (menu) {
-      case "auction":
-        myItem = {
-          title: `${item.YEAR} ${item.MARKA_NAME} ${item.MODEL_NAME}`,
-          image: item.IMAGES.replace("h=50", "w=320"),
-          mainSpec: item.RATE,
-          link: "/auction/" + item.ID,
-          subSpecs: [
-            {
-              title: "Арал",
-              value: htmlEntities.decode(item.KUZOV),
-            },
-            {
-              title: "Хувилбар",
-              value: htmlEntities.decode(item.GRADE),
-            },
-          ],
-          originalItem: item,
-        };
-        break;
-      case "autozar":
-        myItem = {
-          title: item.myTitle,
-          // image: (
-          //   <AutozarListItemMainImage
-          //     myClass="gx-img-fluid gx-w-100"
-          //     width="auto"
-          //     imageMain={item.imagemain}
-          //   />
-          // ),
-          image: item.imagemain,
-          mainSpec: item.financepricerr, //Үнэ
-          link: "/autozar/" + item.id,
-          subSpecs: [
-            {
-              title: "Шатахуун",
-              value: htmlEntities.decode(item.mglfuel),
-            },
-            {
-              title: "Хөтлөгч",
-              value: htmlEntities.decode(item.drive2drivename),
-            },
-          ],
-          originalItem: item,
-        };
-        break;
-      default:
-        myItem = {};
-        break;
-    }
-
     const myList = compareList.compareList;
+    const myItem = {
+      ...item.compareButtonData,
+      originalItem: item,
+    };
     myList.push(myItem);
     setCompareList({ ...compareList, compareList: myList, isOpen: true });
   };
 
+  //  ######  ####### #     # ####### #     # #######
+  //  #     # #       ##   ## #     # #     # #
+  //  #     # #       # # # # #     # #     # #
+  //  ######  #####   #  #  # #     # #     # ####
+  //  #   #   #       #     # #     #  #   #  #
+  //  #    #  #       #     # #     #   # #   #
+  //  #     # ####### #     # #######    #    #######
   const removeItem = (index) => {
     // console.log("ӨӨӨӨӨӨӨӨӨӨӨ", index);
     const myList = compareList.compareList;
@@ -228,10 +193,25 @@ export const CompareStore = (props) => {
     setCompareList({ ...compareList, compareList: myList });
   };
 
+  //   #####  #       #######    #    ######
+  //  #     # #       #         # #   #     #
+  //  #       #       #        #   #  #     #
+  //  #       #       #####   #     # #####
+  //  #       #       #       ####### #   #
+  //  #     # #       #       #     # #    #
+  //   #####  ####### ####### #     # #     #
   const clearAll = () => {
     setCompareList({ ...compareList, compareList: [] });
   };
 
+  //  ######  ######     #    #     # ####### ######
+  //  #     # #     #   # #   #  #  # #       #     #
+  //  #     # #     #  #   #  #  #  # #       #     #
+  //  #     # ######  #     # #  #  # #####   ######
+  //  #     # #   #   ####### #  #  # #       #   #
+  //  #     # #    #  #     # #  #  # #       #    #
+  //  ######  #     # #     #  ## ##  ####### #     #
+  //
   const CompareDrawer = () => {
     return (
       <Drawer
@@ -242,7 +222,7 @@ export const CompareStore = (props) => {
                 type="primary"
                 size="small"
                 className="gx-m-0"
-                icon={<MyIcon type="iconcrosshairs" />}
+                icon={<MyIcon type="iconcheck-double-solid" />}
                 onClick={toggleDrawer}
               >
                 Харьцуулах
@@ -264,7 +244,7 @@ export const CompareStore = (props) => {
         closable={true}
         onClose={(e) => setCompareList({ ...compareList, isOpen: false })}
         visible={compareList.isOpen}
-        closeIcon={<CloseCircleOutlined />}
+        closeIcon={<MyIcon type="iconangledown" />}
         // footer={
         //   <div
         //     style={{

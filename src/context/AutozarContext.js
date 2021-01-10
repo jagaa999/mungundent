@@ -7,6 +7,7 @@ import moment from "moment";
 
 import axios from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
+import { prepareAutozarList } from "util/prepareSpecs";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
@@ -186,10 +187,16 @@ export const AutozarStore = (props) => {
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
 
+        const myTempList = prepareAutozarList(
+          myArray,
+          filterContext.state.menu
+        );
+
         setAutozarList({
           ...myNewParam,
           loading: false,
-          autozarList: Object.values(myArray),
+          // autozarList: Object.values(myArray),
+          autozarList: myTempList,
         });
 
         filterContext.updateTotal(myPaging.totalcount);

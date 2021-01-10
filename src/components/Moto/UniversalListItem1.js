@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import TweenOne from "rc-tween-one";
 import { isEmpty } from "lodash";
 
 import { Image } from "cloudinary-react";
@@ -12,6 +13,7 @@ import { Button, Badge, Tooltip, Row, Col, Avatar } from "antd";
 
 import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
+import UniversalListItemButton from "./Universal/UniversalListItemButton";
 
 const UniversalListItem1 = ({ myUniversalItem, grid }) => {
   const {
@@ -68,139 +70,154 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
   // #    #  #          #    #     # #    #  #    ##
   // #     # #######    #     #####  #     # #     #
   return (
-    <div
+    <TweenOne
       key={mainData.id}
-      className={`gx-product-item gx-autozar-list-item  ${
-        grid ? "gx-product-vertical" : "gx-product-horizontal"
-      } ${mainData.isfeatured ? "moto-card-sponsor" : ""} ${
-        !mainData.isactive ? "border-top" : ""
-      }`}
+      animation={{
+        opacity: 0.1,
+        marginLeft: 100,
+        type: "from",
+        ease: "easeOutQuad",
+        // delay: 50,
+        // duration: 50,
+      }}
     >
-      <div className="gx-product-image">
-        <div className="gx-grid-thumb-equal">
-          <Link to={`/${mainData.menu}/${mainData.id}`}>
-            <span className="gx-link gx-grid-thumb-cover">
-              <UniversalListItemMainImage
-                myClass="gx-img-fluid gx-w-100"
-                width="auto"
-                imageMain={mainData.imagemain}
-                cloudName={mainData.imagemaincloudname}
-              />
-            </span>
-          </Link>
-        </div>
-      </div>
-
-      <div className="gx-product-body">
-        <Row className="moto-item-card">
-          <Col xl={17} md={16} sm={15} xs={24}>
-            <h3 className="gx-product-title">
+      <div
+        key={mainData.id}
+        className={`gx-product-item gx-autozar-list-item  ${
+          grid ? "gx-product-vertical" : "gx-product-horizontal"
+        } ${mainData.isfeatured ? "moto-card-sponsor" : ""} ${
+          !mainData.isactive ? "border-top" : ""
+        }`}
+      >
+        {!isEmpty(mainData.imagemain) && (
+          <div className="gx-product-image">
+            <div className="gx-grid-thumb-equal">
               <Link to={`/${mainData.menu}/${mainData.id}`}>
-                {mainData.title}
+                <span className="gx-link gx-grid-thumb-cover">
+                  <UniversalListItemMainImage
+                    myClass="gx-img-fluid gx-w-100"
+                    width="auto"
+                    imageMain={mainData.imagemain}
+                    cloudName={mainData.imagemaincloudname}
+                  />
+                </span>
               </Link>
-              {mainData.isfeatured && <FeaturedTag />}
-              {mainData.isactive && !mainData.isactive && <ActiveTag />}
-            </h3>
+            </div>
+          </div>
+        )}
 
-            {/* headerSpec */}
-            {!isEmpty(headerSpec) && (
-              <div className="gx-dealclose-header-right">
-                {headerSpec.map((item, index) => {
-                  return (
-                    <RenderHeaderSpec
-                      key={index}
-                      value={item.value}
-                      status={item.status}
-                    />
-                  );
-                })}
-              </div>
-            )}
+        <div className="gx-product-body">
+          <Row className="moto-item-card">
+            <Col xl={17} md={16} sm={15} xs={24}>
+              <h3 className="gx-product-title">
+                <Link to={`/${mainData.menu}/${mainData.id}`}>
+                  {mainData.title}
+                </Link>
+                {mainData.isfeatured && <FeaturedTag />}
+                {mainData.isactive && !mainData.isactive && <ActiveTag />}
+              </h3>
 
-            {!isEmpty(specList1) && (
-              <div className="gx-mt-3">
-                <Row>
-                  <Col span={24}>
-                    <ul className="moto-spec-list">
-                      {specList1.map((item, index) => {
-                        return (
-                          <RenderSpecList1
-                            key={index}
-                            label={item.label}
-                            value={item.value}
-                          />
-                        );
-                      })}
-                    </ul>
-                  </Col>
-                </Row>
-              </div>
-            )}
-
-            {!isEmpty(mainData.description) && (
-              <div className="gx-description gx-mt-3">
-                <p className="gx-mt-2">
-                  <span
-                    dangerouslySetInnerHTML={{ __html: mainData.description }}
-                  ></span>
-                </p>
-              </div>
-            )}
-          </Col>
-          <Col
-            xl={7}
-            md={8}
-            sm={9}
-            xs={24}
-            className="gx-d-flex gx-flex-column"
-          >
-            <div>
-              {!isEmpty(mainData.mainnumber) && (
-                <h3 className="gx-text-primary gx-font-weight-medium gx-mb-1">
-                  {mainData.mainnumber}
-                </h3>
-              )}
-
-              {!isEmpty(specList2) && (
-                <div className="specList2">
-                  {specList2.map((item, index) => {
+              {/* headerSpec */}
+              {!isEmpty(headerSpec) && (
+                <div className="gx-dealclose-header-right">
+                  {headerSpec.map((item, index) => {
                     return (
-                      <RenderSpecList2
+                      <RenderHeaderSpec
                         key={index}
-                        label={item.label}
                         value={item.value}
-                        suffix={item.suffix}
+                        status={item.status}
                       />
                     );
                   })}
                 </div>
               )}
-            </div>
 
-            {!isEmpty(ownerData) && (
-              <div className="gx-mt-auto">
-                <div className="gx-media gx-mt-3">
-                  <Avatar
-                    src={ownerData.photo}
-                    alt={ownerData.photoalt}
-                    className="gx-mr-2"
-                    size={30}
-                  />
+              {!isEmpty(specList1) && (
+                <div className="gx-mt-3">
+                  <Row>
+                    <Col span={24}>
+                      <ul className="moto-spec-list">
+                        {specList1.map((item, index) => {
+                          return (
+                            <RenderSpecList1
+                              key={index}
+                              label={item.label}
+                              value={item.value}
+                            />
+                          );
+                        })}
+                      </ul>
+                    </Col>
+                  </Row>
+                </div>
+              )}
 
-                  <div className="gx-media-body">
-                    <h5 className=" gx-fs-sm">{ownerData.name}</h5>
-                    <p className="gx-text-grey gx-fs-sm">
-                      {mainData.modifieddate}
-                    </p>
+              {!isEmpty(mainData.description) && (
+                <div className="gx-description gx-mt-3">
+                  <p className="gx-mt-2">
+                    <span
+                      dangerouslySetInnerHTML={{ __html: mainData.description }}
+                    ></span>
+                  </p>
+                </div>
+              )}
+
+              <UniversalListItemButton myUniversalItem={myUniversalItem} />
+            </Col>
+            <Col
+              xl={7}
+              md={8}
+              sm={9}
+              xs={24}
+              className="gx-d-flex gx-flex-column"
+            >
+              <div>
+                {!isEmpty(mainData.mainnumber) && (
+                  <h3 className="gx-text-primary gx-font-weight-medium gx-mb-1">
+                    {mainData.mainnumber}
+                  </h3>
+                )}
+
+                {!isEmpty(specList2) && (
+                  <div className="specList2">
+                    {specList2.map((item, index) => {
+                      return (
+                        <RenderSpecList2
+                          key={index}
+                          label={item.label}
+                          value={item.value}
+                          suffix={item.suffix}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {!isEmpty(ownerData) && (
+                <div className="gx-mt-auto">
+                  <div className="gx-media gx-mt-3">
+                    <Avatar
+                      src={ownerData.photo}
+                      alt={ownerData.photoalt}
+                      className="gx-mr-2"
+                      size={30}
+                    />
+
+                    <div className="gx-media-body">
+                      <h5 className=" gx-fs-sm">{ownerData.name}</h5>
+                      <p className="gx-text-grey gx-fs-sm">
+                        {mainData.modifieddate}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </Col>
-        </Row>
-      </div>
+              )}
+            </Col>
+          </Row>
+        </div>
 
-      {/* <div className="gx-product-footer">
+        {/* <div className="gx-product-footer">
         <AvatarMember02
           memberName={myUniversalItem.memberuserfullname}
           memberPhoto={myUniversalItem.memberprofilephoto}
@@ -209,7 +226,8 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
           memberUid={myUniversalItem.memberfirebaseuid}
         />
       </div> */}
-    </div>
+      </div>
+    </TweenOne>
   );
 };
 
