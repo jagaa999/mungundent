@@ -14,7 +14,7 @@ import { Button, Badge, Tooltip, Row, Col, Avatar } from "antd";
 import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import UniversalListItemButton from "./Universal/UniversalListItemButton";
-import { getSpecData } from "util/getSpecData";
+import { GetSpecData } from "util/getSpecData";
 
 const UniversalListItem1 = ({ myUniversalItem, grid }) => {
   const {
@@ -27,7 +27,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
   const RenderHeaderSpec = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <p className="gx-mr-3 gx-mb-2">
@@ -41,7 +41,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
   const RenderSpecList1 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <li>
@@ -57,7 +57,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
   const RenderSpecList2 = ({ item }) => {
     if (item.value !== "" && item.value !== "Invalid date") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <p className="gx-mb-1 gx-fs-sm">
@@ -98,7 +98,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
           !mainData.isactive.value ? "border-top" : ""
         }`}
       >
-        {!isEmpty(mainData.imagemain) && (
+        {!isEmpty(mainData.imagemain.value) && (
           <div className="gx-product-image">
             <div className="gx-grid-thumb-equal">
               <Link to={mainData.link}>
@@ -106,8 +106,8 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
                   <UniversalListItemMainImage
                     myClass="gx-img-fluid gx-w-100"
                     width="auto"
-                    imageMain={mainData.imagemain}
-                    cloudName={mainData.imagemaincloudname}
+                    imageMain={mainData.imagemain.value}
+                    cloudName={mainData.imagemaincloudname.value}
                   />
                 </span>
               </Link>
@@ -119,7 +119,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
           <Row className="moto-item-card">
             <Col xl={17} md={16} sm={15} xs={24}>
               <h3 className="gx-product-title">
-                <Link to={mainData.link}>{mainData.title}</Link>
+                <Link to={mainData.link.value}>{mainData.title.value}</Link>
                 {mainData.isfeatured.value && <FeaturedTag />}
                 {mainData.isactive.value && !mainData.isactive.value && (
                   <ActiveTag />
@@ -174,10 +174,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
                 {!isEmpty(mainData.mainnumber?.value) && (
                   <h3 className="gx-text-primary gx-font-weight-medium gx-mb-1">
                     <Tooltip
-                      title={
-                        getSpecData(mainData.mainnumber.field, "autozar")
-                          .tooltip
-                      }
+                      title={GetSpecData(mainData.mainnumber.field).tooltip}
                     >
                       {mainData.mainnumber.value}
                     </Tooltip>

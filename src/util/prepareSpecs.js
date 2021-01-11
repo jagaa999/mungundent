@@ -3,6 +3,13 @@ import toBoolean from "./booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
 
+//   #####  ####### #     # ######     #    #     # #     #
+//  #     # #     # ##   ## #     #   # #   ##    #  #   #
+//  #       #     # # # # # #     #  #   #  # #   #   # #
+//  #       #     # #  #  # ######  #     # #  #  #    #
+//  #       #     # #     # #       ####### #   # #    #
+//  #     # #     # #     # #       #     # #    ##    #
+//   #####  ####### #     # #       #     # #     #    #
 export const prepareCompanyList = (myArray, menu = "") => {
   console.log("prepareCompanyList Array", myArray);
 
@@ -115,14 +122,17 @@ export const prepareAutozarList = (myArray, menu = "") => {
     const mainData = {
       id: item.id,
       menu: menu,
-      link: `/${menu}/${item.id}`,
-      title: `${
-        moment(item.mglyearmanufactured, "YYYY").isValid() === true
-          ? moment(item.mglyearmanufactured).format("YYYY")
-          : ""
-      } ${item.mglfirm || ""} ${item.mglmark || ""} ${item.cartrim || ""}`,
-      imagemain: item.imagemain,
-      imagemaincloudname: "duznp4bqa",
+      link: { field: "link", value: `/${menu}/${item.id}` },
+      title: {
+        field: "title",
+        value: `${
+          moment(item.mglyearmanufactured, "YYYY").isValid() === true
+            ? moment(item.mglyearmanufactured).format("YYYY")
+            : ""
+        } ${item.mglfirm || ""} ${item.mglmark || ""} ${item.cartrim || ""}`,
+      },
+      imagemain: { field: "imagemain", value: item.imagemain },
+      imagemaincloudname: { field: "imagemaincloudname", value: "duznp4bqa" },
       isfeatured: {
         field: "isfeatured",
         value: toBoolean(item.isfeatured) ? toBoolean(item.isfeatured) : false,
@@ -210,22 +220,20 @@ export const prepareAutozarList = (myArray, menu = "") => {
     };
 
     const compareButtonData = {
-      title: mainData.title,
-      image: mainData.imagemain,
-      mainSpec: mainData.mainnumber,
-      link: mainData.link,
+      title: mainData.title.value,
+      imagemain: mainData.imagemain.value,
+      mainSpec: mainData.mainnumber.value,
+      link: mainData.link.value,
       subSpecs: [
-        { title: "Шатахуун", value: item.mglfuel },
-        { title: "Хөтлөгч", value: item.drive2drivename },
+        { field: "mglfuel", value: item.mglfuel },
+        { field: "drive2drivename", value: item.drive2drivename },
       ],
     };
 
     const tableColumns = [
       {
-        title: "Хөдөлгүүр",
+        field: "mglengine2disp",
         responsive: ["md"],
-        dataIndex: "mglengine2disp",
-        tooltip: "Хөдөлгүүрийн багтаамж",
         renderDivClass: "gx-text-grey",
         value: accounting.formatMoney(item.mglengine2disp, {
           symbol: "cc",
@@ -236,9 +244,8 @@ export const prepareAutozarList = (myArray, menu = "") => {
       },
 
       {
-        title: "Гүйлт",
+        field: "autozarmilage",
         responsive: ["sm"],
-        dataIndex: "autozarmilage",
         width: "90px",
         renderDivClass: "gx-text-grey gx-fs-sm",
         value: accounting.formatMoney(item.autozarmilage, {
@@ -250,8 +257,7 @@ export const prepareAutozarList = (myArray, menu = "") => {
       },
 
       {
-        title: "Үнэ",
-        dataIndex: "financepricerr",
+        field: "financepricerr",
         width: "110px",
         align: "center",
         renderDivClass: "gx-text-success",
@@ -259,9 +265,8 @@ export const prepareAutozarList = (myArray, menu = "") => {
       },
 
       {
-        title: "Огноо",
+        field: "modifieddate",
         responsive: ["lg"],
-        dataIndex: "modifieddate",
         renderDivClass: "gx-fs-sm gx-text-grey",
         value: mainData.modifieddate.value,
       },

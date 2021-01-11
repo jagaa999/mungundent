@@ -20,6 +20,11 @@
       "tooltip": "Хөдөлгүүрийн мэдээлэл",
       "status": "default"
     },
+    "mglengine2disp": {
+      "label": "Хөдөлгүүр",
+      "tooltip": "Хөдөлгүүрийн багтаамж",
+      "status": "default"
+    },
     "drive2transtypename": {
       "label": "Хроп",
       "tooltip": "Хропны мэдээлэл",
@@ -38,6 +43,11 @@
     "mglyearimport": {
       "label": "Орж ирсэн",
       "tooltip": "Монголд орж ирсэн он",
+      "status": "default"
+    },
+    "mglfuel": {
+      "label": "Шатахуун",
+      "tooltip": "Шатахууны төрөл",
       "status": "default"
     },
     "financepricerr": {

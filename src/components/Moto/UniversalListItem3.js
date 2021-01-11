@@ -13,14 +13,14 @@ import AutozarListItemMainImage from "./Autozar/AutozarListItemMainImage";
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 import UniversalListItemButton from "./Universal/UniversalListItemButton";
-import { getSpecData } from "util/getSpecData";
+import { GetSpecData } from "util/getSpecData";
 
 const AuctionListItem3 = ({ myListContextListList }) => {
   const htmlEntities = new Html5Entities();
 
   const RenderHeaderSpec = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <span className="moto-label-main ant-tag">
@@ -35,7 +35,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
 
   const RenderSpecList1 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <span className="moto-label-main ant-tag">
@@ -50,7 +50,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
 
   const RenderSpecList2 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <span className="moto-label-main ant-tag">
@@ -73,12 +73,14 @@ const AuctionListItem3 = ({ myListContextListList }) => {
           <UniversalListItemMainImage
             myClass="gx-mr-3"
             width="64"
-            imageMain={record.mainData.imagemain}
-            cloudName={record.mainData.imagemaincloudname}
+            imageMain={record.mainData.imagemain.value}
+            cloudName={record.mainData.imagemaincloudname.value}
           />
 
           <div className="gx-media-body gx-align-self-center">
-            <Link to={record.mainData.link}>{record.mainData.title}</Link>
+            <Link to={record.mainData.link.value}>
+              {record.mainData.title.value}
+            </Link>
             <div>
               {record.headerSpec.map((item, index) => {
                 return <RenderHeaderSpec key={index} item={item} />;
@@ -103,11 +105,16 @@ const AuctionListItem3 = ({ myListContextListList }) => {
   const myTableColumn = myListContextListList[0].tableColumns;
 
   myTableColumn.map((item, index) => {
+    const myItem = GetSpecData(item.field);
+
     const myColumn = {
       ...item,
-      key: index,
+
+      title: myItem.label,
+      dataIndex: item.field,
+
       render: () => (
-        <Tooltip title={item.tooltip} key={index}>
+        <Tooltip title={myItem.tooltip} key={index}>
           <div className={item.renderDivClass}>{item.value}</div>
         </Tooltip>
       ),

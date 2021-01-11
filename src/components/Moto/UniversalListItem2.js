@@ -15,7 +15,7 @@ import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 // import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 import CompareContext from "context/CompareContext";
 import UniversalListItemButton from "./Universal/UniversalListItemButton";
-import { getSpecData } from "util/getSpecData";
+import { GetSpecData } from "util/getSpecData";
 
 const UniversalListItem2 = ({ myUniversalItem }) => {
   const {
@@ -29,7 +29,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderHeaderSpec = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <div className="gx-d-flex gx-fs-sm">
@@ -43,7 +43,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderSpecList1 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <div className="gx-d-flex gx-fs-sm">
@@ -57,7 +57,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderSpecList2 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = getSpecData(item.field, "autozar");
+      const myItem = GetSpecData(item.field);
 
       return (
         <div className="gx-d-flex gx-fs-sm">
@@ -92,7 +92,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           <UniversalListItemMainImage
             myClass="gx-img-fluid gx-w-100"
             width="auto"
-            imageMain={mainData.imagemain}
+            imageMain={mainData.imagemain.value}
           />
         }
       >
@@ -116,15 +116,13 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         </span>
 
         <h4>
-          <Link to={mainData.link}>{mainData.title}</Link>
+          <Link to={mainData.link.value}>{mainData.title.value}</Link>
           {toBoolean(mainData.isfeatured.value) && <FeaturedTag type="dot" />}
           {!toBoolean(mainData.isactive.value) && <ActiveTag type="dot" />}
         </h4>
 
         <div className="gx-text-success gx-fs-sm">
-          <Tooltip
-            title={getSpecData(mainData.mainnumber.field, "autozar").tooltip}
-          >
+          <Tooltip title={GetSpecData(mainData.mainnumber.field).tooltip}>
             {mainData.mainnumber.value}
           </Tooltip>
         </div>

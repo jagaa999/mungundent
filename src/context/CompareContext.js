@@ -7,6 +7,7 @@ import MyIcon from "util/iconFunction";
 import { CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import AutozarListItemMainImage from "components/Moto/Autozar/AutozarListItemMainImage";
+import { GetSpecData } from "util/getSpecData";
 
 const CompareContext = React.createContext();
 
@@ -245,16 +246,6 @@ export const CompareStore = (props) => {
         onClose={(e) => setCompareList({ ...compareList, isOpen: false })}
         visible={compareList.isOpen}
         closeIcon={<MyIcon type="iconangledown" />}
-        // footer={
-        //   <div
-        //     style={{
-        //       textAlign: "right",
-        //     }}
-        //   >
-        //     <Button style={{ marginRight: 8 }}>Cancel</Button>
-        //     <Button type="primary">Submit</Button>
-        //   </div>
-        // }
         headerStyle={{ paddingTop: "10px", paddingBottom: "10px" }}
       >
         <div className="gx-p-3">
@@ -274,7 +265,7 @@ export const CompareStore = (props) => {
                   style={{ height: "100%" }}
                   size="small"
                   hoverable
-                  cover={<Image src={item.image} />}
+                  cover={<Image src={item.imagemain} />}
                   // actions={[
                   //   <SettingOutlined key="setting" />,
                   //   <EditOutlined key="edit" />,
@@ -292,13 +283,16 @@ export const CompareStore = (props) => {
                   </h6>
 
                   <div className="gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
-                    {item.subSpecs.map((subSpec, index) => (
-                      <Tooltip title={subSpec.title} key={index}>
-                        <span className="moto-label-main ant-tag">
-                          {subSpec.value}
-                        </span>
-                      </Tooltip>
-                    ))}
+                    {item.subSpecs.map((item, index) => {
+                      const myItem = GetSpecData(item.field);
+                      return (
+                        <Tooltip title={myItem.title} key={index}>
+                          <span className="moto-label-main ant-tag">
+                            {item.value}
+                          </span>
+                        </Tooltip>
+                      );
+                    })}
                   </div>
 
                   <Tooltip title="Хасах">

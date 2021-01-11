@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import toBoolean from "./booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
+import FilterContext from "context/FilterContext";
 import motoSpecData from "./motoSpecData";
 
-export const getSpecData = (field = "", menu = "") => {
-  // if (menu === "" || field === "") return null;
+export const GetSpecData = (field = "") => {
+  const filterContext = useContext(FilterContext);
+  if (field === "") return null;
+  const menu = filterContext.state.menu;
+
   const myFieldObject = {
     label: field,
     value: "",
@@ -18,3 +22,5 @@ export const getSpecData = (field = "", menu = "") => {
 
   return myFieldObject;
 };
+
+// export default GetSpecData;
