@@ -15,7 +15,7 @@ const UniversalListActionHeader = ({
   mySettings,
   myIsFilterDrawerOpen,
 }) => {
-  console.log("mySettings", mySettings);
+  // console.log("mySettings", mySettings);
 
   const filterContext = useContext(FilterContext);
   // const auctionListContext = useContext(AuctionContext);

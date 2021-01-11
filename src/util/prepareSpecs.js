@@ -123,38 +123,62 @@ export const prepareAutozarList = (myArray, menu = "") => {
       } ${item.mglfirm || ""} ${item.mglmark || ""} ${item.cartrim || ""}`,
       imagemain: item.imagemain,
       imagemaincloudname: "duznp4bqa",
-      isfeatured: toBoolean(item.isfeatured)
-        ? toBoolean(item.isfeatured)
-        : false,
-      isactive: toBoolean(item.isactive) ? toBoolean(item.isactive) : true,
-      description: "",
-      mainnumber: accounting.formatMoney(item.financepricerr, "₮", 0, "'"),
-      createddate: moment(item.createddate).fromNow(),
-      modifieddate: moment(item.modifieddate).fromNow(),
+      isfeatured: {
+        field: "isfeatured",
+        value: toBoolean(item.isfeatured) ? toBoolean(item.isfeatured) : false,
+      },
+      isactive: {
+        field: "isactive",
+        value: toBoolean(item.isactive) ? toBoolean(item.isactive) : true,
+      },
+      description: { field: "description", value: "" },
+      mainnumber: {
+        field: "financepricerr",
+        value: accounting.formatMoney(item.financepricerr, "₮", 0, "'"),
+      },
+      createddate: {
+        field: "createddate",
+        value: moment(item.createddate).fromNow(),
+      },
+      modifieddate: {
+        field: "modifieddate",
+        value: moment(item.modifieddate).fromNow(),
+      },
     };
 
     const headerSpec = [
       {
-        label: "Улсын дугаар",
+        field: "mgllicensenumberfull",
         value: item.mgllicensenumberfull,
-        status: "processing",
       },
-      { label: "Хийц", value: item.mglbody, status: "default" },
+      {
+        field: "mglbody",
+        value: item.mglbody,
+      },
     ];
 
     const specList1 = [
-      { label: "Жолоо", value: item.mgldrivepos === "1" ? "Зөв" : "Буруу" },
       {
-        label: "Хөдөлгүүр",
+        field: "mgldrivepos",
+        value: item.mgldrivepos === "1" ? "Зөв" : "Буруу",
+      },
+      {
+        field: "hybridfieldengine",
         value: `${item.mglengine2disp} cc, ${item.mglfuel}`,
       },
-      { label: "Хроп", value: item.drive2transtypename },
-      { label: "Хөтлөгч", value: item.drive2drivename },
+      {
+        field: "drive2transtypename",
+        value: item.drive2transtypename,
+      },
+      {
+        field: "drive2drivename",
+        value: item.drive2drivename,
+      },
     ];
 
     const specList2 = [
       {
-        label: "Гүйлт",
+        field: "autozarmilage",
         value: accounting.formatMoney(item.autozarmilage, {
           symbol: "км",
           format: "%v %s",
@@ -163,7 +187,7 @@ export const prepareAutozarList = (myArray, menu = "") => {
         }),
       },
       {
-        label: "Орж ирсэн",
+        field: "mglyearimport",
         value: moment(item.mglyearimport).format("YYYY") + " он",
       },
     ];
@@ -196,6 +220,53 @@ export const prepareAutozarList = (myArray, menu = "") => {
       ],
     };
 
+    const tableColumns = [
+      {
+        title: "Хөдөлгүүр",
+        responsive: ["md"],
+        dataIndex: "mglengine2disp",
+        tooltip: "Хөдөлгүүрийн багтаамж",
+        renderDivClass: "gx-text-grey",
+        value: accounting.formatMoney(item.mglengine2disp, {
+          symbol: "cc",
+          format: "%v %s",
+          precision: 0,
+          thousand: "'",
+        }),
+      },
+
+      {
+        title: "Гүйлт",
+        responsive: ["sm"],
+        dataIndex: "autozarmilage",
+        width: "90px",
+        renderDivClass: "gx-text-grey gx-fs-sm",
+        value: accounting.formatMoney(item.autozarmilage, {
+          symbol: "км",
+          format: "%v %s",
+          precision: 0,
+          thousand: "'",
+        }),
+      },
+
+      {
+        title: "Үнэ",
+        dataIndex: "financepricerr",
+        width: "110px",
+        align: "center",
+        renderDivClass: "gx-text-success",
+        value: mainData.mainnumber.value,
+      },
+
+      {
+        title: "Огноо",
+        responsive: ["lg"],
+        dataIndex: "modifieddate",
+        renderDivClass: "gx-fs-sm gx-text-grey",
+        value: mainData.modifieddate.value,
+      },
+    ];
+
     myList[index].mainData = mainData;
     myList[index].headerSpec = headerSpec;
     myList[index].specList1 = specList1;
@@ -203,6 +274,7 @@ export const prepareAutozarList = (myArray, menu = "") => {
     myList[index].ownerData = ownerData;
     myList[index].saveButtonData = saveButtonData;
     myList[index].compareButtonData = compareButtonData;
+    myList[index].tableColumns = tableColumns;
   });
 
   // console.log("ЭНИЙГ ХАР ДАА", myList);

@@ -15,6 +15,7 @@ import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 // import MotoAuctionStarRatingComponent from "./Auction/MotoAuctionStarRatingComponent";
 import CompareContext from "context/CompareContext";
 import UniversalListItemButton from "./Universal/UniversalListItemButton";
+import { getSpecData } from "util/getSpecData";
 
 const UniversalListItem2 = ({ myUniversalItem }) => {
   const {
@@ -28,10 +29,12 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderHeaderSpec = ({ item }) => {
     if (item.value !== "") {
+      const myItem = getSpecData(item.field, "autozar");
+
       return (
         <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">{item.label}:</span>
-          {item.value}
+          <span className="gx-mr-2 gx-text-grey">{myItem.label}:</span>
+          <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
         </div>
       );
     }
@@ -40,10 +43,12 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderSpecList1 = ({ item }) => {
     if (item.value !== "") {
+      const myItem = getSpecData(item.field, "autozar");
+
       return (
         <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">{item.label}:</span>
-          {item.value}
+          <span className="gx-mr-2 gx-text-grey">{myItem.label}:</span>
+          <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
         </div>
       );
     }
@@ -52,10 +57,12 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderSpecList2 = ({ item }) => {
     if (item.value !== "") {
+      const myItem = getSpecData(item.field, "autozar");
+
       return (
         <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">{item.label}:</span>
-          {item.value}
+          <span className="gx-mr-2 gx-text-grey">{myItem.label}:</span>
+          <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
         </div>
       );
     }
@@ -77,8 +84,8 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
     >
       <Card
         className={`moto-item-card ${
-          toBoolean(mainData.isfeatured) ? "moto-card-sponsor" : ""
-        } ${!toBoolean(mainData.isactive) ? "border-top" : ""}`}
+          toBoolean(mainData.isfeatured.value) ? "moto-card-sponsor" : ""
+        } ${!toBoolean(mainData.isactive.value) ? "border-top" : ""}`}
         hoverable={true}
         // style={{ margin: "0 10px", height: "380px" }}
         cover={
@@ -104,15 +111,23 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           <RenderCarSpec1 value={myUniversalItem.mglbody} status="default" />
         </div> */}
 
-        <span className="gx-text-grey gx-fs-sm">{mainData.modifieddate}</span>
+        <span className="gx-text-grey gx-fs-sm">
+          {mainData.modifieddate.value}
+        </span>
 
         <h4>
           <Link to={mainData.link}>{mainData.title}</Link>
-          {toBoolean(mainData.isfeatured) && <FeaturedTag type="dot" />}
-          {!toBoolean(mainData.isactive) && <ActiveTag type="dot" />}
+          {toBoolean(mainData.isfeatured.value) && <FeaturedTag type="dot" />}
+          {!toBoolean(mainData.isactive.value) && <ActiveTag type="dot" />}
         </h4>
 
-        <div className="gx-text-success gx-fs-sm">{mainData.mainnumber}</div>
+        <div className="gx-text-success gx-fs-sm">
+          <Tooltip
+            title={getSpecData(mainData.mainnumber.field, "autozar").tooltip}
+          >
+            {mainData.mainnumber.value}
+          </Tooltip>
+        </div>
 
         <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
           {headerSpec.map((item, index) => {

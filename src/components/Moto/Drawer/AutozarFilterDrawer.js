@@ -28,7 +28,7 @@ const AutozarFilterDrawer = () => {
         placement="left"
         closable={true}
         visible={autozarContext.autozarList.isFilterDrawerOpen}
-        onClose={toggleFilterDrawer}
+        onClose={(e) => autozarContext.toggleFilterDrawerOpen()}
         closeIcon={
           <MyIcon type="iconangleleft" style={{ marginTop: "10px" }} />
         }
@@ -37,7 +37,10 @@ const AutozarFilterDrawer = () => {
       </Drawer>
 
       <div className="moto-filter-button" style={{ top: "250px" }}>
-        <Button onClick={toggleFilterDrawer} className="gx-btn-warning">
+        <Button
+          onClick={(e) => autozarContext.toggleFilterDrawerOpen()}
+          className="gx-btn-warning"
+        >
           <MyIcon
             type="iconfilter"
             className="gx-d-block moto-animation-away"

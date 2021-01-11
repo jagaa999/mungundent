@@ -42,6 +42,7 @@ const UniversalListType1 = ({
                 );
               })}
             </Row>
+
             <MotoPagination />
             <MyFilterDrawer />
             <AffixButtonInsert link={mySettings.menu} />
