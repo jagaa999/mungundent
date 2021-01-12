@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import NewsDetailContext from "context/NewsDetailContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import { Modal, Divider, Button, Form, Input, Radio } from "antd";
 
 const ErrorReportModal = (props) => {
   console.log("ErrorReportModal props", props);
-
-  const newsDetailContext = useContext(NewsDetailContext);
 
   const modalOk = (e) => {
     console.log(e);

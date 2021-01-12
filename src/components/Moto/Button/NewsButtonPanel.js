@@ -28,13 +28,13 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 
-import NewsDetailContext from "context/NewsDetailContext";
+import NewsContext from "context/NewsContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
 const NewsButtonPanel = () => {
-  const newsDetailContext = useContext(NewsDetailContext);
+  const newsDetailContext = useContext(NewsContext);
   const memberItemsContext = useContext(MemberItemsContext);
-  const newsItem = newsDetailContext.state.newsDetail;
+  const newsItem = newsDetailContext.newsDetail.mainDetail;
 
   // console.log(newsItem);
   const actionSave = (actionname) => {

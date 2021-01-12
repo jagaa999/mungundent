@@ -11,8 +11,6 @@ const UniversalListItemMainImage = ({
   cloudName = "duznp4bqa",
   myClass = "",
 }) => {
-  // console.log("imageMain", imageMain);
-
   return (
     <>
       {imageMain.indexOf("cloudapi") === -1 ? (

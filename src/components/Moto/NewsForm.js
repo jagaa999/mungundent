@@ -21,7 +21,7 @@ import {
 import { PlusOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 
 import { loadDataview } from "util/axiosFunction";
-import NewsDetailContext from "context/NewsDetailContext";
+import NewsContext from "context/NewsContext";
 import ImageCrop1 from "./Image/ImageCrop1";
 
 const { Option, OptGroup } = Select;
@@ -65,8 +65,8 @@ function handleFocus() {
 
 const NewsForm = () => {
   const [form] = Form.useForm();
-  const newsDetailContext = useContext(NewsDetailContext);
-  const newsItem = newsDetailContext.state.newsDetail;
+  const newsDetailContext = useContext(NewsContext);
+  const newsItem = newsDetailContext.newsDetail.mainDetail;
   const [imageTags, setImageTags] = useState("");
 
   const titleOnChange = (text) => {

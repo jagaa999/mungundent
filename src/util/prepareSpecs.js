@@ -119,6 +119,13 @@ export const prepareAutozarList = (myArray, menu = "") => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
+    // myList[index].financepricerr = accounting.formatMoney(
+    //   item.financepricerr,
+    //   "₮",
+    //   0,
+    //   "'"
+    // );
+
     const mainData = {
       id: item.id,
       menu: menu,
@@ -261,12 +268,177 @@ export const prepareAutozarList = (myArray, menu = "") => {
         width: "110px",
         align: "center",
         renderDivClass: "gx-text-success",
-        value: mainData.mainnumber.value,
+        // value: mainData.mainnumber.value,
+        value: accounting.formatMoney(item.financepricerr, "₮", 0, "'"),
       },
 
       {
         field: "modifieddate",
         responsive: ["lg"],
+        renderDivClass: "gx-fs-sm gx-text-grey",
+        value: mainData.modifieddate.value,
+      },
+    ];
+
+    myList[index].mainData = mainData;
+    myList[index].headerSpec = headerSpec;
+    myList[index].specList1 = specList1;
+    myList[index].specList2 = specList2;
+    myList[index].ownerData = ownerData;
+    myList[index].saveButtonData = saveButtonData;
+    myList[index].compareButtonData = compareButtonData;
+    myList[index].tableColumns = tableColumns;
+  });
+
+  // console.log("ЭНИЙГ ХАР ДАА", myList);
+
+  return myList;
+};
+
+//  #     # ####### #     #  #####
+//  ##    # #       #  #  # #     #
+//  # #   # #       #  #  # #
+//  #  #  # #####   #  #  #  #####
+//  #   # # #       #  #  #       #
+//  #    ## #       #  #  # #     #
+//  #     # #######  ## ##   #####
+
+export const prepareNewsSettings = {
+  pagetitle: "Нийтлэл",
+  menu: "news",
+  sortFields: [
+    {
+      field: "modifieddate",
+      label: "Зарын огноогоор",
+      icon: "iconlistlist",
+    },
+    {
+      field: "financepricerr",
+      label: "Зарын үнээр",
+      icon: "iconlistlist",
+    },
+    {
+      field: "autozarmilage",
+      label: "Зарын гүйлтээр",
+      icon: "iconlistlist",
+    },
+  ],
+};
+
+export const prepareNewsList = (myArray, menu = "") => {
+  // console.log("prepareAutozarList Array", myArray);
+
+  const myList = Object.values(myArray);
+
+  myList.map((item, index) => {
+    const mainData = {
+      id: item.newsid,
+      menu: menu,
+      link: { field: "link", value: `/${menu}/${item.newsid}` },
+      title: {
+        field: "title",
+        value: item.title,
+      },
+      imagemain: { field: "imagemain", value: item.imagemain },
+      imagemaincloudname: { field: "imagemaincloudname", value: "motomn" },
+      isfeatured: {
+        field: "isfeatured",
+        value: toBoolean(item.isfeatured) ? true : false,
+      },
+      isactive: {
+        field: "isactive",
+        value: toBoolean(item.isactive) ? true : false,
+      },
+      description: {
+        field: "description",
+        value: item.description.substring(0, 135),
+      },
+      mainnumber: {
+        field: "",
+        value: "",
+      },
+      createddate: {
+        field: "createddate",
+        value: moment(item.createddate).fromNow(),
+      },
+      modifieddate: {
+        field: "modifieddate",
+        value: moment(item.modifieddate).fromNow(),
+      },
+    };
+
+    const headerSpec = [
+      {
+        field: "newstypename",
+        value: item.newstypename,
+      },
+      {
+        field: "newssourcename",
+        value: item.newssourcename,
+      },
+    ];
+
+    const specList1 = [
+      // {
+      //   field: "newstypename",
+      //   value: item.newstypename,
+      // },
+    ];
+
+    const specList2 = [
+      // {
+      //   field: "newstypename",
+      //   value: item.newstypename,
+      // },
+    ];
+
+    const ownerData = {
+      photo: item.userprofilephoto,
+      photoalt: item.userfullname,
+      name: item.userfullname,
+      position: "",
+    };
+
+    const saveButtonData = {
+      id: "",
+      tablename: "ECM_NEWS",
+      actionname: "Таалагдлаа",
+      // actiondata: "1",
+      recordid: mainData.id || "",
+      description: mainData.title,
+      mainimg: mainData.imagemain,
+    };
+
+    const compareButtonData = {
+      title: mainData.title.value,
+      imagemain: mainData.imagemain.value,
+      mainSpec: mainData.mainnumber.value,
+      link: mainData.link.value,
+      subSpecs: [
+        { field: "newstypename", value: item.newstypename },
+        { field: "newssourcename", value: item.newssourcename },
+      ],
+    };
+
+    const tableColumns = [
+      {
+        field: "newstypename",
+        responsive: ["md"],
+        // responsive: ["lg"],
+        renderDivClass: "gx-text-grey",
+        value: item.newstypename,
+      },
+      {
+        field: "newssourcename",
+        // responsive: ["md"],
+        responsive: ["lg"],
+        renderDivClass: "gx-text-grey",
+        value: item.newssourcename,
+      },
+
+      {
+        field: "modifieddate",
+        // responsive: ["lg"],
         renderDivClass: "gx-fs-sm gx-text-grey",
         value: mainData.modifieddate.value,
       },

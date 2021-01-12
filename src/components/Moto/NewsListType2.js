@@ -5,14 +5,14 @@ import { Col, Row } from "antd";
 // import NewsListItem from "components/Moto/NewsListItem";
 import NewsListItem2 from "./NewsListItem2";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import NewsListContext from "../../context/NewsListContext";
+import NewsContext from "../../context/NewsContext";
 import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import LoadingList from "./Loading/LoadingList";
 
 const NewsListType2 = () => {
-  const newsListContext = useContext(NewsListContext);
+  const newsListContext = useContext(NewsContext);
 
   return (
     <div>
@@ -23,7 +23,7 @@ const NewsListType2 = () => {
           <NewsListIActionHeader title="Нийтлэл" />
 
           <Row className="gx-d-flex">
-            {newsListContext.newsList.newsList.map((newsItem, index) => {
+            {newsListContext.newsList.mainList.map((newsItem, index) => {
               return (
                 <Col
                   key={index}

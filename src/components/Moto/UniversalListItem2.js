@@ -93,6 +93,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
             myClass="gx-img-fluid gx-w-100"
             width="auto"
             imageMain={mainData.imagemain.value}
+            cloudName={mainData.imagemaincloudname.value}
           />
         }
       >
@@ -122,8 +123,8 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         </h4>
 
         <div className="gx-text-success gx-fs-sm">
-          <Tooltip title={GetSpecData(mainData.mainnumber.field).tooltip}>
-            {mainData.mainnumber.value}
+          <Tooltip title={GetSpecData(mainData.mainnumber.field)?.tooltip}>
+            {mainData.mainnumber?.value}
           </Tooltip>
         </div>
 

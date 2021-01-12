@@ -3,10 +3,10 @@ import { Button, Drawer } from "antd";
 import MyIcon from "util/iconFunction";
 
 import NewsFilter from "./NewsFilter";
-import NewsListContext from "context/NewsListContext";
+import NewsContext from "context/NewsContext";
 
 const NewsFilterDrawer = () => {
-  const newsListContext = useContext(NewsListContext);
+  const newsListContext = useContext(NewsContext);
 
   const toggleFilterDrawer = () => {
     newsListContext.toggleFilterDrawerOpen();

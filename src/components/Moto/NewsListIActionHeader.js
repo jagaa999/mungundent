@@ -7,12 +7,12 @@ import { PlusOutlined, FilterOutlined } from "@ant-design/icons";
 import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
-import NewsListContext from "context/NewsListContext";
+import NewsContext from "context/NewsContext";
 import MotoSort from "./Sort/MotoSort";
 
 const NewsListIActionHeader = (props) => {
   const filterContext = useContext(FilterContext);
-  const newsListContext = useContext(NewsListContext);
+  const newsListContext = useContext(NewsContext);
   const history = useHistory();
 
   const toggleFilterDrawer = () => {

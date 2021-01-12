@@ -4,14 +4,14 @@ import { Col, Row, Card } from "antd";
 
 import NewsListItem3 from "./NewsListItem3";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import NewsListContext from "context/NewsListContext";
+import NewsContext from "context/NewsContext";
 import NewsFilterDrawer from "./Drawer/NewsFilterDrawer";
 import FilterTag from "./Tag/FilterTag";
 import MotoPagination from "./Pagination/MotoPagination";
 import LoadingList from "./Loading/LoadingList";
 
 const NewsListType2 = () => {
-  const newsListContext = useContext(NewsListContext);
+  const newsListContext = useContext(NewsContext);
 
   return (
     <div>
@@ -27,7 +27,7 @@ const NewsListType2 = () => {
             <Col key="dffdf" xs={24}>
               <NewsListItem3
                 key="newsListItem3"
-                newsItems={newsListContext.newsList.newsList}
+                newsItems={newsListContext.newsList.mainList}
               />
             </Col>
           </Row>

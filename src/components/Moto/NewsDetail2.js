@@ -27,12 +27,12 @@ import NewsDetailHeader from "./NewsDetailHeader";
 import NewsControlButton from "./Button/NewsControlButton";
 
 import LogsContext from "context/LogsContext";
-import NewsDetailContext from "context/NewsDetailContext";
+import NewsContext from "context/NewsContext";
 import NewsItemMainImage from "./NewsItemMainImage";
 
 const NewsDetailComponent = () => {
-  const newsDetailContext = useContext(NewsDetailContext);
-  const newsItem = newsDetailContext.state.newsDetail;
+  const newsDetailContext = useContext(NewsContext);
+  const newsItem = newsDetailContext.newsDetail.mainDetail;
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   const member = {

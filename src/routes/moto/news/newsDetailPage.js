@@ -6,17 +6,17 @@ import { prepareTitle } from "util/config";
 import NewsDetail from "../../../components/Moto/NewsDetail2";
 import { CommentListStore } from "../../../context/CommentContext";
 import { LogsStore } from "../../../context/LogsContext";
-import NewsDetailContext from "../../../context/NewsDetailContext";
+import NewsContext from "../../../context/NewsContext";
 import MemberContext from "../../../context/MemberContext";
 import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
 const NewsDetailPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
-  const newsDetailContext = useContext(NewsDetailContext);
+  const newsDetailContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
 
-  const newsItem = newsDetailContext.state.newsDetail;
+  const newsItem = newsDetailContext.newsDetail.mainDetail;
 
   useEffect(() => {
     if (newsId !== 0) {
@@ -31,7 +31,7 @@ const NewsDetailPage = (props) => {
     }
   }, [newsId, memberContext.state.memberCloudUserSysId]);
 
-  // console.log("newsDetailContext", newsDetailContext.state);
+  // console.log("newsDetailContext", newsDetailContext.newsDetail);
   // console.log("ddddddddddddddddddddd");
 
   return (
@@ -51,7 +51,7 @@ const NewsDetailPage = (props) => {
       {memberContext.state.isLogin ? (
         <CommentListStore>
           <LogsStore>
-            {newsDetailContext.state.loading ? (
+            {newsDetailContext.newsDetail.loading ? (
               <LoadingDetail />
             ) : (
               <NewsDetail newsId={newsId} />

@@ -5,13 +5,13 @@ import { Button, Input, Checkbox, Divider } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import CustomScrollbars from "util/CustomScrollbars";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
-import NewsListContext from "context/NewsListContext";
+import NewsContext from "context/NewsContext";
 import FilterContext from "context/FilterContext";
 
 const { Search } = Input;
 
 const NewsFilter = (props) => {
-  const newsListContext = useContext(NewsListContext);
+  const newsListContext = useContext(NewsContext);
   const filterContext = useContext(FilterContext);
 
   const [newsTitle, setNewsTitle] = useState("");

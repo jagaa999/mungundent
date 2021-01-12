@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { CommentListStore } from "context/CommentContext";
 import { LogsStore } from "context/LogsContext";
-import NewsDetailContext from "context/NewsDetailContext";
+import NewsContext from "context/NewsContext";
 import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
@@ -11,20 +11,17 @@ import { Html5Entities } from "html-entities";
 import Output from "editorjs-react-renderer";
 
 const NewsDetailModal = (props) => {
-  const newsDetailContext = useContext(NewsDetailContext);
+  const newsDetailContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
 
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   useEffect(() => {
     if (props.newsId !== 0 && memberContext.state.memberCloudUserSysId !== 0)
-      newsDetailContext.loadNewsDetail(
-        props.newsId,
-        memberContext.state.memberCloudUserSysId
-      );
+      newsDetailContext.loadNewsDetail(props.newsId);
   }, []);
 
-  const newsItem = newsDetailContext.state.newsDetail;
+  const newsItem = newsDetailContext.newsDetail.mainDetail;
 
   let myBody = htmlEntities.decode(newsItem.body) || "";
   myBody = myBody.split('"/storage').join('"https://www.moto.mn/storage');
@@ -93,7 +90,7 @@ const NewsDetailModal = (props) => {
 
   return (
     <div>
-      {newsDetailContext.state.loading ? <LoadingDetail /> : myOutputBody}
+      {newsDetailContext.newsDetail.loading ? <LoadingDetail /> : myOutputBody}
     </div>
   );
 };

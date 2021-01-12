@@ -113,9 +113,11 @@ const AuctionListItem3 = ({ myListContextListList }) => {
       title: myItem.label,
       dataIndex: item.field,
 
-      render: () => (
+      render: (temp, record) => (
         <Tooltip title={myItem.tooltip} key={index}>
-          <div className={item.renderDivClass}>{item.value}</div>
+          <div className={record.tableColumns[index].renderDivClass}>
+            {record.tableColumns[index].value}
+          </div>
         </Tooltip>
       ),
     };

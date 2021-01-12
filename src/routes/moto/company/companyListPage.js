@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 
-// import NewsListContext from "context/NewsListContext";
 import FilterContext from "../../../context/FilterContext";
 import MemberContext from "../../../context/MemberContext";
 import CompanyContext from "../../../context/CompanyContext";

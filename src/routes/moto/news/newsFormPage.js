@@ -2,14 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import NewsForm from "components/Moto/NewsForm";
-import NewsDetailContext from "context/NewsDetailContext";
+import NewsContext from "context/NewsContext";
 import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
 const NewsFormPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
-  const newsDetailContext = useContext(NewsDetailContext);
+  const newsDetailContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const NewsFormPage = (props) => {
     <>
       {memberContext.state.isLogin ? (
         <>
-          {newsDetailContext.state.loading ? (
+          {newsDetailContext.newsDetail.loading ? (
             <LoadingDetail />
           ) : (
             <NewsForm newsId={newsId} />

@@ -1,14 +1,25 @@
 import React, { useContext } from "react";
-import toBoolean from "./booleanFunction";
-import accounting from "accounting";
-import moment from "moment";
 import FilterContext from "context/FilterContext";
-import motoSpecData from "./motoSpecData";
+import autozarSpecData from "./specData/autozarSpecData.json";
+import newsSpecData from "./specData/newsSpecData.json";
 
 export const GetSpecData = (field = "") => {
   const filterContext = useContext(FilterContext);
   if (field === "") return null;
   const menu = filterContext.state.menu;
+
+  let myObject = {};
+  switch (menu) {
+    case "news":
+      myObject = newsSpecData;
+      break;
+    case "autozar":
+      myObject = autozarSpecData;
+      break;
+
+    default:
+      break;
+  }
 
   const myFieldObject = {
     label: field,
@@ -17,10 +28,8 @@ export const GetSpecData = (field = "") => {
     status: "default",
     tooltip: field,
     placeholder: field,
-    ...(motoSpecData?.[menu]?.[field] || {}),
+    ...(myObject[field] || {}),
   };
 
   return myFieldObject;
 };
-
-// export default GetSpecData;

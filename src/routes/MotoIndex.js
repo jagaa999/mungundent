@@ -11,8 +11,7 @@ import InBuiltApps from "./inBuiltApps/index";
 import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
-import { NewsListStore } from "../context/NewsListContext";
-import { NewsDetailStore } from "../context/NewsDetailContext";
+import { NewsStore } from "../context/NewsContext";
 import { CarCatalogListStore } from "../context/CarCatalogListContext";
 import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
@@ -259,9 +258,9 @@ const App = ({ match }) => (
           "/news/add",
         ]}
       >
-        <NewsDetailStore>
+        <NewsStore>
           <NewsForm />
-        </NewsDetailStore>
+        </NewsStore>
       </Route>
       <Route
         path={[
@@ -271,16 +270,14 @@ const App = ({ match }) => (
           "/newslist/:newsId",
         ]}
       >
-        <NewsDetailStore>
+        <NewsStore>
           <NewsDetail />
-        </NewsDetailStore>
+        </NewsStore>
       </Route>
       <Route path={["/news", "/newslist"]}>
-        <NewsListStore>
-          <NewsDetailStore>
-            <NewsList />
-          </NewsDetailStore>
-        </NewsListStore>
+        <NewsStore>
+          <NewsList />
+        </NewsStore>
       </Route>
       {/* 
       #     # ####### #     # ######  ####### ######  
@@ -445,14 +442,14 @@ const App = ({ match }) => (
       #     # ####### #     # ####### 
       */}
       <Route exact path="/home">
-        <NewsListStore>
+        <NewsStore>
           <HomeIndex />
-        </NewsListStore>
+        </NewsStore>
       </Route>
       <Route exact path="/">
-        <NewsListStore>
+        <NewsStore>
           <HomeIndex />
-        </NewsListStore>
+        </NewsStore>
       </Route>
     </Switch>
   </div>

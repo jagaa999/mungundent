@@ -1,0 +1,254 @@
+{
+  "booktypeid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "companyid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "contentid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "createddate": {
+    "testvalue": "2021-01-12 11:39:25",
+    "label": "Үүсгэсэн огноо",
+    "tooltip": "Үүсгэсэн огноо",
+    "icon": ""
+  },
+  "creatorid": {
+    "testvalue": "1493006644797290",
+    "label": "Үүсгэгч ID",
+    "tooltip": "Үүсгэгч ID",
+    "icon": ""
+  },
+  "creatorname": {
+    "testvalue": "Moto админ",
+    "label": "Үүсгэгч",
+    "tooltip": "Үүсгэгч",
+    "icon": ""
+  },
+  "creatorphoto": {
+    "testvalue": "https://lh5.j0ptvs/photo.jpg",
+    "label": "Үүсгэгч",
+    "tooltip": "Үүсгэгч",
+    "icon": ""
+  },
+  "creatorpositionname": {
+    "testvalue": "Гишүүн",
+    "label": "Дүр",
+    "tooltip": "Дүр",
+    "icon": ""
+  },
+  "description": {
+    "testvalue": "Хятадыжээ.",
+    "label": "Товчхон",
+    "tooltip": "Товчхон",
+    "icon": ""
+  },
+  "dim1": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "dim2": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "imageMain": {
+    "testvalue": "http://res.cloudinary.1/bwoemuzyjx9lzyqxauac.jpg",
+    "label": "Үндсэн зураг",
+    "tooltip": "Үндсэн зураг",
+    "icon": ""
+  },
+  "imagemain": {
+    "testvalue": "http://res.cloudJkydBu1/bwoemuzyjx9lzyqxauac.jpg",
+    "label": "Үндсэн зураг",
+    "tooltip": "Үндсэн зураг",
+    "icon": ""
+  },
+  "isactive": {
+    "testvalue": "1",
+    "label": "Идэвхтэй?",
+    "tooltip": "Идэвхтэй?",
+    "icon": ""
+  },
+  "iscomment": {
+    "testvalue": "1",
+    "label": "Сэтгэгдэл?",
+    "tooltip": "Сэтгэгдэл?",
+    "icon": ""
+  },
+  "isfacebook": {
+    "testvalue": "",
+    "label": "Facebook?",
+    "tooltip": "Facebook?",
+    "icon": ""
+  },
+  "isfeatured": {
+    "testvalue": "0",
+    "label": "Спонсор?",
+    "tooltip": "Спонсор?",
+    "icon": ""
+  },
+  "istwitter": {
+    "testvalue": "",
+    "label": "Twitter?",
+    "tooltip": "Twitter?",
+    "icon": ""
+  },
+  "modifieddate": {
+    "testvalue": "2021-01-12 11:39:25",
+    "label": "Шинэчилсэн",
+    "tooltip": "Шинэчилсэн",
+    "icon": ""
+  },
+  "modifierid": {
+    "testvalue": "1605592513980",
+    "label": "Шинэчлэгч ID",
+    "tooltip": "Шинэчлэгч ID",
+    "icon": ""
+  },
+  "modifiername": {
+    "testvalue": "",
+    "label": "Шинэчлэгч",
+    "tooltip": "Шинэчлэгч",
+    "icon": ""
+  },
+  "modifierphoto": {
+    "testvalue": "",
+    "label": "Шинэчлэгч",
+    "tooltip": "Шинэчлэгч",
+    "icon": ""
+  },
+  "modifierpositionname": {
+    "testvalue": "",
+    "label": "Дүр",
+    "tooltip": "Дүр",
+    "icon": ""
+  },
+  "newsid": {
+    "testvalue": "16102810381341",
+    "label": "ID",
+    "tooltip": "ID",
+    "icon": ""
+  },
+  "newssourceid": {
+    "testvalue": "1502352956445",
+    "label": "Сурвалж ID",
+    "tooltip": "Сурвалж ID",
+    "icon": ""
+  },
+  "newssourcelogo": {
+    "testvalue": "storage/u461208931.jpg",
+    "label": "Сурвалж Logo",
+    "tooltip": "Сурвалж Logo",
+    "icon": ""
+  },
+  "newssourcename": {
+    "testvalue": "ikon News",
+    "label": "Сурвалж",
+    "tooltip": "Сурвалж",
+    "icon": ""
+  },
+  "newssourcetype": {
+    "testvalue": "Вэб сайт",
+    "label": "Төрөл",
+    "tooltip": "Төрөл",
+    "icon": ""
+  },
+  "newstypeid": {
+    "testvalue": "102",
+    "label": "Төрөл ID",
+    "tooltip": "Төрөл ID",
+    "icon": ""
+  },
+  "newstypename": {
+    "testvalue": "Гадаад Мэдээ",
+    "label": "Төрөл",
+    "tooltip": "Төрөл",
+    "icon": ""
+  },
+  "publisheddate": {
+    "testvalue": "2021-01-12 11:39:25",
+    "label": "Нийтэлсэн",
+    "tooltip": "Нийтэлсэн",
+    "icon": ""
+  },
+  "publisherid": {
+    "testvalue": "1605592513980",
+    "label": "Нийтлэгч ID",
+    "tooltip": "Нийтлэгч ID",
+    "icon": ""
+  },
+  "publishername": {
+    "testvalue": "",
+    "label": "Нийтлэгч",
+    "tooltip": "Нийтлэгч",
+    "icon": ""
+  },
+  "publisherphoto": {
+    "testvalue": "",
+    "label": "Нийтлэгч",
+    "tooltip": "Нийтлэгч",
+    "icon": ""
+  },
+  "publisherpositionname": {
+    "testvalue": "",
+    "label": "Дүр",
+    "tooltip": "Дүр",
+    "icon": ""
+  },
+  "title": {
+    "testvalue": "Хятадын ээ",
+    "label": "Гарчиг",
+    "tooltip": "Гарчиг",
+    "icon": ""
+  },
+  "userfirebaseuid": {
+    "testvalue": "7wIotzm1GsaaMCnM4SSbBJkydBu1",
+    "label": "UID",
+    "tooltip": "UID",
+    "icon": ""
+  },
+  "userfullname": {
+    "testvalue": "Aldar Ulzii",
+    "label": "Нэр",
+    "tooltip": "Нэр",
+    "icon": ""
+  },
+  "username": {
+    "testvalue": "7wIotzm1GsaaMCnM4SSbBJkydBu1",
+    "label": "Username",
+    "tooltip": "Username",
+    "icon": ""
+  },
+  "userpersonid": {
+    "testvalue": "1605592513978",
+    "label": "PersonId",
+    "tooltip": "PersonId",
+    "icon": ""
+  },
+  "userprofilephoto": {
+    "testvalue": "https://lh3.googleus-c",
+    "label": "Фото",
+    "tooltip": "Фото",
+    "icon": ""
+  },
+  "userpublisherid": {
+    "testvalue": "1605592513980",
+    "label": "Нийтлэгч ID",
+    "tooltip": "Нийтлэгч ID",
+    "icon": ""
+  }
+}

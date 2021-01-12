@@ -15,15 +15,15 @@ import {
 
 import ErrorReportModal from "components/Moto/Error/ErrorReportModal";
 
-import NewsDetailContext from "context/NewsDetailContext";
+import NewsContext from "context/NewsContext";
 import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
 const NewsControlButton = (props) => {
-  const newsDetailContext = useContext(NewsDetailContext);
+  const newsDetailContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
   const memberItemsContext = useContext(MemberItemsContext);
-  const newsItem = newsDetailContext.state.newsDetail;
+  const newsItem = newsDetailContext.newsDetail.mainDetail;
 
   const [showErrorReportModal, setShowErrorReportModal] = useState(false);
 
@@ -161,7 +161,7 @@ const NewsControlButton = (props) => {
   }
 
   const newsDetailPublisherId =
-    newsDetailContext.state.newsDetail.userpublisherid;
+    newsDetailContext.newsDetail.mainDetail.userpublisherid;
   const memberSysId = memberContext.state.memberCloudUserSysId;
 
   return (

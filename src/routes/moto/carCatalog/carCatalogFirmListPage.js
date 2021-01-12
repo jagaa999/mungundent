@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 
-// import NewsListContext from "context/NewsListContext";
-// import FilterContext from "context/FilterContext";
 import MemberContext from "context/MemberContext";
 import CarCatalogFirmType1 from "components/Moto/CarCatalogFirmListType1";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";

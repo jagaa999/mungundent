@@ -5,10 +5,7 @@ import { Col, Row } from "antd";
 
 import UniversalListItem2 from "./UniversalListItem2";
 import UniversalListActionHeader from "./Universal/UniversalListActionHeader";
-import AutozarContext from "context/AutozarContext";
-import AuctionFilterDrawer from "./Drawer/AuctionFilterDrawer";
 import MotoPagination from "./Pagination/MotoPagination";
-import AutozarFilterDrawer from "./Drawer/AutozarFilterDrawer";
 import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 import LoadingList from "./Loading/LoadingList";
 
@@ -20,15 +17,13 @@ const UniversalListType2 = ({
   mySettings = {},
   MyFilterDrawer,
 }) => {
-  const autozarListContext = useContext(AutozarContext);
-
   return (
     <div className="moto-list">
       {/* <div className="">
         <FilterTag />
       </div> */}
 
-      {!autozarListContext.autozarList.loading ? (
+      {!myListContextLoading ? (
         <div className="gx-main-content">
           <UniversalListActionHeader
             myListContext={myListContext}

@@ -10,12 +10,12 @@ import {
 import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
-import NewsListContext from "context/NewsListContext";
+import NewsContext from "context/NewsContext";
 import useDidMountEffect from "util/useDidMountEffect";
 
 const MotoSort = () => {
   const filterContext = useContext(FilterContext);
-  const newsListContext = useContext(NewsListContext);
+  const newsListContext = useContext(NewsContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
     filterContext.state.sorting.sortcolumnnames || "YEAR",

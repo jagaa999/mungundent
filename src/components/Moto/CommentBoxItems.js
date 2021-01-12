@@ -4,7 +4,7 @@ import { Card, Avatar, Button, Input, Divider } from "antd";
 import CommentBoxDetail from "./CommentBoxDetail";
 import MemberContext from "context/MemberContext";
 import CommentContext from "context/CommentContext";
-import NewsDetailContext from "context/NewsDetailContext";
+import NewsContext from "context/NewsContext";
 
 const { TextArea } = Input;
 
@@ -12,7 +12,7 @@ const CommentBoxItems = (props) => {
   const [commentBody, setCommentBody] = useState("");
   const memberContext = useContext(MemberContext);
   const commentContext = useContext(CommentContext);
-  const newsDetailContext = useContext(NewsDetailContext);
+  const newsDetailContext = useContext(NewsContext);
 
   return (
     <div>
@@ -68,7 +68,7 @@ const CommentBoxItems = (props) => {
                 className="gx-mt-3"
                 onClick={() => {
                   commentContext.insertComment(
-                    newsDetailContext.state.newsDetail.newsid,
+                    newsDetailContext.newsDetail.mainDetail.newsid,
                     commentBody,
                     "ECM_NEWS",
                     "0"

@@ -18,7 +18,7 @@ export const AutozarStore = (props) => {
   const filterContext = useContext(FilterContext);
   const history = useHistory();
 
-  // ### #     # ### #######
+  //### #     # ### #######
   // #  ##    #  #     #
   // #  # #   #  #     #
   // #  #  #  #  #     #
@@ -26,7 +26,7 @@ export const AutozarStore = (props) => {
   // #  #    ##  #     #
   //### #     # ###    #
 
-  const initialStateAutozarList = {
+  const initialAutozarList = {
     loadParams: {
       systemmetagroupid: "1605592797379",
       showquery: "0",
@@ -54,7 +54,7 @@ export const AutozarStore = (props) => {
     error: null,
     isFilterDrawerOpen: false,
   };
-  const initialStateAutozarDetail = {
+  const initialAutozarDetail = {
     loadParams: {
       systemmetagroupid: "1605592797379",
       showquery: "0",
@@ -69,8 +69,8 @@ export const AutozarStore = (props) => {
     error: null,
   };
 
-  const [autozarList, setAutozarList] = useState(initialStateAutozarList);
-  const [autozarDetail, setAutozarDetail] = useState(initialStateAutozarDetail);
+  const [autozarList, setAutozarList] = useState(initialAutozarList);
+  const [autozarDetail, setAutozarDetail] = useState(initialAutozarDetail);
 
   useEffect(() => {
     if (filterContext.state.menu !== "autozar") return;
@@ -167,7 +167,6 @@ export const AutozarStore = (props) => {
 
     const myParamsAutozarList = {
       request: {
-        // username: memberContext.state.memberUID,
         username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",
         // username: "motoadmin",
@@ -177,10 +176,8 @@ export const AutozarStore = (props) => {
       },
     };
 
-    // axiosCloud
     myAxiosZ(myParamsAutozarList)
       .then((myData) => {
-        // console.log("myData---------", myData);
         const myPaging = myData.response?.result?.paging || {};
         const myArray = myData.response.result || [];
 
@@ -195,28 +192,10 @@ export const AutozarStore = (props) => {
         setAutozarList({
           ...myNewParam,
           loading: false,
-          // autozarList: Object.values(myArray),
           autozarList: myTempList,
         });
 
         filterContext.updateTotal(myPaging.totalcount);
-
-        // const myData = response.data.response;
-        // if (myData.status === "error") {
-        //   message.error(myData.text);
-        // } else {
-        //   const myPaging = myData.result.paging || {};
-        //   const myArray = myData.result || [];
-
-        //   delete myArray["aggregatecolumns"];
-        //   delete myArray["paging"];
-
-        //   setAutozarList({
-        //     ...autozarList,
-        //     loading: false,
-        //     autozarList: Object.values(myArray),
-        //   });
-        // }
       })
       .catch((error) => {
         setAutozarList({ ...autozarList, loading: false, error });
@@ -226,7 +205,7 @@ export const AutozarStore = (props) => {
   };
 
   const clearAutozarDetail = () => {
-    setAutozarDetail(initialStateAutozarDetail);
+    setAutozarDetail(initialAutozarDetail);
   };
 
   // ######  ####### #######    #    ### #
@@ -261,7 +240,7 @@ export const AutozarStore = (props) => {
     };
 
     // console.log("myParamsAutozarDetail", myParamsAutozarDetail);
-    setAutozarDetail(initialStateAutozarDetail);
+    setAutozarDetail(initialAutozarDetail);
     setAutozarDetail({ ...autozarDetail, loading: true });
 
     axios
@@ -440,20 +419,20 @@ export const AutozarStore = (props) => {
       },
     };
 
-    console.log(
-      "myParamsAutozarDetail",
-      myParamsAutozarDetail.request.parameters
-    );
+    // console.log(
+    //   "myParamsAutozarDetail",
+    //   myParamsAutozarDetail.request.parameters
+    // );
 
     // return;
 
     axios
       .post("", myParamsAutozarDetail)
       .then((response) => {
-        console.log("Save AutozarDetail:   ", response);
+        // console.log("Save AutozarDetail:   ", response);
 
         const myData = response.data.response;
-        console.log("After Save AutozarDetail ------------>", myData);
+        // console.log("After Save AutozarDetail ------------>", myData);
 
         if (myData.status === "error") {
           message.error(myData.text, 7);

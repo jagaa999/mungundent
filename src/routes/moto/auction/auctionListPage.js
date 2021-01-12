@@ -9,7 +9,6 @@ import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 import MyHelmet from "./auctionHelmet";
 
 const AuctionListPage = () => {
-  // const newsListContext = useContext(CarCatalogContext);
   const filterContext = useContext(FilterContext);
   const memberContext = useContext(MemberContext);
 
