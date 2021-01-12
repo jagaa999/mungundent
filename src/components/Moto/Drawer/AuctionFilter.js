@@ -194,7 +194,7 @@ const AuctionFilter = (props) => {
           Марк
         </h6> */}
         <Select
-          className="moto-select-firm gx-w-100 gx-mt-1"
+          className="moto-select-firm gx-w-100 gx-mt-3"
           loading={markList.loading}
           showSearch
           allowClear

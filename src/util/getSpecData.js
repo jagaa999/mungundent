@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import FilterContext from "context/FilterContext";
 import autozarSpecData from "./specData/autozarSpecData.json";
 import newsSpecData from "./specData/newsSpecData.json";
+import auctionSpecData from "./specData/auctionSpecData.json";
 
 export const GetSpecData = (field = "") => {
   const filterContext = useContext(FilterContext);
@@ -15,6 +16,9 @@ export const GetSpecData = (field = "") => {
       break;
     case "autozar":
       myObject = autozarSpecData;
+      break;
+    case "auction":
+      myObject = auctionSpecData;
       break;
 
     default:

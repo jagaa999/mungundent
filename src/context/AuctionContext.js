@@ -4,6 +4,7 @@ import { message } from "antd";
 import axios from "axios";
 import { stringify } from "query-string";
 
+import { prepareAuctionList } from "util/prepareSpecs";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import LogContext from "context/LogsContext";
@@ -129,6 +130,8 @@ export const AuctionStore = (props) => {
       myWhere = "where " + qs;
     }
 
+    console.log("PPPPPPPPPPPPP WHERE", myWhere);
+
     if (filterContext.state.filterList?.marka_id) {
       myTempObject.marka_id = filterContext.state.filterList?.marka_id;
     }
@@ -173,7 +176,7 @@ export const AuctionStore = (props) => {
       sql: mySQL,
     };
 
-    // console.log("myParamsAuctionList", myParamsAuctionList);
+    console.log("myParamsAuctionList", myParamsAuctionList);
 
     axios
       .get(
@@ -181,11 +184,18 @@ export const AuctionStore = (props) => {
           stringify(myParamsAuctionList)
       )
       .then((response) => {
-        // console.log("OOOOPPPPPPPPPPPP", response);
+        console.log("OOOOPPPPPPPPPPPP", response);
+
+        const myTempList = prepareAuctionList(
+          response.data.response || [],
+          filterContext.state.menu
+        );
+
         setAuctionList({
           ...auctionList,
           loading: false,
-          auctionList: response.data.response || [],
+          // auctionList: response.data.response || [],
+          auctionList: myTempList,
           where: myWhere,
         });
       })

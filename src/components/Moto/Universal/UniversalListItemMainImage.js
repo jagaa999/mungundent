@@ -13,7 +13,7 @@ const UniversalListItemMainImage = ({
 }) => {
   return (
     <>
-      {imageMain.indexOf("cloudapi") === -1 ? (
+      {imageMain.indexOf("cloudinary") !== -1 ? (
         <ImageCloudinary
           className={myClass}
           cloudName={cloudName}
@@ -35,13 +35,20 @@ const UniversalListItemMainImage = ({
           onError={defaultSrc}
         />
       ) : (
-        <ImageAnt
+        <img
           src={imageMain}
-          width={Number(width)}
-          className="gx-mr-3"
+          width={width}
+          className={myClass}
           alt={imageMain}
           fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
         />
+        // <ImageAnt
+        //   src={imageMain}
+        //   width={width}
+        //   className={myClass}
+        //   alt={imageMain}
+        //   fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+        // />
       )}
     </>
   );

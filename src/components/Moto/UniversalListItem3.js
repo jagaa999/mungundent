@@ -53,11 +53,10 @@ const AuctionListItem3 = ({ myListContextListList }) => {
       const myItem = GetSpecData(item.field);
 
       return (
-        <span className="moto-label-main ant-tag">
-          <Tooltip title={myItem.label} placement="bottom">
-            {item.value}
-          </Tooltip>
-        </span>
+        <div className="gx-d-flex gx-fs-sm">
+          <span className="gx-mr-2 gx-text-grey">{myItem.label}</span>
+          {item.value}
+        </div>
       );
     }
     return "";
@@ -86,9 +85,9 @@ const AuctionListItem3 = ({ myListContextListList }) => {
                 return <RenderHeaderSpec key={index} item={item} />;
               })}
 
-              {record.specList1.map((item, index) => {
+              {/* {record.specList1.map((item, index) => {
                 return <RenderSpecList1 key={index} item={item} />;
-              })}
+              })} */}
 
               {record.specList2.map((item, index) => {
                 return <RenderSpecList2 key={index} item={item} />;
@@ -113,13 +112,12 @@ const AuctionListItem3 = ({ myListContextListList }) => {
       title: myItem.label,
       dataIndex: item.field,
 
-      render: (temp, record) => (
-        <Tooltip title={myItem.tooltip} key={index}>
-          <div className={record.tableColumns[index].renderDivClass}>
-            {record.tableColumns[index].value}
-          </div>
-        </Tooltip>
-      ),
+      render: (temp, record) => record.tableColumns[index].value,
+      // <Tooltip title={myItem.tooltip} key={index}>
+      //   <div className={record.tableColumns[index].renderDivClass}>
+      //     {record.tableColumns[index].value}
+      //   </div>
+      // </Tooltip>
     };
 
     columns.push(myColumn);

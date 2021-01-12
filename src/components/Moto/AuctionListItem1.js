@@ -128,7 +128,7 @@ const AuctionListItem1 = ({ auctionItem }) => {
 
           <div className="moto-top-right gx-d-none gx-d-sm-block">
             <div style={{ minWidth: "90px" }}>
-              <div className="gx-text-black gx-fs-lg">{auctionItem.RATE}</div>
+              <div className="gx-text-black gx-fs-lg">{auctionItem.RATE}</div>P
               <MotoAuctionStarRatingComponent
                 starCount={6}
                 value={auctionItem.RATE}

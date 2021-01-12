@@ -69,7 +69,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
     return "";
   };
 
-  // console.log(myUniversalItem);
+  console.log(myUniversalItem);
 
   // ######  ####### ####### #     # ######  #     #
   // #     # #          #    #     # #     # ##    #
@@ -193,12 +193,14 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
               {!isEmpty(ownerData) && (
                 <div className="gx-mt-auto">
                   <div className="gx-media gx-mt-3">
-                    <Avatar
-                      src={ownerData.photo}
-                      alt={ownerData.photoalt}
-                      className="gx-mr-2"
-                      size={30}
-                    />
+                    {!isEmpty(ownerData.photo) && (
+                      <Avatar
+                        src={ownerData.photo}
+                        alt={ownerData.photoalt}
+                        className="gx-mr-2"
+                        size={30}
+                      />
+                    )}
 
                     <div className="gx-media-body">
                       <h5 className=" gx-fs-sm">{ownerData.name}</h5>

@@ -1,0 +1,182 @@
+{
+  "AUCTION": {
+    "testvalue": "ORIX Kobe Nyusatsu",
+    "label": "Аукшин",
+    "tooltip": "Аукшин",
+    "icon": ""
+  },
+  "AUCTION_DATE": {
+    "testvalue": "2021-01-12 00:00:00",
+    "label": "Огноо",
+    "tooltip": "Огноо",
+    "icon": ""
+  },
+  "AVG_PRICE": {
+    "testvalue": "876000",
+    "label": "Дундаж үнэ",
+    "tooltip": "Дундаж үнэ",
+    "icon": ""
+  },
+  "AVG_STRING": {
+    "testvalue": "790,906,1085,863,935,1079,932,924,909,400",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "COLOR": {
+    "testvalue": "Gun Metal",
+    "label": "Өнгө",
+    "tooltip": "Өнгө",
+    "icon": ""
+  },
+  "ENG_V": {
+    "testvalue": "2000",
+    "label": "Хөдөлгүүр",
+    "tooltip": "Хөдөлгүүр",
+    "icon": ""
+  },
+  "EQUIP": {
+    "testvalue": "AC",
+    "label": "Тоноглол",
+    "tooltip": "Тоноглол",
+    "icon": ""
+  },
+  "FINISH": {
+    "testvalue": "878000",
+    "label": "Эцсийн үнэ",
+    "tooltip": "Эцсийн үнэ",
+    "icon": ""
+  },
+  "GRADE": {
+    "testvalue": "4WD 20X",
+    "label": "Хувилбар",
+    "tooltip": "Хувилбар",
+    "icon": ""
+  },
+  "ID": {
+    "testvalue": "tqhJawwY4PLKGb",
+    "label": "ID",
+    "tooltip": "ID",
+    "icon": ""
+  },
+  "IMAGES": {
+    "testvalue": "https",
+    "label": "Зураг",
+    "tooltip": "Зураг",
+    "icon": ""
+  },
+  "KPP": {
+    "testvalue": "AT",
+    "label": "Хроп",
+    "tooltip": "Хроп",
+    "icon": ""
+  },
+  "KPP_TYPE": {
+    "testvalue": "2",
+    "label": "Хропын төрөл",
+    "tooltip": "Хропын төрөл",
+    "icon": ""
+  },
+  "KUZOV": {
+    "testvalue": "NT32",
+    "label": "Арал",
+    "tooltip": "Арал",
+    "icon": ""
+  },
+  "LOT": {
+    "testvalue": "1008",
+    "label": "LOT",
+    "tooltip": "LOT",
+    "icon": ""
+  },
+  "MARKA_ID": {
+    "testvalue": "2",
+    "label": "Фирм ID",
+    "tooltip": "Фирм ID",
+    "icon": ""
+  },
+  "MARKA_NAME": {
+    "testvalue": "NISSAN",
+    "label": "Фирм",
+    "tooltip": "Фирм",
+    "icon": ""
+  },
+  "MILEAGE": {
+    "testvalue": "55000",
+    "label": "Гүйлт",
+    "tooltip": "Гүйлт",
+    "icon": ""
+  },
+  "MODEL_ID": {
+    "testvalue": "355",
+    "label": "Марк ID",
+    "tooltip": "Марк ID",
+    "icon": ""
+  },
+  "MODEL_NAME": {
+    "testvalue": "X-TRAIL",
+    "label": "Марк",
+    "tooltip": "Марк",
+    "icon": ""
+  },
+  "PRIV": {
+    "testvalue": "PRIV: \"\"",
+    "label": "Хөтлөгч",
+    "tooltip": "Хөтлөгч",
+    "icon": ""
+  },
+  "PW": {
+    "testvalue": "PW: \"\"",
+    "label": "Хөдөлгүүрийн чадал",
+    "tooltip": "Хөдөлгүүрийн чадал",
+    "icon": ""
+  },
+  "RATE": {
+    "testvalue": "R",
+    "label": "Үнэлгээ",
+    "tooltip": "Үнэлгээ",
+    "icon": ""
+  },
+  "START": {
+    "testvalue": "0",
+    "label": "Эхлэх үнэ",
+    "tooltip": "Эхлэх үнэ",
+    "icon": ""
+  },
+  "STATUS": {
+    "testvalue": "Sold",
+    "label": "Статус",
+    "tooltip": "Статус",
+    "icon": ""
+  },
+  "TIME": {
+    "testvalue": "2021-01-12 23:16:09",
+    "label": "Цаг",
+    "tooltip": "Цаг",
+    "icon": ""
+  },
+  "YEAR": {
+    "testvalue": "2014",
+    "label": "Үйлдвэрлэсэн он",
+    "tooltip": "Үйлдвэрлэсэн он",
+    "icon": ""
+  },
+  "INFO": {
+    "testvalue": "",
+    "label": "Нэмэлт мэдээлэл",
+    "tooltip": "Нэмэлт мэдээлэл",
+    "icon": ""
+  },
+  "SERIAL": {
+    "testvalue": "",
+    "label": "Сериал",
+    "tooltip": "Сериал",
+    "icon": ""
+  },
+  "PRICE": {
+    "testvalue": "",
+    "label": "Үнэ",
+    "tooltip": "Үнэ",
+    "icon": ""
+  }
+}

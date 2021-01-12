@@ -7,10 +7,17 @@ import AuctionListType3 from "../../../components/Moto/AuctionListType3";
 import AuctionListType2 from "../../../components/Moto/AuctionListType2";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 import MyHelmet from "./auctionHelmet";
+import UniversalListType1 from "../../../components/Moto/UniversalListType1";
+import UniversalListType2 from "../../../components/Moto/UniversalListType2";
+import UniversalListType3 from "../../../components/Moto/UniversalListType3";
+import { prepareAuctionSettings } from "util/prepareSpecs";
+import AuctionFilterDrawer from "../../../components/Moto/Drawer/AuctionFilterDrawer";
+import AuctionContext from "../../../context/AuctionContext";
 
 const AuctionListPage = () => {
   const filterContext = useContext(FilterContext);
   const memberContext = useContext(MemberContext);
+  const auctionContext = useContext(AuctionContext);
 
   // if (memberContext.state.isLogin) {
 
@@ -18,21 +25,43 @@ const AuctionListPage = () => {
     return (
       <>
         <MyHelmet />
-        <AuctionListType2 />
+        <UniversalListType2
+          myListContext={auctionContext}
+          myListContextLoading={auctionContext.auctionList.loading}
+          myListContextList={auctionContext.auctionList}
+          myListContextListList={auctionContext.auctionList.auctionList}
+          mySettings={prepareAuctionSettings}
+          MyFilterDrawer={AuctionFilterDrawer}
+        />
       </>
     );
   } else if (filterContext.state.cardtype.cardtype === "typetable") {
     return (
       <>
         <MyHelmet />
-        <AuctionListType3 />
+        <UniversalListType3
+          myListContext={auctionContext}
+          myListContextLoading={auctionContext.auctionList.loading}
+          myListContextList={auctionContext.auctionList}
+          myListContextListList={auctionContext.auctionList.auctionList}
+          mySettings={prepareAuctionSettings}
+          MyFilterDrawer={AuctionFilterDrawer}
+        />
       </>
     );
   } else {
     return (
       <>
         <MyHelmet />
-        <AuctionListType1 />
+        {/* <AuctionListType1 /> */}
+        <UniversalListType1
+          myListContext={auctionContext}
+          myListContextLoading={auctionContext.auctionList.loading}
+          myListContextList={auctionContext.auctionList}
+          myListContextListList={auctionContext.auctionList.auctionList}
+          mySettings={prepareAuctionSettings}
+          MyFilterDrawer={AuctionFilterDrawer}
+        />
       </>
     );
   }
