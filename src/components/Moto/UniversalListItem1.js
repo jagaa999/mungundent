@@ -69,7 +69,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
     return "";
   };
 
-  console.log(myUniversalItem);
+  // console.log(myUniversalItem);
 
   // ######  ####### ####### #     # ######  #     #
   // #     # #          #    #     # #     # ##    #

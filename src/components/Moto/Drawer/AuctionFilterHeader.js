@@ -15,7 +15,7 @@ import FilterContext from "../../../context/FilterContext";
 const { Search } = Input;
 const { Option } = Select;
 
-const AuctionFilter = (props) => {
+const AuctionFilterHeader = (props) => {
   const htmlEntities = new Html5Entities();
 
   const auctionListContext = useContext(AuctionContext);
@@ -389,4 +389,4 @@ const AuctionFilter = (props) => {
   );
 };
 
-export default AuctionFilter;
+export default AuctionFilterHeader;

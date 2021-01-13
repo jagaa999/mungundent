@@ -18,8 +18,9 @@ const UniversalListSort = ({ mySettings }) => {
   const autozarContext = useContext(AutozarContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
-    filterContext.state.sorting.sortcolumnnames || "modifieddate",
-    filterContext.state.cardtype.cardtype || "typetable",
+    filterContext.state.sorting.sortcolumnnames ||
+      mySettings.sortFields[0].field,
+    filterContext.state.cardtype.cardtype || "typecard",
   ]);
   const [sortDirection, setSortDirection] = useState(
     filterContext.state.sorting.sorttype || "DESC"

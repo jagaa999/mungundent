@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Button, PageHeader, Tooltip, Divider } from "antd";
 import MyIcon from "util/iconFunction";
 
-import AuctionListInfo from "./AuctionListInfo";
+import AuctionListInfo from "./Auction/AuctionListInfo";
 
 import FilterContext from "context/FilterContext";
 import AuctionContext from "context/AuctionContext";

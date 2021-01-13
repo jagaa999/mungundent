@@ -7,7 +7,10 @@ import moment from "moment";
 
 import axios from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
-import { prepareAutozarList } from "util/prepareSpecs";
+import {
+  prepareAutozarList,
+  prepareAutozarSettings as mySettings,
+} from "util/prepareSpecs";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
@@ -43,7 +46,8 @@ export const AutozarStore = (props) => {
         pagesize: filterContext.state.paging?.pagesize || "12",
         offset: filterContext.state.paging?.offset || "1",
         sortcolumnnames: {
-          [filterContext.state.sorting?.sortcolumnnames || "modifieddate"]: {
+          [filterContext.state.sorting?.sortcolumnnames ||
+          mySettings.sortFields[0].field]: {
             sorttype: filterContext.state.sorting?.sorttype || "DESC",
           },
         },

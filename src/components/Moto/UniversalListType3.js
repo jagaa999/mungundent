@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 
-import { Col, Row } from "antd";
+import { Col, Row, Empty } from "antd";
 
 import UniversalListItem3 from "./UniversalListItem3";
 import UniversalListActionHeader from "./Universal/UniversalListActionHeader";
@@ -9,6 +9,7 @@ import FilterContext from "context/FilterContext";
 import MotoPagination from "./Pagination/MotoPagination";
 import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 import LoadingList from "./Loading/LoadingList";
+import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
 
 const UniversalListType3 = ({
   myListContext,
@@ -20,6 +21,15 @@ const UniversalListType3 = ({
 }) => {
   const autozarListContext = useContext(AutozarContext);
   const filterContext = useContext(FilterContext);
+
+  const { menu } = mySettings;
+  const myCapitalizeName = menu.charAt(0).toUpperCase() + menu.slice(1);
+
+  const MyFilterHeaderComponent = React.lazy(() =>
+    import(`./Drawer/${myCapitalizeName}FilterHeader`).catch(() => ({
+      default: () => <></>,
+    }))
+  );
 
   return (
     <div className="moto-list">
@@ -36,6 +46,8 @@ const UniversalListType3 = ({
             mySettings={mySettings}
             myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
           />
+
+          <MyFilterHeaderComponent />
 
           <Row className="gx-d-flex">
             <Col key="dffdf" xs={24}>

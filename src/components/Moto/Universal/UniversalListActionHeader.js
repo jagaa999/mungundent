@@ -31,7 +31,7 @@ const UniversalListActionHeader = ({
     <>
       {showInfo && (
         <div>
-          <UniversalListInfoHelp />
+          <UniversalListInfoHelp mySettings={mySettings} />
           <Divider className="gx-my-3" />
         </div>
       )}

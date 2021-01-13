@@ -312,17 +312,12 @@ export const prepareNewsSettings = {
   sortFields: [
     {
       field: "modifieddate",
-      label: "Зарын огноогоор",
+      label: "Шинэчилсэн огноогоор",
       icon: "iconlistlist",
     },
     {
-      field: "financepricerr",
-      label: "Зарын үнээр",
-      icon: "iconlistlist",
-    },
-    {
-      field: "autozarmilage",
-      label: "Зарын гүйлтээр",
+      field: "title",
+      label: "Гарчгаар",
       icon: "iconlistlist",
     },
   ],
@@ -472,7 +467,7 @@ export const prepareNewsList = (myArray, menu = "") => {
 
 export const prepareAuctionSettings = {
   pagetitle: "Аукшин",
-  menu: "action",
+  menu: "auction",
   sortFields: [
     {
       field: "YEAR",

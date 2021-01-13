@@ -1,53 +1,25 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Redirect, useHistory, Link, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { parse } from "query-string";
-import axios from "util/axiosConfig";
 import MemberContext from "context/MemberContext";
 import useDidMountEffect from "util/useDidMountEffect";
 
 const FilterContext = React.createContext();
 
 export const FilterStore = (props) => {
-  const memberContext = useContext(MemberContext);
-
   const history = useHistory();
   const { pathname, search } = useLocation();
   const searchParams = parse(search);
-
-  // const [urlParams, setUrlParams] = useState({});
-
-  // const initialParams = {
-  //   filterList: {},
-  //   paging: {
-  //     offset: "1",
-  //     pagesize: "12",
-  //   },
-  //   sorting: {},
-  //   cardtype: {
-  //     cardtype: localStorage.getItem(pathname + "cardtype") || "typelist",
-  //   },
-  //   loading: false,
-  //   error: null,
-  // };
 
   const [state, setState] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [totalcount, setTotalcount] = useState("0");
 
-  // console.log("history", history);
-  // console.log("pathname", pathname);
-  // console.log("filterContext.state", state);
-
-  // useEffect(() => {
-  //   setUrlParams({
-  //     motoUrl: pathname.split("/"),
-  //     menu: pathname.split("/")[1],
-  //     pathName: pathname,
-  //     search: search,
-  //     searchParams: parse(search),
-  //   });
-  //   // setState(initialParams);
-  // }, [pathname]);
+  //Хэрвээ URL path солигдох аваас (цэс солигдсон гэсэн үг)
+  //Filter-ийн бүх өгөгдлийг цэвэрлэх хэрэгтэй.
+  useEffect(() => {
+    clearAll();
+  }, [pathname]);
 
   useEffect(() => {
     let myFilterList = {};
@@ -80,8 +52,6 @@ export const FilterStore = (props) => {
         myFilterList = Object.assign(myFilterList, myTempItem);
       }
     });
-
-    // window.scrollTo(0, 0);
 
     setState({
       motoUrl: pathname.split("/"),
@@ -123,20 +93,15 @@ export const FilterStore = (props) => {
     Object.keys(state.cardtype || {}).map((item) => {
       if (state.cardtype[item] !== "") {
         mySearchQueryParams.push(item + "=" + state.cardtype[item]);
-        // console.log("myCardtype", state.cardtype[item]);
         localStorage.setItem(pathname + "cardtype", state.cardtype[item]);
       }
     });
-
-    // console.log('mySearchQueryParams.join("&")', mySearchQueryParams.join("&"));
 
     setSearchQuery(mySearchQueryParams.join("&"));
   }, [state]);
 
   useDidMountEffect(() => {
-    // console.log("ЭНД ОРСОН", searchQuery);
     history.push({
-      // pathname: "/news",
       pathname: pathname,
       search: searchQuery,
     });

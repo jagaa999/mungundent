@@ -7,7 +7,10 @@ import moment from "moment";
 
 import axios from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
-import { prepareNewsList } from "util/prepareSpecs";
+import {
+  prepareNewsList,
+  prepareNewsSettings as mySettings,
+} from "util/prepareSpecs";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
@@ -35,7 +38,8 @@ export const NewsStore = (props) => {
         pagesize: filterContext.state.paging?.pagesize || "12",
         offset: filterContext.state.paging?.offset || "1",
         sortcolumnnames: {
-          [filterContext.state.sorting?.sortcolumnnames || "publisheddate"]: {
+          [filterContext.state.sorting?.sortcolumnnames ||
+          mySettings.sortFields[0].field]: {
             sorttype: filterContext.state.sorting?.sorttype || "DESC",
           },
         },

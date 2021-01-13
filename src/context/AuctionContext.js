@@ -4,7 +4,10 @@ import { message } from "antd";
 import axios from "axios";
 import { stringify } from "query-string";
 
-import { prepareAuctionList } from "util/prepareSpecs";
+import {
+  prepareAuctionList,
+  prepareAuctionSettings as mySettings,
+} from "util/prepareSpecs";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import LogContext from "context/LogsContext";
@@ -130,7 +133,7 @@ export const AuctionStore = (props) => {
       myWhere = "where " + qs;
     }
 
-    console.log("PPPPPPPPPPPPP WHERE", myWhere);
+    // console.log("PPPPPPPPPPPPP WHERE", myWhere);
 
     if (filterContext.state.filterList?.marka_id) {
       myTempObject.marka_id = filterContext.state.filterList?.marka_id;
@@ -163,7 +166,9 @@ export const AuctionStore = (props) => {
     const myOffset = String(
       (Number(filterContext.state.paging.offset || "1") - 1) * 12
     );
-    const mySortColumn = filterContext.state.sorting?.sortcolumnnames || "YEAR";
+    const mySortColumn =
+      filterContext.state.sorting?.sortcolumnnames ||
+      mySettings.sortFields[0].field;
     const mySortType = filterContext.state.sorting?.sorttype || "DESC";
     //LIMIT 15, 10 (16 дах бичлэгээс эхлэн 10 мөрийг авчир)
     // offset 1 гэдэг нь 0 гэж гарах ёстой. (1-1) * 12
@@ -176,7 +181,7 @@ export const AuctionStore = (props) => {
       sql: mySQL,
     };
 
-    console.log("myParamsAuctionList", myParamsAuctionList);
+    // console.log("myParamsAuctionList", myParamsAuctionList);
 
     axios
       .get(
@@ -184,7 +189,7 @@ export const AuctionStore = (props) => {
           stringify(myParamsAuctionList)
       )
       .then((response) => {
-        console.log("OOOOPPPPPPPPPPPP", response);
+        // console.log("OOOOPPPPPPPPPPPP", response);
 
         const myTempList = prepareAuctionList(
           response.data.response || [],
