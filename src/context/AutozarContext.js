@@ -10,7 +10,7 @@ import myAxiosZ from "../util/myAxiosZ";
 import {
   prepareAutozarList,
   prepareAutozarSettings as mySettings,
-} from "util/prepareSpecs";
+} from "util/prepareSpecsAutozar";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
