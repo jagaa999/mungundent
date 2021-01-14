@@ -5,6 +5,10 @@ import { Helmet } from "react-helmet";
 import { prepareTitle } from "../../../util/config";
 // import AutozarDetail from "../../../components/Moto/AutozarDetail";
 import AutozarDetail2 from "../../../components/Moto/AutozarDetail2";
+import UniversalDetail from "../../../components/Moto/UniversalDetail";
+import { prepareAutozarDetailSettings } from "util/prepareSpecsAutozar";
+import UniversalMeta from "util/prepareMeta";
+
 import { LogsStore } from "../../../context/LogsContext";
 import AutozarContext from "../../../context/AutozarContext";
 import MemberContext from "../../../context/MemberContext";
@@ -16,36 +20,32 @@ const AutozarDetailPage = (props) => {
   const autozarContext = useContext(AutozarContext);
   const memberContext = useContext(MemberContext);
 
-  const autozarItem = autozarContext.autozarDetail.autozarDetail || {};
-
   useEffect(() => {
     if (id !== 0) {
-      // if (memberContext.state.memberCloudUserSysId !== 0) {
       autozarContext.loadAutozarDetail(
         id,
         memberContext.state.memberCloudUserSysId
       );
-      // } else {
-      //   // autozarContext.loadAutozarDetailOg(id);
-      // }
     }
   }, [id, memberContext.state.memberCloudUserSysId]);
 
   return (
     <>
-      {/* {memberContext.state.isLogin ? ( */}
-      <>
-        {/* <LogsStore> */}
-        {autozarContext.autozarDetail.loading ? (
-          <LoadingDetail />
-        ) : (
-          <AutozarDetail2 id={id} />
-        )}
-        {/* </LogsStore> */}
-      </>
-      {/* ) : (
-        <PleaseLogin />
-      )} */}
+      {autozarContext.autozarDetail.loading ? (
+        <LoadingDetail />
+      ) : (
+        <>
+          <UniversalMeta meta={prepareAutozarDetailSettings.meta} />
+          <UniversalDetail
+            myDetailContext={autozarContext}
+            myDetailContextDetail={autozarContext.autozarDetail}
+            myDetailContextDetailDetail={
+              autozarContext.autozarDetail.autozarDetail
+            }
+            myDetailSettings={prepareAutozarDetailSettings}
+          />
+        </>
+      )}
     </>
   );
 };

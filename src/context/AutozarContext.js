@@ -9,7 +9,8 @@ import axios from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
 import {
   prepareAutozarList,
-  prepareAutozarSettings as mySettings,
+  prepareAutozarListSettings as mySettings,
+  prepareAutozarDetail,
 } from "util/prepareSpecsAutozar";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
@@ -221,6 +222,7 @@ export const AutozarStore = (props) => {
   // ######  #######    #    #     # ### #######
 
   const loadAutozarDetail = (id = 0) => {
+    setAutozarDetail({ ...autozarDetail, loading: true });
     const myParamsAutozarDetail = {
       request: {
         // username: memberContext.state.memberUID,
@@ -245,7 +247,6 @@ export const AutozarStore = (props) => {
 
     // console.log("myParamsAutozarDetail", myParamsAutozarDetail);
     setAutozarDetail(initialAutozarDetail);
-    setAutozarDetail({ ...autozarDetail, loading: true });
 
     axios
       .post("", myParamsAutozarDetail)
@@ -253,58 +254,19 @@ export const AutozarStore = (props) => {
         // console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
         // console.log("AUTOZAR DETAIL myArray------------> ", myArray);
-        myArray.mglyearmanufactured = moment(myArray.mglyearmanufactured);
-        myArray.mglyearimport = moment(myArray.mglyearimport);
-        myArray.createddate = moment(myArray.createddate);
-        myArray.modifieddate = moment(myArray.modifieddate);
 
-        myArray.mglengine2disp = myArray.mglengine2disp * 1;
-        // myArray.carmilageimport = myArray.carmilageimport * 1;
-        myArray.autozarmilage = myArray.autozarmilage * 1;
-        myArray.mgldoor = myArray.mgldoor * 1;
-        myArray.mglseat = myArray.mglseat * 1;
-        myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
-        myArray.autozarleasing = myArray.autozarleasing === "1" ? true : false;
-        myArray.autozarpenalty = myArray.autozarpenalty === "1" ? true : false;
-        myArray.autozartax = myArray.autozartax === "1" ? true : false;
-        myArray.isactive = myArray.isactive === "1" ? true : false;
-        myArray.iscomment = myArray.iscomment === "1" ? true : false;
-        myArray.isfeatured = myArray.isfeatured === "1" ? true : false;
-        myArray.imagemainFileList = [];
-        myArray.imagemainFileList =
-          myArray.imagemain !== undefined &&
-          (myArray.imagemain !== ""
-            ? [
-                {
-                  uid: "-1",
-                  name: "Тодорхойгүй",
-                  status: "done",
-                  url: myArray.imagemain || "",
-                  thumbUrl: myArray.imagemain || "",
-                  response: { url: myArray.imagemain || "" },
-                },
-              ]
-            : []);
-        myArray.imageotherFileList = [];
-        myArray.imageotherFileList =
-          myArray.imageother !== undefined &&
-          (myArray.imageother !== ""
-            ? JSON.parse(myArray.imageother).map((item, index) => ({
-                uid: index - 1,
-                name: item.replace(/^.*[\\\/]/, ""),
-                status: "done",
-                url: item || "",
-                thumbUrl: item || "",
-                response: { url: item || "" },
-              }))
-            : []);
+        const myTempItem = prepareAutozarDetail(
+          myArray,
+          filterContext.state.menu
+        );
 
         // console.log("MOTOCAR DETAIL------------> ", myArray);
 
         setAutozarDetail({
           ...autozarDetail,
           loading: false,
-          autozarDetail: myArray,
+          // autozarDetail: myArray,
+          autozarDetail: myTempItem,
         });
       })
       .catch((error) => {

@@ -7,7 +7,7 @@ import UniversalListType2 from "../../../components/Moto/UniversalListType2";
 import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 import NewsContext from "../../../context/NewsContext";
-import { prepareNewsSettings } from "util/prepareSpecsNews";
+import { prepareNewsListSettings } from "util/prepareSpecsNews";
 import NewsFilterDrawer from "../../../components/Moto/Drawer/NewsFilterDrawer";
 import UniversalMeta from "util/prepareMeta";
 
@@ -25,7 +25,7 @@ const NewsListPage = () => {
             myListContextLoading={newsContext.newsList.loading}
             myListContextList={newsContext.newsList}
             myListContextListList={newsContext.newsList.mainList}
-            mySettings={prepareNewsSettings}
+            mySettings={prepareNewsListSettings}
             MyFilterDrawer={NewsFilterDrawer}
           />
         );
@@ -36,7 +36,7 @@ const NewsListPage = () => {
             myListContextLoading={newsContext.newsList.loading}
             myListContextList={newsContext.newsList}
             myListContextListList={newsContext.newsList.mainList}
-            mySettings={prepareNewsSettings}
+            mySettings={prepareNewsListSettings}
             MyFilterDrawer={NewsFilterDrawer}
           />
         );
@@ -47,7 +47,7 @@ const NewsListPage = () => {
             myListContextLoading={newsContext.newsList.loading}
             myListContextList={newsContext.newsList}
             myListContextListList={newsContext.newsList.mainList}
-            mySettings={prepareNewsSettings}
+            mySettings={prepareNewsListSettings}
             MyFilterDrawer={NewsFilterDrawer}
           />
         );
@@ -57,7 +57,7 @@ const NewsListPage = () => {
   if (memberContext.state.isLogin) {
     return (
       <>
-        <UniversalMeta meta={prepareNewsSettings.meta} />
+        <UniversalMeta meta={prepareNewsListSettings.meta} />
         {renderSwitch(filterContext.state.cardtype.cardtype)}
       </>
     );

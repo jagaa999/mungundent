@@ -7,7 +7,7 @@ import UniversalListType1 from "../../../components/Moto/UniversalListType1";
 import UniversalListType2 from "../../../components/Moto/UniversalListType2";
 import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import AutozarContext from "../../../context/AutozarContext";
-import { prepareAutozarSettings } from "util/prepareSpecsAutozar";
+import { prepareAutozarListSettings } from "util/prepareSpecsAutozar";
 import AutozarFilterDrawer from "../../../components/Moto/Drawer/AutozarFilterDrawer";
 import UniversalMeta from "util/prepareMeta";
 
@@ -25,7 +25,7 @@ const AutozarListPage = () => {
             myListContextLoading={autozarContext.autozarList.loading}
             myListContextList={autozarContext.autozarList}
             myListContextListList={autozarContext.autozarList.autozarList}
-            mySettings={prepareAutozarSettings}
+            mySettings={prepareAutozarListSettings}
             MyFilterDrawer={AutozarFilterDrawer}
           />
         );
@@ -36,7 +36,7 @@ const AutozarListPage = () => {
             myListContextLoading={autozarContext.autozarList.loading}
             myListContextList={autozarContext.autozarList}
             myListContextListList={autozarContext.autozarList.autozarList}
-            mySettings={prepareAutozarSettings}
+            mySettings={prepareAutozarListSettings}
             MyFilterDrawer={AutozarFilterDrawer}
           />
         );
@@ -47,7 +47,7 @@ const AutozarListPage = () => {
             myListContextLoading={autozarContext.autozarList.loading}
             myListContextList={autozarContext.autozarList}
             myListContextListList={autozarContext.autozarList.autozarList}
-            mySettings={prepareAutozarSettings}
+            mySettings={prepareAutozarListSettings}
             MyFilterDrawer={AutozarFilterDrawer}
           />
         );
@@ -56,7 +56,7 @@ const AutozarListPage = () => {
 
   return (
     <>
-      <UniversalMeta meta={prepareAutozarSettings.meta} />
+      <UniversalMeta meta={prepareAutozarListSettings.meta} />
       {renderSwitch(filterContext.state.cardtype.cardtype)}
     </>
   );

@@ -9,7 +9,7 @@ import axios from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
 import {
   prepareNewsList,
-  prepareNewsSettings as mySettings,
+  prepareNewsListSettings as mySettings,
 } from "util/prepareSpecsNews";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";

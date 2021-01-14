@@ -154,7 +154,9 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
                   <p className="gx-mt-2">
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: mainData.description.value,
+                        __html:
+                          mainData.description.value.substring(0, 70) + "…",
+                        // "dfdsfds fsdf dsf",
                       }}
                     ></span>
                   </p>

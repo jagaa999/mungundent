@@ -13,7 +13,7 @@ import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionS
 //        # #          #       #     #  #   # # #     #
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
-export const prepareNewsSettings = {
+export const prepareNewsListSettings = {
   pagetitle: "Нийтлэл",
   menu: "news",
   sortFields: [

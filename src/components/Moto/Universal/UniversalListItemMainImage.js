@@ -8,6 +8,7 @@ import { Image as ImageAnt } from "antd";
 const UniversalListItemMainImage = ({
   width = "auto",
   imageMain,
+  style,
   cloudName = "duznp4bqa",
   myClass = "",
 }) => {
@@ -33,6 +34,7 @@ const UniversalListItemMainImage = ({
           defaultImage="jhannw5jgo2mlvvkvke9"
           alt={imageMain}
           onError={defaultSrc}
+          style={style}
         />
       ) : (
         <img
@@ -40,6 +42,7 @@ const UniversalListItemMainImage = ({
           width={width}
           className={myClass}
           alt={imageMain}
+          style={style}
           fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
         />
         // <ImageAnt
@@ -47,6 +50,7 @@ const UniversalListItemMainImage = ({
         //   width={width}
         //   className={myClass}
         //   alt={imageMain}
+        //   style={style}
         //   fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
         // />
       )}

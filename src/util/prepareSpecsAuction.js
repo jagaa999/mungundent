@@ -14,7 +14,7 @@ import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionS
 //  #     # #     # #     #    #     #  #     # #    ##
 //  #     #  #####   #####     #    ### ####### #     #
 
-export const prepareAuctionSettings = {
+export const prepareAuctionListSettings = {
   pagetitle: "Аукшин",
   menu: "auction",
   sortFields: [
