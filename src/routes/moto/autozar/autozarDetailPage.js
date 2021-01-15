@@ -44,6 +44,7 @@ const AutozarDetailPage = (props) => {
             }
             myDetailSettings={prepareAutozarDetailSettings}
           />
+          <AutozarDetail2 myDetailContext={autozarContext} />
         </>
       )}
     </>

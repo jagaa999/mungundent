@@ -19,6 +19,7 @@ import {
   Button,
   Tooltip,
   Statistic,
+  Descriptions,
 } from "antd";
 
 import AutozarDetail2General from "./Autozar/AutozarDetail2General";
@@ -28,7 +29,6 @@ import AutozarGoonet from "./Autozar/AutozarGoonet";
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 import { GetSpecData } from "util/getSpecData";
-
 import { isEmpty } from "lodash";
 
 const UniversalDetail = ({
@@ -51,6 +51,7 @@ const UniversalDetail = ({
   } = myDetailContextDetailDetail;
 
   console.log(mainData);
+  console.log("ownerData", ownerData);
 
   // const htmlEntities = new Html5Entities();
 
@@ -70,13 +71,20 @@ const UniversalDetail = ({
     return "";
   };
 
+  //  ######  ####### ####### #     # ######  #     #
+  //  #     # #          #    #     # #     # ##    #
+  //  #     # #          #    #     # #     # # #   #
+  //  ######  #####      #    #     # ######  #  #
+  //  #   #   #          #    #     # #   #   #   # #
+  //  #    #  #          #    #     # #    #  #    ##
+  //  #     # #######    #     #####  #     # #     #
   return (
-    <div className="gx-main-content autozar-detail">
+    <div className="gx-main-content1 autozar-detail">
       <PageHeader
         className="site-page-header gx-mb-3"
         onBack={() => window.history.back()}
         title={myDetailSettings.pagetitle}
-        subTitle={mainData.title.value}
+        subTitle={mainData.title.value.substring(0, 23) + "…"}
         tags={
           <>
             {mainData.isfeatured.value && <FeaturedTag />}
@@ -116,12 +124,12 @@ const UniversalDetail = ({
         style={{ width: "100%", height: "100ыы%" }}
         title={
           <>
-            <UniversalListItemMainImage
+            {/* <UniversalListItemMainImage
               myClass="gx-mr-2"
               width="50"
               imageMain={mainData.imagemain.value}
               cloudName={mainData.imagemaincloudname.value}
-            />
+            /> */}
             {mainData.title.value}
             {mainData.isfeatured.value && <FeaturedTag />}
             {mainData.isactive.value && !mainData.isactive.value && (
@@ -133,7 +141,7 @@ const UniversalDetail = ({
       >
         <Row>
           <Col span={12}>
-            <List
+            {/* <List
               dataSource={[...headerSpec, ...specList1, ...specList2]}
               renderItem={(item, index) => {
                 if (isEmpty(item.value)) return null;
@@ -153,7 +161,31 @@ const UniversalDetail = ({
                   </List.Item>
                 );
               }}
-            ></List>
+            ></List> */}
+
+            <Descriptions
+              column={1}
+              layout="horizontal"
+              className="moto-auction-head-description"
+            >
+              {[...headerSpec, ...specList1, ...specList2].map(
+                (item, index) => {
+                  if (isEmpty(item.value || "")) return null;
+                  const myItem = GetSpecData(item.field);
+                  return (
+                    <Descriptions.Item
+                      className="gx-border-bottom gx-py-2"
+                      key={index}
+                      label={
+                        <span className="gx-text-grey_old">{myItem.label}</span>
+                      }
+                    >
+                      {item.value}
+                    </Descriptions.Item>
+                  );
+                }
+              )}
+            </Descriptions>
           </Col>
           <Col span={12}>
             <UniversalListItemMainImage
@@ -169,7 +201,9 @@ const UniversalDetail = ({
 
         <Row>
           <Col span={24}>
-            <h4>{GetSpecData(mainData.description.field).label}</h4>
+            <h4 className="gx-mb-4">
+              {GetSpecData(mainData.description.field).label}
+            </h4>
 
             {mainData.description.value}
           </Col>
@@ -179,7 +213,7 @@ const UniversalDetail = ({
 
         <Row>
           <Col span={24}>
-            <h4>{GetSpecData("ownerdata").label}</h4>
+            <h4 className="gx-mb-4">{GetSpecData("ownerdata").label}</h4>
 
             <div className="gx-mt-auto">
               <div className="gx-media gx-mt-3">

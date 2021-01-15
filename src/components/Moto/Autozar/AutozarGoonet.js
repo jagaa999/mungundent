@@ -11,8 +11,8 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 
-const AutozarGoonet = ({ autozarItem }) => {
-  // console.table(autozarItem);
+const AutozarGoonet = ({ myItem }) => {
+  // console.table(myItem);
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   // firmid: "1011300000";
@@ -77,27 +77,27 @@ const AutozarGoonet = ({ autozarItem }) => {
     //   </Descriptions>
 
     //   <Divider />
-    //   <div>firmid: {autozarItem.firmid}</div>
-    //   <div>markid: {autozarItem.markid}</div>
-    //   <div>motocarid: {autozarItem.motocarid}</div>
-    //   <div>indexdate: {autozarItem.indexdate}</div>
-    //   <div>indeximage: {autozarItem.indeximage}</div>
-    //   <div>goobody2door: {autozarItem.goobody2door}</div>
-    //   <div>goobody2modelcodefull: {autozarItem.goobody2modelcodefull}</div>
-    //   <div>goobody2seat: {autozarItem.goobody2seat}</div>
-    //   <div>goocardate: {autozarItem.goocardate}</div>
-    //   <div>goocarid: {autozarItem.goocarid}</div>
-    //   <div>goocartrim: {autozarItem.goocartrim}</div>
-    //   <div>goodrive2transtypename: {autozarItem.goodrive2transtypename}</div>
-    //   <div>gooengine2code: {autozarItem.gooengine2code}</div>
-    //   <div>gooengine2disp: {autozarItem.gooengine2disp}</div>
-    //   <div>gooengine2fuelname: {autozarItem.gooengine2fuelname}</div>
-    //   <div>gooengine2fueltank: {autozarItem.gooengine2fueltank}</div>
-    //   <div>gooengine2powerhp: {autozarItem.gooengine2powerhp}</div>
-    //   <div>goomainid: {autozarItem.goomainid}</div>
-    //   <div>goomodelcode: {autozarItem.goomodelcode}</div>
-    //   <div>goopricenewusd: {autozarItem.goopricenewusd}</div>
-    //   <div>goountilnow: {autozarItem.goountilnow}</div>
+    //   <div>firmid: {myItem.firmid}</div>
+    //   <div>markid: {myItem.markid}</div>
+    //   <div>motocarid: {myItem.motocarid}</div>
+    //   <div>indexdate: {myItem.indexdate}</div>
+    //   <div>indeximage: {myItem.indeximage}</div>
+    //   <div>goobody2door: {myItem.goobody2door}</div>
+    //   <div>goobody2modelcodefull: {myItem.goobody2modelcodefull}</div>
+    //   <div>goobody2seat: {myItem.goobody2seat}</div>
+    //   <div>goocardate: {myItem.goocardate}</div>
+    //   <div>goocarid: {myItem.goocarid}</div>
+    //   <div>goocartrim: {myItem.goocartrim}</div>
+    //   <div>goodrive2transtypename: {myItem.goodrive2transtypename}</div>
+    //   <div>gooengine2code: {myItem.gooengine2code}</div>
+    //   <div>gooengine2disp: {myItem.gooengine2disp}</div>
+    //   <div>gooengine2fuelname: {myItem.gooengine2fuelname}</div>
+    //   <div>gooengine2fueltank: {myItem.gooengine2fueltank}</div>
+    //   <div>gooengine2powerhp: {myItem.gooengine2powerhp}</div>
+    //   <div>goomainid: {myItem.goomainid}</div>
+    //   <div>goomodelcode: {myItem.goomodelcode}</div>
+    //   <div>goopricenewusd: {myItem.goopricenewusd}</div>
+    //   <div>goountilnow: {myItem.goountilnow}</div>
     // </Card> */}
       {/* </Scrollbars> */}
     </div>

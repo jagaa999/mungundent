@@ -250,5 +250,10 @@
     "label": "Нийтлэгч ID",
     "tooltip": "Нийтлэгч ID",
     "icon": ""
+  },
+  "ownerdata": {
+    "label": "Нийтлэгч",
+    "tooltip": "Нийтлэгч",
+    "icon": ""
   }
 }

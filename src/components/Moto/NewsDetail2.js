@@ -29,26 +29,33 @@ import NewsControlButton from "./Button/NewsControlButton";
 import LogsContext from "context/LogsContext";
 import NewsContext from "context/NewsContext";
 import NewsItemMainImage from "./NewsItemMainImage";
+import { isEmpty } from "lodash";
 
-const NewsDetailComponent = () => {
-  const newsDetailContext = useContext(NewsContext);
-  const newsItem = newsDetailContext.newsDetail.mainDetail;
+const NewsDetailComponent = ({ myDetailContext }) => {
+  // const newsDetailContext = useContext(NewsContext);
+  // const myItem = newsDetailContext.newsDetail.mainDetail;
+  const myItem = myDetailContext.newsDetail.mainDetail;
+
+  // console.log("PPPPP", myItem);
+  if (isEmpty(myItem)) return null;
+  // console.log("JJJJJJJ", myItem);
+
   const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
 
   const member = {
-    date: newsItem.publisheddate,
-    id: newsItem.userpublisherid,
-    photo: newsItem.userprofilephoto,
-    name: newsItem.userfullename,
+    date: myItem.publisheddate,
+    id: myItem.userpublisherid,
+    photo: myItem.userprofilephoto,
+    name: myItem.userfullname,
     positionname: "Гишүүнчлэл тодорхойгүй",
-    uid: newsItem.userfirebaseuid,
+    uid: myItem.userfirebaseuid,
   };
 
-  let myBody = htmlEntities.decode(newsItem.body) || "";
+  let myBody = htmlEntities.decode(myItem.body) || "";
   myBody = myBody.split('"/storage').join('"https://www.moto.mn/storage');
   myBody = myBody.split('"../storage').join('"https://www.moto.mn/storage');
 
-  // console.log("newsItem", newsItem);
+  // console.log("myItem", myItem);
 
   let myOutputBody = "";
 
@@ -112,99 +119,56 @@ const NewsDetailComponent = () => {
     }
   }
 
-  console.log("newsItem", newsItem);
+  // console.log("myItem", myItem);
 
-  if (Object.keys(newsItem).length !== 0) {
-    // let myMainImage = "";
-    // try {
-    //   myMainImage = newsItem.imagemain;
-    // } catch (e) {
-    //   myMainImage = "";
-    // }
+  myItem.imagemain =
+    myItem.imagemain === ""
+      ? "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
+      : myItem.imagemain;
 
-    newsItem.imagemain =
-      newsItem.imagemain === ""
-        ? "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
-        : newsItem.imagemain;
-
-    return (
-      <div key={newsItem.newsid} className="gx-main-content news-detail">
-        {/* <NewsDetailHeader newsItem={newsItem} member={member} /> */}
-
-        {/* <NewsButtonPanel newsItem={newsItem} /> */}
-
-        <Row>
-          <Col xs={24}>
-            <div className="gx-media gx-mt-3">
-              <Avatar
-                src={member.photo}
-                alt={member.name}
-                className="gx-mr-3"
-              />
-
-              <div className="gx-media-body">
-                <h5 className="gx-wall-user-title">{member.name}</h5>
-                <p className="gx-text-grey gx-fs-sm">
-                  {moment(newsItem.publisheddate).fromNow()}
-                </p>
-              </div>
-            </div>
-            <Card
-              className={
-                (toBoolean(newsItem.isfeatured) ? "gx-border-success" : "") +
-                (!toBoolean(newsItem.isactive) ? "gx-border-danger" : "")
-              }
-              cover={
-                <NewsItemMainImage
-                  width="auto"
-                  imageMain={newsItem.imagemain}
-                />
-              }
-              style={{ maxWidth: "700px" }}
+  //  ######  ####### ####### #     # ######  #     #
+  //  #     # #          #    #     # #     # ##    #
+  //  #     # #          #    #     # #     # # #   #
+  //  ######  #####      #    #     # ######  #  #  #
+  //  #   #   #          #    #     # #   #   #   # #
+  //  #    #  #          #    #     # #    #  #    ##
+  //  #     # #######    #     #####  #     # #     #
+  return (
+    <div key={myItem.newsid} className="gx-main-content2 news-detail">
+      <Row>
+        <Col xs={24}>
+          <Card
+            className={
+              (toBoolean(myItem.isfeatured) ? "gx-border-success" : "") +
+              (!toBoolean(myItem.isactive) ? "gx-border-danger" : "")
+            }
+            cover={
+              <NewsItemMainImage width="auto" imageMain={myItem.imagemain} />
+            }
+            style={{ maxWidth: "700px" }}
+          >
+            <h2
+              className={toBoolean(myItem.isfeatured) ? "gx-text-success" : ""}
             >
-              <h2
-                className={
-                  toBoolean(newsItem.isfeatured) ? "gx-text-success" : ""
-                }
-              >
-                {newsItem.title}
-                {toBoolean(newsItem.isfeatured) && <FeaturedTag />}
-                {!toBoolean(newsItem.isactive) && <ActiveTag />}
-              </h2>
+              {myItem.title}
+              {toBoolean(myItem.isfeatured) && <FeaturedTag />}
+              {!toBoolean(myItem.isactive) && <ActiveTag />}
+            </h2>
 
-              <div className="ant-row-flex">
-                <Tooltip title="Төрөл">
-                  <span className="moto-label-main ant-tag">
-                    {newsItem.newstypename}
-                  </span>
-                </Tooltip>
-                <Tooltip title="Эх сурвалж">
-                  <span className="moto-label-main ant-tag">
-                    {newsItem.newssourcename}
-                  </span>
-                </Tooltip>
-              </div>
+            <Divider className="gx-my-3" />
 
-              <Divider className="gx-my-3" />
-
-              <div className="moto-news-body gx-mt-3">{myOutputBody}</div>
-            </Card>
-          </Col>
-        </Row>
-        {/* <div>
-          <MemberCard02 member={member} maxWidth="250px" />
-        </div> */}
-        <div>
-          <NewsControlButton item={newsItem} />
-        </div>
-        {/* Одоогоор TableName-ийг хоосон орхив */}
-        <CommentBox recordId={newsItem.newsid} tableName="" />
-        <LogBox recordId={newsItem.newsid} tableName="ECM_NEWS" />
+            <div className="moto-news-body gx-mt-3">{myOutputBody}</div>
+          </Card>
+        </Col>
+      </Row>
+      <div>
+        <NewsControlButton item={myItem} />
       </div>
-    );
-  } else {
-    return "";
-  }
+      {/* Одоогоор TableName-ийг хоосон орхив */}
+      <CommentBox recordId={myItem.newsid} tableName="" />
+      <LogBox recordId={myItem.newsid} tableName="ECM_NEWS" />
+    </div>
+  );
 };
 
 export default NewsDetailComponent;

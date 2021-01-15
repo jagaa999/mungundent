@@ -1,76 +1,452 @@
 {
-  "mgllicensenumberfull": {
-    "label": "Улсын дугаар",
-    "tooltip": "Улсын дугаар",
-    "status": "processing"
+  "autozarconditionid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
   },
-  "mglbody": {
-    "label": "Хийц",
-    "tooltip": "Хийц, загвар",
-    "status": "default",
-    "icon": "fgf"
+  "autozarconditionname": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
   },
-  "mgldrivepos": {
-    "label": "Жолоо",
-    "tooltip": "Жолооны байрлал",
-    "status": "default"
+  "autozarinspection": {
+    "testvalue": "0",
+    "label": "Үзлэг?",
+    "tooltip": "Улсын үзлэгт орсон эсэх?",
+    "icon": ""
   },
-  "hybridfieldengine": {
-    "label": "Хөдөлгүүр",
-    "tooltip": "Хөдөлгүүрийн мэдээлэл",
-    "status": "default"
-  },
-  "mglengine2disp": {
-    "label": "Хөдөлгүүр",
-    "tooltip": "Хөдөлгүүрийн багтаамж",
-    "status": "default"
-  },
-  "drive2transtypename": {
-    "label": "Хроп",
-    "tooltip": "Хропны мэдээлэл",
-    "status": "default"
-  },
-  "drive2drivename": {
-    "label": "Хөтлөгч",
-    "tooltip": "Хөтлөгч",
-    "status": "default"
+  "autozarleasing": {
+    "testvalue": "true",
+    "label": "Лизинг?",
+    "tooltip": "Лизингээр өгөх эсэх",
+    "icon": ""
   },
   "autozarmilage": {
+    "testvalue": "0",
     "label": "Гүйлт",
     "tooltip": "Гүйсэн км",
-    "status": "default"
+    "icon": ""
   },
-  "mglyearimport": {
-    "label": "Орж ирсэн",
-    "tooltip": "Монголд орж ирсэн он",
-    "status": "default"
+  "autozarpenalty": {
+    "testvalue": "false",
+    "label": "Торгууль?",
+    "tooltip": "Торгуультай эсэх",
+    "icon": ""
   },
-  "mglfuel": {
-    "label": "Шатахуун",
-    "tooltip": "Шатахууны төрөл",
-    "status": "default"
+  "autozartax": {
+    "testvalue": "false",
+    "label": "Татвар?",
+    "tooltip": "Жил тутмын татвараа төлсөн эсэх",
+    "icon": ""
   },
-  "financepricerr": {
-    "label": "Үнэ",
-    "tooltip": "Борлуулах үнэ",
-    "status": "processing"
+  "body2vinnumber": {
+    "testvalue": "",
+    "label": "Арлын дугаар",
+    "tooltip": "Арлын дугаар (Vin)",
+    "icon": ""
+  },
+  "body2vinnumbershow": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "createdby": {
+    "testvalue": "1598935351417",
+    "label": "Үүсгэгч",
+    "tooltip": "Үүсгэгч",
+    "icon": ""
   },
   "createddate": {
+    "testvalue": "",
     "label": "Үүсгэсэн",
     "tooltip": "Автозарыг анх үүсгэсэн огноо",
-    "status": "default"
-  },
-  "modifieddate": {
-    "label": "Шинэчилсэн",
-    "tooltip": "Автозарын сүүлд шинэчилсэн огноо",
-    "status": "default"
+    "icon": ""
   },
   "description": {
-    "label": "Борлуулагчийн нэмэлт тайлбар",
+    "testvalue": "#AUDI #A5 загва үзүүлнэ",
+    "label": "Борлуулагчийн тайлбар",
     "tooltip": "Борлуулагчийн нэмэлт тайлбар",
-    "status": "default"
+    "icon": ""
   },
-  "ownerdata":{
-    "label": "Борлуулагч"
+  "drive2drivename": {
+    "testvalue": "",
+    "label": "Хөтлөгч",
+    "tooltip": "Хөтлөгч",
+    "icon": ""
+  },
+  "drive2transtypename": {
+    "testvalue": "Автомат - AT",
+    "label": "Хроп",
+    "tooltip": "Хропны мэдээлэл",
+    "icon": ""
+  },
+  "driveid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "email": {
+    "testvalue": "",
+    "label": "Имэйл",
+    "tooltip": "Имэйл",
+    "icon": ""
+  },
+  "financecondition": {
+    "testvalue": "",
+    "label": "Борлуулах нөхцөл",
+    "tooltip": "Борлуулах нөхцөл",
+    "icon": ""
+  },
+  "financepricerr": {
+    "testvalue": "35000000",
+    "label": "Үнэ",
+    "tooltip": "Борлуулах үнэ",
+    "icon": ""
+  },
+  "firmid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goobody2door": {
+    "testvalue": "",
+    "label": "Хаалга",
+    "tooltip": "Хаалга",
+    "icon": ""
+  },
+  "goobody2modelcodefull": {
+    "testvalue": "",
+    "label": "Арлын дугаар",
+    "tooltip": "Арлын дугаар",
+    "icon": ""
+  },
+  "goobody2seat": {
+    "testvalue": "",
+    "label": "Суудал",
+    "tooltip": "Суудал",
+    "icon": ""
+  },
+  "goocardate": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goocarid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goocartrim": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goodrive2transtypename": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "gooengine2code": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "gooengine2disp": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "gooengine2fuelname": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "gooengine2fueltank": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "gooengine2powerhp": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goomainid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goomodelcode": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goopricenewusd": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "goountilnow": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "id": {
+    "testvalue": "1605597802506",
+    "label": "ID дугаар",
+    "tooltip": "ID дугаар",
+    "icon": ""
+  },
+  "imagemain": {
+    "testvalue": "http://res.cloudinary.c5t5mq90.jpg",
+    "label": "Үндсэн зураг",
+    "tooltip": "Үндсэн зураг",
+    "icon": ""
+  },
+  "imagemainFileList": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "imageother": {
+    "testvalue": "[http://res.cloudinpdrwwi.jp]",
+    "label": "Бусад зураг",
+    "tooltip": "Бусад зураг",
+    "icon": ""
+  },
+  "imageotherFileList": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "indexdate": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "indeximage": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "isactive": {
+    "testvalue": "true",
+    "label": "Идэвхтэй?",
+    "tooltip": "Идэвхтэй?",
+    "icon": ""
+  },
+  "iscomment": {
+    "testvalue": "true",
+    "label": "Сэтгэгдэл?",
+    "tooltip": "Сэтгэгдэл?",
+    "icon": ""
+  },
+  "isfeatured": {
+    "testvalue": "false",
+    "label": "Спонсор?",
+    "tooltip": "Спонсор?",
+    "icon": ""
+  },
+  "markid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "memberfirebaseuid": {
+    "testvalue": "xLpK547bDNQEag2wAsDFHE5xHXk2",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "memberpersonid": {
+    "testvalue": "1598935351415",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "memberprofilephoto": {
+    "testvalue": "https://lh3.googleustrQ",
+    "label": "Фото",
+    "tooltip": "Фото",
+    "icon": ""
+  },
+  "memberuserfullname": {
+    "testvalue": "Moto Expert",
+    "label": "Нэр",
+    "tooltip": "Нэр",
+    "icon": ""
+  },
+  "memberusername": {
+    "testvalue": "xLpK547bDNQEag2wAsDFHE5xHXk2",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "mglbody": {
+    "testvalue": "Сэдан",
+    "label": "Хийц",
+    "tooltip": "Хийц, загвар",
+    "icon": ""
+  },
+  "mglcoloroutside": {
+    "testvalue": "Хар",
+    "label": "Гадна өнгө",
+    "tooltip": "Гадна өнгө",
+    "icon": ""
+  },
+  "mglcountryorigin": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "mgldoor": {
+    "testvalue": "4",
+    "label": "Хаалга",
+    "tooltip": "Хаалга",
+    "icon": ""
+  },
+  "mgldrivepos": {
+    "testvalue": "false",
+    "label": "Жолоо",
+    "tooltip": "Жолооны байрлал",
+    "icon": ""
+  },
+  "mglengine2disp": {
+    "testvalue": "2000",
+    "label": "Хөдөлгүүр",
+    "tooltip": "Хөдөлгүүрийн багтаамж",
+    "icon": ""
+  },
+  "mglfirm": {
+    "testvalue": "AUDI",
+    "label": "Фирм",
+    "tooltip": "Фирм",
+    "icon": ""
+  },
+  "mglfuel": {
+    "testvalue": "Премиум бензин",
+    "label": "Шатахуун",
+    "tooltip": "Шатахууны төрөл",
+    "icon": ""
+  },
+  "mgllicensenumberfull": {
+    "testvalue": "",
+    "label": "Улсын дугаар",
+    "tooltip": "Улсын дугаар",
+    "icon": ""
+  },
+  "mgllicensenumbershow": {
+    "testvalue": "",
+    "label": "Улсын дугаар нуух?",
+    "tooltip": "Улсын дугаар нуух?",
+    "icon": ""
+  },
+  "mglmark": {
+    "testvalue": "A5",
+    "label": "Марк",
+    "tooltip": "Марк",
+    "icon": ""
+  },
+  "mglseat": {
+    "testvalue": "5",
+    "label": "Суудал",
+    "tooltip": "Суудал",
+    "icon": ""
+  },
+  "mglyearimport": {
+    "testvalue": "",
+    "label": "Орж ирсэн",
+    "tooltip": "Монголд орж ирсэн он",
+    "icon": ""
+  },
+  "mglyearmanufactured": {
+    "testvalue": "",
+    "label": "Үйлдвэрлэсэн он",
+    "tooltip": "Үйлдвэрлэсэн он",
+    "icon": ""
+  },
+  "mobile1rr": {
+    "testvalue": "77778999",
+    "label": "Утас",
+    "tooltip": "Утас",
+    "icon": ""
+  },
+  "mobile2": {
+    "testvalue": "",
+    "label": "Утас",
+    "tooltip": "Утас",
+    "icon": ""
+  },
+  "modifiedby": {
+    "testvalue": "1598935351417",
+    "label": "Шинэчлэгч",
+    "tooltip": "Шинэчлэгч",
+    "icon": ""
+  },
+  "modifieddate": {
+    "testvalue": "",
+    "label": "Шинэчилсэн",
+    "tooltip": "Автозарын сүүлд шинэчилсэн огноо",
+    "icon": ""
+  },
+  "motocarid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "ownerid": {
+    "testvalue": "1598935351417",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "systemuserid": {
+    "testvalue": "1598935351417",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "transtypeid": {
+    "testvalue": "1001",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "hybridfieldengine": {
+    "testvalue": "",
+    "label": "Хөдөлгүүр",
+    "tooltip": "Хөдөлгүүрийн мэдээлэл",
+    "icon": ""
+  },
+  "ownerdata": {
+    "testvalue": "",
+    "label": "Борлуулагч",
+    "tooltip": "Борлуулагч",
+    "icon": ""
   }
 }

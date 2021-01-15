@@ -12,8 +12,8 @@ const giveInfo = (type, title, desc) => {
   });
 };
 
-const AutozarDetailSeller = ({ autozarItem }) => {
-  // console.table(autozarItem);
+const AutozarDetailSeller = ({ myItem }) => {
+  // console.table(myItem);
 
   return (
     <div>
@@ -41,10 +41,10 @@ const AutozarDetailSeller = ({ autozarItem }) => {
         >
           <h4>Борлуулагч</h4>
           <div>
-            {autozarItem.memberpersonid != "1598935351415" ? (
+            {myItem.memberpersonid != "1598935351415" ? (
               <AvatarMember03
-                memberPhoto={autozarItem.memberprofilephoto}
-                memberName={autozarItem.memberuserfullname}
+                memberPhoto={myItem.memberprofilephoto}
+                memberName={myItem.memberuserfullname}
               />
             ) : (
               ""
@@ -59,7 +59,7 @@ const AutozarDetailSeller = ({ autozarItem }) => {
               </div>
               <div className="gx-media-body">
                 <span className="gx-mb-0 gx-text-grey gx-fs-sm">Имэйл</span>
-                <p className="gx-mb-0">{autozarItem.email || "..."}</p>
+                <p className="gx-mb-0">{myItem.email || "..."}</p>
               </div>
             </div>
 
@@ -72,7 +72,7 @@ const AutozarDetailSeller = ({ autozarItem }) => {
               </div>
               <div className="gx-media-body">
                 <span className="gx-mb-0 gx-text-grey gx-fs-sm">Утас 1</span>
-                <p className="gx-mb-0">{autozarItem.mobile1rr || "..."}</p>
+                <p className="gx-mb-0">{myItem.mobile1rr || "..."}</p>
               </div>
             </div>
 
@@ -82,7 +82,7 @@ const AutozarDetailSeller = ({ autozarItem }) => {
               </div>
               <div className="gx-media-body">
                 <span className="gx-mb-0 gx-text-grey gx-fs-sm">Утас 2</span>
-                <p className="gx-mb-0">{autozarItem.mobile2 || "..."}</p>
+                <p className="gx-mb-0">{myItem.mobile2 || "..."}</p>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ const AutozarDetailSeller = ({ autozarItem }) => {
         >
           <h4>Тэмдэглэл</h4>
           <div className="gx-bg-primary-light gx-p-5 gx-border-radius-top-left-0 gx-rounded-lg ">
-            {autozarItem.description}
+            {myItem.description}
           </div>
         </Col>
       </Row>

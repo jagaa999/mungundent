@@ -10,10 +10,10 @@ import accounting from "accounting";
 
 import { Alert, Divider, Row, Col, Image, Descriptions } from "antd";
 
-const AutozarDetail2Zar = ({ autozarItem }) => {
+const AutozarDetail2Zar = ({ myItem }) => {
   const htmlEntities = new Html5Entities();
 
-  if (Object.keys(autozarItem).length !== 0) {
+  if (Object.keys(myItem).length !== 0) {
     // autozarconditionid: "1030"
     //! autozarconditionname: "Монголд бага явсан"
 
@@ -69,27 +69,22 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
               column={1}
             >
               <Descriptions.Item label="Нөхцөл">
-                {autozarItem.autozarconditionname}
+                {myItem.autozarconditionname}
               </Descriptions.Item>
               <Descriptions.Item label="Зарын дугаар">
-                {autozarItem.id}
+                {myItem.id}
               </Descriptions.Item>
 
               <Descriptions.Item label="Зарах нөхцөл">
-                {autozarItem.financecondition}
+                {myItem.financecondition}
               </Descriptions.Item>
 
               <Descriptions.Item label="Лизингтэй?">
-                {autozarItem.autozarleasing ? "Тийм" : "Үгүй"}
+                {myItem.autozarleasing ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
 
               <Descriptions.Item label="Зарах үнэ">
-                {accounting.formatMoney(
-                  autozarItem.financepricerr,
-                  "₮",
-                  0,
-                  "'"
-                )}
+                {accounting.formatMoney(myItem.financepricerr, "₮", 0, "'")}
               </Descriptions.Item>
             </Descriptions>
           </Col>
@@ -109,23 +104,23 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
               column={1}
             >
               <Descriptions.Item label="Оношилгоо?">
-                {autozarItem.autozarinspection ? "Тийм" : "Үгүй"}
+                {myItem.autozarinspection ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Торгуульгүй?">
-                {autozarItem.autozarpenalty ? "Тийм" : "Үгүй"}
+                {myItem.autozarpenalty ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Татвар төлсөн?">
-                {autozarItem.autozartax ? "Тийм" : "Үгүй"}
+                {myItem.autozartax ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
 
               {/* <Descriptions.Item label="Идэвхтэй?">
-                {autozarItem.isactive ? "Тийм" : "Үгүй"}
+                {myItem.isactive ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Коммент?">
-                {autozarItem.iscomment ? "Тийм" : "Үгүй"}
+                {myItem.iscomment ? "Тийм" : "Үгүй"}
               </Descriptions.Item>
               <Descriptions.Item label="Спонсор?">
-                {autozarItem.isfeatured ? "Тийм" : "Үгүй"}
+                {myItem.isfeatured ? "Тийм" : "Үгүй"}
               </Descriptions.Item> */}
             </Descriptions>
           </Col>
@@ -136,12 +131,11 @@ const AutozarDetail2Zar = ({ autozarItem }) => {
         <Row>
           <Col span={24}>
             <div>
-              Үүсгэсэн огноо:{" "}
-              {moment(autozarItem.createddate).format("YYYY-MM-DD")}
+              Үүсгэсэн огноо: {moment(myItem.createddate).format("YYYY-MM-DD")}
             </div>
             <div>
               Шинэчилсэн огноо:{" "}
-              {moment(autozarItem.modifieddate).format("YYYY-MM-DD")}
+              {moment(myItem.modifieddate).format("YYYY-MM-DD")}
             </div>
           </Col>
         </Row>

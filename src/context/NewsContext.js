@@ -10,6 +10,7 @@ import myAxiosZ from "../util/myAxiosZ";
 import {
   prepareNewsList,
   prepareNewsListSettings as mySettings,
+  prepareNewsDetail,
 } from "util/prepareSpecsNews";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
@@ -214,27 +215,15 @@ export const NewsStore = (props) => {
     myAxiosZ(myParamsNewsDetail)
       .then((myData) => {
         const myArray = myData.response.result || [];
-        // console.log("NEWS DETAIL------------>", myArray);
-        myArray.imagemainFileList = [];
-        myArray.imagemainFileList =
-          myArray.imagemain !== undefined &&
-          (myArray.imagemain !== ""
-            ? [
-                {
-                  uid: "-1",
-                  name: "Тодорхойгүй",
-                  status: "done",
-                  url: myArray.imagemain || "",
-                  thumbUrl: myArray.imagemain || "",
-                  response: { url: myArray.imagemain || "" },
-                },
-              ]
-            : []);
+        console.log("NEWS DETAIL------------>", myArray);
+
+        const myTempItem = prepareNewsDetail(myArray, filterContext.state.menu);
 
         setNewsDetail({
           ...newsDetail,
           loading: false,
-          mainDetail: myArray,
+          // mainDetail: myArray,
+          mainDetail: myTempItem,
         });
       })
       .catch((error) => {

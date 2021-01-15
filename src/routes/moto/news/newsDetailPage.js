@@ -11,32 +11,37 @@ import MemberContext from "../../../context/MemberContext";
 import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
+import UniversalDetail from "../../../components/Moto/UniversalDetail";
+import { prepareNewsDetailSettings } from "util/prepareSpecsNews";
+import UniversalMeta from "util/prepareMeta";
+
 const NewsDetailPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
-  const newsDetailContext = useContext(NewsContext);
+  const newsContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
 
-  const newsItem = newsDetailContext.newsDetail.mainDetail;
+  const newsItem = newsContext.newsDetail.mainDetail;
 
   useEffect(() => {
     if (newsId !== 0) {
       if (memberContext.state.memberCloudUserSysId !== 0) {
-        newsDetailContext.loadNewsDetail(
+        newsContext.loadNewsDetail(
           newsId,
           memberContext.state.memberCloudUserSysId
         );
-      } else {
-        newsDetailContext.loadNewsDetailOg(newsId);
       }
+      // else {
+      //   newsContext.loadNewsDetailOg(newsId);
+      // }
     }
   }, [newsId, memberContext.state.memberCloudUserSysId]);
 
-  // console.log("newsDetailContext", newsDetailContext.newsDetail);
+  // console.log("newsContext", newsContext.newsDetail);
   // console.log("ddddddddddddddddddddd");
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>{prepareTitle(newsItem.title)}</title>
         <meta property="fb:app_id" content="186294318100220" />
         <meta name="description" content={newsItem.description} />
@@ -46,21 +51,30 @@ const NewsDetailPage = (props) => {
         <meta property="og:description" content={newsItem.description} />
         <meta property="og:image" content={newsItem.imagemain} />
         <meta property="og:locale" content="mn_MN" />
-      </Helmet>
+      </Helmet> */}
 
-      {memberContext.state.isLogin ? (
-        <CommentListStore>
-          <LogsStore>
-            {newsDetailContext.newsDetail.loading ? (
-              <LoadingDetail />
-            ) : (
-              <NewsDetail newsId={newsId} />
-            )}
-          </LogsStore>
-        </CommentListStore>
-      ) : (
+      {/* {memberContext.state.isLogin ? ( */}
+      <CommentListStore>
+        <LogsStore>
+          {newsContext.newsDetail.loading ? (
+            <LoadingDetail />
+          ) : (
+            <>
+              <UniversalMeta meta={prepareNewsDetailSettings.meta} />
+              <UniversalDetail
+                myDetailContext={newsContext}
+                myDetailContextDetail={newsContext.newsDetail}
+                myDetailContextDetailDetail={newsContext.newsDetail.mainDetail}
+                myDetailSettings={prepareNewsDetailSettings}
+              />
+              <NewsDetail myDetailContext={newsContext} />
+            </>
+          )}
+        </LogsStore>
+      </CommentListStore>
+      {/* ) : (
         <PleaseLogin />
-      )}
+      )} */}
     </>
   );
 };

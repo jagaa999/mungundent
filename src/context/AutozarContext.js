@@ -253,7 +253,7 @@ export const AutozarStore = (props) => {
       .then((response) => {
         // console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
-        // console.log("AUTOZAR DETAIL myArray------------> ", myArray);
+        console.log("AUTOZAR DETAIL myArray------------> ", myArray);
 
         const myTempItem = prepareAutozarDetail(
           myArray,

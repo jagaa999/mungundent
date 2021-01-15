@@ -12,14 +12,16 @@ import accounting from "accounting";
 import { Alert, Row, Col, Image, Descriptions } from "antd";
 import AutozarDetailImages from "./AutozarDetailImages";
 import AutozarListItemMainImage from "./AutozarListItemMainImage";
+import { GetSpecData } from "util/getSpecData";
+import { isEmpty } from "lodash";
 
-const AutozarDetail2General = ({ autozarItem }) => {
+const AutozarDetail2General = ({ myItem }) => {
   const htmlEntities = new Html5Entities();
 
-  console.log("autozarItem", autozarItem);
+  console.log("myItem", myItem);
 
-  if (autozarItem !== null && autozarItem !== undefined) {
-    const myImages = (autozarItem.imageother || "").split("#");
+  if (myItem !== null && myItem !== undefined) {
+    const myImages = (myItem.imageother || "").split("#");
 
     //! mgllicensenumberfull: "2825УАА"
     // mgllicensenumbershow: ""
@@ -51,21 +53,6 @@ const AutozarDetail2General = ({ autozarItem }) => {
 
     return (
       <div>
-        {/* <Scrollbars
-          autoHeight
-          autoHeightMin={100}
-          autoHeightMax="calc(80vh - 36px - 35px - 75px)"
-          autoHide
-          autoHideTimeout={2000}
-          universal
-          renderTrackHorizontal={(props) => (
-            <div
-              {...props}
-              style={{ display: "none" }}
-              className="track-horizontal"
-            />
-          )}
-        > */}
         {/* 
            #####  #######    #    ####### 
           #     #    #      # #      #    
@@ -82,20 +69,42 @@ const AutozarDetail2General = ({ autozarItem }) => {
               layout="horizontal"
               className="moto-auction-head-description"
             >
+              {myItem.headerSpec.map((item, index) => {
+                if (isEmpty(item.value || "")) return null;
+                const myItem = GetSpecData(item.field);
+                return (
+                  <Descriptions.Item
+                    className="gx-border-bottom gx-py-2"
+                    key={index}
+                    label={
+                      <span className="gx-text-grey_old">{myItem.label}</span>
+                    }
+                  >
+                    {item.value}
+                  </Descriptions.Item>
+                );
+              })}
+            </Descriptions>
+
+            <Descriptions
+              column={1}
+              layout="horizontal"
+              className="moto-auction-head-description"
+            >
               <Descriptions.Item
                 label={<span className="gx-text-grey">Улсын дугаар</span>}
               >
-                {autozarItem.mgllicensenumberfull}
+                {myItem.mgllicensenumberfull}
               </Descriptions.Item>
               <Descriptions.Item
                 label={<span className="gx-text-grey">Арал</span>}
               >
-                {autozarItem.body2vinnumber}
+                {myItem.body2vinnumber}
               </Descriptions.Item>
               <Descriptions.Item
                 label={<span className="gx-text-grey">Гүйлт</span>}
               >
-                {accounting.formatMoney(autozarItem.autozarmilage, {
+                {accounting.formatMoney(myItem.autozarmilage, {
                   symbol: "км",
                   format: "%v %s",
                   precision: 0,
@@ -105,25 +114,25 @@ const AutozarDetail2General = ({ autozarItem }) => {
               <Descriptions.Item
                 label={<span className="gx-text-grey">Үйлдвэрлэсэн он</span>}
               >
-                {moment(autozarItem.mglyearmanufactured).format("YYYY")}
+                {moment(myItem.mglyearmanufactured).format("YYYY")}
               </Descriptions.Item>
 
               <Descriptions.Item
                 label={<span className="gx-text-grey">Орж ирсэн он</span>}
               >
-                {moment(autozarItem.mglyearimport).format("YYYY")}
+                {moment(myItem.mglyearimport).format("YYYY")}
               </Descriptions.Item>
 
               <Descriptions.Item
                 label={<span className="gx-text-grey">Шатахуун</span>}
               >
-                {autozarItem.mglfuel}
+                {myItem.mglfuel}
               </Descriptions.Item>
 
               <Descriptions.Item
                 label={<span className="gx-text-grey">Жолоо</span>}
               >
-                {autozarItem.mgldrivepos ? "Зөв" : "Буруу"}
+                {myItem.mgldrivepos ? "Зөв" : "Буруу"}
               </Descriptions.Item>
             </Descriptions>
           </Col>
@@ -138,18 +147,18 @@ const AutozarDetail2General = ({ autozarItem }) => {
 
           <Col sm={{ span: 15, offset: 0 }} xs={{ span: 22, offset: 1 }}>
             {/* <Image
-              src={`https://cloudapi.moto.mn/${autozarItem.imagemain}`}
+              src={`https://cloudapi.moto.mn/${myItem.imagemain}`}
               loading="lazy"
               width="300"
               quality="auto"
               className="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
-              alt={autozarItem.mglmark}
+              alt={myItem.mglmark}
             /> */}
 
             <AutozarListItemMainImage
               myClass="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
               width="300"
-              imageMain={autozarItem.imagemain}
+              imageMain={myItem.imagemain}
             />
           </Col>
         </Row>
@@ -165,10 +174,10 @@ const AutozarDetail2General = ({ autozarItem }) => {
         <Row>
           <Col span={24}>
             <AutozarDetailImages
-              autozarItem={autozarItem}
+              myItem={myItem}
               // myImages={myImages}
-              imageotherFileList={autozarItem.imageotherFileList}
-              // myImages={autozarItem.imageother}
+              imageotherFileList={myItem.imageotherFileList}
+              // myImages={myItem.imageother}
             />
           </Col>
         </Row>
@@ -179,10 +188,10 @@ const AutozarDetail2General = ({ autozarItem }) => {
           size="small"
           column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
         >
-          {Object.keys(autozarItem).map((val, k) => {
+          {Object.keys(myItem).map((val, k) => {
             return (
               <Descriptions.Item label={val}>
-                {autozarItem[val]}
+                {myItem[val]}
               </Descriptions.Item>
             );
           })}
@@ -193,19 +202,19 @@ const AutozarDetail2General = ({ autozarItem }) => {
               AVG_STRING
               SERIAL	
               INFO */}
-        {/* {autozarItem.STATUS !== "" && (
+        {/* {myItem.STATUS !== "" && (
           <Alert
             message="STATUS"
-            description={`Төлөв: ${autozarItem.STATUS}`}
+            description={`Төлөв: ${myItem.STATUS}`}
             type="warning"
             showIcon={true}
           />
         )}
-        {autozarItem.FINISH !== "" && (
+        {myItem.FINISH !== "" && (
           <Alert
             message="FINISH"
             description={`Зарагдсан үнэ: ${accounting.formatMoney(
-              autozarItem.FINISH,
+              myItem.FINISH,
               "¥",
               0,
               "'"
@@ -214,18 +223,18 @@ const AutozarDetail2General = ({ autozarItem }) => {
             showIcon={true}
           />
         )}
-        {autozarItem.SERIAL !== "" && (
+        {myItem.SERIAL !== "" && (
           <Alert
             message="Нэмэлт мэдээлэл"
-            description={`SERIAL: ${autozarItem.SERIAL}`}
+            description={`SERIAL: ${myItem.SERIAL}`}
             type="info"
             showIcon={true}
           />
         )}
-        {autozarItem.INFO !== "" && (
+        {myItem.INFO !== "" && (
           <Alert
             message="Нэмэлт мэдээлэл"
-            description={`INFO: ${autozarItem.INFO}`}
+            description={`INFO: ${myItem.INFO}`}
             type="info"
             showIcon={true}
           />
@@ -256,19 +265,19 @@ const AutozarDetail2General = ({ autozarItem }) => {
               column={1}
             >
               <Descriptions.Item label="Фирм">
-                {autozarItem.mglfirm}
+                {myItem.mglfirm}
               </Descriptions.Item>
               <Descriptions.Item label="Марк">
-                {autozarItem.mglmark}
+                {myItem.mglmark}
               </Descriptions.Item>
               <Descriptions.Item label="Хийц">
-                {autozarItem.mglbody}
+                {myItem.mglbody}
               </Descriptions.Item>
               <Descriptions.Item label="Гадна өнгө">
-                {autozarItem.mglcoloroutside}
+                {myItem.mglcoloroutside}
               </Descriptions.Item>
               <Descriptions.Item label="Улс">
-                {autozarItem.mglcountryorigin}
+                {myItem.mglcountryorigin}
               </Descriptions.Item>
             </Descriptions>
           </Col>
@@ -296,7 +305,7 @@ const AutozarDetail2General = ({ autozarItem }) => {
               column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
             >
               <Descriptions.Item label="Хөдөлгүүр">
-                {accounting.formatMoney(autozarItem.mglengine2disp, {
+                {accounting.formatMoney(myItem.mglengine2disp, {
                   symbol: "cc",
                   format: "%v %s",
                   precision: 0,
@@ -304,16 +313,16 @@ const AutozarDetail2General = ({ autozarItem }) => {
                 })}
               </Descriptions.Item>
               <Descriptions.Item label="Хроп">
-                {autozarItem.drive2transtypename}
+                {myItem.drive2transtypename}
               </Descriptions.Item>
               <Descriptions.Item label="Хөтлөгч">
-                {autozarItem.drive2drivename}
+                {myItem.drive2drivename}
               </Descriptions.Item>
               <Descriptions.Item label="Хаалга">
-                {autozarItem.mgldoor}
+                {myItem.mgldoor}
               </Descriptions.Item>
               <Descriptions.Item label="Суудал">
-                {autozarItem.mglseat}
+                {myItem.mglseat}
               </Descriptions.Item>
             </Descriptions>
           </Col>
