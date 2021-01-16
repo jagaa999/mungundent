@@ -3,8 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Image } from "cloudinary-react";
 import moment from "moment";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
-import { Html5Entities } from "html-entities";
-import Output from "editorjs-react-renderer";
 
 import toBoolean from "util/booleanFunction";
 import { defaultSrc } from "util/config";
@@ -14,6 +12,7 @@ import {
   Card,
   Row,
   Col,
+  Space,
   Typography,
   Tabs,
   Tooltip,
@@ -26,113 +25,27 @@ import CommentBox from "./CommentBox";
 import NewsDetailHeader from "./NewsDetailHeader";
 import NewsControlButton from "./Button/NewsControlButton";
 
-import LogsContext from "context/LogsContext";
-import NewsContext from "context/NewsContext";
 import NewsItemMainImage from "./NewsItemMainImage";
+import { GetSpecData } from "util/getSpecData";
 import { isEmpty } from "lodash";
+import EditorBody from "./Editor/EditorBody";
 
 const NewsDetailComponent = ({ myDetailContext }) => {
-  // const newsDetailContext = useContext(NewsContext);
-  // const myItem = newsDetailContext.newsDetail.mainDetail;
   const myItem = myDetailContext.newsDetail.mainDetail;
 
-  // console.log("PPPPP", myItem);
+  const {
+    mainData,
+    headerSpec,
+    specList1,
+    specList2,
+    ownerData,
+    saveButtonsData,
+    compareButtonData,
+    tableColumns,
+  } = myItem;
+
   if (isEmpty(myItem)) return null;
-  // console.log("JJJJJJJ", myItem);
 
-  const htmlEntities = new Html5Entities(); //Body тагуудыг зөв харуулдаг болгох
-
-  const member = {
-    date: myItem.publisheddate,
-    id: myItem.userpublisherid,
-    photo: myItem.userprofilephoto,
-    name: myItem.userfullname,
-    positionname: "Гишүүнчлэл тодорхойгүй",
-    uid: myItem.userfirebaseuid,
-  };
-
-  let myBody = htmlEntities.decode(myItem.body) || "";
-  myBody = myBody.split('"/storage').join('"https://www.moto.mn/storage');
-  myBody = myBody.split('"../storage').join('"https://www.moto.mn/storage');
-
-  // console.log("myItem", myItem);
-
-  let myOutputBody = "";
-
-  if (myBody !== "") {
-    // console.log("myBodymyBody", myBody);
-
-    if (myBody.indexOf('"blocks"') !== -1) {
-      const editorConfig = {
-        codeBox: {
-          disableDefaultStyle: true,
-        },
-        header: {
-          disableDefaultStyle: true,
-        },
-        paragraph: {
-          disableDefaultStyle: true,
-        },
-        image: {
-          disableDefaultStyle: true,
-        },
-        embed: {
-          disableDefaultStyle: true,
-        },
-        list: {
-          disableDefaultStyle: true,
-        },
-        checklist: {
-          disableDefaultStyle: true,
-        },
-        table: {
-          disableDefaultStyle: true,
-        },
-        quote: {
-          disableDefaultStyle: true,
-        },
-        warning: {
-          disableDefaultStyle: true,
-        },
-        delimiter: {
-          disableDefaultStyle: true,
-        },
-      };
-
-      try {
-        myOutputBody = (
-          <Output data={JSON.parse(myBody)} config={editorConfig} />
-        );
-      } catch (e) {
-        myOutputBody = "";
-      }
-    } else {
-      myOutputBody = (
-        <div
-          className="news-body"
-          dangerouslySetInnerHTML={{
-            // __html: htmlEntities.decode(myBody),
-            __html: myBody,
-          }}
-        ></div>
-      );
-    }
-  }
-
-  // console.log("myItem", myItem);
-
-  myItem.imagemain =
-    myItem.imagemain === ""
-      ? "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
-      : myItem.imagemain;
-
-  //  ######  ####### ####### #     # ######  #     #
-  //  #     # #          #    #     # #     # ##    #
-  //  #     # #          #    #     # #     # # #   #
-  //  ######  #####      #    #     # ######  #  #  #
-  //  #   #   #          #    #     # #   #   #   # #
-  //  #    #  #          #    #     # #    #  #    ##
-  //  #     # #######    #     #####  #     # #     #
   return (
     <div key={myItem.newsid} className="gx-main-content2 news-detail">
       <Row>
@@ -157,14 +70,82 @@ const NewsDetailComponent = ({ myDetailContext }) => {
 
             <Divider className="gx-my-3" />
 
-            <div className="moto-news-body gx-mt-3">{myOutputBody}</div>
+            <div className="moto-news-body gx-mt-3">
+              <EditorBody myBody={myItem.body} />
+            </div>
+
+            <Row gutter={[16, 16]} className="gx-mt-5">
+              <Col span={8}>
+                <h4 className="gx-mb-4">{GetSpecData("ownerdata").label}</h4>
+
+                <div className="gx-mt-auto">
+                  <div className="gx-media gx-mt-3">
+                    {!isEmpty(ownerData.photo) && (
+                      <Avatar
+                        src={ownerData.photo}
+                        alt={ownerData.photoalt}
+                        className="gx-mr-2"
+                        size={30}
+                      />
+                    )}
+
+                    <div className="gx-media-body">
+                      <h5 className=" gx-fs-sm">{ownerData.name}</h5>
+                      <p className="gx-text-grey gx-fs-sm">
+                        {mainData.modifieddate.value}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+              <Col span={8}>
+                <h4 className="gx-mb-4">
+                  {GetSpecData("newssourcename").label}
+                </h4>
+
+                <div className="gx-mt-auto">
+                  <div className="gx-media gx-mt-3">
+                    {!isEmpty(myItem.newssourcelogo) && (
+                      <Avatar
+                        src={myItem.newssourcelogo}
+                        alt={myItem.newssourcelogo}
+                        className="gx-mr-2"
+                        size={30}
+                      />
+                    )}
+
+                    <div className="gx-media-body">
+                      <h5 className=" gx-fs-sm">{myItem.newssourcename}</h5>
+                      <p className="gx-text-grey gx-fs-sm">
+                        {myItem.newssourcetype}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+              <Col span={8}>
+                <h4 className="gx-mb-4">{GetSpecData("newstypename").label}</h4>
+
+                <div className="gx-mt-auto">
+                  <div className="gx-media gx-mt-3">
+                    <div className="gx-media-body">
+                      <h5 className=" gx-fs-sm">{myItem.newstypename}</h5>
+                      <p className="gx-text-grey gx-fs-sm">
+                        {myItem.newstypename.indexOf("мэдээ") !== -1
+                          ? "Мэдээ"
+                          : "Нийтлэл"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
           </Card>
         </Col>
       </Row>
       <div>
         <NewsControlButton item={myItem} />
       </div>
-      {/* Одоогоор TableName-ийг хоосон орхив */}
       <CommentBox recordId={myItem.newsid} tableName="" />
       <LogBox recordId={myItem.newsid} tableName="ECM_NEWS" />
     </div>

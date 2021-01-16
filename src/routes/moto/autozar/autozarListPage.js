@@ -9,7 +9,7 @@ import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import AutozarContext from "../../../context/AutozarContext";
 import { prepareAutozarListSettings } from "util/prepareSpecsAutozar";
 import AutozarFilterDrawer from "../../../components/Moto/Drawer/AutozarFilterDrawer";
-import UniversalMeta from "util/prepareMeta";
+import { UniversalListMeta } from "util/prepareMeta";
 
 const AutozarListPage = () => {
   const filterContext = useContext(FilterContext);
@@ -56,7 +56,7 @@ const AutozarListPage = () => {
 
   return (
     <>
-      <UniversalMeta meta={prepareAutozarListSettings.meta} />
+      <UniversalListMeta meta={prepareAutozarListSettings.meta} />
       {renderSwitch(filterContext.state.cardtype.cardtype)}
     </>
   );

@@ -9,7 +9,7 @@ import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 import NewsContext from "../../../context/NewsContext";
 import { prepareNewsListSettings } from "util/prepareSpecsNews";
 import NewsFilterDrawer from "../../../components/Moto/Drawer/NewsFilterDrawer";
-import UniversalMeta from "util/prepareMeta";
+import { UniversalListMeta } from "util/prepareMeta";
 
 const NewsListPage = () => {
   const filterContext = useContext(FilterContext);
@@ -57,7 +57,7 @@ const NewsListPage = () => {
   if (memberContext.state.isLogin) {
     return (
       <>
-        <UniversalMeta meta={prepareNewsListSettings.meta} />
+        <UniversalListMeta meta={prepareNewsListSettings.meta} />
         {renderSwitch(filterContext.state.cardtype.cardtype)}
       </>
     );

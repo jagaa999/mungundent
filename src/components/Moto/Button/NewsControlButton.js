@@ -173,7 +173,7 @@ const NewsControlButton = (props) => {
         trigger={["click"]}
         arrow
       >
-        <Button>
+        <Button className="gx-m-0">
           <UserOutlined />
         </Button>
       </Dropdown>
@@ -190,7 +190,7 @@ const NewsControlButton = (props) => {
           // visible="true"
           arrow
         >
-          <Button type="primary">
+          <Button type="default" className="gx-m-0 gx-ml-2">
             <SettingOutlined />
           </Button>
         </Dropdown>

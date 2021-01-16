@@ -53,7 +53,7 @@ export const NewsStore = (props) => {
   };
   const initialNewsDetail = {
     mainDetail: {},
-    loading: false,
+    loading: true,
     error: null,
   };
 

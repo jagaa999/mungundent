@@ -134,9 +134,9 @@ const UniversalListSort = ({ mySettings }) => {
       <Dropdown overlay={menu} trigger={["click"]}>
         <Button
           // type="primary"
-          size="small"
+          // size="small"
           onClick={(e) => e.preventDefault()}
-          className="gx-mr-0 gx-ml-1"
+          className="gx-mr-0 gx-ml-2"
         >
           Эрэмбэ
           <CaretDownOutlined />
@@ -144,10 +144,10 @@ const UniversalListSort = ({ mySettings }) => {
       </Dropdown>
 
       <Radio.Group
-        className="gx-ml-1"
+        className="gx-ml-2"
         defaultValue={selectedKeys[1]}
         buttonStyle="solid"
-        size="small"
+        // size="small"
         onChange={onChangeTypeRadio}
       >
         <Radio.Button value="typelist">

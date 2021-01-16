@@ -50,10 +50,13 @@ const ErrorReportModal = ({
 
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
-    values.actionName = "Алдаа илгээв";
-    values.tableName = tableName || "ECM_NEWS";
-    values.actionType = values.errorList.join("&");
-    // values.recordId = idField || "id";
+    values.tablename = "ECM_NEWS";
+    values.actionname = "Алдаа илгээв";
+    values.actiondata = "";
+    values.recordid = "ID байна";
+    values.description = window.location.href;
+    values.mainimg = "";
+    values.actiontype = values.errorList.join("&");
     logContext.insertLog(values);
     setShowErrorReportModal(false);
     message.success("Алдаа илгээсэнд баярлалаа. Админ шалгаж үзэх болно.");

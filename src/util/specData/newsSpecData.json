@@ -157,8 +157,8 @@
   },
   "newssourcename": {
     "testvalue": "ikon News",
-    "label": "Сурвалж",
-    "tooltip": "Сурвалж",
+    "label": "Эх сурвалж",
+    "tooltip": "Эх сурвалж",
     "icon": ""
   },
   "newssourcetype": {

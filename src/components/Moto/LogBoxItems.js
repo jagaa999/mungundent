@@ -19,11 +19,14 @@ const LogBoxItems = ({ logBoxItems }) => {
           <Avatar
             src={record.userprofilephoto}
             alt={record.userfullname}
+            size={15}
             className="gx-mr-3"
           />
 
           <div className="gx-media-body">
-            <h5 className="gx-wall-user-title">{record.userfullname}</h5>
+            <span className="gx-fs-sm gx-font-weight-light">
+              {record.userfullname}
+            </span>
             {withTime && (
               <p className="gx-text-grey gx-fs-sm">
                 {moment(record.actiondate).fromNow()}
@@ -39,28 +42,42 @@ const LogBoxItems = ({ logBoxItems }) => {
       key: "action",
       align: "right",
       sorter: (a, b) => a.actionname.length - b.actionname.length,
+      render: (actionname, record) => (
+        <span className="gx-fs-sm gx-font-weight-light">{actionname}</span>
+      ),
     },
   ];
 
   return (
     <div>
       <Card
-        title="Үзсэн түүх"
+        title={
+          <span className="gx-fs-sm gx-font-weight-light">Үзсэн түүх</span>
+        }
+        size="small"
         extra={
           <>
-            <span className="gx-fs-sm gx-mr-2">Огноо</span>
+            <span className="gx-fs-sm gx-font-weight-light gx-mr-2">Огноо</span>
             <Switch size="small" onClick={() => setWithTime(!withTime)} />
           </>
         }
       >
         <Table
           showHeader={false}
-          className="gx-table-responsive"
+          className=" gx-table-no-bordered"
           size="small"
-          // rowSelection={rowSelection}
           columns={columns}
           rowKey="id" // key тавьж өгч байна.
           dataSource={logBoxItems}
+          bordered={false}
+          pagination={{
+            className: "gx-fs-sm gx-font-weight-light gx-ml-auto",
+            style: { display: "table" },
+            showSizeChanger: false,
+            size: "small",
+            simple: true,
+            position: ["none", "bottomRight"],
+          }}
         />
       </Card>
     </div>

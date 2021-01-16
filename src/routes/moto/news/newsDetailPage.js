@@ -13,7 +13,7 @@ import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
 import UniversalDetail from "../../../components/Moto/UniversalDetail";
 import { prepareNewsDetailSettings } from "util/prepareSpecsNews";
-import UniversalMeta from "util/prepareMeta";
+import { UniversalDetailMeta } from "util/prepareMeta";
 
 const NewsDetailPage = (props) => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
@@ -36,23 +36,8 @@ const NewsDetailPage = (props) => {
     }
   }, [newsId, memberContext.state.memberCloudUserSysId]);
 
-  // console.log("newsContext", newsContext.newsDetail);
-  // console.log("ddddddddddddddddddddd");
-
   return (
     <>
-      {/* <Helmet>
-        <title>{prepareTitle(newsItem.title)}</title>
-        <meta property="fb:app_id" content="186294318100220" />
-        <meta name="description" content={newsItem.description} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:title" content={newsItem.title} />
-        <meta property="og:description" content={newsItem.description} />
-        <meta property="og:image" content={newsItem.imagemain} />
-        <meta property="og:locale" content="mn_MN" />
-      </Helmet> */}
-
       {/* {memberContext.state.isLogin ? ( */}
       <CommentListStore>
         <LogsStore>
@@ -60,7 +45,10 @@ const NewsDetailPage = (props) => {
             <LoadingDetail />
           ) : (
             <>
-              <UniversalMeta meta={prepareNewsDetailSettings.meta} />
+              <UniversalDetailMeta
+                meta={prepareNewsDetailSettings.meta}
+                myItem={newsContext.newsDetail.mainDetail}
+              />
               <UniversalDetail
                 myDetailContext={newsContext}
                 myDetailContextDetail={newsContext.newsDetail}

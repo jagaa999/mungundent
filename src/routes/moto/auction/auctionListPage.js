@@ -9,7 +9,7 @@ import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import { prepareAuctionListSettings } from "util/prepareSpecsAuction";
 import AuctionFilterDrawer from "../../../components/Moto/Drawer/AuctionFilterDrawer";
 import AuctionContext from "../../../context/AuctionContext";
-import UniversalMeta from "util/prepareMeta";
+import { UniversalListMeta } from "util/prepareMeta";
 
 const AuctionListPage = () => {
   const filterContext = useContext(FilterContext);
@@ -56,7 +56,7 @@ const AuctionListPage = () => {
 
   return (
     <>
-      <UniversalMeta meta={prepareAuctionListSettings.meta} />
+      <UniversalListMeta meta={prepareAuctionListSettings.meta} />
       {renderSwitch(filterContext.state.cardtype.cardtype)}
     </>
   );

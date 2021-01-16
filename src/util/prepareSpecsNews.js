@@ -69,6 +69,11 @@ export const prepareNewsDetailSettings = {
       { property: "og:locale", content: "mn_MN" },
     ],
   },
+  headerSettings: {
+    showPageHeader: true,
+    showTableColumns: true,
+    showCard: false,
+  },
 };
 
 //  ####### ####### #     # ######
@@ -147,31 +152,6 @@ const tempOwnerData = (item, menu, mainData) => {
   };
 };
 
-const tempSaveButtonData = (item, menu, mainData) => {
-  return {
-    id: "",
-    tablename: "ECM_NEWS",
-    actionname: "Таалагдлаа",
-    // actiondata: "1",
-    recordid: mainData.id || "",
-    description: mainData.title.value,
-    mainimg: mainData.imagemain.value,
-  };
-};
-
-const tempCompareButtonData = (item, menu, mainData) => {
-  return {
-    title: mainData.title.value,
-    imagemain: mainData.imagemain.value,
-    mainSpec: mainData.mainnumber.value,
-    link: mainData.link.value,
-    subSpecs: [
-      { field: "newstypename", value: item.newstypename },
-      { field: "newssourcename", value: item.newssourcename },
-    ],
-  };
-};
-
 const tempTableColumns = (item, menu, mainData) => {
   return [
     // {
@@ -201,6 +181,43 @@ const tempTableColumns = (item, menu, mainData) => {
   ];
 };
 
+const tempCompareButtonData = (item, menu, mainData) => {
+  return {
+    title: mainData.title.value,
+    imagemain: mainData.imagemain.value,
+    mainSpec: mainData.mainnumber.value,
+    link: mainData.link.value,
+    subSpecs: [
+      { field: "newstypename", value: item.newstypename },
+      { field: "newssourcename", value: item.newssourcename },
+    ],
+  };
+};
+
+const tempLoveButtonData = (item, menu, mainData) => {
+  return {
+    id: "",
+    tablename: "ECM_NEWS",
+    actionname: "Таалагдлаа",
+    actiondata: "1",
+    recordid: mainData.id || "",
+    description: mainData.title.value,
+    mainimg: mainData.imagemain.value,
+  };
+};
+
+const tempSaveButtonData = (item, menu, mainData) => {
+  return {
+    id: "",
+    tablename: "ECM_NEWS",
+    actionname: "Жоорлох",
+    actiondata: "1",
+    recordid: mainData.id || "",
+    description: mainData.title.value,
+    mainimg: mainData.imagemain.value,
+  };
+};
+
 //  #       ###  #####  #######
 //  #        #  #     #    #
 //  #        #  #          #
@@ -217,6 +234,7 @@ export const prepareNewsList = (myArray, menu = "") => {
     const specList1 = tempSpecList1(item, menu, mainData);
     const specList2 = tempSpecList2(item, menu, mainData);
     const ownerData = tempOwnerData(item, menu, mainData);
+    const loveButtonData = tempLoveButtonData(item, menu, mainData);
     const saveButtonData = tempSaveButtonData(item, menu, mainData);
     const compareButtonData = tempCompareButtonData(item, menu, mainData);
     const tableColumns = tempTableColumns(item, menu, mainData);
@@ -226,6 +244,7 @@ export const prepareNewsList = (myArray, menu = "") => {
     myList[index].specList1 = specList1;
     myList[index].specList2 = specList2;
     myList[index].ownerData = ownerData;
+    myList[index].loveButtonData = loveButtonData;
     myList[index].saveButtonData = saveButtonData;
     myList[index].compareButtonData = compareButtonData;
     myList[index].tableColumns = tableColumns;
@@ -250,6 +269,7 @@ export const prepareNewsDetail = (myItem, menu = "") => {
   const specList1 = tempSpecList1(myItem, menu, mainData);
   const specList2 = tempSpecList2(myItem, menu, mainData);
   const ownerData = tempOwnerData(myItem, menu, mainData);
+  const loveButtonData = tempLoveButtonData(myItem, menu, mainData);
   const saveButtonData = tempSaveButtonData(myItem, menu, mainData);
   const compareButtonData = tempCompareButtonData(myItem, menu, mainData);
   const tableColumns = tempTableColumns(myItem, menu, mainData);
@@ -295,6 +315,7 @@ export const prepareNewsDetail = (myItem, menu = "") => {
   myItem.specList1 = specList1;
   myItem.specList2 = specList2;
   myItem.ownerData = ownerData;
+  myItem.loveButtonData = loveButtonData;
   myItem.saveButtonData = saveButtonData;
   myItem.compareButtonData = compareButtonData;
   myItem.tableColumns = tableColumns;

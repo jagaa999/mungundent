@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { prepareTitle } from "util/config";
 import FilterContext from "context/FilterContext";
 
-const UniversalMeta = ({ meta }) => {
+export const UniversalListMeta = ({ meta }) => {
   const filterContext = useContext(FilterContext);
 
   return (
@@ -28,4 +28,25 @@ const UniversalMeta = ({ meta }) => {
   );
 };
 
-export default UniversalMeta;
+export const UniversalDetailMeta = ({ meta, myItem }) => {
+  const filterContext = useContext(FilterContext);
+
+  console.log("myItem", myItem);
+
+  return (
+    <Helmet>
+      <title>
+        {`${myItem?.mainData?.title?.value || "Moto.mn - Car & Parts"}`}
+      </title>
+      <meta
+        name="description"
+        content={meta?.description || "Car Parts. Автомашин, сэлбэгийн портал"}
+      />
+      <meta property="og:url" content={window.location.href} />
+
+      {meta?.property.map((item, index) => (
+        <meta property={item.property} content={item.content} key={index} />
+      ))}
+    </Helmet>
+  );
+};

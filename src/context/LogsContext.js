@@ -134,14 +134,15 @@ export const LogsStore = (props) => {
         password: "89",
         command: "motoMemberDV_LOG_002", //Log засах процесс
         parameters: {
+          // ...values,
           id: values.id || undefined,
-          tableName: values.tableName || "Тодорхойгүй",
-          recordId: values.recordId || "",
-          actionName: values.actionName || "Тодорхойгүй",
-          // actionDate: "",
-          actionType: values.actionType || "",
+          tablename: values.tablename || "Тодорхойгүй",
+          recordid: values.recordid || "",
+          actionname: values.actionName || "Тодорхойгүй",
+          actiondata: "",
+          actiontype: values.actiontype || "",
           description: values.description || "",
-          userSystemId:
+          usersystemid:
             values.memberCloudUserSysId ||
             memberContext.state.memberCloudUserSysId,
           idstring: values.idstring || "",
@@ -165,7 +166,7 @@ export const LogsStore = (props) => {
       })
       .catch((error) => {
         // getError(error);
-        // message.error(error.toString(), 7);
+        message.error(error.toString(), 7);
         console.log("error LOG ", error);
       });
   };

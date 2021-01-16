@@ -15,30 +15,17 @@ import MemberItemsContext from "context/MemberItemsContext";
 const UniversalListItemButton = ({ myUniversalItem }) => {
   const compareContext = useContext(CompareContext);
   const memberItemsContext = useContext(MemberItemsContext);
-  const { saveButtonData } = myUniversalItem;
+  const { loveButtonData, saveButtonData } = myUniversalItem;
 
-  const actionSave = () => {
-    const myValues = {
-      ...saveButtonData,
-      actiondata: "1",
-    };
-
-    memberItemsContext.saveMemberItem(myValues);
-  };
-
-  const actionDelete = (id) => {
-    memberItemsContext.deleteMemberItem(id);
-  };
-
-  const actionMine = (isChecked, actionname, id) => {
+  const actionMine = (isChecked, id, myButtonData) => {
     if (isChecked) {
-      actionSave(actionname);
+      memberItemsContext.saveMemberItem(myButtonData);
     } else {
-      actionDelete(id);
+      memberItemsContext.deleteMemberItem(id);
     }
   };
 
-  let myIsLike = {
+  let myIsLove = {
     id: null,
     checked: false,
   };
@@ -50,13 +37,13 @@ const UniversalListItemButton = ({ myUniversalItem }) => {
   Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
     const myItem = memberItemsContext.state.memberItems[index];
     if (
-      myItem.recordid === saveButtonData.recordid &&
-      myItem.tablename === saveButtonData.tablename
+      myItem.recordid === loveButtonData.recordid &&
+      myItem.tablename === loveButtonData.tablename
     ) {
       switch (myItem.actionname) {
         case "Таалагдлаа":
-          myIsLike.id = myItem.id;
-          myIsLike.checked = true;
+          myIsLove.id = myItem.id;
+          myIsLove.checked = true;
           break;
         case "Жоорлох":
           myIsSave.id = myItem.id;
@@ -68,7 +55,7 @@ const UniversalListItemButton = ({ myUniversalItem }) => {
     }
   });
 
-  // console.log("myIsLike", myIsLike);
+  // console.log("myIsLove", myIsLove);
 
   if (Object.keys(myUniversalItem).length !== 0) {
     return (
@@ -76,8 +63,7 @@ const UniversalListItemButton = ({ myUniversalItem }) => {
         <Tooltip title="Харьцуулалтад нэмэх" key="add-compare">
           <Button
             key="moto-filter-button"
-            size="large"
-            type="text"
+            type="default"
             icon={<MyIcon type="iconcheck-double-solid" />}
             onClick={(e) =>
               compareContext.addItem(
@@ -93,16 +79,30 @@ const UniversalListItemButton = ({ myUniversalItem }) => {
         <Tooltip title="Надад таалагдлаа!" key="add-love">
           <Button
             checked={false}
-            key="moto-button-like"
-            size="large"
-            // type="text"
-            type={myIsLike.checked ? "primary" : "text"}
+            key="moto-button-love"
+            type={myIsLove.checked ? "primary" : "default"}
             icon={<MyIcon type="iconlove" className="moto-icon-1-1" />}
             onClick={(e) =>
-              actionMine(!myIsLike.checked, "Таалагдлаа", myIsLike.id)
+              actionMine(!myIsLove.checked, myIsLove.id, loveButtonData)
             }
-            className={`gx-m-0 ${
-              myIsLike.checked ? "gx-btn-purple" : "gx-text-purple"
+            className={`gx-m-0 gx-ml-2 ${
+              myIsLove.checked ? "gx-btn-purple" : "gx-text-purple"
+            }`}
+            style={{ width: "40px" }}
+          ></Button>
+        </Tooltip>
+
+        <Tooltip title="Жоорлох!" key="add-box">
+          <Button
+            checked={false}
+            key="moto-button-save"
+            type={myIsSave.checked ? "primary" : "default"}
+            icon={<MyIcon type="iconbox" className="moto-icon-1-1" />}
+            onClick={(e) =>
+              actionMine(!myIsSave.checked, myIsSave.id, saveButtonData)
+            }
+            className={`gx-m-0 gx-ml-2 ${
+              myIsSave.checked ? "gx-btn-green" : "gx-text-green"
             }`}
             style={{ width: "40px" }}
           ></Button>

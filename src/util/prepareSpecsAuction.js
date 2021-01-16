@@ -175,7 +175,7 @@ export const prepareAuctionList = (myArray, menu = "") => {
       position: "",
     };
 
-    const saveButtonData = {
+    const loveButtonData = {
       id: "",
       tablename: "MOTO_AUCTION",
       actionname: "Таалагдлаа",
@@ -291,7 +291,7 @@ export const prepareAuctionList = (myArray, menu = "") => {
     myList[index].specList1 = specList1;
     myList[index].specList2 = specList2;
     myList[index].ownerData = ownerData;
-    myList[index].saveButtonData = saveButtonData;
+    myList[index].loveButtonData = loveButtonData;
     myList[index].compareButtonData = compareButtonData;
     myList[index].tableColumns = tableColumns;
   });

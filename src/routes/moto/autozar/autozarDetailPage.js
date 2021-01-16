@@ -7,7 +7,7 @@ import { prepareTitle } from "../../../util/config";
 import AutozarDetail2 from "../../../components/Moto/AutozarDetail2";
 import UniversalDetail from "../../../components/Moto/UniversalDetail";
 import { prepareAutozarDetailSettings } from "util/prepareSpecsAutozar";
-import UniversalMeta from "util/prepareMeta";
+import { UniversalDetailMeta } from "util/prepareMeta";
 
 import { LogsStore } from "../../../context/LogsContext";
 import AutozarContext from "../../../context/AutozarContext";
@@ -35,7 +35,10 @@ const AutozarDetailPage = (props) => {
         <LoadingDetail />
       ) : (
         <>
-          <UniversalMeta meta={prepareAutozarDetailSettings.meta} />
+          <UniversalDetailMeta
+            meta={prepareAutozarDetailSettings.meta}
+            myItem={autozarContext.autozarDetail.autozarDetail}
+          />
           <UniversalDetail
             myDetailContext={autozarContext}
             myDetailContextDetail={autozarContext.autozarDetail}
