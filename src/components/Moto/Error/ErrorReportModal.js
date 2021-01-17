@@ -42,21 +42,23 @@ const ErrorReportModal = ({
   showErrorReportModal,
   setShowErrorReportModal,
   item,
-  tableName,
+  actionname,
+  tablename,
   idField = "id",
+  imagemain,
 }) => {
   const logContext = useContext(LogsContext);
   const [form] = Form.useForm();
 
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
-    values.tablename = "ECM_NEWS";
-    values.actionname = "Алдаа илгээв";
-    values.actiondata = "";
-    values.recordid = "ID байна";
-    values.description = window.location.href;
-    values.mainimg = "";
+    values.tablename = tablename || "ECM_NEWS";
+    values.actionname = actionname || "Алдаа илгээв";
     values.actiontype = values.errorList.join("&");
+    values.imagemain = imagemain || "";
+    values.recordid = item[idField] || "0";
+    values.description = window.location.href;
+    values.actiondata = "";
     logContext.insertLog(values);
     setShowErrorReportModal(false);
     message.success("Алдаа илгээсэнд баярлалаа. Админ шалгаж үзэх болно.");

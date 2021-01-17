@@ -50,13 +50,17 @@ const UniversalDetailPageHeader = ({ myItem, myDetailSettings }) => {
           </>
         }
         extra={[
-          <UniversalListItemButton myUniversalItem={myItem} />,
+          <UniversalListItemButton
+            myUniversalItem={myItem}
+            key="pageheader01"
+          />,
 
           <Link
             to={`/${mainData.menu}/edit/${mainData.id}`}
             className="gx-m-0 gx-ml-2"
+            key="pageheader02"
           >
-            <Button key="edit" type="primary" className="gx-m-0">
+            <Button key="pageheader03" type="primary" className="gx-m-0">
               Засах
             </Button>
           </Link>,

@@ -138,7 +138,8 @@ export const LogsStore = (props) => {
           id: values.id || undefined,
           tablename: values.tablename || "Тодорхойгүй",
           recordid: values.recordid || "",
-          actionname: values.actionName || "Тодорхойгүй",
+          imagemain: values.imagemain || "",
+          actionname: values.actionname || "Тодорхойгүй",
           actiondata: "",
           actiontype: values.actiontype || "",
           description: values.description || "",
@@ -150,7 +151,7 @@ export const LogsStore = (props) => {
       },
     };
 
-    console.log("insertLog ------", myParamsLogInsert);
+    // console.log("insertLog ------", myParamsLogInsert);
 
     axios
       .post("", myParamsLogInsert)

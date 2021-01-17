@@ -62,8 +62,33 @@ export const NewsStore = (props) => {
 
   // useDidMountEffect(() => {
   useEffect(() => {
-    if (filterContext.state.menu !== "news") return;
-    loadNewsList();
+    if (filterContext.state.menu === "news") {
+      // myMenuType = "Insert";
+      // myMenuType = "Edit";
+      // myMenuType = "Detail";
+      // myMenuType = "List";
+
+      switch (filterContext.state.menuType) {
+        case "Insert":
+          clearNewsDetail();
+          break;
+        case "Edit":
+          clearNewsDetail();
+          break;
+        case "Edit":
+          clearNewsDetail();
+          break;
+        case "Detail":
+          clearNewsDetail();
+          break;
+        case "List":
+          loadNewsList();
+          break;
+        default:
+          clearNewsDetail();
+          break;
+      }
+    }
   }, [filterContext.state, memberContext.state.isLogin]);
 
   //  #       ###  #####  #######
@@ -181,10 +206,6 @@ export const NewsStore = (props) => {
       });
   };
 
-  const clearNewsDetail = () => {
-    setNewsDetail(initialNewsDetail);
-  };
-
   // ######  ####### #######    #    ### #
   // #     # #          #      # #    #  #
   // #     # #          #     #   #   #  #
@@ -215,7 +236,7 @@ export const NewsStore = (props) => {
     myAxiosZ(myParamsNewsDetail)
       .then((myData) => {
         const myArray = myData.response.result || [];
-        console.log("NEWS DETAIL------------>", myArray);
+        // console.log("NEWS DETAIL------------>", myArray);
 
         const myTempItem = prepareNewsDetail(myArray, filterContext.state.menu);
 
@@ -230,6 +251,10 @@ export const NewsStore = (props) => {
         console.error(error);
         message.error(error.toString(), 7);
       });
+  };
+
+  const clearNewsDetail = () => {
+    setNewsDetail({ ...initialNewsDetail, loading: false });
   };
 
   //   #####     #    #     # #######

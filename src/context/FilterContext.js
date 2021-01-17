@@ -3,13 +3,19 @@ import { useHistory, useLocation } from "react-router-dom";
 import { parse } from "query-string";
 import MemberContext from "context/MemberContext";
 import useDidMountEffect from "util/useDidMountEffect";
+import { isEmpty } from "lodash";
 
 const FilterContext = React.createContext();
 
 export const FilterStore = (props) => {
   const history = useHistory();
   const { pathname, search } = useLocation();
+  // const { ddddId } = useParams();
   const searchParams = parse(search);
+
+  // console.log("БББББББББББББББ", useLocation());
+  // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", useParams());
+  // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", ddddId);
 
   const [state, setState] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
@@ -53,10 +59,33 @@ export const FilterStore = (props) => {
       }
     });
 
+    //pathName-ээс хамаарч menuType-д тухайн цэсний төлөвийг өгнө.
+    //List, Detail, Form (Insert, Edit) гэсэн 3 гол төрөл бий.
+    let myMenuType = "List";
+    // "/news/edit/:newsId",
+    // "/news/:newsId/edit",
+    // "/news/insert",
+    // "/news/add",
+    // "/news/:newsId",
+    // "/news/:newsId/detail",
+    // "/news/detail/:newsId",
+    // "/newslist/:newsId",
+
+    if (pathname.indexOf("insert") !== -1 || pathname.indexOf("add") !== -1) {
+      myMenuType = "Insert";
+    } else if (pathname.indexOf("edit") !== -1) {
+      myMenuType = "Edit";
+    } else if (!isEmpty(pathname.split("/")[2])) {
+      myMenuType = "Detail";
+    } else {
+      myMenuType = "List";
+    }
+
     setState({
       motoUrl: pathname.split("/"),
       menu: pathname.split("/")[1],
       pathName: pathname,
+      menuType: myMenuType,
       search: search,
       filterList: myFilterList,
       paging: myPaging,

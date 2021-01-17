@@ -31,12 +31,14 @@ export const UniversalListMeta = ({ meta }) => {
 export const UniversalDetailMeta = ({ meta, myItem }) => {
   const filterContext = useContext(FilterContext);
 
-  console.log("myItem", myItem);
+  // console.log("myItem", myItem);
 
   return (
     <Helmet>
       <title>
-        {`${myItem?.mainData?.title?.value || "Moto.mn - Car & Parts"}`}
+        {prepareTitle(
+          `${myItem?.mainData?.title?.value.substring(0, 30) || ""}`
+        )}
       </title>
       <meta
         name="description"

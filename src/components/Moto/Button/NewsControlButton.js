@@ -200,8 +200,10 @@ const NewsControlButton = (props) => {
         showErrorReportModal={showErrorReportModal}
         setShowErrorReportModal={setShowErrorReportModal}
         item={props.item}
-        tableName="ECM_NEWS"
+        actionname="Алдаа илгээв"
+        tablename="ECM_NEWS"
         idField="newsid"
+        imagemain={newsItem.imagemain}
       />
     </div>
   );

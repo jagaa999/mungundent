@@ -26,11 +26,11 @@ import { LogsStore } from "../context/LogsContext";
 import asyncComponent from "util/asyncComponent";
 
 //Дээгүүр гүйх цэнхэр зураас
-const NewsDetail = asyncComponent(() => {
+const NewsDetailPage = asyncComponent(() => {
   return import("./moto/news/newsDetailPage");
 });
 
-const NewsForm = asyncComponent(() => {
+const NewsFormPage = asyncComponent(() => {
   return import("./moto/news/newsFormPage");
 });
 
@@ -259,7 +259,7 @@ const App = ({ match }) => (
         ]}
       >
         <NewsStore>
-          <NewsForm />
+          <NewsFormPage />
         </NewsStore>
       </Route>
       <Route
@@ -271,7 +271,7 @@ const App = ({ match }) => (
         ]}
       >
         <NewsStore>
-          <NewsDetail />
+          <NewsDetailPage />
         </NewsStore>
       </Route>
       <Route path={["/news", "/newslist"]}>

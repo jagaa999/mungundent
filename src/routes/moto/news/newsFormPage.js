@@ -8,17 +8,25 @@ import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
 const NewsFormPage = (props) => {
-  const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
+  const { newsId = 0 } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
   const newsDetailContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
 
+  // console.log("dsfdsf sd", newsId);
+
+  // useEffect(() => {
+  //   newsDetailContext.clearNewsDetail();
+  // }, []);
+
   useEffect(() => {
     if (newsId !== 0 && memberContext.state.memberCloudUserSysId !== 0)
+      //News байгаа гэж тооцно
       newsDetailContext.loadNewsDetail(
         newsId,
         memberContext.state.memberCloudUserSysId
       );
-  }, [newsId, memberContext.state.memberCloudUserSysId]);
+    // }, [newsId, memberContext.state.memberCloudUserSysId]);
+  }, []);
 
   return (
     <>

@@ -14,6 +14,7 @@ const UniversalDetailPageTableColumn = ({ myItem, myDetailSettings }) => {
             const myItem = GetSpecData(item.field);
             return (
               <Statistic
+                key={index}
                 className="moto-detail-header-statistic gx-ml-5"
                 title={myItem.label}
                 value={item.value}
