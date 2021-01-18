@@ -176,7 +176,11 @@ const tempTableColumns = (item, menu, mainData) => {
       field: "modifieddate",
       // responsive: ["lg"],
       renderDivClass: "gx-fs-sm gx-text-grey",
-      value: mainData.modifieddate.value,
+      value: (
+        <span className="gx-fs-sm gx-text-grey">
+          {mainData.modifieddate.value}
+        </span>
+      ),
     },
   ];
 };

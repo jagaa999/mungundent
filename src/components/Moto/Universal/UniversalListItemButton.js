@@ -72,7 +72,7 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
             type={isDetail ? "default" : "text"}
             icon={
               <MyIcon
-                type="iconutensils-solid"
+                type="iconflag-solid"
                 className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
               />
             }
@@ -83,7 +83,7 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
               )
             }
             className="gx-m-0"
-            style={{ width: "40px" }}
+            size={isDetail ? "default" : "small"}
           ></Button>
         </Tooltip>
         <Tooltip title="Надад таалагдлаа!" key="add-love">
@@ -99,10 +99,10 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
             onClick={(e) =>
               actionMine(!myIsLove.checked, myIsLove.id, loveButtonData)
             }
-            className={`gx-m-0 gx-ml-2 ${
+            className={`${isDetail ? "gx-m-0 gx-ml-2" : "gx-m-0 gx-ml-1"} ${
               myIsLove.checked ? "gx-btn-purple" : "gx-text-purple"
             }`}
-            style={{ width: "40px" }}
+            size={isDetail ? "default" : "small"}
           ></Button>
         </Tooltip>
         <Tooltip title="Жоорлох!" key="add-box">
@@ -118,11 +118,9 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
             onClick={(e) =>
               actionMine(!myIsSave.checked, myIsSave.id, saveButtonData)
             }
-            className="gx-m-0 gx-ml-2"
-            // className={`gx-m-0 gx-ml-2 ${
-            //   myIsSave.checked ? "gx-btn-green" : "gx-text-green"
-            // }`}
-            style={{ width: "40px" }}
+            // className="gx-m-0 gx-ml-2"
+            className={isDetail ? "gx-m-0 gx-ml-2" : "gx-m-0 gx-ml-1"}
+            size={isDetail ? "default" : "small"}
           ></Button>
         </Tooltip>
 
@@ -142,7 +140,6 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
                   setShowErrorReportModal(true);
                 }}
                 className="gx-m-0 gx-ml-2"
-                style={{ width: "40px" }}
               ></Button>
             </Tooltip>
             <ErrorReportModal

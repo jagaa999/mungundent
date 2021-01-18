@@ -13,12 +13,12 @@ const UniversalDetailPageTableColumn = ({ myItem, myDetailSettings }) => {
           {tableColumns.map((item, index) => {
             const myItem = GetSpecData(item.field);
             return (
-              <Statistic
-                key={index}
-                className="moto-detail-header-statistic gx-ml-5"
-                title={myItem.label}
-                value={item.value}
-              />
+              <>
+                <div className="gx-ml-5">
+                  <div className="gx-fs-sm gx-text-grey">{myItem.label}</div>
+                  <div>{item.value}</div>
+                </div>
+              </>
             );
           })}
         </div>
