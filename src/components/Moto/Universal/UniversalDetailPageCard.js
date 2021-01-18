@@ -22,12 +22,10 @@ import {
   Descriptions,
 } from "antd";
 
-import MyIcon from "util/iconFunction";
 import { FeaturedTag, ActiveTag } from "../Tag/SmallTags";
 import UniversalListItemMainImage from "./UniversalListItemMainImage";
 import { GetSpecData } from "util/getSpecData";
 import { isEmpty } from "lodash";
-import UniversalListItemButton from "./UniversalListItemButton";
 
 const UniversalDetailPageCard = ({ myItem, myDetailSettings }) => {
   const { mainData, headerSpec, specList1, specList2, ownerData } = myItem;

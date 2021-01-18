@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 // import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-import { message, Spin, Row, Col, Card, Avatar, Image } from "antd";
+import { message, Spin, Avatar, Image, Divider } from "antd";
 import { firebaseAuth, StyledFirebaseAuth, uiConfig } from "firebase/firebase";
 import MemberContext from "context/MemberContext";
 
@@ -36,96 +36,56 @@ const SignIn = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   uiConfig.uiShown == true &&
-  //     console.log(
-  //       "ХААААААААААААААААААААААААРРРРРРРРРРРРРРРРРРРРРРРРРРААААААААААААААААААА"
-  //     );
-  // }, [uiConfig.uiShown]);
-
-  // console.log("uiConfig.uiShownuiConfig.uiShown", uiConfig.uiShown);
-
   return (
     <>
-      <div
-        style={{
-          backgroundImage: `url(${"https://cdn.hipwallpaper.com/i/57/29/QALwRr.jpg"})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          padding: "10% 5%",
-        }}
-      >
-        <Row align="middle">
-          <Col xl={10} md={12} sm={15} xs={19}>
-            <div
-              className="gx-text-center "
-              style={{
-                background: "#414A4C",
-                padding: "20px 10px",
-                borderRadius: "10px",
-              }}
-            >
-              <Avatar
-                size="large"
-                className="gx-mt-3"
-                src="https://www.claremontlincoln.edu/engage/wp-content/uploads/2016/11/default_avatar-2x-150x150.png"
-              />
-              <div className="gx-mt-2 gx-text-white">Сайн уу, зочин?</div>
-              <div className="gx-text-white gx-my-4">
-                Facebook, Google-ийн
-                <br />
-                аль нэгээр шууд нэвтэрч
-                <br />
-                Мото сайтын гишүүн болохыг урьж байна.
-              </div>
-              <StyledFirebaseAuth
-                uiConfig={uiConfig}
-                firebaseAuth={firebaseAuth}
-              />
-              <div
-                id="myUIloader"
-                style={{
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Spin tip="Нэвтрэх цонх дуудаж байна..." />
-              </div>
-            </div>
-          </Col>
-        </Row>
+      <div className="gx-text-center">
+        <div className="gx-mt-2 ">Сайн уу?</div>
+        <div className=" gx-my-4 gx-mb-5">
+          Facebook, Google-ийн аль нэгээр шууд нэвтэрч Мото сайтын гишүүн
+          болохыг урьж байна.
+        </div>
+
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
+
+        <div
+          id="myUIloader"
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Spin tip="Нэвтрэх цонх дуудаж байна..." />
+        </div>
       </div>
 
-      <Row className="gx-mt-4">
-        <Col span={24}>
-          <ul>
-            <li>
-              Moto гишүүн болсноор системийн бүх ажиллагаа танд нээлттэй болно.
-            </li>
-            <li className="gx-text-success">
-              Бүртгүүлэхэд үнэгүй, шууд нэвтэрнэ.
-            </li>
-            <li>
-              Facebook, Google-ийн аль нэг бүртгэлээрээ шууд гишүүн болоорой.
-            </li>
-          </ul>
+      <Divider className="gx-my-4" />
 
-          <div className="gx-text-grey gx-fs-sm gx-mx-3 gx-mb-3 gx-font-weight-light">
-            Таны Facebook бүртгэлээс зөвхөн таны нэр байхад л хангалттай. Тэгвэл
-            энэ бүртгэлийг юунд ашиглах вэ? Таны уншсан, харсан мэдээлэлд
-            үндэсэлж, илүү зөв мэдээллийг зөвхөн танд автоматаар харуулдаг
-            болгоход ашиглах юм.
-          </div>
-        </Col>
-      </Row>
+      <ul className="gx-fs-sm">
+        <li>Бүртгүүлэхэд үнэгүй.</li>
+        <li>Facebook, Google-ийн аль нэг бүртгэлээр нэвтэрнэ.</li>
+      </ul>
 
-      <div className="gx-mt-3">
-        {memberContext.state.error !== null
-          ? message.error(memberContext.state.error.toString(), 7)
-          : null}
+      <div className="gx-text-grey gx-fs-sm gx-font-weight-light">
+        Гишүүний бүртгэлийг юунд ашиглах вэ? Таны уншсан, харсан мэдээлэлд
+        үндэсэлж, илүү зөв мэдээллийг танд харуулдаг болгоход ашиглана. Гишүүн
+        болсноор Moto.mn-ийн{" "}
+        <a href="/static/privacy" target="_blank">
+          нууцлалын бодлого
+        </a>{" "}
+        ба{" "}
+        <a href="/static/privacy" target="_blank">
+          үйлчилгээний нөхцөлийг
+        </a>{" "}
+        зөвшөөрсөнд тооцно.
       </div>
+
+      {memberContext.state.error !== null ? (
+        <div className="gx-mt-3">
+          message.error(memberContext.state.error.toString(), 7)
+        </div>
+      ) : null}
     </>
   );
 };

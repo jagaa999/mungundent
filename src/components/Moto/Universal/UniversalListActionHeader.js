@@ -53,9 +53,7 @@ const UniversalListActionHeader = ({
         extra={[
           <Tooltip title="Зөвлөмж нээх" key="01">
             <Button
-              key="moto-filter-button"
-              // size="small"
-              icon={<MyIcon type="iconhelp" />}
+              icon={<MyIcon type="iconhelp" className="moto-icon-1-3" />}
               type={showInfo ? "primary" : "default"}
               onClick={(e) => setShowInfo(!showInfo)}
               className="gx-mr-0"
@@ -64,9 +62,7 @@ const UniversalListActionHeader = ({
           </Tooltip>,
           <Tooltip title="Шүүлтүүр нээх" key="02">
             <Button
-              key="moto-filter-button"
-              // size="small"
-              icon={<MyIcon type="iconfilter" />}
+              icon={<MyIcon type="iconfilter" className="moto-icon-1-3" />}
               type={myIsFilterDrawerOpen ? "primary" : "default"}
               onClick={(e) => myListContext.toggleFilterDrawerOpen()}
               className="gx-ml-2 gx-mr-0"
@@ -75,9 +71,9 @@ const UniversalListActionHeader = ({
           </Tooltip>,
           <Tooltip title="Харьцуулалт нээх" key="03">
             <Button
-              key="moto-filter-button"
-              // size="small"
-              icon={<MyIcon type="iconcheck-double-solid" />}
+              icon={
+                <MyIcon type="iconutensils-solid" className="moto-icon-1-3" />
+              }
               type={compareContext.compareList.isOpen ? "primary" : "default"}
               onClick={compareContext.toggleDrawer}
               className="gx-ml-2 gx-mr-0"

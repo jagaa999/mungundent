@@ -38,27 +38,20 @@ const formLayout = {
   wrapperCol: { span: 19 },
 };
 
-const ErrorReportModal = ({
-  showErrorReportModal,
-  setShowErrorReportModal,
-  item,
-  actionname,
-  tablename,
-  idField = "id",
-  imagemain,
-}) => {
+const ErrorReportModal = (props) => {
+  const { showErrorReportModal, setShowErrorReportModal, item } = props;
   const logContext = useContext(LogsContext);
   const [form] = Form.useForm();
 
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
-    values.tablename = tablename || "ECM_NEWS";
-    values.actionname = actionname || "Алдаа илгээв";
+    values.tablename = props.tablename || "ECM_NEWS";
+    values.actionname = props.actionname || "Алдаа илгээв";
     values.actiontype = values.errorList.join("&");
-    values.imagemain = imagemain || "";
-    values.recordid = item[idField] || "0";
+    values.imagemain = props.imagemain || "";
+    values.recordid = props.recordid || "0";
+    values.idstring = values.description || "";
     values.description = window.location.href;
-    values.actiondata = "";
     logContext.insertLog(values);
     setShowErrorReportModal(false);
     message.success("Алдаа илгээсэнд баярлалаа. Админ шалгаж үзэх болно.");
@@ -97,7 +90,7 @@ const ErrorReportModal = ({
         layout="horizontal"
         name="error_modal"
         initialValues={{
-          recordId: item[idField],
+          recordId: props.recordid,
           title: item.title,
           modifier: "public",
         }}

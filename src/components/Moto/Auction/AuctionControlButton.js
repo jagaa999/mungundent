@@ -116,7 +116,7 @@ const AuctionControlButton = ({ auctionItem, tableName }) => {
       <Menu.Item
         key="box"
         onClick={(e) => actionMine(e, "Жоорлох", myIsSave.id)}
-        icon={<MyIcon type="iconbox" />}
+        icon={<MyIcon type="iconinbox-solid" />}
       >
         {/* <Checkbox
           checked={myIsSave.checked}

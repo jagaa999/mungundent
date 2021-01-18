@@ -100,7 +100,7 @@ const NewsControlButton = (props) => {
           checked={myIsSave.checked}
           onChange={(e) => actionMine(e, "Жоорлох", myIsSave.id)}
         >
-          <MyIcon type="iconbox" className="moto-icon-1-1" /> Жоорлох
+          <MyIcon type="iconinbox-solid" className="moto-icon-1-1" /> Жоорлох
         </Checkbox>
       </Menu.Item>
 

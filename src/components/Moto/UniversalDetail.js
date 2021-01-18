@@ -1,33 +1,9 @@
 import React from "react";
 
-//Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
-import { Html5Entities } from "html-entities";
-import moment from "moment";
-import accounting from "accounting";
+import { Tooltip } from "antd";
 
-import {
-  Card,
-  Row,
-  Col,
-  Divider,
-  Alert,
-  Badge,
-  PageHeader,
-  Tag,
-  List,
-  Avatar,
-  Button,
-  Tooltip,
-  Statistic,
-  Descriptions,
-} from "antd";
-
-import MyIcon from "util/iconFunction";
-import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
-import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 import { GetSpecData } from "util/getSpecData";
 import { isEmpty } from "lodash";
-import UniversalListItemButton from "./Universal/UniversalListItemButton";
 import UniversalDetailPageHeader from "./Universal/UniversalDetailPageHeader";
 import UniversalDetailPageCard from "./Universal/UniversalDetailPageCard";
 import UniversalDetailPageTableColumn from "./Universal/UniversalDetailPageTableColumn";

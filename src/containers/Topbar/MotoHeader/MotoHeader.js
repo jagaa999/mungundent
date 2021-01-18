@@ -51,7 +51,10 @@ const MotoHeader = () => {
                   >
                     <span className="gx-pointer gx-status-pos gx-d-block">
                       {/* <i className="icon icon-inbox" /> */}
-                      <MyIcon type="iconbox" className="moto-icon-1-5" />
+                      <MyIcon
+                        type="iconinbox-solid"
+                        className="moto-icon-1-5"
+                      />
                     </span>
                   </Popover>
                 </li>

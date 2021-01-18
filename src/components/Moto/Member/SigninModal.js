@@ -9,7 +9,6 @@ const SigninModal = () => {
 
   return (
     <Modal
-      // title="Гишүүн нэвтрэх"
       visible={memberContext.state.isModal}
       onOk={(e) => {
         memberContext.isModal(false);
@@ -19,10 +18,9 @@ const SigninModal = () => {
       }}
       footer={null}
       header={null}
-      width="90%"
       z-index="5000"
-      closeIcon={<CloseCircleOutlined className="gx-text-white" size={64} />}
-      bodyStyle={{ padding: "0" }}
+      closeIcon={<CloseCircleOutlined size={64} />}
+      bodyStyle={{ background: "#F0F0F0", borderRadius: "6px" }}
     >
       <SignIn />
     </Modal>

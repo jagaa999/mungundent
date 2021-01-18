@@ -29,6 +29,7 @@ import UniversalListItemMainImage from "./UniversalListItemMainImage";
 import { GetSpecData } from "util/getSpecData";
 import { isEmpty } from "lodash";
 import UniversalListItemButton from "./UniversalListItemButton";
+import UniversalDetailOwnerControlMenu from "./UniversalDetailOwnerControlMenu";
 
 const UniversalDetailPageHeader = ({ myItem, myDetailSettings }) => {
   const { mainData } = myItem;
@@ -52,6 +53,7 @@ const UniversalDetailPageHeader = ({ myItem, myDetailSettings }) => {
         extra={[
           <UniversalListItemButton
             myUniversalItem={myItem}
+            isDetail={true}
             key="pageheader01"
           />,
 
@@ -64,6 +66,15 @@ const UniversalDetailPageHeader = ({ myItem, myDetailSettings }) => {
               Засах
             </Button>
           </Link>,
+
+          <UniversalDetailOwnerControlMenu
+            myUniversalItem={myItem}
+            myDetailSettings={myDetailSettings}
+            isDetail={true}
+            key="ownermenu"
+            myClassName="gx-m-0 gx-ml-2"
+            myStyle={{ width: "40px" }}
+          />,
         ]}
       />
     );
