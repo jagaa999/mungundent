@@ -7,9 +7,13 @@ import { CaretDownOutlined } from "@ant-design/icons";
 import CarCatalogDetailImages from "./CarCatalogDetailImages";
 
 import { carSpec } from "util/carSpecTranslation";
+import MemberContext from "context/MemberContext";
 const { Paragraph } = Typography;
 
 const DetailTabs = ({ detail }) => {
+  const memberContext = useContext(MemberContext);
+  const OnlyMember = memberContext.OnlyMember;
+
   const otherImages = detail.imagesother.split(" | ");
   otherImages.splice(-1, 1);
 
@@ -90,52 +94,55 @@ const DetailTabs = ({ detail }) => {
           <Divider className="gx-my-4" />
         </Col>
       </Row>
-      <Row>
-        <Col
-          md={{ span: 12, offset: 0 }}
-          sm={{ span: 24, offset: 0 }}
-          xs={{ span: 22, offset: 1 }}
-          className="gx-mt-4 gx-mt-md-0"
-        >
-          <Descriptions
-            className="moto-car-spec1"
-            layout="horizontal"
-            bordered={true}
-            size="small"
-            column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
-          >
-            {Object.keys(detail).map((val, k) => {
-              if (val.indexOf("body2") !== -1) {
-                if (detail[val] !== "") {
-                  return (
-                    <Descriptions.Item
-                      key={k}
-                      label={carSpec[val] ? carSpec[val] : val}
-                    >
-                      {detail[val]}
-                    </Descriptions.Item>
-                  );
-                }
-              }
-            })}
 
-            {Object.keys(detail).map((val, k) => {
-              if (val.indexOf("envi2") !== -1) {
-                if (detail[val] !== "") {
-                  return (
-                    <Descriptions.Item
-                      key={k}
-                      label={carSpec[val] ? carSpec[val] : val}
-                    >
-                      {detail[val]}
-                    </Descriptions.Item>
-                  );
+      <OnlyMember>
+        <Row>
+          <Col
+            md={{ span: 12, offset: 0 }}
+            sm={{ span: 24, offset: 0 }}
+            xs={{ span: 22, offset: 1 }}
+            className="gx-mt-4 gx-mt-md-0"
+          >
+            <Descriptions
+              className="moto-car-spec1"
+              layout="horizontal"
+              bordered={true}
+              size="small"
+              column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
+            >
+              {Object.keys(detail).map((val, k) => {
+                if (val.indexOf("body2") !== -1) {
+                  if (detail[val] !== "") {
+                    return (
+                      <Descriptions.Item
+                        key={k}
+                        label={carSpec[val] ? carSpec[val] : val}
+                      >
+                        {detail[val]}
+                      </Descriptions.Item>
+                    );
+                  }
                 }
-              }
-            })}
-          </Descriptions>
-        </Col>
-      </Row>
+              })}
+
+              {Object.keys(detail).map((val, k) => {
+                if (val.indexOf("envi2") !== -1) {
+                  if (detail[val] !== "") {
+                    return (
+                      <Descriptions.Item
+                        key={k}
+                        label={carSpec[val] ? carSpec[val] : val}
+                      >
+                        {detail[val]}
+                      </Descriptions.Item>
+                    );
+                  }
+                }
+              })}
+            </Descriptions>
+          </Col>
+        </Row>
+      </OnlyMember>
     </div>
   );
 };

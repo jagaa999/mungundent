@@ -15,6 +15,7 @@ const NewsListPage = () => {
   const filterContext = useContext(FilterContext);
   const memberContext = useContext(MemberContext);
   const newsContext = useContext(NewsContext);
+  const OnlyMember = memberContext.OnlyMember;
 
   const renderSwitch = (cardtype) => {
     switch (cardtype) {
@@ -54,15 +55,17 @@ const NewsListPage = () => {
     }
   };
 
-  if (memberContext.state.isLogin) {
-    return (
-      <>
-        <UniversalListMeta meta={prepareNewsListSettings.meta} />
-        {renderSwitch(filterContext.state.cardtype.cardtype)}
-      </>
-    );
-  }
-  return <PleaseLogin />;
+  // if (memberContext.state.isLogin) {
+  return (
+    <>
+      {/* <OnlyMember> */}
+      <UniversalListMeta meta={prepareNewsListSettings.meta} />
+      {renderSwitch(filterContext.state.cardtype.cardtype)}
+      {/* </OnlyMember> */}
+    </>
+  );
+  // }
+  // return <PleaseLogin />;
 };
 
 export default NewsListPage;

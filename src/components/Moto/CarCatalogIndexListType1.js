@@ -65,8 +65,12 @@ const CarCatalogIndexType1 = ({ markId }) => {
                   ]);
                 }}
               >
-                {Array.from(Array(30), (e, i) => {
-                  return <Option value={i + 1990}>{i + 1990}</Option>;
+                {Array.from(Array(30), (item, index) => {
+                  return (
+                    <Option key={index} value={index + 1990}>
+                      {index + 1990}
+                    </Option>
+                  );
                 })}
               </Select>,
               <Select
@@ -84,8 +88,12 @@ const CarCatalogIndexType1 = ({ markId }) => {
                   ]);
                 }}
               >
-                {Array.from(Array(30), (e, i) => {
-                  return <Option value={i + 2000}>{i + 2000}</Option>;
+                {Array.from(Array(30), (item, index) => {
+                  return (
+                    <Option key={index} value={index + 2000}>
+                      {index + 2000}
+                    </Option>
+                  );
                 })}
               </Select>,
             ]}

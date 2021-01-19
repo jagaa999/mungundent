@@ -9,21 +9,21 @@ const CommentContext = React.createContext();
 export const CommentListStore = (props) => {
   const memberContext = useContext(MemberContext);
 
-  const initialStateCommentList = {
-    commentItems: {},
+  const initialCommentList = {
+    commentList: {},
     total: 0,
     loading: false,
     error: null,
   };
 
-  const [state, setState] = useState(initialStateCommentList);
+  const [commentList, setState] = useState(initialCommentList);
 
   const clearCommentList = () => {
-    setState(initialStateCommentList);
+    setState(initialCommentList);
   };
 
   const getError = (error) => {
-    setState({ ...state, loading: false, error });
+    setState({ ...commentList, loading: false, error });
     message.error(error.toString(), 7);
     console.log("error", error);
   };
@@ -37,7 +37,8 @@ export const CommentListStore = (props) => {
       request: {
         // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         command: "PL_MDVIEW_004",
-        username: memberContext.state.memberUID,
+        username:
+          memberContext.state.memberUID || "d14BuUMTjSRnLbrFXDOXM80fNfa2",
         password: "89",
         parameters: {
           systemmetagroupid: "1588656605153868", //Comment
@@ -61,7 +62,7 @@ export const CommentListStore = (props) => {
       },
     };
 
-    setState({ ...state, loading: true });
+    setState({ ...commentList, loading: true });
 
     axios
       .post("", myParamsCommentList)
@@ -78,9 +79,9 @@ export const CommentListStore = (props) => {
           delete myArray["paging"];
 
           setState({
-            ...state,
+            ...commentList,
             loading: false,
-            commentItems: Object.values(myArray),
+            commentList: Object.values(myArray),
             total: Object.values(myArray).length,
           });
         }
@@ -91,16 +92,11 @@ export const CommentListStore = (props) => {
   };
 
   const insertComment = (recordId, commentBody, tableName, parentId) => {
-    // console.log(
-    //   "recordId, commentBody, tableName, parentId",
-    //   recordId,
-    //   commentBody,
-    //   tableName,
-    //   parentId
-    // );
-    if (recordId === undefined || commentBody === "") return null;
+    if (!memberContext.isMember()) {
+      return null;
+    }
 
-    // clearCommentList();
+    if (recordId === undefined || commentBody === "") return null;
 
     const myParamsInsertComment = {
       request: {
@@ -143,7 +139,9 @@ export const CommentListStore = (props) => {
   };
 
   return (
-    <CommentContext.Provider value={{ state, loadCommentList, insertComment }}>
+    <CommentContext.Provider
+      value={{ commentList, loadCommentList, insertComment }}
+    >
       {props.children}
     </CommentContext.Provider>
   );

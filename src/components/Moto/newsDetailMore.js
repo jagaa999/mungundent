@@ -5,7 +5,6 @@ import { LogsStore } from "context/LogsContext";
 import NewsContext from "context/NewsContext";
 import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
-import PleaseLogin from "components/Moto/Member/PleaseLogin";
 import { Modal } from "antd";
 import { Html5Entities } from "html-entities";
 import Output from "editorjs-react-renderer";

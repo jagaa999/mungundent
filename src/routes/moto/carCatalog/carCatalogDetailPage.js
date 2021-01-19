@@ -1,21 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
-import FilterContext from "context/FilterContext";
-import MemberContext from "context/MemberContext";
-import CarCatalogDetailType1 from "components/Moto/CarCatalogDetailType1";
-import PleaseLogin from "components/Moto/Member/PleaseLogin";
+import CarCatalogDetail from "components/Moto/CarCatalogDetail";
 
 const CarCatalogDetailPage = () => {
   const { carId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
-  const filterContext = useContext(FilterContext);
-  const memberContext = useContext(MemberContext);
 
-  if (memberContext.state.isLogin) {
-    return <CarCatalogDetailType1 carId={carId} />;
-  }
-
-  return <PleaseLogin />;
+  return <CarCatalogDetail carId={carId} />;
 };
 
 export default CarCatalogDetailPage;

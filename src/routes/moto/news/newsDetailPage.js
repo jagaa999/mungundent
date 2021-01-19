@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { prepareTitle } from "util/config";
 
-import NewsDetail from "../../../components/Moto/NewsDetail2";
+import NewsDetail2 from "../../../components/Moto/NewsDetail2";
 import { CommentListStore } from "../../../context/CommentContext";
 import { LogsStore } from "../../../context/LogsContext";
 import NewsContext from "../../../context/NewsContext";
@@ -24,12 +24,9 @@ const NewsDetailPage = (props) => {
 
   useEffect(() => {
     if (newsId !== 0) {
-      if (memberContext.state.memberCloudUserSysId !== 0) {
-        newsContext.loadNewsDetail(
-          newsId,
-          memberContext.state.memberCloudUserSysId
-        );
-      }
+      // if (memberContext.state.memberCloudUserSysId !== 0) {
+      newsContext.loadNewsDetail(newsId);
+      // }
       // else {
       //   newsContext.loadNewsDetailOg(newsId);
       // }
@@ -55,7 +52,7 @@ const NewsDetailPage = (props) => {
                 myDetailContextDetailDetail={newsContext.newsDetail.mainDetail}
                 myDetailSettings={prepareNewsDetailSettings}
               />
-              <NewsDetail myDetailContext={newsContext} />
+              <NewsDetail2 myDetailContext={newsContext} />
             </>
           )}
         </LogsStore>

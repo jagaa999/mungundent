@@ -10,17 +10,12 @@ import CarCatalogListContext from "context/CarCatalogListContext";
 
 import LoadingList from "./Loading/LoadingList";
 
-const CarCatalogDetailType1 = ({ carId }) => {
+const CarCatalogDetail = ({ carId }) => {
   const carCatalogListContext = useContext(CarCatalogListContext);
 
   useEffect(() => {
     carCatalogListContext.loadCarDetail(carId);
   }, []);
-
-  // console.log(
-  //   "carCatalogListContext.carDetailList",
-  //   carCatalogListContext.carDetail
-  // );
 
   return (
     <div className="moto-list gx-mb-5">
@@ -43,4 +38,4 @@ const CarCatalogDetailType1 = ({ carId }) => {
   );
 };
 
-export default CarCatalogDetailType1;
+export default CarCatalogDetail;

@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 import { Html5Entities } from "html-entities";
 import { Button, Drawer, Tooltip, Row, Col, Card, Image, Tag } from "antd";
 import MyIcon from "util/iconFunction";
-import { CloseCircleOutlined, DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 
-import AutozarListItemMainImage from "components/Moto/Autozar/AutozarListItemMainImage";
 import { GetSpecData } from "util/getSpecData";
 
 const CompareContext = React.createContext();
 
 export const CompareStore = (props) => {
-  const htmlEntities = new Html5Entities();
+  // const htmlEntities = new Html5Entities();
 
   const [compareList, setCompareList] = useState({
     compareList: [
@@ -330,7 +329,7 @@ export const CompareStore = (props) => {
     <CompareContext.Provider
       value={{
         compareList,
-        CompareDrawer,
+        // CompareDrawer,
         addItem,
         removeItem,
         clearAll,

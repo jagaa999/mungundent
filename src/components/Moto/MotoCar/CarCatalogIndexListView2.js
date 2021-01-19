@@ -39,6 +39,7 @@ const CarCatalogIndexListView2 = ({ carIndexList, whatDate }) => {
           }
           return (
             <Timeline.Item
+              key={index}
               label={indexItem.maindate2}
               dot={<CaretDownOutlined style={{ fontSize: "16px" }} />}
             >

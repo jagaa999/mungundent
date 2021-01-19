@@ -6,9 +6,12 @@ import { firebaseAuth } from "firebase/firebase";
 
 import axios, { ecomZ, decomZ } from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
-import { message } from "antd";
+import { message, Modal } from "antd";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
+import MyIcon from "util/iconFunction";
+import PleaseLogin from "components/Moto/Member/PleaseLogin";
+import SignIn from "containers/SignIn";
 
 const MemberContext = React.createContext();
 
@@ -16,8 +19,9 @@ export const MemberProfileStore = (props) => {
   const history = useHistory();
 
   const initialStateMemberProfile = {
-    memberUID: localStorage.getItem("motoMemberUID") || "",
-    memberCloudUserSysId: 0,
+    memberUID:
+      localStorage.getItem("motoMemberUID") || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+    memberCloudUserSysId: "1598934946963", //Moto Guest
     memberCloudUserId: 0,
     memberCloudSessionId: "",
     memberCloudProfile: {},
@@ -448,6 +452,69 @@ export const MemberProfileStore = (props) => {
       });
   };
 
+  //  ###  #####  #     # ####### #     # ######  ####### ######
+  //   #  #     # ##   ## #       ##   ## #     # #       #
+  //   #  #       # # # # #       # # # # #     # #       #
+  //   #   #####  #  #  # #####   #  #  # ######  #####   ######
+  //   #        # #     # #       #     # #     # #       #   #
+  //   #  #     # #     # #       #     # #     # #       #    #
+  //  ###  #####  #     # ####### #     # ######  ####### #     #
+  const isMember = () => {
+    //Member Login-дож орсон эсэх
+    //Ороогүй бол login цонх харуулна.
+    // console.log("COLLLLLLLLLLLL MODAL", isVisible);
+    if (!state.isLogin) {
+      //guest
+      isModal(true);
+      return false;
+    } else {
+      return true; //member login
+    }
+  };
+
+  //  ####### #     # #       #     #
+  //  #     # ##    # #        #   #
+  //  #     # # #   # #         # #
+  //  #     # #  #  # #          #
+  //  #     # #   # # #          #
+  //  #     # #    ## #          #
+  //  ####### #     # #######    #
+  const OnlyMember = (props) => {
+    if (!state.isLogin) {
+      return <PleaseLogin />;
+    } else {
+      return props.children;
+    }
+  };
+
+  //  #     # ####### ######     #    #
+  //  ##   ## #     # #     #   # #   #
+  //  # # # # #     # #     #  #   #  #
+  //  #  #  # #     # #     # #     # #
+  //  #     # #     # #     # ####### #
+  //  #     # #     # #     # #     # #
+  //  #     # ####### ######  #     # #######
+  const SiginModal = (props) => {
+    return (
+      <Modal
+        visible={state.isModal}
+        onOk={(e) => {
+          isModal(false);
+        }}
+        onCancel={(e) => {
+          isModal(false);
+        }}
+        footer={null}
+        header={null}
+        z-index="5000"
+        closeIcon={<MyIcon type="icontimes-solid" className="moto-icon-1-5" />}
+        bodyStyle={{ background: "#F0F0F0", borderRadius: "6px" }}
+      >
+        <SignIn />
+      </Modal>
+    );
+  };
+
   return (
     <MemberContext.Provider
       value={{
@@ -462,9 +529,12 @@ export const MemberProfileStore = (props) => {
         loadMemberDetail,
         saveMemberDetail,
         clearMemberDetail,
+        isMember,
+        OnlyMember,
       }}
     >
       {props.children}
+      <SiginModal />
     </MemberContext.Provider>
   );
 };

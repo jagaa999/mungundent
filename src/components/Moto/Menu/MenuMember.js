@@ -12,7 +12,6 @@ import {
 import MemberContext from "context/MemberContext";
 import CompareContext from "context/CompareContext";
 import AvatarMember from "../Member/MemberAvatar";
-import SigninModal from "../Member/SigninModal";
 
 const MenuMember = () => {
   const memberContext = useContext(MemberContext);
@@ -176,7 +175,6 @@ const MenuMember = () => {
       >
         Нэвтрэх
       </span>
-      <SigninModal />;
     </>
   );
 };

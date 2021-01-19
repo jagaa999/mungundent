@@ -41,8 +41,8 @@ const SignIn = () => {
       <div className="gx-text-center">
         <div className="gx-mt-2 ">Сайн уу?</div>
         <div className=" gx-my-4 gx-mb-5">
-          Facebook, Google-ийн аль нэгээр шууд нэвтэрч Мото сайтын гишүүн
-          болохыг урьж байна.
+          Facebook, Google-ийн аль нэгээр шууд нэвтэрч Мото сайтын гишүүн болно
+          уу.
         </div>
 
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />

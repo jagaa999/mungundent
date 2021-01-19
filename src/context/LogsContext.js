@@ -43,7 +43,8 @@ export const LogsStore = (props) => {
     const myParamsLogs = {
       request: {
         command: "PL_MDVIEW_004",
-        username: memberContext.state.memberUID,
+        username:
+          memberContext.state.memberUID || "d14BuUMTjSRnLbrFXDOXM80fNfa2",
         password: "89",
         parameters: {
           systemmetagroupid: "1588323654372494", //Log

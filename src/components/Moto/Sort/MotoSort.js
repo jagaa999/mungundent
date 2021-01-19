@@ -131,13 +131,13 @@ const MotoSort = () => {
         onChange={onChangeTypeRadio}
       >
         <Radio.Button value="typelist">
-          <MyIcon type="iconlistlist" />
+          <MyIcon type="iconlistlist" className="moto-icon-1-3" />
         </Radio.Button>
         <Radio.Button value="typecard">
-          <MyIcon type="iconlistcard" />
+          <MyIcon type="iconlistcard" className="moto-icon-1-3" />
         </Radio.Button>
         <Radio.Button value="typetable">
-          <MyIcon type="iconlisttable" />
+          <MyIcon type="iconlisttable" className="moto-icon-1-3" />
         </Radio.Button>
       </Radio.Group>
     </>

@@ -3,6 +3,7 @@ import MemberContext from "context/MemberContext";
 import { Modal } from "antd";
 import SignIn from "../../../containers/SignIn";
 import { CloseCircleOutlined } from "@ant-design/icons";
+import MyIcon from "util/iconFunction";
 
 const SigninModal = () => {
   const memberContext = useContext(MemberContext);
@@ -19,7 +20,7 @@ const SigninModal = () => {
       footer={null}
       header={null}
       z-index="5000"
-      closeIcon={<CloseCircleOutlined size={64} />}
+      closeIcon={<MyIcon type="icontimes-solid" className="moto-icon-1-5" />}
       bodyStyle={{ background: "#F0F0F0", borderRadius: "6px" }}
     >
       <SignIn />

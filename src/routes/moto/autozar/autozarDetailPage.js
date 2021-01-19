@@ -13,7 +13,6 @@ import { LogsStore } from "../../../context/LogsContext";
 import AutozarContext from "../../../context/AutozarContext";
 import MemberContext from "../../../context/MemberContext";
 import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
-import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
 const AutozarDetailPage = (props) => {
   const { id } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID

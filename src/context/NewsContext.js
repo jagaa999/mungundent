@@ -170,15 +170,24 @@ export const NewsStore = (props) => {
 
     const myParamsNewsList = {
       request: {
-        username: memberContext.state.memberUID,
+        username:
+          memberContext.state.memberUID || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",
         command: "PL_MDVIEW_004",
         parameters: myNewParam.loadParams,
       },
     };
 
+    // console.log("myParamsNewsList", myParamsNewsList);
+
     myAxiosZ(myParamsNewsList)
       .then((myData) => {
+        // console.log("response myData", myData);
+        if (myData.response.status === "error") {
+          message.error(myData.response.text || "Алдаа гарлаа");
+          return null;
+        }
+
         const myPaging = myData.response?.result?.paging || {};
         const myArray = myData.response.result || [];
 
@@ -217,13 +226,15 @@ export const NewsStore = (props) => {
     const myParamsNewsDetail = {
       request: {
         // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-        username: memberContext.state.memberUID,
+        username:
+          memberContext.state.memberUID || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",
         command: "motoNEWS_MAINDETAIL_004",
         parameters: {
           newsid: newsId || "",
-          memberid: memberContext.state.memberCloudUserSysId,
-          usersystemid: memberContext.state.memberCloudUserSysId,
+          memberid: memberContext.state.memberCloudUserSysId || "1598934946963",
+          usersystemid:
+            memberContext.state.memberCloudUserSysId || "1598934946963",
         },
       },
     };
@@ -231,12 +242,12 @@ export const NewsStore = (props) => {
     clearNewsDetail();
     setNewsDetail({ ...newsDetail, loading: true });
 
-    // console.log("myParamsNewsDetail", myParamsNewsDetail);
+    console.log("myParamsNewsDetail", myParamsNewsDetail);
 
     myAxiosZ(myParamsNewsDetail)
       .then((myData) => {
         const myArray = myData.response.result || [];
-        // console.log("NEWS DETAIL------------>", myArray);
+        console.log("NEWS DETAIL------------>", myArray);
 
         const myTempItem = prepareNewsDetail(myArray, filterContext.state.menu);
 

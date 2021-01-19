@@ -65,6 +65,7 @@ const CarCatalogMarkType1 = ({ firmId }) => {
             className="gx-mb-3"
             extra={[
               <Select
+                key="mark-filter"
                 mode="tags"
                 style={{ minWidth: "170px" }}
                 placeholder="Маркаар ялгах"

@@ -5,6 +5,7 @@ import axios from "../util/axiosConfig";
 import MemberContext from "context/MemberContext";
 import { message } from "antd";
 import Moment from "moment";
+// import IsMemberLogin from "util/isMember";
 // import mainAxios from "axios";
 
 const MemberItemsContext = React.createContext();
@@ -105,6 +106,10 @@ export const MemberItemsStore = (props) => {
   //   #####  #     #    #    #######
 
   const saveMemberItem = (values) => {
+    if (!memberContext.isMember()) {
+      return null;
+    }
+
     console.log("saveMemberItem дотор орж ирсэн values--", values);
 
     const myMemberItem = {

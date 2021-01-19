@@ -21,7 +21,7 @@ const HorizontalNav = () => {
       mode="horizontal"
       className="motoHeader"
     >
-      <Menu.Item
+      {/* <Menu.Item
         key="auction"
         className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
       >
@@ -33,7 +33,7 @@ const HorizontalNav = () => {
           </Tooltip>
           <div className="gx-d-none gx-d-lg-block">Аукшин</div>
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
 
       <Menu.Item key="news" className="motoHeaderMenuItem">
         <Link to="/news" className="motoHeaderMenuItemLink">

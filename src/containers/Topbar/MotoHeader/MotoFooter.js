@@ -58,6 +58,14 @@ const MotoFooter = () => {
             </div>
             <ul className="gx-ml-auto gx-header-notifications">
               <li className="gx-msg">
+                <Link to="/auction?yearend=2014">
+                  <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
+                    Аукшин
+                  </span>
+                </Link>
+              </li>
+
+              <li className="gx-msg">
                 <Dropdown
                   overlayClassName="gx-popover-horizantal"
                   placement="topRight"

@@ -15,12 +15,12 @@ const CommentBox = (props) => {
   return (
     <div className="gx-main-content news-detail">
       <CommentBoxItems
-        commentBoxItems={commentContext.state.commentItems || {}}
+        commentBoxItems={commentContext.commentList.commentList || {}}
       />
-      {commentContext.state.error !== null ? (
+      {commentContext.commentList.error !== null ? (
         <Alert
           message="Анхаар!"
-          description={commentContext.state.error}
+          description={commentContext.commentList.error}
           type="warning"
           showIcon
           closable

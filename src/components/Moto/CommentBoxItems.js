@@ -43,18 +43,7 @@ const CommentBoxItems = (props) => {
               src={memberContext.state.memberFirebaseProfile.photoURL}
             />
             <div className="gx-media-body" key="dddd">
-              <p>
-                {memberContext.state.memberFirebaseProfile.displayName}{" "}
-                {/* <span>({memberContext.state.memberCloudProfile.lastname})</span> */}
-              </p>
-              {/* <textarea
-                id="required"
-                className="gx-border-0 ant-input"
-                onChange={(event) => {
-                  setCommentBody(event.target.value);
-                }}
-                placeholder="Сэтгэгдлээ бичээрэй"
-              /> */}
+              <p>{memberContext.state.memberFirebaseProfile.displayName} </p>
 
               <TextArea
                 placeholder="Сэтгэгдлээ бичээрэй"
