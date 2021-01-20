@@ -21,12 +21,17 @@ const UniversalDetailOwnerControlMenu = ({
   myClassName,
   myStyle,
 }) => {
-  const { mainData } = myUniversalItem;
+  const { mainData, ownerButtons } = myUniversalItem;
   // const { headerSettings } = myDetailSettings;
+
+  console.log("ownerButtons", ownerButtons);
 
   const menuOwnerActions = () => (
     <Menu>
-      <Menu.Item
+      {ownerButtons.map((item, index) => {
+        return item.menuItem;
+      })}
+      {/* <Menu.Item
         key="Дээшлүүлэх"
         // onClick={newsDetailContext.upPublishedDate}
       >
@@ -50,7 +55,7 @@ const UniversalDetailOwnerControlMenu = ({
         >
           Идэвхтэй
         </Checkbox>
-      </Menu.Item>
+      </Menu.Item> */}
 
       <Menu.Divider />
 

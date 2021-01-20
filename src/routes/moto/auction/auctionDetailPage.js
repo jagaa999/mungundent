@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { prepareTitle } from "../../../util/config";
 // import AuctionDetail from "../../../components/Moto/AuctionDetail";
 import AuctionDetail2 from "../../../components/Moto/AuctionDetail2";
+import { CommentListStore } from "../../../context/CommentContext";
 import { LogsStore } from "../../../context/LogsContext";
 import AuctionContext from "../../../context/AuctionContext";
 import MemberContext from "../../../context/MemberContext";
@@ -73,13 +74,15 @@ const AuctionDetailPage = (props) => {
 
       {memberContext.state.isLogin ? (
         <>
-          {/* <LogsStore> */}
+          {/* <CommentListStore>
+            <LogsStore> */}
           {auctionContext.auctionDetail.loading ? (
             <LoadingDetail />
           ) : (
             <AuctionDetail2 auctionId={auctionId} />
           )}
-          {/* </LogsStore> */}
+          {/* </LogsStore>
+          </CommentListStore> */}
         </>
       ) : (
         <PleaseLogin />

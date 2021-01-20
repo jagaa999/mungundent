@@ -15,10 +15,10 @@ const MemberItems = () => {
 
   return (
     <>
-      {/* <div className="gx-popover-header">
-        <h6 className="gx-mb-0">Таны зүйлс</h6>
-        <i className="gx-icon-btn icon icon-charvlet-down" />
-      </div> */}
+      <div className="">
+        <h6 className="gx-mb-3">Таны жоорлосон зүйлс</h6>
+        {/* <i className="gx-icon-btn icon icon-charvlet-down" /> */}
+      </div>
 
       <Tabs defaultActiveKey="1" size="small" className="motoMemberItems">
         {/* <TabPane tab="Нийтлэл" key="1">
@@ -61,6 +61,18 @@ const MemberItems = () => {
             universal
           >
             <MemberItemsList tableName="MOTO_AUCTION" menu="auction" />
+          </Scrollbars>
+        </TabPane>
+        <TabPane tab="Автозар" key="autozar">
+          <Scrollbars
+            autoHeight
+            autoHeightMin={200}
+            autoHeightMax={400}
+            autoHide
+            autoHideTimeout={2000}
+            universal
+          >
+            <MemberItemsList tableName="MOTO_AUTOZAR" menu="autozar" />
           </Scrollbars>
         </TabPane>
         <TabPane tab="Tab 3" key="3" disabled>

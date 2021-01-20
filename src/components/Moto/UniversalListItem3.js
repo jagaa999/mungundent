@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import { unescape } from "lodash";
 import { Html5Entities } from "html-entities";
+import toBoolean from "util/booleanFunction";
 
 import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 
-import { Image, Table, Tooltip, Tag } from "antd";
+import { Image, Table, Tooltip, Tag, Typography } from "antd";
 
 import AutozarListItemMainImage from "./Autozar/AutozarListItemMainImage";
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
@@ -77,9 +78,28 @@ const AuctionListItem3 = ({ myListContextListList }) => {
           />
 
           <div className="gx-media-body gx-align-self-center">
-            <Link to={record.mainData.link.value}>
+            {/* <Link to={record.mainData.link.value}>
               {record.mainData.title.value}
-            </Link>
+            </Link> */}
+            <h5>
+              <Link to={record.mainData.link.value}>
+                <Tooltip title={record.mainData.title.value}>
+                  <Typography.Paragraph
+                    ellipsis={{ rows: 4, symbol: "…" }}
+                    className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
+                  >
+                    {record.mainData.title.value}
+                  </Typography.Paragraph>
+                </Tooltip>
+              </Link>
+              {toBoolean(record.mainData.isfeatured.value) && (
+                <FeaturedTag type="dot" />
+              )}
+              {!toBoolean(record.mainData.isactive.value) && (
+                <ActiveTag type="dot" />
+              )}
+            </h5>
+
             <div>
               {record.headerSpec.map((item, index) => {
                 return <RenderHeaderSpec key={index} item={item} />;

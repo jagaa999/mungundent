@@ -6,7 +6,7 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 import { Html5Entities } from "html-entities";
-import { Tooltip, Card, Tag, Image, Badge, Button } from "antd";
+import { Tooltip, Card, Tag, Image, Badge, Button, Typography } from "antd";
 // import { ExclamationCircleOutlined } from "@ant-design/icons";
 import TweenOne from "rc-tween-one";
 
@@ -117,7 +117,16 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         </span>
 
         <h4>
-          <Link to={mainData.link.value}>{mainData.title.value}</Link>
+          <Link to={mainData.link.value}>
+            <Tooltip title={mainData.title.value}>
+              <Typography.Paragraph
+                ellipsis={{ rows: 3, symbol: "…" }}
+                className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
+              >
+                {mainData.title.value}
+              </Typography.Paragraph>
+            </Tooltip>
+          </Link>
           {toBoolean(mainData.isfeatured.value) && <FeaturedTag type="dot" />}
           {!toBoolean(mainData.isactive.value) && <ActiveTag type="dot" />}
         </h4>

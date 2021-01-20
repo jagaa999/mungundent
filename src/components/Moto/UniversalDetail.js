@@ -1,8 +1,5 @@
 import React from "react";
 
-import { Tooltip } from "antd";
-
-import { GetSpecData } from "util/getSpecData";
 import { isEmpty } from "lodash";
 import UniversalDetailPageHeader from "./Universal/UniversalDetailPageHeader";
 import UniversalDetailPageCard from "./Universal/UniversalDetailPageCard";
@@ -16,63 +13,20 @@ const UniversalDetail = ({
 }) => {
   if (isEmpty(myDetailContextDetailDetail)) return null;
 
-  const myItem = myDetailContextDetailDetail;
-
-  const {
-    mainData,
-    headerSpec,
-    specList1,
-    specList2,
-    ownerData,
-    saveButtonsData,
-    compareButtonData,
-    tableColumns,
-  } = myItem;
-
-  const { headerSettings } = myDetailSettings;
-
-  // console.log(mainData);
-  // console.log("ownerData", ownerData);
-
-  // const htmlEntities = new Html5Entities();
-
-  const RenderSpecList1 = ({ item }) => {
-    if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
-
-      return (
-        <li>
-          <span className="moto-spec-list-label">{myItem.label}</span>
-          <span className="moto-spec-list-value">
-            <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
-          </span>
-        </li>
-      );
-    }
-    return "";
-  };
-
-  //  ######  ####### ####### #     # ######  #     #
-  //  #     # #          #    #     # #     # ##    #
-  //  #     # #          #    #     # #     # # #   #
-  //  ######  #####      #    #     # ######  #  #
-  //  #   #   #          #    #     # #   #   #   # #
-  //  #    #  #          #    #     # #    #  #    ##
-  //  #     # #######    #     #####  #     # #     #
   return (
     <>
       <UniversalDetailPageHeader
-        myItem={myItem}
+        myItem={myDetailContextDetailDetail}
         myDetailSettings={myDetailSettings}
       />
 
       <UniversalDetailPageTableColumn
-        myItem={myItem}
+        myItem={myDetailContextDetailDetail}
         myDetailSettings={myDetailSettings}
       />
 
       <UniversalDetailPageCard
-        myItem={myItem}
+        myItem={myDetailContextDetailDetail}
         myDetailSettings={myDetailSettings}
       />
     </>

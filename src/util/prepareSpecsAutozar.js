@@ -233,42 +233,53 @@ const tempTableColumns = (item, menu, mainData) => {
     {
       field: "mglengine2disp",
       responsive: ["md"],
-      renderDivClass: "gx-text-grey",
-      value: accounting.formatMoney(item.mglengine2disp, {
-        symbol: "cc",
-        format: "%v %s",
-        precision: 0,
-        thousand: "'",
-      }),
+      value: (
+        <span className="gx-text-grey gx-fs-sm">
+          {accounting.formatMoney(item.mglengine2disp, {
+            symbol: "cc",
+            format: "%v %s",
+            precision: 0,
+            thousand: "'",
+          })}
+        </span>
+      ),
     },
 
     {
       field: "autozarmilage",
       responsive: ["sm"],
       width: "90px",
-      renderDivClass: "gx-text-grey gx-fs-sm",
-      value: accounting.formatMoney(item.autozarmilage, {
-        symbol: "км",
-        format: "%v %s",
-        precision: 0,
-        thousand: "'",
-      }),
+      value: (
+        <span className="gx-text-grey gx-fs-sm">
+          {accounting.formatMoney(item.autozarmilage, {
+            symbol: "км",
+            format: "%v %s",
+            precision: 0,
+            thousand: "'",
+          })}
+        </span>
+      ),
     },
 
     {
       field: "financepricerr",
       width: "110px",
       align: "center",
-      renderDivClass: "gx-text-success",
-      // value: mainData.mainnumber.value,
-      value: accounting.formatMoney(item.financepricerr, "₮", 0, "'"),
+      value: (
+        <span className="gx-text-success gx-fs-sm">
+          {accounting.formatMoney(item.financepricerr, "₮", 0, "'")}
+        </span>
+      ),
     },
 
     {
       field: "modifieddate",
       responsive: ["lg"],
-      renderDivClass: "gx-fs-sm gx-text-grey",
-      value: mainData.modifieddate.value,
+      value: (
+        <span className="gx-text-grey gx-fs-sm">
+          {mainData.modifieddate.value}
+        </span>
+      ),
     },
   ];
 };

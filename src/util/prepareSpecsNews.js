@@ -1,6 +1,6 @@
 import React from "react";
 import { Html5Entities } from "html-entities";
-import { Tooltip, Tag } from "antd";
+import { Menu, Checkbox } from "antd";
 import toBoolean from "./booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
@@ -222,6 +222,43 @@ const tempSaveButtonData = (item, menu, mainData) => {
   };
 };
 
+const tempOwnerButtons = (item, menu, mainData, myContext) => {
+  return [
+    {
+      menuItem: (
+        <Menu.Item key="up" onClick={myContext.upPublishedDate}>
+          {/* <ArrowUpOutlined /> */}
+          Дээшлүүлэх
+        </Menu.Item>
+      ),
+    },
+    {
+      menuItem: (
+        <Menu.Item key="sponsor">
+          <Checkbox
+            checked={mainData.isfeatured.value}
+            onChange={myContext.toggleIsFeatured}
+          >
+            Спонсор?
+          </Checkbox>
+        </Menu.Item>
+      ),
+    },
+    {
+      menuItem: (
+        <Menu.Item key="active">
+          <Checkbox
+            checked={mainData.isactive.value}
+            onChange={myContext.toggleIsActive}
+          >
+            Идэвхтэй?
+          </Checkbox>
+        </Menu.Item>
+      ),
+    },
+  ];
+};
+
 //  #       ###  #####  #######
 //  #        #  #     #    #
 //  #        #  #          #
@@ -229,7 +266,7 @@ const tempSaveButtonData = (item, menu, mainData) => {
 //  #        #        #    #
 //  #        #  #     #    #
 //  ####### ###  #####     #
-export const prepareNewsList = (myArray, menu = "") => {
+export const prepareNewsList = (myArray, menu = "", myContext) => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
@@ -242,6 +279,7 @@ export const prepareNewsList = (myArray, menu = "") => {
     const saveButtonData = tempSaveButtonData(item, menu, mainData);
     const compareButtonData = tempCompareButtonData(item, menu, mainData);
     const tableColumns = tempTableColumns(item, menu, mainData);
+    const ownerButtons = tempOwnerButtons(item, menu, mainData, myContext);
 
     myList[index].mainData = mainData;
     myList[index].headerSpec = headerSpec;
@@ -252,6 +290,7 @@ export const prepareNewsList = (myArray, menu = "") => {
     myList[index].saveButtonData = saveButtonData;
     myList[index].compareButtonData = compareButtonData;
     myList[index].tableColumns = tableColumns;
+    myList[index].ownerButtons = ownerButtons;
   });
 
   // console.log("ЭНИЙГ ХАР ДАА", myList);
@@ -267,7 +306,7 @@ export const prepareNewsList = (myArray, menu = "") => {
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
 //
-export const prepareNewsDetail = (myItem, menu = "") => {
+export const prepareNewsDetail = (myItem, menu = "", myContext) => {
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempHeaderSpec(myItem, menu, mainData);
   const specList1 = tempSpecList1(myItem, menu, mainData);
@@ -277,6 +316,7 @@ export const prepareNewsDetail = (myItem, menu = "") => {
   const saveButtonData = tempSaveButtonData(myItem, menu, mainData);
   const compareButtonData = tempCompareButtonData(myItem, menu, mainData);
   const tableColumns = tempTableColumns(myItem, menu, mainData);
+  const ownerButtons = tempOwnerButtons(myItem, menu, mainData, myContext);
 
   //All specs
   myItem.createddate = moment(myItem.createddate);
@@ -323,6 +363,10 @@ export const prepareNewsDetail = (myItem, menu = "") => {
   myItem.saveButtonData = saveButtonData;
   myItem.compareButtonData = compareButtonData;
   myItem.tableColumns = tableColumns;
+  myItem.ownerButtons = ownerButtons;
+
+  console.log("myItem.ownerButtons", myItem.ownerButtons);
+  console.log("myContext", myContext);
 
   return myItem;
 };

@@ -82,7 +82,7 @@ const ErrorReportModal = (props) => {
           });
       }}
     >
-      <div className="gx-mb-4">{item?.title}</div>
+      <div className="gx-mb-4">{item?.mainData?.title?.value || ""}</div>
 
       <Form
         form={form}
@@ -91,7 +91,7 @@ const ErrorReportModal = (props) => {
         name="error_modal"
         initialValues={{
           recordId: props.recordid,
-          title: item.title,
+          title: item?.mainData?.title?.value || "",
           modifier: "public",
         }}
       >

@@ -9,6 +9,7 @@ import UniversalDetail from "../../../components/Moto/UniversalDetail";
 import { prepareAutozarDetailSettings } from "util/prepareSpecsAutozar";
 import { UniversalDetailMeta } from "util/prepareMeta";
 
+import { CommentListStore } from "../../../context/CommentContext";
 import { LogsStore } from "../../../context/LogsContext";
 import AutozarContext from "../../../context/AutozarContext";
 import MemberContext from "../../../context/MemberContext";
@@ -34,19 +35,23 @@ const AutozarDetailPage = (props) => {
         <LoadingDetail />
       ) : (
         <>
-          <UniversalDetailMeta
-            meta={prepareAutozarDetailSettings.meta}
-            myItem={autozarContext.autozarDetail.autozarDetail}
-          />
-          <UniversalDetail
-            myDetailContext={autozarContext}
-            myDetailContextDetail={autozarContext.autozarDetail}
-            myDetailContextDetailDetail={
-              autozarContext.autozarDetail.autozarDetail
-            }
-            myDetailSettings={prepareAutozarDetailSettings}
-          />
-          <AutozarDetail2 myDetailContext={autozarContext} />
+          <CommentListStore>
+            <LogsStore>
+              <UniversalDetailMeta
+                meta={prepareAutozarDetailSettings.meta}
+                myItem={autozarContext.autozarDetail.autozarDetail}
+              />
+              <UniversalDetail
+                myDetailContext={autozarContext}
+                myDetailContextDetail={autozarContext.autozarDetail}
+                myDetailContextDetailDetail={
+                  autozarContext.autozarDetail.autozarDetail
+                }
+                myDetailSettings={prepareAutozarDetailSettings}
+              />
+              <AutozarDetail2 myDetailContext={autozarContext} />
+            </LogsStore>
+          </CommentListStore>
         </>
       )}
     </>

@@ -196,7 +196,11 @@ export const NewsStore = (props) => {
 
         // console.log(myArray);
 
-        const myTempList = prepareNewsList(myArray, filterContext.state.menu);
+        const myTempList = prepareNewsList(
+          myArray,
+          filterContext.state.menu,
+          NewsContext
+        );
 
         // console.log("myTempList", myTempList);
 
@@ -249,7 +253,11 @@ export const NewsStore = (props) => {
         const myArray = myData.response.result || [];
         console.log("NEWS DETAIL------------>", myArray);
 
-        const myTempItem = prepareNewsDetail(myArray, filterContext.state.menu);
+        const myTempItem = prepareNewsDetail(
+          myArray,
+          filterContext.state.menu,
+          NewsContext
+        );
 
         setNewsDetail({
           ...newsDetail,

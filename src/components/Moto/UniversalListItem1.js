@@ -9,7 +9,7 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 
-import { Button, Badge, Tooltip, Row, Col, Avatar } from "antd";
+import { Button, Badge, Tooltip, Row, Col, Avatar, Typography } from "antd";
 
 import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
@@ -30,8 +30,8 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
       const myItem = GetSpecData(item.field);
 
       return (
-        <p className="gx-mr-3 gx-mb-2">
-          <Badge className="gx-mb-0" status={myItem.status} />
+        <p className="gx-mr-3 gx-mb-2 gx-fs-sm">
+          <Badge className="gx-mb-0 gx-mr-1" status={myItem.status} />
           <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
         </p>
       );
@@ -118,13 +118,22 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
         <div className="gx-product-body">
           <Row className="moto-item-card">
             <Col xl={17} md={16} sm={15} xs={24}>
-              <h3 className="gx-product-title">
-                <Link to={mainData.link.value}>{mainData.title.value}</Link>
+              <h4>
+                <Link to={mainData.link.value}>
+                  <Tooltip title={mainData.title.value}>
+                    <Typography.Paragraph
+                      ellipsis={{ rows: 3, symbol: "…" }}
+                      className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
+                    >
+                      {mainData.title.value}
+                    </Typography.Paragraph>
+                  </Tooltip>
+                </Link>
                 {mainData.isfeatured.value && <FeaturedTag />}
                 {mainData.isactive.value && !mainData.isactive.value && (
                   <ActiveTag />
                 )}
-              </h3>
+              </h4>
 
               {/* headerSpec */}
               {!isEmpty(headerSpec) && (

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import { Avatar, List, Tooltip, Image as ImageAnt } from "antd";
+import { Avatar, List, Tooltip, Image as ImageAnt, Typography } from "antd";
 import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
 import MemberItemsContext from "context/MemberItemsContext";
 import moment from "moment";
@@ -48,13 +48,12 @@ const MemberItemsList = ({ tableName, menu }) => {
       renderItem={(item) => (
         <List.Item
           actions={[
-            <span className={`gx-mr-2 ${myColor(item.actionname)}`}>
-              <small>{item.actionname}</small>
-            </span>,
+            // <span className={`gx-mr-2 ${myColor(item.actionname)}`}>
+            //   <small>{item.actionname}</small>
+            // </span>,
             <Tooltip title="Устгах">
               <DeleteOutlined
                 onClick={(e) => {
-                  // console.log("Устгах дарав", item.id);
                   memberItemsContext.deleteMemberItem(item.id);
                 }}
               />
@@ -62,16 +61,29 @@ const MemberItemsList = ({ tableName, menu }) => {
           ]}
         >
           <List.Item.Meta
-            avatar={<ImageAnt src={item.mainimg} width={64} />}
+            avatar={
+              <Link to={`/${menu}/${item.recordid}`}>
+                <ImageAnt src={item.mainimg} width={64} />
+              </Link>
+            }
             title={
-              <Tooltip title={moment(item.modifieddate).fromNow()}>
-                <Link to={`/${menu}/${item.recordid}`}>
-                  <span className="gx-fs-sm">{item.description}</span>
-                </Link>
-              </Tooltip>
+              // <Tooltip title={moment(item.modifieddate).fromNow()}>
+              <Link to={`/${menu}/${item.recordid}`}>
+                <span className="gx-fs-sm gx-font-weight-semi-bold">
+                  <Typography.Paragraph
+                    ellipsis={{ rows: 2, symbol: "…" }}
+                    className="gx-m-0"
+                  >
+                    {item.description}
+                  </Typography.Paragraph>
+                </span>
+              </Link>
+              // </Tooltip>
             }
             description={
-              <></>
+              <span className="gx-fs-sm gx-text-grey">
+                {moment(item.modifieddate).fromNow()}
+              </span>
               // <>
               //   <span className={`gx-mr-2 ${myColor(item.actionname)}`}>
               //     <small>{item.actionname}</small>

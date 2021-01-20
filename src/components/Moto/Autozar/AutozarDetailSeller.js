@@ -21,21 +21,6 @@ const AutozarDetailSeller = ({ myItem }) => {
   return (
     <div>
       <OnlyMember>
-        {/* <Scrollbars
-        autoHeight
-        autoHeightMin={100}
-        autoHeightMax="calc(80vh - 36px - 35px - 75px)"
-        autoHide
-        autoHideTimeout={2000}
-        universal
-        renderTrackHorizontal={(props) => (
-          <div
-            {...props}
-            style={{ display: "none" }}
-            className="track-horizontal"
-          />
-        )}
-      > */}
         <Row>
           <Col
             md={{ span: 12, offset: 0 }}
@@ -104,10 +89,27 @@ const AutozarDetailSeller = ({ myItem }) => {
             </div>
           </Col>
         </Row>
-        {/* </Scrollbars> */}
       </OnlyMember>
     </div>
   );
 };
 
 export default AutozarDetailSeller;
+
+{
+  /* <Scrollbars
+        autoHeight
+        autoHeightMin={100}
+        autoHeightMax="calc(80vh - 36px - 35px - 75px)"
+        autoHide
+        autoHideTimeout={2000}
+        universal
+        renderTrackHorizontal={(props) => (
+          <div
+            {...props}
+            style={{ display: "none" }}
+            className="track-horizontal"
+          />
+        )}
+      > */
+}
