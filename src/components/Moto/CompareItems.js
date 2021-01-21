@@ -9,7 +9,7 @@ import { motoSpecAuction } from "util/carSpecTranslation";
 const CompareItems = () => {
   const compareContext = useContext(CompareContext);
 
-  // console.table(compareContext.compareList.compareList);
+  console.table(compareContext.compareList.compareList);
 
   // const myTable = {
   //   AUCTION: ["MIRIVE Osaka", "TOKYO", "JAPAN"],
@@ -106,12 +106,13 @@ const CompareItems = () => {
     myTaaa.push(myRow);
   });
 
-  // console.log("myTaaa", myTaaa);
+  console.log("myTaaa", myTaaa);
   //Эхний title-ийг орчуулна.
   //AUCTION → "Аукшин"
   myTaaa.map((row, index) => {
-    myTaaa[index].label =
-      motoSpecAuction[myTaaa[index].label].title || myTaaa[index].label; //хэрвээ орчуулга олдохгүй бол байгааг нь буцаагаад тавина
+    // myTaaa[index].label =
+    //   motoSpecAuction[myTaaa[index].label].title || myTaaa[index].label; //хэрвээ орчуулга олдохгүй бол байгааг нь буцаагаад тавина
+    myTaaa[index].label = myTaaa[index].label; //хэрвээ орчуулга олдохгүй бол байгааг нь буцаагаад тавина
   });
 
   // console.log("myTaaa", myTaaa);

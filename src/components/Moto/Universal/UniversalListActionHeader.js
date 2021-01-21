@@ -71,7 +71,7 @@ const UniversalListActionHeader = ({
           </Tooltip>,
           <Tooltip title="Харьцуулалт нээх" key="03">
             <Button
-              icon={<MyIcon type="iconflag-solid" className="moto-icon-1-3" />}
+              icon={<MyIcon type="icontandem" className="moto-icon-1-3" />}
               type={compareContext.compareList.isOpen ? "primary" : "default"}
               onClick={compareContext.toggleDrawer}
               className="gx-ml-2 gx-mr-0"

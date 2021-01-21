@@ -222,7 +222,7 @@ export const CompareStore = (props) => {
                 type="primary"
                 size="small"
                 className="gx-m-0"
-                icon={<MyIcon type="iconflag-solid" />}
+                icon={<MyIcon type="icontandem" />}
                 onClick={toggleDrawer}
               >
                 Харьцуулах

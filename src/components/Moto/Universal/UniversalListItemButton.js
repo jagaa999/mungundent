@@ -72,7 +72,7 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
             type={isDetail ? "default" : "text"}
             icon={
               <MyIcon
-                type="iconflag-solid"
+                type="icontandem"
                 className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
               />
             }
