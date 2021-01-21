@@ -16,7 +16,7 @@ import AvatarMember from "../Member/MemberAvatar";
 const MenuMember = () => {
   const memberContext = useContext(MemberContext);
   const compareContext = useContext(CompareContext);
-  console.log("МИНИЙ ПРОФАЙЛ", memberContext.state);
+  // console.log("МИНИЙ ПРОФАЙЛ", memberContext.state);
 
   const withMemberOptions = (
     <>

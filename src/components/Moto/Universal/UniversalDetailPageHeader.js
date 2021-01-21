@@ -31,7 +31,11 @@ import { isEmpty } from "lodash";
 import UniversalListItemButton from "./UniversalListItemButton";
 import UniversalDetailOwnerControlMenu from "./UniversalDetailOwnerControlMenu";
 
-const UniversalDetailPageHeader = ({ myItem, myDetailSettings }) => {
+const UniversalDetailPageHeader = ({
+  myDetailContext,
+  myItem,
+  myDetailSettings,
+}) => {
   const { mainData } = myItem;
   const { headerSettings } = myDetailSettings;
 
@@ -44,10 +48,8 @@ const UniversalDetailPageHeader = ({ myItem, myDetailSettings }) => {
         subTitle={mainData.title.value.substring(0, 23) + "…"}
         tags={
           <>
-            {mainData.isfeatured.value && <FeaturedTag />}
-            {mainData.isactive.value && !mainData.isactive.value && (
-              <ActiveTag />
-            )}
+            {myItem.isfeatured && <FeaturedTag />}
+            {!myItem.isactive && <ActiveTag />}
           </>
         }
         extra={[
@@ -68,6 +70,7 @@ const UniversalDetailPageHeader = ({ myItem, myDetailSettings }) => {
           </Link>,
 
           <UniversalDetailOwnerControlMenu
+            myDetailContext={myDetailContext}
             myUniversalItem={myItem}
             myDetailSettings={myDetailSettings}
             isDetail={true}

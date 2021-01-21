@@ -13,9 +13,12 @@ const UniversalDetail = ({
 }) => {
   if (isEmpty(myDetailContextDetailDetail)) return null;
 
+  // console.log("BBBBBBBBBBBBBBBBB", myDetailContext);
+
   return (
     <>
       <UniversalDetailPageHeader
+        myDetailContext={myDetailContext}
         myItem={myDetailContextDetailDetail}
         myDetailSettings={myDetailSettings}
       />

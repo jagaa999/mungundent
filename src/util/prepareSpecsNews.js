@@ -5,6 +5,7 @@ import toBoolean from "./booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
 import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionStarRatingComponent";
+import MyIcon from "util/iconFunction";
 
 //   #####  ####### ####### ####### ### #     #  #####
 //  #     # #          #       #     #  ##    # #
@@ -53,6 +54,7 @@ export const prepareNewsListSettings = {
 export const prepareNewsDetailSettings = {
   pagetitle: "Нийтлэл",
   menu: "news",
+  contextName: "context/NewsContext",
   meta: {
     title: "Нийтлэл",
     description: "Авто ертөнцийн сонин сайхнаас",
@@ -226,8 +228,9 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
   return [
     {
       menuItem: (
-        <Menu.Item key="up" onClick={myContext.upPublishedDate}>
+        <Menu.Item key="up" onClick="upPublishedDate">
           {/* <ArrowUpOutlined /> */}
+          <MyIcon type="iconangle-double-up-solid" />
           Дээшлүүлэх
         </Menu.Item>
       ),
@@ -235,10 +238,7 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
     {
       menuItem: (
         <Menu.Item key="sponsor">
-          <Checkbox
-            checked={mainData.isfeatured.value}
-            onChange={myContext.toggleIsFeatured}
-          >
+          <Checkbox checked="isfeatured" onChange="toggleIsFeatured">
             Спонсор?
           </Checkbox>
         </Menu.Item>
@@ -247,10 +247,7 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
     {
       menuItem: (
         <Menu.Item key="active">
-          <Checkbox
-            checked={mainData.isactive.value}
-            onChange={myContext.toggleIsActive}
-          >
+          <Checkbox checked="isactive" onChange="toggleIsActive">
             Идэвхтэй?
           </Checkbox>
         </Menu.Item>
