@@ -1,19 +1,11 @@
-import React, { lazy } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+// import { Link } from "react-router-dom";
 
-import { Button, Dropdown, Menu, Checkbox, message } from "antd";
-import {
-  WarningTwoTone,
-  UserOutlined,
-  SettingOutlined,
-  DeleteOutlined,
-  ArrowUpOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
+import { Button, Dropdown, Menu } from "antd";
 
 import MyIcon from "util/iconFunction";
-import { GetSpecData } from "util/getSpecData";
-import { isEmpty } from "lodash";
+// import { GetSpecData } from "util/getSpecData";
+// import { isEmpty } from "lodash";
 
 const UniversalDetailOwnerControlMenu = ({
   myDetailContext,
@@ -25,16 +17,9 @@ const UniversalDetailOwnerControlMenu = ({
   const { mainData, ownerButtons } = myUniversalItem;
   // const { headerSettings } = myDetailSettings;
 
-  // const myContext = await import('context/newsContext');
-  // const myContext = lazy(() => import(myDetailSettings.contextName));
-
-  console.log("ownerButtons", ownerButtons);
-  console.log("myContext FFFFFFFFFFFFFFF", myDetailContext);
-  console.log("myContext toggleIsFeatured", myDetailContext.toggleIsFeatured);
-
   const menuOwnerActions = () => (
     <Menu>
-      {ownerButtons.map((item, index) => {
+      {ownerButtons?.map((item, index) => {
         let myItem = { ...item.menuItem };
 
         //Дан цэс байх үед
@@ -74,52 +59,10 @@ const UniversalDetailOwnerControlMenu = ({
           };
         }
 
-        console.log("item SDSSSSSSSSSSSS", myItem);
+        // console.log("item SDSSSSSSSSSSSS", myItem);
 
         return myItem;
       })}
-      {/* <Menu.Item
-        key="Дээшлүүлэх"
-        // onClick={newsDetailContext.upPublishedDate}
-      >
-        <ArrowUpOutlined /> Дээшлүүлэх
-      </Menu.Item>
-
-      <Menu.Item key="Спонсор">
-        <Checkbox
-        // checked={myUniversalItem.isfeatured}
-        // onChange={newsDetailContext.toggleIsFeatured}
-        // Энэ функцийг prepareJSON-оос явуулна.
-        >
-          Спонсор
-        </Checkbox>
-      </Menu.Item>
-
-      <Menu.Item key="Идэвхтэй">
-        <Checkbox
-        // checked={myUniversalItem.isactive}
-        // onChange={newsDetailContext.toggleIsActive}
-        >
-          Идэвхтэй
-        </Checkbox>
-      </Menu.Item> */}
-
-      <Menu.Divider />
-
-      <Menu.Item key="Засах">
-        <Link to={mainData.link}>
-          <EditOutlined /> Засах
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item
-        key="Устгах"
-        // onClick={handleMenuClick}
-        danger
-        disabled
-      >
-        <DeleteOutlined /> Устгах
-      </Menu.Item>
     </Menu>
   );
 

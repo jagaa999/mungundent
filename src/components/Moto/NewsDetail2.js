@@ -143,9 +143,9 @@ const NewsDetailComponent = ({ myDetailContext }) => {
           </Card>
         </Col>
       </Row>
-      <div>
+      {/* <div>
         <NewsControlButton item={myItem} />
-      </div>
+      </div> */}
       <CommentBox recordId={myItem.newsid} tableName="" />
       <LogBox recordId={myItem.newsid} tableName="ECM_NEWS" />
     </div>

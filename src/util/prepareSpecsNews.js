@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Html5Entities } from "html-entities";
 import { Menu, Checkbox } from "antd";
 import toBoolean from "./booleanFunction";
@@ -230,7 +231,7 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
       menuItem: (
         <Menu.Item key="up" onClick="upPublishedDate">
           {/* <ArrowUpOutlined /> */}
-          <MyIcon type="iconangle-double-up-solid" />
+          <MyIcon type="iconangle-double-up-solid" className="moto-icon-1-1" />
           Дээшлүүлэх
         </Menu.Item>
       ),
@@ -250,6 +251,30 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
           <Checkbox checked="isactive" onChange="toggleIsActive">
             Идэвхтэй?
           </Checkbox>
+        </Menu.Item>
+      ),
+    },
+    {
+      menuItem: <Menu.Divider />,
+    },
+    {
+      menuItem: (
+        <Menu.Item key="Засах">
+          <Link to={`/${menu}/edit/${item.newsid}`}>
+            <MyIcon type="iconpen-solid" className="moto-icon-1-1" /> Засах
+          </Link>
+        </Menu.Item>
+      ),
+    },
+    {
+      menuItem: (
+        <Menu.Item
+          key="Устгах"
+          // onClick={handleMenuClick}
+          danger
+          disabled
+        >
+          <MyIcon type="icontrash-alt-solid" className="moto-icon-1-1" /> Устгах
         </Menu.Item>
       ),
     },
