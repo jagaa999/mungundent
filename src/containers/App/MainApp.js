@@ -10,6 +10,8 @@ import MotoIndex from "../../routes/MotoIndex";
 import MemberContext from "context/MemberContext";
 import MemberItemsContext from "context/MemberItemsContext";
 
+import { WidgetStore } from "context/WidgetContext";
+
 const { Content } = Layout;
 
 const KiaK5Detail = asyncComponent(() => {
@@ -55,7 +57,7 @@ const MainApp = () => {
         <MotoFooter />
       </Route>
 
-      {/*       
+      {/*
        #     # ### ######   #####  ####### ####### 
        #  #  #  #  #     # #     # #          #    
        #  #  #  #  #     # #       #          #    
@@ -72,7 +74,9 @@ const MainApp = () => {
       </Route>
 
       <Route path={["/suh/", "/sux/", "sukh", "sox"]}>
-        <SuxPage />
+        <WidgetStore>
+          <SuxPage />
+        </WidgetStore>
       </Route>
 
       <Route>

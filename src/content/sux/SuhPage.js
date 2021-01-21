@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ReactJsonSchema from "react-json-schema";
+import WidgetContext from "context/WidgetContext";
 
 import { schemaHeader, schemaContent, schemaFooter } from "./suhJsonData";
 
@@ -57,8 +58,19 @@ view.setComponentMap({
 });
 
 const SuhPage = () => {
+  const widgetContext = useContext(WidgetContext);
+
+  useEffect(() => {
+    widgetContext.loadWidgetData("16091375164842");
+  }, []);
+
   return (
     <Layout className="gx-app-layouts">
+      {console.log(
+        "widgetContext.widgetData.widgetData",
+        widgetContext.widgetData.widgetData
+      )}
+
       {view.parseSchema(schemaHeader)}
 
       <Layout className="ant-layout-content gx-layout-content gx-container-wrap">
