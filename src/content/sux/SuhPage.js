@@ -72,13 +72,11 @@ const SuhPage = () => {
       {console.log("myWidgetSetting", myWidgetSetting)}
 
       {view.parseSchema(schemaHeader)}
-
       <Layout className="ant-layout-content gx-layout-content gx-container-wrap">
         <Content className=" gx-main-content-wrapper">
           {view.parseSchema(schemaContent)}
         </Content>
       </Layout>
-
       {view.parseSchema(schemaFooter)}
     </Layout>
   );

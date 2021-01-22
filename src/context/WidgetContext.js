@@ -7,7 +7,10 @@ import axiosDev from "util/axiosDevConfig";
 import myAxiosZ from "util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
-import { prepareWidgetSetting } from "util/prepareWidgetSetting";
+import {
+  prepareWidgetSetting,
+  prepareWidgetData,
+} from "util/prepareWidgetSetting";
 
 const WidgetContext = React.createContext();
 
@@ -89,15 +92,19 @@ export const WidgetStore = (props) => {
             const myResultSetting = prepareWidgetSetting(
               response.data.response.result
             );
-            console.log(
-              " ИРСЭН mySetting ------------>",
-              response.data.response.result
-            );
-            console.log(" ЯНЗЛАВ", myResultSetting);
+
+            // const myResultData = prepareWidgetData(myResult, myResultSetting);
+            const myResultData = myResult;
+
+            // console.log(
+            //   " ИРСЭН mySetting ------------>",
+            //   response.data.response.result
+            // );
+            // console.log(" ЯНЗЛАВ", myResultSetting);
 
             setWidgetData({
               ...widgetData,
-              widgetData: myResult,
+              widgetData: myResultData,
               widgetSetting: myResultSetting,
               loading: false,
               error: "",
