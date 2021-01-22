@@ -8,10 +8,6 @@ import AutozarContext from "context/AutozarContext";
 const AutozarFilterDrawer = () => {
   const autozarContext = useContext(AutozarContext);
 
-  const toggleFilterDrawer = () => {
-    autozarContext.toggleFilterDrawerOpen();
-  };
-
   return (
     <div>
       <Drawer

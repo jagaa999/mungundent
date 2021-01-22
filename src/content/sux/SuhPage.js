@@ -59,6 +59,8 @@ view.setComponentMap({
 
 const SuhPage = () => {
   const widgetContext = useContext(WidgetContext);
+  const myWidgetData = widgetContext.widgetData.widgetData;
+  const myWidgetSetting = widgetContext.widgetData.widgetSetting;
 
   useEffect(() => {
     widgetContext.loadWidgetData("16091375164842");
@@ -66,10 +68,8 @@ const SuhPage = () => {
 
   return (
     <Layout className="gx-app-layouts">
-      {console.log(
-        "widgetContext.widgetData.widgetData",
-        widgetContext.widgetData.widgetData
-      )}
+      {console.log("myWidgetData", myWidgetData)}
+      {console.log("myWidgetSetting", myWidgetSetting)}
 
       {view.parseSchema(schemaHeader)}
 

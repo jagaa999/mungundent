@@ -11,7 +11,7 @@ import AutozarForm1Seller from "./Autozar/AutozarForm1Seller";
 import { Button, Card, message, Divider, Form, Steps } from "antd";
 import { UploadOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { loadDataview } from "util/axiosFunction";
-import { formStandardLayout, formCompactLayout } from "util/config";
+import { formStandardLayout } from "util/config";
 import AutozarContext from "context/AutozarContext";
 
 const AutozarForm = () => {

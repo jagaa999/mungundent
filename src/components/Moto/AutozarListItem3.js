@@ -7,7 +7,7 @@ import moment from "moment";
 import "moment/locale/mn";
 import accounting from "accounting";
 
-import { Image, Table, Tooltip, Tag } from "antd";
+import { Table, Tooltip } from "antd";
 
 import AutozarListItemMainImage from "./Autozar/AutozarListItemMainImage";
 

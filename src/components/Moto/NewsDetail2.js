@@ -1,29 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 
-import { Image } from "cloudinary-react";
-import moment from "moment";
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 
 import toBoolean from "util/booleanFunction";
-import { defaultSrc } from "util/config";
 import { FeaturedTag, ActiveTag } from "components/Moto/Tag/SmallTags";
 
-import {
-  Card,
-  Row,
-  Col,
-  Space,
-  Typography,
-  Tabs,
-  Tooltip,
-  Avatar,
-  Divider,
-} from "antd";
+import { Card, Row, Col, Avatar, Divider } from "antd";
 
 import LogBox from "./LogBox";
 import CommentBox from "./CommentBox";
-import NewsDetailHeader from "./NewsDetailHeader";
-import NewsControlButton from "./Button/NewsControlButton";
+// import NewsDetailHeader from "./NewsDetailHeader";
+// import NewsControlButton from "./Button/NewsControlButton";
 
 import NewsItemMainImage from "./NewsItemMainImage";
 import { GetSpecData } from "util/getSpecData";

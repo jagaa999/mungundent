@@ -12,7 +12,7 @@ import Marker from "@editorjs/marker";
 import CheckList from "@editorjs/checklist";
 import Delimiter from "@editorjs/delimiter";
 import InlineCode from "@editorjs/inline-code";
-import SimpleImage from "@editorjs/simple-image";
+// import SimpleImage from "@editorjs/simple-image";
 import axios from "axios";
 
 export const EDITOR_JS_TOOLS = {
@@ -41,13 +41,13 @@ export const EDITOR_JS_TOOLS = {
             )
             .then((res) => {
               console.log("EditorJS дотор Cloudinary хариу ирэв.", res);
-              const originalFileURL =
-                "https://res.cloudinary.com/motomn/image/upload/";
-              const thumbnailFileURL =
-                "https://res.cloudinary.com/motomn/image/upload/c_thumb,w_200,g_face/";
-              const myThumbnailFileURL = res.data.secure_url
-                .split(originalFileURL)
-                .join(thumbnailFileURL);
+              // const originalFileURL =
+              //   "https://res.cloudinary.com/motomn/image/upload/";
+              // const thumbnailFileURL =
+              //   "https://res.cloudinary.com/motomn/image/upload/c_thumb,w_200,g_face/";
+              // const myThumbnailFileURL = res.data.secure_url
+              //   .split(originalFileURL)
+              //   .join(thumbnailFileURL);
               return {
                 success: 1,
                 file: {

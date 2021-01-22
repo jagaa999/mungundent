@@ -7,12 +7,11 @@ import {
   Tooltip,
   message,
   Select,
-  Divider,
   DatePicker,
   Switch,
 } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { LoadProcess, loadDataview } from "util/axiosFunction";
+import { LoadProcess } from "util/axiosFunction";
 import { formCompactLayout } from "util/config";
 import moment from "moment";
 import "moment/locale/mn";
@@ -46,7 +45,7 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
     const myText = value.target.value;
     // console.log("mgllicensenumberfullChange", myText);
 
-    if (myText.length == 7) {
+    if (myText.length === 7) {
       console.log("LENGTH", myText.length);
       console.log("Одоо номероор дуудна");
       getCarWithLicenseNumber(myText);
