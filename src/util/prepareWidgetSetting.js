@@ -1,5 +1,10 @@
 import React from "react";
 
+function lastWord(words) {
+  var n = words.split(".");
+  return n[n.length - 1];
+}
+
 export const prepareWidgetSetting = (myRawData) => {
   const myRawArray = Object.values(
     myRawData.meta_process_param_attr_link_mobile
@@ -15,7 +20,7 @@ export const prepareWidgetSetting = (myRawData) => {
     if (item.parentid === "" && item.dtltheme !== "" && item.isshow === "1") {
       const fff = {
         ...item,
-        children: [],
+        children: {},
       };
       const ggg = fff.parampath.toString().toLowerCase();
       myParents[ggg] = fff;
@@ -38,7 +43,9 @@ export const prepareWidgetSetting = (myRawData) => {
       console.log("childItem", childItem);
 
       if (parentid === childItem.parentid && childItem.themepositionno !== "") {
-        myParents[field0].children.push(childItem);
+        const rrr = lastWord(childItem.parampath.toString().toLowerCase());
+        // myParents[field0].children.push(childItem);
+        myParents[field0].children[rrr] = childItem;
       }
     });
   });
