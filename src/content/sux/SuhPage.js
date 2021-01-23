@@ -21,6 +21,8 @@ import {
   Typography,
   Statistic,
 } from "antd";
+import WidgetRenderEngine from "../WidgetRenderEngine";
+
 const { Header, Footer, Sider, Content } = Layout;
 const { Title, Paragraph } = Typography;
 const MenuItem = Menu.Item;
@@ -66,10 +68,15 @@ const SuhPage = () => {
     widgetContext.loadWidgetData("16091375164842");
   }, []);
 
+  console.log("myWidgetSetting", myWidgetSetting);
+  console.log("myWidgetData", myWidgetData);
+
   return (
     <Layout className="gx-app-layouts">
-      {console.log("myWidgetData", myWidgetData)}
-      {console.log("myWidgetSetting", myWidgetSetting)}
+      <WidgetRenderEngine
+        myWidgetSetting={myWidgetSetting}
+        myWidgetData={myWidgetData}
+      />
 
       {view.parseSchema(schemaHeader)}
       <Layout className="ant-layout-content gx-layout-content gx-container-wrap">

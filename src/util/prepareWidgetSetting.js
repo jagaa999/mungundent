@@ -1,5 +1,3 @@
-import React from "react";
-
 function lastWord(words) {
   var n = words.split(".");
   return n[n.length - 1];
