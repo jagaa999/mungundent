@@ -11,26 +11,35 @@ import {
   prepareWidgetSetting,
   prepareWidgetData,
 } from "util/prepareWidgetSetting";
+import { runRenderEngine } from "util/runRenderEngine";
 
 const WidgetContext = React.createContext();
 
+//   #####  ####### ####### ######  #######
+//  #     #    #    #     # #     # #
+//  #          #    #     # #     # #
+//   #####     #    #     # ######  #####
+//        #    #    #     # #   #   #
+//  #     #    #    #     # #    #  #
+//   #####     #    ####### #     # #######
 export const WidgetStore = (props) => {
-  // ### #     # ### #######
-  // #  ##    #  #     #
-  // #  # #   #  #     #
-  // #  #  #  #  #     #
-  // #  #   # #  #     #
-  // #  #    ##  #     #
-  //### #     # ###    #
-
   const initialWidgetData = {
     widgetData: {},
     widgetSetting: {},
     loading: false,
     error: null,
   };
-
   const [widgetData, setWidgetData] = useState(initialWidgetData);
+  const [widgetJson, setWidgetJson] = useState([]);
+
+  useEffect(() => {
+    const myJson = runRenderEngine(
+      widgetData.widgetSetting,
+      widgetData.widgetData
+    );
+    // console.log("myJson", myJson);
+    setWidgetJson(myJson);
+  }, [widgetData]);
 
   //  ######     #    #######    #
   //  #     #   # #      #      # #
@@ -133,16 +142,13 @@ export const WidgetStore = (props) => {
       });
   };
 
-  const loadWidgetSetting = async (id = "0") => {
-    // setWidgetData({ ...widgetData, loading: true, error: "" });
-    // console.log("mySettingParams :   ", myParams);
-  };
-
   return (
     <WidgetContext.Provider
       value={{
         widgetData,
         loadWidgetData,
+        widgetJson,
+        setWidgetJson,
       }}
     >
       {props.children}
