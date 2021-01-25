@@ -92,7 +92,7 @@ export const WidgetStore = (props) => {
         await axiosDev
           .post("", mySettingParams)
           .then((response) => {
-            console.log("ИРСЭН mySetting:   ", response);
+            // console.log("ИРСЭН mySetting:   ", response);
             if (response.data.response.status !== "success") {
               console.log("Error: -- ", response.data.response.text);
               message.error(response.data.response.text, 7);

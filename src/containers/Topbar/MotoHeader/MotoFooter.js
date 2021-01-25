@@ -57,13 +57,13 @@ const MotoFooter = () => {
               <div className="">{footerText}</div>
             </div>
             <ul className="gx-ml-auto gx-header-notifications">
-              <li className="gx-msg">
+              {/* <li className="gx-msg">
                 <Link to="/auction?yearend=2014">
                   <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
                     Аукшин
                   </span>
                 </Link>
-              </li>
+              </li> */}
 
               <li className="gx-msg">
                 <Dropdown

@@ -6,7 +6,7 @@ import { Col, Row, Divider } from "antd";
 // import HomeSponsor from "./HomeSponsor";
 // import HomeNewsItems from "./HomeNewsItems";
 import HomeNewsItems2 from "./HomeNewsItems2";
-import HomeAuctionItems2 from "./HomeAuctionItems2";
+// import HomeAuctionItems2 from "./HomeAuctionItems2";
 import HomeAutozarItems2 from "./HomeAutozarItems2";
 
 import MemberBox from "./MemberBox";
@@ -180,7 +180,7 @@ const HomePage = () => {
         </Col>
       </Row>
       {/* <Divider className="gx-my-3" /> */}
-      <Row className="gx-d-flex gx-mt-4">
+      {/* <Row className="gx-d-flex gx-mt-4">
         <Col
           xs={{ span: 20, offset: 2 }}
           sm={{ span: 24, offset: 0 }}
@@ -188,7 +188,7 @@ const HomePage = () => {
         >
           <HomeAuctionItems2 auctionItems={auctionItems} />
         </Col>
-      </Row>
+      </Row> */}
 
       <Row className="gx-d-flex gx-mt-4">
         <Col

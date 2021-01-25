@@ -3,8 +3,8 @@ export const changePositionWithValue = (
   mainChildrenComponent,
   positionSetting
 ) => {
-  console.log("itemWidgetData", itemWidgetData);
-  console.log("positionSetting", positionSetting);
+  // console.log("itemWidgetData", itemWidgetData);
+  // console.log("positionSetting", positionSetting);
 
   let myMappingArray = [];
   Object.keys(positionSetting).map((item, index) => {
@@ -16,27 +16,24 @@ export const changePositionWithValue = (
     myMappingArray.push({ [myPositionName]: myValue });
   });
 
-  console.log("myMappingArray", myMappingArray);
-  console.log("mainChildrenComponent", mainChildrenComponent);
+  // console.log("myMappingArray", myMappingArray);
+  // console.log("mainChildrenComponent", mainChildrenComponent);
 
-  let dddd = JSON.stringify(mainChildrenComponent);
-  console.log("dddd", dddd);
+  let myJSON = JSON.stringify(mainChildrenComponent);
 
   myMappingArray.map((item, index) => {
-    console.log("item key", item);
+    // console.log("item key", item);
     const myKey = Object.keys(item)[0].toString();
     const myValue = item[Object.keys(item)[0]].toString();
-    console.log("item key", myKey);
-    console.log("item value", myValue);
+    // console.log("item key", myKey);
+    // console.log("item value", myValue);
 
-    // dddd = dddd.split(myKey).join(myValue);
-    dddd = dddd.replace(myKey, myValue);
+    // console.log("before myJSON", myJSON);
+    myJSON = myJSON.replaceAll(myKey, myValue);
+    // console.log("after myJSON", myJSON);
   });
 
-  console.log("last dddd", dddd);
+  myJSON = JSON.parse(myJSON);
 
-  const gggg = JSON.parse(dddd);
-  console.log("gggg", gggg);
-
-  return gggg;
+  return myJSON;
 };
