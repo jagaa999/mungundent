@@ -86,7 +86,7 @@ const CompareItems = () => {
     const originalItem = item.originalItem;
 
     myDistinct.map((fff, index) => {
-      // console.log("originalItem[fff]", originalItem[fff]);
+      console.log("originalItem[fff]", originalItem[fff]);
       myTable3[fff].push(originalItem[fff] || "");
     });
   });
@@ -124,7 +124,7 @@ const CompareItems = () => {
         className="moto-pageheader"
         title={<h3>Харьцуулах</h3>}
         extra={[
-          <Tooltip title="Харьцуулалт нээх">
+          <Tooltip title="Харьцуулалт нээх" key="dsfsdf">
             <Button
               key="moto-filter-button"
               // size="small"
