@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Html5Entities } from "html-entities";
 import { Button, Drawer, Tooltip, Row, Col, Card, Image, Tag } from "antd";
+import UniversalListItemMainImage from "components/Moto/Universal/UniversalListItemMainImage";
 import MyIcon from "util/iconFunction";
 import { DeleteOutlined } from "@ant-design/icons";
 
@@ -160,6 +161,7 @@ export const CompareStore = (props) => {
     loading: false,
     error: "",
     isOpen: false,
+    closeSoon: false,
   });
 
   //     #    ######  ######
@@ -176,7 +178,12 @@ export const CompareStore = (props) => {
       originalItem: item,
     };
     myList.push(myItem);
-    setCompareList({ ...compareList, compareList: myList, isOpen: true });
+    setCompareList({
+      ...compareList,
+      compareList: myList,
+      isOpen: true,
+      closeSoon: true,
+    });
   };
 
   //  ######  ####### #     # ####### #     # #######
@@ -203,6 +210,20 @@ export const CompareStore = (props) => {
   const clearAll = () => {
     setCompareList({ ...compareList, compareList: [] });
   };
+
+  //Хэрвээ удахгүй хаагдах горимд байвал буцаагаад хаах хэрэгтэй:
+  useEffect(() => {
+    if (compareList.closeSoon) {
+      //буцаагаад хаах хэрэгтэй.
+      setTimeout(() => {
+        setCompareList({
+          ...compareList,
+          isOpen: false,
+          closeSoon: false,
+        });
+      }, 500);
+    }
+  }, [compareList.isOpen]);
 
   //  ######  ######     #    #     # ####### ######
   //  #     # #     #   # #   #  #  # #       #     #
@@ -264,7 +285,16 @@ export const CompareStore = (props) => {
                   style={{ height: "100%" }}
                   size="small"
                   hoverable
-                  cover={<Image src={item.imagemain} />}
+                  cover={
+                    <UniversalListItemMainImage
+                      myClass="gx-img-fluid gx-w-100"
+                      width="auto"
+                      imageMain={item.originalItem.mainData.imagemain.value}
+                      cloudName={
+                        item.originalItem.mainData.imagemaincloudname.value
+                      }
+                    />
+                  }
                   // actions={[
                   //   <SettingOutlined key="setting" />,
                   //   <EditOutlined key="edit" />,
