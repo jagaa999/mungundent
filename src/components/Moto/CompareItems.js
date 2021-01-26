@@ -5,30 +5,12 @@ import { Button, Table, Image, Tag, Tooltip, PageHeader } from "antd";
 import MyIcon from "util/iconFunction";
 import CompareContext from "context/CompareContext";
 import { motoSpecAuction } from "util/carSpecTranslation";
+import { isEmpty } from "lodash";
 
 const CompareItems = () => {
   const compareContext = useContext(CompareContext);
 
   console.table(compareContext.compareList.compareList);
-
-  // const myTable = {
-  //   AUCTION: ["MIRIVE Osaka", "TOKYO", "JAPAN"],
-  //   AUCTION_DATE: ["2020-12-24 11:40:00", "", "2020-12-25 15:10:00"],
-  //   AVG_PRICE: ["1903000", "2103590", "1098054"],
-  //   COLOR: ["silver", "", ""],
-  // };
-  // const columnTaa2 = [
-  //   {
-  //     title: "Үзүүлэлт",
-  //     dataIndex: "label",
-  //     key: "title",
-  //   },
-  //   {
-  //     title: "1",
-  //     dataIndex: "item1",
-  //     key: "item1",
-  //   },
-  // ];
 
   let myTable3 = {};
   let myColumn3 = [
@@ -39,13 +21,14 @@ const CompareItems = () => {
   ];
   const myDistinct = [];
 
+  //Column-ийг гаргаж авах
   compareContext.compareList.compareList.map((item, index) => {
     const originalItem = item.originalItem;
 
     const myColItem = {
       title: (
         <div style={{ position: "relative", width: "100%" }}>
-          <Image src={item.image} />
+          <Image src={item.imagemain} />
           <Tag color="warning" className="moto-badge-2-1">
             {item.mainSpec}
           </Tag>
@@ -65,11 +48,19 @@ const CompareItems = () => {
     };
     myColumn3.push(myColItem);
 
-    Object.keys(originalItem).map((ii, index) => {
+    //* Distinct гэдэг нь Row Field юм.
+    // const myRowFields = {
+    //   ...originalItem.mainData,
+    //   ...originalItem.headerSpec,
+    //   ...originalItem.specList1,
+    //   ...originalItem.specList2,
+    // };
+    Object.keys(originalItem.mainData).map((ii, index) => {
       if (!myDistinct.includes(ii)) {
-        // console.log("ii ii Distinct s", ii);
-        // console.log("motoSpecAuction[ii]", motoSpecAuction[ii]);
+        console.log("ii ii Distinct s", ii);
+        console.log("motoSpecAuction[ii]", motoSpecAuction[ii]);
 
+        //* Яг энд Row Field-ийг шалгаж болно.
         if (motoSpecAuction[ii]?.active !== "0") {
           //active: 0 эсэхийг шалгаж байна.
           myDistinct.push(ii); //active: 1 байвал Table рүүгээ нэмнэ.
@@ -79,19 +70,24 @@ const CompareItems = () => {
     });
   });
 
-  // console.log("myDistinct", myDistinct);
-  // console.log("myTable3", myTable3);
+  console.log("myDistinct", myDistinct);
+  console.log("myTable3", myTable3);
 
+  //Бүх утгуудыг Table-ийн нүднүүдэд олгох
   compareContext.compareList.compareList.map((item, index) => {
     const originalItem = item.originalItem;
 
     myDistinct.map((fff, index) => {
       console.log("originalItem[fff]", originalItem[fff]);
-      myTable3[fff].push(originalItem[fff] || "");
+
+      // if (isEmpty(originalItem[fff])) {
+      if (typeof originalItem[fff] !== "object") {
+        myTable3[fff].push(originalItem[fff] || "");
+      }
     });
   });
 
-  // console.log("AGAIN → myTable3", myTable3);
+  console.log("AGAIN → myTable3", myTable3);
 
   let myTaaa = [];
   Object.keys(myTable3).map((item, index) => {
@@ -107,7 +103,7 @@ const CompareItems = () => {
   });
 
   console.log("myTaaa", myTaaa);
-  //Эхний title-ийг орчуулна.
+  //* Эхний title-ийг орчуулах
   //AUCTION → "Аукшин"
   myTaaa.map((row, index) => {
     // myTaaa[index].label =
@@ -115,8 +111,8 @@ const CompareItems = () => {
     myTaaa[index].label = myTaaa[index].label; //хэрвээ орчуулга олдохгүй бол байгааг нь буцаагаад тавина
   });
 
-  // console.log("myTaaa", myTaaa);
-  // console.log("myColumn3", myColumn3);
+  console.log("myTaaa", myTaaa);
+  console.log("myColumn3", myColumn3);
 
   return (
     <>
@@ -129,7 +125,7 @@ const CompareItems = () => {
               key="moto-filter-button"
               // size="small"
               type="primary"
-              icon={<MyIcon type="iconcrosshairs" />}
+              icon={<MyIcon type="iconcheck-square-solid" />}
               onClick={compareContext.toggleDrawer}
               // className="gx-ml-1 gx-mr-0"
               // style={{ width: "40px" }}
