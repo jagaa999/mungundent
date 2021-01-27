@@ -26,9 +26,16 @@ export const ProductStore = (props) => {
       systemmetagroupid: "1585197442423220",
       showquery: "0",
       ignorepermission: "1",
-      // criteria: {
-      //   itemtypeid: "1514183113705",
-      // },
+      criteria: {
+        criteria: [
+          {
+            operator: "=",
+            // operand:
+            //   "ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833255371 and (Kpi.value = to_char(16102833255391) or Kpi.value = to_char(16102833255381)  ))) ",
+            operand: "0=0",
+          },
+        ],
+      },
       paging: {
         // pageSize: "24",
         // offset: "1",
@@ -49,6 +56,32 @@ export const ProductStore = (props) => {
   };
 
   const initialProductDetail = {
+    //   {
+    //     "request": {
+    //         "username": "admin",
+    //         "password": "89",
+    //         "command": "imItemGetList_004",
+    //         "parameters": {
+    //             "id": "1599561408426"
+    //             // "memberid": "1502764251361501"
+    //         }
+    //     }
+    // }
+
+    // KPI VALUE
+    //   {
+    //     "request": {
+    //         "username": "admin",
+    //         "password": "89",
+    //         "command": "itemCategoryGetDv_004",
+    //         "parameters": {
+    //             "id": "16102833369451"
+
+    //             // "memberid": "1502764251361501"
+    //         }
+    //     }
+    // }
+
     loadParams: {
       // systemmetagroupid: "1600405606733265",
       showquery: "0",
@@ -58,7 +91,7 @@ export const ProductStore = (props) => {
         offset: "1",
       },
     },
-    ProductDetail: [],
+    productDetail: [],
     loading: false,
     error: null,
   };
@@ -87,7 +120,6 @@ export const ProductStore = (props) => {
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
-        // parameters: productList.loadParams,
         parameters: {
           ...productList.loadParams,
           paging: {
