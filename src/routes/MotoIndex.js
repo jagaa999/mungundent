@@ -74,6 +74,10 @@ const CompanyList = asyncComponent(() => {
   return import("./moto/company/companyListPage");
 });
 
+const ProductDetail = asyncComponent(() => {
+  return import("./moto/product/productDetailPage");
+});
+
 const ProductList = asyncComponent(() => {
   return import("./moto/product/productListPage");
 });
@@ -166,9 +170,20 @@ const App = ({ match }) => (
       #       #    #  #     # #     # #     # #     #    #    
       #       #     # ####### ######   #####   #####     #    
       */}
-      {/* <Route path={`${match.url}product/:productid`}>
-        <MemberDetail />
-      </Route> */}
+
+      <Route
+        path={[
+          "/product/:itemid",
+          "/product/:itemid/detail",
+          "/product/detail/:itemid",
+          "/productlist/:itemid",
+        ]}
+      >
+        <ProductStore>
+          <ProductDetail />
+        </ProductStore>
+      </Route>
+
       <Route
         path={["/product", "/products", "/productlist", "/store", "/storelist"]}
       >

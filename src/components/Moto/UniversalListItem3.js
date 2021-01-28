@@ -101,7 +101,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
             </h5>
 
             <div>
-              {record.headerSpec.map((item, index) => {
+              {record.headerSpec?.map((item, index) => {
                 return <RenderHeaderSpec key={index} item={item} />;
               })}
 
@@ -109,7 +109,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
                 return <RenderSpecList1 key={index} item={item} />;
               })} */}
 
-              {record.specList2.map((item, index) => {
+              {record.specList2?.map((item, index) => {
                 return <RenderSpecList2 key={index} item={item} />;
               })}
             </div>
@@ -121,7 +121,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
     },
   ];
 
-  const myTableColumn = myListContextListList[0].tableColumns;
+  const myTableColumn = myListContextListList[0].tableColumns || [];
 
   myTableColumn.map((item, index) => {
     const myItem = GetSpecData(item.field);

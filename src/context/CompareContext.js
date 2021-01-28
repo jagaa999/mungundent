@@ -221,7 +221,7 @@ export const CompareStore = (props) => {
           isOpen: false,
           closeSoon: false,
         });
-      }, 500);
+      }, 1500);
     }
   }, [compareList.isOpen]);
 

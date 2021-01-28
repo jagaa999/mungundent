@@ -83,45 +83,51 @@ const UniversalDetailPageCard = ({ myItem, myDetailSettings }) => {
           </Col>
         </Row>
 
-        <Divider className="gx-my-5" />
+        {!isEmpty(mainData.description.value) && (
+          <>
+            <Divider className="gx-my-5" />
+            <Row>
+              <Col span={24}>
+                <h4 className="gx-mb-4">
+                  {GetSpecData(mainData.description.field).label}
+                </h4>
 
-        <Row>
-          <Col span={24}>
-            <h4 className="gx-mb-4">
-              {GetSpecData(mainData.description.field).label}
-            </h4>
+                {mainData.description.value}
+              </Col>
+            </Row>
+          </>
+        )}
 
-            {mainData.description.value}
-          </Col>
-        </Row>
+        {!isEmpty(ownerData.name) && (
+          <>
+            <Divider className="gx-my-5" />
+            <Row>
+              <Col span={24}>
+                <h4 className="gx-mb-4">{GetSpecData("ownerdata").label}</h4>
 
-        <Divider className="gx-my-5" />
+                <div className="gx-mt-auto">
+                  <div className="gx-media gx-mt-3">
+                    {!isEmpty(ownerData.photo) && (
+                      <Avatar
+                        src={ownerData.photo}
+                        alt={ownerData.photoalt}
+                        className="gx-mr-2"
+                        size={30}
+                      />
+                    )}
 
-        <Row>
-          <Col span={24}>
-            <h4 className="gx-mb-4">{GetSpecData("ownerdata").label}</h4>
-
-            <div className="gx-mt-auto">
-              <div className="gx-media gx-mt-3">
-                {!isEmpty(ownerData.photo) && (
-                  <Avatar
-                    src={ownerData.photo}
-                    alt={ownerData.photoalt}
-                    className="gx-mr-2"
-                    size={30}
-                  />
-                )}
-
-                <div className="gx-media-body">
-                  <h5 className=" gx-fs-sm">{ownerData.name}</h5>
-                  <p className="gx-text-grey gx-fs-sm">
-                    {mainData.modifieddate.value}
-                  </p>
+                    <div className="gx-media-body">
+                      <h5 className=" gx-fs-sm">{ownerData.name}</h5>
+                      <p className="gx-text-grey gx-fs-sm">
+                        {mainData.modifieddate.value}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </Col>
-        </Row>
+              </Col>
+            </Row>
+          </>
+        )}
       </Card>
     );
   }

@@ -138,15 +138,15 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         </div>
 
         <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
-          {headerSpec.map((item, index) => {
+          {headerSpec?.map((item, index) => {
             return <RenderHeaderSpec key={index} item={item} />;
           })}
 
-          {specList1.map((item, index) => {
+          {specList1?.map((item, index) => {
             return <RenderSpecList1 key={index} item={item} />;
           })}
 
-          {specList2.map((item, index) => {
+          {specList2?.map((item, index) => {
             return <RenderSpecList2 key={index} item={item} />;
           })}
         </div>

@@ -40,8 +40,8 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
   Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
     const myItem = memberItemsContext.state.memberItems[index];
     if (
-      myItem.recordid === loveButtonData.recordid &&
-      myItem.tablename === loveButtonData.tablename
+      myItem?.recordid === loveButtonData?.recordid &&
+      myItem?.tablename === loveButtonData?.tablename
     ) {
       switch (myItem.actionname) {
         case "Таалагдлаа":

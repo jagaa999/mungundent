@@ -24,12 +24,7 @@ const NewsDetailPage = (props) => {
 
   useEffect(() => {
     if (newsId !== 0) {
-      // if (memberContext.state.memberCloudUserSysId !== 0) {
       newsContext.loadNewsDetail(newsId);
-      // }
-      // else {
-      //   newsContext.loadNewsDetailOg(newsId);
-      // }
     }
   }, [newsId, memberContext.state.memberCloudUserSysId]);
 

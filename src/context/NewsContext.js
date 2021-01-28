@@ -75,9 +75,6 @@ export const NewsStore = (props) => {
         case "Edit":
           clearNewsDetail();
           break;
-        case "Edit":
-          clearNewsDetail();
-          break;
         case "Detail":
           clearNewsDetail();
           break;

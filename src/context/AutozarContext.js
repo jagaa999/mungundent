@@ -184,7 +184,7 @@ export const AutozarStore = (props) => {
     myAxiosZ(myParamsAutozarList)
       .then((myData) => {
         const myPaging = myData.response?.result?.paging || {};
-        const myArray = myData.response.result || [];
+        const myArray = myData.response?.result || [];
 
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];

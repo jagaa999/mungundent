@@ -30,10 +30,10 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
       const myItem = GetSpecData(item.field);
 
       return (
-        <p className="gx-mr-3 gx-mb-2 gx-fs-sm">
+        <span className="gx-mr-3 gx-mb-2 gx-fs-sm">
           <Badge className="gx-mb-0 gx-mr-1" status={myItem.status} />
           <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
-        </p>
+        </span>
       );
     }
     return "";
@@ -215,9 +215,11 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
                     <div className="gx-media-body">
                       <h5 className=" gx-fs-sm">{ownerData.name}</h5>
-                      <p className="gx-text-grey gx-fs-sm">
-                        {mainData.modifieddate.value}
-                      </p>
+                      {!isEmpty(mainData.modifieddate.value) && (
+                        <p className="gx-text-grey gx-fs-sm">
+                          {mainData.modifieddate.value}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

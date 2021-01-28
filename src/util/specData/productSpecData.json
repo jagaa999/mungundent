@@ -1,0 +1,80 @@
+{
+  "departmentid": {
+    "testvalue": "1599561401920",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "departmentname": {
+    "testvalue": "Yokohama Tyre Mongolia",
+    "label": "Борлуулагч",
+    "tooltip": "Борлуулагч компани",
+    "icon": ""
+  },
+  "favid": {
+    "testvalue": "",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "issaleitem": {
+    "testvalue": "1",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "itemcategoryid": {
+    "testvalue": "1599561402137",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "itemcategoryname": {
+    "testvalue": "Суудлын машины дугуй",
+    "label": "Ангилал",
+    "tooltip": "Барааны ангилал",
+    "icon": ""
+  },
+  "itemcode": {
+    "testvalue": "G003 205R16C 110/108Q",
+    "label": "Код",
+    "tooltip": "Барааны код",
+    "icon": ""
+  },
+  "itemid": {
+    "testvalue": "1599561539564",
+    "label": "ID дугаар",
+    "tooltip": "ID дугаар",
+    "icon": ""
+  },
+  "itemname": {
+    "testvalue": "Yokohama Geolandar M/T 205R16C 110/108Q G003",
+    "label": "Нэр",
+    "tooltip": "Нэр",
+    "icon": ""
+  },
+  "measurename": {
+    "testvalue": "ширхэг",
+    "label": "Нэгж",
+    "tooltip": "Хэмжих нэгж",
+    "icon": ""
+  },
+  "profilephoto": {
+    "testvalue": "storage/uploads/process/file_1604652378611867_15758847877511.jpg",
+    "label": "Зураг",
+    "tooltip": "Зураг",
+    "icon": ""
+  },
+  "rating": {
+    "testvalue": "5",
+    "label": "Үнэлгээ",
+    "tooltip": "Үнэлгээ",
+    "icon": ""
+  },
+  "saleprice": {
+    "testvalue": "376000",
+    "label": "Үнэ",
+    "tooltip": "Үнэ",
+    "icon": ""
+  }
+}

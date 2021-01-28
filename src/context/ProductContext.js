@@ -4,6 +4,11 @@ import { message } from "antd";
 
 import axios from "../util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
+import {
+  prepareProductList,
+  prepareProductListSettings as mySettings,
+  prepareProductDetail,
+} from "util/prepareSpecsProduct";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
@@ -52,7 +57,7 @@ export const ProductStore = (props) => {
     productList: [],
     loading: false,
     error: null,
-    isFilterDrawerOpen: false,
+    isFilterDrawerOpen: true,
   };
 
   const initialProductDetail = {
@@ -82,15 +87,7 @@ export const ProductStore = (props) => {
     //     }
     // }
 
-    loadParams: {
-      // systemmetagroupid: "1600405606733265",
-      showquery: "0",
-      ignorepermission: "1",
-      paging: {
-        pageSize: "1",
-        offset: "1",
-      },
-    },
+    loadParams: {},
     productDetail: [],
     loading: false,
     error: null,
@@ -100,8 +97,30 @@ export const ProductStore = (props) => {
   const [productDetail, setProductDetail] = useState(initialProductDetail);
 
   useEffect(() => {
-    if (filterContext.state.menu !== "product") return;
-    loadProductList();
+    if (filterContext.state.menu === "product") {
+      // myMenuType = "Insert";
+      // myMenuType = "Edit";
+      // myMenuType = "Detail";
+      // myMenuType = "List";
+
+      switch (filterContext.state.menuType) {
+        // case "Insert":
+        //   clearProductDetail();
+        //   break;
+        // case "Edit":
+        //   clearProductDetail();
+        //   break;
+        case "Detail":
+          clearProductDetail();
+          break;
+        case "List":
+          loadProductList();
+          break;
+        default:
+          clearProductDetail();
+          break;
+      }
+    }
   }, [filterContext.state, memberContext.state.isLogin]);
 
   //  #       ###  #####  #######
@@ -148,17 +167,23 @@ export const ProductStore = (props) => {
           // getError(myData.text);
           message.error(myData.text);
         } else {
-          const myPaging = myData.result.paging || {};
+          const myPaging = myData.result?.paging || {};
           console.log("myPaging myPaging", myPaging);
           const myArray = myData.result || [];
 
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
 
+          const myTempList = prepareProductList(
+            myArray,
+            filterContext.state.menu
+          );
+
           setProductList({
             ...productList,
             loading: false,
-            productList: Object.values(myArray),
+            // productList: Object.values(myArray),
+            productList: myTempList,
           });
 
           filterContext.updateTotal(myPaging.totalcount);
@@ -182,26 +207,15 @@ export const ProductStore = (props) => {
   // #     # #          #    #######  #  #
   // #     # #          #    #     #  #  #
   // ######  #######    #    #     # ### #######
-  const loadProductDetail = (id = 0) => {
-    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
-
+  const loadProductDetail = (itemid = 0) => {
     const myParamsProductDetail = {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
-        // username: "motoadmin",
-        // password: "moto123",
-        command: "PL_MDVIEW_004",
+        command: "imItemGetList_004",
+        ...productDetail.loadParams,
         parameters: {
-          ...productDetail.loadParams,
-          criteria: {
-            id: {
-              0: {
-                operator: "=",
-                operand: id,
-              },
-            },
-          },
+          id: itemid,
         },
       },
     };
@@ -214,58 +228,37 @@ export const ProductStore = (props) => {
       .post("", myParamsProductDetail)
       .then((response) => {
         // console.log("PRODUCT DETAIL RESPONSE------------> ", response);
-        const myArray = response.data.response.result[0] || [];
-        // console.log("PRODUCT DETAIL myArray------------> ", myArray);
-        // myArray.caryearmanufactured = moment(myArray.caryearmanufactured);
-        // myArray.caryearimport = moment(myArray.caryearimport);
-        // myArray.mglengine2disp = myArray.mglengine2disp * 1;
-        // myArray.carmilageimport = myArray.carmilageimport * 1;
-        // myArray.carmilagenow = myArray.carmilagenow * 1;
-        // myArray.mgldoor = myArray.mgldoor * 1;
-        // myArray.mglseat = myArray.mglseat * 1;
-        // myArray.mgldrivepos = myArray.mgldrivepos === "1" ? true : false;
-        // myArray.isactive = myArray.isactive === "1" ? true : false;
-        // myArray.imagemainFileList = [];
-        // myArray.imagemainFileList =
-        //   myArray.imagemain !== undefined &&
-        //   (myArray.imagemain !== ""
-        //     ? [
-        //         {
-        //           uid: "-1",
-        //           name: "Тодорхойгүй",
-        //           status: "done",
-        //           url: myArray.imagemain || "",
-        //           thumbUrl: myArray.imagemain || "",
-        //           response: { url: myArray.imagemain || "" },
-        //         },
-        //       ]
-        //     : []);
-        // myArray.imageotherFileList = [];
-        // myArray.imageotherFileList =
-        //   myArray.imageother !== undefined &&
-        //   (myArray.imageother !== ""
-        //     ? JSON.parse(myArray.imageother).map((item, index) => ({
-        //         uid: index - 1,
-        //         name: item.replace(/^.*[\\\/]/, ""),
-        //         status: "done",
-        //         url: item || "",
-        //         thumbUrl: item || "",
-        //         response: { url: item || "" },
-        //       }))
-        //     : []);
+        const myData = response.data.response;
 
-        // console.log("PRODUCT DETAIL------------> ", myArray);
+        if (myData.status === "error") {
+          message.error(myData.text, 7);
+        } else {
+          const myArray = myData.result || [];
 
-        setProductDetail({
-          ...productDetail,
-          loading: false,
-          productDetail: myArray,
-        });
+          const myTempItem = prepareProductDetail(
+            myArray,
+            filterContext.state.menu
+          );
+
+          setProductDetail({
+            ...productDetail,
+            loading: false,
+            // productDetail: myArray,
+            productDetail: myTempItem,
+          });
+        }
       })
       .catch((error) => {
         console.error(error);
         message.error(error.toString(), 7);
       });
+  };
+
+  const toggleFilterDrawerOpen = () => {
+    setProductList({
+      ...productList,
+      isFilterDrawerOpen: !productList.isFilterDrawerOpen,
+    });
   };
 
   return (
@@ -277,6 +270,7 @@ export const ProductStore = (props) => {
         loadProductDetail,
         // saveProductDetail,
         clearProductDetail,
+        toggleFilterDrawerOpen,
       }}
     >
       {props.children}
