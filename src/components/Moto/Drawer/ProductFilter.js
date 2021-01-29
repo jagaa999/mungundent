@@ -11,16 +11,19 @@ import {
 } from "../../../util/axiosFunctionAuction";
 import { loadDataview } from "util/axiosFunction";
 
-import AuctionContext from "../../../context/AuctionContext";
+import ProductContext from "../../../context/ProductContext";
 import FilterContext from "../../../context/FilterContext";
+import KpiFilter from "./KpiFilter";
 
 const { Search } = Input;
 const { Option } = Select;
 
 const ProductFilter = (props) => {
   const htmlEntities = new Html5Entities();
-  const auctionListContext = useContext(AuctionContext);
+  const productContext = useContext(ProductContext);
   const filterContext = useContext(FilterContext);
+
+  const { kpiFilterList } = productContext;
 
   const [productCategoryList, setProductCategoryList] = useState({
     loading: false,
@@ -59,39 +62,6 @@ const ProductFilter = (props) => {
       }),
       loading: false,
     });
-
-    if (filterContext.state.filterList?.mglfirm) {
-      setMglMarkList({ ...mglMarkList, loading: true });
-      setMglMarkList({
-        mglMarkList: await loadDataview({
-          systemmetagroupid: "1602132873132213",
-          criteria: {
-            mglfirm: {
-              0: {
-                operator: "=",
-                operand: filterContext.state.filterList?.mglfirm,
-              },
-            },
-          },
-          paging: {
-            sortColumnNames: {
-              mglmark: {
-                sortType: "ASC", //эрэмбэлэх чиглэл
-              },
-            },
-          },
-        }),
-        loading: false,
-      });
-    }
-
-    setMglBodyList({ ...mglBodyList, loading: true });
-    setMglBodyList({
-      mglBodyList: await loadDataview({
-        systemmetagroupid: "1599557926832",
-      }),
-      loading: false,
-    });
   };
 
   useEffect(() => {
@@ -99,43 +69,29 @@ const ProductFilter = (props) => {
     // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
   }, [filterContext.state.filterList]);
 
-  const prepareURL = (checkedValues, parameterLabel) => {
-    console.log("checkedValues", checkedValues);
-
-    //multiple values || checkbox etc
-    const param = checkedValues
-      .map(function (itemvalue) {
-        return encodeURIComponent(itemvalue);
-      })
-      .join("|");
-
-    const tempObject = {
-      [parameterLabel]: param,
-    };
-
-    filterContext.updateParams(tempObject);
-  };
-
   const prepareURL2 = (checkedValues, parameterLabel) => {
-    console.log("checkedValues", checkedValues);
+    // console.log("checkedValues", checkedValues);
+    // console.log("parameterLabel", parameterLabel);
+    // console.log(
+    //   "productCategoryList.productCategoryList.",
+    //   productCategoryList.productCategoryList
+    // );
 
-    //multiple values || checkbox etc
-    console.log("checkedValues", checkedValues);
-    console.log("parameterLabel", parameterLabel);
+    //Category List дотроос сонгогдсон утгыг хайж олоод kpitemplateid-г олж авна. kpitemplateid-аа бас URL руу дамжуулах ёстой.
+    let myKpiTemplateId = "";
+    productCategoryList.productCategoryList.map((item, index) => {
+      if (item.id === checkedValues) {
+        myKpiTemplateId = item.kpitemplateid;
+      }
+    });
 
-    const tempObject = {
+    filterContext.updateParams({
       [parameterLabel]: checkedValues,
-    };
-
-    // console.log("tempObjecttempObject", tempObject);
-    filterContext.updateParams(tempObject);
+      kpitemplateid: myKpiTemplateId,
+    });
   };
 
-  const radioStyle = {
-    display: "block",
-    height: "30px",
-    lineHeight: "30px",
-  };
+  // console.log("kpiFilterList", kpiFilterList);
 
   //  ######  ####### ####### #     # ######  #     #
   //  #     # #          #    #     # #     # ##    #
@@ -144,7 +100,6 @@ const ProductFilter = (props) => {
   //  #   #   #          #    #     # #   #   #   # #
   //  #    #  #          #    #     # #    #  #    ##
   //  #     # #######    #     #####  #     # #     #
-
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "100%" }}>
       <CustomScrollbars>
@@ -158,7 +113,7 @@ const ProductFilter = (props) => {
           allowClear
           placeholder="Барааны ангилал"
           optionFilterProp="children"
-          onChange={(e) => prepareURL2(e, "mglfirm")} //нэмэлт параметр дамжуулж байгаа юм.
+          onChange={(e) => prepareURL2(e, "itemcategoryname")} //нэмэлт параметр дамжуулж байгаа юм.
           filterOption={(input, option) => {
             if (option.value) {
               return (
@@ -168,7 +123,9 @@ const ProductFilter = (props) => {
               return false;
             }
           }}
-          defaultValue={filterContext.state.filterList?.mglfirm || undefined}
+          defaultValue={
+            filterContext.state.filterList?.itemcategoryname || undefined
+          }
         >
           {productCategoryList.productCategoryList.map((item, index) => (
             <Option key={index} value={item.id}>
@@ -180,33 +137,10 @@ const ProductFilter = (props) => {
         <Divider className="gx-my-5" />
 
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
-          Хийц
+          Энэ тасгийн тусгай шүүлтүүр
         </h6>
-        <Select
-          className="moto-select-firm gx-w-100"
-          loading={mglBodyList.loading}
-          allowClear
-          placeholder="Арал"
-          onChange={(e) => prepareURL2(e, "mglbody")} //нэмэлт параметр дамжуулж байгаа юм.
-          optionFilterProp="children"
-          showSearch
-          filterOption={(input, option) => {
-            if (option.value) {
-              return (
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              );
-            } else {
-              return false;
-            }
-          }}
-          defaultValue={filterContext.state.filterList?.mglbody || undefined}
-        >
-          {mglBodyList.mglBodyList.map((item, index) => (
-            <Option key={index} value={item.mglbody}>
-              {item.mglbody}
-            </Option>
-          ))}
-        </Select>
+
+        <KpiFilter kpiFilterList={kpiFilterList} />
 
         {isEmpty(filterContext.state.filterList) ? (
           <></>

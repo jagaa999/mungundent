@@ -61,40 +61,21 @@ export const ProductStore = (props) => {
   };
 
   const initialProductDetail = {
-    //   {
-    //     "request": {
-    //         "username": "admin",
-    //         "password": "89",
-    //         "command": "imItemGetList_004",
-    //         "parameters": {
-    //             "id": "1599561408426"
-    //             // "memberid": "1502764251361501"
-    //         }
-    //     }
-    // }
-
-    // KPI VALUE
-    //   {
-    //     "request": {
-    //         "username": "admin",
-    //         "password": "89",
-    //         "command": "itemCategoryGetDv_004",
-    //         "parameters": {
-    //             "id": "16102833369451"
-
-    //             // "memberid": "1502764251361501"
-    //         }
-    //     }
-    // }
-
     loadParams: {},
     productDetail: [],
     loading: false,
     error: null,
   };
 
+  const initialKpiFilterList = {
+    kpiFilterList: [],
+    loading: false,
+    error: null,
+  };
+
   const [productList, setProductList] = useState(initialProductList);
   const [productDetail, setProductDetail] = useState(initialProductDetail);
+  const [kpiFilterList, setKpiFilterList] = useState(initialKpiFilterList);
 
   useEffect(() => {
     if (filterContext.state.menu === "product") {
@@ -102,6 +83,7 @@ export const ProductStore = (props) => {
       // myMenuType = "Edit";
       // myMenuType = "Detail";
       // myMenuType = "List";
+      clearKpiFilterList();
 
       switch (filterContext.state.menuType) {
         // case "Insert":
@@ -119,6 +101,17 @@ export const ProductStore = (props) => {
         default:
           clearProductDetail();
           break;
+      }
+
+      //Filter дотор kpitemplateid байвал kpi-ийн бүх зүйлсийг дуудах ёстой. Filter-д ашиглана.
+      if (filterContext.state.filterList?.kpitemplateid !== undefined) {
+        // console.log(
+        //   "DDDDDDDDDDDDDDDDDDDDDDDDDD",
+        //   filterContext.state.filterList?.kpitemplateid
+        // );
+        // loadKpiFilterList(filterContext.state.filterList?.kpitemplateid);
+        //KPItemplateid биш Category-ийн ID-аар дууддаг юм байна.
+        loadKpiFilterList(filterContext.state.filterList?.itemcategoryname);
       }
     }
   }, [filterContext.state, memberContext.state.isLogin]);
@@ -160,7 +153,7 @@ export const ProductStore = (props) => {
     //   .post("", myParamsProductList)
     myAxiosZ(myParamsProductList)
       .then((myResponse) => {
-        console.log("response---------", myResponse);
+        // console.log("response---------", myResponse);
         const myData = myResponse.response;
 
         if (myData.status === "error") {
@@ -168,7 +161,7 @@ export const ProductStore = (props) => {
           message.error(myData.text);
         } else {
           const myPaging = myData.result?.paging || {};
-          console.log("myPaging myPaging", myPaging);
+          // console.log("myPaging myPaging", myPaging);
           const myArray = myData.result || [];
 
           delete myArray["aggregatecolumns"];
@@ -212,7 +205,7 @@ export const ProductStore = (props) => {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
-        command: "imItemGetList_004",
+        command: "itemCategoryGetDv_004",
         ...productDetail.loadParams,
         parameters: {
           id: itemid,
@@ -261,6 +254,60 @@ export const ProductStore = (props) => {
     });
   };
 
+  //  #    # ######  ###
+  //  #   #  #     #  #
+  //  #  #   #     #  #
+  //  ###    ######   #
+  //  #  #   #        #
+  //  #   #  #        #
+  //  #    # #       ###
+
+  const loadKpiFilterList = (itemcategoryname = 0) => {
+    const myParamsKpiFilterList = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "itemCategoryGetDv_004",
+        ...kpiFilterList.loadParams,
+        parameters: {
+          id: itemcategoryname || "",
+        },
+      },
+    };
+
+    // console.log("myParamsKpiFilterList", myParamsKpiFilterList);
+    setKpiFilterList(initialKpiFilterList);
+    setKpiFilterList({ ...kpiFilterList, loading: true });
+
+    axios
+      .post("", myParamsKpiFilterList)
+      .then((response) => {
+        // console.log("KPI LIST RESPONSE------------> ", response);
+        const myData = response.data.response;
+
+        if (myData.status === "error") {
+          message.error(myData.text, 7);
+        } else {
+          const myArray = myData.result || [];
+          // console.log("KPI LIST myArray------------> ", myArray);
+
+          setKpiFilterList({
+            ...kpiFilterList,
+            loading: false,
+            kpiFilterList: myArray,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        message.error(error.toString(), 7);
+      });
+  };
+
+  const clearKpiFilterList = () => {
+    setKpiFilterList(initialKpiFilterList);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -271,6 +318,9 @@ export const ProductStore = (props) => {
         // saveProductDetail,
         clearProductDetail,
         toggleFilterDrawerOpen,
+        kpiFilterList,
+        loadKpiFilterList,
+        clearKpiFilterList,
       }}
     >
       {props.children}

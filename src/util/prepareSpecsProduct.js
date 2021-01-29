@@ -262,7 +262,7 @@ const tempTableColumns = (item, menu, mainData) => {
 export const prepareProductList = (myArray, menu = "") => {
   const myList = Object.values(myArray);
 
-  console.log("myList", myList);
+  // console.log("myList", myList);
 
   myList.map((item, index) => {
     const mainData = tempMainData(item, menu);
