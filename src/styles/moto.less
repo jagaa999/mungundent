@@ -212,10 +212,14 @@ li.gx-user-nav {
 }
 
 .gx-thumb-cover-img,
-.gx-grid-thumb-cover img {
-  height: inherit;
-  object-fit: cover;
-  object-position: 50% 50%;
+.gx-grid-thumb-cover {
+  background: #f5f5f5;
+  img {
+    height: inherit;
+    // object-fit: cover;
+    object-fit: scale-down;
+    object-position: 50% 50%;
+  }
 }
 
 .moto-list {
