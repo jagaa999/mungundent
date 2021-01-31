@@ -134,6 +134,15 @@ export const ProductStore = (props) => {
         command: "PL_MDVIEW_004",
         parameters: {
           ...productList.loadParams,
+          criteria: {
+            ...productList.loadParams.criteria,
+            // itemcategoryid: {
+            //   0: {
+            //     operator: "=",
+            //     operand: "1599561402137",
+            //   },
+            // },
+          },
           paging: {
             ...productList.loadParams.paging,
             pagesize: filterContext.state.paging.pagesize || "24",
@@ -163,6 +172,8 @@ export const ProductStore = (props) => {
           const myPaging = myData.result?.paging || {};
           // console.log("myPaging myPaging", myPaging);
           const myArray = myData.result || [];
+
+          console.log("My Response Products", myArray);
 
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
@@ -289,7 +300,7 @@ export const ProductStore = (props) => {
           message.error(myData.text, 7);
         } else {
           const myArray = myData.result || [];
-          // console.log("KPI LIST myArray------------> ", myArray);
+          console.log("KPI LIST myArray------------> ", myArray);
 
           setKpiFilterList({
             ...kpiFilterList,

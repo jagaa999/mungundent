@@ -19,15 +19,15 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
 
   const prepareURL2 = (checkedValues, parameterLabel) => {
-    // console.log("checkedValues", checkedValues);
-    // console.log("parameterLabel", parameterLabel);
+    console.log("checkedValues", checkedValues);
+    console.log("parameterLabel", parameterLabel);
 
     filterContext.updateParams({
       [parameterLabel]: checkedValues,
     });
   };
 
-  console.log("kpiFilterItem", kpiFilterItem);
+  // console.log("kpiFilterItem", kpiFilterItem);
   // code: "MotoTireType"
   // id: "16102833255371"
   // kpiindicatorvalue: {0: {…}, 1: {…}, 2: {…}, 3: {…}}
@@ -37,10 +37,10 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
   // templateid: "16102833259511"
   //Ийм зүйл байгаа.
 
-  console.log(
-    "filterContext.state.filterList?.[kpiFilterItem.code]",
-    filterContext.state.filterList?.[kpiFilterItem.code]
-  );
+  // console.log(
+  //   "filterContext.state.filterList?.[kpiFilterItem.code]",
+  //   filterContext.state.filterList?.[kpiFilterItem.code]
+  // );
 
   return (
     <>
@@ -69,7 +69,7 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
       >
         {Object.values(kpiFilterItem.kpiindicatorvalue).map((item, index) => (
           <Option key={index} value={item.id}>
-            {item.name}
+            {item.name} | indicatorid: {item.indicatorid} | id: {item.id}
           </Option>
         ))}
       </Select>

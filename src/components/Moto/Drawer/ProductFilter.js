@@ -69,14 +69,7 @@ const ProductFilter = (props) => {
     // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
   }, [filterContext.state.filterList]);
 
-  const prepareURL2 = (checkedValues, parameterLabel) => {
-    // console.log("checkedValues", checkedValues);
-    // console.log("parameterLabel", parameterLabel);
-    // console.log(
-    //   "productCategoryList.productCategoryList.",
-    //   productCategoryList.productCategoryList
-    // );
-
+  const changeCategory = (checkedValues, parameterLabel) => {
     //Category List дотроос сонгогдсон утгыг хайж олоод kpitemplateid-г олж авна. kpitemplateid-аа бас URL руу дамжуулах ёстой.
     let myKpiTemplateId = "";
     productCategoryList.productCategoryList.map((item, index) => {
@@ -85,10 +78,15 @@ const ProductFilter = (props) => {
       }
     });
 
-    filterContext.updateParams({
-      [parameterLabel]: checkedValues,
-      kpitemplateid: myKpiTemplateId,
-    });
+    // filterContext.clearAll();
+
+    filterContext.updateParams(
+      {
+        [parameterLabel]: checkedValues,
+        kpitemplateid: myKpiTemplateId,
+      },
+      true
+    );
   };
 
   // console.log("kpiFilterList", kpiFilterList);
@@ -113,7 +111,7 @@ const ProductFilter = (props) => {
           allowClear
           placeholder="Барааны ангилал"
           optionFilterProp="children"
-          onChange={(e) => prepareURL2(e, "itemcategoryname")} //нэмэлт параметр дамжуулж байгаа юм.
+          onChange={(e) => changeCategory(e, "itemcategoryname")} //нэмэлт параметр дамжуулж байгаа юм.
           filterOption={(input, option) => {
             if (option.value) {
               return (

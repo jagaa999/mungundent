@@ -61,3 +61,9 @@ export default KpiFilter;
 
 //Todo ЭНД ДУУСАВ.
 //Todo Одоо Дугуйгаар шүүлтүүр хийнгүүт бараануудаа шүүж харуулна. Тоогийгийн өгснийг ашиглана.
+
+//! Доорх байдлаар залгах үед ажиллаж байна.
+// "criteria": [
+//   {
+//       "operator": "=",
+//       "operand": "ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833423851 and (Kpi.value = to_char(16102833423931)  ))) and ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833255371 and (Kpi.value = to_char(16102833255421)  )))"

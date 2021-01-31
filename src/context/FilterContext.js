@@ -17,7 +17,23 @@ export const FilterStore = (props) => {
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", useParams());
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", ddddId);
 
-  const [state, setState] = useState({});
+  const initialState = {
+    motoUrl: pathname.split("/"),
+    menu: pathname.split("/")[1],
+    pathName: pathname,
+    menuType: "",
+    search: search,
+    filterList: {},
+    paging: {},
+    sorting: {},
+    cardtype: {
+      cardtype: localStorage.getItem(pathname + "cardtype") || "typelist",
+    },
+    loading: false,
+    error: null,
+  };
+
+  const [state, setState] = useState(initialState);
   const [searchQuery, setSearchQuery] = useState("");
   const [totalcount, setTotalcount] = useState("0");
 
@@ -148,9 +164,9 @@ export const FilterStore = (props) => {
   //  #     # #       #     # #     #    #    #
   //   #####  #       ######  #     #    #    #######
 
-  const updateParams = (tempObject) => {
+  const updateParams = (tempObject, clearAll = false) => {
     // console.log("FilterContext → updateParams", tempObject);
-    let myObject = { ...state };
+    let myObject = !clearAll ? { ...state } : { ...initialState };
     Object.entries(tempObject).map((item, i) => {
       const myKey = item[0]; //"newstypeid"
       const myValue = "" + item[1]; //"206"
