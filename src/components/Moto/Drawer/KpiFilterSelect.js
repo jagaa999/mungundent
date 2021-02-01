@@ -19,11 +19,20 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
 
   const prepareURL2 = (checkedValues, parameterLabel) => {
-    console.log("checkedValues", checkedValues);
+    console.log("checkedValues ЗЗЗЗЗЗЗЗЗЗЗЗЗ", checkedValues);
     console.log("parameterLabel", parameterLabel);
+    console.log(
+      "checkedValues encodeURIComponent",
+      encodeURIComponent(checkedValues)
+    );
+
+    const dfdf = btoa(checkedValues || "");
+    console.log("dfdf", dfdf);
+
+    console.log("DDDDDDDDD", atob(dfdf));
 
     filterContext.updateParams({
-      [parameterLabel]: checkedValues,
+      ["*" + parameterLabel]: dfdf,
     });
   };
 
@@ -63,13 +72,20 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
             return false;
           }
         }}
-        defaultValue={
-          filterContext.state.filterList?.[kpiFilterItem.code] || undefined
-        }
+        defaultValue={atob(
+          filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
+        )}
       >
         {Object.values(kpiFilterItem.kpiindicatorvalue).map((item, index) => (
-          <Option key={index} value={item.id}>
-            {item.name} | indicatorid: {item.indicatorid} | id: {item.id}
+          <Option
+            key={index}
+            value={JSON.stringify({
+              indicator_id: item.indicatorid,
+              value: item.id,
+            })}
+          >
+            {/* {item.name} | indicator_id: {item.indicatorid} | value: {item.id} */}
+            {item.name}
           </Option>
         ))}
       </Select>

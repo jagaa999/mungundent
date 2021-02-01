@@ -111,7 +111,7 @@ const ProductFilter = (props) => {
           allowClear
           placeholder="Барааны ангилал"
           optionFilterProp="children"
-          onChange={(e) => changeCategory(e, "itemcategoryname")} //нэмэлт параметр дамжуулж байгаа юм.
+          onChange={(e) => changeCategory(e, "itemcategoryid")} //нэмэлт параметр дамжуулж байгаа юм.
           filterOption={(input, option) => {
             if (option.value) {
               return (
@@ -122,12 +122,13 @@ const ProductFilter = (props) => {
             }
           }}
           defaultValue={
-            filterContext.state.filterList?.itemcategoryname || undefined
+            filterContext.state.filterList?.itemcategoryid || undefined
           }
         >
           {productCategoryList.productCategoryList.map((item, index) => (
             <Option key={index} value={item.id}>
-              {item.itemcategoryname} (KPI: {item.kpitemplateid})
+              {/* {item.itemcategoryname} (KPI: {item.kpitemplateid}) */}
+              {item.itemcategoryname}
             </Option>
           ))}
         </Select>

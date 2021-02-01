@@ -166,12 +166,14 @@ export const FilterStore = (props) => {
 
   const updateParams = (tempObject, clearAll = false) => {
     // console.log("FilterContext → updateParams", tempObject);
+
     let myObject = !clearAll ? { ...state } : { ...initialState };
     Object.entries(tempObject).map((item, i) => {
       const myKey = item[0]; //"newstypeid"
+      // const myValue = "gogogo" + item[1] + "hahaha"; //"206"
       const myValue = "" + item[1]; //"206"
-      // console.log(item);
-      // console.log(myKey, myValue);
+      console.log(item);
+      console.log(myKey, myValue);
       if (myKey === "offset" || myKey === "pagesize") {
         if (myValue !== "") {
           myObject.paging = {

@@ -27,9 +27,9 @@ const MotoPagination = (props) => {
         showTotal={showTotal}
         responsive={true}
         showLessItems={true}
-        current={filterContext.state.paging.offset * 1}
-        pageSize={filterContext.state.paging.pagesize * 1}
-        total={filterContext.totalcount * 1}
+        current={filterContext.state.paging.offset * 1 || 1}
+        pageSize={filterContext.state.paging.pagesize * 1 || 12}
+        total={filterContext.totalcount * 1 || 1}
         onChange={onChange}
       />
     </div>

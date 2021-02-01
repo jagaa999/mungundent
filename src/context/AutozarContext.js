@@ -93,69 +93,45 @@ export const AutozarStore = (props) => {
   const loadAutozarList = () => {
     setAutozarList({ ...autozarList, loading: true });
 
-    let tempFilter = {};
+    let myCriteria = {};
     Object.keys(filterContext.state.filterList).map((item) => {
-      console.log(item, "----", filterContext.state.filterList[item]);
+      // console.log(item, "----", filterContext.state.filterList[item]);
       if (item !== "offset" && item !== "pagesize" && item !== "title") {
-        const myItem1 = {
-          operator: "=",
-          operand: filterContext.state.filterList[item],
-        };
-        const myItem2 = {
+        myCriteria = {
+          ...myCriteria,
           [item]: {
-            0: myItem1,
+            0: {
+              operator: "=",
+              operand: filterContext.state.filterList[item],
+            },
           },
         };
-        tempFilter = Object.assign(tempFilter, myItem2);
-        //   newstypeid: {
-        //     0: {
-        //       operator: "=",
-        //       operand: "201",
-        //     },
-        //     1: {
-        //       operator: "=",
-        //       operand: "202",
-        //     },
-        //   },
       } else if (item === "title") {
-        const myItem1 = {
-          operator: "like",
-          operand: `%${filterContext.state.filterList[item]}%`,
-        };
-        const myItem2 = {
+        myCriteria = {
+          ...myCriteria,
           [item]: {
-            0: myItem1,
+            0: {
+              operator: "like",
+              operand: `%${filterContext.state.filterList[item]}%`,
+            },
           },
         };
-        tempFilter = Object.assign(tempFilter, myItem2);
-
-        //   title: {
-        //     0: {
-        //       operator: "like",
-        //       operand: "%toyota%",
-        //     },
-        //   },
       }
     });
-
-    //criteria-д isactive = 1 утга нэмж өгнө.
-    tempFilter = Object.assign(tempFilter, {
-      isactive: {
-        0: {
-          operator: "=",
-          operand: "1",
-        },
-      },
-    });
-    // console.log("tempFilter", tempFilter);
-    const dddd = {};
-    const myTemp33 = Object.assign(dddd, { criteria: tempFilter });
 
     const myNewParam = {
       ...autozarList,
       loadParams: {
         ...autozarList.loadParams,
-        ...myTemp33,
+        criteria: {
+          ...myCriteria,
+          isactive: {
+            0: {
+              operator: "=",
+              operand: "1",
+            },
+          },
+        },
         paging: {
           ...autozarList.loadParams.paging,
           pagesize: filterContext.state.paging.pagesize || "12",

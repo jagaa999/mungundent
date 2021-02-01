@@ -31,16 +31,6 @@ export const ProductStore = (props) => {
       systemmetagroupid: "1585197442423220",
       showquery: "0",
       ignorepermission: "1",
-      criteria: {
-        criteria: [
-          {
-            operator: "=",
-            // operand:
-            //   "ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833255371 and (Kpi.value = to_char(16102833255391) or Kpi.value = to_char(16102833255381)  ))) ",
-            operand: "0=0",
-          },
-        ],
-      },
       paging: {
         // pageSize: "24",
         // offset: "1",
@@ -111,7 +101,7 @@ export const ProductStore = (props) => {
         // );
         // loadKpiFilterList(filterContext.state.filterList?.kpitemplateid);
         //KPItemplateid биш Category-ийн ID-аар дууддаг юм байна.
-        loadKpiFilterList(filterContext.state.filterList?.itemcategoryname);
+        loadKpiFilterList(filterContext.state.filterList?.itemcategoryid);
       }
     }
   }, [filterContext.state, memberContext.state.isLogin]);
@@ -127,6 +117,71 @@ export const ProductStore = (props) => {
   const loadProductList = () => {
     setProductList({ ...productList, loading: true });
 
+    //Criteria-аа бэлтгэж авна.
+    //*-той Key байвал Value-г нь atob()-аар string болгож авна. String-ээ Object болгоно.
+    let myCriteria = {};
+    let specialCriteriaOperand = "0=0";
+    Object.keys(filterContext.state.filterList).map((item) => {
+      console.log(item, "----", filterContext.state.filterList[item]);
+      if (
+        item !== "offset" &&
+        item !== "pagesize" &&
+        item !== "title" &&
+        item.charAt(0) !== "*" //буюу Тусгай кодолсон талбар биш байх ёстой.
+      ) {
+        myCriteria = {
+          ...myCriteria,
+          [item]: {
+            0: {
+              operator: "=",
+              operand: filterContext.state.filterList[item],
+            },
+          },
+        };
+      } else if (item === "title") {
+        myCriteria = {
+          ...myCriteria,
+          [item]: {
+            0: {
+              operator: "like",
+              operand: `%${filterContext.state.filterList[item]}%`,
+            },
+          },
+        };
+      } else if (item.charAt(0) === "*") {
+        //буюу Тусгай кодолсон талбар биш байх ёстой.
+        const myDecodeField = item.substring(1);
+        const myTempJSON = JSON.parse(
+          atob(filterContext.state.filterList[item] || "") || ""
+        );
+        // {
+        //   indicator_id: "16102833423851";
+        //   value: "16102833423911";
+        // }
+
+        //myTempJSON -ээс доорх string-ийг гаргаж авах ёстой.
+        // ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833423851 and (Kpi.value = to_char(16102833423931)  )))
+
+        if (specialCriteriaOperand === "") {
+          specialCriteriaOperand = `ii.item_id in (select book_id from kpi where(kpi.indicator_id=${myTempJSON.indicator_id} and (Kpi.value = to_char(${myTempJSON.value})  )))`;
+        } else {
+          specialCriteriaOperand += `and ii.item_id in (select book_id from kpi where(kpi.indicator_id=${myTempJSON.indicator_id} and (Kpi.value = to_char(${myTempJSON.value})  )))`;
+        }
+      }
+    });
+
+    const mySpecialCriteria = [
+      {
+        operator: "=",
+        operand: specialCriteriaOperand,
+        // operand: "0=0",
+        // operand:
+        // "ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833423851 and (Kpi.value = to_char(16102833423931)  ))) and ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833255371 and (Kpi.value = to_char(16102833255421)  )))",
+      },
+    ];
+
+    console.log("myCriteria", myCriteria);
+
     const myParamsProductList = {
       request: {
         username: memberContext.state.memberUID,
@@ -135,13 +190,9 @@ export const ProductStore = (props) => {
         parameters: {
           ...productList.loadParams,
           criteria: {
-            ...productList.loadParams.criteria,
-            // itemcategoryid: {
-            //   0: {
-            //     operator: "=",
-            //     operand: "1599561402137",
-            //   },
-            // },
+            // ...myCriteria, //түр орхиё. Барааны дотоод ангилалтай зөрчилдөөд байна.
+
+            criteria: mySpecialCriteria,
           },
           paging: {
             ...productList.loadParams.paging,
@@ -273,7 +324,7 @@ export const ProductStore = (props) => {
   //  #   #  #        #
   //  #    # #       ###
 
-  const loadKpiFilterList = (itemcategoryname = 0) => {
+  const loadKpiFilterList = (itemcategoryid = 0) => {
     const myParamsKpiFilterList = {
       request: {
         username: memberContext.state.memberUID,
@@ -281,7 +332,7 @@ export const ProductStore = (props) => {
         command: "itemCategoryGetDv_004",
         ...kpiFilterList.loadParams,
         parameters: {
-          id: itemcategoryname || "",
+          id: itemcategoryid || "",
         },
       },
     };
