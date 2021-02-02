@@ -1,5 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
@@ -92,6 +98,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           <UniversalListItemMainImage
             myClass="gx-img-fluid gx-w-100"
             width="auto"
+            // style={{ height: "50px" }}
             imageMain={mainData.imagemain.value}
             cloudName={mainData.imagemaincloudname.value}
           />
@@ -116,7 +123,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           {mainData.modifieddate.value}
         </span>
 
-        <h4>
+        <div className={isBrowser ? "h4" : "h6"}>
           <Link to={mainData.link.value}>
             <Tooltip title={mainData.title.value}>
               <Typography.Paragraph
@@ -129,9 +136,9 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           </Link>
           {toBoolean(mainData.isfeatured.value) && <FeaturedTag type="dot" />}
           {!toBoolean(mainData.isactive.value) && <ActiveTag type="dot" />}
-        </h4>
+        </div>
 
-        <div className="gx-text-success gx-fs-sm">
+        <div className="gx-text-success gx-fs-sm gx-mt-2">
           <Tooltip title={GetSpecData(mainData.mainnumber.field)?.tooltip}>
             {mainData.mainnumber?.value}
           </Tooltip>

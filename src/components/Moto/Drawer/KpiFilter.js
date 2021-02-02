@@ -28,7 +28,7 @@ const KpiFilter = ({ kpiFilterList }) => {
     });
   };
 
-  // console.log("kpiFilterList", kpiFilterList);
+  console.log("kpiFilterList", kpiFilterList);
 
   //  ######  ####### ####### #     # ######  #     #
   //  #     # #          #    #     # #     # ##    #

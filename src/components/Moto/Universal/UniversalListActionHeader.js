@@ -1,5 +1,10 @@
 import React, { useContext, useState } from "react";
-
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 import { Button, PageHeader, Tooltip, Divider } from "antd";
 import MyIcon from "util/iconFunction";
 
@@ -53,20 +58,32 @@ const UniversalListActionHeader = ({
         extra={[
           <Tooltip title="Зөвлөмж нээх" key="01">
             <Button
-              icon={<MyIcon type="iconhelp" className="moto-icon-1-3" />}
+              icon={
+                <MyIcon
+                  type="iconhelp"
+                  className={isBrowser && "moto-icon-1-3"}
+                />
+              }
               type={showInfo ? "primary" : "default"}
               onClick={(e) => setShowInfo(!showInfo)}
               className="gx-mr-0"
-              style={{ width: "40px" }}
+              size={isBrowser ? "default" : "small"}
+              style={{ width: isBrowser && "40px" }}
             ></Button>
           </Tooltip>,
           <Tooltip title="Шүүлтүүр нээх" key="02">
             <Button
-              icon={<MyIcon type="iconfilter" className="moto-icon-1-3" />}
+              icon={
+                <MyIcon
+                  type="iconfilter"
+                  className={isBrowser && "moto-icon-1-3"}
+                />
+              }
               type={myIsFilterDrawerOpen ? "primary" : "default"}
               onClick={(e) => myListContext.toggleFilterDrawerOpen()}
               className="gx-ml-2 gx-mr-0"
-              style={{ width: "40px" }}
+              size={isBrowser ? "default" : "small"}
+              style={{ width: isBrowser && "40px" }}
             ></Button>
           </Tooltip>,
           <Tooltip title="Харьцуулалт нээх" key="03">
@@ -74,13 +91,14 @@ const UniversalListActionHeader = ({
               icon={
                 <MyIcon
                   type="iconcheck-square-solid"
-                  className="moto-icon-1-3"
+                  className={isBrowser && "moto-icon-1-3"}
                 />
               }
               type={compareContext.compareList.isOpen ? "primary" : "default"}
               onClick={compareContext.toggleDrawer}
               className="gx-ml-2 gx-mr-0"
-              style={{ width: "40px" }}
+              size={isBrowser ? "default" : "small"}
+              style={{ width: isBrowser && "40px" }}
             ></Button>
           </Tooltip>,
 

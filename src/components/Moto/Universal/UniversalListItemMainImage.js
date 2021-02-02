@@ -7,6 +7,7 @@ import { Image as ImageAnt } from "antd";
 
 const UniversalListItemMainImage = ({
   width = "auto",
+  height = "auto",
   imageMain,
   style,
   cloudName = "duznp4bqa",
@@ -40,6 +41,7 @@ const UniversalListItemMainImage = ({
         <img
           src={imageMain}
           width={width}
+          height={height}
           className={myClass}
           alt={imageMain}
           style={style}

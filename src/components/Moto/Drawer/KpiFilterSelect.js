@@ -1,4 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 import { isEmpty } from "lodash";
 import { Button, Input, Checkbox, Divider, Select, Radio } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
@@ -19,20 +25,15 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
 
   const prepareURL2 = (checkedValues, parameterLabel) => {
-    console.log("checkedValues ЗЗЗЗЗЗЗЗЗЗЗЗЗ", checkedValues);
-    console.log("parameterLabel", parameterLabel);
+    // console.log("checkedValues ЗЗЗЗЗЗЗЗЗЗЗЗЗ", checkedValues);
+    // console.log("parameterLabel", parameterLabel);
     console.log(
       "checkedValues encodeURIComponent",
       encodeURIComponent(checkedValues)
     );
-
-    const dfdf = btoa(checkedValues || "");
-    console.log("dfdf", dfdf);
-
-    console.log("DDDDDDDDD", atob(dfdf));
-
+    const baseEncodedValues = btoa(checkedValues || "");
     filterContext.updateParams({
-      ["*" + parameterLabel]: dfdf,
+      ["*" + parameterLabel]: baseEncodedValues,
     });
   };
 
@@ -46,17 +47,14 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
   // templateid: "16102833259511"
   //Ийм зүйл байгаа.
 
-  // console.log(
-  //   "filterContext.state.filterList?.[kpiFilterItem.code]",
-  //   filterContext.state.filterList?.[kpiFilterItem.code]
-  // );
-
   return (
     <>
-      <h6 className="gx-my-3 gx-text-orange gx-mt-4">{kpiFilterItem.name}</h6>
+      {isBrowser && (
+        <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+      )}
 
       <Select
-        className="moto-select-firm gx-w-100"
+        className="moto-select-firm gx-w-100 gx-my-2"
         // loading={productCategoryList.loading}
         showSearch
         allowClear
@@ -72,9 +70,11 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
             return false;
           }
         }}
-        defaultValue={atob(
-          filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
-        )}
+        defaultValue={
+          atob(
+            filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
+          ) || undefined
+        }
       >
         {Object.values(kpiFilterItem.kpiindicatorvalue).map((item, index) => (
           <Option
@@ -84,7 +84,6 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
               value: item.id,
             })}
           >
-            {/* {item.name} | indicator_id: {item.indicatorid} | value: {item.id} */}
             {item.name}
           </Option>
         ))}

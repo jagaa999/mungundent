@@ -331,6 +331,24 @@ span.ant-page-header-heading-title {
   }
 }
 
+.moto-item-card-1 {
+  // height: 100%;
+  // margin-bottom: 10px;
+  overflow: hidden;
+  .ant-card-body {
+    padding: 0 !important;
+  }
+  .gx-product-image {
+    height: 100%;
+    .gx-grid-thumb-equal {
+      height: 100%;
+    }
+  }
+  .ant-card-meta-title {
+    white-space: normal;
+  }
+}
+
 //****************
 
 @import (css) url("https://fonts.googleapis.com/icon?family=Material+Icons");
@@ -1068,6 +1086,34 @@ tr.ant-table-row {
   }
 }
 
+.moto-filter-drawer {
+  .ant-drawer-content-wrapper {
+    // width: unset;
+    width: 30% !important;
+
+    @media (max-width: @screen-xl-max) {
+      width: 30% !important;
+    }
+
+    @media screen and (max-width: @screen-lg-max) {
+      width: 35% !important;
+    }
+
+    @media screen and (max-width: @screen-md-max) {
+      width: 40% !important;
+    }
+
+    @media screen and (max-width: @screen-sm-max) {
+      width: 45% !important;
+    }
+
+    @media screen and (max-width: @screen-xs-max) {
+      // 576-аас бага
+      width: 65% !important;
+    }
+  }
+}
+
 .react-joyride__tooltip {
   [data-action="primary"] {
     font-size: 12px !important;
@@ -1169,5 +1215,13 @@ tr.ant-table-row {
   .isdetail {
   }
   .islist {
+  }
+}
+
+.gx-header-horizontal-main-flex {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .gx-header-notifications {
+    flex-wrap: nowrap;
   }
 }

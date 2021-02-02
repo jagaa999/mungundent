@@ -47,7 +47,7 @@ export const ProductStore = (props) => {
     productList: [],
     loading: false,
     error: null,
-    isFilterDrawerOpen: true,
+    isFilterDrawerOpen: false,
   };
 
   const initialProductDetail = {

@@ -1,4 +1,10 @@
 import React, { useContext } from "react";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 import QueueAnim from "rc-queue-anim";
 
 import { Col, Row } from "antd";
@@ -31,17 +37,10 @@ const UniversalListType2 = ({
             myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
           />
 
-          <Row className="gx-d-flex">
+          <Row gutter={isBrowser ? [20, 30] : [7, 10]} type="flex">
             {myListContextListList.map((myUniversalItem, index) => {
               return (
-                <Col
-                  key={index}
-                  xl={6}
-                  md={8}
-                  sm={12}
-                  xs={12}
-                  className="gx-mb-5"
-                >
+                <Col key={index} xl={6} md={8} sm={12} xs={12}>
                   <UniversalListItem2
                     key={index}
                     myUniversalItem={myUniversalItem}

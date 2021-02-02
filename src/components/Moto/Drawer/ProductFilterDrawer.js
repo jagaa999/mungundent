@@ -1,4 +1,11 @@
 import React, { useContext } from "react";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
+
 import { Button, Drawer } from "antd";
 import MyIcon from "util/iconFunction";
 
@@ -15,13 +22,18 @@ const ProductFilterDrawer = () => {
           <>
             <MyIcon
               type="iconfilter"
-              className="gx-d-inline-flex gx-vertical-align-middle gx-mr-3"
+              className="gx-d-inline-flex gx-vertical-align-middle gx-mr-2"
             />
-            Шүүлтүүр
+            <span className={`  ${isBrowser ? "gx-fs-md" : "gx-fs-sm"}`}>
+              Шүүлтүүр
+            </span>
           </>
         }
-        width="350"
-        placement="left"
+        headerStyle={{ padding: "16px 0px" }}
+        // width="350"
+        className="moto-filter-drawer"
+        placement="right"
+        push={true}
         closable={true}
         visible={productContext.productList.isFilterDrawerOpen}
         onClose={(e) => productContext.toggleFilterDrawerOpen()}

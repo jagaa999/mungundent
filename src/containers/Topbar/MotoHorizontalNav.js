@@ -9,7 +9,7 @@ import MyIcon from "../../util/iconFunction";
 const { SubMenu } = Menu;
 const MenuItemGroup = Menu.ItemGroup;
 
-const HorizontalNav = () => {
+const MotoHorizontalNav = () => {
   const filterContext = useContext(FilterContext);
   const selectedKeys = filterContext.state.menu;
   // const defaultOpenKeys = selectedKeys.split("/")[1];
@@ -1179,6 +1179,6 @@ const HorizontalNav = () => {
   );
 };
 
-HorizontalNav.propTypes = {};
+MotoHorizontalNav.propTypes = {};
 
-export default HorizontalNav;
+export default MotoHorizontalNav;

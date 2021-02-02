@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { unescape } from "lodash";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 import { Html5Entities } from "html-entities";
 import toBoolean from "util/booleanFunction";
 
@@ -81,7 +86,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
             {/* <Link to={record.mainData.link.value}>
               {record.mainData.title.value}
             </Link> */}
-            <h5>
+            <div className={isBrowser ? "h5" : "h6"}>
               <Link to={record.mainData.link.value}>
                 <Tooltip title={record.mainData.title.value}>
                   <Typography.Paragraph
@@ -98,9 +103,9 @@ const AuctionListItem3 = ({ myListContextListList }) => {
               {!toBoolean(record.mainData.isactive.value) && (
                 <ActiveTag type="dot" />
               )}
-            </h5>
+            </div>
 
-            <div>
+            <div className="gx-d-none gx-d-sm-block">
               {record.headerSpec?.map((item, index) => {
                 return <RenderHeaderSpec key={index} item={item} />;
               })}
@@ -115,32 +120,36 @@ const AuctionListItem3 = ({ myListContextListList }) => {
             </div>
           </div>
 
-          <UniversalListItemButton myUniversalItem={record} />
+          {/* <UniversalListItemButton myUniversalItem={record} /> */}
         </div>
       ),
     },
   ];
 
-  const myTableColumn = myListContextListList[0].tableColumns || [];
+  if (isBrowser) {
+    const myTableColumn = myListContextListList[0].tableColumns || [];
+    myTableColumn.map((item, index) => {
+      const myItem = GetSpecData(item.field);
+      const myColumn = {
+        ...item,
+        title: myItem.label,
+        dataIndex: item.field,
+        render: (temp, record) => record.tableColumns[index].value,
+      };
 
-  myTableColumn.map((item, index) => {
-    const myItem = GetSpecData(item.field);
+      columns.push(myColumn);
+    });
+  }
 
-    const myColumn = {
-      ...item,
+  columns.push({
+    title: "Үйлдэл",
+    dataIndex: "",
 
-      title: myItem.label,
-      dataIndex: item.field,
-
-      render: (temp, record) => record.tableColumns[index].value,
-      // <Tooltip title={myItem.tooltip} key={index}>
-      //   <div className={record.tableColumns[index].renderDivClass}>
-      //     {record.tableColumns[index].value}
-      //   </div>
-      // </Tooltip>
-    };
-
-    columns.push(myColumn);
+    render: (temp, record) => (
+      <div style={{ minWidth: "80px" }}>
+        <UniversalListItemButton myUniversalItem={record} />
+      </div>
+    ),
   });
 
   return (

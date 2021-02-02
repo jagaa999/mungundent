@@ -60,104 +60,102 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
 
   // console.log("myIsLove", myIsLove);
 
-  if (Object.keys(myUniversalItem).length !== 0) {
-    return (
-      <span
-        className={`moto-item-control-button-member ${
-          isDetail ? "isdetail" : "islist"
-        }`}
-      >
-        <Tooltip title="Харьцуулалтад нэмэх" key="add-compare">
-          <Button
-            type={isDetail ? "default" : "text"}
-            icon={
-              <MyIcon
-                type="iconcheck-square-solid"
-                className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
-              />
-            }
-            onClick={(e) =>
-              compareContext.addItem(
-                myUniversalItem,
-                myUniversalItem.mainData.menu
-              )
-            }
-            className="gx-m-0"
-            size={isDetail ? "default" : "small"}
-          ></Button>
-        </Tooltip>
-        <Tooltip title="Надад таалагдлаа!" key="add-love">
-          <Button
-            checked={false}
-            type={isDetail ? "default" : "text"}
-            icon={
-              <MyIcon
-                type="iconlove"
-                className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
-              />
-            }
-            onClick={(e) =>
-              actionMine(!myIsLove.checked, myIsLove.id, loveButtonData)
-            }
-            className={`${isDetail ? "gx-m-0 gx-ml-2" : "gx-m-0 gx-ml-1"} ${
-              myIsLove.checked ? "gx-btn-purple" : "gx-text-purple"
-            }`}
-            size={isDetail ? "default" : "small"}
-          ></Button>
-        </Tooltip>
-        <Tooltip title="Жоорлох!" key="add-box">
-          <Button
-            checked={false}
-            type={myIsSave.checked ? "primary" : isDetail ? "default" : "text"}
-            icon={
-              <MyIcon
-                type="iconinbox-solid"
-                className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
-              />
-            }
-            onClick={(e) =>
-              actionMine(!myIsSave.checked, myIsSave.id, saveButtonData)
-            }
-            // className="gx-m-0 gx-ml-2"
-            className={isDetail ? "gx-m-0 gx-ml-2" : "gx-m-0 gx-ml-1"}
-            size={isDetail ? "default" : "small"}
-          ></Button>
-        </Tooltip>
+  if (Object.keys(myUniversalItem).length === 0) return null;
 
-        {isDetail && (
-          <>
-            <Tooltip title="Алдаа мэдэгдэх" key="report-error">
-              <Button
-                checked={false}
-                type={myIsSave.checked ? "primary" : "default"}
-                icon={
-                  <MyIcon
-                    type="iconexclamation-triangle-solid"
-                    className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
-                  />
-                }
-                onClick={() => {
-                  setShowErrorReportModal(true);
-                }}
-                className="gx-m-0 gx-ml-2"
-              ></Button>
-            </Tooltip>
-            <ErrorReportModal
-              showErrorReportModal={showErrorReportModal}
-              setShowErrorReportModal={setShowErrorReportModal}
-              item={myUniversalItem}
-              tablename={myUniversalItem.loveButtonData.tablename}
-              actionname="Алдаа илгээв"
-              recordid={myUniversalItem.loveButtonData.recordid}
-              imagemain={myUniversalItem.loveButtonData.mainimg}
+  return (
+    <span
+      className={`moto-item-control-button-member ${
+        isDetail ? "isdetail" : "islist"
+      }`}
+    >
+      <Tooltip title="Харьцуулалтад нэмэх" key="add-compare">
+        <Button
+          type={isDetail ? "default" : "text"}
+          icon={
+            <MyIcon
+              type="iconcheck-square-solid"
+              className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
             />
-          </>
-        )}
-      </span>
-    );
-  } else {
-    return "";
-  }
+          }
+          onClick={(e) =>
+            compareContext.addItem(
+              myUniversalItem,
+              myUniversalItem.mainData.menu
+            )
+          }
+          className="gx-m-0"
+          size={isDetail ? "default" : "small"}
+        ></Button>
+      </Tooltip>
+      <Tooltip title="Надад таалагдлаа!" key="add-love">
+        <Button
+          checked={false}
+          type={isDetail ? "default" : "text"}
+          icon={
+            <MyIcon
+              type="iconlove"
+              className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
+            />
+          }
+          onClick={(e) =>
+            actionMine(!myIsLove.checked, myIsLove.id, loveButtonData)
+          }
+          className={`${isDetail ? "gx-m-0 gx-ml-2" : "gx-m-0 gx-ml-1"} ${
+            myIsLove.checked ? "gx-btn-purple" : "gx-text-purple"
+          }`}
+          size={isDetail ? "default" : "small"}
+        ></Button>
+      </Tooltip>
+      <Tooltip title="Жоорлох!" key="add-box">
+        <Button
+          checked={false}
+          type={myIsSave.checked ? "primary" : isDetail ? "default" : "text"}
+          icon={
+            <MyIcon
+              type="iconinbox-solid"
+              className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
+            />
+          }
+          onClick={(e) =>
+            actionMine(!myIsSave.checked, myIsSave.id, saveButtonData)
+          }
+          // className="gx-m-0 gx-ml-2"
+          className={isDetail ? "gx-m-0 gx-ml-2" : "gx-m-0 gx-ml-1"}
+          size={isDetail ? "default" : "small"}
+        ></Button>
+      </Tooltip>
+
+      {isDetail && (
+        <>
+          <Tooltip title="Алдаа мэдэгдэх" key="report-error">
+            <Button
+              checked={false}
+              type={myIsSave.checked ? "primary" : "default"}
+              icon={
+                <MyIcon
+                  type="iconexclamation-triangle-solid"
+                  className={isDetail ? "moto-icon-1-3" : "moto-icon-1-1"}
+                />
+              }
+              onClick={() => {
+                setShowErrorReportModal(true);
+              }}
+              className="gx-m-0 gx-ml-2"
+            ></Button>
+          </Tooltip>
+          <ErrorReportModal
+            showErrorReportModal={showErrorReportModal}
+            setShowErrorReportModal={setShowErrorReportModal}
+            item={myUniversalItem}
+            tablename={myUniversalItem.loveButtonData.tablename}
+            actionname="Алдаа илгээв"
+            recordid={myUniversalItem.loveButtonData.recordid}
+            imagemain={myUniversalItem.loveButtonData.mainimg}
+          />
+        </>
+      )}
+    </span>
+  );
 };
 
 export default UniversalListItemButton;

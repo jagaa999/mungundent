@@ -1,4 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 import { Menu, Dropdown, Button, Radio } from "antd";
 import {
   CaretUpOutlined,
@@ -134,7 +140,7 @@ const UniversalListSort = ({ mySettings }) => {
       <Dropdown overlay={menu} trigger={["click"]}>
         <Button
           // type="primary"
-          // size="small"
+          size={isBrowser ? "default" : "small"}
           onClick={(e) => e.preventDefault()}
           className="gx-mr-0 gx-ml-2"
         >
@@ -147,17 +153,26 @@ const UniversalListSort = ({ mySettings }) => {
         className="gx-ml-2"
         defaultValue={selectedKeys[1]}
         buttonStyle="solid"
-        // size="small"
+        size={isBrowser ? "default" : "small"}
         onChange={onChangeTypeRadio}
       >
         <Radio.Button value="typelist">
-          <MyIcon type="iconlistlist" className="moto-icon-1-3" />
+          <MyIcon
+            type="iconlistlist"
+            className={isBrowser && "moto-icon-1-3"}
+          />
         </Radio.Button>
         <Radio.Button value="typecard">
-          <MyIcon type="iconlistcard" className="moto-icon-1-3" />
+          <MyIcon
+            type="iconlistcard"
+            className={isBrowser && "moto-icon-1-3"}
+          />
         </Radio.Button>
         <Radio.Button value="typetable">
-          <MyIcon type="iconlisttable" className="moto-icon-1-3" />
+          <MyIcon
+            type="iconlisttable"
+            className={isBrowser && "moto-icon-1-3"}
+          />
         </Radio.Button>
       </Radio.Group>
     </>
