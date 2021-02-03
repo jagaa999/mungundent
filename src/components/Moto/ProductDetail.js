@@ -2,14 +2,14 @@ import React from "react";
 
 import { Card, Tabs } from "antd";
 
-import AutozarDetail2General from "./Autozar/AutozarDetail2General";
+import ProductDetailGeneral from "./Product/ProductDetailGeneral";
 import AutozarDetail2Zar from "./Autozar/AutozarDetail2Zar";
 import AutozarDetailSeller from "./Autozar/AutozarDetailSeller";
 import AutozarGoonet from "./Autozar/AutozarGoonet";
 import { isEmpty } from "lodash";
 
-const AutozarDetail2 = ({ myDetailContext }) => {
-  const myItem = myDetailContext.autozarDetail.autozarDetail;
+const ProductDetail = ({ myDetailContext }) => {
+  const myItem = myDetailContext.productDetail.productDetail;
 
   if (isEmpty(myItem)) return null;
 
@@ -22,25 +22,16 @@ const AutozarDetail2 = ({ myDetailContext }) => {
           centered={true}
           className="moto-product-detail-tab"
         >
-          <Tabs.TabPane tab="Автомашин" key="1">
+          <Tabs.TabPane tab="Бараа" key="1">
             <Card>
-              <AutozarDetail2General myItem={myItem} />
+              <ProductDetailGeneral myItem={myItem} />
             </Card>
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Автозар" key="2">
-            <Card>
-              <AutozarDetail2Zar myItem={myItem} />
-            </Card>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="Каталоги" key="3">
-            <Card>
-              <AutozarGoonet myItem={myItem} />
-            </Card>
+          <Tabs.TabPane tab="Дэлгэрэнгүй" key="2">
+            <Card>{/* <AutozarDetail2Zar myItem={myItem} /> */}</Card>
           </Tabs.TabPane>
           <Tabs.TabPane tab="Борлуулагч" key="4">
-            <Card>
-              <AutozarDetailSeller myItem={myItem} />
-            </Card>
+            <Card>{/* <AutozarDetailSeller myItem={myItem} /> */}</Card>
           </Tabs.TabPane>
         </Tabs>
       </div>
@@ -48,4 +39,4 @@ const AutozarDetail2 = ({ myDetailContext }) => {
   );
 };
 
-export default AutozarDetail2;
+export default ProductDetail;

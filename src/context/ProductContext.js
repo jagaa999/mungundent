@@ -101,7 +101,7 @@ export const ProductStore = (props) => {
         // );
         // loadKpiFilterList(filterContext.state.filterList?.kpitemplateid);
         //KPItemplateid биш Category-ийн ID-аар дууддаг юм байна.
-        loadKpiFilterList(filterContext.state.filterList?.itemcategoryid);
+        loadKpiFilterList(filterContext.state.filterList?.generalcategoryid);
       }
     }
   }, [filterContext.state, memberContext.state.isLogin]);
@@ -122,7 +122,7 @@ export const ProductStore = (props) => {
     let myCriteria = {};
     let specialCriteriaOperand = "0=0";
     Object.keys(filterContext.state.filterList).map((item) => {
-      console.log(item, "----", filterContext.state.filterList[item]);
+      // console.log(item, "----", filterContext.state.filterList[item]);
       if (
         item !== "offset" &&
         item !== "pagesize" &&
@@ -180,7 +180,7 @@ export const ProductStore = (props) => {
       },
     ];
 
-    console.log("myCriteria", myCriteria);
+    // console.log("myCriteria", myCriteria);
 
     const myParamsProductList = {
       request: {
@@ -190,7 +190,7 @@ export const ProductStore = (props) => {
         parameters: {
           ...productList.loadParams,
           criteria: {
-            // ...myCriteria, //түр орхиё. Барааны дотоод ангилалтай зөрчилдөөд байна.
+            ...myCriteria, //түр орхиё. Барааны дотоод ангилалтай зөрчилдөөд байна.
 
             criteria: mySpecialCriteria,
           },
@@ -208,9 +208,8 @@ export const ProductStore = (props) => {
       },
     };
 
-    // axiosCloud
-    // axios
-    //   .post("", myParamsProductList)
+    // console.log(myParamsProductList);
+
     myAxiosZ(myParamsProductList)
       .then((myResponse) => {
         // console.log("response---------", myResponse);
@@ -224,7 +223,7 @@ export const ProductStore = (props) => {
           // console.log("myPaging myPaging", myPaging);
           const myArray = myData.result || [];
 
-          console.log("My Response Products", myArray);
+          // console.log("My Response Products", myArray);
 
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
@@ -267,7 +266,7 @@ export const ProductStore = (props) => {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
-        command: "itemCategoryGetDv_004",
+        command: "imItemGetList_004",
         ...productDetail.loadParams,
         parameters: {
           id: itemid,
@@ -284,6 +283,8 @@ export const ProductStore = (props) => {
       .then((response) => {
         // console.log("PRODUCT DETAIL RESPONSE------------> ", response);
         const myData = response.data.response;
+
+        console.log("PRODUCT DETAIL", myData);
 
         if (myData.status === "error") {
           message.error(myData.text, 7);
@@ -324,7 +325,7 @@ export const ProductStore = (props) => {
   //  #   #  #        #
   //  #    # #       ###
 
-  const loadKpiFilterList = (itemcategoryid = 0) => {
+  const loadKpiFilterList = (generalcategoryid = 0) => {
     const myParamsKpiFilterList = {
       request: {
         username: memberContext.state.memberUID,
@@ -332,7 +333,7 @@ export const ProductStore = (props) => {
         command: "itemCategoryGetDv_004",
         ...kpiFilterList.loadParams,
         parameters: {
-          id: itemcategoryid || "",
+          id: generalcategoryid || "",
         },
       },
     };
@@ -351,7 +352,7 @@ export const ProductStore = (props) => {
           message.error(myData.text, 7);
         } else {
           const myArray = myData.result || [];
-          console.log("KPI LIST myArray------------> ", myArray);
+          // console.log("KPI LIST myArray------------> ", myArray);
 
           setKpiFilterList({
             ...kpiFilterList,

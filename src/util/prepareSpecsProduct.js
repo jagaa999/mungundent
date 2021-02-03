@@ -155,8 +155,8 @@ const tempHeaderSpec = (item, menu, mainData) => {
 const tempSpecList1 = (item, menu, mainData) => {
   return [
     {
-      field: "itemcategoryname",
-      value: item.itemcategoryname,
+      field: "generalcategoryname",
+      value: item.generalcategoryname,
     },
     {
       field: "departmentname",
@@ -209,7 +209,7 @@ const tempCompareButtonData = (item, menu, mainData) => {
     mainSpec: mainData.mainnumber.value,
     link: mainData.link.value,
     subSpecs: [
-      { field: "itemcategoryname", value: item.itemcategoryname },
+      { field: "generalcategoryname", value: item.generalcategoryname },
       { field: "departmentname", value: item.departmentname },
     ],
   };
@@ -218,9 +218,9 @@ const tempCompareButtonData = (item, menu, mainData) => {
 const tempTableColumns = (item, menu, mainData) => {
   return [
     {
-      field: "itemcategoryname",
+      field: "generalcategoryname",
       responsive: ["md"],
-      value: <span className="gx-fs-sm">{item.itemcategoryname}</span>,
+      value: <span className="gx-fs-sm">{item.generalcategoryname}</span>,
     },
 
     {
@@ -350,11 +350,26 @@ const tempDetailHeaderSpec = (item, menu, mainData) => {
   return myArray;
 };
 
+const tempDetailPhotos = (item, menu, mainData) => {
+  if (isEmpty(item.photos)) return null;
+
+  let myArray = [];
+  Object.values(item.photos).map((item, index) => {
+    const tempItem = {
+      field: "photos",
+      value: `https://cloudapi.moto.mn/portal/${item.physicalpath}`,
+    };
+    myArray.push(tempItem);
+  });
+  return myArray;
+};
+
 export const prepareProductDetail = (myItem, menu = "") => {
   console.log("MY PRODUCT", myItem);
 
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempDetailHeaderSpec(myItem, menu, mainData);
+  const detailPhotos = tempDetailPhotos(myItem, menu, mainData);
   const specList1 = tempSpecList1(myItem, menu, mainData);
   const specList2 = tempSpecList2(myItem, menu, mainData);
   const ownerData = tempOwnerData(myItem, menu, mainData);
@@ -384,6 +399,8 @@ export const prepareProductDetail = (myItem, menu = "") => {
   myItem.favid = myItem.favid;
   myItem.foreignname = myItem.foreignname;
   myItem.generalcategoryid = myItem.generalcategoryid;
+  // myItem.generalcategoryname = myItem.generalcategoryname;
+  myItem.generalcategoryname = myItem.tendercategoryname;
   myItem.height = myItem.height;
   myItem.id = myItem.id;
   myItem.imagealbumid = myItem.imagealbumid;
@@ -467,6 +484,7 @@ export const prepareProductDetail = (myItem, menu = "") => {
 
   myItem.mainData = mainData;
   myItem.headerSpec = headerSpec;
+  myItem.detailPhotos = detailPhotos;
   myItem.specList1 = specList1;
   myItem.specList2 = specList2;
   myItem.ownerData = ownerData;

@@ -1,5 +1,5 @@
 module.exports = {
-  footerText: "Copyright Moto.mn © 2021",
+  footerText: "Moto.mn © 2021",
 
   prepareTitle: (myTitle) => {
     if (myTitle) {

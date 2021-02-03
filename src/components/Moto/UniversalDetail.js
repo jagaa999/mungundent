@@ -3,7 +3,6 @@ import React from "react";
 import { isEmpty } from "lodash";
 import UniversalDetailPageHeader from "./Universal/UniversalDetailPageHeader";
 import UniversalDetailPageCard from "./Universal/UniversalDetailPageCard";
-import UniversalDetailPageTableColumn from "./Universal/UniversalDetailPageTableColumn";
 
 const UniversalDetail = ({
   myDetailContext,
@@ -19,11 +18,6 @@ const UniversalDetail = ({
     <>
       <UniversalDetailPageHeader
         myDetailContext={myDetailContext}
-        myItem={myDetailContextDetailDetail}
-        myDetailSettings={myDetailSettings}
-      />
-
-      <UniversalDetailPageTableColumn
         myItem={myDetailContextDetailDetail}
         myDetailSettings={myDetailSettings}
       />

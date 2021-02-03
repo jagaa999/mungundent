@@ -23,6 +23,18 @@
     "tooltip": "",
     "icon": ""
   },
+  "generalcategoryid": {
+    "testvalue": "1599561402137",
+    "label": "",
+    "tooltip": "",
+    "icon": ""
+  },
+  "generalcategoryname": {
+    "testvalue": "Хөдөлгүүрийн тос",
+    "label": "Ангилал",
+    "tooltip": "Барааны ангилал",
+    "icon": ""
+  },
   "itemcategoryid": {
     "testvalue": "1599561402137",
     "label": "",
@@ -31,8 +43,8 @@
   },
   "itemcategoryname": {
     "testvalue": "Суудлын машины дугуй",
-    "label": "Ангилал",
-    "tooltip": "Барааны ангилал",
+    "label": "Дотоод ангилал",
+    "tooltip": "Барааны дотоод ангилал",
     "icon": ""
   },
   "itemcode": {

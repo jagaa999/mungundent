@@ -10,8 +10,8 @@ import "moment/locale/mn";
 import accounting from "accounting";
 
 import { Card, Alert, Row, Col, Image, Descriptions } from "antd";
-import AutozarDetailImages from "./AutozarDetailImages";
-import AutozarListItemMainImage from "./AutozarListItemMainImage";
+import ProductDetailImages from "./ProductDetailImages";
+import ProductListItemMainImage from "./ProductListItemMainImage";
 import { GetSpecData } from "util/getSpecData";
 import { isEmpty } from "lodash";
 
@@ -54,14 +54,22 @@ const AutozarDetail2General = ({ myItem }) => {
     return (
       <div>
         <Row align="middle">
+          {/*
+             ### #     #    #     #####  ####### 
+              #  ##   ##   # #   #     # #       
+              #  # # # #  #   #  #       #       
+              #  #  #  # #     # #  #### #####   
+              #  #     # ####### #     # #       
+              #  #     # #     # #     # #       
+             ### #     # #     #  #####  #######  */}
+
           <Col sm={{ span: 12, offset: 0 }} xs={{ span: 22, offset: 1 }}>
-            <AutozarListItemMainImage
+            <ProductListItemMainImage
               myClass="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
-              width="300"
-              imageMain={myItem.imagemain}
+              width="auto"
+              imageMain={myItem.mainData.imagemain.value || ""}
             />
           </Col>
-
           <Col sm={{ span: 12, offset: 0 }} xs={{ span: 22, offset: 1 }}>
             <Descriptions
               column={1}
@@ -85,7 +93,7 @@ const AutozarDetail2General = ({ myItem }) => {
               })}
             </Descriptions>
 
-            <Descriptions
+            {/* <Descriptions
               column={1}
               layout="horizontal"
               className="moto-auction-head-description"
@@ -133,7 +141,7 @@ const AutozarDetail2General = ({ myItem }) => {
               >
                 {myItem.mgldrivepos ? "Зөв" : "Буруу"}
               </Descriptions.Item>
-            </Descriptions>
+            </Descriptions> */}
           </Col>
         </Row>
 
@@ -147,102 +155,15 @@ const AutozarDetail2General = ({ myItem }) => {
            ### #     # #     #  #####  #######  #####   */}
         <Row>
           <Col span={24}>
-            <AutozarDetailImages
+            <ProductDetailImages
               myItem={myItem}
               // myImages={myImages}
-              imageotherFileList={myItem.imageotherFileList}
+              imageotherFileList={myItem.detailPhotos || []}
               // myImages={myItem.imageother}
             />
           </Col>
         </Row>
 
-        <Row className="gx-mt-4">
-          {/*
-            #####  ######  #######  #####  
-          #     # #     # #       #     # 
-          #       #     # #       #       
-           #####  ######  #####   #       
-                # #       #       #       
-          #     # #       #       #     # 
-           #####  #       #######  #####   */}
-
-          <Col
-            md={{ span: 12, offset: 0 }}
-            sm={{ span: 24, offset: 0 }}
-            xs={{ span: 22, offset: 1 }}
-            className="gx-mt-4 gx-mt-md-0"
-          >
-            <h4>Автомашин</h4>
-            <Descriptions
-              className="moto-car-spec1"
-              layout="horizontal"
-              bordered={true}
-              size="small"
-              column={1}
-            >
-              <Descriptions.Item label="Фирм">
-                {myItem.mglfirm}
-              </Descriptions.Item>
-              <Descriptions.Item label="Марк">
-                {myItem.mglmark}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хийц">
-                {myItem.mglbody}
-              </Descriptions.Item>
-              <Descriptions.Item label="Гадна өнгө">
-                {myItem.mglcoloroutside}
-              </Descriptions.Item>
-              <Descriptions.Item label="Улс">
-                {myItem.mglcountryorigin}
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
-          {/* 
-           ####### #######  #####  #     # 
-              #    #       #     # #     # 
-              #    #       #       #     # 
-              #    #####   #       ####### 
-              #    #       #       #     # 
-              #    #       #     # #     # 
-              #    #######  #####  #     #  */}
-
-          <Col
-            md={{ span: 12, offset: 0 }}
-            sm={{ span: 24, offset: 0 }}
-            xs={{ span: 22, offset: 1 }}
-            className="gx-mt-4 gx-mt-md-0"
-          >
-            <h4>Агрегат</h4>
-            <Descriptions
-              className="moto-car-spec1"
-              layout="horizontal"
-              bordered={true}
-              size="small"
-              column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
-            >
-              <Descriptions.Item label="Хөдөлгүүр">
-                {accounting.formatMoney(myItem.mglengine2disp, {
-                  symbol: "cc",
-                  format: "%v %s",
-                  precision: 0,
-                  thousand: "'",
-                })}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хроп">
-                {myItem.drive2transtypename}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хөтлөгч">
-                {myItem.drive2drivename}
-              </Descriptions.Item>
-              <Descriptions.Item label="Хаалга">
-                {myItem.mgldoor}
-              </Descriptions.Item>
-              <Descriptions.Item label="Суудал">
-                {myItem.mglseat}
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
-        </Row>
         {/* </Scrollbars> */}
       </div>
     );

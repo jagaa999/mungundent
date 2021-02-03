@@ -58,7 +58,8 @@ const AutozarGoonet = ({ myItem }) => {
         message="Удахгүй хийгдэнэ."
         description="Энэ автозарыг япон автомашины дэлгэрэнгүй техник үзүүлэлттэй холбож харуулах системийг хийж байгааг мэдэгдэхэд таатай байна."
         type="warning"
-        showIcon={true}
+        // showIcon={true}
+        closable
       />
       {/* // <Card type="inner" bordered={true} title="Мото каталоги" loading={false}>
     //   <Descriptions column={2} layout="horizontal" size="small">

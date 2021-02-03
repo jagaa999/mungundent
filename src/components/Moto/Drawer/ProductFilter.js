@@ -108,7 +108,7 @@ const ProductFilter = (props) => {
   //  #    #  #          #    #     # #    #  #    ##
   //  #     # #######    #     #####  #     # #     #
   return (
-    <div className="gx-p-0" style={{ height: "100%", width: "99%" }}>
+    <div className="gx-p-3" style={{ height: "100%", width: "99%" }}>
       <CustomScrollbars className="gx-p-1">
         <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
           Ангилал
@@ -120,7 +120,7 @@ const ProductFilter = (props) => {
           allowClear
           placeholder="Барааны ангилал"
           optionFilterProp="children"
-          onChange={(e) => changeCategory(e, "itemcategoryid")} //нэмэлт параметр дамжуулж байгаа юм.
+          onChange={(e) => changeCategory(e, "generalcategoryid")} //нэмэлт параметр дамжуулж байгаа юм.
           filterOption={(input, option) => {
             if (option.value) {
               return (
@@ -131,7 +131,7 @@ const ProductFilter = (props) => {
             }
           }}
           defaultValue={
-            filterContext.state.filterList?.itemcategoryid || undefined
+            filterContext.state.filterList?.generalcategoryid || undefined
           }
         >
           {productCategoryList.productCategoryList.map((item, index) => (

@@ -5,17 +5,19 @@ import "moment/locale/mn";
 import { defaultSrc } from "util/config";
 import { Image as ImageAnt } from "antd";
 
-const UniversalListItemMainImage = ({
-  width = "auto",
-  height = "auto",
+const NewsItemMainImage = ({
+  width,
   imageMain,
-  style,
   cloudName = "duznp4bqa",
   myClass = "",
 }) => {
+  console.log("imageMain", imageMain);
+
+  // action={`https://api.cloudinary.com/v1_1/duznp4bqa/image/upload?upload_preset=autozar&folder=autozar/${memberContext.state.memberUID}`}
+
   return (
     <>
-      {imageMain.indexOf("cloudinary") !== -1 ? (
+      {imageMain.indexOf("cloudapi") === -1 ? (
         <ImageCloudinary
           className={myClass}
           cloudName={cloudName}
@@ -35,29 +37,18 @@ const UniversalListItemMainImage = ({
           defaultImage="jhannw5jgo2mlvvkvke9"
           alt={imageMain}
           onError={defaultSrc}
-          style={style}
         />
       ) : (
-        <img
+        <ImageAnt
           src={imageMain}
-          width={`${width}px`}
-          height={height}
-          className={myClass}
+          width={Number(width)}
+          className="gx-mr-3"
           alt={imageMain}
-          style={style}
           fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
         />
-        // <ImageAnt
-        //   src={imageMain}
-        //   width={width}
-        //   className={myClass}
-        //   alt={imageMain}
-        //   style={style}
-        //   fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
-        // />
       )}
     </>
   );
 };
 
-export default UniversalListItemMainImage;
+export default NewsItemMainImage;

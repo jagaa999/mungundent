@@ -1,42 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { isEmpty } from "lodash";
-import { Button, Input, Checkbox, Divider, Select, Radio } from "antd";
-import { ClearOutlined } from "@ant-design/icons";
-import { Html5Entities } from "html-entities";
-
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import {
-  LoadProcessAuction,
-  loadDataviewAuction,
-} from "../../../util/axiosFunctionAuction";
-import { loadDataview } from "util/axiosFunction";
-import FilterContext from "../../../context/FilterContext";
+import React from "react";
 import KpiFilterSelect from "./KpiFilterSelect";
 
-const { Search } = Input;
-const { Option } = Select;
-
 const KpiFilter = ({ kpiFilterList }) => {
-  const filterContext = useContext(FilterContext);
+  // console.log("kpiFilterList", kpiFilterList);
 
-  const prepareURL2 = (checkedValues, parameterLabel) => {
-    // console.log("checkedValues", checkedValues);
-    // console.log("parameterLabel", parameterLabel);
-
-    filterContext.updateParams({
-      [parameterLabel]: checkedValues,
-    });
-  };
-
-  console.log("kpiFilterList", kpiFilterList);
-
-  //  ######  ####### ####### #     # ######  #     #
-  //  #     # #          #    #     # #     # ##    #
-  //  #     # #          #    #     # #     # # #   #
-  //  ######  #####      #    #     # ######  #  #  #
-  //  #   #   #          #    #     # #   #   #   # #
-  //  #    #  #          #    #     # #    #  #    ##
-  //  #     # #######    #     #####  #     # #     #
   return (
     <>
       {Object.values(kpiFilterList.kpiFilterList?.kpiindicator || {}).map(
@@ -58,12 +25,3 @@ const KpiFilter = ({ kpiFilterList }) => {
 };
 
 export default KpiFilter;
-
-//Todo ЭНД ДУУСАВ.
-//Todo Одоо Дугуйгаар шүүлтүүр хийнгүүт бараануудаа шүүж харуулна. Тоогийгийн өгснийг ашиглана.
-
-//! Доорх байдлаар залгах үед ажиллаж байна.
-// "criteria": [
-//   {
-//       "operator": "=",
-//       "operand": "ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833423851 and (Kpi.value = to_char(16102833423931)  ))) and ii.item_id in (select book_id from kpi where(kpi.indicator_id=16102833255371 and (Kpi.value = to_char(16102833255421)  )))"

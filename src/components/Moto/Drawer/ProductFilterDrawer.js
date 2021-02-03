@@ -29,11 +29,10 @@ const ProductFilterDrawer = () => {
             </span>
           </>
         }
-        headerStyle={{ padding: "16px 0px" }}
+        headerStyle={{ padding: "16px 5px" }}
         // width="350"
         className="moto-filter-drawer"
-        placement="right"
-        push={true}
+        placement="left"
         closable={true}
         visible={productContext.productList.isFilterDrawerOpen}
         onClose={(e) => productContext.toggleFilterDrawerOpen()}

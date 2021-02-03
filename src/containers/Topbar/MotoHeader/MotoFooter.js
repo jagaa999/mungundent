@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { isBrowser } from "react-device-detect";
 import { Layout, Menu, message, Popover, Dropdown, Badge } from "antd";
 import { LikeFilled } from "@ant-design/icons";
 
 import MemberItems from "components/Moto/Member/MemberItems/MemberItems";
 import MemberContext from "context/MemberContext";
 import { footerText } from "util/config";
+import { DeviceText } from "util/deviceFunction";
 const { Footer } = Layout;
 
 const staticMenu = (
@@ -54,9 +55,15 @@ const MotoFooter = () => {
         <div className="gx-container">
           <div className="gx-header-horizontal-main-flex">
             <div className="gx-d-block">
-              <div className="">{footerText}</div>
+              <div>
+                <DeviceText title={footerText} />
+              </div>
             </div>
-            <ul className="gx-ml-auto gx-header-notifications">
+            <ul
+              className={`gx-ml-auto gx-header-notifications ${
+                isBrowser ? "" : "gx-fs-sm"
+              }`}
+            >
               {/* <li className="gx-msg">
                 <Link to="/auction?yearend=2014">
                   <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
@@ -72,7 +79,11 @@ const MotoFooter = () => {
                   overlay={staticMenu}
                   trigger="click"
                 >
-                  <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
+                  <span
+                    className={`gx-pointer gx-status-pos gx-d-block ${
+                      isBrowser ? "gx-fs-md" : "gx-fs-sm"
+                    }`}
+                  >
                     Мэдээлэл
                   </span>
                 </Dropdown>
@@ -85,9 +96,13 @@ const MotoFooter = () => {
                   overlay={topMenu}
                   trigger="click"
                 >
-                  <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
+                  <span
+                    className={`gx-pointer gx-status-pos gx-d-block ${
+                      isBrowser ? "gx-fs-md" : "gx-fs-sm"
+                    }`}
+                  >
                     Шилдгүүд
-                    <span className="gx-status gx-status-rtl gx-small gx-success" />
+                    {/* <span className="gx-status gx-status-rtl gx-small gx-success" /> */}
                   </span>
                 </Dropdown>
               </li>
@@ -99,9 +114,13 @@ const MotoFooter = () => {
                   overlay={toolMenu}
                   trigger="click"
                 >
-                  <span className="gx-pointer gx-status-pos gx-d-block gx-fs-md">
+                  <span
+                    className={`gx-pointer gx-status-pos gx-d-block ${
+                      isBrowser ? "gx-fs-md" : "gx-fs-sm"
+                    }`}
+                  >
                     Багаж
-                    <span className="gx-status gx-status-rtl gx-small gx-orange" />
+                    {/* <span className="gx-status gx-status-rtl gx-small gx-orange" /> */}
                   </span>
                 </Dropdown>
               </li>

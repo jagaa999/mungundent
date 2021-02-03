@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import { prepareTitle } from "../../../util/config";
-// import ProductDetail from "../../../components/Moto/ProductDetail";
-// import ProductDetail2 from "../../../components/Moto/ProductDetail2";
+import ProductDetail from "../../../components/Moto/ProductDetail";
 import UniversalDetail from "../../../components/Moto/UniversalDetail";
 import { prepareProductDetailSettings } from "util/prepareSpecsProduct";
 import { UniversalDetailMeta } from "util/prepareMeta";
@@ -46,7 +45,7 @@ const ProductDetailPage = (props) => {
                 }
                 myDetailSettings={prepareProductDetailSettings}
               />
-              {/* <ProductDetail2 myDetailContext={productContext} /> */}
+              <ProductDetail myDetailContext={productContext} />
             </LogsStore>
           </CommentListStore>
         </>

@@ -17,7 +17,7 @@ const AutozarDetailImages = ({ myItem, imageotherFileList }) => {
     });
   };
 
-  console.log("imageotherFileList", imageotherFileList);
+  // console.log("imageotherFileList", imageotherFileList);
 
   return (
     <>
@@ -26,8 +26,8 @@ const AutozarDetailImages = ({ myItem, imageotherFileList }) => {
           <Col key={index} span={4}>
             <div
               className="moto-auction-thumb-image"
-              style={{ backgroundImage: `url(${item.url})` }}
-              onClick={(e) => onImgClick(e, item.url)}
+              style={{ backgroundImage: `url(${item.value})` }}
+              onClick={(e) => onImgClick(e, item.value)}
             ></div>
           </Col>
         ))}

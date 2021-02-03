@@ -1,11 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
+import { isBrowser } from "react-device-detect";
 import { Html5Entities } from "html-entities";
 import toBoolean from "util/booleanFunction";
 
@@ -20,6 +15,7 @@ import { FeaturedTag, ActiveTag } from "./Tag/SmallTags";
 import UniversalListItemMainImage from "./Universal/UniversalListItemMainImage";
 import UniversalListItemButton from "./Universal/UniversalListItemButton";
 import { GetSpecData } from "util/getSpecData";
+import { DeviceText } from "util/deviceFunction";
 
 const AuctionListItem3 = ({ myListContextListList }) => {
   const htmlEntities = new Html5Entities();
@@ -142,7 +138,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
   }
 
   columns.push({
-    title: "Үйлдэл",
+    title: <DeviceText title="Үйлдэл" />,
     dataIndex: "",
 
     render: (temp, record) => (
