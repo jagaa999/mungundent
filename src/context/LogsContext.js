@@ -79,7 +79,7 @@ export const LogsStore = (props) => {
         if (myData.status === "error") {
           getError(myData.text);
         } else {
-          console.log("ИРСЭН ТҮҮХИЙ LOGS:   ", response);
+          // console.log("ИРСЭН ТҮҮХИЙ LOGS:   ", response);
           const myPaging = response.data.response.result.paging;
           const myTempArray = response.data.response.result;
 

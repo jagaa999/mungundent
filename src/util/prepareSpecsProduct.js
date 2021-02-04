@@ -94,7 +94,7 @@ export const prepareProductDetailSettings = {
 //     #    ####### #     # #
 const tempMainData = (item, menu) => {
   return {
-    id: item.itemid,
+    id: item.itemid || item.id,
     menu: menu,
     link: { field: "link", value: `/${menu}/${item.itemid}` },
     title: {

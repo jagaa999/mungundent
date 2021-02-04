@@ -179,17 +179,21 @@ const App = ({ match }) => (
           "/productlist/:itemid",
         ]}
       >
-        <ProductStore>
-          <ProductDetail />
-        </ProductStore>
+        <CarCatalogListStore>
+          <ProductStore>
+            <ProductDetail />
+          </ProductStore>
+        </CarCatalogListStore>
       </Route>
 
       <Route
         path={["/product", "/products", "/productlist", "/store", "/storelist"]}
       >
-        <ProductStore>
-          <ProductList />
-        </ProductStore>
+        <CarCatalogListStore>
+          <ProductStore>
+            <ProductList />
+          </ProductStore>
+        </CarCatalogListStore>
       </Route>
       {/*
          #    #     # ####### ####### #######    #    ######  

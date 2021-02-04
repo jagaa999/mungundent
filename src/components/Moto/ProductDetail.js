@@ -6,6 +6,8 @@ import ProductDetailGeneral from "./Product/ProductDetailGeneral";
 import AutozarDetail2Zar from "./Autozar/AutozarDetail2Zar";
 import AutozarDetailSeller from "./Autozar/AutozarDetailSeller";
 import AutozarGoonet from "./Autozar/AutozarGoonet";
+import LogBox from "./LogBox";
+import CommentBox from "./CommentBox";
 import { isEmpty } from "lodash";
 
 const ProductDetail = ({ myDetailContext }) => {
@@ -35,6 +37,8 @@ const ProductDetail = ({ myDetailContext }) => {
           </Tabs.TabPane>
         </Tabs>
       </div>
+      <CommentBox recordId={myItem.mainData.id} tableName="MOTO_PRODUCT" />
+      <LogBox recordId={myItem.mainData.id} tableName="MOTO_PRODUCT" />
     </div>
   );
 };

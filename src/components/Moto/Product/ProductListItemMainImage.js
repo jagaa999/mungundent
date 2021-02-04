@@ -41,7 +41,7 @@ const NewsItemMainImage = ({
       ) : (
         <ImageAnt
           src={imageMain}
-          width={Number(width)}
+          width={Number(width || "")}
           className="gx-mr-3"
           alt={imageMain}
           fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"

@@ -15,12 +15,10 @@ import UniversalDetail from "../../../components/Moto/UniversalDetail";
 import { prepareNewsDetailSettings } from "util/prepareSpecsNews";
 import { UniversalDetailMeta } from "util/prepareMeta";
 
-const NewsDetailPage = (props) => {
+const NewsDetailPage = () => {
   const { newsId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
   const newsContext = useContext(NewsContext);
   const memberContext = useContext(MemberContext);
-
-  const newsItem = newsContext.newsDetail.mainDetail;
 
   useEffect(() => {
     if (newsId !== 0) {
@@ -30,31 +28,35 @@ const NewsDetailPage = (props) => {
 
   return (
     <>
-      {/* {memberContext.state.isLogin ? ( */}
-      <CommentListStore>
-        <LogsStore>
-          {newsContext.newsDetail.loading ? (
-            <LoadingDetail />
-          ) : (
-            <>
-              <UniversalDetailMeta
-                meta={prepareNewsDetailSettings.meta}
-                myItem={newsContext.newsDetail.mainDetail}
-              />
-              <UniversalDetail
-                myDetailContext={newsContext}
-                myDetailContextDetail={newsContext.newsDetail}
-                myDetailContextDetailDetail={newsContext.newsDetail.mainDetail}
-                myDetailSettings={prepareNewsDetailSettings}
-              />
-              <NewsDetail2 myDetailContext={newsContext} />
-            </>
-          )}
-        </LogsStore>
-      </CommentListStore>
-      {/* ) : (
-        <PleaseLogin />
-      )} */}
+      {newsContext.newsDetail.loading ? (
+        <LoadingDetail />
+      ) : (
+        <>
+          <CommentListStore>
+            <LogsStore>
+              {newsContext.newsDetail.loading ? (
+                <LoadingDetail />
+              ) : (
+                <>
+                  <UniversalDetailMeta
+                    meta={prepareNewsDetailSettings.meta}
+                    myItem={newsContext.newsDetail.mainDetail}
+                  />
+                  <UniversalDetail
+                    myDetailContext={newsContext}
+                    myDetailContextDetail={newsContext.newsDetail}
+                    myDetailContextDetailDetail={
+                      newsContext.newsDetail.mainDetail
+                    }
+                    myDetailSettings={prepareNewsDetailSettings}
+                  />
+                  <NewsDetail2 myDetailContext={newsContext} />
+                </>
+              )}
+            </LogsStore>
+          </CommentListStore>
+        </>
+      )}
     </>
   );
 };

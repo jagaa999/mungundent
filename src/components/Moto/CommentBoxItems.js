@@ -8,7 +8,7 @@ import NewsContext from "context/NewsContext";
 
 const { TextArea } = Input;
 
-const CommentBoxItems = (props) => {
+const CommentBoxItems = ({ commentBoxItems, recordId, tableName }) => {
   const [commentBody, setCommentBody] = useState("");
   const memberContext = useContext(MemberContext);
   const commentContext = useContext(CommentContext);
@@ -17,10 +17,10 @@ const CommentBoxItems = (props) => {
   return (
     <div>
       <Card title="Сэтгэгдэл">
-        {props.commentBoxItems.length > 0 ? (
+        {commentBoxItems.length > 0 ? (
           <>
             <div className="gx-wall-comment-box">
-              {props.commentBoxItems.map((commentItem, index) => (
+              {commentBoxItems.map((commentItem, index) => (
                 <CommentBoxDetail
                   key={index}
                   index={index}
@@ -56,10 +56,16 @@ const CommentBoxItems = (props) => {
               <Button
                 className="gx-mt-3"
                 onClick={() => {
+                  // commentContext.insertComment(
+                  //   newsDetailContext.newsDetail.mainDetail.newsid,
+                  //   commentBody,
+                  //   "ECM_NEWS",
+                  //   "0"
+                  // );
                   commentContext.insertComment(
-                    newsDetailContext.newsDetail.mainDetail.newsid,
+                    recordId,
                     commentBody,
-                    "ECM_NEWS",
+                    tableName,
                     "0"
                   );
                 }}

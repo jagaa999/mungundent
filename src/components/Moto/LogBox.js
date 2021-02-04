@@ -5,9 +5,9 @@ import { Row, Col, message, Alert } from "antd";
 import LogsContext from "context/LogsContext";
 import LogBoxItems from "./LogBoxItems";
 
-const LogBox = (props) => {
+const LogBox = ({ recordId, tableName }) => {
   useEffect(() => {
-    if (props) logContext.loadLogsRecordId(props.recordId, props.tableName);
+    logContext.loadLogsRecordId(recordId, tableName);
   }, []);
 
   const logContext = useContext(LogsContext);

@@ -270,6 +270,9 @@ export const ProductStore = (props) => {
         ...productDetail.loadParams,
         parameters: {
           id: itemid,
+          memberid: memberContext.state.memberCloudUserSysId || "1598934946963",
+          usersystemid:
+            memberContext.state.memberCloudUserSysId || "1598934946963",
         },
       },
     };

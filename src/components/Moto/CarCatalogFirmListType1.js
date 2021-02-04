@@ -22,15 +22,6 @@ const CarCatalogType1 = () => {
   const [isAll, setIsAll] = useState(false);
   const [whatCountry, setWhatCountry] = useState([]);
 
-  useEffect(() => {
-    carCatalogListContext.loadCarFirmList();
-  }, []);
-
-  // console.log(
-  //   "carCatalogListContext.carFirmList",
-  //   carCatalogListContext.carFirmList
-  // );
-
   const uniqueTags = [];
   carCatalogListContext.carFirmList.carFirmList.map((item) => {
     if (uniqueTags.indexOf(item.firmcountrymon) === -1) {

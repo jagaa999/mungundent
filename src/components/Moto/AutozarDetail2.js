@@ -2,6 +2,8 @@ import React from "react";
 
 import { Card, Tabs } from "antd";
 
+import LogBox from "./LogBox";
+import CommentBox from "./CommentBox";
 import AutozarDetail2General from "./Autozar/AutozarDetail2General";
 import AutozarDetail2Zar from "./Autozar/AutozarDetail2Zar";
 import AutozarDetailSeller from "./Autozar/AutozarDetailSeller";
@@ -44,6 +46,8 @@ const AutozarDetail2 = ({ myDetailContext }) => {
           </Tabs.TabPane>
         </Tabs>
       </div>
+      <CommentBox recordId={myItem.mainData.id} tableName="MOTO_AUTOZAR" />
+      <LogBox recordId={myItem.mainData.id} tableName="MOTO_AUTOZAR" />
     </div>
   );
 };

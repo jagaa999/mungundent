@@ -200,23 +200,37 @@ export const AutozarStore = (props) => {
   const loadAutozarDetail = (id = 0) => {
     setAutozarDetail({ ...autozarDetail, loading: true });
     const myParamsAutozarDetail = {
+      // request: {
+      //   // username: memberContext.state.memberUID,
+      //   username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+      //   password: "89",
+      //   // username: "motoadmin",
+      //   // password: "moto123",
+      //   command: "PL_MDVIEW_004",
+      //   parameters: {
+      //     ...autozarDetail.loadParams,
+      //     criteria: {
+      //       id: {
+      //         0: {
+      //           operator: "=",
+      //           operand: id,
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
+
       request: {
-        // username: memberContext.state.memberUID,
-        username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        username:
+          memberContext.state.memberUID || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",
-        // username: "motoadmin",
-        // password: "moto123",
-        command: "PL_MDVIEW_004",
+        command: "motoAutozar_List_004",
         parameters: {
-          ...autozarDetail.loadParams,
-          criteria: {
-            id: {
-              0: {
-                operator: "=",
-                operand: id,
-              },
-            },
-          },
+          id: id || "",
+          memberid: memberContext.state.memberCloudUserSysId || "1598934946963",
+          usersystemid:
+            memberContext.state.memberCloudUserSysId || "1598934946963",
         },
       },
     };
@@ -224,12 +238,13 @@ export const AutozarStore = (props) => {
     // console.log("myParamsAutozarDetail", myParamsAutozarDetail);
     setAutozarDetail(initialAutozarDetail);
 
-    axios
-      .post("", myParamsAutozarDetail)
-      .then((response) => {
-        // console.log("AUTOZAR DETAIL RESPONSE------------> ", response);
-        const myArray = response.data.response.result[0] || [];
-        console.log("AUTOZAR DETAIL myArray------------> ", myArray);
+    // axios
+    //   .post("", myParamsAutozarDetail)
+    myAxiosZ(myParamsAutozarDetail)
+      .then((myData) => {
+        // console.log("AUTOZAR DETAIL RESPONSE------------> ", myData);
+        const myArray = myData.response.result || [];
+        // console.log("AUTOZAR DETAIL myArray------------> ", myArray);
 
         const myTempItem = prepareAutozarDetail(
           myArray,

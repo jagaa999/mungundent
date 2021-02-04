@@ -9,6 +9,7 @@ import axiosCloud from "util/axiosCloudConfig";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import useDidMountEffect from "util/useDidMountEffect";
+import { isEmpty } from "lodash";
 
 const CarCatalogListContext = React.createContext();
 
@@ -114,14 +115,26 @@ export const CarCatalogListStore = (props) => {
   );
   const [carDetail, setCarDetail] = useState(initialStateCarDetail);
 
-  // useDidMountEffect(() => {
-  //   loadCarCatalogList();
-  // }, [
-  //   filterContext.state.filterList,
-  //   filterContext.state.paging,
-  //   filterContext.state.sorting,
-  //   filterContext.state.cardtype,
-  // ]);
+  useEffect(() => {
+    // if (filterContext.state.menu !== "autozar") return;
+    loadCarFirmList();
+
+    if (!isEmpty(filterContext.state.filterList?.carcatalogfirmid)) {
+      loadCarMarkList(filterContext.state.filterList?.carcatalogfirmid);
+    }
+
+    if (!isEmpty(filterContext.state.filterList?.carcatalogmarkid)) {
+      loadCarIndexList(filterContext.state.filterList?.carcatalogmarkid);
+    }
+
+    if (!isEmpty(filterContext.state.filterList?.carcatalogindexid)) {
+      loadCarEditionList(filterContext.state.filterList?.carcatalogindexid);
+    }
+
+    if (!isEmpty(filterContext.state.filterList?.carcatalogeditionid)) {
+      loadCarDetail(filterContext.state.filterList?.carcatalogeditionid);
+    }
+  }, [filterContext.state, memberContext.state.isLogin]);
 
   //  ####### ### ######  #     #
   //  #        #  #     # ##   ##
@@ -148,7 +161,7 @@ export const CarCatalogListStore = (props) => {
     axios
       .post("", myParamsCarFirmList)
       .then((response) => {
-        console.log("response---------", response);
+        // console.log("response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -270,8 +283,8 @@ export const CarCatalogListStore = (props) => {
     axios
       .post("", myParamsCarIndexList)
       .then((response) => {
-        console.log("response---------", response);
         const myData = response.data.response;
+        console.log("Response Index---------", myData);
         if (myData.status === "error") {
           // getError(myData.text);
           message.error(myData.text);
@@ -332,6 +345,7 @@ export const CarCatalogListStore = (props) => {
       .post("", myParamsCarEditionList)
       .then((response) => {
         const myData = response.data.response;
+        console.log("Response Edition---------", myData);
         if (myData.status === "error") {
           // getError(myData.text);
           message.error(myData.text);
@@ -389,7 +403,7 @@ export const CarCatalogListStore = (props) => {
         // console.log(response);
         const myArray = response.data.response.result;
 
-        // console.log(myArray);
+        console.log("carCatalogDetail-------", myArray);
 
         setCarDetail({
           ...carDetail,

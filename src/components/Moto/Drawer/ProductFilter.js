@@ -22,7 +22,9 @@ import { loadDataview } from "util/axiosFunction";
 
 import ProductContext from "../../../context/ProductContext";
 import FilterContext from "../../../context/FilterContext";
+import CarCatalogListContext from "../../../context/CarCatalogListContext";
 import KpiFilter from "./KpiFilter";
+import CarCatalogFilter from "./CarCatalogFilter";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -31,6 +33,7 @@ const ProductFilter = (props) => {
   const htmlEntities = new Html5Entities();
   const productContext = useContext(ProductContext);
   const filterContext = useContext(FilterContext);
+  const carCatalogListContext = useContext(CarCatalogListContext);
 
   const { kpiFilterList } = productContext;
 
@@ -141,6 +144,11 @@ const ProductFilter = (props) => {
             </Option>
           ))}
         </Select>
+
+        <h6 className="gx-mt-5 gx-mb-3 gx-text-uppercase gx-text-orange">
+          Таны машин
+        </h6>
+        <CarCatalogFilter />
 
         {!isEmpty(kpiFilterList.kpiFilterList) && (
           <>

@@ -71,7 +71,7 @@ export const CommentListStore = (props) => {
         if (myData.status === "error") {
           getError(myData.text);
         } else {
-          console.log("ИРСЭН ДАТА444:   ", response);
+          // console.log("ИРСЭН ДАТА444:   ", response);
           const myPaging = response.data.response.result.paging;
           const myArray = response.data.response.result;
 
@@ -96,6 +96,8 @@ export const CommentListStore = (props) => {
       return null;
     }
 
+    // console.log("DDDDDDDDDD", recordId, commentBody, tableName, parentId);
+
     if (recordId === undefined || commentBody === "") return null;
 
     const myParamsInsertComment = {
@@ -106,7 +108,7 @@ export const CommentListStore = (props) => {
         parameters: {
           userSystemId: memberContext.state.memberCloudUserSysId,
           actionType: "1",
-          recordId: recordId || "",
+          recordId: recordId * 1 || "",
           description: commentBody,
           tableName: tableName || "ECM_NEWS",
           parentId: parentId,

@@ -5,9 +5,9 @@ import { Row, Col, message, Alert } from "antd";
 import CommentContext from "../../context/CommentContext";
 import CommentBoxItems from "./CommentBoxItems";
 
-const CommentBox = (props) => {
+const CommentBox = ({ recordId, tableName }) => {
   useEffect(() => {
-    if (props) commentContext.loadCommentList(props.recordId, props.tableName);
+    commentContext.loadCommentList(recordId, tableName);
   }, []);
 
   const commentContext = useContext(CommentContext);
@@ -16,6 +16,8 @@ const CommentBox = (props) => {
     <div className="gx-main-content news-detail">
       <CommentBoxItems
         commentBoxItems={commentContext.commentList.commentList || {}}
+        recordId={recordId}
+        tableName={tableName}
       />
       {commentContext.commentList.error !== null ? (
         <Alert

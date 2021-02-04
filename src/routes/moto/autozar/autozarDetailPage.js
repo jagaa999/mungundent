@@ -15,17 +15,14 @@ import AutozarContext from "../../../context/AutozarContext";
 import MemberContext from "../../../context/MemberContext";
 import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
 
-const AutozarDetailPage = (props) => {
+const AutozarDetailPage = () => {
   const { id } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
   const autozarContext = useContext(AutozarContext);
   const memberContext = useContext(MemberContext);
 
   useEffect(() => {
     if (id !== 0) {
-      autozarContext.loadAutozarDetail(
-        id,
-        memberContext.state.memberCloudUserSysId
-      );
+      autozarContext.loadAutozarDetail(id);
     }
   }, [id, memberContext.state.memberCloudUserSysId]);
 
