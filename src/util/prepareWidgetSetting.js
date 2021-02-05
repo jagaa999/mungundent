@@ -53,21 +53,8 @@ export const prepareWidgetSetting = (myRawData) => {
   return myParents;
 };
 
-export const prepareWidgetData = (myData, mySetting) => {
+export const prepareWidgetData = (myData) => {
   // console.log("myData", myData);
-  const myRawData = Object.keys(myData).slice(1);
-  // console.log("myRawData", myRawData);
 
-  myRawData.map((field) => {
-    const myWidget = myData[field];
-    // console.log("myWidget", myWidget);
-
-    const ddd = Object.keys(myWidget);
-    ddd.map((widdd) => {
-      const widgetField = myWidget[widdd];
-      // console.log("widgetField", widgetField);
-    });
-  });
-
-  return myRawData;
+  return myData;
 };

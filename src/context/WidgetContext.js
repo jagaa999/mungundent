@@ -10,7 +10,7 @@ import FilterContext from "context/FilterContext";
 import {
   prepareWidgetSetting,
   prepareWidgetData,
-} from "util/prepareWidgetSetting";
+} from "../util/prepareWidgetSetting";
 import { runRenderEngine } from "util/runRenderEngine";
 
 const WidgetContext = React.createContext();
@@ -103,13 +103,10 @@ export const WidgetStore = (props) => {
             );
 
             // const myResultData = prepareWidgetData(myResult, myResultSetting);
-            const myResultData = myResult;
+            const myResultData = prepareWidgetData(myResult);
 
-            // console.log(
-            //   " ИРСЭН mySetting ------------>",
-            //   response.data.response.result
-            // );
-            // console.log(" ЯНЗЛАВ", myResultSetting);
+            console.log(" ЯНЗАЛСАН SETTING", myResultSetting);
+            console.log(" ЯНЗАЛСАН ДАТА", myResultData);
 
             setWidgetData({
               ...widgetData,

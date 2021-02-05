@@ -97,9 +97,6 @@ export const TopMenu = (positionSetting, myWidgetItemData) => {
     ],
   };
 
-  console.log("positionSetting", positionSetting);
-  console.log("myWidgetItemData", myWidgetItemData);
-
   Object.values(myWidgetItemData).map((itemWidgetData, index) => {
     // console.log("ddddddddd", mainChildrenComponent);
     const myReadyChildrenItem = changePositionWithValue(

@@ -15,7 +15,7 @@ export const Banner_001 = (positionSetting, myWidgetItemData) => {
         component: "div",
         style: {
           background:
-            "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2) ), url(POSITION_3)",
+            "linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2) ), url(https://dev.veritech.mn/POSITION_3)",
           backgroundPosition: "center center",
           backgroundSize: "cover",
           height: "450px",

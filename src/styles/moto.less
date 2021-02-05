@@ -1238,3 +1238,39 @@ tr.ant-table-row {
     }
   }
 }
+
+.landing-boxed {
+  @media screen and (max-width: @screen-xs-max) {
+    // padding: (@layout-main-content-padding-res + 5px) @layout-main-content-padding-res 0;
+    // * !!jagaa өөрчлөв. Гар утсанд хоёр талаас зайгүй бол зүгээр.
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  width: 94vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: @screen-md-min) {
+    width: (@screen-md-min - 48); //720
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: (@screen-lg-min - 72); //920
+  }
+
+  @media screen and (min-width: @screen-xl-min) {
+    width: (@screen-xl-min - 100); //1100
+  }
+
+  @media screen and (min-width: (@screen-xl-min + 167px)) {
+    width: @screen-xl-min; //1200
+  }
+
+  @media screen and (min-width: @screen-xxl-min) {
+    width: (@screen-xxl-min - 200); //1400
+  }
+}

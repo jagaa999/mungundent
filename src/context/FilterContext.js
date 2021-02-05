@@ -146,7 +146,11 @@ export const FilterStore = (props) => {
   }, [state]);
 
   useDidMountEffect(() => {
-    history.push({
+    // history.push({
+    //   pathname: pathname,
+    //   search: searchQuery,
+    // });
+    history.replace({
       pathname: pathname,
       search: searchQuery,
     });
