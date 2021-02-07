@@ -15,7 +15,7 @@ const HomeAuctionItems2 = (props) => {
   return (
     <>
       <WidgetHeader
-        styleName="gx-flex-row gx-mt-5"
+        className="gx-flex-row gx-mt-5"
         title="Гишүүдийн үзсэн Аукшин машинууд"
         extra={
           <Link to={"/auction"}>

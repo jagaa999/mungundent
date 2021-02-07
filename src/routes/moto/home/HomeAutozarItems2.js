@@ -13,7 +13,7 @@ const HomeAutozarItems2 = (props) => {
   return (
     <>
       <WidgetHeader
-        styleName="gx-flex-row gx-mt-5"
+        className="gx-flex-row gx-mt-5"
         title="Сүүлд нэмэгдсэн автозар"
         extra={
           <Link to={"/autozar"}>

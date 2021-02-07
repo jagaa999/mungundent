@@ -23,8 +23,8 @@ export const changePositionWithValue = (
 
   myMappingArray.map((item, index) => {
     // console.log("item key", item);
-    const myKey = Object.keys(item)[0].toString();
-    const myValue = item[Object.keys(item)[0]].toString();
+    const myKey = Object.keys(item)[0]?.toString();
+    const myValue = item[Object.keys(item)[0]]?.toString();
     // console.log("item key", myKey);
     // console.log("item value", myValue);
 

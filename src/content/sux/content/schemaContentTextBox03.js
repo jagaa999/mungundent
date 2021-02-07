@@ -29,7 +29,7 @@ export const schemaContentTextBox03 = {
             {
               component: "div",
               className: "gx-m-0 gx-p-2 gx-pb-4",
-              styleName: { height: "100%" },
+              style: { height: "100%" },
               children: [
                 {
                   component: "div",
@@ -68,7 +68,7 @@ export const schemaContentTextBox03 = {
             {
               component: "div",
               className: "gx-m-0 gx-p-2 gx-pb-4",
-              styleName: { height: "100%" },
+              style: { height: "100%" },
               children: [
                 {
                   component: "div",
@@ -107,7 +107,7 @@ export const schemaContentTextBox03 = {
             {
               component: "div",
               className: "gx-m-0 gx-p-2 gx-pb-4",
-              styleName: { height: "100%" },
+              style: { height: "100%" },
               children: [
                 {
                   component: "div",

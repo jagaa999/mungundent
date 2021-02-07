@@ -1,7 +1,6 @@
 export const schemaContentLogos01 = {
   component: "div",
   className: "gx-text-center gx-my-5 gx-py-5",
-  // style: { backgroundColor: "#f1f1f1" },
   children: [
     {
       component: "Image",

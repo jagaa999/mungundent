@@ -3,7 +3,7 @@ import { changePositionWithValue } from "../util/changePositionWithValueWidget";
 export const Textbox_01 = (positionSetting, myWidgetItemData) => {
   let mainComponent = {
     component: "Row",
-    widgetCode: "textbox-01",
+    // widgetCode: "textbox-01",
     className: "landing-boxed",
     children: [
       {

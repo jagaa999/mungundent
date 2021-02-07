@@ -3,7 +3,7 @@ import { changePositionWithValue } from "util/changePositionWithValueWidget";
 export const TopMenu = (positionSetting, myWidgetItemData) => {
   let mainComponent = {
     component: "Header",
-    widgetCode: "TopMenu",
+    // widgetCode: "TopMenu",
     style: {
       height: "48px",
       flexWrap: "nowrap",

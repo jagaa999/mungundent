@@ -3,7 +3,7 @@ import { changePositionWithValue } from "../util/changePositionWithValueWidget";
 export const CentralBanner_001 = (positionSetting, myWidgetItemData) => {
   let mainComponent = {
     component: "div",
-    className: "gx-my-5 gx-py-5 boxed",
+    className: "gx-my-5 gx-py-5 landing-boxed",
     children: [
       {
         component: "div",

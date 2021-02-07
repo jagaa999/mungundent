@@ -10,7 +10,7 @@ const HomeSponsor = (props) => {
   // const [newsSponsorItems, setNewsSponsorItems] = useState([]);
 
   return (
-    <CardBox styleName="gx-card-full moto-item-card" heading={""}>
+    <CardBox className="gx-card-full moto-item-card" heading={""}>
       <span
         className="gx-text-success"
         style={{

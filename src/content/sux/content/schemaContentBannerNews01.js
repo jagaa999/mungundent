@@ -1,6 +1,5 @@
 export const schemaContentBannerNews01 = {
   component: "Row",
-  // style: { minHeight: "450px" },
   className: "gx-d-flex",
   children: [
     {
