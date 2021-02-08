@@ -2,11 +2,13 @@ import React, { useEffect, useContext } from "react";
 import { Col, Row, Button, Switch, Select, PageHeader, Card } from "antd";
 import CarCatalogListContext from "context/CarCatalogListContext";
 import FilterContext from "context/FilterContext";
+import { isEmpty } from "lodash";
 const { Option } = Select;
 
 const CarCatalogFilter = () => {
   const carCatalogListContext = useContext(CarCatalogListContext);
   const filterContext = useContext(FilterContext);
+  const carDetail = carCatalogListContext.carDetail.carDetail;
 
   // useEffect(() => {
   //   carCatalogListContext.loadCarFirmList();
@@ -201,6 +203,34 @@ const CarCatalogFilter = () => {
           )
         )}
       </Select>
+
+      {!isEmpty(carDetail) && (
+        <>
+          {/* tire2aluminumwheel: "16 инч Стандарт"
+          tire2frontconstruction: "R"
+          tire2frontdiameter: "16"
+          tire2frontfull: "205/65R16 95H"
+          tire2frontloadindex: "95"
+          tire2frontratio: "65"
+          tire2frontspecialcomment: ""
+          tire2frontspeedrating: "H"
+          tire2frontwidth: "205"
+          tire2rearconstruction: "R"
+          tire2reardiameter: "16"
+          tire2rearfull: "205/65R16 95H"
+          tire2rearloadindex: "95"
+          tire2rearratio: "65"
+          tire2rearspecialcomment: ""
+          tire2rearspeedrating: "H"
+          tire2rearwidth: "205" */}
+          <div>
+            {`Урд дугуй: ${carDetail.tire2frontwidth}/${carDetail.tire2frontratio} ${carDetail.tire2frontconstruction}${carDetail.tire2frontdiameter}`}
+          </div>
+          <div>
+            {`Хойд дугуй: ${carDetail.tire2rearwidth}/${carDetail.tire2rearratio} ${carDetail.tire2rearconstruction}${carDetail.tire2reardiameter}`}
+          </div>
+        </>
+      )}
     </>
   );
 };
