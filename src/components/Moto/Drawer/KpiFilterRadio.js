@@ -35,6 +35,11 @@ const KpiFilterRadio = ({ kpiFilterItem }) => {
     });
   };
 
+  const radioStyle = {
+    display: "block",
+    height: "30px",
+    lineHeight: "30px",
+  };
   // console.log("kpiFilterItem", kpiFilterItem);
   // code: "MotoTireType"
   // id: "16102833255371"
@@ -52,6 +57,28 @@ const KpiFilterRadio = ({ kpiFilterItem }) => {
       )}
 
       <Radio.Group
+        onChange={(e) => prepareURL2(e, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
+        defaultValue={
+          atob(
+            filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
+          ) || undefined
+        }
+      >
+        {Object.values(kpiFilterItem.kpiindicatorvalue).map((item, index) => (
+          <Radio
+            key={index}
+            style={radioStyle}
+            value={JSON.stringify({
+              indicator_id: item.indicatorid,
+              value: item.id,
+            })}
+          >
+            {item.name}
+          </Radio>
+        ))}
+      </Radio.Group>
+
+      {/* <Radio.Group
         buttonStyle="solid"
         size="small"
         onChange={(e) => prepareURL2(e, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
@@ -72,43 +99,7 @@ const KpiFilterRadio = ({ kpiFilterItem }) => {
             {item.name}
           </Radio.Button>
         ))}
-      </Radio.Group>
-
-      {/* <Select
-        className="moto-select-firm gx-w-100 gx-my-2"
-        // loading={productCategoryList.loading}
-        showSearch
-        allowClear
-        placeholder={kpiFilterItem.name}
-        optionFilterProp="children"
-        onChange={(e) => prepareURL2(e, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
-        filterOption={(input, option) => {
-          if (option.value) {
-            return (
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            );
-          } else {
-            return false;
-          }
-        }}
-        defaultValue={
-          atob(
-            filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
-          ) || undefined
-        }
-      >
-        {Object.values(kpiFilterItem.kpiindicatorvalue).map((item, index) => (
-          <Option
-            key={index}
-            value={JSON.stringify({
-              indicator_id: item.indicatorid,
-              value: item.id,
-            })}
-          >
-            {item.name}
-          </Option>
-        ))}
-      </Select> */}
+      </Radio.Group> */}
     </>
   );
 };

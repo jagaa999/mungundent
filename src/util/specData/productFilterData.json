@@ -1,8 +1,23 @@
 {
   "MotoTireBrand": {
-    "type": "radio",
+    "type": "radiobutton2",
     "name": "Дугуйн брэнд",
     "tooltip": "Монголд борлуулагдаж буй брэндүүд",
-    "icon": ""
+    "icon": "",
+    "order": "1"
+  },
+  "MotoTireType": {
+    "type": "radiobutton1",
+    "name": "Дугуйн төрөл",
+    "tooltip": "Дугуйны төрлүүд",
+    "icon": "",
+    "order": "2"
+  },
+  "MotoTireSizeDiameter": {
+    "type": "checkbox",
+    "name": "Дугуйн диаметр",
+    "tooltip": "Обудны инч хэмжээ",
+    "icon": "",
+    "order": "3"
   }
 }
