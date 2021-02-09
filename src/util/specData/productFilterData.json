@@ -19,5 +19,21 @@
     "tooltip": "Обудны инч хэмжээ",
     "icon": "",
     "order": "3"
+  },
+  
+  "MotoTireSizeWidth": {
+    "type": "checkboxlimit",
+    "name": "Дугуйн өргөн",
+    "tooltip": "Дугуйн өргөний хэмжээ",
+    "icon": "",
+    "order": "4"
+  },
+
+  "MotoTireSizeAspect": {
+    "type": "checkboxscroll",
+    "name": "Дугуйн харьцаа",
+    "tooltip": "Дугуйн харьцааны хэмжээ",
+    "icon": "",
+    "order": "5"
   }
 }

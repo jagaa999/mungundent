@@ -4,6 +4,8 @@ import KpiFilterRadio from "./KpiFilterRadio";
 import KpiFilterRadioButton1 from "./KpiFilterRadioButton1";
 import KpiFilterRadioButton2 from "./KpiFilterRadioButton2";
 import KpiFilterCheckbox from "./KpiFilterCheckbox";
+import KpiFilterCheckboxLimit from "./KpiFilterCheckboxLimit";
+import KpiFilterCheckboxScroll from "./KpiFilterCheckboxScroll";
 import myFilterData from "util/specData/productFilterData.json";
 
 const KpiFilter = ({ kpiFilterList }) => {
@@ -43,6 +45,14 @@ const KpiFilter = ({ kpiFilterList }) => {
 
         if ((myFilterData[item.code]?.type || "") === "checkbox") {
           return <KpiFilterCheckbox key={index} kpiFilterItem={item} />;
+        }
+
+        if ((myFilterData[item.code]?.type || "") === "checkboxlimit") {
+          return <KpiFilterCheckboxLimit key={index} kpiFilterItem={item} />;
+        }
+
+        if ((myFilterData[item.code]?.type || "") === "checkboxscroll") {
+          return <KpiFilterCheckboxScroll key={index} kpiFilterItem={item} />;
         }
 
         return <KpiFilterSelect key={index} kpiFilterItem={item} />;

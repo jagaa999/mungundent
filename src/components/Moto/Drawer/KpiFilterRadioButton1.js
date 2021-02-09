@@ -73,7 +73,7 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
           });
 
           return (
-            <Col xl={6} lg={8} md={8} sm={8} xs={12}>
+            <Col xl={6} lg={8} md={8} sm={8} xs={12} key={index}>
               <Card
                 className={`gx-fs-sm gx-m-0 gx-card-full gx-p-2 gx-text-center gx-text-primary ${
                   myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""

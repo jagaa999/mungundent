@@ -3,8 +3,8 @@ import { Scrollbars } from "react-custom-scrollbars";
 
 const CustomScrollbars = (props) => (
   <Scrollbars
-    {...props}
     autoHide
+    {...props}
     renderTrackHorizontal={(props) => (
       <div
         {...props}

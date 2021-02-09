@@ -30,7 +30,7 @@ import FilterContext from "../../../context/FilterContext";
 const { Search } = Input;
 const { Option } = Select;
 
-const KpiFilterCheckbox = ({ kpiFilterItem }) => {
+const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
 
   const prepareURL2 = (arriveValue, parameterLabel) => {
@@ -51,11 +51,49 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
     atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
     undefined;
 
+  // const [myValues, setMyValues] = useState({
+  //   values: myIndicators,
+  // });
+
+  const initLimitTool = {
+    count: 6,
+    showAll: false,
+    text: "Бүгд",
+  };
+
+  const [limitTool, setLimitTool] = useState(initLimitTool);
+
+  const toggleLimitTool = () => {
+    if (limitTool.showAll) {
+      setLimitTool(initLimitTool);
+    } else {
+      setLimitTool({
+        count: myIndicators.length,
+        showAll: true,
+        text: "Нуух",
+      });
+    }
+  };
+
+  const LimitText = () => (
+    <span
+      className="gx-fs-sm gx-text-grey gx-show-link"
+      onClick={() => toggleLimitTool()}
+    >
+      {limitTool.text}
+    </span>
+  );
+
   return (
     <>
-      {isBrowser && (
-        <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
-      )}
+      {/* {isBrowser && ( */}
+      {/* )} */}
+      <div className="gx-d-flex gx-mt-3">
+        <h6 className="gx-text-orange ">{kpiFilterItem.name}</h6>
+        <div className="gx-ml-auto">
+          <LimitText />
+        </div>
+      </div>
 
       <Checkbox.Group
         style={{ width: "100%" }}
@@ -68,6 +106,8 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
       >
         <Row>
           {myIndicators.map((item, index) => {
+            if (index + 1 > limitTool.count) return null;
+
             const myValue = JSON.stringify({
               indicator_id: item.indicatorid,
               value: item.id,
@@ -81,10 +121,15 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
               </Col>
             );
           })}
+          <Col span={24}>
+            <div className="gx-mt-1">
+              <LimitText />
+            </div>
+          </Col>
         </Row>
       </Checkbox.Group>
     </>
   );
 };
 
-export default KpiFilterCheckbox;
+export default KpiFilterCheckboxLimit;

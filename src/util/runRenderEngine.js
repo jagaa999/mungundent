@@ -11,6 +11,7 @@ import { Feedbacks_001 } from "../content/Feedbacks_001";
 import { Statistics_001 } from "../content/Statistics_001";
 import { Members_001 } from "../content/Members_001";
 import { NewsBanner_001 } from "../content/NewsBanner_001";
+import { News_001 } from "../content/News_001";
 
 export const runRenderEngine = (myWidgetSetting, myWidgetData) => {
   // console.log("myWidgetSetting", myWidgetSetting);
@@ -63,13 +64,16 @@ export const runRenderEngine = (myWidgetSetting, myWidgetData) => {
           itemJson = Members_001(positionSetting, myWidgetItemData);
           break;
         case "NewsBanner_001":
+          itemJson = NewsBanner_001(positionSetting, myWidgetItemData);
+          break;
+        case "News_001":
           console.log(
-            "NewsBanner_001",
+            "News_001",
             positionSetting,
             "DATA-------",
             myWidgetItemData
           );
-          itemJson = NewsBanner_001(positionSetting, myWidgetItemData);
+          itemJson = News_001(positionSetting, myWidgetItemData);
           break;
 
         default:
