@@ -12,7 +12,7 @@ import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
 import { NewsStore } from "../context/NewsContext";
-import { CarCatalogListStore } from "../context/CarCatalogListContext";
+import { CarCatalogListStore } from "../context/CarCatalogContext";
 import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
 import { CompanyStore } from "../context/CompanyContext";
@@ -130,6 +130,11 @@ const PrivacyPolicyPage = asyncComponent(() => {
 const HomeIndex = asyncComponent(() => {
   return import("./moto/home/home");
 });
+
+const Page404 = asyncComponent(() => {
+  return import("./moto/error/Page404");
+});
+
 const App = ({ match }) => (
   <div className="gx-main-content-wrapper">
     <Switch>
@@ -170,7 +175,6 @@ const App = ({ match }) => (
       #       #    #  #     # #     # #     # #     #    #    
       #       #     # ####### ######   #####   #####     #    
       */}
-
       <Route
         path={[
           "/product/:itemid",
@@ -185,7 +189,6 @@ const App = ({ match }) => (
           </ProductStore>
         </CarCatalogListStore>
       </Route>
-
       <Route
         path={["/product", "/products", "/productlist", "/store", "/storelist"]}
       >
@@ -347,7 +350,6 @@ const App = ({ match }) => (
           <CompanyList />
         </CompanyStore>
       </Route>
-
       {/*
        #####     #    ######   #####     #    #######
       #     #   # #   #     # #     #   # #      #   
@@ -469,6 +471,18 @@ const App = ({ match }) => (
         <NewsStore>
           <HomeIndex />
         </NewsStore>
+      </Route>
+
+      {/* 
+      #         ###   #       
+      #    #   #   #  #    #  
+      #    #  #     # #    #  
+      #    #  #     # #    #  
+      ####### #     # ####### 
+            #   #   #       #  
+            #    ###        #  */}
+      <Route>
+        <Page404 />
       </Route>
     </Switch>
   </div>

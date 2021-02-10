@@ -17,7 +17,7 @@ import moment from "moment";
 import toBoolean from "util/booleanFunction";
 import CarCatalogIndexListView1 from "./MotoCar/CarCatalogIndexListView1";
 import CarCatalogIndexListView2 from "./MotoCar/CarCatalogIndexListView2";
-import CarCatalogListContext from "context/CarCatalogListContext";
+import CarCatalogContext from "context/CarCatalogContext";
 import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
@@ -25,23 +25,20 @@ const { RangePicker } = DatePicker;
 const dateFormat = "YYYY-MM-DD";
 
 const CarCatalogIndexType1 = ({ markId }) => {
-  const carCatalogListContext = useContext(CarCatalogListContext);
+  const carCatalogContext = useContext(CarCatalogContext);
   const [whatDate, setWhatDate] = useState(["1900-01-01", "2090-12-31"]);
 
   useEffect(() => {
-    carCatalogListContext.loadCarIndexList(markId);
+    carCatalogContext.loadCarIndexList(markId);
   }, []);
 
-  console.log(
-    "carCatalogListContext.carIndexList",
-    carCatalogListContext.carIndexList
-  );
+  console.log("carCatalogContext.carIndexList", carCatalogContext.carIndexList);
 
   return (
     <div className="moto-list">
       <div className="gx-mb-2"></div>
 
-      {!carCatalogListContext.carIndexList.loading ? (
+      {!carCatalogContext.carIndexList.loading ? (
         <div className="moto-carcatalog-timeline">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
@@ -101,13 +98,13 @@ const CarCatalogIndexType1 = ({ markId }) => {
 
           <Card>
             <CarCatalogIndexListView2
-              carIndexList={carCatalogListContext.carIndexList.carIndexList}
+              carIndexList={carCatalogContext.carIndexList.carIndexList}
               whatDate={whatDate}
             />
           </Card>
 
           {/* <CarCatalogIndexListView1
-            carIndexList={carCatalogListContext.carIndexList.carIndexList}
+            carIndexList={carCatalogContext.carIndexList.carIndexList}
           /> */}
         </div>
       ) : (

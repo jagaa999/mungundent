@@ -6,7 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import toBoolean from "util/booleanFunction";
 import CarCatalogMarkItem from "./CarCatalogMarkItem";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import CarCatalogListContext from "context/CarCatalogListContext";
+import CarCatalogContext from "context/CarCatalogContext";
 import FilterContext from "context/FilterContext";
 // import FilterDrawer from "./Drawer/FilterDrawer";
 // import FilterTag from "./Tag/FilterTag";
@@ -17,20 +17,17 @@ import LoadingList from "./Loading/LoadingList";
 const { Option } = Select;
 
 const CarCatalogMarkType1 = ({ firmId }) => {
-  const carCatalogListContext = useContext(CarCatalogListContext);
+  const carCatalogContext = useContext(CarCatalogContext);
   const [whatTitle, setWhatTitle] = useState([]);
 
   useEffect(() => {
-    carCatalogListContext.loadCarMarkList(firmId);
+    carCatalogContext.loadCarMarkList(firmId);
   }, []);
 
-  console.log(
-    "carCatalogListContext.carMarkList",
-    carCatalogListContext.carMarkList
-  );
+  console.log("carCatalogContext.carMarkList", carCatalogContext.carMarkList);
 
   const uniqueTags = [];
-  carCatalogListContext.carMarkList.carMarkList.map((item) => {
+  carCatalogContext.carMarkList.carMarkList.map((item) => {
     if (uniqueTags.indexOf(item.markname) === -1) {
       uniqueTags.push(item.markname);
     }
@@ -56,7 +53,7 @@ const CarCatalogMarkType1 = ({ firmId }) => {
 
       <div className="gx-mb-2"></div>
 
-      {!carCatalogListContext.carFirmList.loading ? (
+      {!carCatalogContext.carFirmList.loading ? (
         <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
@@ -77,7 +74,7 @@ const CarCatalogMarkType1 = ({ firmId }) => {
           ></PageHeader>
 
           <Row className="gx-d-flex">
-            {carCatalogListContext.carMarkList.carMarkList.map(
+            {carCatalogContext.carMarkList.carMarkList.map(
               (markItem, index) => {
                 // if (toBoolean(isSpecial) && !toBoolean(markItem.special)) {
                 //   return "";

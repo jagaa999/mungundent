@@ -11,7 +11,7 @@ import FilterContext from "context/FilterContext";
 import useDidMountEffect from "util/useDidMountEffect";
 import { isEmpty } from "lodash";
 
-const CarCatalogListContext = React.createContext();
+const CarCatalogContext = React.createContext();
 
 export const CarCatalogListStore = (props) => {
   const memberContext = useContext(MemberContext);
@@ -419,7 +419,7 @@ export const CarCatalogListStore = (props) => {
   };
 
   return (
-    <CarCatalogListContext.Provider
+    <CarCatalogContext.Provider
       value={{
         carFirmList,
         carMarkList,
@@ -434,8 +434,8 @@ export const CarCatalogListStore = (props) => {
       }}
     >
       {props.children}
-    </CarCatalogListContext.Provider>
+    </CarCatalogContext.Provider>
   );
 };
 
-export default CarCatalogListContext;
+export default CarCatalogContext;

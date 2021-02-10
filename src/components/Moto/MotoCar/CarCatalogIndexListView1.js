@@ -15,8 +15,8 @@ const CarCatalogIndexListView1 = ({ carIndexList }) => {
   const [whatDate, setWhatDate] = useState(["1900-01-01", "2090-12-31"]);
 
   // console.log(
-  //   "carCatalogListContext.carIndexList",
-  //   carCatalogListContext.carIndexList
+  //   "CarCatalogContext.carIndexList",
+  //   CarCatalogContext.carIndexList
   // );
 
   return (

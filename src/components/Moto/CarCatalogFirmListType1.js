@@ -6,7 +6,7 @@ import { PlusOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import toBoolean from "util/booleanFunction";
 import CarCatalogFirmListItem1 from "./CarCatalogFirmListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import CarCatalogListContext from "context/CarCatalogListContext";
+import CarCatalogContext from "context/CarCatalogContext";
 import FilterContext from "context/FilterContext";
 // import FilterDrawer from "./Drawer/FilterDrawer";
 // import FilterTag from "./Tag/FilterTag";
@@ -18,12 +18,12 @@ const { Option } = Select;
 const { Meta } = Card;
 
 const CarCatalogType1 = () => {
-  const carCatalogListContext = useContext(CarCatalogListContext);
+  const carCatalogContext = useContext(CarCatalogContext);
   const [isAll, setIsAll] = useState(false);
   const [whatCountry, setWhatCountry] = useState([]);
 
   const uniqueTags = [];
-  carCatalogListContext.carFirmList.carFirmList.map((item) => {
+  carCatalogContext.carFirmList.carFirmList.map((item) => {
     if (uniqueTags.indexOf(item.firmcountrymon) === -1) {
       uniqueTags.push(item.firmcountrymon);
     }
@@ -53,7 +53,7 @@ const CarCatalogType1 = () => {
 
       <div className="gx-mb-2"></div>
 
-      {!carCatalogListContext.carFirmList.loading ? (
+      {!carCatalogContext.carFirmList.loading ? (
         <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
@@ -89,7 +89,7 @@ const CarCatalogType1 = () => {
           ></PageHeader>
 
           <Row className="gx-d-flex">
-            {carCatalogListContext.carFirmList.carFirmList.map(
+            {carCatalogContext.carFirmList.carFirmList.map(
               (firmItem, index) => {
                 if (!toBoolean(isAll) && !toBoolean(firmItem.special)) {
                   return "";

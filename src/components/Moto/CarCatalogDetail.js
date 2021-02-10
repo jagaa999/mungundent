@@ -6,26 +6,26 @@ import { PlusOutlined } from "@ant-design/icons";
 import toBoolean from "util/booleanFunction";
 import CarCatalogDetailItem from "./CarCatalogDetailItem";
 import CarCatalogDetailItemTab from "./CarCatalogDetailItemTab";
-import CarCatalogListContext from "context/CarCatalogListContext";
+import CarCatalogContext from "context/CarCatalogContext";
 
 import LoadingList from "./Loading/LoadingList";
 
 const CarCatalogDetail = ({ carId }) => {
-  const carCatalogListContext = useContext(CarCatalogListContext);
+  const carCatalogContext = useContext(CarCatalogContext);
 
   useEffect(() => {
-    carCatalogListContext.loadCarDetail(carId);
+    carCatalogContext.loadCarDetail(carId);
   }, []);
 
   return (
     <div className="moto-list gx-mb-5">
-      {!carCatalogListContext.carDetail.loading ? (
-        Object.keys(carCatalogListContext.carDetail.carDetail).length !== 0 && (
+      {!carCatalogContext.carDetail.loading ? (
+        Object.keys(carCatalogContext.carDetail.carDetail).length !== 0 && (
           <div className="gx-main-content">
             <Row className="gx-d-flex">
               <Col lg={24} md={24} sm={24} xs={24}>
                 <CarCatalogDetailItemTab
-                  editionItem={carCatalogListContext.carDetail.carDetail}
+                  editionItem={carCatalogContext.carDetail.carDetail}
                 />
               </Col>
             </Row>

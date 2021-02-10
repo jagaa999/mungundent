@@ -22,7 +22,7 @@ import { loadDataview } from "util/axiosFunction";
 
 import ProductContext from "../../../context/ProductContext";
 import FilterContext from "../../../context/FilterContext";
-import CarCatalogListContext from "../../../context/CarCatalogListContext";
+import CarCatalogContext from "../../../context/CarCatalogContext";
 import KpiFilter from "./KpiFilter";
 import CarCatalogFilter from "./CarCatalogFilter";
 
@@ -33,7 +33,7 @@ const ProductFilter = (props) => {
   const htmlEntities = new Html5Entities();
   const productContext = useContext(ProductContext);
   const filterContext = useContext(FilterContext);
-  const carCatalogListContext = useContext(CarCatalogListContext);
+  const CarCatalogContext = useContext(CarCatalogContext);
 
   const { kpiFilterList } = productContext;
 

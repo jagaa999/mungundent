@@ -1,17 +1,17 @@
 import React, { useEffect, useContext } from "react";
 import { Col, Row, Button, Switch, Select, PageHeader, Card } from "antd";
-import CarCatalogListContext from "context/CarCatalogListContext";
+import CarCatalogContext from "context/CarCatalogContext";
 import FilterContext from "context/FilterContext";
 import { isEmpty } from "lodash";
 const { Option } = Select;
 
 const CarCatalogFilter = () => {
-  const carCatalogListContext = useContext(CarCatalogListContext);
+  const CarCatalogContext = useContext(CarCatalogContext);
   const filterContext = useContext(FilterContext);
-  const carDetail = carCatalogListContext.carDetail.carDetail;
+  const carDetail = CarCatalogContext.carDetail.carDetail;
 
   // useEffect(() => {
-  //   carCatalogListContext.loadCarFirmList();
+  //   CarCatalogContext.loadCarFirmList();
   // }, []);
 
   return (
@@ -46,7 +46,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogfirmid || ""}
       >
-        {carCatalogListContext.carFirmList.carFirmList.map((item, index) => (
+        {CarCatalogContext.carFirmList.carFirmList.map((item, index) => (
           // count: "3"
           // firmcountrymon: "Англи"
           // firmname: "Aston Martin"
@@ -88,7 +88,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogmarkid || ""}
       >
-        {carCatalogListContext.carMarkList.carMarkList.map((item, index) => (
+        {CarCatalogContext.carMarkList.carMarkList.map((item, index) => (
           // count: "3"
           // firmname: "Bmw"
           // id: "1020300000"
@@ -129,7 +129,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogindexid || ""}
       >
-        {carCatalogListContext.carIndexList.carIndexList.map((item, index) => (
+        {CarCatalogContext.carIndexList.carIndexList.map((item, index) => (
           // count: "25"
           // desceng: "Tradition of BMW some upper-mid"
           // descmon: "BMW уламжлал зарим нь дээд, ду"
@@ -178,7 +178,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogeditionid || ""}
       >
-        {carCatalogListContext.carEditionList.carEditionList.map(
+        {CarCatalogContext.carEditionList.carEditionList.map(
           (item, edition) => (
             // body2bodyname: "Сэдан"
             // body2door: "4"
