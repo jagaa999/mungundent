@@ -1,7 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { parse } from "query-string";
 
-import { message } from "antd";
+import {
+  message,
+  Button,
+  Drawer,
+  Tooltip,
+  Row,
+  Col,
+  Card,
+  Image,
+  Tag,
+  Select,
+} from "antd";
 
 import axios from "util/axiosConfig";
 import axiosCloud from "util/axiosCloudConfig";
@@ -9,7 +21,10 @@ import axiosCloud from "util/axiosCloudConfig";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import useDidMountEffect from "util/useDidMountEffect";
+import MyIcon from "util/iconFunction";
+import { DeleteOutlined } from "@ant-design/icons";
 import { isEmpty } from "lodash";
+const { Option } = Select;
 
 const CarCatalogContext = React.createContext();
 
@@ -114,6 +129,19 @@ export const CarCatalogListStore = (props) => {
     initialStateCarEditionList
   );
   const [carDetail, setCarDetail] = useState(initialStateCarDetail);
+  const [carDrawer, setCarDrawer] = useState({
+    isOpen: true,
+    firmid: null,
+    markid: null,
+    indexid: null,
+    carid: null,
+  });
+
+  useEffect(() => {
+    if (!isEmpty(carDrawer.firmid)) {
+      loadCarMarkList(carDrawer.firmid);
+    }
+  }, [carDrawer]);
 
   useEffect(() => {
     // if (filterContext.state.menu !== "autozar") return;
@@ -418,6 +446,117 @@ export const CarCatalogListStore = (props) => {
       });
   };
 
+  //  ######  ######     #    #     # ####### ######
+  //  #     # #     #   # #   #  #  # #       #     #
+  //  #     # #     #  #   #  #  #  # #       #     #
+  //  #     # ######  #     # #  #  # #####   ######
+  //  #     # #   #   ####### #  #  # #       #   #
+  //  #     # #    #  #     # #  #  # #       #    #
+  //  ######  #     # #     #  ## ##  ####### #     #
+  //
+  console.log("FFFFFFFFF", carDrawer);
+  const CarDrawer = () => {
+    return (
+      <Drawer
+        title="Каталогиас машин сонгох"
+        className="moto-drawer-bottom-full"
+        placement="top"
+        height="350px"
+        width="100%"
+        closable={true}
+        onClose={(e) => setCarDrawer({ ...carDrawer, isOpen: false })}
+        visible={carDrawer.isOpen}
+        closeIcon={<MyIcon type="iconangledown" />}
+        headerStyle={{ paddingTop: "10px", paddingBottom: "10px" }}
+      >
+        <div className="gx-p-3">
+          <Select
+            className="moto-select-firm gx-w-100 gx-my-2"
+            showSearch
+            allowClear
+            placeholder="Фирм"
+            optionFilterProp="children"
+            onChange={(value) =>
+              setCarDrawer({
+                ...carDrawer,
+                firmid: value,
+                markid: null,
+                indexid: null,
+                carid: null,
+              })
+            }
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                );
+              } else {
+                return false;
+              }
+            }}
+            defaultValue={carDrawer.firmid || ""}
+          >
+            {carFirmList.carFirmList.map((item, index) => (
+              // count: "3"
+              // firmcountrymon: "Англи"
+              // firmname: "Aston Martin"
+              // firmtype: "Passenger"
+              // id: "1040100000"
+              // special: "0"
+              <Option key={index} value={item.id}>
+                {item.firmname}
+              </Option>
+            ))}
+          </Select>
+
+          <Select
+            className="moto-select-firm gx-w-100 gx-my-2"
+            showSearch
+            allowClear
+            placeholder="Марк"
+            optionFilterProp="children"
+            onChange={(value) =>
+              setCarDrawer({
+                ...carDrawer,
+                // firmid: value,
+                markid: value,
+                indexid: null,
+                carid: null,
+              })
+            }
+            filterOption={(input, option) => {
+              if (option.value) {
+                return (
+                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                  0
+                );
+              } else {
+                return false;
+              }
+            }}
+            defaultValue={carDrawer.markid || ""}
+          >
+            {carMarkList.carMarkList.map((item, index) => (
+              // count: "3"
+              // firmname: "Bmw"
+              // id: "1020300000"
+              // markid: "6037338451216753"
+              // markname: "M Roadster"
+              <Option key={index} value={item.markid}>
+                {item.markname}
+              </Option>
+            ))}
+          </Select>
+        </div>
+      </Drawer>
+    );
+  };
+
+  const toggleDrawer = (props) => {
+    setCarDrawer({ ...carDrawer, isOpen: !carDrawer.isOpen });
+  };
+
   return (
     <CarCatalogContext.Provider
       value={{
@@ -431,9 +570,11 @@ export const CarCatalogListStore = (props) => {
         loadCarIndexList,
         loadCarEditionList,
         loadCarDetail,
+        toggleDrawer,
       }}
     >
       {props.children}
+      <CarDrawer />
     </CarCatalogContext.Provider>
   );
 };

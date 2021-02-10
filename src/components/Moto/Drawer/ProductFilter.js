@@ -33,7 +33,7 @@ const ProductFilter = (props) => {
   const htmlEntities = new Html5Entities();
   const productContext = useContext(ProductContext);
   const filterContext = useContext(FilterContext);
-  const CarCatalogContext = useContext(CarCatalogContext);
+  const carCatalogContext = useContext(CarCatalogContext);
 
   const { kpiFilterList } = productContext;
 

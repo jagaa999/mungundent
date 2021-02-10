@@ -6,12 +6,12 @@ import { isEmpty } from "lodash";
 const { Option } = Select;
 
 const CarCatalogFilter = () => {
-  const CarCatalogContext = useContext(CarCatalogContext);
+  const carCatalogContext = useContext(CarCatalogContext);
   const filterContext = useContext(FilterContext);
-  const carDetail = CarCatalogContext.carDetail.carDetail;
+  const carDetail = carCatalogContext.carDetail.carDetail;
 
   // useEffect(() => {
-  //   CarCatalogContext.loadCarFirmList();
+  //   carCatalogContext.loadCarFirmList();
   // }, []);
 
   return (
@@ -46,7 +46,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogfirmid || ""}
       >
-        {CarCatalogContext.carFirmList.carFirmList.map((item, index) => (
+        {carCatalogContext.carFirmList.carFirmList.map((item, index) => (
           // count: "3"
           // firmcountrymon: "Англи"
           // firmname: "Aston Martin"
@@ -88,7 +88,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogmarkid || ""}
       >
-        {CarCatalogContext.carMarkList.carMarkList.map((item, index) => (
+        {carCatalogContext.carMarkList.carMarkList.map((item, index) => (
           // count: "3"
           // firmname: "Bmw"
           // id: "1020300000"
@@ -129,7 +129,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogindexid || ""}
       >
-        {CarCatalogContext.carIndexList.carIndexList.map((item, index) => (
+        {carCatalogContext.carIndexList.carIndexList.map((item, index) => (
           // count: "25"
           // desceng: "Tradition of BMW some upper-mid"
           // descmon: "BMW уламжлал зарим нь дээд, ду"
@@ -178,7 +178,7 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogeditionid || ""}
       >
-        {CarCatalogContext.carEditionList.carEditionList.map(
+        {carCatalogContext.carEditionList.carEditionList.map(
           (item, edition) => (
             // body2bodyname: "Сэдан"
             // body2door: "4"
