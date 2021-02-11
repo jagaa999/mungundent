@@ -13,6 +13,7 @@ import {
   Image,
   Tag,
   Select,
+  Descriptions,
 } from "antd";
 
 import axios from "util/axiosConfig";
@@ -137,11 +138,47 @@ export const CarCatalogListStore = (props) => {
     carid: null,
   });
 
+  // useEffect(() => {
+  //   if (!isEmpty(carDrawer.firmid)) {
+  //     loadCarMarkList(carDrawer.firmid);
+  //   }
+
+  //   if (!isEmpty(carDrawer.markid)) {
+  //     loadCarIndexList(carDrawer.markid);
+  //   }
+
+  //   if (!isEmpty(carDrawer.indexid)) {
+  //     loadCarEditionList(carDrawer.indexid);
+  //   }
+
+  //   if (!isEmpty(carDrawer.editionid)) {
+  //     loadCarDetail(carDrawer.editionid);
+  //   }
+  // }, [carDrawer]);
+
   useEffect(() => {
     if (!isEmpty(carDrawer.firmid)) {
       loadCarMarkList(carDrawer.firmid);
     }
-  }, [carDrawer]);
+  }, [carDrawer.firmid]);
+
+  useEffect(() => {
+    if (!isEmpty(carDrawer.markid)) {
+      loadCarIndexList(carDrawer.markid);
+    }
+  }, [carDrawer.markid]);
+
+  useEffect(() => {
+    if (!isEmpty(carDrawer.indexid)) {
+      loadCarEditionList(carDrawer.indexid);
+    }
+  }, [carDrawer.indexid]);
+
+  useEffect(() => {
+    if (!isEmpty(carDrawer.carid)) {
+      loadCarDetail(carDrawer.carid);
+    }
+  }, [carDrawer.carid]);
 
   useEffect(() => {
     // if (filterContext.state.menu !== "autozar") return;
@@ -189,7 +226,7 @@ export const CarCatalogListStore = (props) => {
     axios
       .post("", myParamsCarFirmList)
       .then((response) => {
-        // console.log("response---------", response);
+        console.log("FIRM response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -250,7 +287,7 @@ export const CarCatalogListStore = (props) => {
     axios
       .post("", myParamsCarMarkList)
       .then((response) => {
-        // console.log("response---------", response);
+        console.log("MARK response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -312,7 +349,7 @@ export const CarCatalogListStore = (props) => {
       .post("", myParamsCarIndexList)
       .then((response) => {
         const myData = response.data.response;
-        console.log("Response Index---------", myData);
+        console.log("INDEX Response Index---------", myData);
         if (myData.status === "error") {
           // getError(myData.text);
           message.error(myData.text);
@@ -373,7 +410,7 @@ export const CarCatalogListStore = (props) => {
       .post("", myParamsCarEditionList)
       .then((response) => {
         const myData = response.data.response;
-        console.log("Response Edition---------", myData);
+        console.log("EDITION Response Edition---------", myData);
         if (myData.status === "error") {
           // getError(myData.text);
           message.error(myData.text);
@@ -428,7 +465,7 @@ export const CarCatalogListStore = (props) => {
     axios
       .post("", myParamsCarDetail)
       .then((response) => {
-        // console.log(response);
+        console.log("DETAIL", response);
         const myArray = response.data.response.result;
 
         console.log("carCatalogDetail-------", myArray);
@@ -454,7 +491,7 @@ export const CarCatalogListStore = (props) => {
   //  #     # #    #  #     # #  #  # #       #    #
   //  ######  #     # #     #  ## ##  ####### #     #
   //
-  console.log("FFFFFFFFF", carDrawer);
+  // console.log("FFFFFFFFF", carDrawer);
   const CarDrawer = () => {
     return (
       <Drawer
@@ -470,84 +507,255 @@ export const CarCatalogListStore = (props) => {
         headerStyle={{ paddingTop: "10px", paddingBottom: "10px" }}
       >
         <div className="gx-p-3">
-          <Select
-            className="moto-select-firm gx-w-100 gx-my-2"
-            showSearch
-            allowClear
-            placeholder="Фирм"
-            optionFilterProp="children"
-            onChange={(value) =>
-              setCarDrawer({
-                ...carDrawer,
-                firmid: value,
-                markid: null,
-                indexid: null,
-                carid: null,
-              })
-            }
-            filterOption={(input, option) => {
-              if (option.value) {
-                return (
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                );
-              } else {
-                return false;
-              }
-            }}
-            defaultValue={carDrawer.firmid || ""}
-          >
-            {carFirmList.carFirmList.map((item, index) => (
-              // count: "3"
-              // firmcountrymon: "Англи"
-              // firmname: "Aston Martin"
-              // firmtype: "Passenger"
-              // id: "1040100000"
-              // special: "0"
-              <Option key={index} value={item.id}>
-                {item.firmname}
-              </Option>
-            ))}
-          </Select>
+          <Row>
+            <Col span={12}>
+              <Select
+                className="moto-select-firm gx-w-100 gx-my-2"
+                showSearch
+                allowClear
+                placeholder="Фирм"
+                optionFilterProp="children"
+                onChange={(value) =>
+                  setCarDrawer({
+                    ...carDrawer,
+                    firmid: value,
+                    markid: null,
+                    indexid: null,
+                    carid: null,
+                  })
+                }
+                filterOption={(input, option) => {
+                  if (option.value) {
+                    return (
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    );
+                  } else {
+                    return false;
+                  }
+                }}
+                defaultValue={carDrawer.firmid || ""}
+              >
+                {carFirmList.carFirmList.map((item, index) => (
+                  // count: "3"
+                  // firmcountrymon: "Англи"
+                  // firmname: "Aston Martin"
+                  // firmtype: "Passenger"
+                  // id: "1040100000"
+                  // special: "0"
+                  <Option key={index} value={item.id}>
+                    {item.firmname}
+                  </Option>
+                ))}
+              </Select>
 
-          <Select
-            className="moto-select-firm gx-w-100 gx-my-2"
-            showSearch
-            allowClear
-            placeholder="Марк"
-            optionFilterProp="children"
-            onChange={(value) =>
-              setCarDrawer({
-                ...carDrawer,
-                // firmid: value,
-                markid: value,
-                indexid: null,
-                carid: null,
-              })
-            }
-            filterOption={(input, option) => {
-              if (option.value) {
-                return (
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                );
-              } else {
-                return false;
-              }
-            }}
-            defaultValue={carDrawer.markid || ""}
-          >
-            {carMarkList.carMarkList.map((item, index) => (
-              // count: "3"
-              // firmname: "Bmw"
-              // id: "1020300000"
-              // markid: "6037338451216753"
-              // markname: "M Roadster"
-              <Option key={index} value={item.markid}>
-                {item.markname}
-              </Option>
-            ))}
-          </Select>
+              {/* Mark */}
+              <Select
+                className="moto-select-firm gx-w-100 gx-my-2"
+                showSearch
+                allowClear
+                placeholder="Марк"
+                optionFilterProp="children"
+                onChange={(value) =>
+                  setCarDrawer({
+                    ...carDrawer,
+                    // firmid: value,
+                    markid: value,
+                    indexid: null,
+                    carid: null,
+                  })
+                }
+                filterOption={(input, option) => {
+                  if (option.value) {
+                    return (
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    );
+                  } else {
+                    return false;
+                  }
+                }}
+                defaultValue={carDrawer.markid || ""}
+              >
+                {carMarkList.carMarkList.map((item, index) => (
+                  // count: "3"
+                  // firmname: "Bmw"
+                  // id: "1020300000"
+                  // markid: "6037338451216753"
+                  // markname: "M Roadster"
+                  <Option key={index} value={item.markid}>
+                    {item.markname}
+                  </Option>
+                ))}
+              </Select>
+
+              {/* Index */}
+              <Select
+                className="moto-select-firm gx-w-100 gx-my-2"
+                showSearch
+                allowClear
+                placeholder="Цуврал"
+                optionFilterProp="children"
+                onChange={(value) =>
+                  setCarDrawer({
+                    ...carDrawer,
+                    // firmid: value,
+                    // markid: value,
+                    indexid: value,
+                    carid: null,
+                  })
+                }
+                filterOption={(input, option) => {
+                  if (option.value) {
+                    return (
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    );
+                  } else {
+                    return false;
+                  }
+                }}
+                defaultValue={carDrawer.indexid || ""}
+              >
+                {carIndexList.carIndexList.map((item, index) => (
+                  // count: "25"
+                  // desceng: "Tradition of BMW some upper-mid"
+                  // descmon: "BMW уламжлал зарим нь дээд, ду"
+                  // firmid: "1020300000"
+                  // firmname: "Bmw"
+                  // maindate: "2019-01-01"
+                  // maindate2: "2019-01"
+                  // mainid: "201901_BMW_5_SERIES"
+                  // mainimg: "https://catalogphoto.goo-net.com/carphoto/20151502_201901c.jpg"
+                  // markid: "6464819816495469"
+                  // markname: "5 Series"
+                  // url: "https://www.goo-net.com/catalog/BMW/5_SERIES/"
+                  <Option key={index} value={item.mainid}>
+                    {`${item.markname} (${item.maindate2})`}
+                  </Option>
+                ))}
+              </Select>
+
+              {/* Edition */}
+              <Select
+                className="moto-select-firm gx-w-100 gx-my-2"
+                showSearch
+                allowClear
+                placeholder="Хувилбар"
+                optionFilterProp="children"
+                onChange={(value) =>
+                  setCarDrawer({
+                    ...carDrawer,
+                    // firmid: value,
+                    // markid: value,
+                    // indexid: value,
+                    carid: value,
+                  })
+                }
+                filterOption={(input, option) => {
+                  if (option.value) {
+                    return (
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    );
+                  } else {
+                    return false;
+                  }
+                }}
+                defaultValue={carDrawer.carid || ""}
+              >
+                {carEditionList.carEditionList.map((item, index) => (
+                  // body2bodyname: "Сэдан"
+                  // body2door: "4"
+                  // body2modelcodefull: "ABA-NE30"
+                  // body2seat: "5"
+                  // cardate: "2005-05"
+                  // cartrim: "530I"
+                  // drive2drivename: "RWD (FR)"
+                  // drive2transmissionfull: "AT - 6"
+                  // engine2code: "N52B30A"
+                  // engine2disp: "2996"
+                  // envi2fuel10mode: "9"
+                  // id: "10029095"
+                  // mainid: "200509_BMW_5_SERIES"
+                  // mainimg: "https://catalogphoto.goo-net.com/carphoto/20151502_200509.jpg"
+                  // modelcode: "NE30"
+                  // pricenewusd: "66774"
+                  // untilnow: ""
+                  <Option key={index} value={item.id}>
+                    {item.cartrim} {item.body2modelcodefull}
+                  </Option>
+                ))}
+              </Select>
+            </Col>
+            <Col span={12}>
+              {/* {carDetail.carDetail.firmname}
+              {carDetail.carDetail.markname}
+              {carDetail.carDetail.cardate} */}
+              <Card.Meta
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                avatar={
+                  <Image
+                    src={carDetail.carDetail.imagemain}
+                    loading="lazy"
+                    width={130}
+                    quality="auto"
+                    // className="  gx-mb-4"
+                    alt={carDetail.carDetail.title}
+                  />
+                }
+                title={carDetail.carDetail.title}
+                description={
+                  <>
+                    {carDetail.carDetail.firmname}
+                    {carDetail.carDetail.markname}
+                  </>
+                }
+              />
+
+              <Descriptions
+                column={1}
+                layout="horizontal"
+                size="small"
+                className=" gx-fs-sm"
+              >
+                <Descriptions.Item
+                  label={<span className="gx-text-grey gx-fs-sm">Эхэлсэн</span>}
+                >
+                  {carDetail.carDetail.cardate}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label={
+                    <span className="gx-text-grey gx-fs-sm">Хувилбар</span>
+                  }
+                >
+                  {carDetail.carDetail.cartrim}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label={
+                    <span className="gx-text-grey gx-fs-sm">Модель код</span>
+                  }
+                >
+                  {carDetail.carDetail.modelcode}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  label={
+                    <span className="gx-text-grey gx-fs-sm">Одоог хүртэл</span>
+                  }
+                >
+                  {carDetail.carDetail.untilnow}
+                </Descriptions.Item>
+              </Descriptions>
+            </Col>
+          </Row>
         </div>
       </Drawer>
     );

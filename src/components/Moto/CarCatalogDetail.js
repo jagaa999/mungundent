@@ -25,7 +25,7 @@ const CarCatalogDetail = ({ carId }) => {
             <Row className="gx-d-flex">
               <Col lg={24} md={24} sm={24} xs={24}>
                 <CarCatalogDetailItemTab
-                  editionItem={carCatalogContext.carDetail.carDetail}
+                  detailItem={carCatalogContext.carDetail.carDetail}
                 />
               </Col>
             </Row>

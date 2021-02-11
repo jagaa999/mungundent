@@ -16,8 +16,8 @@ const { Meta } = Card;
 const { Paragraph } = Typography;
 const { TabPane } = Tabs;
 
-const MarkItem = ({ editionItem }) => {
-  // console.log("Манай Item - ", editionItem);
+const MarkItem = ({ detailItem }) => {
+  // console.log("Манай Item - ", detailItem);
 
   const [cardTabs, setCardTabs] = useState({
     key: "tab1",
@@ -51,33 +51,33 @@ const MarkItem = ({ editionItem }) => {
   ];
 
   const contentList = {
-    tab1: <TabGeneral detail={editionItem} />,
-    tab2: <TabMotor detail={editionItem} />,
-    tab3: <TabTire detail={editionItem} />,
-    tab4: <TabOption detail={editionItem} />,
-    tab5: <TabSalon detail={editionItem} />,
-    tab6: <TabColor detail={editionItem} />,
+    tab1: <TabGeneral detail={detailItem} />,
+    tab2: <TabMotor detail={detailItem} />,
+    tab3: <TabTire detail={detailItem} />,
+    tab4: <TabOption detail={detailItem} />,
+    tab5: <TabSalon detail={detailItem} />,
+    tab6: <TabColor detail={detailItem} />,
   };
 
   const onTabChange = (key, type) => {
     // console.log(key, type);
     setCardTabs({ ...cardTabs, [type]: key });
   };
-  // const otherImages = editionItem.imagesother.split(" | ");
+  // const otherImages = detailItem.imagesother.split(" | ");
   // otherImages.splice(-1, 1);
 
   return (
     <>
       <div
-        key={editionItem.auctionid}
+        key={detailItem.auctionid}
         className="gx-main-content autozar-detail"
       >
         <Card
           className="moto-autozar-detail-card"
           style={{ width: "100%" }}
-          title={editionItem.title}
+          title={detailItem.title}
           extra={`Үнэ: ${accounting.formatMoney(
-            editionItem.pricenewusd,
+            detailItem.pricenewusd,
             "$",
             0,
             "'"

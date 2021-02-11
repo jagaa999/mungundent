@@ -160,7 +160,7 @@ const CarCatalogFilter = () => {
         className="moto-select-firm gx-w-100 gx-my-2"
         showSearch
         allowClear
-        placeholder="Цуврал"
+        placeholder="Хувилбар"
         optionFilterProp="children"
         onChange={(value) =>
           filterContext.updateParams({
@@ -178,30 +178,28 @@ const CarCatalogFilter = () => {
         }}
         defaultValue={filterContext.state.filterList?.carcatalogeditionid || ""}
       >
-        {carCatalogContext.carEditionList.carEditionList.map(
-          (item, edition) => (
-            // body2bodyname: "Сэдан"
-            // body2door: "4"
-            // body2modelcodefull: "ABA-NE30"
-            // body2seat: "5"
-            // cardate: "2005-05"
-            // cartrim: "530I"
-            // drive2drivename: "RWD (FR)"
-            // drive2transmissionfull: "AT - 6"
-            // engine2code: "N52B30A"
-            // engine2disp: "2996"
-            // envi2fuel10mode: "9"
-            // id: "10029095"
-            // mainid: "200509_BMW_5_SERIES"
-            // mainimg: "https://catalogphoto.goo-net.com/carphoto/20151502_200509.jpg"
-            // modelcode: "NE30"
-            // pricenewusd: "66774"
-            // untilnow: ""
-            <Option key={edition} value={item.id}>
-              {item.cartrim}
-            </Option>
-          )
-        )}
+        {carCatalogContext.carEditionList.carEditionList.map((item, index) => (
+          // body2bodyname: "Сэдан"
+          // body2door: "4"
+          // body2modelcodefull: "ABA-NE30"
+          // body2seat: "5"
+          // cardate: "2005-05"
+          // cartrim: "530I"
+          // drive2drivename: "RWD (FR)"
+          // drive2transmissionfull: "AT - 6"
+          // engine2code: "N52B30A"
+          // engine2disp: "2996"
+          // envi2fuel10mode: "9"
+          // id: "10029095"
+          // mainid: "200509_BMW_5_SERIES"
+          // mainimg: "https://catalogphoto.goo-net.com/carphoto/20151502_200509.jpg"
+          // modelcode: "NE30"
+          // pricenewusd: "66774"
+          // untilnow: ""
+          <Option key={index} value={item.id}>
+            {item.cartrim}
+          </Option>
+        ))}
       </Select>
 
       {!isEmpty(carDetail) && (
