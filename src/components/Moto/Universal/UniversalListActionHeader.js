@@ -9,9 +9,9 @@ import { Button, PageHeader, Tooltip, Divider } from "antd";
 import MyIcon from "util/iconFunction";
 
 import UniversalListInfoHelp from "./UniversalListInfoHelp";
+import UniversalListCarDetail from "./UniversalListCarDetail";
 
 import FilterContext from "context/FilterContext";
-import AuctionContext from "context/AuctionContext";
 import CompareContext from "context/CompareContext";
 import UniversalListSort from "../Universal/UniversalListSort";
 
@@ -34,6 +34,8 @@ const UniversalListActionHeader = ({
 
   return (
     <>
+      <UniversalListCarDetail />
+
       {showInfo && (
         <div>
           <UniversalListInfoHelp mySettings={mySettings} />

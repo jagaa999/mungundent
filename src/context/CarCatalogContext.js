@@ -469,10 +469,7 @@ export const CarcatalogStore = (props) => {
         const myArray = response.data.response.result;
         console.log("carCatalogDetail-------", myArray);
 
-        const myTempItem = prepareCarcatalogDetail(
-          myArray,
-          filterContext.state.menu
-        );
+        const myTempItem = prepareCarcatalogDetail(myArray, "carcatalog");
         // console.log("CARCAT DETAIL------------> ", myTempItem);
 
         setCarDetail({
@@ -755,37 +752,35 @@ export const CarcatalogStore = (props) => {
     }
 
     return (
-      <>
-        <Card.Meta
-          avatar={
-            <Image
-              src={carDetail.carDetail.imagemain}
-              loading="lazy"
-              width={110}
-              quality="auto"
-              // className="  gx-mb-4"
-              alt={carDetail.carDetail.title}
-            />
-          }
-          title={carDetail.carDetail.title}
-          description={
-            <ul className="moto-small-ul">
-              {carDetail.carDetail.specList1.map((item, index) => {
-                if (isEmpty(item.value || "")) return null;
-                const myItem = GetSpecData(item.field, "carcatalog");
-                return (
-                  <li key={index}>
-                    <span className="head-label gx-text-grey gx-fs-xs">
-                      {myItem.label}
-                    </span>
-                    <span className="head-value gx-fs-sm">{item.value}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          }
-        />
-      </>
+      <Card.Meta
+        avatar={
+          <Image
+            src={carDetail.carDetail.imagemain}
+            loading="lazy"
+            width={110}
+            quality="auto"
+            // className="  gx-mb-4"
+            alt={carDetail.carDetail.title}
+          />
+        }
+        title={carDetail.carDetail.title}
+        description={
+          <ul className="moto-small-ul">
+            {carDetail.carDetail.specList1.map((item, index) => {
+              if (isEmpty(item.value || "")) return null;
+              const myItem = GetSpecData(item.field, "carcatalog");
+              return (
+                <li key={index}>
+                  <span className="head-label gx-text-grey gx-fs-xs">
+                    {myItem.label}
+                  </span>
+                  <span className="head-value gx-fs-sm">{item.value}</span>
+                </li>
+              );
+            })}
+          </ul>
+        }
+      />
     );
   };
 

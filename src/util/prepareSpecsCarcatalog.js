@@ -95,7 +95,7 @@ const tempMainData = (item, menu) => {
   return {
     id: item.carid,
     menu: menu,
-    link: { field: "link", value: `/${menu}/${item.id}` },
+    link: { field: "link", value: `/${menu}/edition/${item.carid}` },
     title: {
       field: "title",
       value: item.title || "",
@@ -113,7 +113,7 @@ const tempMainData = (item, menu) => {
     description: { field: "fieldeng", value: item.fieldeng },
     mainnumber: {
       field: "cardate",
-      value: moment(item.cardate),
+      value: moment(item.cardate).format("YYYY-MM"),
     },
     createddate: {
       field: "createddate",
@@ -276,7 +276,7 @@ const tempTableColumns = (item, menu, mainData) => {
 //  #        #        #    #
 //  #        #  #     #    #
 //  ####### ###  #####     #
-export const prepareCarcatalogList = (myArray, menu = "") => {
+export const prepareCarcatalogList = (myArray, menu = "carcatalog") => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
