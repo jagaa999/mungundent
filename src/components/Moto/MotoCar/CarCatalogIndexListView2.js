@@ -20,14 +20,14 @@ import {
 import moment from "moment";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogIndexItem1 from "./CarCatalogIndexItem1";
-import CarCatalogIndexItem2 from "./CarCatalogIndexItem2";
+import CarcatalogIndexItem1 from "./CarcatalogIndexItem1";
+import CarcatalogIndexItem2 from "./CarcatalogIndexItem2";
 
 const { Option } = Select;
 const dateFormat = "YYYY-MM-DD";
 const { Paragraph } = Typography;
 
-const CarCatalogIndexListView2 = ({ carIndexList, whatDate }) => {
+const CarcatalogIndexListView2 = ({ carIndexList, whatDate }) => {
   const [reverse, setReverse] = useState(false);
 
   return (
@@ -94,7 +94,7 @@ const CarCatalogIndexListView2 = ({ carIndexList, whatDate }) => {
 
           return (
             <Col key={index} lg={8} md={12} sm={12} xs={12} className="gx-mb-5">
-              <CarCatalogIndexItem1
+              <CarcatalogIndexItem1
                 key={index}
                 indexItem={indexItem}
                 count={indexItem.count}
@@ -107,4 +107,4 @@ const CarCatalogIndexListView2 = ({ carIndexList, whatDate }) => {
   );
 };
 
-export default CarCatalogIndexListView2;
+export default CarcatalogIndexListView2;

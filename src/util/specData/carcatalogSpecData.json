@@ -1,0 +1,806 @@
+{
+  "cartrim": {
+    "testvalue": "",
+    "label": "Хувилбар",
+    "tooltip": "Хувилбар",
+    "icon": ""
+  },
+  "engine": {
+    "testvalue": "",
+    "label": "Хөдөлгүүр",
+    "tooltip": "Хөдөлгүүр",
+    "icon": ""
+  },
+  "body2bodyname": {
+    "testvalue": "",
+    "label": "Хийц",
+    "tooltip": "Хийц",
+    "icon": ""
+  },
+  "body2door": {
+    "testvalue": "",
+    "label": "Хаалга",
+    "tooltip": "Хаалга",
+    "icon": ""
+  },
+  "body2seat": {
+    "testvalue": "",
+    "label": "Суудал",
+    "tooltip": "Суудал",
+    "icon": ""
+  },
+  "body2modelcodefull": {
+    "testvalue": "",
+    "label": "Арлын дугаар",
+    "tooltip": "Арлын дугаар",
+    "icon": ""
+  },
+  "body2modelcodefacelift": {
+    "testvalue": "",
+    "label": "Facelift",
+    "tooltip": "Facelift",
+    "icon": ""
+  },
+  "body2measurebody": {
+    "testvalue": "",
+    "label": "Их биеийн хэмжээс",
+    "tooltip": "Их биеийн хэмжээс",
+    "icon": ""
+  },
+  "body2wheelbase": {
+    "testvalue": "",
+    "label": "Тэнхлэг хоорондын зай",
+    "tooltip": "Тэнхлэг хоорондын зай",
+    "icon": ""
+  },
+  "body2wheelmeas": {
+    "testvalue": "",
+    "label": "Тэнхлэгийн урт",
+    "tooltip": "Тэнхлэгийн урт",
+    "icon": ""
+  },
+  "body2salonmeas": {
+    "testvalue": "",
+    "label": "Салоны хэмжээс",
+    "tooltip": "Салоны хэмжээс",
+    "icon": ""
+  },
+  "body2weight": {
+    "testvalue": "",
+    "label": "Жин",
+    "tooltip": "Жин",
+    "icon": ""
+  },
+  "body2turnradius": {
+    "testvalue": "",
+    "label": "Эргэх радиус",
+    "tooltip": "Эргэх радиус",
+    "icon": ""
+  },
+  "envi2fuel10mode": {
+    "testvalue": "",
+    "label": "Идэлт (JC10)",
+    "tooltip": "Идэлт (JC10)",
+    "icon": ""
+  },
+  "envi2fueljc08": {
+    "testvalue": "",
+    "label": "Идэлт (JC8)",
+    "tooltip": "Идэлт (JC8)",
+    "icon": ""
+  },
+  "engine2code": {
+    "testvalue": "",
+    "label": "Хөдөлгүүрийн код",
+    "tooltip": "Хөдөлгүүрийн код",
+    "icon": ""
+  },
+  "engine2fuelname": {
+    "testvalue": "",
+    "label": "Шатахуун",
+    "tooltip": "Шатахуун",
+    "icon": ""
+  },
+  "engine2powerfull": {
+    "testvalue": "",
+    "label": "Хөдөлгүүрийн чадал",
+    "tooltip": "Хөдөлгүүрийн чадал",
+    "icon": ""
+  },
+  "engine2powerps": {
+    "testvalue": "",
+    "label": "Чадал (Ps)",
+    "tooltip": "Чадал (Ps)",
+    "icon": ""
+  },
+  "engine2powerkw": {
+    "testvalue": "",
+    "label": "Чадал (kW)",
+    "tooltip": "Чадал (kW)",
+    "icon": ""
+  },
+  "engine2powerhp": {
+    "testvalue": "",
+    "label": "Чадал (HP)",
+    "tooltip": "Чадал (HP)",
+    "icon": ""
+  },
+  "engine2powerrpm": {
+    "testvalue": "",
+    "label": "Чадал (эргэлт)",
+    "tooltip": "Чадал (эргэлт)",
+    "icon": ""
+  },
+  "engine2torque": {
+    "testvalue": "",
+    "label": "Мушгих чадал",
+    "tooltip": "Мушгих чадал",
+    "icon": ""
+  },
+  "engine2type": {
+    "testvalue": "",
+    "label": "Хөдөлгүүрийн төрөл",
+    "tooltip": "Хөдөлгүүрийн төрөл",
+    "icon": ""
+  },
+  "engine2disp": {
+    "testvalue": "",
+    "label": "Багтаамж",
+    "tooltip": "Багтаамж",
+    "icon": ""
+  },
+  "engine2diameterstroke": {
+    "testvalue": "",
+    "label": "Цилиндрийн диаметр",
+    "tooltip": "Цилиндрийн диаметр",
+    "icon": ""
+  },
+  "engine2compressionratio": {
+    "testvalue": "",
+    "label": "Шахах зэрэг",
+    "tooltip": "Шахах зэрэг",
+    "icon": ""
+  },
+  "engine2turbo": {
+    "testvalue": "",
+    "label": "Турбо",
+    "tooltip": "Турбо",
+    "icon": ""
+  },
+  "engine2fuelsupply": {
+    "testvalue": "",
+    "label": "Шатахууны систем",
+    "tooltip": "Шатахууны систем",
+    "icon": ""
+  },
+  "engine2fueltank": {
+    "testvalue": "",
+    "label": "Банк",
+    "tooltip": "Банк",
+    "icon": ""
+  },
+  "drive2drivename": {
+    "testvalue": "",
+    "label": "Хөтлөгч",
+    "tooltip": "Хөтлөгч",
+    "icon": ""
+  },
+  "drive2transmissionfull": {
+    "testvalue": "",
+    "label": "Хроп",
+    "tooltip": "Хроп",
+    "icon": ""
+  },
+  "drive2transtypename": {
+    "testvalue": "",
+    "label": "Хропны нэршил",
+    "tooltip": "Хропны нэршил",
+    "icon": ""
+  },
+  "drive2transmissionstep": {
+    "testvalue": "",
+    "label": "Хропны шатлал",
+    "tooltip": "Хропны шатлал",
+    "icon": ""
+  },
+  "drive2lsdname": {
+    "testvalue": "",
+    "label": "LSD",
+    "tooltip": "LSD",
+    "icon": ""
+  },
+  "sus2steeringtype": {
+    "testvalue": "",
+    "label": "Жолооны механизм",
+    "tooltip": "Жолооны механизм",
+    "icon": ""
+  },
+  "sus2suspensionfront": {
+    "testvalue": "",
+    "label": "Урд тулавч",
+    "tooltip": "Урд тулавч",
+    "icon": ""
+  },
+  "sus2suspensionrear": {
+    "testvalue": "",
+    "label": "Хойд тулавч",
+    "tooltip": "Хойд тулавч",
+    "icon": ""
+  },
+  "sus2frontbrakename": {
+    "testvalue": "",
+    "label": "Урд тоормос",
+    "tooltip": "Урд тоормос",
+    "icon": ""
+  },
+  "sus2rearbrakename": {
+    "testvalue": "",
+    "label": "Хойд тоормос",
+    "tooltip": "Хойд тоормос",
+    "icon": ""
+  },
+  "tire2aluminumwheel": {
+    "testvalue": "",
+    "label": "Хайлшин обуд",
+    "tooltip": "Хайлшин обуд",
+    "icon": ""
+  },
+  "tire2frontfull": {
+    "testvalue": "",
+    "label": "Урд дугуй",
+    "tooltip": "Урд дугуй",
+    "icon": ""
+  },
+  "tire2frontwidth": {
+    "testvalue": "",
+    "label": "Урд дугуйн өндөр",
+    "tooltip": "Урд дугуйн өндөр",
+    "icon": ""
+  },
+  "tire2frontratio": {
+    "testvalue": "",
+    "label": "Урд дугуйн харьцаа",
+    "tooltip": "Урд дугуйн харьцаа",
+    "icon": ""
+  },
+  "tire2frontconstruction": {
+    "testvalue": "",
+    "label": "Урд дугуйн хийц",
+    "tooltip": "Урд дугуйн хийц",
+    "icon": ""
+  },
+  "tire2frontdiameter": {
+    "testvalue": "",
+    "label": "Урд дугуйн диаметр",
+    "tooltip": "Урд дугуйн диаметр",
+    "icon": ""
+  },
+  "tire2frontloadindex": {
+    "testvalue": "",
+    "label": "Урд дугуйн даацын индекс",
+    "tooltip": "Урд дугуйн даацын индекс",
+    "icon": ""
+  },
+  "tire2frontspeedrating": {
+    "testvalue": "",
+    "label": "Урд дугуйн хурдын индекс",
+    "tooltip": "Урд дугуйн хурдын индекс",
+    "icon": ""
+  },
+  "tire2frontspecialcomment": {
+    "testvalue": "",
+    "label": "Урд дугуйн тусгай тэмдэглэгээ",
+    "tooltip": "Урд дугуйн тусгай тэмдэглэгээ",
+    "icon": ""
+  },
+  "tire2rearfull": {
+    "testvalue": "",
+    "label": "Хойд дугуй",
+    "tooltip": "Хойд дугуй",
+    "icon": ""
+  },
+  "tire2rearwidth": {
+    "testvalue": "",
+    "label": "Хойд дугуйн өндөр",
+    "tooltip": "Хойд дугуйн өндөр",
+    "icon": ""
+  },
+  "tire2rearratio": {
+    "testvalue": "",
+    "label": "Хойд дугуйн харьцаа",
+    "tooltip": "Хойд дугуйн харьцаа",
+    "icon": ""
+  },
+  "tire2rearconstruction": {
+    "testvalue": "",
+    "label": "Хойд дугуйн хийц",
+    "tooltip": "Хойд дугуйн хийц",
+    "icon": ""
+  },
+  "tire2reardiameter": {
+    "testvalue": "",
+    "label": "Хойд дугуйн диаметр",
+    "tooltip": "Хойд дугуйн диаметр",
+    "icon": ""
+  },
+  "tire2rearloadindex": {
+    "testvalue": "",
+    "label": "Хойд дугуйн даацын индекс",
+    "tooltip": "Хойд дугуйн даацын индекс",
+    "icon": ""
+  },
+  "tire2rearspeedrating": {
+    "testvalue": "",
+    "label": "Хойд дугуйн хурдын индекс",
+    "tooltip": "Хойд дугуйн хурдын индекс",
+    "icon": ""
+  },
+  "tire2rearspecialcomment": {
+    "testvalue": "",
+    "label": "Хойд дугуйн тусгай тэмдэглэгээ",
+    "tooltip": "Хойд дугуйн тусгай тэмдэглэгээ",
+    "icon": ""
+  },
+  "exterior5foglightfront": {
+    "testvalue": "",
+    "label": "Урд манангийн гэрэл",
+    "tooltip": "Урд манангийн гэрэл",
+    "icon": ""
+  },
+  "exterior5foglightrear": {
+    "testvalue": "",
+    "label": "Хойд манангийн гэрэл",
+    "tooltip": "Хойд манангийн гэрэл",
+    "icon": ""
+  },
+  "exterior5xenonheadlight": {
+    "testvalue": "",
+    "label": "Xenon их гэрэл",
+    "tooltip": "Xenon их гэрэл",
+    "icon": ""
+  },
+  "exterior5projectorheadlamp": {
+    "testvalue": "",
+    "label": "Прожектор их гэрэл",
+    "tooltip": "Прожектор их гэрэл",
+    "icon": ""
+  },
+  "exterior5spoilerfront": {
+    "testvalue": "",
+    "label": "Урд далавч",
+    "tooltip": "Урд далавч",
+    "icon": ""
+  },
+  "exterior5spoilerrearroof": {
+    "testvalue": "",
+    "label": "Хойд далавч",
+    "tooltip": "Хойд далавч",
+    "icon": ""
+  },
+  "exterior5wiperrear": {
+    "testvalue": "",
+    "label": "Хойд шил арчигч",
+    "tooltip": "Хойд шил арчигч",
+    "icon": ""
+  },
+  "safety5airbagdriver": {
+    "testvalue": "",
+    "label": "Жолоочийн ослын дэр",
+    "tooltip": "Жолоочийн ослын дэр",
+    "icon": ""
+  },
+  "safety5airbagpassenger": {
+    "testvalue": "",
+    "label": "Зорчигчийн ослын дэр",
+    "tooltip": "Зорчигчийн ослын дэр",
+    "icon": ""
+  },
+  "safety5airbagside": {
+    "testvalue": "",
+    "label": "Хажуугийн ослын дэр",
+    "tooltip": "Хажуугийн ослын дэр",
+    "icon": ""
+  },
+  "safety5abs": {
+    "testvalue": "",
+    "label": "ABS систем",
+    "tooltip": "ABS систем",
+    "icon": ""
+  },
+  "safety5traction": {
+    "testvalue": "",
+    "label": "Traction систем",
+    "tooltip": "Traction систем",
+    "icon": ""
+  },
+  "safety5beltpretensionerfront": {
+    "testvalue": "",
+    "label": "Урд суудлын бүс түгжих систем",
+    "tooltip": "Урд суудлын бүс түгжих систем",
+    "icon": ""
+  },
+  "safety5beltforcelimitfront": {
+    "testvalue": "",
+    "label": "Урд суудлын бүс хязгаарлагч",
+    "tooltip": "Урд суудлын бүс хязгаарлагч",
+    "icon": ""
+  },
+  "safety5beltrear3point": {
+    "testvalue": "",
+    "label": "3 цэгтэй арын суудлын бүс",
+    "tooltip": "3 цэгтэй арын суудлын бүс",
+    "icon": ""
+  },
+  "safety5beltchildseat": {
+    "testvalue": "",
+    "label": "Хүүхдийн суудлын түгжээ",
+    "tooltip": "Хүүхдийн суудлын түгжээ",
+    "icon": ""
+  },
+  "safety5sideimpactbar": {
+    "testvalue": "",
+    "label": "Хажуугийн цохилтоос хамгаалагч",
+    "tooltip": "Хажуугийн цохилтоос хамгаалагч",
+    "icon": ""
+  },
+  "safety5brakeassist": {
+    "testvalue": "",
+    "label": "Туслах тоормос",
+    "tooltip": "Туслах тоормос",
+    "icon": ""
+  },
+  "safety5collisiondefense": {
+    "testvalue": "",
+    "label": "Зэврэлтээс хамгаалах",
+    "tooltip": "Зэврэлтээс хамгаалах",
+    "icon": ""
+  },
+  "safety5ebd": {
+    "testvalue": "",
+    "label": "EBD систем",
+    "tooltip": "EBD систем",
+    "icon": ""
+  },
+  "safety5antitheft": {
+    "testvalue": "",
+    "label": "Хулгайчаас хамгаалах систем",
+    "tooltip": "Хулгайчаас хамгаалах систем",
+    "icon": ""
+  },
+  "safety5other": {
+    "testvalue": "",
+    "label": "Аюулгүйн бусад систем",
+    "tooltip": "Аюулгүйн бусад систем",
+    "icon": ""
+  },
+  "interior5aircondition": {
+    "testvalue": "",
+    "label": "Агааржуулагч",
+    "tooltip": "Агааржуулагч",
+    "icon": ""
+  },
+  "interior5powerwindow": {
+    "testvalue": "",
+    "label": "Автомат цонх",
+    "tooltip": "Автомат цонх",
+    "icon": ""
+  },
+  "interior5centraldoorlock": {
+    "testvalue": "",
+    "label": "Хаалга түгжих систем",
+    "tooltip": "Хаалга түгжих систем",
+    "icon": ""
+  },
+  "interior5steeringtelescopic": {
+    "testvalue": "",
+    "label": "Жолооны хүрд нааш цааш",
+    "tooltip": "Жолооны хүрд нааш цааш",
+    "icon": ""
+  },
+  "interior5steeringtilt": {
+    "testvalue": "",
+    "label": "Жолооны хүрд дээш доош",
+    "tooltip": "Жолооны хүрд дээш доош",
+    "icon": ""
+  },
+  "interior5cruisecontrol": {
+    "testvalue": "",
+    "label": "Хурд түгжигч систем",
+    "tooltip": "Хурд түгжигч систем",
+    "icon": ""
+  },
+  "interior5steeingleather": {
+    "testvalue": "",
+    "label": "Арьсан жолооны хүрд",
+    "tooltip": "Арьсан жолооны хүрд",
+    "icon": ""
+  },
+  "interior5seatleather": {
+    "testvalue": "",
+    "label": "Арьсан суудал",
+    "tooltip": "Арьсан суудал",
+    "icon": ""
+  },
+  "interior5seatpowerdriver": {
+    "testvalue": "",
+    "label": "Автомат жолоочийн суудалтай",
+    "tooltip": "Автомат жолоочийн суудалтай",
+    "icon": ""
+  },
+  "interior5seatpowerrear": {
+    "testvalue": "",
+    "label": "Хойд суудал автомат",
+    "tooltip": "Хойд суудал автомат",
+    "icon": ""
+  },
+  "interior5woodpanel": {
+    "testvalue": "",
+    "label": "Модон оруулга",
+    "tooltip": "Модон оруулга",
+    "icon": ""
+  },
+  "interior5seatrearsplitfolding": {
+    "testvalue": "",
+    "label": "Дундаа түшлэгтэй хойд суудал",
+    "tooltip": "Дундаа түшлэгтэй хойд суудал",
+    "icon": ""
+  },
+  "interior5uvglass": {
+    "testvalue": "",
+    "label": "UV хамгаалалтай цонх",
+    "tooltip": "UV хамгаалалтай цонх",
+    "icon": ""
+  },
+  "interior5privacyglass": {
+    "testvalue": "",
+    "label": "Бууралттай цонх",
+    "tooltip": "Бууралттай цонх",
+    "icon": ""
+  },
+  "interior5sunroof": {
+    "testvalue": "",
+    "label": "Нээлхий (люк)",
+    "tooltip": "Нээлхий (люк)",
+    "icon": ""
+  },
+  "navi5navigation": {
+    "testvalue": "",
+    "label": "Навигаци, GPS",
+    "tooltip": "Навигаци, GPS",
+    "icon": ""
+  },
+  "navi5media": {
+    "testvalue": "",
+    "label": "Media хөгжим",
+    "tooltip": "Media хөгжим",
+    "icon": ""
+  },
+  "navi5sound": {
+    "testvalue": "",
+    "label": "Хөгжим",
+    "tooltip": "Хөгжим",
+    "icon": ""
+  },
+  "navi5cd": {
+    "testvalue": "",
+    "label": "CD тоглуулагч",
+    "tooltip": "CD тоглуулагч",
+    "icon": ""
+  },
+  "colormanblack": {
+    "testvalue": "",
+    "label": "Хар",
+    "tooltip": "Хар",
+    "icon": ""
+  },
+  "colormanwhite": {
+    "testvalue": "",
+    "label": "Цагаан",
+    "tooltip": "Цагаан",
+    "icon": ""
+  },
+  "colormangreen": {
+    "testvalue": "",
+    "label": "Ногоон",
+    "tooltip": "Ногоон",
+    "icon": ""
+  },
+  "colormanmaroon": {
+    "testvalue": "",
+    "label": "Хүрэн",
+    "tooltip": "Хүрэн",
+    "icon": ""
+  },
+  "colormanolive": {
+    "testvalue": "",
+    "label": "Олив ногоон",
+    "tooltip": "Олив ногоон",
+    "icon": ""
+  },
+  "colormanzen": {
+    "testvalue": "",
+    "label": "Байгалийн",
+    "tooltip": "Байгалийн",
+    "icon": ""
+  },
+  "colormanpurple": {
+    "testvalue": "",
+    "label": "Нил ягаан",
+    "tooltip": "Нил ягаан",
+    "icon": ""
+  },
+  "colormanmetallic": {
+    "testvalue": "",
+    "label": "Метал",
+    "tooltip": "Метал",
+    "icon": ""
+  },
+  "colormanyellow": {
+    "testvalue": "",
+    "label": "Шар",
+    "tooltip": "Шар",
+    "icon": ""
+  },
+  "colormanyellowgreen": {
+    "testvalue": "",
+    "label": "Шар ногоон",
+    "tooltip": "Шар ногоон",
+    "icon": ""
+  },
+  "colormancyan": {
+    "testvalue": "",
+    "label": "Усан хөх",
+    "tooltip": "Усан хөх",
+    "icon": ""
+  },
+  "colormanmagenda": {
+    "testvalue": "",
+    "label": "Ягаан",
+    "tooltip": "Ягаан",
+    "icon": ""
+  },
+  "colormansilver": {
+    "testvalue": "",
+    "label": "Мөнгөлөг",
+    "tooltip": "Мөнгөлөг",
+    "icon": ""
+  },
+  "colormanred": {
+    "testvalue": "",
+    "label": "Улаан",
+    "tooltip": "Улаан",
+    "icon": ""
+  },
+  "colormanblue": {
+    "testvalue": "",
+    "label": "Хөх",
+    "tooltip": "Хөх",
+    "icon": ""
+  },
+  "colormantail": {
+    "testvalue": "",
+    "label": "Оюу номин",
+    "tooltip": "Оюу номин",
+    "icon": ""
+  },
+  "colormanpearl": {
+    "testvalue": "",
+    "label": "Сувдан цагаан",
+    "tooltip": "Сувдан цагаан",
+    "icon": ""
+  },
+  "colormangold": {
+    "testvalue": "",
+    "label": "Алтлаг",
+    "tooltip": "Алтлаг",
+    "icon": ""
+  },
+  "coloroptblack": {
+    "testvalue": "",
+    "label": "Хар",
+    "tooltip": "Хар",
+    "icon": ""
+  },
+  "coloroptwhite": {
+    "testvalue": "",
+    "label": "Цагаан",
+    "tooltip": "Цагаан",
+    "icon": ""
+  },
+  "coloroptgreen": {
+    "testvalue": "",
+    "label": "Ногоон",
+    "tooltip": "Ногоон",
+    "icon": ""
+  },
+  "coloroptmaroon": {
+    "testvalue": "",
+    "label": "Хүрэн",
+    "tooltip": "Хүрэн",
+    "icon": ""
+  },
+  "coloroptolive": {
+    "testvalue": "",
+    "label": "Олив ногоон",
+    "tooltip": "Олив ногоон",
+    "icon": ""
+  },
+  "coloroptzen": {
+    "testvalue": "",
+    "label": "Байгалийн",
+    "tooltip": "Байгалийн",
+    "icon": ""
+  },
+  "coloroptpurple": {
+    "testvalue": "",
+    "label": "Нил ягаан",
+    "tooltip": "Нил ягаан",
+    "icon": ""
+  },
+  "coloroptmetallic": {
+    "testvalue": "",
+    "label": "Метал",
+    "tooltip": "Метал",
+    "icon": ""
+  },
+  "coloroptyellow": {
+    "testvalue": "",
+    "label": "Шар",
+    "tooltip": "Шар",
+    "icon": ""
+  },
+  "coloroptyellowgreen": {
+    "testvalue": "",
+    "label": "Шар ногоон",
+    "tooltip": "Шар ногоон",
+    "icon": ""
+  },
+  "coloroptcyan": {
+    "testvalue": "",
+    "label": "Усан хөх",
+    "tooltip": "Усан хөх",
+    "icon": ""
+  },
+  "coloroptmagenta": {
+    "testvalue": "",
+    "label": "Ягаан",
+    "tooltip": "Ягаан",
+    "icon": ""
+  },
+  "coloroptsilver": {
+    "testvalue": "",
+    "label": "Мөнгөлөг",
+    "tooltip": "Мөнгөлөг",
+    "icon": ""
+  },
+  "coloroptred": {
+    "testvalue": "",
+    "label": "Улаан",
+    "tooltip": "Улаан",
+    "icon": ""
+  },
+  "coloroptblue": {
+    "testvalue": "",
+    "label": "Хөх",
+    "tooltip": "Хөх",
+    "icon": ""
+  },
+  "coloropttail": {
+    "testvalue": "",
+    "label": "Оюу номин",
+    "tooltip": "Оюу номин",
+    "icon": ""
+  },
+  "coloroptpearl": {
+    "testvalue": "",
+    "label": "Сувдан цагаан",
+    "tooltip": "Сувдан цагаан",
+    "icon": ""
+  },
+  "coloroptgold": {
+    "testvalue": "",
+    "label": "Алтлаг",
+    "tooltip": "Алтлаг",
+    "icon": ""
+  }
+}

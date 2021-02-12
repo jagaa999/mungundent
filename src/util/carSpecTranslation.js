@@ -15,7 +15,6 @@ module.exports = {
     body2turnradius: "Эргэх радиус",
     envi2fuel10mode: "Идэлт (JC10)",
     envi2fueljc08: "Идэлт (JC8)",
-
     engine2code: "Хөдөлгүүрийн код",
     engine2fuelname: "Шатахуун",
     engine2powerfull: "Хөдөлгүүрийн чадал",
@@ -31,19 +30,16 @@ module.exports = {
     engine2turbo: "Турбо",
     engine2fuelsupply: "Шатахууны систем",
     engine2fueltank: "Банк",
-
     drive2drivename: "Хөтлөгч",
     drive2transmissionfull: "Хроп",
     drive2transtypename: "Хропны нэршил",
     drive2transmissionstep: "Хропны шатлал",
     drive2lsdname: "LSD",
-
     sus2steeringtype: "Жолооны механизм",
     sus2suspensionfront: "Урд тулавч",
     sus2suspensionrear: "Хойд тулавч",
     sus2frontbrakename: "Урд тоормос",
     sus2rearbrakename: "Хойд тоормос",
-
     tire2aluminumwheel: "Хайлшин обуд",
     tire2frontfull: "Урд дугуй",
     tire2frontwidth: "Урд дугуйн өндөр",
@@ -61,7 +57,6 @@ module.exports = {
     tire2rearloadindex: "Хойд дугуйн даацын индекс",
     tire2rearspeedrating: "Хойд дугуйн хурдын индекс",
     tire2rearspecialcomment: "Хойд дугуйн тусгай тэмдэглэгээ",
-
     exterior5foglightfront: "Урд манангийн гэрэл",
     exterior5foglightrear: "Хойд манангийн гэрэл",
     exterior5xenonheadlight: "Xenon их гэрэл",
@@ -69,7 +64,6 @@ module.exports = {
     exterior5spoilerfront: "Урд далавч",
     exterior5spoilerrearroof: "Хойд далавч",
     exterior5wiperrear: "Хойд шил арчигч",
-
     safety5airbagdriver: "Жолоочийн ослын дэр",
     safety5airbagpassenger: "Зорчигчийн ослын дэр",
     safety5airbagside: "Хажуугийн ослын дэр",
@@ -85,7 +79,6 @@ module.exports = {
     safety5ebd: "EBD систем",
     safety5antitheft: "Хулгайчаас хамгаалах систем",
     safety5other: "Аюулгүйн бусад систем",
-
     interior5aircondition: "Агааржуулагч",
     interior5powerwindow: "Автомат цонх",
     interior5centraldoorlock: "Хаалга түгжих систем",
@@ -101,12 +94,10 @@ module.exports = {
     interior5uvglass: "UV хамгаалалтай цонх",
     interior5privacyglass: "Бууралттай цонх",
     interior5sunroof: "Нээлхий (люк)",
-
     navi5navigation: "Навигаци, GPS",
     navi5media: "Media хөгжим",
     navi5sound: "Хөгжим",
     navi5cd: "CD тоглуулагч",
-
     colormanblack: "Хар",
     colormanwhite: "Цагаан",
     colormangreen: "Ногоон",
@@ -125,7 +116,6 @@ module.exports = {
     colormantail: "Оюу номин",
     colormanpearl: "Сувдан цагаан",
     colormangold: "Алтлаг",
-
     coloroptblack: "Хар",
     coloroptwhite: "Цагаан",
     coloroptgreen: "Ногоон",

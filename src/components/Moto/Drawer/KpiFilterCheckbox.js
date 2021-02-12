@@ -18,6 +18,7 @@ import {
 } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
+import { FilterTitle } from "util/textFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -54,7 +55,7 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
   return (
     <>
       {isBrowser && (
-        <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
       )}
 
       <Checkbox.Group

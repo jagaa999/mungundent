@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import CarCatalogMarkListType1 from "components/Moto/CarCatalogMarkListType1";
+import CarcatalogMarkListType1 from "components/Moto/CarcatalogMarkListType1";
 
-const CarCatalogMarkPage = () => {
+const CarcatalogMarkPage = () => {
   const { firmId } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
 
-  return <CarCatalogMarkListType1 firmId={firmId} />;
+  return <CarcatalogMarkListType1 firmId={firmId} />;
 };
 
-export default CarCatalogMarkPage;
+export default CarcatalogMarkPage;

@@ -4,7 +4,7 @@ import accounting from "accounting";
 import { Typography, Row, Col, Descriptions, Divider, Image } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 
-import CarCatalogDetailImages from "./CarCatalogDetailImages";
+import CarcatalogDetailImages from "./CarcatalogDetailImages";
 
 import { carSpec } from "util/carSpecTranslation";
 import MemberContext from "context/MemberContext";
@@ -76,7 +76,7 @@ const DetailTabs = ({ detail }) => {
       </Row>
       <Row>
         <Col span={24}>
-          <CarCatalogDetailImages editionItem={detail} myImages={otherImages} />
+          <CarcatalogDetailImages editionItem={detail} myImages={otherImages} />
 
           <Divider className="gx-my-4" />
 

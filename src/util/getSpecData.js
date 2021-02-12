@@ -4,14 +4,15 @@ import autozarSpecData from "./specData/autozarSpecData.json";
 import newsSpecData from "./specData/newsSpecData.json";
 import auctionSpecData from "./specData/auctionSpecData.json";
 import productSpecData from "./specData/productSpecData.json";
+import carcatalogSpecData from "./specData/carcatalogSpecData.json";
 
-export const GetSpecData = (field = "") => {
+export const GetSpecData = (field = "", menu) => {
   const filterContext = useContext(FilterContext);
   if (field === "") return null;
-  const menu = filterContext.state.menu;
+  const myMenu = menu === undefined ? filterContext.state.menu : menu;
 
   let myObject = {};
-  switch (menu) {
+  switch (myMenu) {
     case "news":
       myObject = newsSpecData;
       break;
@@ -23,6 +24,9 @@ export const GetSpecData = (field = "") => {
       break;
     case "product":
       myObject = productSpecData;
+      break;
+    case "carcatalog":
+      myObject = carcatalogSpecData;
       break;
 
     default:

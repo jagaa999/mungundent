@@ -10,7 +10,7 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 
-import CarCatalogImagesSliderItem from "./CarCatalogImagesSliderItem";
+import CarcatalogImagesSliderItem from "./CarcatalogImagesSliderItem";
 
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 
@@ -54,7 +54,7 @@ const HomeNewsItems = ({ images }) => {
         className="moto-home-slider"
       >
         {images.map((image, index) => (
-          <CarCatalogImagesSliderItem key={index} image={image} />
+          <CarcatalogImagesSliderItem key={index} image={image} />
         ))}
       </Carousel>
 

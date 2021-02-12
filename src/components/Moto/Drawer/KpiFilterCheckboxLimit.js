@@ -18,6 +18,7 @@ import {
 } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
+import { FilterTitle } from "util/textFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -89,7 +90,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
       {/* {isBrowser && ( */}
       {/* )} */}
       <div className="gx-d-flex gx-mt-3">
-        <h6 className="gx-text-orange ">{kpiFilterItem.name}</h6>
+        <FilterTitle title={kpiFilterItem.name} />
         <div className="gx-ml-auto">
           <LimitText />
         </div>

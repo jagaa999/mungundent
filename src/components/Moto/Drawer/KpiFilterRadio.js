@@ -9,6 +9,7 @@ import { isEmpty } from "lodash";
 import { Button, Input, Checkbox, Divider, Select, Radio } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
+import { FilterTitle } from "util/textFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -26,9 +27,9 @@ const KpiFilterRadio = ({ kpiFilterItem }) => {
 
   const prepareURL2 = (arriveValue, parameterLabel) => {
     const myValue = arriveValue.target.value;
-    console.log("myValue ЗЗЗЗЗЗЗЗЗЗЗЗЗ", myValue);
-    console.log("parameterLabel", parameterLabel);
-    console.log("myValue encodeURIComponent", encodeURIComponent(myValue));
+    // console.log("myValue ЗЗЗЗЗЗЗЗЗЗЗЗЗ", myValue);
+    // console.log("parameterLabel", parameterLabel);
+    // console.log("myValue encodeURIComponent", encodeURIComponent(myValue));
     const baseEncodedValues = btoa(myValue || "");
     filterContext.updateParams({
       ["*" + parameterLabel]: baseEncodedValues,
@@ -53,7 +54,7 @@ const KpiFilterRadio = ({ kpiFilterItem }) => {
   return (
     <>
       {isBrowser && (
-        <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
       )}
 
       <Radio.Group

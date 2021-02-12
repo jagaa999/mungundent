@@ -5,18 +5,18 @@ import { PlusOutlined } from "@ant-design/icons";
 import moment from "moment";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogIndexItem1 from "./CarCatalogIndexItem1";
+import CarcatalogIndexItem1 from "./CarcatalogIndexItem1";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY-MM-DD";
 
-const CarCatalogIndexListView1 = ({ carIndexList }) => {
+const CarcatalogIndexListView1 = ({ carIndexList }) => {
   const [whatDate, setWhatDate] = useState(["1900-01-01", "2090-12-31"]);
 
   // console.log(
-  //   "CarCatalogContext.carIndexList",
-  //   CarCatalogContext.carIndexList
+  //   "CarcatalogContext.carIndexList",
+  //   CarcatalogContext.carIndexList
   // );
 
   return (
@@ -28,7 +28,7 @@ const CarCatalogIndexListView1 = ({ carIndexList }) => {
 
         return (
           <Col key={index} lg={8} md={12} sm={12} xs={12} className="gx-mb-5">
-            <CarCatalogIndexItem1
+            <CarcatalogIndexItem1
               key={index}
               indexItem={indexItem}
               count={indexItem.count}
@@ -40,4 +40,4 @@ const CarCatalogIndexListView1 = ({ carIndexList }) => {
   );
 };
 
-export default CarCatalogIndexListView1;
+export default CarcatalogIndexListView1;

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
 import MemberContext from "context/MemberContext";
-import CarCatalogFirmType1 from "components/Moto/CarCatalogFirmListType1";
+import CarcatalogFirmType1 from "components/Moto/CarcatalogFirmListType1";
 
-const CarCatalogPage = () => {
-  return <CarCatalogFirmType1 />;
+const CarcatalogPage = () => {
+  return <CarcatalogFirmType1 />;
 };
 
-export default CarCatalogPage;
+export default CarcatalogPage;

@@ -12,7 +12,7 @@ import SocialApps from "./socialApps/index";
 import Main from "./main/index";
 import Documents from "./documents/index";
 import { NewsStore } from "../context/NewsContext";
-import { CarCatalogListStore } from "../context/CarCatalogContext";
+import { CarcatalogStore } from "../context/CarcatalogContext";
 import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
 import { CompanyStore } from "../context/CompanyContext";
@@ -38,23 +38,23 @@ const NewsList = asyncComponent(() => {
   return import("./moto/news/newsListPage");
 });
 
-const CarCatalogFirmList = asyncComponent(() => {
+const CarcatalogFirmList = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogFirmListPage");
 });
 
-const CarCatalogMarkList = asyncComponent(() => {
+const CarcatalogMarkList = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogMarkListPage");
 });
 
-const CarCatalogIndexList = asyncComponent(() => {
+const CarcatalogIndexList = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogIndexListPage");
 });
 
-const CarCatalogEditionList = asyncComponent(() => {
+const CarcatalogEditionList = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogEditionListPage");
 });
 
-const CarCatalogDetail = asyncComponent(() => {
+const CarcatalogDetail = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogDetailPage");
 });
 
@@ -183,20 +183,16 @@ const App = ({ match }) => (
           "/productlist/:itemid",
         ]}
       >
-        <CarCatalogListStore>
-          <ProductStore>
-            <ProductDetail />
-          </ProductStore>
-        </CarCatalogListStore>
+        <ProductStore>
+          <ProductDetail />
+        </ProductStore>
       </Route>
       <Route
         path={["/product", "/products", "/productlist", "/store", "/storelist"]}
       >
-        <CarCatalogListStore>
-          <ProductStore>
-            <ProductList />
-          </ProductStore>
-        </CarCatalogListStore>
+        <ProductStore>
+          <ProductList />
+        </ProductStore>
       </Route>
       {/*
          #    #     # ####### ####### #######    #    ######  
@@ -360,29 +356,19 @@ const App = ({ match }) => (
        #####  #     # #     #  #####  #     #    #   
       */}
       <Route path={["/carcatalog/edition/:carId", "/carcatalog/detail/:carId"]}>
-        <CarCatalogListStore>
-          <CarCatalogDetail />
-        </CarCatalogListStore>
+        <CarcatalogDetail />
       </Route>
       <Route path={["/carcatalog/index/:indexId"]}>
-        <CarCatalogListStore>
-          <CarCatalogEditionList />
-        </CarCatalogListStore>
+        <CarcatalogEditionList />
       </Route>
       <Route path={["/carcatalog/mark/:markId"]}>
-        <CarCatalogListStore>
-          <CarCatalogIndexList />
-        </CarCatalogListStore>
+        <CarcatalogIndexList />
       </Route>
       <Route path={["/carcatalog/:firmId", "/carcatalog/firm/:firmId"]}>
-        <CarCatalogListStore>
-          <CarCatalogMarkList />
-        </CarCatalogListStore>
+        <CarcatalogMarkList />
       </Route>
       <Route path={["/carcatalog", "/carcataloglist"]}>
-        <CarCatalogListStore>
-          <CarCatalogFirmList />
-        </CarCatalogListStore>
+        <CarcatalogFirmList />
       </Route>
       {/* 
        #####  ####### #     # ######     #    ######  ####### 

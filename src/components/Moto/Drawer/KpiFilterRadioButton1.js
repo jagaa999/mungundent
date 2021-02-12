@@ -19,6 +19,7 @@ import {
 } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
+import { FilterTitle } from "util/textFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -62,7 +63,8 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
   return (
     <>
       {isBrowser && (
-        <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+        // <h6 className="gx-font-weight-medium gx-mt-3">{kpiFilterItem.name}</h6>
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
       )}
 
       <Row gutter={[10, 10]} type="flex" justify="left" align="middle">

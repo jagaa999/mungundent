@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Card } from "antd";
 import { defaultSrc } from "util/config";
 
-const NewsItem = ({ image }) => {
+const CarcatalogImagesSliderItem = ({ image }) => {
   console.log(image);
   return (
     <Card
@@ -21,4 +21,4 @@ const NewsItem = ({ image }) => {
   );
 };
 
-export default NewsItem;
+export default CarcatalogImagesSliderItem;

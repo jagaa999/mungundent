@@ -12,12 +12,14 @@ import MotoHorizontalNav from "../MotoHorizontalNav";
 import MenuMember from "components/Moto/Menu/MenuMember";
 import MemberItems from "components/Moto/Member/MemberItems/MemberItems";
 import MemberContext from "context/MemberContext";
+import CarcatalogContext from "context/CarcatalogContext";
 import MyIcon from "util/iconFunction";
 const { SubMenu } = Menu;
 const { Header } = Layout;
 
 const MotoHeader = () => {
   const memberContext = useContext(MemberContext);
+  const carCatalogContext = useContext(CarcatalogContext);
 
   return (
     <>
@@ -63,6 +65,22 @@ const MotoHeader = () => {
               </div>
 
               <ul className="gx-header-notifications gx-ml-auto">
+                <li>
+                  <Popover
+                    // overlayClassName="gx-popover-horizantal"
+                    // placement="bottomRight"
+                    content={carCatalogContext.CarDetailPopover}
+                    trigger="hover"
+                    // title="Каталогиос сонгосон машин"
+                  >
+                    <span
+                      className="gx-pointer gx-status-pos gx-d-block"
+                      onClick={carCatalogContext.toggleDrawer}
+                    >
+                      <MyIcon type="iconcar2" className="moto-icon-1-5" />
+                    </span>
+                  </Popover>
+                </li>
                 {memberContext.state.isLogin ? (
                   //* Member хадгалсан зүйлс MemberItems context дотор байгаа зүйлс
                   <li className="gx-msg">

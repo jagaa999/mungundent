@@ -5,12 +5,12 @@ import accounting from "accounting";
 import toBoolean from "util/booleanFunction";
 import { Card, Typography, Tabs } from "antd";
 
-import TabGeneral from "./CarCatalog/Tabs/General";
-import TabMotor from "./CarCatalog/Tabs/Motor";
-import TabTire from "./CarCatalog/Tabs/Tire";
-import TabOption from "./CarCatalog/Tabs/Option";
-import TabSalon from "./CarCatalog/Tabs/Salon";
-import TabColor from "./CarCatalog/Tabs/Color";
+import TabGeneral from "./Carcatalog/Tabs/General";
+import TabMotor from "./Carcatalog/Tabs/Motor";
+import TabTire from "./Carcatalog/Tabs/Tire";
+import TabOption from "./Carcatalog/Tabs/Option";
+import TabSalon from "./Carcatalog/Tabs/Salon";
+import TabColor from "./Carcatalog/Tabs/Color";
 
 const { Meta } = Card;
 const { Paragraph } = Typography;

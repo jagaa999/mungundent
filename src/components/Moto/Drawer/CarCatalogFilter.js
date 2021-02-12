@@ -1,12 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import { Col, Row, Button, Switch, Select, PageHeader, Card } from "antd";
-import CarCatalogContext from "context/CarCatalogContext";
+import CarcatalogContext from "context/CarcatalogContext";
 import FilterContext from "context/FilterContext";
 import { isEmpty } from "lodash";
 const { Option } = Select;
 
-const CarCatalogFilter = () => {
-  const carCatalogContext = useContext(CarCatalogContext);
+const CarcatalogFilter = () => {
+  const carCatalogContext = useContext(CarcatalogContext);
   const filterContext = useContext(FilterContext);
   const carDetail = carCatalogContext.carDetail.carDetail;
 
@@ -233,4 +233,4 @@ const CarCatalogFilter = () => {
   );
 };
 
-export default CarCatalogFilter;
+export default CarcatalogFilter;

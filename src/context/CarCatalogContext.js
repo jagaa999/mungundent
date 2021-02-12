@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { parse } from "query-string";
+import { useStickyState } from "util/stickyState";
 
 import {
   message,
@@ -14,22 +15,27 @@ import {
   Tag,
   Select,
   Descriptions,
+  Empty,
 } from "antd";
 
 import axios from "util/axiosConfig";
 import axiosCloud from "util/axiosCloudConfig";
 // import axiosCloud from "util/axiosConfig";
+import {
+  prepareCarcatalogList,
+  prepareCarcatalogListSettings as mySettings,
+  prepareCarcatalogDetail,
+} from "util/prepareSpecsCarcatalog";
+import { GetSpecData } from "util/getSpecData";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
-import useDidMountEffect from "util/useDidMountEffect";
 import MyIcon from "util/iconFunction";
-import { DeleteOutlined } from "@ant-design/icons";
 import { isEmpty } from "lodash";
 const { Option } = Select;
 
-const CarCatalogContext = React.createContext();
+const CarcatalogContext = React.createContext();
 
-export const CarCatalogListStore = (props) => {
+export const CarcatalogStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
 
@@ -130,31 +136,25 @@ export const CarCatalogListStore = (props) => {
     initialStateCarEditionList
   );
   const [carDetail, setCarDetail] = useState(initialStateCarDetail);
-  const [carDrawer, setCarDrawer] = useState({
-    isOpen: true,
-    firmid: null,
-    markid: null,
-    indexid: null,
-    carid: null,
-  });
+  // const [carDrawer, setCarDrawer] = useState({
+  //   isOpen: false,
+  //   firmid: useStickyState(null, "carcatalogfirmid"),
+  //   markid: useStickyState(null, "carcatalogmarkid"),
+  //   indexid: useStickyState(null, "carcatalogindexid"),
+  //   carid: useStickyState(null, "carcatalogcarid"),
+  // });
+  const [carDrawer, setCarDrawer] = useStickyState(
+    {
+      isOpen: false,
+      firmid: null,
+      markid: null,
+      indexid: null,
+      carid: null,
+    },
+    "CarcatalogIDs"
+  );
 
-  // useEffect(() => {
-  //   if (!isEmpty(carDrawer.firmid)) {
-  //     loadCarMarkList(carDrawer.firmid);
-  //   }
-
-  //   if (!isEmpty(carDrawer.markid)) {
-  //     loadCarIndexList(carDrawer.markid);
-  //   }
-
-  //   if (!isEmpty(carDrawer.indexid)) {
-  //     loadCarEditionList(carDrawer.indexid);
-  //   }
-
-  //   if (!isEmpty(carDrawer.editionid)) {
-  //     loadCarDetail(carDrawer.editionid);
-  //   }
-  // }, [carDrawer]);
+  console.log("GGGGGG", carDrawer);
 
   useEffect(() => {
     if (!isEmpty(carDrawer.firmid)) {
@@ -467,13 +467,19 @@ export const CarCatalogListStore = (props) => {
       .then((response) => {
         console.log("DETAIL", response);
         const myArray = response.data.response.result;
-
         console.log("carCatalogDetail-------", myArray);
+
+        const myTempItem = prepareCarcatalogDetail(
+          myArray,
+          filterContext.state.menu
+        );
+        // console.log("CARCAT DETAIL------------> ", myTempItem);
 
         setCarDetail({
           ...carDetail,
           loading: false,
-          carDetail: myArray,
+          // carDetail: myArray,
+          carDetail: myTempItem,
         });
       })
       .catch((error) => {
@@ -495,7 +501,7 @@ export const CarCatalogListStore = (props) => {
   const CarDrawer = () => {
     return (
       <Drawer
-        title="Каталогиас машин сонгох"
+        title="Таны машин"
         className="moto-drawer-bottom-full"
         placement="top"
         height="350px"
@@ -503,12 +509,19 @@ export const CarCatalogListStore = (props) => {
         closable={true}
         onClose={(e) => setCarDrawer({ ...carDrawer, isOpen: false })}
         visible={carDrawer.isOpen}
-        closeIcon={<MyIcon type="iconangledown" />}
+        closeIcon={<MyIcon type="icontimes-solid" />}
         headerStyle={{ paddingTop: "10px", paddingBottom: "10px" }}
       >
         <div className="gx-p-3">
           <Row>
-            <Col span={12}>
+            {/* <Col span={10}> */}
+            <Col
+              xl={{ span: 10, order: 1 }}
+              lg={{ span: 10, order: 1 }}
+              md={{ span: 10, order: 1 }}
+              sm={{ span: 24, order: 2 }}
+              xs={{ span: 24, order: 2 }}
+            >
               <Select
                 className="moto-select-firm gx-w-100 gx-my-2"
                 showSearch
@@ -535,7 +548,8 @@ export const CarCatalogListStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={carDrawer.firmid || ""}
+                defaultValue={carDrawer.firmid || null}
+                loading={carFirmList.carFirmList.loading}
               >
                 {carFirmList.carFirmList.map((item, index) => (
                   // count: "3"
@@ -577,7 +591,8 @@ export const CarCatalogListStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={carDrawer.markid || ""}
+                defaultValue={carDrawer.markid || null}
+                loading={carMarkList.carMarkList.loading}
               >
                 {carMarkList.carMarkList.map((item, index) => (
                   // count: "3"
@@ -618,7 +633,8 @@ export const CarCatalogListStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={carDrawer.indexid || ""}
+                defaultValue={carDrawer.indexid || null}
+                loading={carIndexList.carIndexList.loading}
               >
                 {carIndexList.carIndexList.map((item, index) => (
                   // count: "25"
@@ -666,7 +682,8 @@ export const CarCatalogListStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={carDrawer.carid || ""}
+                defaultValue={carDrawer.carid || null}
+                loading={carEditionList.carEditionList.loading}
               >
                 {carEditionList.carEditionList.map((item, index) => (
                   // body2bodyname: "Сэдан"
@@ -692,68 +709,15 @@ export const CarCatalogListStore = (props) => {
                 ))}
               </Select>
             </Col>
-            <Col span={12}>
-              {/* {carDetail.carDetail.firmname}
-              {carDetail.carDetail.markname}
-              {carDetail.carDetail.cardate} */}
-              <Card.Meta
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-                avatar={
-                  <Image
-                    src={carDetail.carDetail.imagemain}
-                    loading="lazy"
-                    width={130}
-                    quality="auto"
-                    // className="  gx-mb-4"
-                    alt={carDetail.carDetail.title}
-                  />
-                }
-                title={carDetail.carDetail.title}
-                description={
-                  <>
-                    {carDetail.carDetail.firmname}
-                    {carDetail.carDetail.markname}
-                  </>
-                }
-              />
-
-              <Descriptions
-                column={1}
-                layout="horizontal"
-                size="small"
-                className=" gx-fs-sm"
-              >
-                <Descriptions.Item
-                  label={<span className="gx-text-grey gx-fs-sm">Эхэлсэн</span>}
-                >
-                  {carDetail.carDetail.cardate}
-                </Descriptions.Item>
-                <Descriptions.Item
-                  label={
-                    <span className="gx-text-grey gx-fs-sm">Хувилбар</span>
-                  }
-                >
-                  {carDetail.carDetail.cartrim}
-                </Descriptions.Item>
-                <Descriptions.Item
-                  label={
-                    <span className="gx-text-grey gx-fs-sm">Модель код</span>
-                  }
-                >
-                  {carDetail.carDetail.modelcode}
-                </Descriptions.Item>
-                <Descriptions.Item
-                  label={
-                    <span className="gx-text-grey gx-fs-sm">Одоог хүртэл</span>
-                  }
-                >
-                  {carDetail.carDetail.untilnow}
-                </Descriptions.Item>
-              </Descriptions>
+            {/* <Col span={14}> */}
+            <Col
+              xl={{ span: 14, order: 2 }}
+              lg={{ span: 14, order: 2 }}
+              md={{ span: 14, order: 2 }}
+              sm={{ span: 24, order: 1 }}
+              xs={{ span: 24, order: 1 }}
+            >
+              <CarDetailPopover />
             </Col>
           </Row>
         </div>
@@ -765,8 +729,68 @@ export const CarCatalogListStore = (props) => {
     setCarDrawer({ ...carDrawer, isOpen: !carDrawer.isOpen });
   };
 
+  //  ######  ####### #######    ######  ####### ######
+  //  #     # #          #       #     # #     # #     #
+  //  #     # #          #       #     # #     # #     #
+  //  #     # #####      #       ######  #     # ######
+  //  #     # #          #       #       #     # #
+  //  #     # #          #       #       #     # #
+  //  ######  #######    #       #       ####### #
+  const CarDetailPopover = () => {
+    // return <>sd fdsf dsf dsf dsf sdfsdfds</>;
+    if (isEmpty(carDetail.carDetail)) {
+      return (
+        <Empty
+          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+          imageStyle={{
+            height: 60,
+          }}
+          description={<span>Машин сонгоогүй.</span>}
+        >
+          <Button type="primary" onClick={() => toggleDrawer()}>
+            Одоо сонгоё
+          </Button>
+        </Empty>
+      );
+    }
+
+    return (
+      <>
+        <Card.Meta
+          avatar={
+            <Image
+              src={carDetail.carDetail.imagemain}
+              loading="lazy"
+              width={110}
+              quality="auto"
+              // className="  gx-mb-4"
+              alt={carDetail.carDetail.title}
+            />
+          }
+          title={carDetail.carDetail.title}
+          description={
+            <ul className="moto-small-ul">
+              {carDetail.carDetail.specList1.map((item, index) => {
+                if (isEmpty(item.value || "")) return null;
+                const myItem = GetSpecData(item.field, "carcatalog");
+                return (
+                  <li key={index}>
+                    <span className="head-label gx-text-grey gx-fs-xs">
+                      {myItem.label}
+                    </span>
+                    <span className="head-value gx-fs-sm">{item.value}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          }
+        />
+      </>
+    );
+  };
+
   return (
-    <CarCatalogContext.Provider
+    <CarcatalogContext.Provider
       value={{
         carFirmList,
         carMarkList,
@@ -779,12 +803,14 @@ export const CarCatalogListStore = (props) => {
         loadCarEditionList,
         loadCarDetail,
         toggleDrawer,
+        CarDetailPopover,
       }}
+      displayName="CarcatalogStore"
     >
       {props.children}
       <CarDrawer />
-    </CarCatalogContext.Provider>
+    </CarcatalogContext.Provider>
   );
 };
 
-export default CarCatalogContext;
+export default CarcatalogContext;

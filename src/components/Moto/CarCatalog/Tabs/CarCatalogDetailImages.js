@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, Row, Col, Modal } from "antd";
 import { defaultSrc } from "util/config";
 
-const CarCatalogDetailImages = ({ auctionItem, myImages }) => {
+const CarcatalogDetailImages = ({ auctionItem, myImages }) => {
   const [imageModal, setImageModal] = useState({
     previewVisible: false,
     previewImage: "",
@@ -57,4 +57,4 @@ const CarCatalogDetailImages = ({ auctionItem, myImages }) => {
   );
 };
 
-export default CarCatalogDetailImages;
+export default CarcatalogDetailImages;

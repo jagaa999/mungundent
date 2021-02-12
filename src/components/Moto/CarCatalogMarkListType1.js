@@ -4,9 +4,9 @@ import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogMarkItem from "./CarCatalogMarkItem";
+import CarcatalogMarkItem from "./CarcatalogMarkItem";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import CarCatalogContext from "context/CarCatalogContext";
+import CarcatalogContext from "context/CarcatalogContext";
 import FilterContext from "context/FilterContext";
 // import FilterDrawer from "./Drawer/FilterDrawer";
 // import FilterTag from "./Tag/FilterTag";
@@ -16,8 +16,8 @@ import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
 
-const CarCatalogMarkType1 = ({ firmId }) => {
-  const carCatalogContext = useContext(CarCatalogContext);
+const CarcatalogMarkType1 = ({ firmId }) => {
+  const carCatalogContext = useContext(CarcatalogContext);
   const [whatTitle, setWhatTitle] = useState([]);
 
   useEffect(() => {
@@ -89,7 +89,7 @@ const CarCatalogMarkType1 = ({ firmId }) => {
 
                 return (
                   <Col key={index} lg={8} md={8} sm={12} xs={12}>
-                    <CarCatalogMarkItem
+                    <CarcatalogMarkItem
                       key={index}
                       markItem={markItem}
                       count={markItem.count}
@@ -109,4 +109,4 @@ const CarCatalogMarkType1 = ({ firmId }) => {
   );
 };
 
-export default CarCatalogMarkType1;
+export default CarcatalogMarkType1;

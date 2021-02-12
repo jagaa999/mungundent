@@ -76,12 +76,12 @@ const MotoHorizontalNav = () => {
         className="motoHeaderMenuItem  gx-mx-sm-2 gx-mx-lg-3"
       >
         <Link to="/product" className="motoHeaderMenuItemLink">
-          <Tooltip title="Дэлгүүр">
+          <Tooltip title="Бараа">
             <span className="gx-d-block gx-d-lg-none">
               <MyIcon type="iconstore" />
             </span>
           </Tooltip>
-          <div className="gx-d-none gx-d-lg-block">Дэлгүүр</div>
+          <div className="gx-d-none gx-d-lg-block">Бараа</div>
         </Link>
       </Menu.Item>
 

@@ -9,6 +9,7 @@ import { isEmpty } from "lodash";
 import { Button, Input, Checkbox, Divider, Select, Radio } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
+import { FilterTitle } from "util/textFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -25,12 +26,10 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
 
   const prepareURL2 = (checkedValues, parameterLabel) => {
-    // console.log("checkedValues ЗЗЗЗЗЗЗЗЗЗЗЗЗ", checkedValues);
-    // console.log("parameterLabel", parameterLabel);
-    console.log(
-      "checkedValues encodeURIComponent",
-      encodeURIComponent(checkedValues)
-    );
+    // console.log(
+    //   "checkedValues encodeURIComponent",
+    //   encodeURIComponent(checkedValues)
+    // );
     const baseEncodedValues = btoa(checkedValues || "");
     filterContext.updateParams({
       ["*" + parameterLabel]: baseEncodedValues,
@@ -50,7 +49,8 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
   return (
     <>
       {isBrowser && (
-        <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+        // <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
       )}
 
       <Select

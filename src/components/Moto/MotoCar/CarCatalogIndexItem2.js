@@ -7,7 +7,7 @@ import { CaretDownOutlined } from "@ant-design/icons";
 const { Meta } = Card;
 const { Paragraph } = Typography;
 
-const CarCatalogIndexItem2 = ({ indexItem, count }) => {
+const CarcatalogIndexItem2 = ({ indexItem, count }) => {
   // console.log("Манай IndexItem - ", indexItem);
 
   return (
@@ -45,4 +45,4 @@ const CarCatalogIndexItem2 = ({ indexItem, count }) => {
   );
 };
 
-export default CarCatalogIndexItem2;
+export default CarcatalogIndexItem2;

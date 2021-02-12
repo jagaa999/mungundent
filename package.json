@@ -67,7 +67,7 @@
     "react-ckeditor-component": "^1.1.0",
     "react-cloudimage-responsive": "^3.3.1",
     "react-color": "^2.17.3",
-    "react-context-devtool": "^2.0.0",
+    "react-context-devtool": "^2.0.3",
     "react-custom-scrollbars": "^4.2.1",
     "react-device-detect": "^1.15.0",
     "react-dnd": "^10.0.2",

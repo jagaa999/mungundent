@@ -4,9 +4,9 @@ import { Col, Row, Button, Switch, Select, PageHeader, Card } from "antd";
 import { PlusOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogFirmListItem1 from "./CarCatalogFirmListItem1";
+import CarcatalogFirmListItem1 from "./CarcatalogFirmListItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import CarCatalogContext from "context/CarCatalogContext";
+import CarcatalogContext from "context/CarcatalogContext";
 import FilterContext from "context/FilterContext";
 // import FilterDrawer from "./Drawer/FilterDrawer";
 // import FilterTag from "./Tag/FilterTag";
@@ -17,8 +17,8 @@ import LoadingList from "./Loading/LoadingList";
 const { Option } = Select;
 const { Meta } = Card;
 
-const CarCatalogType1 = () => {
-  const carCatalogContext = useContext(CarCatalogContext);
+const CarcatalogType1 = () => {
+  const carCatalogContext = useContext(CarcatalogContext);
   const [isAll, setIsAll] = useState(false);
   const [whatCountry, setWhatCountry] = useState([]);
 
@@ -106,7 +106,7 @@ const CarCatalogType1 = () => {
 
                 return (
                   <Col key={index} lg={6} md={8} sm={8} xs={8}>
-                    <CarCatalogFirmListItem1
+                    <CarcatalogFirmListItem1
                       key={index}
                       firmItem={firmItem}
                       isAll={isAll}
@@ -143,4 +143,4 @@ const CarCatalogType1 = () => {
   );
 };
 
-export default CarCatalogType1;
+export default CarcatalogType1;

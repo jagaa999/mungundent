@@ -23,7 +23,7 @@ import {
   CaretRightOutlined,
 } from "@ant-design/icons";
 
-import CarCatalogImagesSlider from "./Image/CarCatalogImagesSlider";
+import CarcatalogImagesSlider from "./Image/CarcatalogImagesSlider";
 
 const { Meta } = Card;
 const { Paragraph } = Typography;
@@ -130,7 +130,7 @@ const MarkItem = ({ editionItem }) => {
 
       <Row>
         <Col>
-          <CarCatalogImagesSlider images={otherImages} />
+          <CarcatalogImagesSlider images={otherImages} />
         </Col>
       </Row>
 

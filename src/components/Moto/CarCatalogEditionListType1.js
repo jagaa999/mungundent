@@ -4,9 +4,9 @@ import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogEditionItem1 from "./CarCatalogEditionItem1";
+import CarcatalogEditionItem1 from "./CarcatalogEditionItem1";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import CarCatalogContext from "context/CarCatalogContext";
+import CarcatalogContext from "context/CarcatalogContext";
 import FilterContext from "context/FilterContext";
 // import FilterDrawer from "./Drawer/FilterDrawer";
 // import FilterTag from "./Tag/FilterTag";
@@ -16,22 +16,22 @@ import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
 
-const CarCatalogEditionType1 = ({ indexId }) => {
-  const CarCatalogContext = useContext(CarCatalogContext);
+const CarcatalogEditionType1 = ({ indexId }) => {
+  const CarcatalogContext = useContext(CarcatalogContext);
   const [isSpecial, setIsSpecial] = useState(false);
   const [whatCountry, setWhatCountry] = useState([]);
 
   useEffect(() => {
-    CarCatalogContext.loadCarEditionList(indexId);
+    CarcatalogContext.loadCarEditionList(indexId);
   }, []);
 
   console.log(
-    "CarCatalogContext.carEditionList",
-    CarCatalogContext.carEditionList
+    "CarcatalogContext.carEditionList",
+    CarcatalogContext.carEditionList
   );
 
   const uniqueTags = [];
-  CarCatalogContext.carEditionList.carEditionList.map((item) => {
+  CarcatalogContext.carEditionList.carEditionList.map((item) => {
     if (uniqueTags.indexOf(item.firmcountrymon) === -1) {
       uniqueTags.push(item.firmcountrymon);
     }
@@ -57,7 +57,7 @@ const CarCatalogEditionType1 = ({ indexId }) => {
 
       <div className="gx-mb-2"></div>
 
-      {!CarCatalogContext.carFirmList.loading ? (
+      {!CarcatalogContext.carFirmList.loading ? (
         <div className="gx-main-content">
           {/* <NewsListIActionHeader title="Нийтлэл" /> */}
 
@@ -68,7 +68,7 @@ const CarCatalogEditionType1 = ({ indexId }) => {
           ></PageHeader>
 
           <Row className="gx-d-flex">
-            {CarCatalogContext.carEditionList.carEditionList.map(
+            {CarcatalogContext.carEditionList.carEditionList.map(
               (editionItem, index) => {
                 return (
                   <Col
@@ -79,7 +79,7 @@ const CarCatalogEditionType1 = ({ indexId }) => {
                     xs={12}
                     className="gx-mb-5"
                   >
-                    <CarCatalogEditionItem1
+                    <CarcatalogEditionItem1
                       key={index}
                       editionItem={editionItem}
                       count={editionItem.count}
@@ -99,4 +99,4 @@ const CarCatalogEditionType1 = ({ indexId }) => {
   );
 };
 
-export default CarCatalogEditionType1;
+export default CarcatalogEditionType1;

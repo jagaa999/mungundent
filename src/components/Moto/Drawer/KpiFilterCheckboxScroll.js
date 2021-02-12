@@ -16,16 +16,9 @@ import {
   Row,
   Col,
 } from "antd";
-import { ClearOutlined } from "@ant-design/icons";
-import { Html5Entities } from "html-entities";
+import { FilterTitle } from "util/textFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
-import { Scrollbars } from "react-custom-scrollbars";
-import {
-  LoadProcessAuction,
-  loadDataviewAuction,
-} from "../../../util/axiosFunctionAuction";
-import { loadDataview } from "util/axiosFunction";
 import FilterContext from "../../../context/FilterContext";
 
 const { Search } = Input;
@@ -51,7 +44,8 @@ const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
 
   return (
     <>
-      <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+      <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
+
       <CustomScrollbars
         // style={{ height: 80 }}
         autoHide={false}

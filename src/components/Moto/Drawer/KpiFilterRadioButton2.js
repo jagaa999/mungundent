@@ -19,6 +19,7 @@ import {
 } from "antd";
 import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
+import { FilterTitle } from "util/textFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -53,7 +54,7 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
 
   const myIndicators = Object.values(kpiFilterItem.kpiindicatorvalue);
 
-  console.log("kpiFilterItemkpiFilterItem", kpiFilterItem);
+  // console.log("kpiFilterItemkpiFilterItem", kpiFilterItem);
 
   const myDefault =
     atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
@@ -62,7 +63,7 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
   return (
     <>
       {isBrowser && (
-        <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
       )}
 
       {myIndicators.map((item, index) => {
@@ -74,13 +75,14 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
         return (
           <Button
             block
-            className={`${
+            // size="small"
+            className={`gx-mb-1 gx-w-100 gx-text-primary ${
               myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
             }`}
             hoverable
             onClick={() => prepareURL2(myValue, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
           >
-            {item.name}
+            <span className="gx-fs-sm">{item.name}</span>
           </Button>
         );
       })}

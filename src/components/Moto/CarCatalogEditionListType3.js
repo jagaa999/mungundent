@@ -4,9 +4,9 @@ import { Col, Row, Button, Switch, Select, PageHeader } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogEditionItem3 from "./CarCatalogEditionItem3";
+import CarcatalogEditionItem3 from "./CarcatalogEditionItem3";
 import NewsListIActionHeader from "./NewsListIActionHeader";
-import CarCatalogContext from "context/CarCatalogContext";
+import CarcatalogContext from "context/CarcatalogContext";
 import FilterContext from "context/FilterContext";
 // import FilterDrawer from "./Drawer/FilterDrawer";
 // import FilterTag from "./Tag/FilterTag";
@@ -16,8 +16,8 @@ import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
 
-const CarCatalogEditionType1 = ({ indexId }) => {
-  const carCatalogContext = useContext(CarCatalogContext);
+const CarcatalogEditionType1 = ({ indexId }) => {
+  const carCatalogContext = useContext(CarcatalogContext);
   const [isSpecial, setIsSpecial] = useState(false);
   const [whatCountry, setWhatCountry] = useState([]);
 
@@ -79,7 +79,7 @@ const CarCatalogEditionType1 = ({ indexId }) => {
                     xs={12}
                     className="gx-mb-5"
                   >
-                    <CarCatalogEditionItem3
+                    <CarcatalogEditionItem3
                       key={index}
                       editionItem={editionItem}
                       count={editionItem.count}
@@ -92,7 +92,7 @@ const CarCatalogEditionType1 = ({ indexId }) => {
 
           <Row className="gx-d-flex">
             <Col key="dffdf" xs={24}>
-              <CarCatalogEditionItem3
+              <CarcatalogEditionItem3
                 key="dfdfd"
                 editionItems={carCatalogContext.carEditionList.carEditionList}
               />
@@ -109,4 +109,4 @@ const CarCatalogEditionType1 = ({ indexId }) => {
   );
 };
 
-export default CarCatalogEditionType1;
+export default CarcatalogEditionType1;

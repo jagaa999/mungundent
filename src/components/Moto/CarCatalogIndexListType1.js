@@ -15,17 +15,17 @@ import { PlusOutlined } from "@ant-design/icons";
 import moment from "moment";
 
 import toBoolean from "util/booleanFunction";
-import CarCatalogIndexListView1 from "./MotoCar/CarCatalogIndexListView1";
-import CarCatalogIndexListView2 from "./MotoCar/CarCatalogIndexListView2";
-import CarCatalogContext from "context/CarCatalogContext";
+import CarcatalogIndexListView1 from "./MotoCar/CarcatalogIndexListView1";
+import CarcatalogIndexListView2 from "./MotoCar/CarcatalogIndexListView2";
+import CarcatalogContext from "context/CarcatalogContext";
 import LoadingList from "./Loading/LoadingList";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY-MM-DD";
 
-const CarCatalogIndexType1 = ({ markId }) => {
-  const carCatalogContext = useContext(CarCatalogContext);
+const CarcatalogIndexType1 = ({ markId }) => {
+  const carCatalogContext = useContext(CarcatalogContext);
   const [whatDate, setWhatDate] = useState(["1900-01-01", "2090-12-31"]);
 
   useEffect(() => {
@@ -97,13 +97,13 @@ const CarCatalogIndexType1 = ({ markId }) => {
           ></PageHeader>
 
           <Card>
-            <CarCatalogIndexListView2
+            <CarcatalogIndexListView2
               carIndexList={carCatalogContext.carIndexList.carIndexList}
               whatDate={whatDate}
             />
           </Card>
 
-          {/* <CarCatalogIndexListView1
+          {/* <CarcatalogIndexListView1
             carIndexList={carCatalogContext.carIndexList.carIndexList}
           /> */}
         </div>
@@ -114,4 +114,4 @@ const CarCatalogIndexType1 = ({ markId }) => {
   );
 };
 
-export default CarCatalogIndexType1;
+export default CarcatalogIndexType1;
