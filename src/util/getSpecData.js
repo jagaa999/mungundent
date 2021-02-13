@@ -1,18 +1,16 @@
-import React, { useContext } from "react";
-import FilterContext from "context/FilterContext";
+import React from "react";
 import autozarSpecData from "./specData/autozarSpecData.json";
 import newsSpecData from "./specData/newsSpecData.json";
 import auctionSpecData from "./specData/auctionSpecData.json";
 import productSpecData from "./specData/productSpecData.json";
 import carcatalogSpecData from "./specData/carcatalogSpecData.json";
+// import FilterContext from "context/FilterContext";
 
 export const GetSpecData = (field = "", menu) => {
-  const filterContext = useContext(FilterContext);
   if (field === "") return null;
-  const myMenu = menu === undefined ? filterContext.state.menu : menu;
 
   let myObject = {};
-  switch (myMenu) {
+  switch (menu) {
     case "news":
       myObject = newsSpecData;
       break;

@@ -312,12 +312,15 @@ export const CompareStore = (props) => {
                   </h6>
 
                   <div className="gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
-                    {item.subSpecs.map((item, index) => {
-                      const myItem = GetSpecData(item.field);
+                    {item.subSpecs.map((subItem, index) => {
+                      const myItem = GetSpecData(
+                        subItem.field,
+                        item.originalItem.mainData.menu
+                      );
                       return (
                         <Tooltip title={myItem.title} key={index}>
                           <span className="moto-label-main ant-tag">
-                            {item.value}
+                            {subItem.value}
                           </span>
                         </Tooltip>
                       );

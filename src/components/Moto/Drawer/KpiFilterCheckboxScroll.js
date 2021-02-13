@@ -42,6 +42,8 @@ const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
     atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
     undefined;
 
+  console.log("FFFFFFF", kpiFilterItem);
+
   return (
     <>
       <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
@@ -57,11 +59,7 @@ const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
         <Checkbox.Group
           style={{ width: "100%" }}
           onChange={(e) => prepareURL2(e, kpiFilterItem.code)}
-          defaultValue={
-            atob(
-              filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
-            ) || undefined
-          }
+          defaultValue={myDefault}
         >
           <Row>
             {myIndicators.map((item, index) => {

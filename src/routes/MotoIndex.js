@@ -20,7 +20,7 @@ import { ProductStore } from "../context/ProductContext";
 import { AuctionStore } from "../context/AuctionContext";
 import { MotocarStore } from "../context/MotocarContext";
 import { AutozarStore } from "../context/AutozarContext";
-import { FilterStore } from "../context/FilterContext";
+// import { FilterStore } from "../context/FilterContext";
 import { LogsStore } from "../context/LogsContext";
 
 import asyncComponent from "util/asyncComponent";

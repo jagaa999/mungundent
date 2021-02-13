@@ -35,7 +35,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderHeaderSpec = ({ item }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, mainData.menu);
 
       return (
         <div className="gx-d-flex gx-fs-sm">
@@ -49,7 +49,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderSpecList1 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, mainData.menu);
 
       return (
         <div className="gx-d-flex gx-fs-sm">
@@ -63,7 +63,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
   const RenderSpecList2 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, mainData.menu);
 
       return (
         <div className="gx-d-flex gx-fs-sm">
@@ -139,7 +139,11 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         </div>
 
         <div className="gx-text-success gx-fs-sm gx-mt-2">
-          <Tooltip title={GetSpecData(mainData.mainnumber.field)?.tooltip}>
+          <Tooltip
+            title={
+              GetSpecData(mainData.mainnumber.field, mainData.menu)?.tooltip
+            }
+          >
             {mainData.mainnumber?.value}
           </Tooltip>
         </div>

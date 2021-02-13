@@ -26,11 +26,11 @@ import {
   prepareCarcatalogListSettings as mySettings,
   prepareCarcatalogDetail,
 } from "util/prepareSpecsCarcatalog";
-import { GetSpecData } from "util/getSpecData";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import MyIcon from "util/iconFunction";
 import { isEmpty } from "lodash";
+import { GetSpecData } from "util/getSpecData";
 const { Option } = Select;
 
 const CarcatalogContext = React.createContext();
@@ -154,7 +154,7 @@ export const CarcatalogStore = (props) => {
     "CarcatalogIDs"
   );
 
-  console.log("GGGGGG", carDrawer);
+  // console.log("GGGGGG", carDrawer);
 
   useEffect(() => {
     if (!isEmpty(carDrawer.firmid)) {
@@ -226,7 +226,7 @@ export const CarcatalogStore = (props) => {
     axios
       .post("", myParamsCarFirmList)
       .then((response) => {
-        console.log("FIRM response---------", response);
+        // console.log("FIRM response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -287,7 +287,7 @@ export const CarcatalogStore = (props) => {
     axios
       .post("", myParamsCarMarkList)
       .then((response) => {
-        console.log("MARK response---------", response);
+        // console.log("MARK response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -349,7 +349,7 @@ export const CarcatalogStore = (props) => {
       .post("", myParamsCarIndexList)
       .then((response) => {
         const myData = response.data.response;
-        console.log("INDEX Response Index---------", myData);
+        // console.log("INDEX Response Index---------", myData);
         if (myData.status === "error") {
           // getError(myData.text);
           message.error(myData.text);
@@ -410,7 +410,7 @@ export const CarcatalogStore = (props) => {
       .post("", myParamsCarEditionList)
       .then((response) => {
         const myData = response.data.response;
-        console.log("EDITION Response Edition---------", myData);
+        // console.log("EDITION Response Edition---------", myData);
         if (myData.status === "error") {
           // getError(myData.text);
           message.error(myData.text);
@@ -465,9 +465,9 @@ export const CarcatalogStore = (props) => {
     axios
       .post("", myParamsCarDetail)
       .then((response) => {
-        console.log("DETAIL", response);
+        // console.log("DETAIL", response);
         const myArray = response.data.response.result;
-        console.log("carCatalogDetail-------", myArray);
+        // console.log("carCatalogDetail-------", myArray);
 
         const myTempItem = prepareCarcatalogDetail(myArray, "carcatalog");
         // console.log("CARCAT DETAIL------------> ", myTempItem);
@@ -734,7 +734,6 @@ export const CarcatalogStore = (props) => {
   //  #     # #          #       #       #     # #
   //  ######  #######    #       #       ####### #
   const CarDetailPopover = () => {
-    // return <>sd fdsf dsf dsf dsf sdfsdfds</>;
     if (isEmpty(carDetail.carDetail)) {
       return (
         <Empty
@@ -755,15 +754,15 @@ export const CarcatalogStore = (props) => {
       <Card.Meta
         avatar={
           <Image
-            src={carDetail.carDetail.imagemain}
+            src={carDetail.carDetail.mainData.imagemain.value}
             loading="lazy"
             width={110}
             quality="auto"
             // className="  gx-mb-4"
-            alt={carDetail.carDetail.title}
+            alt={carDetail.carDetail.mainData.title.value}
           />
         }
-        title={carDetail.carDetail.title}
+        title={carDetail.carDetail.mainData.title.value}
         description={
           <ul className="moto-small-ul">
             {carDetail.carDetail.specList1.map((item, index) => {
@@ -792,13 +791,13 @@ export const CarcatalogStore = (props) => {
         carIndexList,
         carEditionList,
         carDetail,
+        CarDetailPopover,
         loadCarFirmList,
         loadCarMarkList,
         loadCarIndexList,
         loadCarEditionList,
         loadCarDetail,
         toggleDrawer,
-        CarDetailPopover,
       }}
       displayName="CarcatalogStore"
     >

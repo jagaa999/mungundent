@@ -78,13 +78,18 @@ const AutozarDetail2General = ({ myItem }) => {
             >
               {myItem.headerSpec.map((item, index) => {
                 if (isEmpty(item.value || "")) return null;
-                const myItem = GetSpecData(item.field);
+                const myTempItem = GetSpecData(
+                  item.field,
+                  myItem.mainData.menu
+                );
                 return (
                   <Descriptions.Item
                     className="gx-border-bottom gx-py-2"
                     key={index}
                     label={
-                      <span className="gx-text-grey_old">{myItem.label}</span>
+                      <span className="gx-text-grey_old">
+                        {myTempItem.label}
+                      </span>
                     }
                   >
                     {item.value}

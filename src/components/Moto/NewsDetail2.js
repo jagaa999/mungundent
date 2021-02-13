@@ -63,7 +63,9 @@ const NewsDetailComponent = ({ myDetailContext }) => {
 
             <Row gutter={[16, 16]} className="gx-mt-5">
               <Col span={8}>
-                <h4 className="gx-mb-4">{GetSpecData("ownerdata").label}</h4>
+                <h4 className="gx-mb-4">
+                  {GetSpecData("ownerdata", "news").label}
+                </h4>
 
                 <div className="gx-mt-auto">
                   <div className="gx-media gx-mt-3">
@@ -87,7 +89,7 @@ const NewsDetailComponent = ({ myDetailContext }) => {
               </Col>
               <Col span={8}>
                 <h4 className="gx-mb-4">
-                  {GetSpecData("newssourcename").label}
+                  {GetSpecData("newssourcename", "news").label}
                 </h4>
 
                 <div className="gx-mt-auto">
@@ -111,7 +113,9 @@ const NewsDetailComponent = ({ myDetailContext }) => {
                 </div>
               </Col>
               <Col span={8}>
-                <h4 className="gx-mb-4">{GetSpecData("newstypename").label}</h4>
+                <h4 className="gx-mb-4">
+                  {GetSpecData("newstypename", "news").label}
+                </h4>
 
                 <div className="gx-mt-auto">
                   <div className="gx-media gx-mt-3">

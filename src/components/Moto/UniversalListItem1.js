@@ -42,7 +42,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
   const RenderHeaderSpec = ({ item }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, mainData.menu);
 
       return (
         <span className="gx-mr-3 gx-fs-sm">
@@ -56,7 +56,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
   const RenderSpecList1 = ({ item }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, mainData.menu);
 
       return (
         <li>
@@ -72,7 +72,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
   const RenderSpecList2 = ({ item }) => {
     if (item.value !== "" && item.value !== "Invalid date") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, mainData.menu);
 
       return (
         <p className="gx-mb-1 gx-fs-sm">
@@ -218,7 +218,12 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
                         }`}
                       >
                         <Tooltip
-                          title={GetSpecData(mainData.mainnumber.field).tooltip}
+                          title={
+                            GetSpecData(
+                              mainData.mainnumber.field,
+                              mainData.menu
+                            ).tooltip
+                          }
                         >
                           {mainData.mainnumber.value}
                         </Tooltip>

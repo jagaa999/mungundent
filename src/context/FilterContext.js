@@ -249,6 +249,7 @@ export const FilterStore = (props) => {
         clearAll,
         updateTotal,
       }}
+      displayName="Filter Store"
     >
       {props.children}
     </FilterContext.Provider>

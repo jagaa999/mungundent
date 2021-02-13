@@ -50,13 +50,13 @@ const MotoIndexApp = (props) => {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
 
-          <MemberItemsStore>
-            <CarcatalogStore>
+          <CarcatalogStore>
+            <MemberItemsStore>
               <CompareStore>
                 <Route path={`${match.url}`} component={MainApp} />
               </CompareStore>
-            </CarcatalogStore>
-          </MemberItemsStore>
+            </MemberItemsStore>
+          </CarcatalogStore>
         </Switch>
       </IntlProvider>
     </ConfigProvider>

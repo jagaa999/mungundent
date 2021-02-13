@@ -388,6 +388,7 @@ export const ProductStore = (props) => {
         loadKpiFilterList,
         clearKpiFilterList,
       }}
+      displayName="Product Store"
     >
       {props.children}
     </ProductContext.Provider>

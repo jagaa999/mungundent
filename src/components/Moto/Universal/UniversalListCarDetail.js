@@ -27,11 +27,11 @@ const UniversalListCarDetail = (props) => {
 
   return (
     <div
-      className={`gx-d-flex gx-mb-3`}
+      className={`gx-d-flex gx-mb-5`}
       style={{ alignItems: "center", justifyContent: "flex-end" }}
     >
       <div
-        className="gx-mr-2 gx-d-flex "
+        className="gx-mr-3 gx-d-flex "
         style={{ flexDirection: "column", justifyContent: "flex-end" }}
       >
         <div className="gx-mb-2 gx-ml-auto">Таны машин</div>
@@ -72,7 +72,7 @@ const UniversalListCarDetail = (props) => {
                 {mainData.title.value}
               </Typography.Paragraph>
             </div>
-            <p className="gx-mb-1 gx-text-grey gx-fs-sm">
+            <div className="gx-mb-1 gx-text-grey gx-fs-sm">
               {/* {mainData.mainnumber.value} */}
               <Space split="•">
                 <Typography.Text>{mainData.mainnumber.value}</Typography.Text>
@@ -84,7 +84,7 @@ const UniversalListCarDetail = (props) => {
                   );
                 })} */}
               </Space>
-            </p>
+            </div>
             <div className="gx-dot-arrow">
               <div className="gx-bg-primary gx-hover-arrow">
                 <Link to={mainData.link.value}>

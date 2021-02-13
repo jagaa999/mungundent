@@ -17,12 +17,12 @@ import UniversalListItemButton from "./Universal/UniversalListItemButton";
 import { GetSpecData } from "util/getSpecData";
 import { DeviceText } from "util/deviceFunction";
 
-const AuctionListItem3 = ({ myListContextListList }) => {
+const UniversalListItem3 = ({ myListContextListList }) => {
   const htmlEntities = new Html5Entities();
 
-  const RenderHeaderSpec = ({ item }) => {
+  const RenderHeaderSpec = ({ item, menu }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, menu);
 
       return (
         <span className="moto-label-main ant-tag">
@@ -35,9 +35,9 @@ const AuctionListItem3 = ({ myListContextListList }) => {
     return "";
   };
 
-  const RenderSpecList1 = ({ item }) => {
+  const RenderSpecList1 = ({ item, menu }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, menu);
 
       return (
         <span className="moto-label-main ant-tag">
@@ -50,9 +50,9 @@ const AuctionListItem3 = ({ myListContextListList }) => {
     return "";
   };
 
-  const RenderSpecList2 = ({ item }) => {
+  const RenderSpecList2 = ({ item, menu }) => {
     if (item.value !== "") {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, menu);
 
       return (
         <div className="gx-d-flex gx-fs-sm">
@@ -103,7 +103,9 @@ const AuctionListItem3 = ({ myListContextListList }) => {
 
             <div className="gx-d-none gx-d-sm-block">
               {record.headerSpec?.map((item, index) => {
-                return <RenderHeaderSpec key={index} item={item} />;
+                return (
+                  <RenderHeaderSpec key={index} item={item} menu="autozar" />
+                );
               })}
 
               {/* {record.specList1.map((item, index) => {
@@ -111,7 +113,9 @@ const AuctionListItem3 = ({ myListContextListList }) => {
               })} */}
 
               {record.specList2?.map((item, index) => {
-                return <RenderSpecList2 key={index} item={item} />;
+                return (
+                  <RenderSpecList2 key={index} item={item} menu="autozar" />
+                );
               })}
             </div>
           </div>
@@ -125,7 +129,7 @@ const AuctionListItem3 = ({ myListContextListList }) => {
   if (isBrowser) {
     const myTableColumn = myListContextListList[0].tableColumns || [];
     myTableColumn.map((item, index) => {
-      const myItem = GetSpecData(item.field);
+      const myItem = GetSpecData(item.field, "autozar");
       const myColumn = {
         ...item,
         title: myItem.label,
@@ -159,4 +163,4 @@ const AuctionListItem3 = ({ myListContextListList }) => {
   );
 };
 
-export default AuctionListItem3;
+export default UniversalListItem3;
