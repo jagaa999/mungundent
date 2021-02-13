@@ -28,6 +28,7 @@ import {
 import { loadDataview } from "util/axiosFunction";
 import FilterContext from "../../../context/FilterContext";
 import CarcatalogContext from "context/CarcatalogContext";
+import useDidMountEffect from "util/useDidMountEffect";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -35,18 +36,21 @@ const { Option } = Select;
 const KpiFilterCheckbox = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
   const carCatalogContext = useContext(CarcatalogContext);
-  // const [selected, setSelected] = useState(
-  //   atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
-  //     undefined
-  // );
+  const [selected, setSelected] = useState(
+    atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
+      undefined
+  );
 
   const carDrawer = carCatalogContext.carDrawer;
   const carDetail = carCatalogContext.carDetail.carDetail;
 
   const prepareURL2 = (arriveValue, parameterLabel) => {
-    const ddd = arriveValue[0];
-    const myValue = ddd !== myDefault ? ddd : null;
-    // console.log("myValue ЗЗЗЗЗЗЗЗЗЗЗЗЗ", myValue);
+    // const ddd = arriveValue[0];
+    const ddd = arriveValue;
+    // const myValue = ddd !== myDefault ? ddd : null;
+    // const myValue = ddd !== selected ? ddd : null;
+    const myValue = ddd;
+    console.log("myValue ЗЗЗЗЗЗЗЗЗЗЗЗЗ", myValue);
     // console.log("parameterLabel", parameterLabel);
     console.log("myValue encodeURIComponent", encodeURIComponent(myValue));
     const baseEncodedValues = btoa(myValue || "");
@@ -57,40 +61,51 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
 
   const myIndicators = Object.values(kpiFilterItem.kpiindicatorvalue);
 
-  let myDefault =
-    atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
-    undefined;
+  // let myDefault =
+  //   atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
+  //   undefined;
 
   // console.log("ДИАМЕТР", kpiFilterItem);
-  // console.log("ДИАМЕТР myDefault", selected);
-  console.log("ДИАМЕТР myDefault", myDefault);
+  console.log("ДИАМЕТР selected", selected);
+  // console.log("ДИАМЕТР myDefault", myDefault);
   // myDefault нь {"indicator_id":"16102833423851","value":"16102833423901"} ийм утгатай байгаа.
   //Тэгэхээр indicator item бүрийн code-той carDetail-ийг шалгах бололтой.
   /*Хэрвээ onlyThisCar чагттай байх аваас хэрэглэгчийн ямар шүүлтүүр хийснийг үл хамааран зөвхөн тухайн машины үзүүлэлтийг чагталъя.*/
-  if (carDrawer.onlyThisCar) {
-    //Зөвхөн тухайн машинд гэдэг нь чагттай байна. Иймээс myDefault-ийг тухайн машины үзүүлэлтээр солино.
-    if (kpiFilterItem.code === "MotoTireSizeDiameter") {
-      //Дугуйн радиус R18 гэх мэт
-      const carExactSpec = `R${carDetail.tire2frontdiameter}`;
-      console.log("carExactSpec", carExactSpec);
 
-      myIndicators.map((item, index) => {
-        if (item.code === carExactSpec) {
-          console.log("ОЛДСОН ШҮҮ", item);
-          // setSelected(
-          //   JSON.stringify({
-          //     indicator_id: item.indicatorid,
-          //     value: item.id,
-          //   })
-          // );
-          myDefault = JSON.stringify({
-            indicator_id: item.indicatorid,
-            value: item.id,
-          });
-        }
-      });
+  useDidMountEffect(() => {
+    console.log("ӨӨӨӨӨӨӨӨӨӨӨӨ");
+    if (carDrawer.onlyThisCar) {
+      //Зөвхөн тухайн машинд гэдэг нь чагттай байна. Иймээс myDefault-ийг тухайн машины үзүүлэлтээр солино.
+      if (kpiFilterItem.code === "MotoTireSizeDiameter") {
+        //Дугуйн радиус R18 гэх мэт
+        const carExactSpec = `R${carDetail.tire2frontdiameter}`;
+        console.log("carExactSpec", carExactSpec);
+
+        myIndicators.map((item, index) => {
+          if (item.code === carExactSpec) {
+            console.log("ОЛДСОН ШҮҮ", item);
+            setSelected(
+              JSON.stringify({
+                indicator_id: item.indicatorid,
+                value: item.id,
+              })
+            );
+            // myDefault = JSON.stringify({
+            //   indicator_id: item.indicatorid,
+            //   value: item.id,
+            // });
+          }
+        });
+      }
     }
-  }
+  }, [carDrawer.onlyThisCar]);
+
+  useDidMountEffect(() => {
+    prepareURL2(selected, kpiFilterItem.code);
+    // console.log("ЭЭЭЭЭЭЭЭЭЭЭ", selected);
+  }, [selected]);
+
+  // console.log("selected", selected);
 
   return (
     <>
@@ -100,11 +115,12 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
 
       <Checkbox.Group
         style={{ width: "100%" }}
-        onChange={(e) => prepareURL2(e, kpiFilterItem.code)}
+        // onChange={(e) => prepareURL2(e, kpiFilterItem.code)}
+        onChange={(e) => setSelected(e)}
         // onSelect={(e) => prepareURL2(e, kpiFilterItem.code)}
         // defaultValue={myDefault}
-        // value={selected}
-        value={myDefault}
+        value={selected}
+        // value={myDefault}
       >
         <Row>
           {myIndicators.map((item, index) => {

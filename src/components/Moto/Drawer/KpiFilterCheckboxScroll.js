@@ -42,7 +42,7 @@ const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
     atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
     undefined;
 
-  console.log("FFFFFFF", kpiFilterItem);
+  // console.log("FFFFFFF", kpiFilterItem);
 
   return (
     <>

@@ -54,7 +54,7 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
 
   const myIndicators = Object.values(kpiFilterItem.kpiindicatorvalue);
 
-  console.log("kpiFilterItemkpiFilterItem", kpiFilterItem);
+  // console.log("kpiFilterItemkpiFilterItem", kpiFilterItem);
 
   const myDefault =
     atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
