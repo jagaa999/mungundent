@@ -78,7 +78,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
 
   const LimitText = () => (
     <span
-      className="gx-fs-sm gx-text-grey gx-show-link"
+      className="gx-fs-sm gx-show-link gx-mr-4"
       onClick={() => toggleLimitTool()}
     >
       {limitTool.text}
@@ -89,7 +89,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
     <>
       {/* {isBrowser && ( */}
       {/* )} */}
-      <div className="gx-d-flex gx-mt-3">
+      <div className="gx-d-flex gx-mt-4">
         <FilterTitle title={kpiFilterItem.name} />
         <div className="gx-ml-auto">
           <LimitText />
@@ -123,7 +123,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
             );
           })}
           <Col span={24}>
-            <div className="gx-mt-1">
+            <div className="gx-mt-2">
               <LimitText />
             </div>
           </Col>

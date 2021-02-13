@@ -46,7 +46,7 @@ const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
 
   return (
     <>
-      <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
+      <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
 
       <CustomScrollbars
         // style={{ height: 80 }}

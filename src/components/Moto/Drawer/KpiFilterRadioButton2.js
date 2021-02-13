@@ -63,30 +63,32 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
   return (
     <>
       {isBrowser && (
-        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
       )}
 
-      {myIndicators.map((item, index) => {
-        const myValue = JSON.stringify({
-          indicator_id: item.indicatorid,
-          value: item.id,
-        });
+      <div className="gx-w-100 gx-p-0 gx-pr-4">
+        {myIndicators.map((item, index) => {
+          const myValue = JSON.stringify({
+            indicator_id: item.indicatorid,
+            value: item.id,
+          });
 
-        return (
-          <Button
-            key={index}
-            block
-            // size="small"
-            className={`gx-mb-1 gx-w-100 gx-text-primary ${
-              myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
-            }`}
-            // hoverable
-            onClick={() => prepareURL2(myValue, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
-          >
-            <span className="gx-fs-sm">{item.name}</span>
-          </Button>
-        );
-      })}
+          return (
+            <Button
+              key={index}
+              block
+              // size="small"
+              className={`gx-mb-1 gx-text-primary ${
+                myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
+              }`}
+              // hoverable
+              onClick={() => prepareURL2(myValue, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
+            >
+              <span className="gx-fs-sm">{item.name}</span>
+            </Button>
+          );
+        })}
+      </div>
     </>
   );
 };

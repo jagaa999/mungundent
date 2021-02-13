@@ -50,7 +50,7 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
     <>
       {isBrowser && (
         // <h6 className="gx-text-orange gx-mt-3">{kpiFilterItem.name}</h6>
-        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
       )}
 
       <Select

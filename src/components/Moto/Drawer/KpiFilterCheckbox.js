@@ -110,7 +110,7 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
   return (
     <>
       {isBrowser && (
-        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
       )}
 
       <Checkbox.Group

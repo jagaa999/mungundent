@@ -64,7 +64,7 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
     <>
       {isBrowser && (
         // <h6 className="gx-font-weight-medium gx-mt-3">{kpiFilterItem.name}</h6>
-        <FilterTitle title={kpiFilterItem.name} className="gx-mt-3" />
+        <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
       )}
 
       <Row gutter={[10, 10]} type="flex" justify="left" align="middle">
