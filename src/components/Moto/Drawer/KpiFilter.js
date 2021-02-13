@@ -19,7 +19,7 @@ const KpiFilter = ({ kpiFilterList }) => {
   return (
     <>
       {myFilterList.map((item, index) => {
-        console.log("item", item);
+        // console.log("item", item);
         // code: "MotoTireSizeWidth"
         // id: "16102833420031"
         // kpiindicatorvalue: {0: {…}, 1: {…}, 2: {…}}

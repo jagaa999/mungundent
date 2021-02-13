@@ -190,8 +190,7 @@ export const ProductStore = (props) => {
         parameters: {
           ...productList.loadParams,
           criteria: {
-            ...myCriteria, //түр орхиё. Барааны дотоод ангилалтай зөрчилдөөд байна.
-
+            ...myCriteria,
             criteria: mySpecialCriteria,
           },
           paging: {

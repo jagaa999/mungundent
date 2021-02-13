@@ -146,12 +146,13 @@ export const CarcatalogStore = (props) => {
   const [carDrawer, setCarDrawer] = useStickyState(
     {
       isOpen: false,
+      onlyThisCar: false,
       firmid: null,
       markid: null,
       indexid: null,
       carid: null,
     },
-    "CarcatalogIDs"
+    "carDrawer"
   );
 
   // console.log("GGGGGG", carDrawer);
@@ -725,6 +726,9 @@ export const CarcatalogStore = (props) => {
   const toggleDrawer = (props) => {
     setCarDrawer({ ...carDrawer, isOpen: !carDrawer.isOpen });
   };
+  const toggleOnlyThisCar = (props) => {
+    setCarDrawer({ ...carDrawer, onlyThisCar: !carDrawer.onlyThisCar });
+  };
 
   //  ######  ####### #######    ######  ####### ######
   //  #     # #          #       #     # #     # #     #
@@ -792,12 +796,14 @@ export const CarcatalogStore = (props) => {
         carEditionList,
         carDetail,
         CarDetailPopover,
+        carDrawer,
         loadCarFirmList,
         loadCarMarkList,
         loadCarIndexList,
         loadCarEditionList,
         loadCarDetail,
         toggleDrawer,
+        toggleOnlyThisCar,
       }}
       displayName="CarcatalogStore"
     >

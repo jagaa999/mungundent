@@ -74,12 +74,13 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
 
         return (
           <Button
+            key={index}
             block
             // size="small"
             className={`gx-mb-1 gx-w-100 gx-text-primary ${
               myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
             }`}
-            hoverable
+            // hoverable
             onClick={() => prepareURL2(myValue, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
           >
             <span className="gx-fs-sm">{item.name}</span>

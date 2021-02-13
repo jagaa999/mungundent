@@ -20,6 +20,7 @@ const UniversalListCarDetail = (props) => {
   const carCatalogContext = useContext(CarcatalogContext);
 
   const MyDetail = carCatalogContext.CarDetailPopover;
+  const carDrawer = carCatalogContext.carDrawer;
   const carDetail = carCatalogContext.carDetail.carDetail;
   const mainData = carCatalogContext.carDetail.carDetail.mainData;
   const specList1 = carCatalogContext.carDetail.carDetail.specList1;
@@ -38,9 +39,9 @@ const UniversalListCarDetail = (props) => {
         <div className="">
           <span className="gx-fs-xs gx-mr-2">Зөвхөн энэ машин!</span>
           <Switch
-            defaultChecked
+            checked={carDrawer.onlyThisCar}
             size="small"
-            // onChange={onChange}
+            onChange={() => carCatalogContext.toggleOnlyThisCar()}
           />
         </div>
       </div>
@@ -84,6 +85,13 @@ const UniversalListCarDetail = (props) => {
                   );
                 })} */}
               </Space>
+            </div>
+            <div className="gx-fs-xs">
+              {/* tire2frontfull
+              tire2frontwidth
+              tire2frontratio
+              tire2frontdiameter */}
+              {carDetail.tire2frontfull} • {carDetail.tire2rearfull}
             </div>
             <div className="gx-dot-arrow">
               <div className="gx-bg-primary gx-hover-arrow">
