@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import TopAuction from "components/Moto/TopAuction";
+import TopAuction from "components/Moto/Top/TopAuction";
 import MemberContext from "context/MemberContext";
 import LoadingDetail from "components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";

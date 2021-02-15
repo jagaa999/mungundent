@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 
+import { Alert } from "antd";
+
 import FilterContext from "../../../context/FilterContext";
 // import MemberContext from "../../../context/MemberContext";
 // import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
@@ -56,8 +58,16 @@ const AuctionListPage = () => {
 
   return (
     <>
+      <Alert
+        message="Уучлаарай."
+        description="Японы Аукшин системийг тодорхойгүй хугацаагаар хаасан болно."
+        type="warning"
+        banner={true}
+        showIcon={true}
+      />
+
       <UniversalListMeta meta={prepareAuctionListSettings.meta} />
-      {renderSwitch(filterContext.state.cardtype.cardtype)}
+      {/* {renderSwitch(filterContext.state.cardtype.cardtype)} */}
     </>
   );
 };

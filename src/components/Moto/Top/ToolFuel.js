@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 import axios from "axios";
 import MotoTinyBarChart from "routes/extensions/charts/recharts/bar/Components/MotoTinyBarChart";
-import MotoToolFuelTips from "../dashboard/Listing/MotoToolFuelTips";
+import MotoToolFuelTips from "../../dashboard/Listing/MotoToolFuelTips";
 
 import {
   Card,

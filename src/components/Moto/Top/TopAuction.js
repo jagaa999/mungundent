@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import { Row, Col, Tabs } from "antd";
-import MotoSmartHomeCard2 from "../Widgets/MotoSmartHomeCard2";
-import MotoSmartHomeCard3 from "../Widgets/MotoSmartHomeCard3";
+import MotoSmartHomeCard2 from "../../Widgets/MotoSmartHomeCard2";
+import MotoSmartHomeCard3 from "../../Widgets/MotoSmartHomeCard3";
 import {
   sedanList,
   hatchbackList,
@@ -13,7 +13,7 @@ import {
 const TopAuction = () => {
   return (
     <>
-      <h2>Монголчуудын нийтлэг авдаг автомашинууд</h2>
+      <h2>Японы улсаас Монголчуудын нийтлэг авдаг автомашинууд</h2>
 
       <Tabs defaultActiveKey="2" centered className="gx-mt-5">
         <Tabs.TabPane tab="Сэдан" key="1">

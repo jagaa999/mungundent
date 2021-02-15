@@ -15,7 +15,7 @@ import { isEmpty } from "lodash";
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
 export const prepareProductListSettings = {
-  pagetitle: "Дэлгүүр",
+  pagetitle: "Бараа",
   menu: "product",
   sortFields: [
     {
@@ -35,7 +35,7 @@ export const prepareProductListSettings = {
     },
   ],
   meta: {
-    title: "Дэлгүүр",
+    title: "Бараа",
     description: "Авто зах зээлийн бараанууд",
     property: [
       { property: "fb:app_id", content: "186294318100220" },
@@ -60,19 +60,19 @@ export const prepareProductListSettings = {
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
 export const prepareProductDetailSettings = {
-  pagetitle: "Дэлгүүр",
+  pagetitle: "Бараа",
   menu: "product",
   meta: {
-    title: "Дэлгүүр",
-    description: "Дэлгүүр",
+    title: "Бараа",
+    description: "Бараа",
     property: [
       { property: "fb:app_id", content: "186294318100220" },
       { property: "og:type", content: "article" },
       // {property: "og:url", content: {window.location.href}},
-      { property: "og:title", content: "Дэлгүүр" },
+      { property: "og:title", content: "Бараа" },
       {
         property: "og:description",
-        content: "Дэлгүүр",
+        content: "Бараа",
       },
       { property: "og:image", content: "" },
       { property: "og:locale", content: "mn_MN" },

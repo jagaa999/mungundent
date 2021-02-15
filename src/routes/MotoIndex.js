@@ -122,6 +122,9 @@ const ToolConverterPage = asyncComponent(() => {
 const TopAuctionPage = asyncComponent(() => {
   return import("./moto/top/topAuctionPage");
 });
+const TopTirePage = asyncComponent(() => {
+  return import("./moto/top/topTirePage");
+});
 
 const PrivacyPolicyPage = asyncComponent(() => {
   return import("../content/static/officialinfo/PrivacyPolicy");
@@ -407,6 +410,9 @@ const App = ({ match }) => (
       */}
       <Route path={["/top/auction", "/top/auctionlist"]}>
         <TopAuctionPage />
+      </Route>
+      <Route path={["/top/tire", "/top/tirebrand"]}>
+        <TopTirePage />
       </Route>
       {/* 
        #####  #######    #    ####### ###  #####  
