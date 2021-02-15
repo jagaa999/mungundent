@@ -20,10 +20,13 @@ const staticMenu = (
 
 const topMenu = (
   <Menu>
-    <Menu.Item key="topAuction">
-      <Link to="/top/auction">
-        Аукшины топууд <Badge status="success" className="gx-ml-2" />
+    <Menu.Item key="topTire">
+      <Link to="/top/tire">
+        Дугуйны топ брэндүүд <Badge status="success" className="gx-ml-2" />
       </Link>
+    </Menu.Item>
+    <Menu.Item key="topAuction">
+      <Link to="/top/auction">Аукшины топууд</Link>
     </Menu.Item>
   </Menu>
 );
