@@ -105,14 +105,6 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
         // duration: 50,
       }}
     >
-      {/* <div
-        key={mainData.id}
-        className={` gx-product-item gx-autozar-list-item gx-position-relative  ${
-          grid ? "gx-product-vertical" : "gx-product-horizontal"
-        } ${mainData.isfeatured.value ? "moto-card-sponsor" : ""} ${
-          !mainData.isactive.value ? "border-top" : ""
-        }`}
-      > */}
       <Card
         className={`moto-item-card-1 ${
           toBoolean(mainData.isfeatured.value) ? "moto-card-sponsor" : ""
@@ -123,7 +115,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
           <Col span="9">
             {!isEmpty(mainData.imagemain.value) && (
               <div className="gx-product-image">
-                <Link to={mainData.link}>
+                <Link to={mainData.link.value}>
                   <span className="gx-link gx-grid-thumb-cover">
                     <UniversalListItemMainImage
                       myClass="gx-img-fluid gx-w-100"
@@ -270,7 +262,6 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
         <div className="moto-badge-4">
           <UniversalListItemButton myUniversalItem={myUniversalItem} />
         </div>
-        {/* </div> */}
       </Card>
     </TweenOne>
   );

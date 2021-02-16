@@ -87,16 +87,6 @@ const UniversalListSort = ({ mySettings }) => {
   const menu = (
     <Menu selectable={true} selectedKeys={selectedKeys}>
       <Menu.ItemGroup key="sort1" title="Эрэмбэ">
-        {/* <Menu.Item key="modifieddate" onClick={onChangeSort}>
-          Зарын огноогоор <Sort ddd="modifieddate" />
-        </Menu.Item>
-        <Menu.Item key="financepricerr" onClick={onChangeSort}>
-          Үнээр <Sort ddd="financepricerr" />
-        </Menu.Item>
-        <Menu.Item key="autozarmilage" onClick={onChangeSort}>
-          Гүйлтээр <Sort ddd="autozarmilage" />
-        </Menu.Item> */}
-
         {mySettings.sortFields.map((item, index) => {
           return (
             <Menu.Item key={item.field} onClick={onChangeSort}>
@@ -142,17 +132,16 @@ const UniversalListSort = ({ mySettings }) => {
           // type="primary"
           size={isBrowser ? "default" : "small"}
           onClick={(e) => e.preventDefault()}
-          className="gx-mr-0 gx-ml-2"
-        >
-          Эрэмбэ
-          <CaretDownOutlined />
-        </Button>
+          className="gx-mr-0 gx-ml-2 gx-btn-white"
+          icon={<MyIcon type="iconellipsis-h-solid" />}
+        />
       </Dropdown>
 
-      <Radio.Group
+      {/* <Radio.Group
         className="gx-ml-2"
         defaultValue={selectedKeys[1]}
         buttonStyle="solid"
+        // buttonStyle="outline"
         size={isBrowser ? "default" : "small"}
         onChange={onChangeTypeRadio}
       >
@@ -174,7 +163,7 @@ const UniversalListSort = ({ mySettings }) => {
             className={isBrowser && "moto-icon-1-3"}
           />
         </Radio.Button>
-      </Radio.Group>
+      </Radio.Group> */}
     </>
   );
 };

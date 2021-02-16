@@ -24,15 +24,16 @@ const MotoHeader = () => {
             <Link to="/" className="gx-d-block gx-pointer gx-mr-xs-5 gx-logo">
               <Tooltip title="Нүүр хуудас">
                 <span className="gx-d-block gx-d-lg-none">
-                  <MyIcon type="iconhome" />
+                  <MyIcon type="iconmoto_logo_01" className="moto-icon-1-9" />
                 </span>
               </Tooltip>
               <div className="gx-d-none gx-d-lg-block">
-                <img
+                {/* <img
                   alt=""
                   style={{ height: "26px" }}
                   src={require("assets/images/logo.png")}
-                />
+                /> */}
+                <MyIcon type="iconmoto_logo_01" />
               </div>
             </Link>
 

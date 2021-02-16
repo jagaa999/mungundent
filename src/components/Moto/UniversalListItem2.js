@@ -89,19 +89,22 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
       className="moto-item-card"
     >
       <Card
+        bordered={false}
         className={`moto-item-card ${
           toBoolean(mainData.isfeatured.value) ? "moto-card-sponsor" : ""
         } ${!toBoolean(mainData.isactive.value) ? "border-top" : ""}`}
         hoverable={true}
         // style={{ margin: "0 10px", height: "380px" }}
         cover={
-          <UniversalListItemMainImage
-            myClass="gx-img-fluid gx-w-100"
-            width="auto"
-            // style={{ height: "50px" }}
-            imageMain={mainData.imagemain.value}
-            cloudName={mainData.imagemaincloudname.value}
-          />
+          <Link to={mainData.link.value}>
+            <UniversalListItemMainImage
+              myClass="gx-img-fluid gx-w-100"
+              width="auto"
+              // style={{ height: "50px" }}
+              imageMain={mainData.imagemain.value}
+              cloudName={mainData.imagemaincloudname.value}
+            />
+          </Link>
         }
       >
         {/* <span className="moto-badge-1">{myUniversalItem.LOT}</span> */}
@@ -138,7 +141,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           {!toBoolean(mainData.isactive.value) && <ActiveTag type="dot" />}
         </div>
 
-        <div className="gx-text-success gx-fs-sm gx-mt-2">
+        {/* <div className="gx-text-success gx-font-weight-bold gx-mt-2">
           <Tooltip
             title={
               GetSpecData(mainData.mainnumber.field, mainData.menu)?.tooltip
@@ -146,7 +149,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           >
             {mainData.mainnumber?.value}
           </Tooltip>
-        </div>
+        </div> */}
 
         <div className="gx-description gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
           {headerSpec?.map((item, index) => {
@@ -162,8 +165,21 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
           })}
         </div>
 
-        <div className="moto-badge-4">
-          <UniversalListItemButton myUniversalItem={myUniversalItem} />
+        <div className="gx-mt-5">
+          <div className="moto-badge-5 gx-d-flex gx-vertical-align-middle">
+            <div className="gx-text-success gx-font-weight-bold">
+              <Tooltip
+                title={
+                  GetSpecData(mainData.mainnumber.field, mainData.menu)?.tooltip
+                }
+              >
+                {mainData.mainnumber?.value}
+              </Tooltip>
+            </div>
+            <div className="gx-ml-auto">
+              <UniversalListItemButton myUniversalItem={myUniversalItem} />
+            </div>
+          </div>
         </div>
       </Card>
     </TweenOne>

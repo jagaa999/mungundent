@@ -44,7 +44,7 @@ const UniversalListActionHeader = ({
       )}
 
       <PageHeader
-        className="moto-pageheader"
+        className="moto-pageheader gx-my-4"
         title={
           <h3>
             {mySettings.pagetitle}
@@ -58,21 +58,6 @@ const UniversalListActionHeader = ({
           </h3>
         }
         extra={[
-          <Tooltip title="Зөвлөмж нээх" key="01">
-            <Button
-              icon={
-                <MyIcon
-                  type="iconhelp"
-                  className={isBrowser && "moto-icon-1-3"}
-                />
-              }
-              type={showInfo ? "primary" : "default"}
-              onClick={(e) => setShowInfo(!showInfo)}
-              className="gx-mr-0"
-              size={isBrowser ? "default" : "small"}
-              style={{ width: isBrowser && "40px" }}
-            ></Button>
-          </Tooltip>,
           <Tooltip title="Шүүлтүүр нээх" key="02">
             <Button
               icon={
@@ -81,13 +66,34 @@ const UniversalListActionHeader = ({
                   className={isBrowser && "moto-icon-1-3"}
                 />
               }
-              type={myIsFilterDrawerOpen ? "primary" : "default"}
+              type="primary"
               onClick={(e) => myListContext.toggleFilterDrawerOpen()}
-              className="gx-ml-2 gx-mr-0"
+              className={`gx-ml-2 gx-mr-0  ${
+                myIsFilterDrawerOpen ? "" : "gx-btn-warning"
+              }`}
+              size={isBrowser ? "default" : "small"}
+              // style={{ width: isBrowser && "40px" }}
+            >
+              Шүүлтүүр
+            </Button>
+          </Tooltip>,
+
+          <Tooltip title="Зөвлөмж нээх" key="01">
+            <Button
+              icon={
+                <MyIcon
+                  type="iconhelp"
+                  className={isBrowser && "moto-icon-1-3"}
+                />
+              }
+              type="primary"
+              onClick={(e) => setShowInfo(!showInfo)}
+              className={`gx-mr-0  ${showInfo ? "" : "gx-btn-white"}`}
               size={isBrowser ? "default" : "small"}
               style={{ width: isBrowser && "40px" }}
             ></Button>
           </Tooltip>,
+
           <Tooltip title="Харьцуулалт нээх" key="03">
             <Button
               icon={
@@ -96,9 +102,11 @@ const UniversalListActionHeader = ({
                   className={isBrowser && "moto-icon-1-3"}
                 />
               }
-              type={compareContext.compareList.isOpen ? "primary" : "default"}
+              type="primary"
               onClick={compareContext.toggleDrawer}
-              className="gx-ml-2 gx-mr-0"
+              className={`gx-ml-2 gx-mr-0  ${
+                compareContext.compareList.isOpen ? "" : "gx-btn-white"
+              }`}
               size={isBrowser ? "default" : "small"}
               style={{ width: isBrowser && "40px" }}
             ></Button>

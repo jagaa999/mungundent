@@ -161,7 +161,7 @@ export const CompareStore = (props) => {
     loading: false,
     error: "",
     isOpen: false,
-    closeSoon: false,
+    // closeSoon: false,
   });
 
   //     #    ######  ######
@@ -182,7 +182,7 @@ export const CompareStore = (props) => {
       ...compareList,
       compareList: myList,
       isOpen: true,
-      closeSoon: true,
+      // closeSoon: true,
     });
   };
 
@@ -212,18 +212,18 @@ export const CompareStore = (props) => {
   };
 
   //Хэрвээ удахгүй хаагдах горимд байвал буцаагаад хаах хэрэгтэй:
-  useEffect(() => {
-    if (compareList.closeSoon) {
-      //буцаагаад хаах хэрэгтэй.
-      setTimeout(() => {
-        setCompareList({
-          ...compareList,
-          isOpen: false,
-          closeSoon: false,
-        });
-      }, 1500);
-    }
-  }, [compareList.isOpen]);
+  // useEffect(() => {
+  //   if (compareList.closeSoon) {
+  //     //буцаагаад хаах хэрэгтэй.
+  //     setTimeout(() => {
+  //       setCompareList({
+  //         ...compareList,
+  //         isOpen: false,
+  //         closeSoon: false,
+  //       });
+  //     }, 1500);
+  //   }
+  // }, [compareList.isOpen]);
 
   //  ######  ######     #    #     # ####### ######
   //  #     # #     #   # #   #  #  # #       #     #
@@ -236,36 +236,42 @@ export const CompareStore = (props) => {
   const CompareDrawer = () => {
     return (
       <Drawer
-        title={
-          <>
-            <Link to="/compare">
-              <Button
-                type="primary"
-                size="small"
-                className="gx-m-0"
-                icon={<MyIcon type="iconcheck-square-solid" />}
-                onClick={toggleDrawer}
-              >
-                Харьцуулах
-              </Button>
-            </Link>
-            <Button
-              size="small"
-              className="gx-m-0 gx-ml-2"
-              onClick={(e) => clearAll()}
-            >
-              Хоослох
-            </Button>
-          </>
-        }
+        className="gx-bg-light"
+        bodyStyle={{ backgroundColor: "#f5f5f5" }}
+        title={null}
+        // title={
+        //   <>
+        //     <Link to="/compare">
+        //       <Button
+        //         type="primary"
+        //         size="small"
+        //         className="gx-m-0"
+        //         icon={<MyIcon type="iconcheck-square-solid" />}
+        //         onClick={toggleDrawer}
+        //       >
+        //         Харьцуулах
+        //       </Button>
+        //     </Link>
+        //     <Button
+        //       size="small"
+        //       className="gx-m-0 gx-ml-2"
+        //       onClick={(e) => clearAll()}
+        //     >
+        //       Хоослох
+        //     </Button>
+        //   </>
+        // }
+        mask={false}
+        maskClosable={false}
         className="moto-drawer-bottom-full"
         placement="bottom"
-        height="350px"
+        height="240px"
         width="100%"
-        closable={true}
+        // closable={true}
+        closable={false}
         onClose={(e) => setCompareList({ ...compareList, isOpen: false })}
         visible={compareList.isOpen}
-        closeIcon={<MyIcon type="iconangledown" />}
+        // closeIcon={<MyIcon type="iconangledown" />}
         headerStyle={{ paddingTop: "10px", paddingBottom: "10px" }}
       >
         <div className="gx-p-3">
@@ -278,10 +284,11 @@ export const CompareStore = (props) => {
                 md={4}
                 sm={6}
                 xs={8}
-                className="gx-mb-5"
+                // className="gx-mb-5"
               >
                 <Card
-                  className="gx-fs-sm"
+                  className="gx-fs-sm gx-m-0"
+                  bordered={false}
                   style={{ height: "100%" }}
                   size="small"
                   hoverable
@@ -295,39 +302,18 @@ export const CompareStore = (props) => {
                       }
                     />
                   }
-                  // actions={[
-                  //   <SettingOutlined key="setting" />,
-                  //   <EditOutlined key="edit" />,
-                  //   <EllipsisOutlined key="ellipsis" />,
-                  // ]}
                 >
                   <Tag color="warning" className="moto-badge-1">
                     {item.mainSpec}
                   </Tag>
 
-                  <h6>
+                  <h6 className="gx-text-center">
                     <Link to={item.link || "/"}>
                       {item.title || "Тодорхойгүй"}
                     </Link>
                   </h6>
 
-                  <div className="gx-fs-sm gx-mt-2 gx-d-none gx-d-sm-block">
-                    {item.subSpecs.map((subItem, index) => {
-                      const myItem = GetSpecData(
-                        subItem.field,
-                        item.originalItem.mainData.menu
-                      );
-                      return (
-                        <Tooltip title={myItem.title} key={index}>
-                          <span className="moto-label-main ant-tag">
-                            {subItem.value}
-                          </span>
-                        </Tooltip>
-                      );
-                    })}
-                  </div>
-
-                  <Tooltip title="Хасах">
+                  {/* <Tooltip title="Хасах">
                     <Button
                       type="text"
                       className="moto-badge-4"
@@ -335,19 +321,45 @@ export const CompareStore = (props) => {
                     >
                       <DeleteOutlined />
                     </Button>
-                  </Tooltip>
-                  {/* <Button
-                    type="primary"
-                    className="gx-mt-sm-4 gx-fs-sm gx-btn-block gx-mb-0 gx-text-uppercase gx-border-radius-top-left-0 gx-border-radius-top-right-0 absolute-bottom button-view"
-                    size="large"
-                    htmlType="submit"
-                    block
-                  >
-                    Үзэх
-                  </Button> */}
+                  </Tooltip> */}
                 </Card>
               </Col>
             ))}
+            <Col key="control-buttons" xl={3} lg={4} md={4} sm={6} xs={8}>
+              <div
+                style={{
+                  height: "100%",
+                  alignItems: "center",
+                  display: "flex",
+                }}
+              >
+                <div>
+                  <Link to="/compare">
+                    <Button
+                      block
+                      type="primary"
+                      // size="small"
+                      // className="gx-m-0"
+                      icon={<MyIcon type="iconcheck-square-solid" />}
+                      onClick={toggleDrawer}
+                    >
+                      Харьцуулах
+                    </Button>
+                  </Link>
+                  <Button
+                    block
+                    // size="small"
+                    // className="gx-m-0 gx-ml-2"
+                    onClick={(e) => clearAll()}
+                  >
+                    Хоослох
+                  </Button>
+                  <Button block onClick={(e) => toggleDrawer()}>
+                    Хаах
+                  </Button>
+                </div>
+              </div>
+            </Col>
           </Row>
         </div>
       </Drawer>

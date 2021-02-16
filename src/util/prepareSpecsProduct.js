@@ -140,7 +140,7 @@ const tempHeaderSpec = (item, menu, mainData) => {
       field: "rating",
       value: (
         <span style={{ minWidth: "90px" }}>
-          <span className="gx-mr-2">{item.rating}</span>
+          {/* <span className="gx-mr-2">{item.rating}</span> */}
           <MotoAuctionStarRatingComponent
             starCount={5}
             value={item.rating}
@@ -229,7 +229,7 @@ const tempTableColumns = (item, menu, mainData) => {
       width: "90px",
       value: (
         <span style={{ minWidth: "90px" }}>
-          <div className="gx-text-center">{item.rating}</div>
+          {/* <div className="gx-text-center">{item.rating}</div> */}
           <MotoAuctionStarRatingComponent
             starCount={5}
             value={item.rating}
@@ -244,7 +244,7 @@ const tempTableColumns = (item, menu, mainData) => {
       width: "110px",
       align: "center",
       value: (
-        <span className="gx-text-success gx-fs-sm">
+        <span className="gx-text-success gx-font-weight-bold">
           {accounting.formatMoney(item.saleprice, "₮", 0, "'")}
         </span>
       ),

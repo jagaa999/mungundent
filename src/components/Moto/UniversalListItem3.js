@@ -71,12 +71,14 @@ const UniversalListItem3 = ({ myListContextListList }) => {
       key: myListContextListList[0].mainData.id,
       render: (mglmark, record) => (
         <div className="gx-media gx-flex-nowrap">
-          <UniversalListItemMainImage
-            myClass="gx-mr-3"
-            width="64"
-            imageMain={record.mainData.imagemain.value}
-            cloudName={record.mainData.imagemaincloudname.value}
-          />
+          <Link to={record.mainData.link.value}>
+            <UniversalListItemMainImage
+              myClass="gx-mr-3"
+              width="64"
+              imageMain={record.mainData.imagemain.value}
+              cloudName={record.mainData.imagemaincloudname.value}
+            />
+          </Link>
 
           <div className="gx-media-body gx-align-self-center">
             {/* <Link to={record.mainData.link.value}>
