@@ -62,9 +62,7 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
 
   return (
     <>
-      {isBrowser && (
-        <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
-      )}
+      <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
 
       <div className="gx-w-100 gx-p-0 gx-pr-4">
         {myIndicators.map((item, index) => {
@@ -78,7 +76,7 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
               key={index}
               block
               // size="small"
-              className={`gx-mb-1 gx-text-primary ${
+              className={`gx-mb-1 ${
                 myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
               }`}
               // hoverable

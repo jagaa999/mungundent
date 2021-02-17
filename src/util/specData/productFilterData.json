@@ -1,25 +1,19 @@
 {
+  "MotoTireType": {
+    "type": "radiobutton1",
+    "name": "Дугуйн зориулалт",
+    "tooltip": "Дугуйны зориулалтууд",
+    "icon": "",
+    "order": "1"
+  },
   "MotoTireBrand": {
     "type": "radiobutton2",
     "name": "Дугуйн брэнд",
     "tooltip": "Монголд борлуулагдаж буй брэндүүд",
     "icon": "",
-    "order": "1"
-  },
-  "MotoTireType": {
-    "type": "radiobutton1",
-    "name": "Дугуйн төрөл",
-    "tooltip": "Дугуйны төрлүүд",
-    "icon": "",
     "order": "2"
   },
-  "MotoTireSizeDiameter": {
-    "type": "checkbox",
-    "name": "Дугуйн диаметр",
-    "tooltip": "Обудны инч хэмжээ",
-    "icon": "",
-    "order": "3"
-  },
+  
   
   "MotoTireSizeWidth": {
     "type": "checkboxlimit",
@@ -35,5 +29,12 @@
     "tooltip": "Дугуйн харьцааны хэмжээ",
     "icon": "",
     "order": "5"
+  },
+  "MotoTireSizeDiameter": {
+    "type": "checkbox",
+    "name": "Дугуйн диаметр",
+    "tooltip": "Обудны инч хэмжээ",
+    "icon": "",
+    "order": "3"
   }
 }

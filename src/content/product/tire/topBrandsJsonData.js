@@ -18,7 +18,20 @@ export const tire2020 = {
       dataIndex: "position",
       key: "position",
       render: (field, record) => {
-        return <span className="gx-font-weight-bold">{field}</span>;
+        return (
+          <span className="gx-font-weight-bold">
+            {record.position}{" "}
+            {record.position === record.previous_position && (
+              <span className="gx-ml-2 gx-text-primary">=</span>
+            )}
+            {record.position < record.previous_position && (
+              <span className="gx-ml-2 gx-text-success">↑</span>
+            )}
+            {record.position > record.previous_position && (
+              <span className="gx-ml-2 gx-text-warning">↓</span>
+            )}
+          </span>
+        );
       },
     },
     {
@@ -293,7 +306,20 @@ export const tire2019 = {
       dataIndex: "position",
       key: "position",
       render: (field, record) => {
-        return <span className="gx-font-weight-bold">{field}</span>;
+        return (
+          <span className="gx-font-weight-bold">
+            {record.position}{" "}
+            {record.position === record.previous_position && (
+              <span className="gx-ml-2 gx-text-primary">=</span>
+            )}
+            {record.position < record.previous_position && (
+              <span className="gx-ml-2 gx-text-success">↑</span>
+            )}
+            {record.position > record.previous_position && (
+              <span className="gx-ml-2 gx-text-warning">↓</span>
+            )}
+          </span>
+        );
       },
     },
     {
@@ -568,7 +594,20 @@ export const tire2018 = {
       dataIndex: "position",
       key: "position",
       render: (field, record) => {
-        return <span className="gx-font-weight-bold">{field}</span>;
+        return (
+          <span className="gx-font-weight-bold">
+            {record.position}{" "}
+            {record.position === record.previous_position && (
+              <span className="gx-ml-2 gx-text-primary">=</span>
+            )}
+            {record.position < record.previous_position && (
+              <span className="gx-ml-2 gx-text-success">↑</span>
+            )}
+            {record.position > record.previous_position && (
+              <span className="gx-ml-2 gx-text-warning">↓</span>
+            )}
+          </span>
+        );
       },
     },
     {
@@ -843,7 +882,20 @@ export const tire2017 = {
       dataIndex: "position",
       key: "position",
       render: (field, record) => {
-        return <span className="gx-font-weight-bold">{field}</span>;
+        return (
+          <span className="gx-font-weight-bold">
+            {record.position}{" "}
+            {record.position === record.previous_position && (
+              <span className="gx-ml-2 gx-text-primary">=</span>
+            )}
+            {record.position < record.previous_position && (
+              <span className="gx-ml-2 gx-text-success">↑</span>
+            )}
+            {record.position > record.previous_position && (
+              <span className="gx-ml-2 gx-text-warning">↓</span>
+            )}
+          </span>
+        );
       },
     },
     {

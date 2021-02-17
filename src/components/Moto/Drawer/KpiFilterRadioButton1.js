@@ -62,12 +62,15 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
 
   return (
     <>
-      {isBrowser && (
-        // <h6 className="gx-font-weight-medium gx-mt-3">{kpiFilterItem.name}</h6>
-        <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
-      )}
+      <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
 
-      <Row gutter={[10, 10]} type="flex" justify="left" align="middle">
+      <Row
+        gutter={[10, 10]}
+        type="flex"
+        justify="left"
+        align="middle"
+        className="gx-mr-3"
+      >
         {myIndicators.map((item, index) => {
           const myValue = JSON.stringify({
             indicator_id: item.indicatorid,
@@ -77,7 +80,7 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
           return (
             <Col xl={6} lg={8} md={8} sm={8} xs={12} key={index}>
               <Card
-                className={`gx-fs-sm gx-m-0 gx-card-full gx-p-2 gx-text-center gx-text-primary ${
+                className={`gx-fs-sm gx-m-0 gx-card-full gx-p-2 gx-text-center ${
                   myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
                 }`}
                 style={{

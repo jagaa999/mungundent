@@ -117,7 +117,11 @@ const tempMainData = (item, menu) => {
     description: { field: "description", value: item.description || "" },
     mainnumber: {
       field: "saleprice",
-      value: accounting.formatMoney(item.saleprice, "₮", 0, "'"),
+      value: (
+        <span className="gx-text-success gx-font-weight-bold">
+          {accounting.formatMoney(item.saleprice, "₮", 0, "'")}
+        </span>
+      ),
     },
     createddate: {
       field: "createddate",

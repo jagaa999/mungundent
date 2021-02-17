@@ -1,37 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
 import { isEmpty } from "lodash";
-import {
-  Button,
-  Input,
-  Checkbox,
-  Divider,
-  Select,
-  Radio,
-  Row,
-  Col,
-} from "antd";
-import { ClearOutlined } from "@ant-design/icons";
+import { Input, Checkbox, Select, Row, Col } from "antd";
 import { Html5Entities } from "html-entities";
 import { FilterTitle } from "util/textFunction";
 
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import {
-  LoadProcessAuction,
-  loadDataviewAuction,
-} from "../../../util/axiosFunctionAuction";
-import { loadDataview } from "util/axiosFunction";
 import FilterContext from "../../../context/FilterContext";
 import CarcatalogContext from "context/CarcatalogContext";
 import useDidMountEffect from "util/useDidMountEffect";
-
-const { Search } = Input;
-const { Option } = Select;
 
 const KpiFilterCheckbox = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
@@ -66,13 +41,13 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
   //   undefined;
 
   // console.log("ДИАМЕТР", kpiFilterItem);
-  console.log("ДИАМЕТР selected", selected);
+  // console.log("ДИАМЕТР selected", selected);
   // console.log("ДИАМЕТР myDefault", myDefault);
   // myDefault нь {"indicator_id":"16102833423851","value":"16102833423901"} ийм утгатай байгаа.
   //Тэгэхээр indicator item бүрийн code-той carDetail-ийг шалгах бололтой.
   /*Хэрвээ onlyThisCar чагттай байх аваас хэрэглэгчийн ямар шүүлтүүр хийснийг үл хамааран зөвхөн тухайн машины үзүүлэлтийг чагталъя.*/
 
-  useDidMountEffect(() => {
+  useEffect(() => {
     console.log("ӨӨӨӨӨӨӨӨӨӨӨӨ");
     if (carDrawer.onlyThisCar) {
       //Зөвхөн тухайн машинд гэдэг нь чагттай байна. Иймээс myDefault-ийг тухайн машины үзүүлэлтээр солино.
@@ -109,9 +84,7 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
 
   return (
     <>
-      {isBrowser && (
-        <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
-      )}
+      <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
 
       <Checkbox.Group
         style={{ width: "100%" }}

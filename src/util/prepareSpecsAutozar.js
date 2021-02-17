@@ -117,7 +117,11 @@ const tempMainData = (item, menu) => {
     description: { field: "description", value: item.description },
     mainnumber: {
       field: "financepricerr",
-      value: accounting.formatMoney(item.financepricerr, "₮", 0, "'"),
+      value: (
+        <span className="gx-text-success gx-font-weight-bold">
+          {accounting.formatMoney(item.financepricerr, "₮", 0, "'")}
+        </span>
+      ),
     },
     createddate: {
       field: "createddate",
@@ -266,21 +270,21 @@ const tempTableColumns = (item, menu, mainData) => {
       width: "110px",
       align: "center",
       value: (
-        <span className="gx-text-success gx-fs-sm">
+        <span className="gx-text-success gx-font-weight-bold">
           {accounting.formatMoney(item.financepricerr, "₮", 0, "'")}
         </span>
       ),
     },
 
-    {
-      field: "modifieddate",
-      responsive: ["lg"],
-      value: (
-        <span className="gx-text-grey gx-fs-sm">
-          {mainData.modifieddate.value}
-        </span>
-      ),
-    },
+    // {
+    //   field: "modifieddate",
+    //   responsive: ["lg"],
+    //   value: (
+    //     <span className="gx-text-grey gx-fs-sm">
+    //       {mainData.modifieddate.value}
+    //     </span>
+    //   ),
+    // },
   ];
 };
 

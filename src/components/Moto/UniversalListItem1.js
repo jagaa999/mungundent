@@ -46,7 +46,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
 
       return (
         <span className="gx-mr-3 gx-fs-sm">
-          <Badge className="gx-mb-0 gx-mr-0" status={myItem.status} />
+          {/* <Badge className="gx-mb-0 gx-mr-0" status={myItem.status} /> */}
           <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
         </span>
       );
@@ -132,35 +132,52 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
           <Col span="15">
             <div className="gx-p-3">
               <Row className="moto-item-card">
-                <Col xl={17} md={16} sm={15} xs={24}>
-                  <div className={isBrowser ? "h4" : "h6"}>
-                    <Link to={mainData.link.value}>
-                      <Tooltip title={mainData.title.value}>
-                        <Typography.Paragraph
-                          ellipsis={{ rows: 3, symbol: "…" }}
-                          className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
+                <Col span={24}>
+                  <div className="gx-d-flex">
+                    <div className={isBrowser ? "h4" : "h6"}>
+                      <Link to={mainData.link.value}>
+                        <Tooltip title={mainData.title.value}>
+                          <Typography.Paragraph
+                            ellipsis={{ rows: 3, symbol: "…" }}
+                            className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
+                          >
+                            {mainData.title.value}
+                          </Typography.Paragraph>
+                        </Tooltip>
+                      </Link>
+                      {mainData.isfeatured.value && <FeaturedTag />}
+                      {mainData.isactive.value && !mainData.isactive.value && (
+                        <ActiveTag />
+                      )}
+                    </div>
+
+                    {!isEmpty(mainData.mainnumber?.value) && (
+                      <div className={`gx-ml-auto  ${isBrowser ? "h4" : "h6"}`}>
+                        <Tooltip
+                          title={
+                            GetSpecData(
+                              mainData.mainnumber.field,
+                              mainData.menu
+                            ).tooltip
+                          }
                         >
-                          {mainData.title.value}
-                        </Typography.Paragraph>
-                      </Tooltip>
-                    </Link>
-                    {mainData.isfeatured.value && <FeaturedTag />}
-                    {mainData.isactive.value && !mainData.isactive.value && (
-                      <ActiveTag />
+                          {mainData.mainnumber.value}
+                        </Tooltip>
+                      </div>
                     )}
                   </div>
 
                   {/* headerSpec */}
                   {!isEmpty(headerSpec) && (
                     <div className="gx-dealclose-header-right">
-                      {headerSpec.map((item, index) => {
+                      {[...headerSpec, ...specList2].map((item, index) => {
                         return <RenderHeaderSpec key={index} item={item} />;
                       })}
                     </div>
                   )}
 
                   {!isEmpty(specList1) && (
-                    <div className="gx-mt-3 gx-d-none gx-d-sm-block ">
+                    <div className="gx-mt-2 gx-d-none gx-d-sm-block ">
                       <Row>
                         <Col span={24}>
                           <ul className="moto-spec-list">
@@ -181,87 +198,57 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
                         <span
                           dangerouslySetInnerHTML={{
                             __html:
-                              mainData.description.value.length > 70
+                              mainData.description.value.length > 210
                                 ? `${mainData.description.value.substring(
                                     0,
-                                    70
+                                    210
                                   )}...`
                                 : mainData.description.value,
-
-                            // "dfdsfds fsdf dsf",
                           }}
                         ></span>
                       </p>
                     </div>
                   )}
-                </Col>
-                <Col
-                  xl={7}
-                  md={8}
-                  sm={9}
-                  xs={24}
-                  className="gx-d-flex gx-flex-column"
-                >
-                  <div>
-                    {!isEmpty(mainData.mainnumber?.value) && (
-                      <div
-                        className={`gx-text-success gx-font-weight-normal gx-mb-1 gx-mt-sm-auto gx-mt-2  ${
-                          isBrowser ? "h4" : "h6"
-                        }`}
-                      >
-                        <Tooltip
-                          title={
-                            GetSpecData(
-                              mainData.mainnumber.field,
-                              mainData.menu
-                            ).tooltip
-                          }
-                        >
-                          {mainData.mainnumber.value}
-                        </Tooltip>
-                      </div>
-                    )}
 
-                    {!isEmpty(specList2) && (
-                      <div className="specList2 gx-d-none gx-d-sm-block">
-                        {specList2.map((item, index) => {
-                          return <RenderSpecList2 key={index} item={item} />;
-                        })}
-                      </div>
-                    )}
+                  <div>
+                    <UniversalListItemButton
+                      myUniversalItem={myUniversalItem}
+                    />
                   </div>
 
-                  {!isEmpty(ownerData) && (
-                    <div className="gx-mt-auto gx-d-none gx-d-sm-block">
-                      <div className="gx-media gx-mt-3">
-                        {!isEmpty(ownerData.photo) && (
-                          <Avatar
-                            src={ownerData.photo}
-                            alt={ownerData.photoalt}
-                            className="gx-mr-2"
-                            size={30}
-                          />
-                        )}
-
-                        <div className="gx-media-body">
-                          <h5 className=" gx-fs-sm">{ownerData.name}</h5>
-                          {!isEmpty(mainData.modifieddate.value) && (
-                            <p className="gx-text-grey gx-fs-sm">
-                              {mainData.modifieddate.value}
-                            </p>
+                  {/* <div>
+                    {!isEmpty(ownerData) && (
+                      <div className="gx-mt-auto gx-d-none gx-d-sm-block">
+                        <div className="gx-media gx-mt-3">
+                          {!isEmpty(ownerData.photo) && (
+                            <Avatar
+                              src={ownerData.photo}
+                              alt={ownerData.photoalt}
+                              className="gx-mr-2"
+                              size={30}
+                            />
                           )}
+
+                          <div className="gx-media-body">
+                            <h5 className=" gx-fs-sm">{ownerData.name}</h5>
+                            {!isEmpty(mainData.modifieddate.value) && (
+                              <p className="gx-text-grey gx-fs-sm">
+                                {mainData.modifieddate.value}
+                              </p>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div> */}
                 </Col>
               </Row>
             </div>
           </Col>
         </Row>
-        <div className="moto-badge-4">
+        {/* <div className="moto-badge-4">
           <UniversalListItemButton myUniversalItem={myUniversalItem} />
-        </div>
+        </div> */}
       </Card>
     </TweenOne>
   );

@@ -16,9 +16,9 @@ import {
   Row,
   Col,
 } from "antd";
-import { ClearOutlined } from "@ant-design/icons";
 import { Html5Entities } from "html-entities";
 import { FilterTitle } from "util/textFunction";
+import MyIcon from "util/iconFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import {
@@ -59,7 +59,11 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
   const initLimitTool = {
     count: 6,
     showAll: false,
-    text: "Бүгд",
+    text: (
+      <>
+        Бүгдийг харах <MyIcon type="iconangledown" className="gx-ml-2" />
+      </>
+    ),
   };
 
   const [limitTool, setLimitTool] = useState(initLimitTool);
@@ -71,7 +75,11 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
       setLimitTool({
         count: myIndicators.length,
         showAll: true,
-        text: "Нуух",
+        text: (
+          <>
+            Нуух <MyIcon type="iconangleup" className="gx-ml-2" />
+          </>
+        ),
       });
     }
   };
@@ -87,14 +95,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
 
   return (
     <>
-      {/* {isBrowser && ( */}
-      {/* )} */}
-      <div className="gx-d-flex gx-mt-4">
-        <FilterTitle title={kpiFilterItem.name} />
-        <div className="gx-ml-auto">
-          <LimitText />
-        </div>
-      </div>
+      <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
 
       <Checkbox.Group
         style={{ width: "100%" }}
@@ -123,7 +124,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
             );
           })}
           <Col span={24}>
-            <div className="gx-mt-2">
+            <div className="gx-mt-1">
               <LimitText />
             </div>
           </Col>

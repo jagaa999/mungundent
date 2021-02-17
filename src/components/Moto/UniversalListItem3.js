@@ -131,7 +131,11 @@ const UniversalListItem3 = ({ myListContextListList }) => {
   if (isBrowser) {
     const myTableColumn = myListContextListList[0].tableColumns || [];
     myTableColumn.map((item, index) => {
-      const myItem = GetSpecData(item.field, "autozar");
+      // const myItem = GetSpecData(item.field, "autozar");
+      const myItem = GetSpecData(
+        item.field,
+        myListContextListList[0].mainData.menu
+      );
       const myColumn = {
         ...item,
         title: myItem.label,

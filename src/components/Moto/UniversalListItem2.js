@@ -167,7 +167,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
         <div className="gx-mt-5">
           <div className="moto-badge-5 gx-d-flex gx-vertical-align-middle">
-            <div className="gx-text-success gx-font-weight-bold">
+            <div>
               <Tooltip
                 title={
                   GetSpecData(mainData.mainnumber.field, mainData.menu)?.tooltip

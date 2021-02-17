@@ -6,7 +6,7 @@ import {
   tire2019,
   tire2018,
   tire2017,
-} from "content/product/tire/topBrands";
+} from "content/product/tire/topBrandsJsonData";
 
 const TopTireBrand = () => {
   return (
