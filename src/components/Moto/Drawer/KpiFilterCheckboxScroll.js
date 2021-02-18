@@ -5,31 +5,32 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
-import { isEmpty } from "lodash";
-import {
-  Button,
-  Input,
-  Checkbox,
-  Divider,
-  Select,
-  Radio,
-  Row,
-  Col,
-} from "antd";
+import { Input, Checkbox, Select, Row, Col } from "antd";
 import { FilterTitle } from "util/textFunction";
+import { checkKpiCar } from "util/kpiFilterFunction";
 
 import CustomScrollbars from "../../../util/CustomScrollbars";
 import FilterContext from "../../../context/FilterContext";
+import CarcatalogContext from "context/CarcatalogContext";
+import useDidMountEffect from "util/useDidMountEffect";
 
 const { Search } = Input;
 const { Option } = Select;
 
 const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
+  const carCatalogContext = useContext(CarcatalogContext);
+  const [selected, setSelected] = useState(
+    atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
+      undefined
+  );
+
+  const carDrawer = carCatalogContext.carDrawer;
+  const carDetail = carCatalogContext.carDetail.carDetail;
+  console.log("carDetail", carDetail);
 
   const prepareURL2 = (arriveValue, parameterLabel) => {
-    const ddd = arriveValue[0];
-    const myValue = ddd !== myDefault ? ddd : null;
+    const myValue = arriveValue;
     const baseEncodedValues = btoa(myValue || "");
     filterContext.updateParams({
       ["*" + parameterLabel]: baseEncodedValues,
@@ -38,11 +39,19 @@ const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
 
   const myIndicators = Object.values(kpiFilterItem.kpiindicatorvalue);
 
-  const myDefault =
-    atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
-    undefined;
+  // const myDefault =
+  //   atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
+  //   undefined;
 
-  // console.log("FFFFFFF", kpiFilterItem);
+  useEffect(() => {
+    const carKpi = checkKpiCar(carDrawer, carDetail, kpiFilterItem);
+    console.log("SCroll carKpi", carKpi);
+    if (carKpi !== null) setSelected(carKpi);
+  }, [carDrawer.onlyThisCar]);
+
+  useDidMountEffect(() => {
+    prepareURL2(selected, kpiFilterItem.code);
+  }, [selected]);
 
   return (
     <>
@@ -59,7 +68,8 @@ const KpiFilterCheckboxScroll = ({ kpiFilterItem }) => {
         <Checkbox.Group
           style={{ width: "100%" }}
           onChange={(e) => prepareURL2(e, kpiFilterItem.code)}
-          defaultValue={myDefault}
+          // defaultValue={myDefault}
+          value={selected}
         >
           <Row>
             {myIndicators.map((item, index) => {

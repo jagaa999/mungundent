@@ -106,6 +106,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
       }}
     >
       <Card
+        bordered={false}
         className={`moto-item-card-1 ${
           toBoolean(mainData.isfeatured.value) ? "moto-card-sponsor" : ""
         } ${!toBoolean(mainData.isactive.value) ? "border-top" : ""}`}

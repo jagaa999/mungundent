@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, lazy } from "react";
 import {
   BrowserView,
   MobileView,
@@ -14,6 +14,10 @@ import UniversalListCarDetail from "./UniversalListCarDetail";
 import FilterContext from "context/FilterContext";
 import CompareContext from "context/CompareContext";
 import UniversalListSort from "../Universal/UniversalListSort";
+
+const ProductCategoryBlock = lazy(() =>
+  import("../Product/ProductCategoryBlock")
+);
 
 const UniversalListActionHeader = ({
   myListContext,
@@ -115,6 +119,8 @@ const UniversalListActionHeader = ({
           <UniversalListSort key="motosort" mySettings={mySettings} />,
         ]}
       ></PageHeader>
+
+      {filterContext.state.menu === "product" && <ProductCategoryBlock />}
     </>
   );
 };

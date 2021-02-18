@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Card, Tooltip } from "antd";
+import { Card, Tooltip, Typography } from "antd";
 import moment from "moment";
 import "moment/locale/mn";
 import toBoolean from "util/booleanFunction";
@@ -32,7 +32,8 @@ const NewsItem2 = ({ newsItem }) => {
           toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""
         } ${!toBoolean(newsItem.isactive) ? "border-top" : ""}`}
         hoverable={true}
-        style={{ margin: "0 10px", height: "380px" }}
+        style={{ margin: "0 10px" }}
+        bodyStyle={{ padding: "10px" }}
         cover={
           <Image
             cloudName="motomn"
@@ -46,11 +47,9 @@ const NewsItem2 = ({ newsItem }) => {
             crop="fill"
             loading="lazy"
             dpr="auto"
-            // responsive={true}
             width="300"
             gravity="face"
             quality="auto"
-            // placeholder="blur"
             responsiveUseBreakpoints="true"
             className="gx-img-fluid gx-w-100"
             default_image="jhannw5jgo2mlvvkvke9"
@@ -59,62 +58,23 @@ const NewsItem2 = ({ newsItem }) => {
           />
         }
       >
-        <div className="gx-d-flex">
-          <Tooltip title="Төрөл">
-            <span className="moto-label-main ant-tag">
-              {newsItem.newstypename}
-            </span>
-          </Tooltip>
-          {/* <Tooltip title="Эх сурвалж">
-            <span className="moto-label-main ant-tag">
-              {newsItem.newssourcename}
-            </span>
-          </Tooltip> */}
-        </div>
         <span className="gx-text-grey gx-fs-sm">
           {moment(newsItem.publisheddate).fromNow()}
         </span>
-        <Tooltip title="Дэлгэрэнгүй унших">
-          <h4 className="gx-mt-2">{myTitle}</h4>
+        <Tooltip title={newsItem.title}>
+          {/* <h4 className="gx-mt-2">{myTitle}</h4> */}
+          <h6 className="gx-mt-2">
+            <Link to={"/news/" + newsItem.newsid}>
+              <Typography.Paragraph
+                ellipsis={{ rows: 3, symbol: "…" }}
+                className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
+              >
+                {newsItem.title}
+              </Typography.Paragraph>
+            </Link>
+          </h6>
         </Tooltip>
       </Card>
-
-      {/* <Card
-        className="gx-card-full gx-text-center moto-item-card"
-        style={{ margin: "0 10px", height: "290px" }}
-      >
-        <div className="gx-pt-4 gx-px-3 gx-mb-3">
-          <div className="gx-separator gx-bg-grey" />
-          <h5 className="gx-mb-4 gx-text-grey">{newsItem.newssourcename}</h5>
-          <Link to={"/news/" + newsItem.newsid}>
-            <p>{newsItem.title.substring(0, 50)}</p>
-          </Link>
-        </div>
-
-        <div className="gx-mt-4 gx-ayurveda-thumb">
-          <Image
-            cloudName="motomn"
-            publicId={newsItem.imagemain
-              .slice(
-                newsItem.imagemain.indexOf("upload/") + 7,
-                newsItem.imagemain.length
-              )
-              .split(".")
-              .shift()}
-            crop="fill"
-            loading="lazy"
-            dpr="auto"
-            responsive
-            width="300"
-            gravity="face"
-            quality="auto"
-            responsiveUseBreakpoints="true"
-            className="gx-img-fluid gx-w-100"
-            alt={newsItem.title}
-            onError={defaultSrc}
-          />
-        </div>
-      </Card> */}
     </>
   );
 };

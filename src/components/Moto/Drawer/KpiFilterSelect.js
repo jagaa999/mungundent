@@ -1,40 +1,44 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
 import { isEmpty } from "lodash";
 import { Button, Input, Checkbox, Divider, Select, Radio } from "antd";
-import { ClearOutlined } from "@ant-design/icons";
-import { Html5Entities } from "html-entities";
 import { FilterTitle } from "util/textFunction";
+import { checkKpiCar } from "util/kpiFilterFunction";
 
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import {
-  LoadProcessAuction,
-  loadDataviewAuction,
-} from "../../../util/axiosFunctionAuction";
-import { loadDataview } from "util/axiosFunction";
 import FilterContext from "../../../context/FilterContext";
+import CarcatalogContext from "context/CarcatalogContext";
+import useDidMountEffect from "util/useDidMountEffect";
 
 const { Search } = Input;
 const { Option } = Select;
 
 const KpiFilterSelect = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
+  const carCatalogContext = useContext(CarcatalogContext);
+  const [selected, setSelected] = useState(
+    atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
+      undefined
+  );
 
-  const prepareURL2 = (checkedValues, parameterLabel) => {
-    // console.log(
-    //   "checkedValues encodeURIComponent",
-    //   encodeURIComponent(checkedValues)
-    // );
-    const baseEncodedValues = btoa(checkedValues || "");
+  const carDrawer = carCatalogContext.carDrawer;
+  const carDetail = carCatalogContext.carDetail.carDetail;
+
+  const prepareURL2 = (arriveValue, parameterLabel) => {
+    const myValue = arriveValue;
+    const baseEncodedValues = btoa(myValue || "");
     filterContext.updateParams({
       ["*" + parameterLabel]: baseEncodedValues,
     });
   };
+
+  useEffect(() => {
+    const carKpi = checkKpiCar(carDrawer, carDetail, kpiFilterItem);
+    console.log("SCroll carKpi", carKpi);
+    if (carKpi !== null) setSelected(carKpi);
+  }, [carDrawer.onlyThisCar]);
+
+  useDidMountEffect(() => {
+    prepareURL2(selected, kpiFilterItem.code);
+  }, [selected]);
 
   // console.log("kpiFilterItem", kpiFilterItem);
   // code: "MotoTireType"
@@ -67,11 +71,7 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
             return false;
           }
         }}
-        defaultValue={
-          atob(
-            filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
-          ) || undefined
-        }
+        value={selected}
       >
         {Object.values(kpiFilterItem.kpiindicatorvalue).map((item, index) => (
           <Option

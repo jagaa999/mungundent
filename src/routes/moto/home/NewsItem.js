@@ -18,23 +18,13 @@ const NewsItem = ({ newsItem }) => {
     >
       <div className="gx-pt-4 gx-px-3 gx-mb-3">
         <div className="gx-separator gx-bg-grey" />
-        <h5 className="gx-mb-4 gx-text-grey">{newsItem.newssourcename}</h5>
+        {/* <h5 className="gx-mb-4 gx-text-grey">{newsItem.newssourcename}</h5> */}
         <Link to={"/news/" + newsItem.newsid}>
-          <p>{newsItem.title.substring(0, 50)}</p>
+          <span>{newsItem.title.substring(0, 50)}</span>
         </Link>
       </div>
 
       <div className="gx-mt-4 gx-ayurveda-thumb">
-        {/* <div className="gx-text-primary gx-text-uppercase gx-d-block label-read">
-          Унших
-        </div> */}
-        {/* <img
-          className="gx-img-fluid gx-w-100"
-          alt={newsItem.title}
-          src={newsItem.imagemain}
-          onError={defaultSrc}
-        /> */}
-
         <Image
           cloudName="motomn"
           publicId={newsItem.imagemain

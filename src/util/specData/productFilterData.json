@@ -6,6 +6,7 @@
     "icon": "",
     "order": "1"
   },
+
   "MotoTireBrand": {
     "type": "radiobutton2",
     "name": "Дугуйн брэнд",
@@ -20,14 +21,16 @@
     "name": "Дугуйн өргөн",
     "tooltip": "Дугуйн өргөний хэмжээ",
     "icon": "",
+    "carDetailMapField": "tire2frontwidth",
     "order": "4"
   },
 
   "MotoTireSizeAspect": {
-    "type": "checkboxscroll",
+    "type": "checkboxlimit",
     "name": "Дугуйн харьцаа",
     "tooltip": "Дугуйн харьцааны хэмжээ",
     "icon": "",
+    "carDetailMapField": "tire2frontratio",
     "order": "5"
   },
   "MotoTireSizeDiameter": {
@@ -35,6 +38,7 @@
     "name": "Дугуйн диаметр",
     "tooltip": "Обудны инч хэмжээ",
     "icon": "",
+    "carDetailMapField": "tire2frontdiameter",
     "order": "3"
   }
 }

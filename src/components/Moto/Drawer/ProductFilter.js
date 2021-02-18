@@ -37,58 +37,16 @@ const ProductFilter = (props) => {
 
   const { kpiFilterList } = productContext;
 
-  const [productCategoryList, setProductCategoryList] = useState({
-    loading: false,
-    productCategoryList: [],
-  });
-
-  const [mglMarkList, setMglMarkList] = useState({
-    loading: false,
-    mglMarkList: [],
-  });
-  const [mglBodyList, setMglBodyList] = useState({
-    loading: false,
-    mglBodyList: [],
-  });
-
-  const callAllDataAsync = async () => {
-    setProductCategoryList({ ...productCategoryList, loading: true });
-    setProductCategoryList({
-      productCategoryList: await loadDataview({
-        systemmetagroupid: "1486357548092",
-        criteria: {
-          parentCategoryId: [
-            {
-              operator: "=",
-              operand: "16102833377461",
-            },
-          ],
-        },
-        paging: {
-          sortColumnNames: {
-            itemcategoryname: {
-              sortType: "ASC", //эрэмбэлэх чиглэл
-            },
-          },
-        },
-      }),
-      loading: false,
-    });
-  };
-
-  useEffect(() => {
-    callAllDataAsync();
-    // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
-  }, [filterContext.state.filterList]);
-
   const changeCategory = (checkedValues, parameterLabel) => {
     //Category List дотроос сонгогдсон утгыг хайж олоод kpitemplateid-г олж авна. kpitemplateid-аа бас URL руу дамжуулах ёстой.
     let myKpiTemplateId = "";
-    productCategoryList.productCategoryList.map((item, index) => {
-      if (item.id === checkedValues) {
-        myKpiTemplateId = item.kpitemplateid;
+    productContext.productCategoryList.productCategoryList.map(
+      (item, index) => {
+        if (item.id === checkedValues) {
+          myKpiTemplateId = item.kpitemplateid;
+        }
       }
-    });
+    );
 
     // filterContext.clearAll();
 
@@ -118,7 +76,7 @@ const ProductFilter = (props) => {
         </h6>
         <Select
           className="moto-select-firm gx-w-100"
-          loading={productCategoryList.loading}
+          loading={productContext.productCategoryList.loading}
           showSearch
           allowClear
           placeholder="Барааны ангилал"
@@ -137,12 +95,14 @@ const ProductFilter = (props) => {
             filterContext.state.filterList?.generalcategoryid || undefined
           }
         >
-          {productCategoryList.productCategoryList.map((item, index) => (
-            <Option key={index} value={item.id}>
-              {/* {item.itemcategoryname} (KPI: {item.kpitemplateid}) */}
-              {item.itemcategoryname}
-            </Option>
-          ))}
+          {productContext.productCategoryList.productCategoryList.map(
+            (item, index) => (
+              <Option key={index} value={item.id}>
+                {/* {item.itemcategoryname} (KPI: {item.kpitemplateid}) */}
+                {item.itemcategoryname}
+              </Option>
+            )
+          )}
         </Select>
 
         {/* <h6 className="gx-mt-5 gx-mb-3 gx-text-uppercase gx-text-orange">

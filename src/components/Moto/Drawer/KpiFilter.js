@@ -28,9 +28,6 @@ const KpiFilter = ({ kpiFilterList }) => {
         // showtype: ""
         // templateid: "16102833259511"
 
-        // myFilterData;
-        // console.log(myFilterData[item.code]);
-        // console.log(myFilterData[item.code]?.type);
         if ((myFilterData[item.code]?.type || "") === "radio") {
           return <KpiFilterRadio key={index} kpiFilterItem={item} />;
         }

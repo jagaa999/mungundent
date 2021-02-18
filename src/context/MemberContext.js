@@ -210,7 +210,9 @@ export const MemberProfileStore = (props) => {
 
     const myParamsCreateMemberCloudWithFirebase = {
       request: {
-        sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
+        username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+        password: "89",
         command: "CreateCustomer",
         parameters: {
           displayName: state.memberFirebaseProfile.displayName || "Тодорхойгүй",

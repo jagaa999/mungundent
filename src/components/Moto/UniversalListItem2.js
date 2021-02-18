@@ -97,13 +97,14 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         // style={{ margin: "0 10px", height: "380px" }}
         cover={
           <Link to={mainData.link.value}>
-            <UniversalListItemMainImage
-              myClass="gx-img-fluid gx-w-100"
-              width="auto"
-              // style={{ height: "50px" }}
-              imageMain={mainData.imagemain.value}
-              cloudName={mainData.imagemaincloudname.value}
-            />
+            <div className="moto-product-cover">
+              <UniversalListItemMainImage
+                myClass="gx-img-fluid gx-w-100"
+                width="auto"
+                imageMain={mainData.imagemain.value}
+                cloudName={mainData.imagemaincloudname.value}
+              />
+            </div>
           </Link>
         }
       >

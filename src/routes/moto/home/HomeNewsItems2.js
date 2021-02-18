@@ -13,13 +13,13 @@ const HomeNewsItems2 = (props) => {
   // const [newsItems, setNewsItems] = useState([]);
   const newsOtherSlider = useRef();
 
-  console.log("isMobile", isMobile());
+  // console.log("isMobile", isMobile());
 
   return (
     <>
       <WidgetHeader
         className="gx-flex-row gx-mt-5"
-        title="Сүүлд нэмэгдсэн Нийтлэлүүд"
+        title="Сүүлд нэмэгдсэн нийтлэл"
         extra={
           <Link to={"/news"}>
             Бүгдийг үзэх{" "}
@@ -32,9 +32,6 @@ const HomeNewsItems2 = (props) => {
         infinite={true}
         speed={250}
         centerMode={isMobile()}
-        // centerMode={false}
-        // centerMode={true}
-        // centerMode={null}
         slidesToShow={5}
         slidesToScroll={1}
         dots={false}
@@ -69,7 +66,8 @@ const HomeNewsItems2 = (props) => {
       </Carousel>
 
       {/* <div className="gx-d-none gx-d-sm-block "> */}
-      <div className=" gx-d-sm-block moto-homecarousel-news-button">
+      <div style={{ position: "absolute", top: "43%", width: "100%" }}>
+        {/* <div className=" gx-d-sm-block moto-homecarousel-news-button_old"> */}
         <Button
           type="primary"
           shape="circle"
@@ -83,11 +81,12 @@ const HomeNewsItems2 = (props) => {
           type="primary"
           shape="circle"
           size="large"
-          style={{ marginRight: "-20px" }}
+          style={{ marginRight: "10px" }}
           icon={<RightOutlined />}
           onClick={() => newsOtherSlider.current.next()}
           className="gx-float-right"
         />
+        {/* </div> */}
       </div>
     </>
   );

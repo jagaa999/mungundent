@@ -9,6 +9,7 @@ import {
   prepareProductListSettings as mySettings,
   prepareProductDetail,
 } from "util/prepareSpecsProduct";
+import { loadDataview } from "util/axiosFunction";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 
@@ -66,6 +67,10 @@ export const ProductStore = (props) => {
   const [productList, setProductList] = useState(initialProductList);
   const [productDetail, setProductDetail] = useState(initialProductDetail);
   const [kpiFilterList, setKpiFilterList] = useState(initialKpiFilterList);
+  const [productCategoryList, setProductCategoryList] = useState({
+    loading: false,
+    productCategoryList: [],
+  });
 
   useEffect(() => {
     if (filterContext.state.menu === "product") {
@@ -87,6 +92,7 @@ export const ProductStore = (props) => {
           break;
         case "List":
           loadProductList();
+          loadProductCategoryList();
           break;
         default:
           clearProductDetail();
@@ -373,6 +379,31 @@ export const ProductStore = (props) => {
     setKpiFilterList(initialKpiFilterList);
   };
 
+  const loadProductCategoryList = async () => {
+    setProductCategoryList({ ...productCategoryList, loading: true });
+    setProductCategoryList({
+      productCategoryList: await loadDataview({
+        systemmetagroupid: "1486357548092",
+        criteria: {
+          parentCategoryId: [
+            {
+              operator: "=",
+              operand: "16102833377461",
+            },
+          ],
+        },
+        paging: {
+          sortColumnNames: {
+            itemcategoryname: {
+              sortType: "ASC", //эрэмбэлэх чиглэл
+            },
+          },
+        },
+      }),
+      loading: false,
+    });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -384,6 +415,7 @@ export const ProductStore = (props) => {
         clearProductDetail,
         toggleFilterDrawerOpen,
         kpiFilterList,
+        productCategoryList,
         loadKpiFilterList,
         clearKpiFilterList,
       }}
