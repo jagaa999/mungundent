@@ -105,11 +105,6 @@ const ProductFilter = (props) => {
           )}
         </Select>
 
-        {/* <h6 className="gx-mt-5 gx-mb-3 gx-text-uppercase gx-text-orange">
-          Таны машин
-        </h6>
-        <CarcatalogFilter /> */}
-
         {!isEmpty(kpiFilterList.kpiFilterList) && (
           <>
             <h6 className="gx-mt-5 gx-mb-3 gx-text-uppercase gx-text-orange">

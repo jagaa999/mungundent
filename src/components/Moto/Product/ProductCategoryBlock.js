@@ -1,167 +1,138 @@
 import React, { useState, useContext, useRef } from "react";
-import { Image, Row, Col, Card, Carousel, Button } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import Slider from "react-slick";
-import { isMobile } from "util/config";
-import { defaultSrc } from "util/config";
+import { Card, Button } from "antd";
 import ProductContext from "context/ProductContext";
+import FilterContext from "../../../context/FilterContext";
+import MyIcon from "util/iconFunction";
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/swiper.less";
-// import "swiper/components/navigation/navigation.less";
-// import "swiper/components/pagination/pagination.less";
-// import "swiper/components/scrollbar/scrollbar.less";
-// import "swiper/components/controller/controller.less";
 import "swiper/swiper-bundle.css";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const ProductCategoryBlock = () => {
   const productContext = useContext(ProductContext);
-  const newsOtherSlider = useRef();
+  const filterContext = useContext(FilterContext);
+
+  const changeCategory = (checkedValues, parameterLabel) => {
+    const myValue = checkedValues !== myDefault ? checkedValues : "";
+    //Category List дотроос сонгогдсон утгыг хайж олоод kpitemplateid-г олж авна. kpitemplateid-аа бас URL руу дамжуулах ёстой.
+    let myKpiTemplateId = "";
+    productContext.productCategoryList.productCategoryList.map(
+      (item, index) => {
+        if (item.id === myValue) {
+          myKpiTemplateId = item.kpitemplateid;
+        }
+      }
+    );
+
+    filterContext.updateParams(
+      {
+        [parameterLabel]: myValue,
+        kpitemplateid: myKpiTemplateId,
+      },
+      true
+    );
+  };
+
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
+  const SamplePrevArrow = (props) => {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          top: "18px",
+          display: "block",
+          lineHeight: "0",
+          left: "5px",
+          zIndex: "12",
+        }}
+      >
+        <Button
+          type="text"
+          shape="circle"
+          icon={<MyIcon type="iconangleleft" />}
+          className="gx-m-0 gx-text-warning"
+        />
+      </div>
+    );
+  };
+
+  const SampleNextArrow = () => {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          top: "18px",
+          display: "block",
+          lineHeight: "0",
+          right: "5px",
+          zIndex: "12",
+        }}
+      >
+        <Button
+          type="text"
+          shape="circle"
+          icon={<MyIcon type="iconangleright" />}
+          className="gx-m-0 gx-text-warning"
+        />
+      </div>
+    );
+  };
+
+  const myDefault =
+    filterContext.state.filterList?.generalcategoryid || undefined;
 
   return (
-    <Swiper
-      spaceBetween={30}
-      slidesPerView={3}
-      navigation
-      height={50}
-      // pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
-    >
-      <SwiperSlide>
-        <img src={`https://picsum.photos/id/5/500`} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src={`https://picsum.photos/id/6/500`} />
-      </SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      <SwiperSlide>Slide 5</SwiperSlide>
-      <SwiperSlide>Slide 6</SwiperSlide>
-      <SwiperSlide>Slide 7</SwiperSlide>
-      <SwiperSlide>Slide 8</SwiperSlide>
-      <SwiperSlide>Slide 9</SwiperSlide>
-      <SwiperSlide>Slide 10</SwiperSlide>
-    </Swiper>
+    <div className="gx-mb-4">
+      <Swiper
+        className="moto-filter-swiper"
+        spaceBetween={10}
+        slidesPerView={5}
+        // pagination={{ clickable: true }}
+        // scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}
+        onInit={(swiper) => {
+          swiper.params.navigation.prevEl = prevRef.current;
+          swiper.params.navigation.nextEl = nextRef.current;
+          swiper.navigation.init();
+          swiper.navigation.update();
+        }}
+      >
+        {productContext.productCategoryList.productCategoryList.map(
+          (item, index) => (
+            <SwiperSlide>
+              <Card
+                className={`gx-fs-sm gx-m-0 gx-card-full gx-p-2 ${
+                  myDefault === item.id ? "gx-bg-orange gx-icon-white" : ""
+                }`}
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
+                  width: "100%",
+                  height: "70px",
+                }}
+                hoverable
+                onClick={(e) => changeCategory(item.id, "generalcategoryid")}
+              >
+                {item.itemcategoryname}
+              </Card>
+            </SwiperSlide>
+          )
+        )}
+        <div ref={prevRef}>
+          <SamplePrevArrow />
+        </div>
+        <div ref={nextRef}>
+          <SampleNextArrow />
+        </div>
+      </Swiper>
+    </div>
   );
 };
 
 export default ProductCategoryBlock;
-
-// const SamplePrevArrow = (props) => {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       style={{
-//         position: "absolute",
-//         top: "25px",
-//         display: "block",
-//         lineHeight: "0",
-//         left: "-18px",
-//         zIndex: "12",
-//       }}
-//     >
-//       <Button
-//         type="dashed"
-//         shape="circle"
-//         icon={<LeftOutlined />}
-//         onClick={onClick}
-//         className="gx-m-0"
-//       />
-//     </div>
-//   );
-// };
-
-// const SampleNextArrow = (props) => {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       style={{
-//         position: "absolute",
-//         top: "25px",
-//         display: "block",
-//         lineHeight: "0",
-//         right: "-18px",
-//         zIndex: "12",
-//       }}
-//     >
-//       <Button
-//         type="dashed"
-//         shape="circle"
-//         icon={<RightOutlined />}
-//         onClick={onClick}
-//         className="gx-m-0"
-//       />
-//     </div>
-//   );
-// };
-
-// <div className="gx-d-block gx-w-100 gx-position-relative">
-//   <Slider
-//     className="slider"
-//     autoplay={false}
-//     infinite={false}
-//     speed={250}
-//     centerMode={false}
-//     slidesToShow={5}
-//     slidesToScroll={1}
-//     initialSlide={0}
-//     swipeToSlide={true}
-//     dots={false}
-//     rows={1}
-//     // variableWidth={true}
-//     nextArrow={<SampleNextArrow />}
-//     prevArrow={<SamplePrevArrow />}
-//     className="moto-kpi-filter-category"
-//     responsive={[
-//       {
-//         breakpoint: 1024,
-//         settings: {
-//           slidesToShow: 4,
-//           slidesToScroll: 1,
-//         },
-//       },
-//       {
-//         breakpoint: 600,
-//         settings: {
-//           slidesToShow: 3,
-//           slidesToScroll: 1,
-//         },
-//       },
-//     ]}
-//   >
-//     {[
-//       ...productContext.productCategoryList.productCategoryList,
-//       ...productContext.productCategoryList.productCategoryList,
-//       ...productContext.productCategoryList.productCategoryList,
-//       ...productContext.productCategoryList.productCategoryList,
-//       ...productContext.productCategoryList.productCategoryList,
-//       ...productContext.productCategoryList.productCategoryList,
-//     ].map((item, index) => (
-//       // <Card
-//       //   key={index}
-//       //   value={item.id}
-//       //   bodyStyle={{ padding: "10px", height: "80px" }}
-//       // >
-//       //   <div
-//       //     style={{
-//       //       alignItems: "center",
-//       //       display: "inline-flex",
-//       //       height: "100%",
-//       //       textAlign: "center",
-//       //       // width: "100%",
-//       //     }}
-//       //   >
-//       //     {item.itemcategoryname}
-//       //   </div>
-//       // </Card>
-//       <div className="gx-bg-success gx-border-warning gx-mr-2">
-//         {item.itemcategoryname}
-//       </div>
-//     ))}
-//   </Slider>
-// </div>
