@@ -78,6 +78,10 @@ const ProductDetail = asyncComponent(() => {
   return import("./moto/product/productDetailPage");
 });
 
+const ProductForm = asyncComponent(() => {
+  return import("./moto/product/productFormPage");
+});
+
 const ProductList = asyncComponent(() => {
   return import("./moto/product/productListPage");
 });
@@ -180,6 +184,19 @@ const App = ({ match }) => (
       */}
       <Route
         path={[
+          "/product/edit/:id",
+          "/product/:id/edit",
+          "/product/insert",
+          "/product/add",
+        ]}
+      >
+        <ProductStore>
+          <ProductForm />
+        </ProductStore>
+      </Route>
+
+      <Route
+        path={[
           "/product/:itemid",
           "/product/:itemid/detail",
           "/product/detail/:itemid",
@@ -197,6 +214,7 @@ const App = ({ match }) => (
           <ProductList />
         </ProductStore>
       </Route>
+
       {/*
          #    #     # ####### ####### #######    #    ######  
         # #   #     #    #    #     #      #    # #   #     # 
