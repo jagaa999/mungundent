@@ -28,34 +28,36 @@ const NewsItem2 = ({ newsItem }) => {
   return (
     <>
       <Card
-        className={`moto-item-card ${
+        bordered={false}
+        className={`moto-item-card gx-m-0 ${
           toBoolean(newsItem.isfeatured) ? "moto-card-sponsor" : ""
         } ${!toBoolean(newsItem.isactive) ? "border-top" : ""}`}
         hoverable={true}
-        style={{ margin: "0 10px" }}
         bodyStyle={{ padding: "10px" }}
         cover={
-          <Image
-            cloudName="motomn"
-            publicId={newsItem.imagemain
-              .slice(
-                newsItem.imagemain.indexOf("upload/") + 7,
-                newsItem.imagemain.length
-              )
-              .split(".")
-              .shift()}
-            crop="fill"
-            loading="lazy"
-            dpr="auto"
-            width="300"
-            gravity="face"
-            quality="auto"
-            responsiveUseBreakpoints="true"
-            className="gx-img-fluid gx-w-100"
-            default_image="jhannw5jgo2mlvvkvke9"
-            alt={newsItem.title}
-            onError={defaultSrc}
-          />
+          <Link to={"/news/" + newsItem.newsid}>
+            <Image
+              cloudName="motomn"
+              publicId={newsItem.imagemain
+                .slice(
+                  newsItem.imagemain.indexOf("upload/") + 7,
+                  newsItem.imagemain.length
+                )
+                .split(".")
+                .shift()}
+              crop="fill"
+              loading="lazy"
+              dpr="auto"
+              width="300"
+              gravity="face"
+              quality="auto"
+              responsiveUseBreakpoints="true"
+              className="gx-img-fluid gx-w-100"
+              default_image="jhannw5jgo2mlvvkvke9"
+              alt={newsItem.title}
+              onError={defaultSrc}
+            />
+          </Link>
         }
       >
         <span className="gx-text-grey gx-fs-sm">
@@ -67,7 +69,7 @@ const NewsItem2 = ({ newsItem }) => {
             <Link to={"/news/" + newsItem.newsid}>
               <Typography.Paragraph
                 ellipsis={{ rows: 3, symbol: "…" }}
-                className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
+                className="gx-m-0 gx-text-primary gx-font-weight-semi-bold gx-fs-sm"
               >
                 {newsItem.title}
               </Typography.Paragraph>

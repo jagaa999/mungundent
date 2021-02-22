@@ -1327,15 +1327,30 @@ body {
 .moto-filter-swiper {
   width: 100%;
   height: 100%;
+  // display: flex;
 
-  .swiper-slide {
-    text-align: center;
-    font-size: 12px;
-    background: #fff;
+  .swiper-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 12px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
   }
+}
+
+.gx-p-relative {
+  position: relative;
+}
+
+.moto-small-price {
+  position: absolute;
+  bottom: 5px;
+  right: 9px;
 }

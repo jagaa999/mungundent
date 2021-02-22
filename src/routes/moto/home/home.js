@@ -5,9 +5,9 @@ import { Col, Row, Divider } from "antd";
 // import GreenStepItem from "./GreenStepItem";
 // import HomeSponsor from "./HomeSponsor";
 // import HomeNewsItems from "./HomeNewsItems";
-import HomeNewsItems2 from "./HomeNewsItems2";
+import HomeNewsItems3 from "./HomeNewsItems3";
 // import HomeAuctionItems2 from "./HomeAuctionItems2";
-import HomeAutozarItems2 from "./HomeAutozarItems2";
+import HomeAutozarItems3 from "./HomeAutozarItems3";
 
 import MemberBox from "./MemberBox";
 // import FacebookGadget from "./FacebookGadget";
@@ -20,7 +20,7 @@ const HomePage = () => {
   const [newsSponsorItems, setNewsSponsorItems] = useState([]);
   const [newsItems, setNewsItems] = useState([]);
   const [newMembers, setNewMembers] = useState({});
-  const [auctionItems, setAuctionItems] = useState([]);
+  // const [auctionItems, setAuctionItems] = useState([]);
   const [autozarItems, setAutozarItems] = useState([]);
 
   // * axios-оор Filter-үүдийн анхны утга ERP-аас дуудна.
@@ -87,21 +87,21 @@ const HomePage = () => {
       })
     );
 
-    setAuctionItems(
-      await loadDataview({
-        systemmetagroupid: "1588323654372494", //member
-        criteria: { tablename: "Auction", actionname: "Үзэв" },
-        paging: {
-          offset: "1",
-          pageSize: "7",
-          sortColumnNames: {
-            actiondate: {
-              sortType: "DESC",
-            },
-          },
-        },
-      })
-    );
+    // setAuctionItems(
+    //   await loadDataview({
+    //     systemmetagroupid: "1588323654372494", //member
+    //     criteria: { tablename: "Auction", actionname: "Үзэв" },
+    //     paging: {
+    //       offset: "1",
+    //       pageSize: "7",
+    //       sortColumnNames: {
+    //         actiondate: {
+    //           sortType: "DESC",
+    //         },
+    //       },
+    //     },
+    //   })
+    // );
 
     setAutozarItems(
       await loadDataview({
@@ -130,8 +130,6 @@ const HomePage = () => {
   useEffect(() => {
     callAllDataAsync();
   }, []);
-
-  const videoSource = "https://www.w3schools.com/tags/movie.mp4";
 
   return (
     <>
@@ -175,7 +173,7 @@ const HomePage = () => {
           sm={{ span: 24, offset: 0 }}
           className="gx-bg-grey_none"
         >
-          <HomeNewsItems2 newsItems={newsItems} />
+          <HomeNewsItems3 newsItems={newsItems} />
           {/* <HomeNewsItems newsItems={newsItems} /> */}
         </Col>
       </Row>
@@ -196,7 +194,7 @@ const HomePage = () => {
           sm={{ span: 24, offset: 0 }}
           className="gx-bg-grey_none"
         >
-          <HomeAutozarItems2 autozarItems={autozarItems} />
+          <HomeAutozarItems3 autozarItems={autozarItems} />
         </Col>
       </Row>
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import accounting from "accounting";
 import { Html5Entities } from "html-entities";
-import { Card, Avatar, Tag, Tooltip, Image } from "antd";
+import { Card, Avatar, Tag, Tooltip, Image, Typography } from "antd";
 import moment from "moment";
 import "moment/locale/mn";
 import { defaultSrc } from "util/config";
@@ -22,18 +22,31 @@ const AutozarItem2 = ({ autozarItem }) => {
   return (
     <>
       <Card
-        className={`moto-item-card`}
+        bordered={false}
+        className={`moto-item-card gx-m-0`}
         hoverable={true}
-        style={{ margin: "0 10px", height: "330px" }}
+        bodyStyle={{ padding: "10px" }}
         cover={
-          <AutozarListItemMainImage
-            myClass="gx-img-fluid gx-w-100"
-            width="300"
-            imageMain={autozarItem.imagemain}
-          />
+          <Link to={"/autozar/" + autozarItem.id}>
+            <div className="gx-p-relative">
+              <AutozarListItemMainImage
+                myClass="gx-img-fluid gx-w-100"
+                width="300"
+                imageMain={autozarItem.imagemain}
+              />
+              <span className="moto-small-price gx-text-white gx-fs-xs">
+                {accounting.formatMoney(
+                  autozarItem.financepricerr,
+                  "₮",
+                  0,
+                  "'"
+                )}
+              </span>
+            </div>
+          </Link>
         }
       >
-        <Avatar className="moto-badge-1" src={autozarItem.memberprofilephoto} />
+        {/* <Avatar className="moto-badge-1" src={autozarItem.memberprofilephoto} /> */}
 
         <span className="gx-text-grey gx-fs-sm">
           {moment(autozarItem.modifieddate).fromNow()}
@@ -41,18 +54,22 @@ const AutozarItem2 = ({ autozarItem }) => {
         <Tooltip title="Дэлгэрэнгүй үзэх">
           <h4 className="gx-mt-2">
             <Link to={"/autozar/" + autozarItem.id}>
-              {moment(autozarItem.mglyearmanufactured).format("YYYY")}{" "}
-              {autozarItem.mglfirm} {autozarItem.mglmark}
+              <Typography.Paragraph
+                ellipsis={{ rows: 3, symbol: "…" }}
+                className="gx-m-0 gx-text-primary gx-font-weight-semi-bold gx-fs-sm"
+              >
+                {moment(autozarItem.mglyearmanufactured).format("YYYY")}{" "}
+                {autozarItem.mglfirm} {autozarItem.mglmark}
+              </Typography.Paragraph>
             </Link>
           </h4>
         </Tooltip>
 
-        <div className="gx-d-flex gx-mt-3">
+        {/* <div className="gx-d-flex gx-mt-3">
           <span className="moto-label-main gx-text-success">
-            {/* {autozarItem.financepricerr} */}
             {accounting.formatMoney(autozarItem.financepricerr, "₮", 0, "'")}
           </span>
-        </div>
+        </div> */}
       </Card>
     </>
   );
