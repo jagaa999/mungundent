@@ -53,7 +53,7 @@ export const ProductStore = (props) => {
 
   const initialProductDetail = {
     loadParams: {},
-    productDetail: [],
+    productDetail: {},
     loading: false,
     error: null,
   };
@@ -303,13 +303,14 @@ export const ProductStore = (props) => {
             myArray,
             filterContext.state.menu
           );
-
+          // console.log("FFFFFFFFF productDetail", productDetail);
           setProductDetail({
             ...productDetail,
             loading: false,
             // productDetail: myArray,
             productDetail: myTempItem,
           });
+          // console.log("FFFFFFFFF myTempItem", myTempItem);
         }
       })
       .catch((error) => {

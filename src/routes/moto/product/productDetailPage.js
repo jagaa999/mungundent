@@ -33,10 +33,10 @@ const ProductDetailPage = (props) => {
         <>
           <CommentListStore>
             <LogsStore>
-              <UniversalDetailMeta
+              {/* <UniversalDetailMeta
                 meta={prepareProductDetailSettings.meta}
                 myItem={productContext.productDetail.productDetail}
-              />
+              /> */}
               <UniversalDetail
                 myDetailContext={productContext}
                 myDetailContextDetail={productContext.productDetail}

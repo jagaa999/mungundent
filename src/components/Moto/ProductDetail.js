@@ -1,14 +1,11 @@
 import React from "react";
 
-import { Card, Tabs } from "antd";
-
+import { Card, Tabs, Button } from "antd";
 import ProductDetailGeneral from "./Product/ProductDetailGeneral";
-import AutozarDetail2Zar from "./Autozar/AutozarDetail2Zar";
-import AutozarDetailSeller from "./Autozar/AutozarDetailSeller";
-import AutozarGoonet from "./Autozar/AutozarGoonet";
 import LogBox from "./LogBox";
 import CommentBox from "./CommentBox";
 import { isEmpty } from "lodash";
+import OrderButton from "./Order/OrderButton";
 
 const ProductDetail = ({ myDetailContext }) => {
   const myItem = myDetailContext.productDetail.productDetail;
@@ -36,6 +33,9 @@ const ProductDetail = ({ myDetailContext }) => {
             <Card>{/* <AutozarDetailSeller myItem={myItem} /> */}</Card>
           </Tabs.TabPane>
         </Tabs>
+      </div>
+      <div>
+        <OrderButton myItem={myItem} />
       </div>
       <CommentBox recordId={myItem.mainData.id} tableName="MOTO_PRODUCT" />
       <LogBox recordId={myItem.mainData.id} tableName="MOTO_PRODUCT" />
