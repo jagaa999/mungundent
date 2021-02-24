@@ -20,7 +20,7 @@ const MemberDetailPage = (props) => {
   useEffect(() => {
     if (memberId !== 0 && memberContext.state.memberCloudUserSysId !== 0) {
       // console.log("Member байгаа юм байна.", memberId);
-      memberDetailContext.loadMemberDetail(memberId);
+      // memberDetailContext.loadMemberDetail(memberId);
     } else {
       // console.log("Хоосон объект");
       memberDetailContext.clearMemberDetail();

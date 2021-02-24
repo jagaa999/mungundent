@@ -15,14 +15,6 @@ import {
   Divider,
 } from "antd";
 
-import {
-  MailOutlined,
-  MessageOutlined,
-  BellOutlined,
-  UnorderedListOutlined,
-  CaretRightOutlined,
-} from "@ant-design/icons";
-
 import CarcatalogImagesSlider from "./Image/CarcatalogImagesSlider";
 
 const { Meta } = Card;

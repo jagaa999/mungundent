@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-
-import { message } from "antd";
+import moment from "moment";
+import { message, Modal } from "antd";
 
 import axios from "../util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
@@ -9,9 +9,11 @@ import {
   prepareProductListSettings as mySettings,
   prepareProductDetail,
 } from "util/prepareSpecsProduct";
+import MyIcon from "util/iconFunction";
 import { loadDataview } from "util/axiosFunction";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
+import { ContextDevTool } from "react-context-devtool";
 
 const ProductContext = React.createContext();
 
@@ -70,6 +72,11 @@ export const ProductStore = (props) => {
   const [productCategoryList, setProductCategoryList] = useState({
     loading: false,
     productCategoryList: [],
+  });
+  const [order, setOrder] = useState({
+    isModal: false,
+    orderDetail: {},
+    orderList: [],
   });
 
   useEffect(() => {
@@ -405,6 +412,97 @@ export const ProductStore = (props) => {
     });
   };
 
+  //  ####### ######  ######  ####### ######
+  //  #     # #     # #     # #       #     #
+  //  #     # #     # #     # #       #     #
+  //  #     # ######  #     # #####   ######
+  //  #     # #   #   #     # #       #   #
+  //  #     # #    #  #     # #       #    #
+  //  ####### #     # ######  ####### #     #
+  const saveOrderProduct = (values) => {
+    const myParamsOrderProductDetail = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "motoSdmOrderBookDv_001", //Order Save Process
+        parameters: {
+          ordernumber: moment().format("YYYYMMDDHHmmss"),
+          enddate: moment().format("YYYY-MM-DD"),
+          customerid: memberContext.memberDetail.memberDetail.customerid,
+          itemid: values.itemid || values.id || "",
+          timerangeId: "16102878980731",
+          total: "752000",
+          orderbookdtl: {
+            itemid: values.itemid || values.id || "",
+            unitamount: values.unitamount || "",
+            linetotalamount: values.linetotalamount || "",
+          },
+        },
+      },
+    };
+
+    console.log("myParamsOrderProductDetail", myParamsOrderProductDetail);
+
+    axios
+      .post("", myParamsOrderProductDetail)
+      .then((response) => {
+        console.log("Save OrderDetail:   ", response);
+        const myData = response.data.response;
+        console.log("After Save OrderDetail ------------>", myData);
+        if (myData.status === "error") {
+          message.error(myData.text, 7);
+        } else {
+          message.success(
+            "Захиалгыг амжилттай бүртгэлээ. Өдрийг сайхан өнгөрүүлээрэй."
+          );
+          // history.push({
+          //   pathname: "/news",
+          // });
+        }
+      })
+      .catch((error) => {
+        message.error(error, 7);
+      });
+  };
+
+  //  #     # ####### ######     #    #
+  //  ##   ## #     # #     #   # #   #
+  //  # # # # #     # #     #  #   #  #
+  //  #  #  # #     # #     # #     # #
+  //  #     # #     # #     # ####### #
+  //  #     # #     # #     # #     # #
+  //  #     # ####### ######  #     # #######
+  const OrderModal = (props) => {
+    return (
+      <Modal
+        visible={order.isModal}
+        onOk={(e) => {
+          isOrderModal(false);
+        }}
+        onCancel={(e) => {
+          isOrderModal(false);
+        }}
+        footer={null}
+        header={null}
+        z-index="5000"
+        closeIcon={<MyIcon type="icontimes-solid" className="moto-icon-1-5" />}
+        bodyStyle={{ background: "#F0F0F0", borderRadius: "6px" }}
+      >
+        {/* <SignIn /> */}
+        dsf dsf dsf dsf dsf sdf sdf dsf dsf sdf dsf dsf
+      </Modal>
+    );
+  };
+
+  console.log("ORDER", order);
+
+  const isOrderModal = (isVisible) => {
+    setOrder({
+      ...order,
+      isModal: isVisible,
+    });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -419,10 +517,21 @@ export const ProductStore = (props) => {
         productCategoryList,
         loadKpiFilterList,
         clearKpiFilterList,
+        saveOrderProduct,
+        isOrderModal,
+        order,
+        setOrder,
       }}
       displayName="Product Store"
     >
+      <ContextDevTool
+        context={ProductContext}
+        id="uniqContextId"
+        displayName="Context Display Name"
+      />
+
       {props.children}
+      <OrderModal />
     </ProductContext.Provider>
   );
 };

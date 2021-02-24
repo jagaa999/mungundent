@@ -171,6 +171,7 @@ export const MemberProfileStore = (props) => {
             memberCloudProfile: myData.response.result,
             loading: false,
           });
+          loadMemberDetail(myData.response.result.id);
         }
       })
       .catch((error) => {
@@ -291,7 +292,7 @@ export const MemberProfileStore = (props) => {
   //  ####### ####### #     # ######     ######  #######    #    #     # ### #######
 
   const loadMemberDetail = (id = 0) => {
-    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
+    console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
 
     const myParamsMemberDetail = {
       request: {
@@ -319,7 +320,7 @@ export const MemberProfileStore = (props) => {
     axios
       .post("", myParamsMemberDetail)
       .then((response) => {
-        // console.log("MEMBER DETAIL RESPONSE------------> ", response);
+        console.log("MEMBER DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
         console.log("MEMBER DETAIL myArray------------> ", myArray);
         // myArray.isactive = myArray.isactive === "1" ? true : false;
@@ -528,12 +529,13 @@ export const MemberProfileStore = (props) => {
         clearError,
         setFirebaseProfile,
         isModal,
-        loadMemberDetail,
+        // loadMemberDetail,
         saveMemberDetail,
         clearMemberDetail,
         isMember,
         OnlyMember,
       }}
+      displayName="MemberStore"
     >
       {props.children}
       <SiginModal />

@@ -14,7 +14,7 @@ const MemberFormPage = (props) => {
   useEffect(() => {
     if (memberId !== 0 && memberContext.state.memberCloudUserSysId !== 0) {
       console.log("Хэрэглэгч байгаа эсэх.", memberId);
-      memberDetailContext.loadMemberDetail(memberId);
+      // memberDetailContext.loadMemberDetail(memberId);
     } else {
       console.log("ХОосон объект");
       memberDetailContext.clearMemberDetail();
