@@ -11,6 +11,7 @@ import {
   Select,
   message,
 } from "antd";
+import MyIcon from "util/iconFunction";
 import LogsContext from "context/LogsContext";
 
 const { TextArea } = Input;
@@ -64,12 +65,10 @@ const ErrorReportModal = (props) => {
   return (
     <Modal
       visible={showErrorReportModal}
+      closeIcon={<MyIcon type="icontimes-solid" className="moto-icon-1-5" />}
       title="Алдаа илгээх"
       okText="Илгээх"
-      cancelText="Болих"
-      onCancel={() => {
-        setShowErrorReportModal(false);
-      }}
+      // cancelText="Болих"
       onOk={() => {
         form
           .validateFields()
@@ -81,6 +80,39 @@ const ErrorReportModal = (props) => {
             console.log("Validate Failed:", info);
           });
       }}
+      onCancel={() => {
+        setShowErrorReportModal(false);
+      }}
+      footer={[
+        <Button
+          key="cancel"
+          type="text"
+          onClick={() => {
+            setShowErrorReportModal(false);
+          }}
+          className="gx-mr-1"
+        >
+          <MyIcon type="icontrash-alt-solid" className="moto-icon-1-3" />
+          {/* Болих */}
+        </Button>,
+        <Button
+          key="submit"
+          type="primary"
+          onClick={(e) => {
+            form
+              .validateFields()
+              .then((values) => {
+                form.resetFields();
+                onCreate(values);
+              })
+              .catch((info) => {
+                console.log("Validate Failed:", info);
+              });
+          }}
+        >
+          Илгээх
+        </Button>,
+      ]}
     >
       <div className="gx-mb-4">{item?.mainData?.title?.value || ""}</div>
 

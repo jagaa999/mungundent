@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import moment from "moment";
-import { message, Modal } from "antd";
+import { message, Modal, Button } from "antd";
 
 import axios from "../util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
@@ -14,6 +14,7 @@ import { loadDataview } from "util/axiosFunction";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import { ContextDevTool } from "react-context-devtool";
+import OrderModal from "components/Moto/Order/OrderModal";
 
 const ProductContext = React.createContext();
 
@@ -465,37 +466,6 @@ export const ProductStore = (props) => {
       });
   };
 
-  //  #     # ####### ######     #    #
-  //  ##   ## #     # #     #   # #   #
-  //  # # # # #     # #     #  #   #  #
-  //  #  #  # #     # #     # #     # #
-  //  #     # #     # #     # ####### #
-  //  #     # #     # #     # #     # #
-  //  #     # ####### ######  #     # #######
-  const OrderModal = (props) => {
-    return (
-      <Modal
-        visible={order.isModal}
-        onOk={(e) => {
-          isOrderModal(false);
-        }}
-        onCancel={(e) => {
-          isOrderModal(false);
-        }}
-        footer={null}
-        header={null}
-        z-index="5000"
-        closeIcon={<MyIcon type="icontimes-solid" className="moto-icon-1-5" />}
-        bodyStyle={{ background: "#F0F0F0", borderRadius: "6px" }}
-      >
-        {/* <SignIn /> */}
-        dsf dsf dsf dsf dsf sdf sdf dsf dsf sdf dsf dsf
-      </Modal>
-    );
-  };
-
-  console.log("ORDER", order);
-
   const isOrderModal = (isVisible) => {
     setOrder({
       ...order,
@@ -531,7 +501,7 @@ export const ProductStore = (props) => {
       />
 
       {props.children}
-      <OrderModal />
+      <OrderModal order={order} isOrderModal={isOrderModal} />
     </ProductContext.Provider>
   );
 };
