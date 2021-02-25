@@ -369,7 +369,7 @@ const tempDetailPhotos = (item, menu, mainData) => {
 };
 
 export const prepareProductDetail = (myItem, menu = "") => {
-  console.log("MY PRODUCT", myItem);
+  // console.log("MY PRODUCT", myItem);
 
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempDetailHeaderSpec(myItem, menu, mainData);

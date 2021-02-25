@@ -11,7 +11,7 @@ const NewsItemMainImage = ({
   cloudName = "duznp4bqa",
   myClass = "",
 }) => {
-  console.log("imageMain", imageMain);
+  // console.log("imageMain", imageMain);
 
   // action={`https://api.cloudinary.com/v1_1/duznp4bqa/image/upload?upload_preset=autozar&folder=autozar/${memberContext.state.memberUID}`}
 

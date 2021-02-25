@@ -56,7 +56,7 @@ export const LogsStore = (props) => {
             tableName: tableName || "ECM_NEWS", //Параметрээр орж ирэх ёстой
           },
           paging: {
-            pageSize: "", //нийтлэлийн тоо
+            pageSize: "50", //Нийт тоо
             offset: "1", //хуудасны дугаар
             sortColumnNames: {
               actionDate: {

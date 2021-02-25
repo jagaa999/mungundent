@@ -86,7 +86,11 @@ const UniversalListSort = ({ mySettings }) => {
 
   const menu = (
     <Menu selectable={true} selectedKeys={selectedKeys}>
-      <Menu.ItemGroup key="sort1" title="Эрэмбэ">
+      <Menu.ItemGroup
+        key="sort1"
+        title={<span className="gx-font-weight-bold">Эрэмбэлэх</span>}
+        className="gx-text-grey"
+      >
         {mySettings.sortFields.map((item, index) => {
           return (
             <Menu.Item key={item.field} onClick={onChangeSort}>
@@ -97,8 +101,8 @@ const UniversalListSort = ({ mySettings }) => {
       </Menu.ItemGroup>
       <Menu.ItemGroup
         key="type1"
-        title="Төрөл"
-        className="gx-mt-3 gx-text-grey"
+        title={<span className="gx-font-weight-bold">Харагдац</span>}
+        className="gx-mt-2 gx-text-grey"
       >
         <Menu.Item
           key="typelist"

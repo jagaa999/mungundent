@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 
 import {
   Modal,
@@ -12,21 +12,44 @@ import {
   Input,
   Radio,
   Select,
+  DatePicker,
 } from "antd";
 import MemberContext from "context/MemberContext";
 import MyIcon from "util/iconFunction";
+import moment from "moment";
+import MotoSelect2 from "../Form/MotoSelect2";
+import { loadDataview } from "util/axiosFunction";
+import ProductContext from "context/ProductContext";
 
 const { TextArea } = Input;
 const { Option } = Select;
 
 const formLayout = {
-  labelCol: { span: 5 },
-  wrapperCol: { span: 19 },
+  labelCol: { span: 9 },
+  wrapperCol: { span: 15 },
 };
 
 const OrderModal = ({ order, isOrderModal }) => {
+  const productContext = useContext(ProductContext);
   const [form] = Form.useForm();
-  // const memberContext = useContext(MemberContext);
+  const [timerangeList, setTimerangeList] = useState({
+    loading: false,
+    timerangeList: [],
+  });
+
+  const callFunctionAsync = async () => {
+    setTimerangeList({ ...timerangeList, loading: true });
+    setTimerangeList({
+      timerangeList: await loadDataview({
+        systemmetagroupid: "1571915480228469",
+      }),
+      loading: false,
+    });
+  };
+
+  useEffect(() => {
+    callFunctionAsync();
+  }, []);
 
   const clickOK = () => {
     form
@@ -35,6 +58,7 @@ const OrderModal = ({ order, isOrderModal }) => {
         form.resetFields();
         console.log("FFFFF", values);
         // onCreate(values);
+        productContext.saveOrderProduct(values);
         isOrderModal(false);
       })
       .catch((info) => {
@@ -82,70 +106,54 @@ const OrderModal = ({ order, isOrderModal }) => {
           {...formLayout}
           layout="horizontal"
           name="error_modal"
-          initialValues={
-            {
-              // recordId: props.recordid,
-              // title: item?.mainData?.title?.value || "",
-              // modifier: "public",
-            }
-          }
+          initialValues={{
+            ...order.orderDetail,
+            ordernumber: moment().format("YYYYMMDDHHmmss"),
+            enddate: moment(),
+          }}
         >
-          <Form.Item name="recordId" label="ID">
-            <Input />
+          <Form.Item name="ordernumber" label="Захиалгын дугаар">
+            <Input disabled />
           </Form.Item>
-
-          <Form.Item name="title" label="Гарчиг">
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            name="errorList"
-            label="Алдаа"
-            rules={[
-              {
-                required: true,
-                message: "Алдааны төрлүүдээс заавал сонгох ёстой",
-              },
-            ]}
-          >
-            <Select
-              mode="multiple"
-              style={{ width: "100%" }}
-              placeholder="Алдааг сонгоно уу"
-              // onChange={handleErrorChange}
-            >
-              <Option key="dd">dfddg</Option>
-              <Option key="dddd">rrrtty</Option>
-            </Select>
-          </Form.Item>
-
-          <Form.Item name="description" label="Тайлбар">
-            <TextArea
-              rows={4}
-              autoSize={true}
-              placeholder="Алдааны талаар боломжоороо дэлгэрэнгүй бичихийг хүсье."
+          <Form.Item name="enddate" label="Хэзээ очих?">
+            <DatePicker
+              className="gx-w-100"
+              placeholder="Очих огноо"
+              format="YYYY-MM-DD"
             />
+          </Form.Item>
+          <Form.Item name="timerangeid" label="Цаг?">
+            <MotoSelect2
+              loading={timerangeList.loading}
+              key="timerangeid"
+              placeholder="Цагийн хуваарь"
+              onChange={null}
+              myList={timerangeList.timerangeList}
+              valueName="id"
+              valueLabel="name"
+            />
+          </Form.Item>
+          <Form.Item name="total" label="Дүн">
+            <Input />
+          </Form.Item>
+          <Form.Item name="itemid" label="itemid" hidden>
+            <Input />
+          </Form.Item>
+          <Form.Item name="unitamount" label="unitamount" hidden>
+            <Input />
+          </Form.Item>
+          <Form.Item name="linetotalamount" label="linetotalamount" hidden>
+            <Input />
           </Form.Item>
         </Form>
 
-        <ul className="gx-fs-sm">
-          <li>Бүртгүүлэхэд үнэгүй.</li>
-          <li>Facebook, Google-ийн аль нэг бүртгэлээр нэвтэрнэ.</li>
+        <ul className="gx-fs-sm gx-mt-4">
+          <li>Захиалгаа өгөхдөө огноогоо нягтлаарай.</li>
+          <li>Товлосон өдрөө марталгүй очоорой.</li>
         </ul>
         <div className="gx-text-grey gx-fs-sm gx-font-weight-light">
-          Гишүүний бүртгэлийг юунд ашиглах вэ? Таны уншсан, харсан мэдээлэлд
-          үндэсэлж, илүү зөв мэдээллийг танд харуулдаг болгоход ашиглана. Гишүүн
-          болсноор Moto.mn-ийн{" "}
-          <a href="/static/privacy" target="_blank">
-            нууцлалын бодлого
-          </a>{" "}
-          ба{" "}
-          <a href="/static/privacy" target="_blank">
-            үйлчилгээний нөхцөлийг
-          </a>{" "}
-          зөвшөөрсөнд тооцно.
+          Амжилт хүсье.
         </div>
-        {/* <OrderDetailForm orderDetail={order.orderDetail} /> */}
       </Modal>
     </>
   );

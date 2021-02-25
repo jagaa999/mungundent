@@ -18,7 +18,7 @@ import { isEmpty } from "lodash";
 const AutozarDetail2General = ({ myItem }) => {
   const htmlEntities = new Html5Entities();
 
-  console.log("myItem", myItem);
+  // console.log("myItem", myItem);
 
   if (myItem !== null && myItem !== undefined) {
     const myImages = (myItem.imageother || "").split("#");

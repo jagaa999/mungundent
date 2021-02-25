@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 //https://github.com/deeppatel234/react-context-devtool/blob/master/README.md
-import { debugContextDevtool } from "react-context-devtool";
+// import { debugContextDevtool } from "react-context-devtool";
 
 import NextApp from "./NextApp";
 // import registerServiceWorker from "./registerServiceWorker";
@@ -39,9 +39,9 @@ if (module.hot) {
 
 //https://github.com/deeppatel234/react-context-devtool/blob/master/README.md
 // Attach root container
-debugContextDevtool(container, {
-  debugReducer: false,
-  debugContext: true,
-  disable: process.env.NODE_ENV === "production",
-  disableAutoMode: false,
-});
+// debugContextDevtool(container, {
+//   debugReducer: false,
+//   debugContext: true,
+//   disable: process.env.NODE_ENV === "production",
+//   disableAutoMode: false,
+// });

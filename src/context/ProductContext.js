@@ -300,7 +300,7 @@ export const ProductStore = (props) => {
         // console.log("PRODUCT DETAIL RESPONSE------------> ", response);
         const myData = response.data.response;
 
-        console.log("PRODUCT DETAIL", myData);
+        // console.log("PRODUCT DETAIL", myData);
 
         if (myData.status === "error") {
           message.error(myData.text, 7);
@@ -317,6 +317,15 @@ export const ProductStore = (props) => {
             loading: false,
             // productDetail: myArray,
             productDetail: myTempItem,
+          });
+          setOrder({
+            ...order,
+            orderDetail: {
+              itemid: myTempItem.id,
+              total: myTempItem.saleprice,
+              unitamount: myTempItem.saleprice,
+              linetotalamount: myTempItem.saleprice,
+            },
           });
           // console.log("FFFFFFFFF myTempItem", myTempItem);
         }
@@ -427,12 +436,12 @@ export const ProductStore = (props) => {
         password: "89",
         command: "motoSdmOrderBookDv_001", //Order Save Process
         parameters: {
-          ordernumber: moment().format("YYYYMMDDHHmmss"),
-          enddate: moment().format("YYYY-MM-DD"),
           customerid: memberContext.memberDetail.memberDetail.customerid,
+          ordernumber: values.ordernumber || moment().format("YYYYMMDDHHmmss"),
+          enddate: moment(values.enddate).format("YYYY-MM-DD"),
           itemid: values.itemid || values.id || "",
-          timerangeId: "16102878980731",
-          total: "752000",
+          timerangeid: values.timerangeid || "",
+          total: values.total || "",
           orderbookdtl: {
             itemid: values.itemid || values.id || "",
             unitamount: values.unitamount || "",
@@ -443,6 +452,7 @@ export const ProductStore = (props) => {
     };
 
     console.log("myParamsOrderProductDetail", myParamsOrderProductDetail);
+    // return null;
 
     axios
       .post("", myParamsOrderProductDetail)
@@ -492,12 +502,11 @@ export const ProductStore = (props) => {
         order,
         setOrder,
       }}
-      displayName="Product Store"
     >
       <ContextDevTool
         context={ProductContext}
         id="uniqContextId"
-        displayName="Context Display Name"
+        displayName="PRODUCT STORE PROVIDER"
       />
 
       {props.children}

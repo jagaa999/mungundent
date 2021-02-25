@@ -14,6 +14,7 @@ import UniversalListCarDetail from "./UniversalListCarDetail";
 import FilterContext from "context/FilterContext";
 import CompareContext from "context/CompareContext";
 import UniversalListSort from "../Universal/UniversalListSort";
+import ProductHeaderFilter from "../Product/ProductHeaderFilter";
 
 const ProductCategoryBlock = lazy(() =>
   import("../Product/ProductCategoryBlock")
@@ -76,7 +77,6 @@ const UniversalListActionHeader = ({
                 myIsFilterDrawerOpen ? "" : "gx-btn-warning"
               }`}
               size={isBrowser ? "default" : "small"}
-              // style={{ width: isBrowser && "40px" }}
             >
               Шүүлтүүр
             </Button>
@@ -121,6 +121,11 @@ const UniversalListActionHeader = ({
       ></PageHeader>
 
       {filterContext.state.menu === "product" && <ProductCategoryBlock />}
+
+      {filterContext.state.menu === "product" &&
+        filterContext.state.filterList?.generalcategoryid !== undefined && (
+          <ProductHeaderFilter />
+        )}
     </>
   );
 };

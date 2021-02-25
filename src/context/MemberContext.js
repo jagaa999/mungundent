@@ -292,7 +292,7 @@ export const MemberProfileStore = (props) => {
   //  ####### ####### #     # ######     ######  #######    #    #     # ### #######
 
   const loadMemberDetail = (id = 0) => {
-    console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
+    // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
 
     const myParamsMemberDetail = {
       request: {
@@ -313,16 +313,16 @@ export const MemberProfileStore = (props) => {
       },
     };
 
-    console.log("myParamsMemberDetail", myParamsMemberDetail);
+    // console.log("myParamsMemberDetail", myParamsMemberDetail);
     setMemberDetail(initialStateMemberDetail);
     setMemberDetail({ ...memberDetail, loading: true });
 
     axios
       .post("", myParamsMemberDetail)
       .then((response) => {
-        console.log("MEMBER DETAIL RESPONSE------------> ", response);
+        // console.log("MEMBER DETAIL RESPONSE------------> ", response);
         const myArray = response.data.response.result[0] || [];
-        console.log("MEMBER DETAIL myArray------------> ", myArray);
+        // console.log("MEMBER DETAIL myArray------------> ", myArray);
         // myArray.isactive = myArray.isactive === "1" ? true : false;
         myArray.birthdate = moment(myArray.birthdate);
         myArray.imagemainFileList = [];

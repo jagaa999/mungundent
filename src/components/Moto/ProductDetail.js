@@ -34,7 +34,7 @@ const ProductDetail = ({ myDetailContext }) => {
           </Tabs.TabPane>
         </Tabs>
       </div>
-      <div>
+      <div className="gx-my-5">
         <OrderButton myItem={myItem} />
       </div>
       <CommentBox recordId={myItem.mainData.id} tableName="MOTO_PRODUCT" />
