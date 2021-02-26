@@ -20,6 +20,7 @@ import moment from "moment";
 import MotoSelect2 from "../Form/MotoSelect2";
 import { loadDataview } from "util/axiosFunction";
 import ProductContext from "context/ProductContext";
+import PleaseLogin from "components/Moto/Member/PleaseLogin";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -31,6 +32,8 @@ const formLayout = {
 
 const OrderModal = ({ order, isOrderModal }) => {
   const productContext = useContext(ProductContext);
+  const memberContext = useContext(MemberContext);
+
   const [form] = Form.useForm();
   const [timerangeList, setTimerangeList] = useState({
     loading: false,
@@ -67,6 +70,8 @@ const OrderModal = ({ order, isOrderModal }) => {
   };
 
   return (
+    // <>
+    //   {memberContext.state.isLogin ? (
     <>
       <Modal
         visible={order.isModal}
@@ -156,6 +161,11 @@ const OrderModal = ({ order, isOrderModal }) => {
         </div>
       </Modal>
     </>
+    //   ) : (
+    //     // <PleaseLogin />
+    //     {sss = ()=>{memberContext.isModal(true)}}
+    //   )}
+    // </>
   );
 };
 

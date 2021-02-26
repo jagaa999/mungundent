@@ -1,45 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
-import { isEmpty } from "lodash";
-import {
-  Button,
-  Input,
-  Checkbox,
-  Divider,
-  Select,
-  Radio,
-  Row,
-  Col,
-  Card,
-} from "antd";
-import { ClearOutlined } from "@ant-design/icons";
-import { Html5Entities } from "html-entities";
+import { Button, Card, Tooltip, Input, Select } from "antd";
 import { FilterTitle } from "util/textFunction";
 
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import {
-  LoadProcessAuction,
-  loadDataviewAuction,
-} from "../../../util/axiosFunctionAuction";
-import { loadDataview } from "util/axiosFunction";
 import FilterContext from "../../../context/FilterContext";
-
-const { Search } = Input;
-const { Option } = Select;
 
 const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
 
   const prepareURL2 = (arriveValue, parameterLabel) => {
     const myValue = arriveValue !== myDefault ? arriveValue : null;
-    // console.log("myValue ЗЗЗЗЗЗЗЗЗЗЗЗЗ", myValue);
-    // console.log("parameterLabel", parameterLabel);
-    // console.log("myValue encodeURIComponent", encodeURIComponent(myValue));
     const baseEncodedValues = btoa(myValue || "");
     filterContext.updateParams({
       ["*" + parameterLabel]: baseEncodedValues,
@@ -64,7 +33,7 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
     <>
       <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
 
-      <div className="gx-w-100 gx-p-0 gx-pr-4">
+      <div className="gx-w-100 gx-p-0">
         {myIndicators.map((item, index) => {
           const myValue = JSON.stringify({
             indicator_id: item.indicatorid,
@@ -72,18 +41,24 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
           });
 
           return (
-            <Button
+            <Card
               key={index}
-              block
-              // size="small"
-              className={`gx-mb-1 ${
+              className={`gx-fs-sm gx-mb-2 gx-card-full gx-p-2 gx-text-center ${
                 myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
               }`}
-              // hoverable
+              style={{
+                minHeight: "36px",
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+              }}
+              hoverable
               onClick={() => prepareURL2(myValue, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
             >
-              <span className="gx-fs-sm">{item.name}</span>
-            </Button>
+              <Tooltip title={item.name} placement="top">
+                {item.name}
+              </Tooltip>
+            </Card>
           );
         })}
       </div>

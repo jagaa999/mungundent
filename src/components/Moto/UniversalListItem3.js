@@ -67,8 +67,8 @@ const UniversalListItem3 = ({ myListContextListList }) => {
   const columns = [
     {
       title: "",
-      dataIndex: myListContextListList[0].mainData.id,
-      key: myListContextListList[0].mainData.id,
+      dataIndex: myListContextListList[0]?.mainData.id,
+      key: myListContextListList[0]?.mainData.id,
       render: (mglmark, record) => (
         <div className="gx-media gx-flex-nowrap">
           <Link to={record.mainData.link.value}>
@@ -129,7 +129,7 @@ const UniversalListItem3 = ({ myListContextListList }) => {
   ];
 
   if (isBrowser) {
-    const myTableColumn = myListContextListList[0].tableColumns || [];
+    const myTableColumn = myListContextListList[0]?.tableColumns || [];
     myTableColumn.map((item, index) => {
       // const myItem = GetSpecData(item.field, "autozar");
       const myItem = GetSpecData(
@@ -152,7 +152,7 @@ const UniversalListItem3 = ({ myListContextListList }) => {
     dataIndex: "",
 
     render: (temp, record) => (
-      <div style={{ minWidth: "80px" }}>
+      <div style={{ minWidth: "90px" }}>
         <UniversalListItemButton myUniversalItem={record} />
       </div>
     ),

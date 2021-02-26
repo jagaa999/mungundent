@@ -1,32 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
-import { isEmpty } from "lodash";
-import {
-  Button,
-  Input,
-  Checkbox,
-  Divider,
-  Select,
-  Radio,
-  Row,
-  Col,
-} from "antd";
-import { Html5Entities } from "html-entities";
+import { Input, Checkbox, Select, Radio, Row, Col } from "antd";
 import { FilterTitle } from "util/textFunction";
 import { checkKpiCar } from "util/kpiFilterFunction";
 import MyIcon from "util/iconFunction";
 
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import {
-  LoadProcessAuction,
-  loadDataviewAuction,
-} from "../../../util/axiosFunctionAuction";
-import { loadDataview } from "util/axiosFunction";
 import FilterContext from "../../../context/FilterContext";
 import CarcatalogContext from "context/CarcatalogContext";
 import useDidMountEffect from "util/useDidMountEffect";
@@ -116,6 +93,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
         value={selected}
       >
         <Row>
+          {/* <div className="moto-checkbox-two-column"> */}
           {myIndicators.map((item, index) => {
             if (index + 1 > limitTool.count) return null;
 
@@ -126,10 +104,12 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
 
             return (
               <Col xl={12} lg={12} md={24} sm={24} xs={24} key={index}>
+                {/* <div className="moto-checkbox-two-column-child"> */}
                 <Checkbox className="gx-fs-sm gx-my-1" value={myValue}>
                   {item.name}
                 </Checkbox>
               </Col>
+              // </div>
             );
           })}
           <Col span={24}>
@@ -137,6 +117,7 @@ const KpiFilterCheckboxLimit = ({ kpiFilterItem }) => {
               <LimitText />
             </div>
           </Col>
+          {/* </div> */}
         </Row>
       </Checkbox.Group>
     </>

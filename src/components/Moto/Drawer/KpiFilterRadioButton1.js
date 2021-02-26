@@ -1,32 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
-import { isEmpty } from "lodash";
-import {
-  Button,
-  Input,
-  Checkbox,
-  Divider,
-  Select,
-  Radio,
-  Row,
-  Col,
-  Card,
-} from "antd";
-import { ClearOutlined } from "@ant-design/icons";
-import { Html5Entities } from "html-entities";
+import { Input, Select, Tooltip, Row, Col, Card } from "antd";
 import { FilterTitle } from "util/textFunction";
 
-import CustomScrollbars from "../../../util/CustomScrollbars";
-import {
-  LoadProcessAuction,
-  loadDataviewAuction,
-} from "../../../util/axiosFunctionAuction";
-import { loadDataview } from "util/axiosFunction";
 import FilterContext from "../../../context/FilterContext";
 
 const { Search } = Input;
@@ -64,13 +39,7 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
     <>
       <FilterTitle title={kpiFilterItem.name} className="gx-mt-4" />
 
-      <Row
-        gutter={[10, 10]}
-        type="flex"
-        justify="left"
-        align="middle"
-        className="gx-mr-3"
-      >
+      <Row gutter={[10, 10]} type="flex" justify="left" align="middle">
         {myIndicators.map((item, index) => {
           const myValue = JSON.stringify({
             indicator_id: item.indicatorid,
@@ -78,7 +47,7 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
           });
 
           return (
-            <Col xl={6} lg={8} md={8} sm={8} xs={12} key={index}>
+            <Col xl={8} lg={8} md={8} sm={8} xs={12} key={index}>
               <Card
                 className={`gx-fs-sm gx-m-0 gx-card-full gx-p-2 gx-text-center ${
                   myDefault === myValue ? "gx-bg-orange gx-icon-white" : ""
@@ -92,7 +61,9 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
                 hoverable
                 onClick={() => prepareURL2(myValue, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
               >
-                {item.name}
+                <Tooltip title={item.name} placement="top">
+                  {item.name}
+                </Tooltip>
               </Card>
             </Col>
           );

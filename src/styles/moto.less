@@ -1354,3 +1354,74 @@ body {
   bottom: 5px;
   right: 9px;
 }
+
+@moto-sidebar-width: 350px;
+@moto-sidebar-width-small: 250px;
+
+.moto-layout-sider {
+  background-color: @nav-bar-bg;
+  color: @nav-bar-text-color;
+  // flex: 0 0 auto !important;
+  // max-width: none !important;
+  // min-width: 10px !important;
+  // width: @moto-sidebar-width !important;
+  overflow: hidden;
+
+  // @media screen and (max-width: (@screen-xl-min + 166px)) {
+  //   width: (@moto-sidebar-width - 40) !important;
+  // }
+
+  @media (max-width: @screen-xl-max) {
+    width: @moto-sidebar-width !important;
+  }
+
+  @media screen and (max-width: @screen-lg-max) {
+    width: @moto-sidebar-width-small !important;
+  }
+
+  @media screen and (max-width: @screen-md-max) {
+    width: 0 !important;
+  }
+
+  // @media screen and (max-width: @screen-sm-max) {
+  //   width: 80% !important;
+  // }
+
+  // @media screen and (max-width: @screen-xs-max) {
+  //   // 576-аас бага
+  //   width: 90% !important;
+  // }
+
+  // &-collapsed {
+  //   width: @sidebar-mini-drawer-width !important;
+
+  //   &.@{class-prefix}-mini-custom-sidebar {
+  //     @media screen and (max-width: @screen-md-max) {
+  //       width: 0 !important;
+  //       min-width: 0 !important;
+  //     }
+  //   }
+  // }
+
+  // &.@{class-prefix}-collapsed-sidebar {
+  //   width: 0 !important;
+  //   min-width: 0 !important;
+  // }
+
+  // @media screen and (max-width: @screen-md-max) {
+  //   // width: 0 !important;
+  //   // min-width: 0 !important;
+  //   width: @moto-sidebar-width-small !important;
+  //   min-width: 10px !important;
+  // }
+}
+
+// .moto-checkbox-two-column {
+//   height: 300px;
+//   display: flex;
+//   flex-direction: column;
+//   flex-wrap: wrap;
+//   .moto-checkbox-two-column-child {
+//     flex: 1 1 50%;
+//   }
+// }

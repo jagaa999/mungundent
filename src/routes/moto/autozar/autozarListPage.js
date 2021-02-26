@@ -9,6 +9,7 @@ import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import AutozarContext from "../../../context/AutozarContext";
 import { prepareAutozarListSettings } from "util/prepareSpecsAutozar";
 import AutozarFilterDrawer from "../../../components/Moto/Drawer/AutozarFilterDrawer";
+import AutozarFilter from "../../../components/Moto/Drawer/AutozarFilter";
 import { UniversalListMeta } from "util/prepareMeta";
 
 const AutozarListPage = () => {
@@ -27,6 +28,7 @@ const AutozarListPage = () => {
             myListContextListList={autozarContext.autozarList.autozarList}
             mySettings={prepareAutozarListSettings}
             MyFilterDrawer={AutozarFilterDrawer}
+            MyFilter={AutozarFilter}
           />
         );
       case "typetable":
@@ -38,6 +40,7 @@ const AutozarListPage = () => {
             myListContextListList={autozarContext.autozarList.autozarList}
             mySettings={prepareAutozarListSettings}
             MyFilterDrawer={AutozarFilterDrawer}
+            MyFilter={AutozarFilter}
           />
         );
       default:
@@ -49,6 +52,7 @@ const AutozarListPage = () => {
             myListContextListList={autozarContext.autozarList.autozarList}
             mySettings={prepareAutozarListSettings}
             MyFilterDrawer={AutozarFilterDrawer}
+            MyFilter={AutozarFilter}
           />
         );
     }

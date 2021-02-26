@@ -120,6 +120,17 @@ export const ProductStore = (props) => {
     }
   }, [filterContext.state, memberContext.state.isLogin]);
 
+  //orderModal харуулах үед Login хийгдсэн эсэхийг шалгаж байгаа юм.
+  // useEffect(() => {
+  //   if (order.isModal) {
+  //     if (!memberContext.state.isLogin) {
+  //       memberContext.isModal(true);
+  //       // return null;
+  //       setOrder({ ...order, isModal: false });
+  //     }
+  //   }
+  // }, [order.isModal]);
+
   //  #       ###  #####  #######
   //  #        #  #     #    #
   //  #        #  #          #
@@ -378,7 +389,7 @@ export const ProductStore = (props) => {
           message.error(myData.text, 7);
         } else {
           const myArray = myData.result || [];
-          // console.log("KPI LIST myArray------------> ", myArray);
+          console.log("KPI LIST myArray------------> ", myArray);
 
           setKpiFilterList({
             ...kpiFilterList,

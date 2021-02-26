@@ -63,24 +63,24 @@ const UniversalListActionHeader = ({
           </h3>
         }
         extra={[
-          <Tooltip title="Шүүлтүүр нээх" key="02">
-            <Button
-              icon={
-                <MyIcon
-                  type="iconfilter"
-                  className={isBrowser && "moto-icon-1-3"}
-                />
-              }
-              type="primary"
-              onClick={(e) => myListContext.toggleFilterDrawerOpen()}
-              className={`gx-ml-2 gx-mr-0  ${
-                myIsFilterDrawerOpen ? "" : "gx-btn-warning"
-              }`}
-              size={isBrowser ? "default" : "small"}
-            >
-              Шүүлтүүр
-            </Button>
-          </Tooltip>,
+          // <Tooltip title="Шүүлтүүр нээх" key="02">
+          //   <Button
+          //     icon={
+          //       <MyIcon
+          //         type="iconfilter"
+          //         className={isBrowser && "moto-icon-1-3"}
+          //       />
+          //     }
+          //     type="primary"
+          //     onClick={(e) => myListContext.toggleFilterDrawerOpen()}
+          //     className={`gx-ml-2 gx-mr-0  ${
+          //       myIsFilterDrawerOpen ? "" : "gx-btn-warning"
+          //     }`}
+          //     size={isBrowser ? "default" : "small"}
+          //   >
+          //     Шүүлтүүр
+          //   </Button>
+          // </Tooltip>,
 
           <Tooltip title="Зөвлөмж нээх" key="01">
             <Button
@@ -122,10 +122,10 @@ const UniversalListActionHeader = ({
 
       {filterContext.state.menu === "product" && <ProductCategoryBlock />}
 
-      {filterContext.state.menu === "product" &&
+      {/* {filterContext.state.menu === "product" &&
         filterContext.state.filterList?.generalcategoryid !== undefined && (
           <ProductHeaderFilter />
-        )}
+        )} */}
     </>
   );
 };

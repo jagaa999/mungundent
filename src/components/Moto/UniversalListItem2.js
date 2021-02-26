@@ -177,7 +177,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
                 {mainData.mainnumber?.value}
               </Tooltip>
             </div>
-            <div className="gx-ml-auto">
+            <div className="gx-ml-auto" style={{ minWidth: "90px" }}>
               <UniversalListItemButton myUniversalItem={myUniversalItem} />
             </div>
           </div>

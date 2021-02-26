@@ -8,6 +8,7 @@ import {
 
 import { Button, Drawer } from "antd";
 import MyIcon from "util/iconFunction";
+import CustomScrollbars from "../../../util/CustomScrollbars";
 
 import ProductFilter from "./ProductFilter";
 import ProductContext from "context/ProductContext";
@@ -40,10 +41,15 @@ const ProductFilterDrawer = () => {
           <MyIcon type="iconangleleft" style={{ marginTop: "10px" }} />
         }
       >
-        <ProductFilter />
+        <CustomScrollbars className="gx-p-1">
+          <ProductFilter />
+        </CustomScrollbars>
       </Drawer>
 
-      <div className="moto-filter-button" style={{ top: "250px" }}>
+      <div
+        className="moto-filter-button gx-d-block gx-d-lg-none"
+        style={{ top: "250px" }}
+      >
         <Button
           onClick={(e) => productContext.toggleFilterDrawerOpen()}
           className="gx-btn-warning"

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 
-import { Col, Row, Empty } from "antd";
+import { Layout, Col, Row } from "antd";
 
 import UniversalListItem3 from "./UniversalListItem3";
 import UniversalListActionHeader from "./Universal/UniversalListActionHeader";
@@ -9,7 +9,8 @@ import FilterContext from "context/FilterContext";
 import MotoPagination from "./Pagination/MotoPagination";
 import AffixButtonInsert from "./AffixButton/AffixButtonInsert";
 import LoadingList from "./Loading/LoadingList";
-import AuctionFilterHeader from "./Drawer/AuctionFilterHeader";
+
+const { Content, Sider } = Layout;
 
 const UniversalListType3 = ({
   myListContext,
@@ -17,6 +18,7 @@ const UniversalListType3 = ({
   myListContextList,
   myListContextListList,
   mySettings = {},
+  MyFilter = null,
   MyFilterDrawer,
 }) => {
   const autozarListContext = useContext(AutozarContext);
@@ -32,39 +34,54 @@ const UniversalListType3 = ({
   );
 
   return (
-    <div className="moto-list">
-      {/* <div className="">
-        <FilterTag />
-      </div> */}
-
-      <div className="gx-mb-2"></div>
-
-      {!myListContextLoading ? (
-        <div className="gx-main-content">
-          <UniversalListActionHeader
-            myListContext={myListContext}
-            mySettings={mySettings}
-            myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
-          />
-
-          <MyFilterHeaderComponent />
-
-          <Row className="gx-d-flex">
-            <Col key="dffdf" xs={24}>
-              <UniversalListItem3
-                myListContextListList={myListContextListList}
-              />
-            </Col>
-          </Row>
-
-          <MotoPagination myClass="gx-mt-2" />
-          <MyFilterDrawer />
-          <AffixButtonInsert link={mySettings.menu} />
-        </div>
-      ) : (
-        <LoadingList type="table" />
+    <Layout>
+      {MyFilter && (
+        <Sider
+          className="moto-layout-sider"
+          breakpoint="md"
+          collapsedWidth="0"
+          onBreakpoint={(broken) => {
+            console.log(broken);
+          }}
+          onCollapse={(collapsed, type) => {
+            console.log(collapsed, type);
+          }}
+        >
+          <MyFilter />
+        </Sider>
       )}
-    </div>
+      <Layout>
+        <Content style={{ margin: "24px 16px 0", minHeight: "100vw" }}>
+          <div className="moto-list">
+            <div className="gx-mb-2"></div>
+
+            {!myListContextLoading ? (
+              <>
+                <UniversalListActionHeader
+                  myListContext={myListContext}
+                  mySettings={mySettings}
+                  myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
+                />
+
+                <Row className="gx-d-flex">
+                  <Col key="dffdf" xs={24}>
+                    <UniversalListItem3
+                      myListContextListList={myListContextListList}
+                    />
+                  </Col>
+                </Row>
+
+                <MotoPagination myClass="gx-mt-2" />
+                <MyFilterDrawer />
+                <AffixButtonInsert link={mySettings.menu} />
+              </>
+            ) : (
+              <LoadingList type="table" />
+            )}
+          </div>
+        </Content>
+      </Layout>
+    </Layout>
   );
 };
 

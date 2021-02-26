@@ -9,6 +9,7 @@ import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import ProductContext from "../../../context/ProductContext";
 import { prepareProductListSettings } from "util/prepareSpecsProduct";
 import ProductFilterDrawer from "../../../components/Moto/Drawer/ProductFilterDrawer";
+import ProductFilter from "../../../components/Moto/Drawer/ProductFilter";
 import { UniversalListMeta } from "util/prepareMeta";
 // import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
@@ -28,6 +29,7 @@ const ProductListPage = () => {
             myListContextListList={productContext.productList.productList}
             mySettings={prepareProductListSettings}
             MyFilterDrawer={ProductFilterDrawer}
+            MyFilter={ProductFilter}
           />
         );
       case "typetable":
@@ -39,6 +41,7 @@ const ProductListPage = () => {
             myListContextListList={productContext.productList.productList}
             mySettings={prepareProductListSettings}
             MyFilterDrawer={ProductFilterDrawer}
+            MyFilter={ProductFilter}
           />
         );
       default:
@@ -50,6 +53,7 @@ const ProductListPage = () => {
             myListContextListList={productContext.productList.productList}
             mySettings={prepareProductListSettings}
             MyFilterDrawer={ProductFilterDrawer}
+            MyFilter={ProductFilter}
           />
         );
     }
