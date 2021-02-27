@@ -140,28 +140,28 @@ const tempMainData = (item, menu) => {
 
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
-    {
-      field: "rating",
-      value: (
-        <span style={{ minWidth: "90px" }}>
-          {/* <span className="gx-mr-2">{item.rating}</span> */}
-          <MotoAuctionStarRatingComponent
-            starCount={5}
-            value={item.rating}
-            emptyStarColor={"#d1d1d1"}
-          />
-        </span>
-      ),
-    },
+    // {
+    //   field: "rating",
+    //   value: (
+    //     <span style={{ minWidth: "90px" }}>
+    //       {/* <span className="gx-mr-2">{item.rating}</span> */}
+    //       <MotoAuctionStarRatingComponent
+    //         starCount={5}
+    //         value={item.rating}
+    //         emptyStarColor={"#d1d1d1"}
+    //       />
+    //     </span>
+    //   ),
+    // },
   ];
 };
 
 const tempSpecList1 = (item, menu, mainData) => {
   return [
-    {
-      field: "generalcategoryname",
-      value: item.generalcategoryname,
-    },
+    // {
+    //   field: "generalcategoryname",
+    //   value: item.generalcategoryname,
+    // },
     {
       field: "departmentname",
       value: item.departmentname,
@@ -221,27 +221,27 @@ const tempCompareButtonData = (item, menu, mainData) => {
 
 const tempTableColumns = (item, menu, mainData) => {
   return [
-    {
-      field: "generalcategoryname",
-      responsive: ["md"],
-      value: <span className="gx-fs-sm">{item.generalcategoryname}</span>,
-    },
+    // {
+    //   field: "generalcategoryname",
+    //   responsive: ["md"],
+    //   value: <span className="gx-fs-sm">{item.generalcategoryname}</span>,
+    // },
 
-    {
-      field: "rating",
-      responsive: ["sm"],
-      width: "90px",
-      value: (
-        <span style={{ minWidth: "90px" }}>
-          {/* <div className="gx-text-center">{item.rating}</div> */}
-          <MotoAuctionStarRatingComponent
-            starCount={5}
-            value={item.rating}
-            emptyStarColor={"#d1d1d1"}
-          />
-        </span>
-      ),
-    },
+    // {
+    //   field: "rating",
+    //   responsive: ["sm"],
+    //   width: "90px",
+    //   value: (
+    //     <span style={{ minWidth: "90px" }}>
+    //       {/* <div className="gx-text-center">{item.rating}</div> */}
+    //       <MotoAuctionStarRatingComponent
+    //         starCount={5}
+    //         value={item.rating}
+    //         emptyStarColor={"#d1d1d1"}
+    //       />
+    //     </span>
+    //   ),
+    // },
 
     {
       field: "saleprice",

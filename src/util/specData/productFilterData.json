@@ -40,5 +40,41 @@
     "icon": "",
     "carDetailMapField": "tire2frontdiameter",
     "order": "3"
+  },
+  "MotoOilBrand" : {
+    "type": "radiobutton2",
+    "name": "Тосны брэнд",
+    "tooltip": "Тосны брэнд",
+    "icon": ""
+  },
+  "MotoOilEngineType" : {
+    "type": "radiobutton1",
+    "name": "Хөдөлгүүрийн тосны төрөл",
+    "tooltip": "Обудны инч хэмжээ",
+    "icon": ""
+  },
+  "MotoOilEngineSaeLow" : {
+    "type": "checkbox2",
+    "name": "Зууралданги (Хүйтэн)",
+    "tooltip": "Зууралданги (Хүйтэн)",
+    "icon": ""
+  },
+  "MotoOilEngineSaeHigh" : {
+    "type": "checkbox2",
+    "name": "Зууралданги (Халуун)",
+    "tooltip": "Зууралданги (Халуун)",
+    "icon": ""
+  },
+  "MotoLiquidSize" : {
+    "type": "checkbox2",
+    "name": "Шингэн Хэмжээ",
+    "tooltip": "Шингэн Хэмжээ",
+    "icon": ""
+  },
+  "MotoOilEngineFuelType" : {
+    "type": "checkbox2",
+    "name": "Хөдөлгүүрийн шатахууны төрөл",
+    "tooltip": "Хөдөлгүүрийн шатахууны төрөл",
+    "icon": ""
   }
 }

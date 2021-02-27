@@ -57,7 +57,15 @@ const UniversalListType2 = ({
                 <Row gutter={isBrowser ? [20, 30] : [7, 10]} type="flex">
                   {myListContextListList.map((myUniversalItem, index) => {
                     return (
-                      <Col key={index} xl={6} md={8} sm={12} xs={12}>
+                      <Col
+                        key={index}
+                        xxl={6}
+                        xl={8}
+                        lg={8}
+                        md={8}
+                        sm={12}
+                        xs={12}
+                      >
                         <UniversalListItem2
                           key={index}
                           myUniversalItem={myUniversalItem}
