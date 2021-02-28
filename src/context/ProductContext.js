@@ -527,3 +527,208 @@ export const ProductStore = (props) => {
 };
 
 export default ProductContext;
+
+/*
+
+
+-- Хөдөлгүүрийн кодын дагуу Engine ID олж авна.
+-- AMS2_ENGINES
+SELECT
+	ENG.ID AS ENGINEID,
+	ENG.DESCRIPTION,
+	ENG.FULLDESCRIPTION,
+	ENG.MANUFACTURERID 
+FROM
+	AMS2_ENGINES ENG 
+WHERE
+	ENG.ISENGINE = 'True' 
+	AND ENG.CANBEDISPLAYED = 'True' 
+	AND ENG.DESCRIPTION = '2AZ-FXE'
+-- 2AZ-FXE = 19295 (Toyota) болно.
+
+
+-- Хөдөлгүүрийн ID дагуу таарах сэлбэгийн мод олж авна.
+-- AMS2_ENGINE_TREES (Филтер гэсэн ангилал олж авна.)
+SELECT
+	ETR.ENGINEID,
+	ETR.ID AS NODEID,
+	ETR.PARENTID,
+	ETR.DESCRIPTION 
+FROM
+	AMS2_ENGINE_TREES ETR 
+WHERE
+	ETR.ENGINEID = 19295
+-- 300001 NODEID-тай Фильтр жишээ нь гаргаж авна.
+
+
+
+
+
+
+
+--PRODUCT буюу сэлбэгийн ерөнхий ID гаргаж авна.
+-- AMS2_ENGINE_PDS нь холбогч Mapping Table
+-- AMS2_ENGINE_PRD нь Product гаргаж өгнө.
+SELECT
+	EPDS.ENGINEID,
+	EPDS.NODEID,
+	EPDS.SUPPLIERID,
+	EPDS.PRODUCTID,
+	EPRD.* 
+FROM
+	AMS2_ENGINE_PDS EPDS
+	LEFT JOIN AMS2_ENGINE_PRD EPRD ON EPDS.PRODUCTID = EPRD.ID 
+WHERE
+	EPDS.ENGINEID = 19295 
+	AND EPDS.NODEID = 300001
+
+-- доод үндсэн Query-д энэ жижиг query-г ашиглана.
+
+
+
+
+
+-- ARTICLE_LINKS -ийн LINKAGETYPEID passangercar 2, engine 14, commercial 16, motorbike 777, axle 19
+
+
+SELECT
+	ALINKS.SUPPLIERID,
+	ALINKS.PRODUCTID,
+	ALINKS.LINKAGETYPEID,
+	ALINKS.LINKAGEID,
+	ALINKS.DATASUPPLIERARTICLENUMBER,
+	EPRD.*,
+	EPDS.*,
+	SUP.* 
+FROM
+	AMS2_ARTICLE_LINKS ALINKS
+	LEFT JOIN AMS2_ENGINE_PDS EPDS ON ALINKS.SUPPLIERID = EPDS.SUPPLIERID 
+																AND ALINKS.PRODUCTID = EPDS.PRODUCTID 
+																AND ALINKS.LINKAGEID = EPDS.ENGINEID
+	LEFT JOIN AMS2_ENGINE_PRD EPRD ON EPDS.PRODUCTID = EPRD.ID
+	LEFT JOIN AMS2_SUPPLIERS SUP ON ALINKS.SUPPLIERID = SUP.ID 
+WHERE
+	EPDS.ENGINEID = 19295 
+	AND EPDS.NODEID = 300001 
+	AND ALINKS.LINKAGETYPEID = 14 --ENGINE
+
+-- Жишээ нь WG1380658 гэсэн DATASUPPLIERARTICLENUMBER дугаартай агаар шүүгчийг гаргаж авч байна.
+
+
+
+
+-- Сэлбэгийн OEM Number гаргаж авах
+SELECT
+	AM.description,
+	AAOE.OENbr 
+FROM
+	AMS2_ARTICLE_OE AAOE
+	JOIN AMS2_MANUFACTURERS AM ON AM.ID = AAOE.MANUFACTURERID
+WHERE
+	AAOE.DATASUPPLIERARTICLENUMBER = 'WG1380658'
+	AND AM.ISENGINE = 'True'
+	-- AND a.supplierid = '" . $brand_id . "'
+	
+-- Энэ Агаар шүүгч жишээ нь Toyota-ийн 3 загварт таарна.
+
+
+-- Статус изделия
+-- Сэлбэгийн төлвийг үзэх юм байна. Нээх онц хэрэггүй эд бололтой.
+SELECT
+	NormalizedDescription,
+	ArticleStateDisplayValue 
+FROM
+	ams2_articles 
+WHERE
+	DataSupplierArticleNumber = 'WG1380658' 
+-- 	AND supplierId = '" . $brand_id . "'
+
+
+-- Сэлбэгийн дата олж авах
+SELECT
+  AAA.SUPPLIERID,
+  AAA.DATASUPPLIERARTICLENUMBER,
+	AAA.DESCRIPTION,
+	AAA.DISPLAYTITLE,
+	AAA.DISPLAYVALUE 
+FROM
+	AMS2_ARTICLE_ATTRIBUTES AAA
+WHERE
+	AAA.DATASUPPLIERARTICLENUMBER = 'WG1380658'
+-- 	AND a.supplierid = '" . $brand_id . "'
+
+
+-- Сэлбэгийн файл олж авах
+SELECT
+	Description,
+	PictureName 
+FROM
+	ams2_article_images 
+WHERE
+	DataSupplierArticleNumber = 'WG1380658' 
+
+
+
+-- Применимость изделия
+-- Тухайн сэлбэг ямар Engine-үүдэд таарах вэ?
+-- AMS2_ARTICLE_LI - Тухайн сэлбэг ямар engine, ямар car-д таарах вэ гэдгийг гаргана.
+SELECT
+	linkageTypeId,
+	linkageId 
+FROM
+	ams2_article_li 
+WHERE
+	DataSupplierArticleNumber = 'WG1380658' 
+	-- 	AND a.supplierid = '" . $brand_id . "'
+
+
+-- Замены изделия
+-- ARTICLE_RN
+SELECT
+	s.description supplier,
+	a.replacenbr
+FROM
+	ams2_article_rn a
+	JOIN ams2_suppliers s ON s.id = a.replacedsupplierid 
+WHERE
+	a.datasupplierarticlenumber = 'WG1380658' 
+-- 	AND a.supplierid = '" . $brand_id . "'
+
+
+--Аналоги-заменители
+-- Кросс сэлбэгүүд
+-- AMS2_ARTICLE_CROSS
+SELECT DISTINCT
+	s.description,
+	c.PartsDataSupplierArticleNumber 
+FROM
+	ams2_article_oe a
+	JOIN ams2_manufacturers m ON m.id = a.manufacturerId
+	JOIN ams2_article_cross c ON c.OENbr = a.OENbr
+	JOIN ams2_suppliers s ON s.id = c.SupplierId 
+WHERE
+	a.datasupplierarticlenumber = 'WG1380658' 
+-- 	AND a.supplierid = '" . $brand_id . "'
+
+
+--Комплектующие (части) изделия
+SELECT DISTINCT
+	description Brand,
+	Quantity,
+	PartsDataSupplierArticleNumber 
+FROM
+	ams2_article_parts
+	JOIN ams2_suppliers ON id = PartsSupplierId 
+WHERE
+	DataSupplierArticleNumber = 'WG1380658' 
+-- 	AND supplierId = '" . $brand_id . "'
+
+
+
+
+
+
+
+
+
+*/
