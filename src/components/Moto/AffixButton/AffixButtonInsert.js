@@ -6,7 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 
 const AffixButtonInsert = (props) => {
   return (
-    <Affix style={{ position: "absolute", bottom: "50px", right: "30px" }}>
+    <Affix style={{ position: "fixed", bottom: "50px", right: "50px" }}>
       <Link
         key="keyinsertbutton"
         to={`/${props.link || "news"}/insert`}
