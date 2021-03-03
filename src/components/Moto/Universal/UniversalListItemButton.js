@@ -105,6 +105,8 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
         <Button
           checked={false}
           // type={isDetail ? "default" : "text"}
+          type="text"
+          shape="circle"
           icon={
             <MyIcon
               type="iconlove"
@@ -115,30 +117,31 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
           onClick={(e) =>
             actionMine(!myIsLove.checked, myIsLove.id, loveButtonData)
           }
-          // className={`${isDetail ? "gx-m-0 gx-ml-2" : "gx-m-0 gx-ml-1"} ${
-          //   myIsLove.checked ? "gx-btn-purple" : "gx-text-purple"
-          // }`}
           className={`gx-m-0 ${
-            myIsLove.checked ? "gx-btn-purple" : "gx-btn-outline-light"
+            // myIsLove.checked ? "gx-btn-purple" : "gx-btn-outline-light"
+            myIsLove.checked ? "gx-btn-purple" : ""
           }`}
           // size={isDetail ? "default" : "small"}
           size={isBrowser ? "default" : "small"}
-          style={{ width: isBrowser && "40px" }}
+          // style={{ width: isBrowser && "40px" }}
         ></Button>
       </Tooltip>
 
       <Dropdown overlay={menu} trigger={["click"]}>
         <Tooltip title={null} key="button-menu">
           <Button
+            type="text"
+            shape="circle"
             icon={
               <MyIcon
                 type="iconellipsis-h-solid"
                 className={isBrowser && "moto-icon-1-3"}
               />
             }
-            className="gx-m-0 gx-ml-2 gx-btn-outline-light"
+            // className="gx-m-0 gx-ml-2 gx-btn-outline-light"
+            className="gx-m-0 gx-ml-1 "
             size={isBrowser ? "default" : "small"}
-            style={{ width: isBrowser && "40px" }}
+            // style={{ width: isBrowser && "40px" }}
           ></Button>
         </Tooltip>
       </Dropdown>

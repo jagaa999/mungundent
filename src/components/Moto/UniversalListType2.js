@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, lazy } from "react";
 import {
   BrowserView,
   MobileView,
@@ -17,6 +17,10 @@ import LoadingList from "./Loading/LoadingList";
 
 const { Content, Sider } = Layout;
 
+const ProductCategoryBlock = lazy(() =>
+  import("./Product/ProductCategoryBlock")
+);
+
 const UniversalListType2 = ({
   myListContext,
   myListContextLoading,
@@ -27,65 +31,72 @@ const UniversalListType2 = ({
   MyFilterDrawer,
 }) => {
   return (
-    <Layout>
-      {MyFilter && (
-        <Sider
-          className="moto-layout-sider"
-          breakpoint="md"
-          collapsedWidth="0"
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
-        >
-          <MyFilter />
-        </Sider>
-      )}
+    <>
+      <UniversalListActionHeader
+        myListContext={myListContext}
+        mySettings={mySettings}
+        myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
+      />
       <Layout>
-        <Content style={{ margin: "24px 16px 0", minHeight: "100vw" }}>
-          <div className="moto-list">
-            {!myListContextLoading ? (
-              <div className="gx-main-content">
-                <UniversalListActionHeader
-                  myListContext={myListContext}
-                  mySettings={mySettings}
-                  myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
-                />
+        {MyFilter && isBrowser && (
+          <Sider
+            className="moto-layout-sider gx-mr-lg-4"
+            breakpoint="md"
+            collapsedWidth="0"
+            onBreakpoint={(broken) => {
+              console.log(broken);
+            }}
+            onCollapse={(collapsed, type) => {
+              console.log(collapsed, type);
+            }}
+          >
+            <MyFilter />
+          </Sider>
+        )}
+        <Layout>
+          <Content style={{ minHeight: "100vw" }}>
+            <div className="moto-list">
+              {!myListContextLoading ? (
+                <div className="gx-main-content">
+                  {/* <UniversalListActionHeader
+                    myListContext={myListContext}
+                    mySettings={mySettings}
+                    myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
+                  /> */}
 
-                <Row gutter={isBrowser ? [20, 30] : [7, 10]} type="flex">
-                  {myListContextListList.map((myUniversalItem, index) => {
-                    return (
-                      <Col
-                        key={index}
-                        xxl={6}
-                        xl={8}
-                        lg={8}
-                        md={8}
-                        sm={12}
-                        xs={12}
-                      >
-                        <UniversalListItem2
+                  <Row gutter={isBrowser ? [20, 20] : [7, 9]} type="flex">
+                    {myListContextListList.map((myUniversalItem, index) => {
+                      return (
+                        <Col
                           key={index}
-                          myUniversalItem={myUniversalItem}
-                        />
-                      </Col>
-                    );
-                  })}
-                </Row>
+                          xxl={6}
+                          xl={8}
+                          lg={12}
+                          md={8}
+                          sm={12}
+                          xs={12}
+                        >
+                          <UniversalListItem2
+                            key={index}
+                            myUniversalItem={myUniversalItem}
+                          />
+                        </Col>
+                      );
+                    })}
+                  </Row>
 
-                <MotoPagination myClass="gx-mt-2" />
-                <MyFilterDrawer />
-                <AffixButtonInsert link={mySettings.menu} />
-              </div>
-            ) : (
-              <LoadingList type="card" />
-            )}
-          </div>
-        </Content>
+                  <MotoPagination myClass="gx-mt-2" />
+                  <MyFilterDrawer />
+                  <AffixButtonInsert link={mySettings.menu} />
+                </div>
+              ) : (
+                <LoadingList type="card" />
+              )}
+            </div>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </>
   );
 };
 

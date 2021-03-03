@@ -477,9 +477,6 @@ export const ProductStore = (props) => {
           message.success(
             "Захиалгыг амжилттай бүртгэлээ. Өдрийг сайхан өнгөрүүлээрэй."
           );
-          // history.push({
-          //   pathname: "/news",
-          // });
         }
       })
       .catch((error) => {

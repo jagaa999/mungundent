@@ -117,7 +117,7 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
             {!isEmpty(mainData.imagemain.value) && (
               <div className="gx-product-image">
                 <Link to={mainData.link.value}>
-                  <span className="gx-link gx-grid-thumb-cover">
+                  <span className="gx-link gx-grid-thumb-cover moto-listtype2">
                     <UniversalListItemMainImage
                       myClass="gx-img-fluid gx-w-100"
                       width="auto"

@@ -89,8 +89,25 @@ const ProductCategoryBlock = () => {
     <div className="gx-mb-4">
       <Swiper
         className="moto-filter-swiper"
+        slidesPerView={7}
         spaceBetween={10}
-        slidesPerView={5}
+        breakpoints={{
+          // when window width is >= 320px
+          320: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+          // when window width is >= 480px
+          480: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+          // when window width is >= 640px
+          640: {
+            slidesPerView: 5,
+            spaceBetween: 10,
+          },
+        }}
         // pagination={{ clickable: true }}
         // scrollbar={{ draggable: true }}
         onSwiper={(swiper) => console.log(swiper)}
@@ -115,6 +132,8 @@ const ProductCategoryBlock = () => {
                   display: "flex",
                   width: "100%",
                   height: "70px",
+                  wordWrap: "break-word",
+                  hyphens: "auto",
                 }}
                 hoverable
                 onClick={(e) => changeCategory(item.id, "generalcategoryid")}

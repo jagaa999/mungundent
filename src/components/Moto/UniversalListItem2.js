@@ -39,8 +39,12 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
       return (
         <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">{myItem.label}:</span>
-          <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
+          <span className="gx-mr-2" style={{ color: "#adb6c7" }}>
+            {myItem.label}:
+          </span>
+          <Tooltip title={myItem.tooltip}>
+            <span style={{ color: "#949eb2" }}>{item.value}</span>
+          </Tooltip>
         </div>
       );
     }
@@ -53,8 +57,13 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
       return (
         <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">{myItem.label}:</span>
-          <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
+          {/* <span className="gx-mr-2 gx-text-grey"> */}
+          <span className="gx-mr-2" style={{ color: "#adb6c7" }}>
+            {myItem.label}:
+          </span>
+          <Tooltip title={myItem.tooltip}>
+            <span style={{ color: "#949eb2" }}>{item.value}</span>
+          </Tooltip>
         </div>
       );
     }
@@ -67,8 +76,13 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
 
       return (
         <div className="gx-d-flex gx-fs-sm">
-          <span className="gx-mr-2 gx-text-grey">{myItem.label}:</span>
-          <Tooltip title={myItem.tooltip}>{item.value}</Tooltip>
+          {/* <span className="gx-mr-2 gx-text-grey"> */}
+          <span className="gx-mr-2" style={{ color: "#adb6c7" }}>
+            {myItem.label}:
+          </span>
+          <Tooltip title={myItem.tooltip}>
+            <span style={{ color: "#949eb2" }}>{item.value}</span>
+          </Tooltip>
         </div>
       );
     }
@@ -86,18 +100,18 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         // delay: 50,
         // duration: 50,
       }}
-      className="moto-item-card"
+      className="moto-item-card gx-pb-2"
     >
       <Card
         bordered={false}
-        className={`moto-item-card ${
+        className={`moto-item-card gx-rounded-xxl  ${
           toBoolean(mainData.isfeatured.value) ? "moto-card-sponsor" : ""
         } ${!toBoolean(mainData.isactive.value) ? "border-top" : ""}`}
         hoverable={true}
         // style={{ margin: "0 10px", height: "380px" }}
         cover={
           <Link to={mainData.link.value}>
-            <div className="moto-product-cover">
+            <div className="moto-product-cover moto-listtype2">
               <UniversalListItemMainImage
                 myClass="gx-img-fluid gx-w-100"
                 width="auto"

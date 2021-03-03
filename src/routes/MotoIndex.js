@@ -38,6 +38,10 @@ const NewsList = asyncComponent(() => {
   return import("./moto/news/newsListPage");
 });
 
+const PartcatalogEngineList = asyncComponent(() => {
+  return import("./moto/partCatalog/partCatalogEngineListPage");
+});
+
 const CarcatalogFirmList = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogFirmListPage");
 });
@@ -194,7 +198,6 @@ const App = ({ match }) => (
           <ProductForm />
         </ProductStore>
       </Route>
-
       <Route
         path={[
           "/product/:itemid",
@@ -214,7 +217,6 @@ const App = ({ match }) => (
           <ProductList />
         </ProductStore>
       </Route>
-
       {/*
          #    #     # ####### ####### #######    #    ######  
         # #   #     #    #    #     #      #    # #   #     # 
@@ -391,6 +393,18 @@ const App = ({ match }) => (
       <Route path={["/carcatalog", "/carcataloglist"]}>
         <CarcatalogFirmList />
       </Route>
+      {/*
+      ####### #######  #####  ######  #######  #####  
+         #    #       #     # #     # #     # #     # 
+         #    #       #       #     # #     # #       
+         #    #####   #       #     # #     # #       
+         #    #       #       #     # #     # #       
+         #    #       #     # #     # #     # #     # 
+         #    #######  #####  ######  #######  #####  */}
+      <Route path={["/partcatalog", "/partcataloglist"]}>
+        <PartcatalogEngineList />
+      </Route>
+
       {/* 
        #####  ####### #     # ######     #    ######  ####### 
       #     # #     # ##   ## #     #   # #   #     # #       
@@ -482,7 +496,6 @@ const App = ({ match }) => (
           <HomeIndex />
         </NewsStore>
       </Route>
-
       {/* 
       #         ###   #       
       #    #   #   #  #    #  

@@ -70,7 +70,7 @@ const ProductFilter = (props) => {
   //  #     # #######    #     #####  #     # #     #
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "99%" }}>
-      <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
+      {/* <h6 className="gx-my-3 gx-text-uppercase gx-text-orange gx-mt-4">
         Ангилал
       </h6>
       <Select
@@ -97,18 +97,19 @@ const ProductFilter = (props) => {
         {productContext.productCategoryList.productCategoryList.map(
           (item, index) => (
             <Option key={index} value={item.id}>
-              {/* {item.itemcategoryname} (KPI: {item.kpitemplateid}) */}
               {item.itemcategoryname}
             </Option>
           )
         )}
       </Select>
 
+      <Divider className="gx-my-5" /> */}
+
       {!isEmpty(kpiFilterList.kpiFilterList) && (
         <>
-          <h6 className="gx-mt-5 gx-mb-3 gx-text-uppercase gx-text-orange">
+          {/* <h6 className="gx-mt-5 gx-mb-3 gx-text-uppercase gx-text-orange">
             Тусгай шүүлтүүр
-          </h6>
+          </h6> */}
 
           <KpiFilter kpiFilterList={kpiFilterList} />
         </>

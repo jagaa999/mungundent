@@ -21,12 +21,6 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
     });
   };
 
-  const radioStyle = {
-    display: "block",
-    height: "30px",
-    lineHeight: "30px",
-  };
-
   const myIndicators = Object.values(kpiFilterItem.kpiindicatorvalue);
 
   // console.log("kpiFilterItemkpiFilterItem", kpiFilterItem);
@@ -57,6 +51,8 @@ const KpiFilterRadioButton1 = ({ kpiFilterItem }) => {
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
+                  wordWrap: "break-word",
+                  hyphens: "auto",
                 }}
                 hoverable
                 onClick={() => prepareURL2(myValue, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
