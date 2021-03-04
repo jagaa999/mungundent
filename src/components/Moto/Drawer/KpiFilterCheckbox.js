@@ -13,8 +13,9 @@ const KpiFilterCheckbox = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
   const carCatalogContext = useContext(CarcatalogContext);
   const [selected, setSelected] = useState(
-    atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
-      undefined
+    atob(
+      filterContext.urlSetting.filterList?.["*" + kpiFilterItem.code] || ""
+    ) || undefined
   );
 
   const carDrawer = carCatalogContext.carDrawer;

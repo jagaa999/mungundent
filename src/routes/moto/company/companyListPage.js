@@ -10,7 +10,7 @@ const CompanyListPage = () => {
   const filterContext = useContext(FilterContext);
   const companyContext = useContext(CompanyContext);
 
-  if (filterContext.state.cardtype.cardtype === "typecard") {
+  if (filterContext.urlSetting.cardtype.cardtype === "typecard") {
     return (
       <UniversalListType1
         myListContext={companyContext}
@@ -19,7 +19,7 @@ const CompanyListPage = () => {
         myListContextListList={companyContext.companyList.companyList}
       />
     );
-  } else if (filterContext.state.cardtype.cardtype === "typetable") {
+  } else if (filterContext.urlSetting.cardtype.cardtype === "typetable") {
     return (
       <UniversalListType1
         myListContext={companyContext}

@@ -83,7 +83,7 @@ const ProductCategoryBlock = () => {
   };
 
   const myDefault =
-    filterContext.state.filterList?.generalcategoryid || undefined;
+    filterContext.urlSetting.filterList?.generalcategoryid || undefined;
 
   return (
     <div className="gx-mb-4">

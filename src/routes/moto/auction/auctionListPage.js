@@ -67,7 +67,7 @@ const AuctionListPage = () => {
       />
 
       <UniversalListMeta meta={prepareAuctionListSettings.meta} />
-      {/* {renderSwitch(filterContext.state.cardtype.cardtype)} */}
+      {/* {renderSwitch(filterContext.urlSetting.cardtype.cardtype)} */}
     </>
   );
 };

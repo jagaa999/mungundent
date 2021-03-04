@@ -10,11 +10,11 @@ const MotoSort = () => {
   const filterContext = useContext(FilterContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
-    filterContext.state.sorting.sortcolumnnames || "publisheddate",
-    filterContext.state.cardtype.cardtype || "typelist",
+    filterContext.urlSetting.sorting.sortcolumnnames || "publisheddate",
+    filterContext.urlSetting.cardtype.cardtype || "typelist",
   ]);
   const [sortDirection, setSortDirection] = useState(
-    filterContext.state.sorting.sorttype || "DESC"
+    filterContext.urlSetting.sorting.sorttype || "DESC"
   );
 
   useDidMountEffect(() => {

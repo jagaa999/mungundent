@@ -53,7 +53,7 @@ const KpiFilterSelect = ({ item }) => {
           }
         }}
         defaultValue={
-          filterContext.state.filterList?.itemcategoryname || undefined
+          filterContext.urlSetting.filterList?.itemcategoryname || undefined
         }
       >
         {productCategoryList.productCategoryList.map((item, index) => (

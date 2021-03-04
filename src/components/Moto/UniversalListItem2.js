@@ -105,18 +105,18 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
       <Card
         bordered={false}
         className={`moto-item-card gx-rounded-xxl  ${
-          toBoolean(mainData.isfeatured.value) ? "moto-card-sponsor" : ""
-        } ${!toBoolean(mainData.isactive.value) ? "border-top" : ""}`}
+          toBoolean(mainData?.isfeatured?.value) ? "moto-card-sponsor" : ""
+        } ${!toBoolean(mainData?.isactive?.value) ? "border-top" : ""}`}
         hoverable={true}
         // style={{ margin: "0 10px", height: "380px" }}
         cover={
-          <Link to={mainData.link.value}>
+          <Link to={mainData?.link?.value}>
             <div className="moto-product-cover moto-listtype2">
               <UniversalListItemMainImage
                 myClass="gx-img-fluid gx-w-100"
                 width="auto"
-                imageMain={mainData.imagemain.value}
-                cloudName={mainData.imagemaincloudname.value}
+                imageMain={mainData?.imagemain?.value}
+                cloudName={mainData?.imagemaincloudname?.value}
               />
             </div>
           </Link>
@@ -138,22 +138,22 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         </div> */}
 
         <span className="gx-text-grey gx-fs-sm">
-          {mainData.modifieddate.value}
+          {mainData?.modifieddate?.value}
         </span>
 
         <div className={isBrowser ? "h4" : "h6"}>
-          <Link to={mainData.link.value}>
-            <Tooltip title={mainData.title.value}>
+          <Link to={mainData?.link?.value}>
+            <Tooltip title={mainData?.title?.value}>
               <Typography.Paragraph
                 ellipsis={{ rows: 3, symbol: "…" }}
                 className="gx-m-0 gx-text-primary gx-font-weight-semi-bold"
               >
-                {mainData.title.value}
+                {mainData?.title?.value}
               </Typography.Paragraph>
             </Tooltip>
           </Link>
-          {toBoolean(mainData.isfeatured.value) && <FeaturedTag type="dot" />}
-          {!toBoolean(mainData.isactive.value) && <ActiveTag type="dot" />}
+          {toBoolean(mainData?.isfeatured?.value) && <FeaturedTag type="dot" />}
+          {!toBoolean(mainData?.isactive?.value) && <ActiveTag type="dot" />}
         </div>
 
         {/* <div className="gx-text-success gx-font-weight-bold gx-mt-2">
@@ -185,10 +185,11 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
             <div>
               <Tooltip
                 title={
-                  GetSpecData(mainData.mainnumber.field, mainData.menu)?.tooltip
+                  GetSpecData(mainData?.mainnumber?.field, mainData?.menu)
+                    ?.tooltip
                 }
               >
-                {mainData.mainnumber?.value}
+                {mainData?.mainnumber?.value}
               </Tooltip>
             </div>
             <div className="gx-ml-auto" style={{ minWidth: "90px" }}>

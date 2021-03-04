@@ -61,7 +61,8 @@ const KpiFilterRadio = ({ kpiFilterItem }) => {
         onChange={(e) => prepareURL2(e, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
         defaultValue={
           atob(
-            filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
+            filterContext.urlSetting.filterList?.["*" + kpiFilterItem.code] ||
+              ""
           ) || undefined
         }
       >
@@ -85,7 +86,7 @@ const KpiFilterRadio = ({ kpiFilterItem }) => {
         onChange={(e) => prepareURL2(e, kpiFilterItem.code)} //нэмэлт параметр дамжуулж байгаа юм.
         defaultValue={
           atob(
-            filterContext.state.filterList?.["*" + kpiFilterItem.code] || ""
+            filterContext.urlSetting.filterList?.["*" + kpiFilterItem.code] || ""
           ) || undefined
         }
       >

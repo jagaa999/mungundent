@@ -182,25 +182,27 @@ export const CarcatalogStore = (props) => {
   }, [carDrawer.carid]);
 
   useEffect(() => {
-    // if (filterContext.state.menu !== "autozar") return;
+    // if (filterContext.urlSetting.menu !== "autozar") return;
     loadCarFirmList();
 
-    if (!isEmpty(filterContext.state.filterList?.carcatalogfirmid)) {
-      loadCarMarkList(filterContext.state.filterList?.carcatalogfirmid);
+    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogfirmid)) {
+      loadCarMarkList(filterContext.urlSetting.filterList?.carcatalogfirmid);
     }
 
-    if (!isEmpty(filterContext.state.filterList?.carcatalogmarkid)) {
-      loadCarIndexList(filterContext.state.filterList?.carcatalogmarkid);
+    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogmarkid)) {
+      loadCarIndexList(filterContext.urlSetting.filterList?.carcatalogmarkid);
     }
 
-    if (!isEmpty(filterContext.state.filterList?.carcatalogindexid)) {
-      loadCarEditionList(filterContext.state.filterList?.carcatalogindexid);
+    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogindexid)) {
+      loadCarEditionList(
+        filterContext.urlSetting.filterList?.carcatalogindexid
+      );
     }
 
-    if (!isEmpty(filterContext.state.filterList?.carcatalogeditionid)) {
-      loadCarDetail(filterContext.state.filterList?.carcatalogeditionid);
+    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogeditionid)) {
+      loadCarDetail(filterContext.urlSetting.filterList?.carcatalogeditionid);
     }
-  }, [filterContext.state, memberContext.state.isLogin]);
+  }, [filterContext.urlSetting, memberContext.state.isLogin]);
 
   //  ####### ### ######  #     #
   //  #        #  #     # ##   ##

@@ -44,7 +44,9 @@ const CarcatalogFilter = () => {
             return false;
           }
         }}
-        defaultValue={filterContext.state.filterList?.carcatalogfirmid || ""}
+        defaultValue={
+          filterContext.urlSetting.filterList?.carcatalogfirmid || ""
+        }
       >
         {carCatalogContext.carFirmList.carFirmList.map((item, index) => (
           // count: "3"
@@ -86,7 +88,9 @@ const CarcatalogFilter = () => {
             return false;
           }
         }}
-        defaultValue={filterContext.state.filterList?.carcatalogmarkid || ""}
+        defaultValue={
+          filterContext.urlSetting.filterList?.carcatalogmarkid || ""
+        }
       >
         {carCatalogContext.carMarkList.carMarkList.map((item, index) => (
           // count: "3"
@@ -127,7 +131,9 @@ const CarcatalogFilter = () => {
             return false;
           }
         }}
-        defaultValue={filterContext.state.filterList?.carcatalogindexid || ""}
+        defaultValue={
+          filterContext.urlSetting.filterList?.carcatalogindexid || ""
+        }
       >
         {carCatalogContext.carIndexList.carIndexList.map((item, index) => (
           // count: "25"
@@ -176,7 +182,9 @@ const CarcatalogFilter = () => {
             return false;
           }
         }}
-        defaultValue={filterContext.state.filterList?.carcatalogeditionid || ""}
+        defaultValue={
+          filterContext.urlSetting.filterList?.carcatalogeditionid || ""
+        }
       >
         {carCatalogContext.carEditionList.carEditionList.map((item, index) => (
           // body2bodyname: "Сэдан"

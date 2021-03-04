@@ -1,26 +1,35 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 
 import { Image as ImageCloudinary } from "cloudinary-react";
 import "moment/locale/mn";
 import { defaultSrc } from "util/config";
-import { Image as ImageAnt } from "antd";
+import { isEmpty } from "lodash";
+// import { Image as ImageAnt } from "antd";
 
 const UniversalListItemMainImage = ({
   width = "auto",
   height = "auto",
-  imageMain,
+  imageMain = "",
   style,
   cloudName = "duznp4bqa",
   myClass = "",
 }) => {
+  let myImageMain = imageMain;
+  let myCloudName = cloudName;
+  if (isEmpty(myImageMain)) {
+    myImageMain =
+      "https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg";
+    myCloudName = "motomn";
+  }
+
   return (
     <>
-      {imageMain.indexOf("cloudinary") !== -1 ? (
+      {myImageMain.indexOf("cloudinary") !== -1 ? (
         <ImageCloudinary
           className={myClass}
-          cloudName={cloudName}
-          publicId={imageMain
-            .slice(imageMain.indexOf("upload/") + 7, imageMain.length)
+          cloudName={myCloudName}
+          publicId={myImageMain
+            .slice(myImageMain.indexOf("upload/") + 7, myImageMain.length)
             .split(".")
             .shift()}
           crop="fill"
@@ -33,25 +42,24 @@ const UniversalListItemMainImage = ({
           // placeholder="blur"
           responsiveUseBreakpoints="true"
           defaultImage="jhannw5jgo2mlvvkvke9"
-          alt={imageMain}
+          alt={myImageMain}
           onError={defaultSrc}
           style={style}
         />
       ) : (
         <img
-          src={imageMain}
+          src={myImageMain}
           width={`${width}px`}
           height={height}
           className={myClass}
-          alt={imageMain}
+          alt={myImageMain}
           style={style}
-          fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
         />
         // <ImageAnt
-        //   src={imageMain}
+        //   src={myImageMain}
         //   width={width}
         //   className={myClass}
-        //   alt={imageMain}
+        //   alt={myImageMain}
         //   style={style}
         //   fallback="https://res.cloudinary.com/motomn/image/upload/v1599652650/moto/default_01_qpvj5a.jpg"
         // />

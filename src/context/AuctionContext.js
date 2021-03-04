@@ -61,14 +61,14 @@ export const AuctionStore = (props) => {
   );
 
   useEffect(() => {
-    if (filterContext.state.menu !== "auction") return;
+    if (filterContext.urlSetting.menu !== "auction") return;
     loadAuctionList();
   }, [
-    filterContext.state,
-    // filterContext.state.filterList,
-    // filterContext.state.paging,
-    // filterContext.state.sorting,
-    // filterContext.state.cardtype,
+    filterContext.urlSetting,
+    // filterContext.urlSetting.filterList,
+    // filterContext.urlSetting.paging,
+    // filterContext.urlSetting.sorting,
+    // filterContext.urlSetting.cardtype,
     memberContext.state.isLogin,
   ]);
 
@@ -86,33 +86,33 @@ export const AuctionStore = (props) => {
     let myTempObject = [];
     let myTempObject2 = "";
 
-    Object.keys(filterContext.state.filterList).map((val, k) => {
+    Object.keys(filterContext.urlSetting.filterList).map((val, k) => {
       if (["marka_id", "model_id", "kuzov", "rate"].includes(val)) {
         // val нь эдгээрийн аль нэг мөн эсэх?
         // console.log("1-", val);
-        // console.log("2-", filterContext.state.filterList[val]);
+        // console.log("2-", filterContext.urlSetting.filterList[val]);
         myTempObject.push({
           label: val,
-          value: filterContext.state.filterList[val],
+          value: filterContext.urlSetting.filterList[val],
           operator: "=",
         });
       }
       if (val === "yearstart") {
         myTempObject.push({
           label: "year",
-          value: filterContext.state.filterList[val],
+          value: filterContext.urlSetting.filterList[val],
           operator: ">=",
         });
       }
       if (val === "yearend") {
         myTempObject.push({
           label: "year",
-          value: filterContext.state.filterList[val],
+          value: filterContext.urlSetting.filterList[val],
           operator: "<=",
         });
       }
       if (val === "search") {
-        myTempObject2 = `(kuzov like '%${filterContext.state.filterList[val]}%' or grade like '%${filterContext.state.filterList[val]}%' or lot like '%${filterContext.state.filterList[val]}%')`;
+        myTempObject2 = `(kuzov like '%${filterContext.urlSetting.filterList[val]}%' or grade like '%${filterContext.urlSetting.filterList[val]}%' or lot like '%${filterContext.urlSetting.filterList[val]}%')`;
       }
     });
 
@@ -135,8 +135,8 @@ export const AuctionStore = (props) => {
 
     // console.log("PPPPPPPPPPPPP WHERE", myWhere);
 
-    if (filterContext.state.filterList?.marka_id) {
-      myTempObject.marka_id = filterContext.state.filterList?.marka_id;
+    if (filterContext.urlSetting.filterList?.marka_id) {
+      myTempObject.marka_id = filterContext.urlSetting.filterList?.marka_id;
     }
 
     const mySQLCount = `select Count(*) from main ${myWhere}`;
@@ -162,14 +162,14 @@ export const AuctionStore = (props) => {
       });
 
     //FOR LIST
-    const myPagesize = filterContext.state.paging.pagesize || "12";
+    const myPagesize = filterContext.urlSetting.paging.pagesize || "12";
     const myOffset = String(
-      (Number(filterContext.state.paging.offset || "1") - 1) * 12
+      (Number(filterContext.urlSetting.paging.offset || "1") - 1) * 12
     );
     const mySortColumn =
-      filterContext.state.sorting?.sortcolumnnames ||
+      filterContext.urlSetting.sorting?.sortcolumnnames ||
       mySettings.sortFields[0].field;
-    const mySortType = filterContext.state.sorting?.sorttype || "DESC";
+    const mySortType = filterContext.urlSetting.sorting?.sorttype || "DESC";
     //LIMIT 15, 10 (16 дах бичлэгээс эхлэн 10 мөрийг авчир)
     // offset 1 гэдэг нь 0 гэж гарах ёстой. (1-1) * 12
     // offset 2 гэдэг нь 12 гэж гарах ёстой. (2-1) * 12
@@ -193,7 +193,7 @@ export const AuctionStore = (props) => {
 
         const myTempList = prepareAuctionList(
           response.data.response || [],
-          filterContext.state.menu
+          filterContext.urlSetting.menu
         );
 
         setAuctionList({

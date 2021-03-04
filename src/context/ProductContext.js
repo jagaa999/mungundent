@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import moment from "moment";
 import { message, Modal, Button } from "antd";
 
-import axios from "../util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
 import {
   prepareProductList,
@@ -38,12 +37,12 @@ export const ProductStore = (props) => {
       paging: {
         // pageSize: "24",
         // offset: "1",
-        pagesize: filterContext.state.paging?.pagesize || "24", //нийтлэлийн тоо
-        offset: filterContext.state.paging?.offset || "1", //хуудасны дугаар
+        pagesize: filterContext.urlSetting.paging?.pagesize || "24", //нийтлэлийн тоо
+        offset: filterContext.urlSetting.paging?.offset || "1", //хуудасны дугаар
 
         sortcolumnnames: {
-          [filterContext.state.sorting?.sortcolumnnames || "itemid"]: {
-            sorttype: filterContext.state.sorting?.sorttype || "DESC",
+          [filterContext.urlSetting.sorting?.sortcolumnnames || "itemid"]: {
+            sorttype: filterContext.urlSetting.sorting?.sorttype || "DESC",
           },
         },
       },
@@ -81,14 +80,14 @@ export const ProductStore = (props) => {
   });
 
   useEffect(() => {
-    if (filterContext.state.menu === "product") {
+    if (filterContext.urlSetting.menu === "product") {
       // myMenuType = "Insert";
       // myMenuType = "Edit";
       // myMenuType = "Detail";
       // myMenuType = "List";
       clearKpiFilterList();
 
-      switch (filterContext.state.menuType) {
+      switch (filterContext.urlSetting.menuType) {
         // case "Insert":
         //   clearProductDetail();
         //   break;
@@ -108,17 +107,19 @@ export const ProductStore = (props) => {
       }
 
       //Filter дотор kpitemplateid байвал kpi-ийн бүх зүйлсийг дуудах ёстой. Filter-д ашиглана.
-      if (filterContext.state.filterList?.kpitemplateid !== undefined) {
+      if (filterContext.urlSetting.filterList?.kpitemplateid !== undefined) {
         // console.log(
         //   "DDDDDDDDDDDDDDDDDDDDDDDDDD",
-        //   filterContext.state.filterList?.kpitemplateid
+        //   filterContext.urlSetting.filterList?.kpitemplateid
         // );
-        // loadKpiFilterList(filterContext.state.filterList?.kpitemplateid);
+        // loadKpiFilterList(filterContext.urlSetting.filterList?.kpitemplateid);
         //KPItemplateid биш Category-ийн ID-аар дууддаг юм байна.
-        loadKpiFilterList(filterContext.state.filterList?.generalcategoryid);
+        loadKpiFilterList(
+          filterContext.urlSetting.filterList?.generalcategoryid
+        );
       }
     }
-  }, [filterContext.state, memberContext.state.isLogin]);
+  }, [filterContext.urlSetting, memberContext.state.isLogin]);
 
   //orderModal харуулах үед Login хийгдсэн эсэхийг шалгаж байгаа юм.
   // useEffect(() => {
@@ -146,8 +147,8 @@ export const ProductStore = (props) => {
     //*-той Key байвал Value-г нь atob()-аар string болгож авна. String-ээ Object болгоно.
     let myCriteria = {};
     let specialCriteriaOperand = "0=0";
-    Object.keys(filterContext.state.filterList).map((item) => {
-      // console.log(item, "----", filterContext.state.filterList[item]);
+    Object.keys(filterContext.urlSetting.filterList).map((item) => {
+      // console.log(item, "----", filterContext.urlSetting.filterList[item]);
       if (
         item !== "offset" &&
         item !== "pagesize" &&
@@ -159,7 +160,7 @@ export const ProductStore = (props) => {
           [item]: {
             0: {
               operator: "=",
-              operand: filterContext.state.filterList[item],
+              operand: filterContext.urlSetting.filterList[item],
             },
           },
         };
@@ -169,7 +170,7 @@ export const ProductStore = (props) => {
           [item]: {
             0: {
               operator: "like",
-              operand: `%${filterContext.state.filterList[item]}%`,
+              operand: `%${filterContext.urlSetting.filterList[item]}%`,
             },
           },
         };
@@ -177,7 +178,7 @@ export const ProductStore = (props) => {
         //буюу Тусгай кодолсон талбар биш байх ёстой.
         const myDecodeField = item.substring(1);
         const myTempJSON = JSON.parse(
-          atob(filterContext.state.filterList[item] || "") || ""
+          atob(filterContext.urlSetting.filterList[item] || "") || ""
         );
         // {
         //   indicator_id: "16102833423851";
@@ -220,11 +221,11 @@ export const ProductStore = (props) => {
           },
           paging: {
             ...productList.loadParams.paging,
-            pagesize: filterContext.state.paging.pagesize || "24",
-            offset: filterContext.state.paging.offset || "1",
+            pagesize: filterContext.urlSetting.paging.pagesize || "24",
+            offset: filterContext.urlSetting.paging.offset || "1",
             sortcolumnnames: {
-              [filterContext.state.sorting.sortcolumnnames || "itemid"]: {
-                sorttype: filterContext.state.sorting.sorttype || "DESC",
+              [filterContext.urlSetting.sorting.sortcolumnnames || "itemid"]: {
+                sorttype: filterContext.urlSetting.sorting.sorttype || "DESC",
               },
             },
           },
@@ -254,7 +255,7 @@ export const ProductStore = (props) => {
 
           const myTempList = prepareProductList(
             myArray,
-            filterContext.state.menu
+            filterContext.urlSetting.menu
           );
 
           setProductList({
@@ -305,22 +306,20 @@ export const ProductStore = (props) => {
     setProductDetail(initialProductDetail);
     setProductDetail({ ...productDetail, loading: true });
 
-    axios
-      .post("", myParamsProductDetail)
-      .then((response) => {
-        // console.log("PRODUCT DETAIL RESPONSE------------> ", response);
-        const myData = response.data.response;
+    myAxiosZ(myParamsProductDetail)
+      .then((myData) => {
+        const myDetail = myData.response || {};
 
         // console.log("PRODUCT DETAIL", myData);
 
-        if (myData.status === "error") {
-          message.error(myData.text, 7);
+        if (myDetail.status === "error") {
+          message.error(myDetail.text, 7);
         } else {
-          const myArray = myData.result || [];
+          const myArray = myDetail.result || [];
 
           const myTempItem = prepareProductDetail(
             myArray,
-            filterContext.state.menu
+            filterContext.urlSetting.menu
           );
           // console.log("FFFFFFFFF productDetail", productDetail);
           setProductDetail({
@@ -379,16 +378,15 @@ export const ProductStore = (props) => {
     setKpiFilterList(initialKpiFilterList);
     setKpiFilterList({ ...kpiFilterList, loading: true });
 
-    axios
-      .post("", myParamsKpiFilterList)
-      .then((response) => {
+    myAxiosZ(myParamsKpiFilterList)
+      .then((myData) => {
+        const myDetail = myData.response || {};
         // console.log("KPI LIST RESPONSE------------> ", response);
-        const myData = response.data.response;
 
-        if (myData.status === "error") {
-          message.error(myData.text, 7);
+        if (myDetail.status === "error") {
+          message.error(myDetail.text, 7);
         } else {
-          const myArray = myData.result || [];
+          const myArray = myDetail.result || [];
           console.log("KPI LIST myArray------------> ", myArray);
 
           setKpiFilterList({
@@ -465,14 +463,13 @@ export const ProductStore = (props) => {
     console.log("myParamsOrderProductDetail", myParamsOrderProductDetail);
     // return null;
 
-    axios
-      .post("", myParamsOrderProductDetail)
-      .then((response) => {
-        console.log("Save OrderDetail:   ", response);
-        const myData = response.data.response;
-        console.log("After Save OrderDetail ------------>", myData);
-        if (myData.status === "error") {
-          message.error(myData.text, 7);
+    myAxiosZ(myParamsOrderProductDetail)
+      .then((myData) => {
+        // console.log("Save OrderDetail:   ", response);
+        const myDetail = myData.response || {};
+        // console.log("After Save OrderDetail ------------>", myData);
+        if (myDetail.status === "error") {
+          message.error(myDetail.text, 7);
         } else {
           message.success(
             "Захиалгыг амжилттай бүртгэлээ. Өдрийг сайхан өнгөрүүлээрэй."
@@ -511,11 +508,13 @@ export const ProductStore = (props) => {
         setOrder,
       }}
     >
-      <ContextDevTool
-        context={ProductContext}
-        id="uniqContextId"
-        displayName="PRODUCT STORE PROVIDER"
-      />
+      {process.env.NODE_ENV === "development" && (
+        <ContextDevTool
+          context={ProductContext}
+          id="ProductContextId"
+          displayName="PRODUCT STORE"
+        />
+      )}
 
       {props.children}
       <OrderModal order={order} isOrderModal={isOrderModal} />

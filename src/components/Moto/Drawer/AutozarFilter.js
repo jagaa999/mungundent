@@ -51,7 +51,7 @@ const AutozarFilter = (props) => {
       loading: false,
     });
 
-    if (filterContext.state.filterList?.mglfirm) {
+    if (filterContext.urlSetting.filterList?.mglfirm) {
       setMglMarkList({ ...mglMarkList, loading: true });
       setMglMarkList({
         mglMarkList: await loadDataview({
@@ -60,7 +60,7 @@ const AutozarFilter = (props) => {
             mglfirm: {
               0: {
                 operator: "=",
-                operand: filterContext.state.filterList?.mglfirm,
+                operand: filterContext.urlSetting.filterList?.mglfirm,
               },
             },
           },
@@ -84,7 +84,7 @@ const AutozarFilter = (props) => {
       loading: false,
     });
 
-    // if (filterContext.state.filterList?.model_id) {
+    // if (filterContext.urlSetting.filterList?.model_id) {
     //   setCaryearList({ ...caryearList, loading: true });
     //   setCaryearList({
     //     caryearList: await loadDataviewAuction({
@@ -98,7 +98,7 @@ const AutozarFilter = (props) => {
   useEffect(() => {
     callAllDataAsync();
     // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
-  }, [filterContext.state.filterList]);
+  }, [filterContext.urlSetting.filterList]);
 
   const prepareURL = (checkedValues, parameterLabel) => {
     console.log("checkedValues", checkedValues);
@@ -176,7 +176,9 @@ const AutozarFilter = (props) => {
               return false;
             }
           }}
-          defaultValue={filterContext.state.filterList?.mglfirm || undefined}
+          defaultValue={
+            filterContext.urlSetting.filterList?.mglfirm || undefined
+          }
         >
           {mglFirmList.mglFirmList.map((item, index) => (
             <Option key={index} value={item.mglfirm}>
@@ -205,7 +207,9 @@ const AutozarFilter = (props) => {
               return false;
             }
           }}
-          defaultValue={filterContext.state.filterList?.mglmark || undefined}
+          defaultValue={
+            filterContext.urlSetting.filterList?.mglmark || undefined
+          }
         >
           {mglMarkList.mglMarkList.map((item, index) => (
             <Option key={index} value={item.mglmark}>
@@ -236,7 +240,9 @@ const AutozarFilter = (props) => {
               return false;
             }
           }}
-          defaultValue={filterContext.state.filterList?.mglbody || undefined}
+          defaultValue={
+            filterContext.urlSetting.filterList?.mglbody || undefined
+          }
         >
           {mglBodyList.mglBodyList.map((item, index) => (
             <Option key={index} value={item.mglbody}>
@@ -265,7 +271,7 @@ const AutozarFilter = (props) => {
               return false;
             }
           }}
-          defaultValue={filterContext.state.filterList?.yearstart || undefined}
+          defaultValue={filterContext.urlSetting.filterList?.yearstart || undefined}
         >
           {caryearList.caryearList.map((item, index) => (
             <Option key={index} value={item.YEAR}>
@@ -291,7 +297,7 @@ const AutozarFilter = (props) => {
               return false;
             }
           }}
-          defaultValue={filterContext.state.filterList?.yearend || undefined}
+          defaultValue={filterContext.urlSetting.filterList?.yearend || undefined}
         >
           {caryearList.caryearList.map((item, index) => (
             <Option key={index} value={item.YEAR}>
@@ -321,7 +327,7 @@ const AutozarFilter = (props) => {
               return false;
             }
           }}
-          defaultValue={filterContext.state.filterList?.rate || undefined}
+          defaultValue={filterContext.urlSetting.filterList?.rate || undefined}
         >
           {rateList.rateList.map((item, index) => (
             <Option key={index} value={item.RATE}>
@@ -330,7 +336,7 @@ const AutozarFilter = (props) => {
           ))}
         </Select> */}
 
-        {isEmpty(filterContext.state.filterList) ? (
+        {isEmpty(filterContext.urlSetting.filterList) ? (
           <></>
         ) : (
           <>

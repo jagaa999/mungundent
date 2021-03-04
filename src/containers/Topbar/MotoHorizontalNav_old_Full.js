@@ -11,7 +11,7 @@ const MenuItemGroup = Menu.ItemGroup;
 
 const MotoHorizontalNav = () => {
   const filterContext = useContext(FilterContext);
-  const selectedKeys = filterContext.state.menu;
+  const selectedKeys = filterContext.urlSetting.menu;
   // const defaultOpenKeys = selectedKeys.split("/")[1];
 
   return (

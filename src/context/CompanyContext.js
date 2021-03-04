@@ -40,11 +40,11 @@ export const CompanyStore = (props) => {
         // },
       },
       paging: {
-        pagesize: filterContext.state.paging?.pagesize || "12",
-        offset: filterContext.state.paging?.offset || "1",
+        pagesize: filterContext.urlSetting.paging?.pagesize || "12",
+        offset: filterContext.urlSetting.paging?.offset || "1",
         sortcolumnnames: {
-          [filterContext.state.sorting?.sortcolumnnames || "title"]: {
-            sorttype: filterContext.state.sorting?.sorttype || "ASC",
+          [filterContext.urlSetting.sorting?.sortcolumnnames || "title"]: {
+            sorttype: filterContext.urlSetting.sorting?.sorttype || "ASC",
           },
         },
       },
@@ -73,9 +73,9 @@ export const CompanyStore = (props) => {
   const [companyDetail, setCompanyDetail] = useState(initialStateCompanyDetail);
 
   useEffect(() => {
-    if (filterContext.state.menu !== "company") return;
+    if (filterContext.urlSetting.menu !== "company") return;
     loadCompanyList();
-  }, [filterContext.state, memberContext.state.isLogin]);
+  }, [filterContext.urlSetting, memberContext.state.isLogin]);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #
@@ -89,12 +89,12 @@ export const CompanyStore = (props) => {
     setCompanyList({ ...companyList, loading: true });
 
     let tempFilter = {};
-    Object.keys(filterContext.state.filterList).map((item) => {
-      console.log(item, "----", filterContext.state.filterList[item]);
+    Object.keys(filterContext.urlSetting.filterList).map((item) => {
+      console.log(item, "----", filterContext.urlSetting.filterList[item]);
       if (item !== "offset" && item !== "pagesize" && item !== "title") {
         const myItem1 = {
           operator: "=",
-          operand: filterContext.state.filterList[item],
+          operand: filterContext.urlSetting.filterList[item],
         };
         const myItem2 = {
           [item]: {
@@ -115,7 +115,7 @@ export const CompanyStore = (props) => {
       } else if (item === "title") {
         const myItem1 = {
           operator: "like",
-          operand: `%${filterContext.state.filterList[item]}%`,
+          operand: `%${filterContext.urlSetting.filterList[item]}%`,
         };
         const myItem2 = {
           [item]: {
@@ -153,11 +153,12 @@ export const CompanyStore = (props) => {
         ...myTemp33,
         paging: {
           ...companyList.loadParams.paging,
-          pagesize: filterContext.state.paging.pagesize || "12",
-          offset: filterContext.state.paging.offset || "1",
+          pagesize: filterContext.urlSetting.paging.pagesize || "12",
+          offset: filterContext.urlSetting.paging.offset || "1",
           sortcolumnnames: {
-            [filterContext.state.sorting.sortcolumnnames || "modifieddate"]: {
-              sorttype: filterContext.state.sorting.sorttype || "DESC",
+            [filterContext.urlSetting.sorting.sortcolumnnames ||
+            "modifieddate"]: {
+              sorttype: filterContext.urlSetting.sorting.sorttype || "DESC",
             },
           },
         },
@@ -187,7 +188,7 @@ export const CompanyStore = (props) => {
         // console.log("dfdgdgdf gd gdfg", myArray);
         const myTempList = prepareCompanyList(
           myArray,
-          filterContext.state.menu
+          filterContext.urlSetting.menu
         );
         // console.log("gdfgdfg dfg", myTempList);
 

@@ -18,11 +18,11 @@ const MotoSort = () => {
   const newsListContext = useContext(NewsContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
-    filterContext.state.sorting.sortcolumnnames || "YEAR",
-    filterContext.state.cardtype.cardtype || "typetable",
+    filterContext.urlSetting.sorting.sortcolumnnames || "YEAR",
+    filterContext.urlSetting.cardtype.cardtype || "typetable",
   ]);
   const [sortDirection, setSortDirection] = useState(
-    filterContext.state.sorting.sorttype || "DESC"
+    filterContext.urlSetting.sorting.sorttype || "DESC"
   );
 
   useDidMountEffect(() => {

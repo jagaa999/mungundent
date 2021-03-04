@@ -61,7 +61,7 @@ const AutozarListPage = () => {
   return (
     <>
       <UniversalListMeta meta={prepareAutozarListSettings.meta} />
-      {renderSwitch(filterContext.state.cardtype.cardtype)}
+      {renderSwitch(filterContext.urlSetting.cardtype.cardtype)}
     </>
   );
 };

@@ -53,32 +53,32 @@ const AuctionFilterHeader = (props) => {
       loading: false,
     });
 
-    if (filterContext.state.filterList?.marka_id) {
+    if (filterContext.urlSetting.filterList?.marka_id) {
       setMarkList({ ...markList, loading: true });
       setMarkList({
         markList: await loadDataviewAuction({
           sql:
             // "select marka_id,marka_name from main group by marka_id order by marka_id ASC",
             // "select model_id,model_name,COUNT(model_id) from stats where marka_name='toyota' group by model_id order by model_name",
-            `select model_id,model_name from main where marka_id='${filterContext.state.filterList?.marka_id}' group by model_name order by model_id`,
+            `select model_id,model_name from main where marka_id='${filterContext.urlSetting.filterList?.marka_id}' group by model_name order by model_id`,
           // "select model_id,model_name from main where marka_id=2 group by model_name order by model_name",
         }),
         loading: false,
       });
     }
 
-    if (filterContext.state.filterList?.model_id) {
+    if (filterContext.urlSetting.filterList?.model_id) {
       setCaryearList({ ...caryearList, loading: true });
       setCaryearList({
         caryearList: await loadDataviewAuction({
-          // sql: `select year from main where model_id='${filterContext.state.filterList?.model_id}' group by year order by year`,
+          // sql: `select year from main where model_id='${filterContext.urlSetting.filterList?.model_id}' group by year order by year`,
           sql: `select year from main ${auctionListContext.auctionList.where} group by year order by year`,
         }),
         loading: false,
       });
     }
 
-    if (filterContext.state.filterList?.model_id) {
+    if (filterContext.urlSetting.filterList?.model_id) {
       setFrameList({ ...frameList, loading: true });
       setFrameList({
         frameList: await loadDataviewAuction({
@@ -88,7 +88,7 @@ const AuctionFilterHeader = (props) => {
       });
     }
 
-    if (filterContext.state.filterList?.model_id) {
+    if (filterContext.urlSetting.filterList?.model_id) {
       setRateList({ ...rateList, loading: true });
       setRateList({
         rateList: await loadDataviewAuction({
@@ -102,7 +102,7 @@ const AuctionFilterHeader = (props) => {
   useEffect(() => {
     callAllDataAsync();
     // setDidMount(true); //first render-ийг илрүүлэхийн төлөө
-  }, [filterContext.state.filterList]);
+  }, [filterContext.urlSetting.filterList]);
 
   const prepareURL = (checkedValues, parameterLabel) => {
     console.log("checkedValues", checkedValues);
@@ -184,7 +184,9 @@ const AuctionFilterHeader = (props) => {
                 return false;
               }
             }}
-            defaultValue={filterContext.state.filterList?.marka_id || undefined}
+            defaultValue={
+              filterContext.urlSetting.filterList?.marka_id || undefined
+            }
             // defaultValue={undefined}
           >
             {firmList.firmList.map((item, index) => (
@@ -212,7 +214,9 @@ const AuctionFilterHeader = (props) => {
                 return false;
               }
             }}
-            defaultValue={filterContext.state.filterList?.model_id || undefined}
+            defaultValue={
+              filterContext.urlSetting.filterList?.model_id || undefined
+            }
           >
             {markList.markList.map((item, index) => (
               <Option key={index} value={item.MODEL_ID}>
@@ -225,12 +229,14 @@ const AuctionFilterHeader = (props) => {
             style={{ width: "163px" }}
             className="gx-ml-1"
             placeholder="LOT, Арал, Хувилбар"
-            defaultValue={filterContext.state.filterList?.search || undefined}
+            defaultValue={
+              filterContext.urlSetting.filterList?.search || undefined
+            }
             onPressEnter={(e) => prepareURL3(e, "search")}
           />
         </Input.Group>
       </div>
-      {/* {filterContext.state.filterList?.model_id !== undefined && ( */}
+      {/* {filterContext.urlSetting.filterList?.model_id !== undefined && ( */}
       <div className="gx-mt-2">
         <Input.Group compact>
           {/*
@@ -264,7 +270,7 @@ const AuctionFilterHeader = (props) => {
                 }
               }}
               defaultValue={
-                filterContext.state.filterList?.yearstart || undefined
+                filterContext.urlSetting.filterList?.yearstart || undefined
               }
             >
               {caryearList.caryearList.map((item, index) => (
@@ -297,7 +303,7 @@ const AuctionFilterHeader = (props) => {
                 }
               }}
               defaultValue={
-                filterContext.state.filterList?.yearend || undefined
+                filterContext.urlSetting.filterList?.yearend || undefined
               }
             >
               {caryearList.caryearList.map((item, index) => (
@@ -329,7 +335,9 @@ const AuctionFilterHeader = (props) => {
                   return false;
                 }
               }}
-              defaultValue={filterContext.state.filterList?.kuzov || undefined}
+              defaultValue={
+                filterContext.urlSetting.filterList?.kuzov || undefined
+              }
             >
               {frameList.frameList.map((item, index) => (
                 <Option key={index} value={htmlEntities.decode(item.KUZOV)}>
@@ -359,7 +367,9 @@ const AuctionFilterHeader = (props) => {
                   return false;
                 }
               }}
-              defaultValue={filterContext.state.filterList?.rate || undefined}
+              defaultValue={
+                filterContext.urlSetting.filterList?.rate || undefined
+              }
             >
               {rateList.rateList.map((item, index) => (
                 <Option key={index} value={item.RATE}>
@@ -368,7 +378,7 @@ const AuctionFilterHeader = (props) => {
               ))}
             </Select>
           </Tooltip>
-          {isEmpty(filterContext.state.filterList) ? (
+          {isEmpty(filterContext.urlSetting.filterList) ? (
             <></>
           ) : (
             <>

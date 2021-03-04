@@ -60,7 +60,7 @@ const NewsListPage = () => {
     <>
       {/* <OnlyMember> */}
       <UniversalListMeta meta={prepareNewsListSettings.meta} />
-      {renderSwitch(filterContext.state.cardtype.cardtype)}
+      {renderSwitch(filterContext.urlSetting.cardtype.cardtype)}
       {/* </OnlyMember> */}
     </>
   );

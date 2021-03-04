@@ -5,7 +5,7 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
-import QueueAnim from "rc-queue-anim";
+import { isEmpty } from "lodash";
 
 import { Layout, Col, Row } from "antd";
 
@@ -17,18 +17,14 @@ import LoadingList from "./Loading/LoadingList";
 
 const { Content, Sider } = Layout;
 
-const ProductCategoryBlock = lazy(() =>
-  import("./Product/ProductCategoryBlock")
-);
-
 const UniversalListType2 = ({
   myListContext,
   myListContextLoading,
   myListContextList,
   myListContextListList,
-  mySettings = {},
+  mySettings = null,
   MyFilter = null,
-  MyFilterDrawer,
+  MyFilterDrawer = null,
 }) => {
   return (
     <>
@@ -58,12 +54,6 @@ const UniversalListType2 = ({
             <div className="moto-list">
               {!myListContextLoading ? (
                 <div className="gx-main-content">
-                  {/* <UniversalListActionHeader
-                    myListContext={myListContext}
-                    mySettings={mySettings}
-                    myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
-                  /> */}
-
                   <Row gutter={isBrowser ? [20, 20] : [7, 9]} type="flex">
                     {myListContextListList.map((myUniversalItem, index) => {
                       return (
@@ -86,7 +76,8 @@ const UniversalListType2 = ({
                   </Row>
 
                   <MotoPagination myClass="gx-mt-2" />
-                  <MyFilterDrawer />
+
+                  {MyFilterDrawer && <MyFilterDrawer />}
                   <AffixButtonInsert link={mySettings.menu} />
                 </div>
               ) : (

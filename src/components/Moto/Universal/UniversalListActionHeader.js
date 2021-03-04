@@ -22,13 +22,10 @@ const ProductCategoryBlock = lazy(() =>
 
 const UniversalListActionHeader = ({
   myListContext,
-  mySettings,
+  mySettings = {},
   myIsFilterDrawerOpen,
 }) => {
-  // console.log("mySettings", mySettings);
-
   const filterContext = useContext(FilterContext);
-  // const auctionListContext = useContext(AuctionContext);
   const compareContext = useContext(CompareContext);
 
   // const toggleFilterDrawer = () => {
@@ -63,25 +60,6 @@ const UniversalListActionHeader = ({
           </h3>
         }
         extra={[
-          // <Tooltip title="Шүүлтүүр нээх" key="02">
-          //   <Button
-          //     icon={
-          //       <MyIcon
-          //         type="iconfilter"
-          //         className={isBrowser && "moto-icon-1-3"}
-          //       />
-          //     }
-          //     type="primary"
-          //     onClick={(e) => myListContext.toggleFilterDrawerOpen()}
-          //     className={`gx-ml-2 gx-mr-0  ${
-          //       myIsFilterDrawerOpen ? "" : "gx-btn-warning"
-          //     }`}
-          //     size={isBrowser ? "default" : "small"}
-          //   >
-          //     Шүүлтүүр
-          //   </Button>
-          // </Tooltip>,
-
           <Tooltip title="Зөвлөмж нээх" key="01">
             <Button
               icon={
@@ -120,10 +98,10 @@ const UniversalListActionHeader = ({
         ]}
       ></PageHeader>
 
-      {filterContext.state.menu === "product" && <ProductCategoryBlock />}
+      {filterContext.urlSetting.menu === "product" && <ProductCategoryBlock />}
 
-      {/* {filterContext.state.menu === "product" &&
-        filterContext.state.filterList?.generalcategoryid !== undefined && (
+      {/* {filterContext.urlSetting.menu === "product" &&
+        filterContext.urlSetting.filterList?.generalcategoryid !== undefined && (
           <ProductHeaderFilter />
         )} */}
     </>

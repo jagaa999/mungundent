@@ -5,31 +5,24 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
-import { Menu, Dropdown, Button, Radio } from "antd";
-import {
-  CaretUpOutlined,
-  CaretDownOutlined,
-  UnorderedListOutlined,
-  CreditCardOutlined,
-  TableOutlined,
-} from "@ant-design/icons";
+import { isEmpty } from "lodash";
+import { Menu, Dropdown, Button } from "antd";
+import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
 import MyIcon from "util/iconFunction";
 
 import FilterContext from "context/FilterContext";
-import AutozarContext from "context/AutozarContext";
 import useDidMountEffect from "util/useDidMountEffect";
 
 const UniversalListSort = ({ mySettings }) => {
   const filterContext = useContext(FilterContext);
-  const autozarContext = useContext(AutozarContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
-    filterContext.state.sorting.sortcolumnnames ||
-      mySettings.sortFields[0].field,
-    filterContext.state.cardtype.cardtype || "typecard",
+    filterContext.urlSetting.sorting.sortcolumnnames ||
+      mySettings?.sortFields[0]?.field,
+    filterContext.urlSetting.cardtype.cardtype || "typecard",
   ]);
   const [sortDirection, setSortDirection] = useState(
-    filterContext.state.sorting.sorttype || "DESC"
+    filterContext.urlSetting.sorting.sorttype || "DESC"
   );
 
   useDidMountEffect(() => {

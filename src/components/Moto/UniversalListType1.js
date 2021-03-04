@@ -26,7 +26,7 @@ const UniversalListType1 = ({
   myListContextLoading,
   myListContextList,
   myListContextListList,
-  mySettings = {},
+  mySettings = null,
   MyFilter = null,
   MyFilterDrawer,
 }) => {
@@ -62,7 +62,7 @@ const UniversalListType1 = ({
               console.log(collapsed, type);
             }}
           >
-            <MyFilter />
+            {MyFilter && <MyFilter />}
           </Sider>
         )}
         <Layout>

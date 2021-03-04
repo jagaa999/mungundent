@@ -4,6 +4,7 @@ import { parse } from "query-string";
 import MemberContext from "context/MemberContext";
 import useDidMountEffect from "util/useDidMountEffect";
 import { isEmpty } from "lodash";
+import { ContextDevTool } from "react-context-devtool";
 
 const FilterContext = React.createContext();
 
@@ -17,7 +18,7 @@ export const FilterStore = (props) => {
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", useParams());
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", ddddId);
 
-  const initialState = {
+  const initialUrlSetting = {
     motoUrl: pathname.split("/"),
     menu: pathname.split("/")[1],
     pathName: pathname,
@@ -27,15 +28,50 @@ export const FilterStore = (props) => {
     paging: {},
     sorting: {},
     cardtype: {
-      cardtype: localStorage.getItem(pathname + "cardtype") || "typelist",
+      cardtype: localStorage.getItem(pathname + "cardtype") || "typecard",
     },
     loading: false,
     error: null,
   };
 
-  const [state, setState] = useState(initialState);
+  const [urlSetting, setUrlSetting] = useState(initialUrlSetting);
   const [searchQuery, setSearchQuery] = useState("");
   const [totalcount, setTotalcount] = useState("0");
+
+  const initialUniversalContextSetting = {
+    listSetting: {
+      loadParams: {
+        systemmetagroupid: "1607594054211261", //Engine List
+        showquery: "0",
+        ignorepermission: "1",
+        paging: {
+          pagesize: urlSetting.paging?.pagesize || "24", //нийтлэлийн тоо
+          offset: urlSetting.paging?.offset || "1", //хуудасны дугаар
+
+          sortcolumnnames: {
+            [urlSetting.sorting?.sortcolumnnames || "id"]: {
+              sorttype: urlSetting.sorting?.sorttype || "DESC",
+            },
+          },
+        },
+      },
+    },
+    detailSetting: {
+      loadParams: {
+        systemmetagroupid: "1605592797379", //Engine Detail байх ёстой
+        showquery: "0",
+        ignorepermission: "1",
+        paging: {
+          pagesize: "1",
+          offset: "1",
+        },
+      },
+    },
+  };
+
+  const [universalContextSetting, setUniversalContextSetting] = useState(
+    initialUniversalContextSetting
+  );
 
   //Хэрвээ URL path солигдох аваас (цэс солигдсон гэсэн үг)
   //Filter-ийн бүх өгөгдлийг цэвэрлэх хэрэгтэй.
@@ -97,7 +133,7 @@ export const FilterStore = (props) => {
       myMenuType = "List";
     }
 
-    setState({
+    setUrlSetting({
       motoUrl: pathname.split("/"),
       menu: pathname.split("/")[1],
       pathName: pathname,
@@ -117,33 +153,33 @@ export const FilterStore = (props) => {
     //Анхны render дээр ажиллахгүй. https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
     const mySearchQueryParams = [];
 
-    Object.keys(state.filterList || {}).map((item) => {
-      if (state.filterList[item] !== "") {
-        mySearchQueryParams.push(item + "=" + state.filterList[item]);
+    Object.keys(urlSetting.filterList || {}).map((item) => {
+      if (urlSetting.filterList[item] !== "") {
+        mySearchQueryParams.push(item + "=" + urlSetting.filterList[item]);
       }
     });
 
-    Object.keys(state.paging || {}).map((item) => {
-      if (state.paging[item] !== "") {
-        mySearchQueryParams.push(item + "=" + state.paging[item]);
+    Object.keys(urlSetting.paging || {}).map((item) => {
+      if (urlSetting.paging[item] !== "") {
+        mySearchQueryParams.push(item + "=" + urlSetting.paging[item]);
       }
     });
 
-    Object.keys(state.sorting || {}).map((item) => {
-      if (state.sorting[item] !== "") {
-        mySearchQueryParams.push(item + "=" + state.sorting[item]);
+    Object.keys(urlSetting.sorting || {}).map((item) => {
+      if (urlSetting.sorting[item] !== "") {
+        mySearchQueryParams.push(item + "=" + urlSetting.sorting[item]);
       }
     });
 
-    Object.keys(state.cardtype || {}).map((item) => {
-      if (state.cardtype[item] !== "") {
-        mySearchQueryParams.push(item + "=" + state.cardtype[item]);
-        localStorage.setItem(pathname + "cardtype", state.cardtype[item]);
+    Object.keys(urlSetting.cardtype || {}).map((item) => {
+      if (urlSetting.cardtype[item] !== "") {
+        mySearchQueryParams.push(item + "=" + urlSetting.cardtype[item]);
+        localStorage.setItem(pathname + "cardtype", urlSetting.cardtype[item]);
       }
     });
 
     setSearchQuery(mySearchQueryParams.join("&"));
-  }, [state]);
+  }, [urlSetting]);
 
   useDidMountEffect(() => {
     // history.push({
@@ -171,7 +207,7 @@ export const FilterStore = (props) => {
   const updateParams = (tempObject, clearAll = false) => {
     // console.log("FilterContext → updateParams", tempObject);
 
-    let myObject = !clearAll ? { ...state } : { ...initialState };
+    let myObject = !clearAll ? { ...urlSetting } : { ...initialUrlSetting };
     Object.entries(tempObject).map((item, i) => {
       const myKey = item[0]; //"newstypeid"
       // const myValue = "gogogo" + item[1] + "hahaha"; //"206"
@@ -224,11 +260,11 @@ export const FilterStore = (props) => {
     });
     // console.log("myObject", myObject);
     // window.scrollTo(0, 0);
-    setState(myObject);
+    setUrlSetting(myObject);
   };
 
   const clearAll = () => {
-    setState({ ...state, filterList: {}, paging: {}, sorting: {} });
+    setUrlSetting({ ...urlSetting, filterList: {}, paging: {}, sorting: {} });
   };
 
   const updateTotal = (totalcount) => {
@@ -237,20 +273,29 @@ export const FilterStore = (props) => {
 
   // useEffect(() => {
   //   window.scrollTo(0, 0);
-  // }, [state]);
+  // }, [urlSetting]);
 
   return (
     <FilterContext.Provider
       value={{
-        state,
+        urlSetting,
         totalcount,
         loadFilterList,
         updateParams,
         clearAll,
         updateTotal,
+        universalContextSetting,
+        setUniversalContextSetting,
       }}
-      displayName="Filter Store"
     >
+      {process.env.NODE_ENV === "development" && (
+        <ContextDevTool
+          context={FilterContext}
+          id="FilterContextId"
+          displayName="FILTER STORE"
+        />
+      )}
+
       {props.children}
     </FilterContext.Provider>
   );

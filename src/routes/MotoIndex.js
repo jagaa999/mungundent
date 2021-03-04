@@ -1,7 +1,9 @@
-import React, { lazy } from "react";
+import React, { useContext, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 
 // import { BackTop } from "antd";
+
+import FilterContext from "context/FilterContext";
 
 import Components from "./components/index";
 import CustomViews from "./customViews/index";
@@ -20,6 +22,7 @@ import { ProductStore } from "../context/ProductContext";
 import { AuctionStore } from "../context/AuctionContext";
 import { MotocarStore } from "../context/MotocarContext";
 import { AutozarStore } from "../context/AutozarContext";
+import { UniversalStore } from "../context/UniversalContext";
 // import { FilterStore } from "../context/FilterContext";
 import { LogsStore } from "../context/LogsContext";
 
@@ -38,8 +41,8 @@ const NewsList = asyncComponent(() => {
   return import("./moto/news/newsListPage");
 });
 
-const PartcatalogEngineList = asyncComponent(() => {
-  return import("./moto/partCatalog/partCatalogEngineListPage");
+const UniversalListPage = asyncComponent(() => {
+  return import("./moto/universal/universalListPage");
 });
 
 const CarcatalogFirmList = asyncComponent(() => {
@@ -146,10 +149,13 @@ const Page404 = asyncComponent(() => {
   return import("./moto/error/Page404");
 });
 
-const App = ({ match }) => (
-  <div className="gx-main-content-wrapper">
-    <Switch>
-      {/*}
+const App = ({ match }) => {
+  const filterContext = useContext(FilterContext);
+
+  return (
+    <div className="gx-main-content-wrapper">
+      <Switch>
+        {/*}
          #    #     #  #####  ####### ### ####### #     # 
         # #   #     # #     #    #     #  #     # ##    # 
        #   #  #     # #          #     #  #     # # #   # 
@@ -158,26 +164,26 @@ const App = ({ match }) => (
       #     # #     # #     #    #     #  #     # #    ## 
       #     #  #####   #####     #    ### ####### #     # 
       */}
-      <Route
-        path={[
-          "/auction/:auctionId",
-          "/auction/:auctionId/detail",
-          "/auction/detail/:auctionId",
-          "/auctionlist/:auctionId",
-        ]}
-      >
-        <LogsStore>
+        <Route
+          path={[
+            "/auction/:auctionId",
+            "/auction/:auctionId/detail",
+            "/auction/detail/:auctionId",
+            "/auctionlist/:auctionId",
+          ]}
+        >
+          <LogsStore>
+            <AuctionStore>
+              <AuctionDetail />
+            </AuctionStore>
+          </LogsStore>
+        </Route>
+        <Route path={["/auction", "/japan", "/auctionlist", "/japanlist"]}>
           <AuctionStore>
-            <AuctionDetail />
+            <AuctionList />
           </AuctionStore>
-        </LogsStore>
-      </Route>
-      <Route path={["/auction", "/japan", "/auctionlist", "/japanlist"]}>
-        <AuctionStore>
-          <AuctionList />
-        </AuctionStore>
-      </Route>
-      {/*}
+        </Route>
+        {/*}
       ######  ######  ####### ######  #     #  #####  ####### 
       #     # #     # #     # #     # #     # #     #    #    
       #     # #     # #     # #     # #     # #          #    
@@ -186,38 +192,44 @@ const App = ({ match }) => (
       #       #    #  #     # #     # #     # #     #    #    
       #       #     # ####### ######   #####   #####     #    
       */}
-      <Route
-        path={[
-          "/product/edit/:id",
-          "/product/:id/edit",
-          "/product/insert",
-          "/product/add",
-        ]}
-      >
-        <ProductStore>
-          <ProductForm />
-        </ProductStore>
-      </Route>
-      <Route
-        path={[
-          "/product/:itemid",
-          "/product/:itemid/detail",
-          "/product/detail/:itemid",
-          "/productlist/:itemid",
-        ]}
-      >
-        <ProductStore>
-          <ProductDetail />
-        </ProductStore>
-      </Route>
-      <Route
-        path={["/product", "/products", "/productlist", "/store", "/storelist"]}
-      >
-        <ProductStore>
-          <ProductList />
-        </ProductStore>
-      </Route>
-      {/*
+        <Route
+          path={[
+            "/product/edit/:id",
+            "/product/:id/edit",
+            "/product/insert",
+            "/product/add",
+          ]}
+        >
+          <ProductStore>
+            <ProductForm />
+          </ProductStore>
+        </Route>
+        <Route
+          path={[
+            "/product/:itemid",
+            "/product/:itemid/detail",
+            "/product/detail/:itemid",
+            "/productlist/:itemid",
+          ]}
+        >
+          <ProductStore>
+            <ProductDetail />
+          </ProductStore>
+        </Route>
+        <Route
+          path={[
+            "/product",
+            "/products",
+            "/productlist",
+            "/store",
+            "/storelist",
+          ]}
+        >
+          <ProductStore>
+            <ProductList />
+          </ProductStore>
+        </Route>
+        {/*
          #    #     # ####### ####### #######    #    ######  
         # #   #     #    #    #     #      #    # #   #     # 
        #   #  #     #    #    #     #     #    #   #  #     # 
@@ -225,36 +237,36 @@ const App = ({ match }) => (
       ####### #     #    #    #     #   #     ####### #   #   
       #     # #     #    #    #     #  #      #     # #    #  
       #     #  #####     #    ####### ####### #     # #     #  */}
-      <Route
-        path={[
-          "/autozar/edit/:id",
-          "/autozar/:id/edit",
-          "/autozar/insert",
-          "/autozar/add",
-        ]}
-      >
-        <AutozarStore>
-          <AutozarForm />
-        </AutozarStore>
-      </Route>
-      <Route
-        path={[
-          "/autozar/:id",
-          "/autozar/:id/detail",
-          "/autozar/detail/:id",
-          "/autozarlist/:id",
-        ]}
-      >
-        <AutozarStore>
-          <AutozarDetail />
-        </AutozarStore>
-      </Route>
-      <Route path={["/autozar", "/autozarlist"]}>
-        <AutozarStore>
-          <AutozarList />
-        </AutozarStore>
-      </Route>
-      {/*}
+        <Route
+          path={[
+            "/autozar/edit/:id",
+            "/autozar/:id/edit",
+            "/autozar/insert",
+            "/autozar/add",
+          ]}
+        >
+          <AutozarStore>
+            <AutozarForm />
+          </AutozarStore>
+        </Route>
+        <Route
+          path={[
+            "/autozar/:id",
+            "/autozar/:id/detail",
+            "/autozar/detail/:id",
+            "/autozarlist/:id",
+          ]}
+        >
+          <AutozarStore>
+            <AutozarDetail />
+          </AutozarStore>
+        </Route>
+        <Route path={["/autozar", "/autozarlist"]}>
+          <AutozarStore>
+            <AutozarList />
+          </AutozarStore>
+        </Route>
+        {/*}
 
       {/*
       #     # ####### ####### #######  #####     #    ######  
@@ -265,24 +277,24 @@ const App = ({ match }) => (
       #     # #     #    #    #     # #     # #     # #    #  
       #     # #######    #    #######  #####  #     # #     # 
       */}
-      <Route
-        path={[
-          "/motocar/edit/:motocarId",
-          "/motocar/:motocarId/edit",
-          "/motocar/insert",
-          "/motocar/add",
-        ]}
-      >
-        <MotocarStore>
-          <MotocarForm />
-        </MotocarStore>
-      </Route>
-      <Route path={["/motocar", "/motocarlist"]}>
-        <MotocarStore>
-          <MotocarList />
-        </MotocarStore>
-      </Route>
-      {/*}
+        <Route
+          path={[
+            "/motocar/edit/:motocarId",
+            "/motocar/:motocarId/edit",
+            "/motocar/insert",
+            "/motocar/add",
+          ]}
+        >
+          <MotocarStore>
+            <MotocarForm />
+          </MotocarStore>
+        </Route>
+        <Route path={["/motocar", "/motocarlist"]}>
+          <MotocarStore>
+            <MotocarList />
+          </MotocarStore>
+        </Route>
+        {/*}
       #     # ####### #     #  #####  
       ##    # #       #  #  # #     # 
       # #   # #       #  #  # #       
@@ -291,36 +303,36 @@ const App = ({ match }) => (
       #    ## #       #  #  # #     # 
       #     # #######  ## ##   #####  
       */}
-      <Route
-        path={[
-          "/news/edit/:newsId",
-          "/news/:newsId/edit",
-          "/news/insert",
-          "/news/add",
-        ]}
-      >
-        <NewsStore>
-          <NewsFormPage />
-        </NewsStore>
-      </Route>
-      <Route
-        path={[
-          "/news/:newsId",
-          "/news/:newsId/detail",
-          "/news/detail/:newsId",
-          "/newslist/:newsId",
-        ]}
-      >
-        <NewsStore>
-          <NewsDetailPage />
-        </NewsStore>
-      </Route>
-      <Route path={["/news", "/newslist"]}>
-        <NewsStore>
-          <NewsList />
-        </NewsStore>
-      </Route>
-      {/* 
+        <Route
+          path={[
+            "/news/edit/:newsId",
+            "/news/:newsId/edit",
+            "/news/insert",
+            "/news/add",
+          ]}
+        >
+          <NewsStore>
+            <NewsFormPage />
+          </NewsStore>
+        </Route>
+        <Route
+          path={[
+            "/news/:newsId",
+            "/news/:newsId/detail",
+            "/news/detail/:newsId",
+            "/newslist/:newsId",
+          ]}
+        >
+          <NewsStore>
+            <NewsDetailPage />
+          </NewsStore>
+        </Route>
+        <Route path={["/news", "/newslist"]}>
+          <NewsStore>
+            <NewsList />
+          </NewsStore>
+        </Route>
+        {/* 
       #     # ####### #     # ######  ####### ######  
       ##   ## #       ##   ## #     # #       #     # 
       # # # # #       # # # # #     # #       #     # 
@@ -329,34 +341,34 @@ const App = ({ match }) => (
       #     # #       #     # #     # #       #    #  
       #     # ####### #     # ######  ####### #     # 
       */}
-      <Route
-        path={[
-          "/member/edit/:memberId",
-          "/member/:memberId/edit",
-          "/member/insert",
-          "/member/add",
-        ]}
-      >
-        <MemberProfileStore>
-          <MemberForm />
-        </MemberProfileStore>
-      </Route>
-      <Route
-        path={[
-          "/member/:memberId",
-          "/member/:memberId/detail",
-          "/member/detail/:memberId",
-          "/memberlist/:memberId",
-        ]}
-      >
-        <MemberDetail />
-      </Route>
-      <Route path={["/member", "/memberlist"]}>
-        <MemberListStore>
-          <MemberList />
-        </MemberListStore>
-      </Route>
-      {/* 
+        <Route
+          path={[
+            "/member/edit/:memberId",
+            "/member/:memberId/edit",
+            "/member/insert",
+            "/member/add",
+          ]}
+        >
+          <MemberProfileStore>
+            <MemberForm />
+          </MemberProfileStore>
+        </Route>
+        <Route
+          path={[
+            "/member/:memberId",
+            "/member/:memberId/detail",
+            "/member/detail/:memberId",
+            "/memberlist/:memberId",
+          ]}
+        >
+          <MemberDetail />
+        </Route>
+        <Route path={["/member", "/memberlist"]}>
+          <MemberListStore>
+            <MemberList />
+          </MemberListStore>
+        </Route>
+        {/* 
        #####  ####### #     # ######     #    #     # #     # 
       #     # #     # ##   ## #     #   # #   ##    #  #   #  
       #       #     # # # # # #     #  #   #  # #   #   # #   
@@ -364,12 +376,12 @@ const App = ({ match }) => (
       #       #     # #     # #       ####### #   # #    #    
       #     # #     # #     # #       #     # #    ##    #    
        #####  ####### #     # #       #     # #     #    #    */}
-      <Route path={["/company", "/companylist"]}>
-        <CompanyStore>
-          <CompanyList />
-        </CompanyStore>
-      </Route>
-      {/*
+        <Route path={["/company", "/companylist"]}>
+          <CompanyStore>
+            <CompanyList />
+          </CompanyStore>
+        </Route>
+        {/*
        #####     #    ######   #####     #    #######
       #     #   # #   #     # #     #   # #      #   
       #        #   #  #     # #        #   #     #   
@@ -378,34 +390,24 @@ const App = ({ match }) => (
       #     # #     # #    #  #     # #     #    #   
        #####  #     # #     #  #####  #     #    #   
       */}
-      <Route path={["/carcatalog/edition/:carId", "/carcatalog/detail/:carId"]}>
-        <CarcatalogDetail />
-      </Route>
-      <Route path={["/carcatalog/index/:indexId"]}>
-        <CarcatalogEditionList />
-      </Route>
-      <Route path={["/carcatalog/mark/:markId"]}>
-        <CarcatalogIndexList />
-      </Route>
-      <Route path={["/carcatalog/:firmId", "/carcatalog/firm/:firmId"]}>
-        <CarcatalogMarkList />
-      </Route>
-      <Route path={["/carcatalog", "/carcataloglist"]}>
-        <CarcatalogFirmList />
-      </Route>
-      {/*
-      ####### #######  #####  ######  #######  #####  
-         #    #       #     # #     # #     # #     # 
-         #    #       #       #     # #     # #       
-         #    #####   #       #     # #     # #       
-         #    #       #       #     # #     # #       
-         #    #       #     # #     # #     # #     # 
-         #    #######  #####  ######  #######  #####  */}
-      <Route path={["/partcatalog", "/partcataloglist"]}>
-        <PartcatalogEngineList />
-      </Route>
-
-      {/* 
+        <Route
+          path={["/carcatalog/edition/:carId", "/carcatalog/detail/:carId"]}
+        >
+          <CarcatalogDetail />
+        </Route>
+        <Route path={["/carcatalog/index/:indexId"]}>
+          <CarcatalogEditionList />
+        </Route>
+        <Route path={["/carcatalog/mark/:markId"]}>
+          <CarcatalogIndexList />
+        </Route>
+        <Route path={["/carcatalog/:firmId", "/carcatalog/firm/:firmId"]}>
+          <CarcatalogMarkList />
+        </Route>
+        <Route path={["/carcatalog", "/carcataloglist"]}>
+          <CarcatalogFirmList />
+        </Route>
+        {/* 
        #####  ####### #     # ######     #    ######  ####### 
       #     # #     # ##   ## #     #   # #   #     # #       
       #       #     # # # # # #     #  #   #  #     # #       
@@ -413,10 +415,10 @@ const App = ({ match }) => (
       #       #     # #     # #       ####### #   #   #       
       #     # #     # #     # #       #     # #    #  #       
        #####  ####### #     # #       #     # #     # ####### */}
-      <Route path={["/compare", "/itemcompare"]}>
-        <ComparePage />
-      </Route>
-      {/*
+        <Route path={["/compare", "/itemcompare"]}>
+          <ComparePage />
+        </Route>
+        {/*
       ####### ####### ####### #       
          #    #     # #     # #       
          #    #     # #     # #       
@@ -425,13 +427,13 @@ const App = ({ match }) => (
          #    #     # #     # #       
          #    ####### ####### ####### 
       */}
-      <Route path={["/tool/fuel", "/tool/fuelcheck"]}>
-        <ToolFuelPage />
-      </Route>
-      <Route path={["/tool/converter", "/tool/convert"]}>
-        <ToolConverterPage />
-      </Route>
-      {/*
+        <Route path={["/tool/fuel", "/tool/fuelcheck"]}>
+          <ToolFuelPage />
+        </Route>
+        <Route path={["/tool/converter", "/tool/convert"]}>
+          <ToolConverterPage />
+        </Route>
+        {/*
       ####### ####### ######  
           #    #     # #     # 
           #    #     # #     # 
@@ -440,76 +442,95 @@ const App = ({ match }) => (
           #    #     # #       
           #    ####### #       
       */}
-      <Route path={["/top/auction", "/top/auctionlist"]}>
-        <TopAuctionPage />
-      </Route>
-      <Route path={["/top/tire", "/top/tirebrand"]}>
-        <TopTirePage />
-      </Route>
-      {/* 
-       #####  #######    #    ####### ###  #####  
-      #     #    #      # #      #     #  #     # 
-      #          #     #   #     #     #  #       
-       #####     #    #     #    #     #  #       
-            #    #    #######    #     #  #       
-      #     #    #    #     #    #     #  #     # 
-       #####     #    #     #    #    ###  #####  */}
-      <Route path={["/static/privacy", "/static/privacypolicy"]}>
-        <PrivacyPolicyPage />
-      </Route>
-      {/*
-      ####### ####### #     # ####### ######  
-      #     #    #    #     # #       #     # 
-      #     #    #    #     # #       #     # 
-      #     #    #    ####### #####   ######  
-      #     #    #    #     # #       #   #   
-      #     #    #    #     # #       #    #  
-      #######    #    #     # ####### #     # 
-      */}
-      <Route path={`${match.url}main`} component={Main} />
-      <Route path={`${match.url}components`} component={Components} />
-      <Route path={`${match.url}custom-views`} component={CustomViews} />
-      <Route path={`${match.url}extensions`} component={Extensions} />
-      <Route
-        path={`${match.url}extra-components`}
-        component={ExtraComponents}
-      />
-      <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
-      <Route path={`${match.url}social-apps`} component={SocialApps} />
-      <Route path={`${match.url}documents`} component={Documents} />
-      {/*
-      #     # ####### #     # ####### 
-      #     # #     # ##   ## #       
-      #     # #     # # # # # #       
-      ####### #     # #  #  # #####   
-      #     # #     # #     # #       
-      #     # #     # #     # #       
-      #     # ####### #     # ####### 
-      */}
-      <Route exact path="/home">
-        <NewsStore>
-          <HomeIndex />
-        </NewsStore>
-      </Route>
-      <Route exact path="/">
-        <NewsStore>
-          <HomeIndex />
-        </NewsStore>
-      </Route>
-      {/* 
-      #         ###   #       
-      #    #   #   #  #    #  
-      #    #  #     # #    #  
-      #    #  #     # #    #  
-      ####### #     # ####### 
-            #   #   #       #  
-            #    ###        #  */}
-      <Route>
-        <Page404 />
-      </Route>
-    </Switch>
-  </div>
-);
+        <Route path={["/top/auction", "/top/auctionlist"]}>
+          <TopAuctionPage />
+        </Route>
+        <Route path={["/top/tire", "/top/tirebrand"]}>
+          <TopTirePage />
+        </Route>
+        {/* 
+         #####  #######    #    ####### ###  #####  
+        #     #    #      # #      #     #  #     # 
+        #          #     #   #     #     #  #       
+         #####     #    #     #    #     #  #       
+              #    #    #######    #     #  #       
+        #     #    #    #     #    #     #  #     # 
+         #####     #    #     #    #    ###  #####  */}
+        <Route path={["/static/privacy", "/static/privacypolicy"]}>
+          <PrivacyPolicyPage />
+        </Route>
+        {/*
+        ####### ####### #     # ####### ######  
+        #     #    #    #     # #       #     # 
+        #     #    #    #     # #       #     # 
+        #     #    #    ####### #####   ######  
+        #     #    #    #     # #       #   #   
+        #     #    #    #     # #       #    #  
+        #######    #    #     # ####### #     # */}
+        <Route path={`${match.url}main`} component={Main} />
+        <Route path={`${match.url}components`} component={Components} />
+        <Route path={`${match.url}custom-views`} component={CustomViews} />
+        <Route path={`${match.url}extensions`} component={Extensions} />
+        <Route
+          path={`${match.url}extra-components`}
+          component={ExtraComponents}
+        />
+        <Route path={`${match.url}in-built-apps`} component={InBuiltApps} />
+        <Route path={`${match.url}social-apps`} component={SocialApps} />
+        <Route path={`${match.url}documents`} component={Documents} />
+        {/*
+        #     # ####### #     # ####### 
+        #     # #     # ##   ## #       
+        #     # #     # # # # # #       
+        ####### #     # #  #  # #####   
+        #     # #     # #     # #       
+        #     # #     # #     # #       
+        #     # ####### #     # ####### */}
+        <Route exact path="/home">
+          <NewsStore>
+            <HomeIndex />
+          </NewsStore>
+        </Route>
+        <Route exact path="/">
+          <NewsStore>
+            <HomeIndex />
+          </NewsStore>
+        </Route>
+        {/*
+        #     # #     # ### #     # ####### ######   #####     #    #       
+        #     # ##    #  #  #     # #       #     # #     #   # #   #       
+        #     # # #   #  #  #     # #       #     # #        #   #  #       
+        #     # #  #  #  #  #     # #####   ######   #####  #     # #       
+        #     # #   # #  #   #   #  #       #   #         # ####### #       
+        #     # #    ##  #    # #   #       #    #  #     # #     # #       
+         #####  #     # ###    #    ####### #     #  #####  #     # ####### */}
+        <Route
+          path={[
+            "/engine",
+            "/enginecatalog",
+            "/enginelist",
+            "/enginecataloglist",
+          ]}
+        >
+          <UniversalStore>
+            <UniversalListPage />
+          </UniversalStore>
+        </Route>
+        {/* 
+        #         ###   #       
+        #    #   #   #  #    #  
+        #    #  #     # #    #  
+        #    #  #     # #    #  
+        ####### #     # ####### 
+              #   #   #       #  
+              #    ###        #  */}
+        <Route>
+          <Page404 />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
 
 export default App;
 

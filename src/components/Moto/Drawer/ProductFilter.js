@@ -91,7 +91,7 @@ const ProductFilter = (props) => {
           }
         }}
         defaultValue={
-          filterContext.state.filterList?.generalcategoryid || undefined
+          filterContext.urlSetting.filterList?.generalcategoryid || undefined
         }
       >
         {productContext.productCategoryList.productCategoryList.map(
@@ -115,7 +115,7 @@ const ProductFilter = (props) => {
         </>
       )}
 
-      {isEmpty(filterContext.state.filterList) ? (
+      {isEmpty(filterContext.urlSetting.filterList) ? (
         <></>
       ) : (
         <>

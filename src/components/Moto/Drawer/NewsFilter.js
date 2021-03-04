@@ -75,7 +75,9 @@ const NewsFilter = (props) => {
         </h6>
         <Search
           placeholder="Текстээ бичнэ үү"
-          defaultValue={[filterContext.state.filterList?.title || undefined]}
+          defaultValue={[
+            filterContext.urlSetting.filterList?.title || undefined,
+          ]}
           onSearch={(value) => filterContext.updateParams({ title: value })}
         />
 
@@ -90,7 +92,9 @@ const NewsFilter = (props) => {
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "newstypeid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
-              defaultValue={[filterContext.state.filterList?.newstypeid || ""]}
+              defaultValue={[
+                filterContext.urlSetting.filterList?.newstypeid || "",
+              ]}
             >
               {newsType.map((item) => (
                 <Checkbox
@@ -118,7 +122,7 @@ const NewsFilter = (props) => {
               onChange={(e) => prepareURL(e, "newssourceid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
               defaultValue={[
-                filterContext.state.filterList?.newssourceid || "",
+                filterContext.urlSetting.filterList?.newssourceid || "",
               ]}
             >
               {newsSource.map((item) => (
@@ -143,7 +147,9 @@ const NewsFilter = (props) => {
             <Checkbox.Group
               onChange={(e) => prepareURL(e, "publisherid")} //нэмэлт параметр дамжуулж байгаа юм.
               className="moto-filter-checkbox"
-              defaultValue={[filterContext.state.filterList?.publisherid || ""]}
+              defaultValue={[
+                filterContext.urlSetting.filterList?.publisherid || "",
+              ]}
             >
               {newsPublisher.map((item) => (
                 <Checkbox value={item.publisherid} key={item.publisherid}>
@@ -160,7 +166,7 @@ const NewsFilter = (props) => {
         {/* <MotoCheckBox title="Нийтлэлийн төрөл" /> */}
         {/* <MotoCheckBox title="Нийтлэгч" /> */}
 
-        {isEmpty(filterContext.state.filterList) ? (
+        {isEmpty(filterContext.urlSetting.filterList) ? (
           <></>
         ) : (
           <>

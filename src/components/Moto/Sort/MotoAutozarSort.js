@@ -18,11 +18,11 @@ const MotoSort = () => {
   const autozarContext = useContext(AutozarContext);
 
   const [selectedKeys, setSelectedKeys] = useState([
-    filterContext.state.sorting.sortcolumnnames || "modifieddate",
-    filterContext.state.cardtype.cardtype || "typetable",
+    filterContext.urlSetting.sorting.sortcolumnnames || "modifieddate",
+    filterContext.urlSetting.cardtype.cardtype || "typetable",
   ]);
   const [sortDirection, setSortDirection] = useState(
-    filterContext.state.sorting.sorttype || "DESC"
+    filterContext.urlSetting.sorting.sorttype || "DESC"
   );
 
   useDidMountEffect(() => {

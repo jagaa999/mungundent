@@ -44,12 +44,12 @@ export const AutozarStore = (props) => {
         },
       },
       paging: {
-        pagesize: filterContext.state.paging?.pagesize || "12",
-        offset: filterContext.state.paging?.offset || "1",
+        pagesize: filterContext.urlSetting.paging?.pagesize || "12",
+        offset: filterContext.urlSetting.paging?.offset || "1",
         sortcolumnnames: {
-          [filterContext.state.sorting?.sortcolumnnames ||
+          [filterContext.urlSetting.sorting?.sortcolumnnames ||
           mySettings.sortFields[0].field]: {
-            sorttype: filterContext.state.sorting?.sorttype || "DESC",
+            sorttype: filterContext.urlSetting.sorting?.sorttype || "DESC",
           },
         },
       },
@@ -78,9 +78,9 @@ export const AutozarStore = (props) => {
   const [autozarDetail, setAutozarDetail] = useState(initialAutozarDetail);
 
   useEffect(() => {
-    if (filterContext.state.menu !== "autozar") return;
+    if (filterContext.urlSetting.menu !== "autozar") return;
     loadAutozarList();
-  }, [filterContext.state, memberContext.state.isLogin]);
+  }, [filterContext.urlSetting, memberContext.state.isLogin]);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #
@@ -94,15 +94,15 @@ export const AutozarStore = (props) => {
     setAutozarList({ ...autozarList, loading: true });
 
     let myCriteria = {};
-    Object.keys(filterContext.state.filterList).map((item) => {
-      // console.log(item, "----", filterContext.state.filterList[item]);
+    Object.keys(filterContext.urlSetting.filterList).map((item) => {
+      // console.log(item, "----", filterContext.urlSetting.filterList[item]);
       if (item !== "offset" && item !== "pagesize" && item !== "title") {
         myCriteria = {
           ...myCriteria,
           [item]: {
             0: {
               operator: "=",
-              operand: filterContext.state.filterList[item],
+              operand: filterContext.urlSetting.filterList[item],
             },
           },
         };
@@ -112,7 +112,7 @@ export const AutozarStore = (props) => {
           [item]: {
             0: {
               operator: "like",
-              operand: `%${filterContext.state.filterList[item]}%`,
+              operand: `%${filterContext.urlSetting.filterList[item]}%`,
             },
           },
         };
@@ -134,11 +134,12 @@ export const AutozarStore = (props) => {
         },
         paging: {
           ...autozarList.loadParams.paging,
-          pagesize: filterContext.state.paging.pagesize || "12",
-          offset: filterContext.state.paging.offset || "1",
+          pagesize: filterContext.urlSetting.paging.pagesize || "12",
+          offset: filterContext.urlSetting.paging.offset || "1",
           sortcolumnnames: {
-            [filterContext.state.sorting.sortcolumnnames || "modifieddate"]: {
-              sorttype: filterContext.state.sorting.sorttype || "DESC",
+            [filterContext.urlSetting.sorting.sortcolumnnames ||
+            "modifieddate"]: {
+              sorttype: filterContext.urlSetting.sorting.sorttype || "DESC",
             },
           },
         },
@@ -167,7 +168,7 @@ export const AutozarStore = (props) => {
 
         const myTempList = prepareAutozarList(
           myArray,
-          filterContext.state.menu
+          filterContext.urlSetting.menu
         );
 
         setAutozarList({
@@ -248,7 +249,7 @@ export const AutozarStore = (props) => {
 
         const myTempItem = prepareAutozarDetail(
           myArray,
-          filterContext.state.menu
+          filterContext.urlSetting.menu
         );
 
         // console.log("MOTOCAR DETAIL------------> ", myArray);

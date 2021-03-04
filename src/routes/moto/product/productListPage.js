@@ -62,7 +62,7 @@ const ProductListPage = () => {
   return (
     <>
       <UniversalListMeta meta={prepareProductListSettings.meta} />
-      {renderSwitch(filterContext.state.cardtype.cardtype)}
+      {renderSwitch(filterContext.urlSetting.cardtype.cardtype)}
     </>
   );
 };

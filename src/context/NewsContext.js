@@ -36,12 +36,12 @@ export const NewsStore = (props) => {
       showquery: "0",
       ignorepermission: "1",
       paging: {
-        pagesize: filterContext.state.paging?.pagesize || "12",
-        offset: filterContext.state.paging?.offset || "1",
+        pagesize: filterContext.urlSetting.paging?.pagesize || "12",
+        offset: filterContext.urlSetting.paging?.offset || "1",
         sortcolumnnames: {
-          [filterContext.state.sorting?.sortcolumnnames ||
+          [filterContext.urlSetting.sorting?.sortcolumnnames ||
           mySettings.sortFields[0].field]: {
-            sorttype: filterContext.state.sorting?.sorttype || "DESC",
+            sorttype: filterContext.urlSetting.sorting?.sorttype || "DESC",
           },
         },
       },
@@ -62,13 +62,13 @@ export const NewsStore = (props) => {
 
   // useDidMountEffect(() => {
   useEffect(() => {
-    if (filterContext.state.menu === "news") {
+    if (filterContext.urlSetting.menu === "news") {
       // myMenuType = "Insert";
       // myMenuType = "Edit";
       // myMenuType = "Detail";
       // myMenuType = "List";
 
-      switch (filterContext.state.menuType) {
+      switch (filterContext.urlSetting.menuType) {
         case "Insert":
           clearNewsDetail();
           break;
@@ -86,7 +86,7 @@ export const NewsStore = (props) => {
           break;
       }
     }
-  }, [filterContext.state, memberContext.state.isLogin]);
+  }, [filterContext.urlSetting, memberContext.state.isLogin]);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #
@@ -101,12 +101,12 @@ export const NewsStore = (props) => {
 
     //! ЭНИЙГ util/urlFunction руу хийж өгөөрэй.
     let tempFilter = {};
-    Object.keys(filterContext.state.filterList).map((item) => {
-      // console.log(item, "----", filterContext.state.filterList[item]);
+    Object.keys(filterContext.urlSetting.filterList).map((item) => {
+      // console.log(item, "----", filterContext.urlSetting.filterList[item]);
       if (item !== "offset" && item !== "pagesize" && item !== "title") {
         const myItem1 = {
           operator: "=",
-          operand: filterContext.state.filterList[item],
+          operand: filterContext.urlSetting.filterList[item],
         };
         const myItem2 = {
           [item]: {
@@ -127,7 +127,7 @@ export const NewsStore = (props) => {
       } else if (item === "title") {
         const myItem1 = {
           operator: "like",
-          operand: `%${filterContext.state.filterList[item]}%`,
+          operand: `%${filterContext.urlSetting.filterList[item]}%`,
         };
         const myItem2 = {
           [item]: {
@@ -153,11 +153,12 @@ export const NewsStore = (props) => {
         ...myTemp33,
         paging: {
           ...newsList.loadParams.paging,
-          pagesize: filterContext.state.paging.pagesize || "12",
-          offset: filterContext.state.paging.offset || "1",
+          pagesize: filterContext.urlSetting.paging.pagesize || "12",
+          offset: filterContext.urlSetting.paging.offset || "1",
           sortcolumnnames: {
-            [filterContext.state.sorting.sortcolumnnames || "publisheddate"]: {
-              sorttype: filterContext.state.sorting.sorttype || "DESC",
+            [filterContext.urlSetting.sorting.sortcolumnnames ||
+            "publisheddate"]: {
+              sorttype: filterContext.urlSetting.sorting.sorttype || "DESC",
             },
           },
         },
@@ -195,7 +196,7 @@ export const NewsStore = (props) => {
 
         const myTempList = prepareNewsList(
           myArray,
-          filterContext.state.menu,
+          filterContext.urlSetting.menu,
           NewsContext
         );
 
@@ -252,7 +253,7 @@ export const NewsStore = (props) => {
 
         const myTempItem = prepareNewsDetail(
           myArray,
-          filterContext.state.menu,
+          filterContext.urlSetting.menu,
           NewsContext
         );
 

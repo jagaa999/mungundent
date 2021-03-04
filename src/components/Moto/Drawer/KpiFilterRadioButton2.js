@@ -26,8 +26,9 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
   // console.log("kpiFilterItemkpiFilterItem", kpiFilterItem);
 
   const myDefault =
-    atob(filterContext.state.filterList?.["*" + kpiFilterItem.code] || "") ||
-    undefined;
+    atob(
+      filterContext.urlSetting.filterList?.["*" + kpiFilterItem.code] || ""
+    ) || undefined;
 
   return (
     <>
