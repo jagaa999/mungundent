@@ -81,8 +81,33 @@ export const UniversalStore = (props) => {
 
   const loadUniversalList = () => {
     console.log("loadUniversalList ДУУДСАН");
-
     setUniversalList({ ...universalList, loading: true });
+
+    let myCriteria = {};
+    Object.keys(filterContext.urlSetting.filterList).map((item) => {
+      // console.log(item, "----", filterContext.urlSetting.filterList[item]);
+      if (item !== "offset" && item !== "pagesize" && item !== "title") {
+        myCriteria = {
+          ...myCriteria,
+          [item]: {
+            0: {
+              operator: "=",
+              operand: filterContext.urlSetting.filterList[item],
+            },
+          },
+        };
+      } else if (item === "title") {
+        myCriteria = {
+          ...myCriteria,
+          [item]: {
+            0: {
+              operator: "like",
+              operand: `%${filterContext.urlSetting.filterList[item]}%`,
+            },
+          },
+        };
+      }
+    });
 
     const myParamsUniversalList = {
       request: {
@@ -92,8 +117,7 @@ export const UniversalStore = (props) => {
         parameters: {
           ...universalList.loadParams,
           criteria: {
-            // ...myCriteria,
-            // criteria: mySpecialCriteria,
+            ...myCriteria,
           },
           paging: {
             ...universalList.loadParams.paging,

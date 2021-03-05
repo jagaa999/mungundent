@@ -110,16 +110,18 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         hoverable={true}
         // style={{ margin: "0 10px", height: "380px" }}
         cover={
-          <Link to={mainData?.link?.value}>
-            <div className="moto-product-cover moto-listtype2">
-              <UniversalListItemMainImage
-                myClass="gx-img-fluid gx-w-100"
-                width="auto"
-                imageMain={mainData?.imagemain?.value}
-                cloudName={mainData?.imagemaincloudname?.value}
-              />
-            </div>
-          </Link>
+          mainData?.imagemain?.value !== "" && (
+            <Link to={mainData?.link?.value}>
+              <div className="moto-product-cover moto-listtype2">
+                <UniversalListItemMainImage
+                  myClass="gx-img-fluid gx-w-100"
+                  width="auto"
+                  imageMain={mainData?.imagemain?.value}
+                  cloudName={mainData?.imagemaincloudname?.value}
+                />
+              </div>
+            </Link>
+          )
         }
       >
         {/* <span className="moto-badge-1">{myUniversalItem.LOT}</span> */}

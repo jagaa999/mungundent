@@ -1,0 +1,180 @@
+{
+ 
+
+  "id": {
+    "testvalue": "23837",
+    "label": "ID дугаар",
+    "tooltip":"",
+    "icon":""
+  },
+  "capacity": {
+    "testvalue": "2675 ccm",
+    "label": "Багтаамж",
+    "tooltip":"Хөдөлгүүрийн багтаамж",
+    "icon":""
+  },
+  "fueltype":{
+    "testvalue": "бензин",
+    "label": "Шатахуун",
+    "tooltip":"Шатахууны төрөл",
+    "icon":""
+  },
+  "power":{    
+    "testvalue": "161 - 177 PS",
+    "label": "Чадал",
+    "tooltip":"Хөдөлгүүрийн чадал",
+    "icon":""
+  },
+  "constructioninterval": {
+    "testvalue": " - ",
+    "label": "Цувралын огноо",
+    "tooltip":"Цувралын огноо",
+    "icon":""
+  },
+  "manufacturerid": {
+    "testvalue": "842",
+    "label": "Үйлдвэрлэгч ID",
+    "tooltip":"Үйлдвэрлэгч ID",
+    "icon":""
+  },
+  "canbedisplayed": {
+    "testvalue": "True",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "fulldescription": {
+    "testvalue": "LEXUS 2AZ-FXE",
+    "label": "Хөдөлгүүрийн нэр",
+    "tooltip":"Хөдөлгүүрийн бүтэн нэр",
+    "icon":""
+  },
+  "haslink": {
+    "testvalue": "True",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "haslinkitem": {
+    "testvalue": "True",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "isaxle": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "iscommercialvehicle": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "iscvmanufacturerid": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "isengine": {
+    "testvalue": "True",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "ismotorbike": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "ispassengercar": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "istransporter": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "salesdescription": {
+    "testvalue": "",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_description": {
+    "testvalue": "LEXUS",
+    "label": "Үйлдвэрлэгч",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_fulldescription": {
+    "testvalue": "LEXUS",
+    "label": "Үйлдвэрлэгчийн нэр",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_haslink": {
+    "testvalue": "True",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_isaxle": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_iscommercialvehicle": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_isengine": {
+    "testvalue": "True",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_ismotorbike": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_ispassengercar": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_istransporter": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_isvgl": {
+    "testvalue": "False",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  },
+  "m_matchcode": {
+    "testvalue": "LEXUS",
+    "label": "",
+    "tooltip":"",
+    "icon":""
+  }
+
+
+}

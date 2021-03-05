@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { parse } from "query-string";
 import { useStickyState } from "util/stickyState";
 
 import {

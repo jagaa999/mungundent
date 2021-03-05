@@ -4,6 +4,7 @@ import newsSpecData from "./specData/newsSpecData.json";
 import auctionSpecData from "./specData/auctionSpecData.json";
 import productSpecData from "./specData/productSpecData.json";
 import carcatalogSpecData from "./specData/carcatalogSpecData.json";
+import engineSpecData from "./specData/engineSpecData.json";
 // import FilterContext from "context/FilterContext";
 
 export const GetSpecData = (field = "", menu) => {
@@ -25,6 +26,9 @@ export const GetSpecData = (field = "", menu) => {
       break;
     case "carcatalog":
       myObject = carcatalogSpecData;
+      break;
+    case "engine":
+      myObject = engineSpecData;
       break;
 
     default:

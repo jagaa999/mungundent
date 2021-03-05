@@ -96,11 +96,11 @@ const tempMainData = (item, menu) => {
     imagemaincloudname: { field: "imagemaincloudname", value: "motomn" },
     isfeatured: {
       field: "isfeatured",
-      value: toBoolean(item.isfeatured) ? true : false,
+      value: toBoolean(item.isfeatured || false) ? true : false,
     },
     isactive: {
       field: "isactive",
-      value: toBoolean(item.isactive) ? true : false,
+      value: toBoolean(item.isactive || true) ? true : false,
     },
     description: {
       field: "description",
@@ -111,12 +111,16 @@ const tempMainData = (item, menu) => {
       value: "",
     },
     createddate: {
-      field: "createddate",
-      value: moment(item.createddate).fromNow(),
+      // field: "createddate",
+      // value: moment(item.createddate).fromNow(),
+      field: "",
+      value: "",
     },
     modifieddate: {
-      field: "modifieddate",
-      value: moment(item.modifieddate).fromNow(),
+      // field: "modifieddate",
+      // value: moment(item.modifieddate).fromNow(),
+      field: "",
+      value: "",
     },
   };
 };
@@ -124,18 +128,35 @@ const tempMainData = (item, menu) => {
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
     {
+      field: "m_description",
+      value: item.m_description,
+    },
+    {
       field: "description",
       value: item.description,
     },
-    {
-      field: "constructioninterval",
-      value: item.constructioninterval,
-    },
+    // {
+    //   field: "constructioninterval",
+    //   value: item.constructioninterval,
+    // },
   ];
 };
 
 const tempSpecList1 = (item, menu, mainData) => {
-  return [];
+  return [
+    {
+      field: "capacity",
+      value: item.capacity,
+    },
+    {
+      field: "fueltype",
+      value: item.fueltype,
+    },
+    {
+      field: "power",
+      value: item.power,
+    },
+  ];
 };
 
 const tempSpecList2 = (item, menu, mainData) => {
@@ -154,6 +175,14 @@ const tempOwnerData = (item, menu, mainData) => {
 const tempTableColumns = (item, menu, mainData) => {
   return [
     {
+      field: "m_description",
+      // responsive: ["lg"],
+      renderDivClass: "gx-fs-sm gx-text-grey",
+      value: (
+        <span className="gx-fs-sm gx-text-grey">{item.m_description}</span>
+      ),
+    },
+    {
       field: "description",
       // responsive: ["lg"],
       renderDivClass: "gx-fs-sm gx-text-grey",
@@ -169,8 +198,8 @@ const tempCompareButtonData = (item, menu, mainData) => {
     mainSpec: mainData.mainnumber.value,
     link: mainData.link.value,
     subSpecs: [
-      { field: "newstypename", value: item.newstypename },
-      { field: "newssourcename", value: item.newssourcename },
+      { field: "m_description", value: item.m_description },
+      { field: "description", value: item.description },
     ],
   };
 };
@@ -178,7 +207,7 @@ const tempCompareButtonData = (item, menu, mainData) => {
 const tempLoveButtonData = (item, menu, mainData) => {
   return {
     id: "",
-    tablename: "ECM_NEWS",
+    tablename: "MOTO_ENGINE",
     actionname: "Таалагдлаа",
     actiondata: "1",
     recordid: mainData.id || "",
@@ -190,7 +219,7 @@ const tempLoveButtonData = (item, menu, mainData) => {
 const tempSaveButtonData = (item, menu, mainData) => {
   return {
     id: "",
-    tablename: "ECM_NEWS",
+    tablename: "MOTO_ENGINE",
     actionname: "Жоорлох",
     actiondata: "1",
     recordid: mainData.id || "",

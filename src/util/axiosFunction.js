@@ -72,10 +72,11 @@ export function loadDataview(props) {
     : "";
   myParams.request.parameters.criteria = props ? props.criteria : {};
   myParams.request.parameters.paging = props ? props.paging : {};
+  console.log("myParams", myParams);
   return axios
     .post("", myParams)
     .then((response) => {
-      // console.log("Цаанаас юу ирэв?", response);
+      console.log("Цаанаас юу ирэв?", response);
       // console.log("Цаанаас юу ирэв? dfgsdfsdf", response.data.response.result);
       // console.log(
       //   "Цаанаас юу ирэв? dfgsdfsdf",
