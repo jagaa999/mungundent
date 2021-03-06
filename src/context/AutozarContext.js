@@ -11,7 +11,7 @@ import {
   prepareAutozarList,
   prepareAutozarListSettings as mySettings,
   prepareAutozarDetail,
-} from "util/prepareSpecsAutozar";
+} from "util/specData/prepareSpecsAutozar";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Html5Entities } from "html-entities";
 import { Tooltip, Tag } from "antd";
-import toBoolean from "./booleanFunction";
+import toBoolean from "util/booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
 import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionStarRatingComponent";

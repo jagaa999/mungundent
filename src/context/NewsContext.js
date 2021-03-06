@@ -11,7 +11,7 @@ import {
   prepareNewsList,
   prepareNewsListSettings as mySettings,
   prepareNewsDetail,
-} from "util/prepareSpecsNews";
+} from "util/specData/prepareSpecsNews";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 

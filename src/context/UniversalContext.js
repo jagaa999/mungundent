@@ -7,7 +7,7 @@ import {
   prepareEngineList,
   prepareEngineListSettings as mySettings,
   prepareEngineDetail,
-} from "util/prepareSpecsEngine";
+} from "util/specData/prepareSpecsEngine";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import { ContextDevTool } from "react-context-devtool";
@@ -86,7 +86,12 @@ export const UniversalStore = (props) => {
     let myCriteria = {};
     Object.keys(filterContext.urlSetting.filterList).map((item) => {
       // console.log(item, "----", filterContext.urlSetting.filterList[item]);
-      if (item !== "offset" && item !== "pagesize" && item !== "title") {
+      if (
+        item !== "offset" &&
+        item !== "pagesize" &&
+        item.charAt(0) !== "*" &&
+        item.charAt(0) !== "~"
+      ) {
         myCriteria = {
           ...myCriteria,
           [item]: {
@@ -96,10 +101,11 @@ export const UniversalStore = (props) => {
             },
           },
         };
-      } else if (item === "title") {
+        // } else if (item === "title") {
+      } else if (item.charAt(0) === "~") {
         myCriteria = {
           ...myCriteria,
-          [item]: {
+          [item.substring(1)]: {
             0: {
               operator: "like",
               operand: `%${filterContext.urlSetting.filterList[item]}%`,
@@ -133,10 +139,10 @@ export const UniversalStore = (props) => {
       },
     };
 
-    console.log(
-      "loadUniversalList myParamsUniversalList",
-      myParamsUniversalList
-    );
+    // console.log(
+    //   "loadUniversalList myParamsUniversalList",
+    //   myParamsUniversalList
+    // );
 
     myAxiosZ(myParamsUniversalList)
       .then((myData) => {
@@ -150,7 +156,7 @@ export const UniversalStore = (props) => {
         delete myArray["paging"];
 
         // let myTempList = Object.values(myArray);
-        let myTempList = {};
+        let myTempList = [];
         switch (filterContext.urlSetting.menu) {
           case "engine":
             myTempList = prepareEngineList(
@@ -257,7 +263,6 @@ export const UniversalStore = (props) => {
       value={{
         universalList,
         universalDetail,
-        loadUniversalList,
         // loadUniversalDetail,
         clearUniversalDetail,
         toggleFilterDrawerOpen,

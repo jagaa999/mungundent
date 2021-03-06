@@ -7,7 +7,7 @@ import { stringify } from "query-string";
 import {
   prepareAuctionList,
   prepareAuctionListSettings as mySettings,
-} from "util/prepareSpecsAuction";
+} from "util/specData/prepareSpecsAuction";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import LogContext from "context/LogsContext";

@@ -14,26 +14,29 @@ import {
   Select,
   Descriptions,
   Empty,
+  Input,
 } from "antd";
 
 import axios from "util/axiosConfig";
 import axiosCloud from "util/axiosCloudConfig";
 // import axiosCloud from "util/axiosConfig";
 import {
-  prepareCarcatalogList,
-  prepareCarcatalogListSettings as mySettings,
-  prepareCarcatalogDetail,
-} from "util/specData/prepareSpecsCarcatalog";
+  preparePartcatalogList,
+  preparePartcatalogListSettings as mySettings,
+  preparePartcatalogDetail,
+} from "util/specData/prepareSpecsPartcatalog";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import MyIcon from "util/iconFunction";
 import { isEmpty } from "lodash";
 import { GetSpecData } from "util/getSpecData";
+import { ContextDevTool } from "react-context-devtool";
+
 const { Option } = Select;
 
-const CarcatalogContext = React.createContext();
+const PartcatalogContext = React.createContext();
 
-export const CarcatalogStore = (props) => {
+export const PartcatalogStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
 
@@ -44,41 +47,40 @@ export const CarcatalogStore = (props) => {
   // #  #   # #  #     #
   // #  #    ##  #     #
   //### #     # ###    #
-
-  const initialStateCarFirmList = {
+  const initialStatePartEngineList = {
     loadParams: {
-      systemmetagroupid: "1599822188399800",
+      systemmetagroupid: "1607594054211261", //Engine List
       showquery: "0",
       ignorepermission: "1",
       criteria: {},
       paging: {
         sortcolumnnames: {
-          firmname: {
+          id: {
             sorttype: "ASC", //эрэмбэлэх чиглэл
           },
         },
       },
     },
-    carFirmList: [],
+    partEngineList: [],
     loading: false,
     error: null,
   };
 
-  const initialStateCarMarkList = {
+  const initialStatePartCategoryList = {
     loadParams: {
-      systemmetagroupid: "1599554598533",
+      systemmetagroupid: "1607672615109111", //Part Category ID
       showquery: "0",
       ignorepermission: "1",
       criteria: {},
       paging: {
         sortcolumnnames: {
-          markname: {
+          nodeid: {
             sorttype: "ASC", //эрэмбэлэх чиглэл
           },
         },
       },
     },
-    carMarkList: [],
+    partCategoryList: [],
     loading: false,
     error: null,
   };
@@ -121,113 +123,113 @@ export const CarcatalogStore = (props) => {
     error: null,
   };
 
-  const initialStateCarDetail = {
-    carDetail: {},
+  const initialStatePartDetail = {
+    partDetail: {},
     loading: false,
     error: null,
   };
 
-  const [carFirmList, setCarFirmList] = useState(initialStateCarFirmList);
-  const [carMarkList, setCarMarkList] = useState(initialStateCarMarkList);
+  const [partEngineList, setPartEngineList] = useState(
+    initialStatePartEngineList
+  );
+  const [partCategoryList, setPartCategoryList] = useState(
+    initialStatePartCategoryList
+  );
   const [carIndexList, setCarIndexList] = useState(initialStateCarIndexList);
   const [carEditionList, setCarEditionList] = useState(
     initialStateCarEditionList
   );
-  const [carDetail, setCarDetail] = useState(initialStateCarDetail);
-  // const [carDrawer, setCarDrawer] = useState({
-  //   isOpen: false,
-  //   firmid: useStickyState(null, "carcatalogfirmid"),
-  //   markid: useStickyState(null, "carcatalogmarkid"),
-  //   indexid: useStickyState(null, "carcatalogindexid"),
-  //   carid: useStickyState(null, "carcatalogcarid"),
-  // });
-  const [carDrawer, setCarDrawer] = useStickyState(
+  const [partDetail, setPartDetail] = useState(initialStatePartDetail);
+
+  const [partDrawer, setPartDrawer] = useStickyState(
     {
-      isOpen: false,
+      isOpen: true,
       onlyThisCar: false,
-      firmid: null,
-      markid: null,
-      indexid: null,
+      engineid: null,
+      categoryid: null,
+      partid: null,
       carid: null,
     },
-    "carDrawer"
+    "partDrawer"
   );
 
-  // console.log("GGGGGG", carDrawer);
+  // console.log("GGGGGG", partDrawer);
 
   useEffect(() => {
-    if (!isEmpty(carDrawer.firmid)) {
-      loadCarMarkList(carDrawer.firmid);
+    if (!isEmpty(partDrawer.engineid)) {
+      loadPartCategoryList(partDrawer.engineid);
     }
-  }, [carDrawer.firmid]);
+  }, [partDrawer.engineid]);
 
   useEffect(() => {
-    if (!isEmpty(carDrawer.markid)) {
-      loadCarIndexList(carDrawer.markid);
+    if (!isEmpty(partDrawer.categoryid)) {
+      loadCarIndexList(partDrawer.categoryid);
     }
-  }, [carDrawer.markid]);
+  }, [partDrawer.categoryid]);
 
   useEffect(() => {
-    if (!isEmpty(carDrawer.indexid)) {
-      loadCarEditionList(carDrawer.indexid);
+    if (!isEmpty(partDrawer.indexid)) {
+      loadCarEditionList(partDrawer.indexid);
     }
-  }, [carDrawer.indexid]);
+  }, [partDrawer.indexid]);
 
   useEffect(() => {
-    if (!isEmpty(carDrawer.carid)) {
-      loadCarDetail(carDrawer.carid);
+    if (!isEmpty(partDrawer.carid)) {
+      loadPartDetail(partDrawer.carid);
     }
-  }, [carDrawer.carid]);
+  }, [partDrawer.carid]);
 
   useEffect(() => {
     // if (filterContext.urlSetting.menu !== "autozar") return;
-    loadCarFirmList();
+    loadPartEngineList();
 
-    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogfirmid)) {
-      loadCarMarkList(filterContext.urlSetting.filterList?.carcatalogfirmid);
-    }
-
-    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogmarkid)) {
-      loadCarIndexList(filterContext.urlSetting.filterList?.carcatalogmarkid);
-    }
-
-    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogindexid)) {
-      loadCarEditionList(
-        filterContext.urlSetting.filterList?.carcatalogindexid
+    if (!isEmpty(filterContext.urlSetting.filterList?.partcatalogengineid)) {
+      loadPartCategoryList(
+        filterContext.urlSetting.filterList?.partcatalogengineid
       );
     }
 
-    if (!isEmpty(filterContext.urlSetting.filterList?.carcatalogeditionid)) {
-      loadCarDetail(filterContext.urlSetting.filterList?.carcatalogeditionid);
+    if (!isEmpty(filterContext.urlSetting.filterList?.partcatalogcategoryid)) {
+      loadCarIndexList(
+        filterContext.urlSetting.filterList?.partcatalogcategoryid
+      );
+    }
+
+    if (!isEmpty(filterContext.urlSetting.filterList?.partcatalogindexid)) {
+      loadCarEditionList(
+        filterContext.urlSetting.filterList?.partcatalogindexid
+      );
+    }
+
+    if (!isEmpty(filterContext.urlSetting.filterList?.partcatalogeditionid)) {
+      loadPartDetail(filterContext.urlSetting.filterList?.partcatalogeditionid);
     }
   }, [filterContext.urlSetting, memberContext.state.isLogin]);
 
-  //  ####### ### ######  #     #
-  //  #        #  #     # ##   ##
-  //  #        #  #     # # # # #
-  //  #####    #  ######  #  #  #
-  //  #        #  #   #   #     #
-  //  #        #  #    #  #     #
-  //  #       ### #     # #     #
+  //  ####### #     #  #####  ### #     # #######
+  //  #       ##    # #     #  #  ##    # #
+  //  #       # #   # #        #  # #   # #
+  //  #####   #  #  # #  ####  #  #  #  # #####
+  //  #       #   # # #     #  #  #   # # #
+  //  #       #    ## #     #  #  #    ## #
+  //  ####### #     #  #####  ### #     # #######
 
-  const loadCarFirmList = () => {
-    setCarFirmList({ ...carFirmList, loading: true });
+  const loadPartEngineList = () => {
+    setPartEngineList({ ...partEngineList, loading: true });
 
-    const myParamsCarFirmList = {
+    const myParamsPartEngineList = {
       request: {
-        // username: "motoadmin",
-        // password: "moto123",
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
-        parameters: carFirmList.loadParams,
+        parameters: partEngineList.loadParams,
       },
     };
 
     axios
-      .post("", myParamsCarFirmList)
+      .post("", myParamsPartEngineList)
       .then((response) => {
-        // console.log("FIRM response---------", response);
+        // console.log("ENGINE response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -239,45 +241,44 @@ export const CarcatalogStore = (props) => {
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
 
-          setCarFirmList({
-            ...carFirmList,
+          setPartEngineList({
+            ...partEngineList,
             loading: false,
-            carFirmList: Object.values(myArray),
+            partEngineList: Object.values(myArray),
           });
         }
       })
       .catch((error) => {
-        setCarFirmList({ ...carFirmList, loading: false, error });
+        setPartEngineList({ ...partEngineList, loading: false, error });
         message.error(error);
         console.log(error);
       });
   };
 
-  //  #     #    #    ######  #    #
-  //  ##   ##   # #   #     # #   #
-  //  # # # #  #   #  #     # #  #
-  //  #  #  # #     # ######  ###
-  //  #     # ####### #   #   #  #
-  //  #     # #     # #    #  #   #
-  //  #     # #     # #     # #    #
+  //   #####     #    ####### #######  #####  ####### ######  #     #
+  //  #     #   # #      #    #       #     # #     # #     #  #   #
+  //  #        #   #     #    #       #       #     # #     #   # #
+  //  #       #     #    #    #####   #  #### #     # ######     #
+  //  #       #######    #    #       #     # #     # #   #      #
+  //  #     # #     #    #    #       #     # #     # #    #     #
+  //   #####  #     #    #    #######  #####  ####### #     #    #
+  const loadPartCategoryList = (engineid) => {
+    console.log("DDDDDDDDDD");
+    setPartCategoryList({ ...partCategoryList, loading: true });
 
-  const loadCarMarkList = (firmid) => {
-    setCarMarkList({ ...carMarkList, loading: true });
-
-    const myParamsCarMarkList = {
+    const myParamsPartCategoryList = {
       request: {
-        // username: "motoadmin",
-        // password: "moto123",
-        username: memberContext.state.memberUID,
+        // username: memberContext.state.memberUID,
+        username: "admin",
         password: "89",
         command: "PL_MDVIEW_004",
         parameters: {
-          ...carMarkList.loadParams,
+          ...partCategoryList.loadParams,
           criteria: {
-            id: {
+            engineid: {
               0: {
                 operator: "=",
-                operand: firmid,
+                operand: engineid,
               },
             },
           },
@@ -285,10 +286,12 @@ export const CarcatalogStore = (props) => {
       },
     };
 
+    console.log("myParamsPartCategoryList", myParamsPartCategoryList);
+
     axios
-      .post("", myParamsCarMarkList)
+      .post("", myParamsPartCategoryList)
       .then((response) => {
-        // console.log("MARK response---------", response);
+        console.log("PART CATEGORY response---------", response);
         const myData = response.data.response;
         if (myData.status === "error") {
           // getError(myData.text);
@@ -297,20 +300,22 @@ export const CarcatalogStore = (props) => {
           const myPaging = myData.result.paging || {};
           const myArray = myData.result || [];
 
+          console.log("Part Category Response ", myArray);
+
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
 
-          setCarMarkList({
-            ...carMarkList,
+          setPartCategoryList({
+            ...partCategoryList,
             loading: false,
-            carMarkList: Object.values(myArray),
+            partCategoryList: Object.values(myArray),
           });
         }
       })
       .catch((error) => {
-        setCarMarkList({ ...carMarkList, loading: false, error });
+        setPartCategoryList({ ...partCategoryList, loading: false, error });
         message.error(error);
-        console.log(error);
+        console.log("Error", error);
       });
   };
 
@@ -322,7 +327,7 @@ export const CarcatalogStore = (props) => {
   // #  #    ## #     # #        #   #
   //### #     # ######  ####### #     #
 
-  const loadCarIndexList = (markid) => {
+  const loadCarIndexList = (categoryid) => {
     setCarIndexList({ ...carIndexList, loading: true });
 
     const myParamsCarIndexList = {
@@ -335,10 +340,10 @@ export const CarcatalogStore = (props) => {
         parameters: {
           ...carIndexList.loadParams,
           criteria: {
-            markid: {
+            categoryid: {
               0: {
                 operator: "=",
-                operand: markid,
+                operand: categoryid,
               },
             },
           },
@@ -443,11 +448,10 @@ export const CarcatalogStore = (props) => {
   //  #     # #          #    #######  #  #
   //  #     # #          #    #     #  #  #
   //  ######  #######    #    #     # ### #######
+  const loadPartDetail = (carid) => {
+    setPartDetail({ ...partDetail, loading: true });
 
-  const loadCarDetail = (carid) => {
-    setCarDetail({ ...carDetail, loading: true });
-
-    const myParamsCarDetail = {
+    const myParamsPartDetail = {
       request: {
         // username: "motoadmin",
         // password: "moto123",
@@ -461,27 +465,27 @@ export const CarcatalogStore = (props) => {
         },
       },
     };
-    // console.log(myParamsCarDetail);
+    // console.log(myParamsPartDetail);
 
     axios
-      .post("", myParamsCarDetail)
+      .post("", myParamsPartDetail)
       .then((response) => {
         // console.log("DETAIL", response);
         const myArray = response.data.response.result;
         // console.log("carCatalogDetail-------", myArray);
 
-        const myTempItem = prepareCarcatalogDetail(myArray, "carcatalog");
+        const myTempItem = preparePartcatalogDetail(myArray, "partcatalog");
         // console.log("CARCAT DETAIL------------> ", myTempItem);
 
-        setCarDetail({
-          ...carDetail,
+        setPartDetail({
+          ...partDetail,
           loading: false,
-          // carDetail: myArray,
-          carDetail: myTempItem,
+          // partDetail: myArray,
+          partDetail: myTempItem,
         });
       })
       .catch((error) => {
-        setCarDetail({ ...carEditionList, loading: false, error });
+        setPartDetail({ ...carEditionList, loading: false, error });
         message.error(error);
         console.log(error);
       });
@@ -494,25 +498,22 @@ export const CarcatalogStore = (props) => {
   //  #     # #   #   ####### #  #  # #       #   #
   //  #     # #    #  #     # #  #  # #       #    #
   //  ######  #     # #     #  ## ##  ####### #     #
-  //
-  // console.log("FFFFFFFFF", carDrawer);
-  const CarDrawer = () => {
+  const PartDrawer = () => {
     return (
       <Drawer
-        title="Таны машин"
+        title="Хөдөлгүүрийн сэлбэг"
         className="moto-drawer-bottom-full"
         placement="top"
         height="350px"
         width="100%"
         closable={true}
-        onClose={(e) => setCarDrawer({ ...carDrawer, isOpen: false })}
-        visible={carDrawer.isOpen}
+        onClose={(e) => setPartDrawer({ ...partDrawer, isOpen: false })}
+        visible={partDrawer.isOpen}
         closeIcon={<MyIcon type="icontimes-solid" />}
         headerStyle={{ paddingTop: "10px", paddingBottom: "10px" }}
       >
         <div className="gx-p-3">
           <Row>
-            {/* <Col span={10}> */}
             <Col
               xl={{ span: 10, order: 1 }}
               lg={{ span: 10, order: 1 }}
@@ -520,47 +521,18 @@ export const CarcatalogStore = (props) => {
               sm={{ span: 24, order: 2 }}
               xs={{ span: 24, order: 2 }}
             >
-              <Select
-                className="moto-select-firm gx-w-100 gx-my-2"
-                showSearch
-                allowClear
-                placeholder="Фирм"
-                optionFilterProp="children"
-                onChange={(value) =>
-                  setCarDrawer({
-                    ...carDrawer,
-                    firmid: value,
-                    markid: null,
+              <Input.Search
+                placeholder="Хөдөлгүүрийн ID дугаар бичнэ үү"
+                onSearch={(e) =>
+                  setPartDrawer({
+                    ...partDrawer,
+                    engineid: e,
+                    categoryid: null,
                     indexid: null,
                     carid: null,
                   })
                 }
-                filterOption={(input, option) => {
-                  if (option.value) {
-                    return (
-                      option.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    );
-                  } else {
-                    return false;
-                  }
-                }}
-                defaultValue={carDrawer.firmid || null}
-                loading={carFirmList.carFirmList.loading}
-              >
-                {carFirmList.carFirmList.map((item, index) => (
-                  // count: "3"
-                  // firmcountrymon: "Англи"
-                  // firmname: "Aston Martin"
-                  // firmtype: "Passenger"
-                  // id: "1040100000"
-                  // special: "0"
-                  <Option key={index} value={item.id}>
-                    {item.firmname}
-                  </Option>
-                ))}
-              </Select>
+              />
 
               {/* Mark */}
               <Select
@@ -570,10 +542,10 @@ export const CarcatalogStore = (props) => {
                 placeholder="Марк"
                 optionFilterProp="children"
                 onChange={(value) =>
-                  setCarDrawer({
-                    ...carDrawer,
-                    // firmid: value,
-                    markid: value,
+                  setPartDrawer({
+                    ...partDrawer,
+                    // engineid: value,
+                    categoryid: value,
                     indexid: null,
                     carid: null,
                   })
@@ -589,16 +561,16 @@ export const CarcatalogStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={carDrawer.markid || null}
-                loading={carMarkList.carMarkList.loading}
+                defaultValue={partDrawer.categoryid || null}
+                loading={partCategoryList.partCategoryList.loading}
               >
-                {carMarkList.carMarkList.map((item, index) => (
+                {partCategoryList.partCategoryList.map((item, index) => (
                   // count: "3"
                   // firmname: "Bmw"
                   // id: "1020300000"
-                  // markid: "6037338451216753"
+                  // categoryid: "6037338451216753"
                   // markname: "M Roadster"
-                  <Option key={index} value={item.markid}>
+                  <Option key={index} value={item.categoryid}>
                     {item.markname}
                   </Option>
                 ))}
@@ -612,10 +584,10 @@ export const CarcatalogStore = (props) => {
                 placeholder="Цуврал"
                 optionFilterProp="children"
                 onChange={(value) =>
-                  setCarDrawer({
-                    ...carDrawer,
-                    // firmid: value,
-                    // markid: value,
+                  setPartDrawer({
+                    ...partDrawer,
+                    // engineid: value,
+                    // categoryid: value,
                     indexid: value,
                     carid: null,
                   })
@@ -631,20 +603,20 @@ export const CarcatalogStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={carDrawer.indexid || null}
+                defaultValue={partDrawer.indexid || null}
                 loading={carIndexList.carIndexList.loading}
               >
                 {carIndexList.carIndexList.map((item, index) => (
                   // count: "25"
                   // desceng: "Tradition of BMW some upper-mid"
                   // descmon: "BMW уламжлал зарим нь дээд, ду"
-                  // firmid: "1020300000"
+                  // engineid: "1020300000"
                   // firmname: "Bmw"
                   // maindate: "2019-01-01"
                   // maindate2: "2019-01"
                   // mainid: "201901_BMW_5_SERIES"
                   // mainimg: "https://catalogphoto.goo-net.com/carphoto/20151502_201901c.jpg"
-                  // markid: "6464819816495469"
+                  // categoryid: "6464819816495469"
                   // markname: "5 Series"
                   // url: "https://www.goo-net.com/catalog/BMW/5_SERIES/"
                   <Option key={index} value={item.mainid}>
@@ -661,10 +633,10 @@ export const CarcatalogStore = (props) => {
                 placeholder="Хувилбар"
                 optionFilterProp="children"
                 onChange={(value) =>
-                  setCarDrawer({
-                    ...carDrawer,
-                    // firmid: value,
-                    // markid: value,
+                  setPartDrawer({
+                    ...partDrawer,
+                    // engineid: value,
+                    // categoryid: value,
                     // indexid: value,
                     carid: value,
                   })
@@ -680,7 +652,7 @@ export const CarcatalogStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={carDrawer.carid || null}
+                defaultValue={partDrawer.carid || null}
                 loading={carEditionList.carEditionList.loading}
               >
                 {carEditionList.carEditionList.map((item, index) => (
@@ -715,7 +687,7 @@ export const CarcatalogStore = (props) => {
               sm={{ span: 24, order: 1 }}
               xs={{ span: 24, order: 1 }}
             >
-              <CarDetailPopover />
+              <PartDetailPopover />
             </Col>
           </Row>
         </div>
@@ -724,10 +696,10 @@ export const CarcatalogStore = (props) => {
   };
 
   const toggleDrawer = (props) => {
-    setCarDrawer({ ...carDrawer, isOpen: !carDrawer.isOpen });
+    setPartDrawer({ ...partDrawer, isOpen: !partDrawer.isOpen });
   };
   const toggleOnlyThisCar = (props) => {
-    setCarDrawer({ ...carDrawer, onlyThisCar: !carDrawer.onlyThisCar });
+    setPartDrawer({ ...partDrawer, onlyThisCar: !partDrawer.onlyThisCar });
   };
 
   //  ######  ####### #######    ######  ####### ######
@@ -737,8 +709,8 @@ export const CarcatalogStore = (props) => {
   //  #     # #          #       #       #     # #
   //  #     # #          #       #       #     # #
   //  ######  #######    #       #       ####### #
-  const CarDetailPopover = () => {
-    if (isEmpty(carDetail.carDetail)) {
+  const PartDetailPopover = () => {
+    if (isEmpty(partDetail.partDetail)) {
       return (
         <Empty
           image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
@@ -758,20 +730,20 @@ export const CarcatalogStore = (props) => {
       <Card.Meta
         avatar={
           <Image
-            src={carDetail.carDetail.mainData.imagemain.value}
+            src={partDetail.partDetail.mainData.imagemain.value}
             loading="lazy"
             width={110}
             quality="auto"
             // className="  gx-mb-4"
-            alt={carDetail.carDetail.mainData.title.value}
+            alt={partDetail.partDetail.mainData.title.value}
           />
         }
-        title={carDetail.carDetail.mainData.title.value}
+        title={partDetail.partDetail.mainData.title.value}
         description={
           <ul className="moto-small-ul">
-            {carDetail.carDetail.specList1.map((item, index) => {
+            {partDetail.partDetail.specList1.map((item, index) => {
               if (isEmpty(item.value || "")) return null;
-              const myItem = GetSpecData(item.field, "carcatalog");
+              const myItem = GetSpecData(item.field, "partcatalog");
               return (
                 <li key={index}>
                   <span className="head-label gx-text-grey gx-fs-xs">
@@ -788,29 +760,36 @@ export const CarcatalogStore = (props) => {
   };
 
   return (
-    <CarcatalogContext.Provider
+    <PartcatalogContext.Provider
       value={{
-        carFirmList,
-        carMarkList,
+        partEngineList,
+        partCategoryList,
         carIndexList,
         carEditionList,
-        carDetail,
-        CarDetailPopover,
-        carDrawer,
-        loadCarFirmList,
-        loadCarMarkList,
+        partDetail,
+        PartDetailPopover,
+        partDrawer,
+        loadPartEngineList,
+        loadPartCategoryList,
         loadCarIndexList,
         loadCarEditionList,
-        loadCarDetail,
+        loadPartDetail,
         toggleDrawer,
         toggleOnlyThisCar,
       }}
-      displayName="CarcatalogStore"
     >
+      {process.env.NODE_ENV === "development" && (
+        <ContextDevTool
+          context={PartcatalogContext}
+          id="PartcatalogContextId"
+          displayName="PARTCATALOG STORE"
+        />
+      )}
+
       {props.children}
-      <CarDrawer />
-    </CarcatalogContext.Provider>
+      <PartDrawer />
+    </PartcatalogContext.Provider>
   );
 };
 
-export default CarcatalogContext;
+export default PartcatalogContext;

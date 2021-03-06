@@ -12,7 +12,7 @@ import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 
 import UniversalDetail from "../../../components/Moto/UniversalDetail";
-import { prepareNewsDetailSettings } from "util/prepareSpecsNews";
+import { prepareNewsDetailSettings } from "util/specData/prepareSpecsNews";
 import { UniversalDetailMeta } from "util/prepareMeta";
 
 const NewsDetailPage = () => {

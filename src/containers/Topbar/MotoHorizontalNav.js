@@ -2,18 +2,13 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Menu, Tooltip } from "antd";
-import IntlMessages from "../../util/IntlMessages";
 import FilterContext from "context/FilterContext";
 import MyIcon from "../../util/iconFunction";
 import { topMenu } from "content/jsonData/menu/menuJsonData";
 
-const { SubMenu } = Menu;
-const MenuItemGroup = Menu.ItemGroup;
-
 const MotoHorizontalNav = () => {
   const filterContext = useContext(FilterContext);
   const selectedKeys = filterContext.urlSetting.menu;
-  // const defaultOpenKeys = selectedKeys.split("/")[1];
 
   return (
     <Menu

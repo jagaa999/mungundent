@@ -15,6 +15,9 @@ const staticMenu = (
     <Menu.Item key="staticAuction">
       <Link to="/static/privacy">Privacy Policy</Link>
     </Menu.Item>
+    <Menu.Item key="engine">
+      <Link to="/engine">Хөдөлгүүр</Link>
+    </Menu.Item>
   </Menu>
 );
 

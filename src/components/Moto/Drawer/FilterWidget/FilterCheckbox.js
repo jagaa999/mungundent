@@ -36,7 +36,13 @@ const FilterCheckbox = ({
 
   return (
     <>
-      <h6 className="gx-text-uppercase gx-text-orange gx-mt-4">{title}</h6>
+      {/* <h6 className="gx-text-uppercase gx-text-orange gx-mt-4">{title}</h6> */}
+      <div
+        className="gx-mt-4 gx-mb-2 gx-fs-sm"
+        style={{ color: "rgb(173, 182, 199)" }}
+      >
+        {title}
+      </div>
 
       <Select
         className="moto-select-firm gx-w-100 gx-my-2"

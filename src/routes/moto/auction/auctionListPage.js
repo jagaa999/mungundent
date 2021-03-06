@@ -8,7 +8,7 @@ import FilterContext from "../../../context/FilterContext";
 import UniversalListType1 from "../../../components/Moto/UniversalListType1";
 import UniversalListType2 from "../../../components/Moto/UniversalListType2";
 import UniversalListType3 from "../../../components/Moto/UniversalListType3";
-import { prepareAuctionListSettings } from "util/prepareSpecsAuction";
+import { prepareAuctionListSettings } from "util/specData/prepareSpecsAuction";
 import AuctionFilterDrawer from "../../../components/Moto/Drawer/AuctionFilterDrawer";
 import AuctionContext from "../../../context/AuctionContext";
 import { UniversalListMeta } from "util/prepareMeta";

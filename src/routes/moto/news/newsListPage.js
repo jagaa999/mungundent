@@ -7,7 +7,7 @@ import UniversalListType2 from "../../../components/Moto/UniversalListType2";
 import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import PleaseLogin from "../../../components/Moto/Member/PleaseLogin";
 import NewsContext from "../../../context/NewsContext";
-import { prepareNewsListSettings } from "util/prepareSpecsNews";
+import { prepareNewsListSettings } from "util/specData/prepareSpecsNews";
 import NewsFilterDrawer from "../../../components/Moto/Drawer/NewsFilterDrawer";
 import { UniversalListMeta } from "util/prepareMeta";
 

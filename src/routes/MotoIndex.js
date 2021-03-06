@@ -15,6 +15,7 @@ import Main from "./main/index";
 import Documents from "./documents/index";
 import { NewsStore } from "../context/NewsContext";
 import { CarcatalogStore } from "../context/CarcatalogContext";
+import { PartcatalogStore } from "../context/PartcatalogContext";
 import { MemberProfileStore } from "../context/MemberContext";
 import { MemberListStore } from "../context/MemberListContext";
 import { CompanyStore } from "../context/CompanyContext";
@@ -512,9 +513,11 @@ const App = ({ match }) => {
             "/enginecataloglist",
           ]}
         >
-          <UniversalStore>
-            <UniversalListPage />
-          </UniversalStore>
+          <PartcatalogStore>
+            <UniversalStore>
+              <UniversalListPage />
+            </UniversalStore>
+          </PartcatalogStore>
         </Route>
         {/* 
         #         ###   #       

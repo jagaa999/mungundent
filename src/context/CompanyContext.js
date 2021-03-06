@@ -9,7 +9,7 @@ import axios from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
-import { prepareCompanyList } from "util/prepareSpecsCompany";
+import { prepareCompanyList } from "util/specData/prepareSpecsCompany";
 
 const CompanyContext = React.createContext();
 

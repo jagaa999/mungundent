@@ -1,12 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Html5Entities } from "html-entities";
-import { Menu, Checkbox } from "antd";
-import toBoolean from "./booleanFunction";
+import toBoolean from "util/booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
-import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionStarRatingComponent";
 import MyIcon from "util/iconFunction";
+import FilterCheckbox from "components/Moto/Drawer/FilterWidget/FilterCheckbox";
+import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSearch";
 
 //   #####  ####### ####### ####### ### #     #  #####
 //  #     # #          #       #     #  ##    # #
@@ -440,3 +438,29 @@ export const prepareEngineDetail = (myItem, menu = "", myContext) => {
 // userpersonid: "1605592513978";
 // userprofilephoto: "https://lh3.googleuSv9WFV=s96-c";
 // userpublisherid: "1605592513980";
+
+//  ####### ### #       ####### ####### ######
+//  #        #  #          #    #       #     #
+//  #        #  #          #    #       #     #
+//  #####    #  #          #    #####   ######
+//  #        #  #          #    #       #   #
+//  #        #  #          #    #       #    #
+//  #       ### #######    #    ####### #     #
+export const prepareEngineFilterSettings = {
+  mainSetting: {},
+  widgets: [
+    <FilterTextSearch
+      title="Нэрээр хайх"
+      placeholder="Текстээ бичнэ үү"
+      urlparamfield="description"
+    />,
+    <FilterCheckbox
+      metaListId="16147438441621"
+      title="Үйлдвэрлэгч"
+      placeholder="Хөдөлгүүр үйлдвэрлэгч"
+      urlparamfield="manufacturerid"
+      labelfield="description"
+      valuefield="id"
+    />,
+  ],
+};

@@ -6,7 +6,7 @@ import { prepareTitle } from "../../../util/config";
 // import AutozarDetail from "../../../components/Moto/AutozarDetail";
 import AutozarDetail2 from "../../../components/Moto/AutozarDetail2";
 import UniversalDetail from "../../../components/Moto/UniversalDetail";
-import { prepareAutozarDetailSettings } from "util/prepareSpecsAutozar";
+import { prepareAutozarDetailSettings } from "util/specData/prepareSpecsAutozar";
 import { UniversalDetailMeta } from "util/prepareMeta";
 
 import { CommentListStore } from "../../../context/CommentContext";

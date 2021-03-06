@@ -7,7 +7,7 @@ import UniversalListType1 from "../../../components/Moto/UniversalListType1";
 import UniversalListType2 from "../../../components/Moto/UniversalListType2";
 import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import ProductContext from "../../../context/ProductContext";
-import { prepareProductListSettings } from "util/prepareSpecsProduct";
+import { prepareProductListSettings } from "util/specData/prepareSpecsProduct";
 import ProductFilterDrawer from "../../../components/Moto/Drawer/ProductFilterDrawer";
 import ProductFilter from "../../../components/Moto/Drawer/ProductFilter";
 import { UniversalListMeta } from "util/prepareMeta";

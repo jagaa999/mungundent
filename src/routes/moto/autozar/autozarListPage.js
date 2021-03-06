@@ -7,7 +7,7 @@ import UniversalListType1 from "../../../components/Moto/UniversalListType1";
 import UniversalListType2 from "../../../components/Moto/UniversalListType2";
 import UniversalListType3 from "../../../components/Moto/UniversalListType3";
 import AutozarContext from "../../../context/AutozarContext";
-import { prepareAutozarListSettings } from "util/prepareSpecsAutozar";
+import { prepareAutozarListSettings } from "util/specData/prepareSpecsAutozar";
 import AutozarFilterDrawer from "../../../components/Moto/Drawer/AutozarFilterDrawer";
 import AutozarFilter from "../../../components/Moto/Drawer/AutozarFilter";
 import { UniversalListMeta } from "util/prepareMeta";

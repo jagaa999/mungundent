@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { prepareTitle } from "../../../util/config";
 import ProductDetail from "../../../components/Moto/ProductDetail";
 import UniversalDetail from "../../../components/Moto/UniversalDetail";
-import { prepareProductDetailSettings } from "util/prepareSpecsProduct";
+import { prepareProductDetailSettings } from "util/specData/prepareSpecsProduct";
 import { UniversalDetailMeta } from "util/prepareMeta";
 
 import { CommentListStore } from "../../../context/CommentContext";

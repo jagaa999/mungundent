@@ -7,7 +7,7 @@ import {
   prepareProductList,
   prepareProductListSettings as mySettings,
   prepareProductDetail,
-} from "util/prepareSpecsProduct";
+} from "util/specData/prepareSpecsProduct";
 import MyIcon from "util/iconFunction";
 import { loadDataview } from "util/axiosFunction";
 import MemberContext from "context/MemberContext";
@@ -493,7 +493,6 @@ export const ProductStore = (props) => {
       value={{
         productList,
         productDetail,
-        loadProductList,
         loadProductDetail,
         // saveProductDetail,
         clearProductDetail,

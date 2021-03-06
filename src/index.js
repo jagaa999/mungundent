@@ -9,6 +9,11 @@ import { register, unregister } from "./registerServiceWorker";
 // Add this import:
 import { AppContainer } from "react-hot-loader";
 
+// import register from "module-alias";
+// require("module-alias/register");
+// import { profile } from "module-alias/register";
+// import "module-alias/register.js";
+
 const container = document.getElementById("root");
 
 // Wrap the rendering in a function:

@@ -1,10 +1,7 @@
 import React from "react";
-import { Html5Entities } from "html-entities";
-import { Tooltip, Tag } from "antd";
-import toBoolean from "./booleanFunction";
+import toBoolean from "util/booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
-import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionStarRatingComponent";
 
 //   #####  ####### ####### ####### ### #     #  #####
 //  #     # #          #       #     #  ##    # #     #
@@ -13,9 +10,9 @@ import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionS
 //        # #          #       #     #  #   # # #     #
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
-export const prepareCarcatalogListSettings = {
+export const preparePartcatalogListSettings = {
   pagetitle: "Каталог",
-  menu: "carcatalog",
+  menu: "partcatalog",
   sortFields: [
     {
       field: "modifieddate",
@@ -28,7 +25,7 @@ export const prepareCarcatalogListSettings = {
       icon: "iconlistlist",
     },
     {
-      field: "carcatalogmilage",
+      field: "partcatalogmilage",
       label: "Зарын гүйлтээр",
       icon: "iconlistlist",
     },
@@ -58,9 +55,9 @@ export const prepareCarcatalogListSettings = {
 //  #     # #          #    #######  #  #
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
-export const prepareCarcatalogDetailSettings = {
+export const preparePartcatalogDetailSettings = {
   pagetitle: "Каталог",
-  menu: "carcatalog",
+  menu: "partcatalog",
   meta: {
     title: "Каталог",
     description: "Каталог",
@@ -163,8 +160,8 @@ const tempSpecList1 = (item, menu, mainData) => {
 const tempSpecList2 = (item, menu, mainData) => {
   return [
     // {
-    //   field: "carcatalogmilage",
-    //   value: accounting.formatMoney(item.carcatalogmilage, {
+    //   field: "partcatalogmilage",
+    //   value: accounting.formatMoney(item.partcatalogmilage, {
     //     symbol: "км",
     //     format: "%v %s",
     //     precision: 0,
@@ -276,7 +273,7 @@ const tempTableColumns = (item, menu, mainData) => {
 //  #        #        #    #
 //  #        #  #     #    #
 //  ####### ###  #####     #
-export const prepareCarcatalogList = (myArray, menu = "carcatalog") => {
+export const preparePartcatalogList = (myArray, menu = "partcatalog") => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
@@ -313,7 +310,7 @@ export const prepareCarcatalogList = (myArray, menu = "carcatalog") => {
 //  ######  #######    #    #     # ### #######
 //
 
-export const prepareCarcatalogDetail = (myItem, menu = "") => {
+export const preparePartcatalogDetail = (myItem, menu = "") => {
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempHeaderSpec(myItem, menu, mainData);
   const specList1 = tempSpecList1(myItem, menu, mainData);
@@ -330,13 +327,13 @@ export const prepareCarcatalogDetail = (myItem, menu = "") => {
   // myItem.createddate = moment(myItem.createddate);
   // myItem.modifieddate = moment(myItem.modifieddate);
   // myItem.mglengine2disp = myItem.mglengine2disp * 1;
-  // myItem.carcatalogmilage = myItem.carcatalogmilage * 1;
+  // myItem.partcatalogmilage = myItem.partcatalogmilage * 1;
   // myItem.mgldoor = myItem.mgldoor * 1;
   // myItem.mglseat = myItem.mglseat * 1;
   // myItem.mgldrivepos = toBoolean(myItem.mgldrivepos);
-  // myItem.carcatalogleasing = toBoolean(myItem.carcatalogleasing);
-  // myItem.carcatalogpenalty = toBoolean(myItem.carcatalogpenalty);
-  // myItem.carcatalogtax = toBoolean(myItem.carcatalogtax);
+  // myItem.partcatalogleasing = toBoolean(myItem.partcatalogleasing);
+  // myItem.partcatalogpenalty = toBoolean(myItem.partcatalogpenalty);
+  // myItem.partcatalogtax = toBoolean(myItem.partcatalogtax);
   // myItem.isactive = toBoolean(myItem.isactive);
   // myItem.iscomment = toBoolean(myItem.iscomment);
   // myItem.isfeatured = toBoolean(myItem.isfeatured);
