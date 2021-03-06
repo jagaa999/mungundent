@@ -141,17 +141,25 @@ export const PartcatalogStore = (props) => {
   );
   const [partDetail, setPartDetail] = useState(initialStatePartDetail);
 
-  const [partDrawer, setPartDrawer] = useStickyState(
-    {
-      isOpen: true,
-      onlyThisCar: false,
-      engineid: null,
-      categoryid: null,
-      partid: null,
-      carid: null,
-    },
-    "partDrawer"
-  );
+  // const [partDrawer, setPartDrawer] = useStickyState(
+  //   {
+  //     isOpen: true,
+  //     onlyThisCar: false,
+  //     engineid: null,
+  //     categoryid: null,
+  //     partid: null,
+  //     carid: null,
+  //   },
+  //   "partDrawer"
+  // );
+  const [partDrawer, setPartDrawer] = useState({
+    isOpen: true,
+    onlyThisCar: false,
+    engineid: null,
+    categoryid: null,
+    partid: null,
+    carid: null,
+  });
 
   // console.log("GGGGGG", partDrawer);
 

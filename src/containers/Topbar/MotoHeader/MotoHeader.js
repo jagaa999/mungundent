@@ -8,12 +8,14 @@ import MenuMember from "components/Moto/Menu/MenuMember";
 import MemberItems from "components/Moto/Member/MemberItems/MemberItems";
 import MemberContext from "context/MemberContext";
 import CarcatalogContext from "context/CarcatalogContext";
+import PartcatalogContext from "context/PartcatalogContext";
 import MyIcon from "util/iconFunction";
 const { SubMenu } = Menu;
 const { Header } = Layout;
 
 const MotoHeader = () => {
   const carCatalogContext = useContext(CarcatalogContext);
+  const partCatalogContext = useContext(PartcatalogContext);
   const memberContext = useContext(MemberContext);
 
   return (
