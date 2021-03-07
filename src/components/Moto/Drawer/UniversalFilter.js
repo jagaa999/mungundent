@@ -12,26 +12,18 @@ import { Button, Divider } from "antd";
 import MyIcon from "util/iconFunction";
 import UniversalContext from "../../../context/UniversalContext";
 import FilterContext from "../../../context/FilterContext";
-import { prepareEngineFilterSettings } from "util/specData/prepareSpecsEngine";
 
-const UniversalFilter = (props) => {
+const UniversalFilter = ({ myUniversalFilterSetting }) => {
   const universalContext = useContext(UniversalContext);
   const filterContext = useContext(FilterContext);
 
-  let myWidgets = {};
-  switch (filterContext.urlSetting.menu) {
-    case "engine":
-      myWidgets = prepareEngineFilterSettings;
-      break;
-    default:
-      break;
-  }
+  if (myUniversalFilterSetting === null) return null;
 
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "99%" }}>
       <h6 className="gx-mb-3 gx-text-uppercase gx-text-orange">Шүүлтүүр</h6>
 
-      {myWidgets.widgets.map((item, index) => {
+      {myUniversalFilterSetting.widgets.map((item, index) => {
         return <span key={index}>{item}</span>;
       })}
 

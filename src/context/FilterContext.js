@@ -38,41 +38,6 @@ export const FilterStore = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [totalcount, setTotalcount] = useState("0");
 
-  const initialUniversalContextSetting = {
-    listSetting: {
-      loadParams: {
-        systemmetagroupid: "1607594054211261", //Engine List
-        showquery: "0",
-        ignorepermission: "1",
-        paging: {
-          pagesize: urlSetting.paging?.pagesize || "24", //нийтлэлийн тоо
-          offset: urlSetting.paging?.offset || "1", //хуудасны дугаар
-
-          sortcolumnnames: {
-            [urlSetting.sorting?.sortcolumnnames || "id"]: {
-              sorttype: urlSetting.sorting?.sorttype || "DESC",
-            },
-          },
-        },
-      },
-    },
-    detailSetting: {
-      loadParams: {
-        systemmetagroupid: "1605592797379", //Engine Detail байх ёстой
-        showquery: "0",
-        ignorepermission: "1",
-        paging: {
-          pagesize: "1",
-          offset: "1",
-        },
-      },
-    },
-  };
-
-  const [universalContextSetting, setUniversalContextSetting] = useState(
-    initialUniversalContextSetting
-  );
-
   //Хэрвээ URL path солигдох аваас (цэс солигдсон гэсэн үг)
   //Filter-ийн бүх өгөгдлийг цэвэрлэх хэрэгтэй.
   useEffect(() => {
@@ -127,7 +92,10 @@ export const FilterStore = (props) => {
       myMenuType = "Insert";
     } else if (pathname.indexOf("edit") !== -1) {
       myMenuType = "Edit";
-    } else if (!isEmpty(pathname.split("/")[2])) {
+    } else if (
+      !isEmpty(pathname.split("/")[2]) &&
+      pathname.split("/")[1] !== "partenginecategory"
+    ) {
       myMenuType = "Detail";
     } else {
       myMenuType = "List";
@@ -271,10 +239,6 @@ export const FilterStore = (props) => {
     setTotalcount(totalcount);
   };
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [urlSetting]);
-
   return (
     <FilterContext.Provider
       value={{
@@ -284,8 +248,6 @@ export const FilterStore = (props) => {
         updateParams,
         clearAll,
         updateTotal,
-        universalContextSetting,
-        setUniversalContextSetting,
       }}
     >
       {process.env.NODE_ENV === "development" && (

@@ -54,6 +54,8 @@ export const PartcatalogStore = (props) => {
       ignorepermission: "1",
       criteria: {},
       paging: {
+        offset: "1",
+        pageSize: "15",
         sortcolumnnames: {
           id: {
             sorttype: "ASC", //эрэмбэлэх чиглэл
@@ -85,13 +87,15 @@ export const PartcatalogStore = (props) => {
     error: null,
   };
 
-  const initialStateCarIndexList = {
+  const initialStatePartList = {
     loadParams: {
-      systemmetagroupid: "1599824590726192",
+      systemmetagroupid: "1614689312797197",
       showquery: "0",
       ignorepermission: "1",
       criteria: {},
       paging: {
+        offset: "1",
+        pageSize: "15",
         sortcolumnnames: {
           maindate2: {
             sorttype: "DESC",
@@ -99,26 +103,7 @@ export const PartcatalogStore = (props) => {
         },
       },
     },
-    carIndexList: [],
-    loading: false,
-    error: null,
-  };
-
-  const initialStateCarEditionList = {
-    loadParams: {
-      systemmetagroupid: "1599825541835232",
-      showquery: "0",
-      ignorepermission: "1",
-      criteria: {},
-      paging: {
-        sortcolumnnames: {
-          maindate: {
-            sorttype: "DESC",
-          },
-        },
-      },
-    },
-    carEditionList: [],
+    partList: [],
     loading: false,
     error: null,
   };
@@ -135,10 +120,8 @@ export const PartcatalogStore = (props) => {
   const [partCategoryList, setPartCategoryList] = useState(
     initialStatePartCategoryList
   );
-  const [carIndexList, setCarIndexList] = useState(initialStateCarIndexList);
-  const [carEditionList, setCarEditionList] = useState(
-    initialStateCarEditionList
-  );
+  const [partList, setPartList] = useState(initialStatePartList);
+
   const [partDetail, setPartDetail] = useState(initialStatePartDetail);
 
   // const [partDrawer, setPartDrawer] = useStickyState(
@@ -171,15 +154,9 @@ export const PartcatalogStore = (props) => {
 
   useEffect(() => {
     if (!isEmpty(partDrawer.categoryid)) {
-      loadCarIndexList(partDrawer.categoryid);
+      loadPartList(partDrawer.engineid, partDrawer.categoryid);
     }
   }, [partDrawer.categoryid]);
-
-  useEffect(() => {
-    if (!isEmpty(partDrawer.indexid)) {
-      loadCarEditionList(partDrawer.indexid);
-    }
-  }, [partDrawer.indexid]);
 
   useEffect(() => {
     if (!isEmpty(partDrawer.carid)) {
@@ -198,19 +175,7 @@ export const PartcatalogStore = (props) => {
     }
 
     if (!isEmpty(filterContext.urlSetting.filterList?.partcatalogcategoryid)) {
-      loadCarIndexList(
-        filterContext.urlSetting.filterList?.partcatalogcategoryid
-      );
-    }
-
-    if (!isEmpty(filterContext.urlSetting.filterList?.partcatalogindexid)) {
-      loadCarEditionList(
-        filterContext.urlSetting.filterList?.partcatalogindexid
-      );
-    }
-
-    if (!isEmpty(filterContext.urlSetting.filterList?.partcatalogeditionid)) {
-      loadPartDetail(filterContext.urlSetting.filterList?.partcatalogeditionid);
+      loadPartList(filterContext.urlSetting.filterList?.partcatalogcategoryid);
     }
   }, [filterContext.urlSetting, memberContext.state.isLogin]);
 
@@ -276,8 +241,7 @@ export const PartcatalogStore = (props) => {
 
     const myParamsPartCategoryList = {
       request: {
-        // username: memberContext.state.memberUID,
-        username: "admin",
+        username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
         parameters: {
@@ -327,40 +291,33 @@ export const PartcatalogStore = (props) => {
       });
   };
 
-  //### #     # ######  ####### #     #
-  // #  ##    # #     # #        #   #
-  // #  # #   # #     # #         # #
-  // #  #  #  # #     # #####      #
-  // #  #   # # #     # #         # #
-  // #  #    ## #     # #        #   #
-  //### #     # ######  ####### #     #
+  //  ######     #    ######  #######  #####
+  //  #     #   # #   #     #    #    #     #
+  //  #     #  #   #  #     #    #    #
+  //  ######  #     # ######     #     #####
+  //  #       ####### #   #      #          #
+  //  #       #     # #    #     #    #     #
+  //  #       #     # #     #    #     #####
+  const loadPartList = (engineid, categoryid) => {
+    setPartList({ ...partList, loading: true });
 
-  const loadCarIndexList = (categoryid) => {
-    setCarIndexList({ ...carIndexList, loading: true });
-
-    const myParamsCarIndexList = {
+    const myParamsPartList = {
       request: {
-        // username: "motoadmin",
-        // password: "moto123",
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
         parameters: {
-          ...carIndexList.loadParams,
+          ...partList.loadParams,
           criteria: {
-            categoryid: {
-              0: {
-                operator: "=",
-                operand: categoryid,
-              },
-            },
+            engineid: engineid,
+            nodeid: categoryid,
           },
         },
       },
     };
 
     axios
-      .post("", myParamsCarIndexList)
+      .post("", myParamsPartList)
       .then((response) => {
         const myData = response.data.response;
         // console.log("INDEX Response Index---------", myData);
@@ -374,76 +331,15 @@ export const PartcatalogStore = (props) => {
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
 
-          setCarIndexList({
-            ...carIndexList,
+          setPartList({
+            ...partList,
             loading: false,
-            carIndexList: Object.values(myArray),
+            partList: Object.values(myArray),
           });
         }
       })
       .catch((error) => {
-        setCarIndexList({ ...carIndexList, loading: false, error });
-        message.error(error);
-        console.log(error);
-      });
-  };
-
-  //  ####### ######  ### ####### ### ####### #     #
-  //  #       #     #  #     #     #  #     # ##    #
-  //  #       #     #  #     #     #  #     # # #   #
-  //  #####   #     #  #     #     #  #     # #  #  #
-  //  #       #     #  #     #     #  #     # #   # #
-  //  #       #     #  #     #     #  #     # #    ##
-  //  ####### ######  ###    #    ### ####### #     #
-
-  const loadCarEditionList = (indexid) => {
-    setCarEditionList({ ...carEditionList, loading: true });
-
-    const myParamsCarEditionList = {
-      request: {
-        // username: "motoadmin",
-        // password: "moto123",
-        username: memberContext.state.memberUID,
-        password: "89",
-        command: "PL_MDVIEW_004",
-        parameters: {
-          ...carEditionList.loadParams,
-          criteria: {
-            mainid: {
-              0: {
-                operator: "=",
-                operand: indexid,
-              },
-            },
-          },
-        },
-      },
-    };
-
-    axios
-      .post("", myParamsCarEditionList)
-      .then((response) => {
-        const myData = response.data.response;
-        // console.log("EDITION Response Edition---------", myData);
-        if (myData.status === "error") {
-          // getError(myData.text);
-          message.error(myData.text);
-        } else {
-          const myPaging = myData.result.paging || {};
-          const myArray = myData.result || [];
-
-          delete myArray["aggregatecolumns"];
-          delete myArray["paging"];
-
-          setCarEditionList({
-            ...carEditionList,
-            loading: false,
-            carEditionList: Object.values(myArray),
-          });
-        }
-      })
-      .catch((error) => {
-        setCarEditionList({ ...carEditionList, loading: false, error });
+        setPartList({ ...partList, loading: false, error });
         message.error(error);
         console.log(error);
       });
@@ -493,7 +389,7 @@ export const PartcatalogStore = (props) => {
         });
       })
       .catch((error) => {
-        setPartDetail({ ...carEditionList, loading: false, error });
+        setPartDetail({ ...partDetail, loading: false, error });
         message.error(error);
         console.log(error);
       });
@@ -540,14 +436,15 @@ export const PartcatalogStore = (props) => {
                     carid: null,
                   })
                 }
+                defaultValue={partDrawer.engineid || null}
               />
 
-              {/* Mark */}
+              {/* Part Category */}
               <Select
                 className="moto-select-firm gx-w-100 gx-my-2"
                 showSearch
                 allowClear
-                placeholder="Марк"
+                placeholder="Каталоги"
                 optionFilterProp="children"
                 onChange={(value) =>
                   setPartDrawer({
@@ -573,30 +470,30 @@ export const PartcatalogStore = (props) => {
                 loading={partCategoryList.partCategoryList.loading}
               >
                 {partCategoryList.partCategoryList.map((item, index) => (
-                  // count: "3"
-                  // firmname: "Bmw"
-                  // id: "1020300000"
-                  // categoryid: "6037338451216753"
-                  // markname: "M Roadster"
-                  <Option key={index} value={item.categoryid}>
-                    {item.markname}
+                  // nodeid: "300001"
+                  // engineid: "25707"
+                  // searchtreeid: "3"
+                  // parentid: "0"
+                  // description: "Фильтр"
+                  <Option key={index} value={item.nodeid}>
+                    {item.description}
                   </Option>
                 ))}
               </Select>
 
-              {/* Index */}
+              {/* Part List */}
               <Select
                 className="moto-select-firm gx-w-100 gx-my-2"
                 showSearch
                 allowClear
-                placeholder="Цуврал"
+                placeholder="Сэлбэг"
                 optionFilterProp="children"
                 onChange={(value) =>
                   setPartDrawer({
                     ...partDrawer,
                     // engineid: value,
                     // categoryid: value,
-                    indexid: value,
+                    partid: value,
                     carid: null,
                   })
                 }
@@ -611,78 +508,27 @@ export const PartcatalogStore = (props) => {
                     return false;
                   }
                 }}
-                defaultValue={partDrawer.indexid || null}
-                loading={carIndexList.carIndexList.loading}
+                defaultValue={partDrawer.partid || null}
+                loading={partList.partList.loading}
               >
-                {carIndexList.carIndexList.map((item, index) => (
-                  // count: "25"
-                  // desceng: "Tradition of BMW some upper-mid"
-                  // descmon: "BMW уламжлал зарим нь дээд, ду"
-                  // engineid: "1020300000"
-                  // firmname: "Bmw"
-                  // maindate: "2019-01-01"
-                  // maindate2: "2019-01"
-                  // mainid: "201901_BMW_5_SERIES"
-                  // mainimg: "https://catalogphoto.goo-net.com/carphoto/20151502_201901c.jpg"
-                  // categoryid: "6464819816495469"
-                  // markname: "5 Series"
-                  // url: "https://www.goo-net.com/catalog/BMW/5_SERIES/"
-                  <Option key={index} value={item.mainid}>
-                    {`${item.markname} (${item.maindate2})`}
-                  </Option>
-                ))}
-              </Select>
-
-              {/* Edition */}
-              <Select
-                className="moto-select-firm gx-w-100 gx-my-2"
-                showSearch
-                allowClear
-                placeholder="Хувилбар"
-                optionFilterProp="children"
-                onChange={(value) =>
-                  setPartDrawer({
-                    ...partDrawer,
-                    // engineid: value,
-                    // categoryid: value,
-                    // indexid: value,
-                    carid: value,
-                  })
-                }
-                filterOption={(input, option) => {
-                  if (option.value) {
-                    return (
-                      option.children
-                        .toLowerCase()
-                        .indexOf(input.toLowerCase()) >= 0
-                    );
-                  } else {
-                    return false;
-                  }
-                }}
-                defaultValue={partDrawer.carid || null}
-                loading={carEditionList.carEditionList.loading}
-              >
-                {carEditionList.carEditionList.map((item, index) => (
-                  // body2bodyname: "Сэдан"
-                  // body2door: "4"
-                  // body2modelcodefull: "ABA-NE30"
-                  // body2seat: "5"
-                  // cardate: "2005-05"
-                  // cartrim: "530I"
-                  // drive2drivename: "RWD (FR)"
-                  // drive2transmissionfull: "AT - 6"
-                  // engine2code: "N52B30A"
-                  // engine2disp: "2996"
-                  // envi2fuel10mode: "9"
-                  // id: "10029095"
-                  // mainid: "200509_BMW_5_SERIES"
-                  // mainimg: "https://catalogphoto.goo-net.com/carphoto/20151502_200509.jpg"
-                  // modelcode: "NE30"
-                  // pricenewusd: "66774"
-                  // untilnow: ""
-                  <Option key={index} value={item.id}>
-                    {item.cartrim} {item.body2modelcodefull}
+                {partList.partList.map((item, index) => (
+                  //  supplierid: "5"
+                  //  productid: "9"
+                  //  linkagetypeid: "14"
+                  //  linkageid: "1417"
+                  //  datasupplierarticlenumber: "4.00030.80.0"
+                  //  nodeid: "300001"
+                  //  assemblygroupdescription: "Система подачи топлива"
+                  //  description: "Топливный фильтр"
+                  //  normalizeddescription: "Фильтр"
+                  //  usagedescription: "Топливо"
+                  //  dataversion: "1017"
+                  //  supdescription: "PIERBURG"
+                  //  matchcode: "PIERBURG"
+                  //  nbrofarticles: "2941377"
+                  //  hasnewversionofarticles: "True"
+                  <Option key={index} value={item.datasupplierarticlenumber}>
+                    {item.description} {item.supdescription}
                   </Option>
                 ))}
               </Select>
@@ -772,15 +618,13 @@ export const PartcatalogStore = (props) => {
       value={{
         partEngineList,
         partCategoryList,
-        carIndexList,
-        carEditionList,
+        partList,
         partDetail,
         PartDetailPopover,
         partDrawer,
         loadPartEngineList,
         loadPartCategoryList,
-        loadCarIndexList,
-        loadCarEditionList,
+        loadPartList,
         loadPartDetail,
         toggleDrawer,
         toggleOnlyThisCar,

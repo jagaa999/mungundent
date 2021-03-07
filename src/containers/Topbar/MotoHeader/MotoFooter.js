@@ -18,6 +18,9 @@ const staticMenu = (
     <Menu.Item key="engine">
       <Link to="/engine">Хөдөлгүүр</Link>
     </Menu.Item>
+    <Menu.Item key="partengine">
+      <Link to="/partengine">Хөдөлгүүрийн сэлбэг</Link>
+    </Menu.Item>
   </Menu>
 );
 

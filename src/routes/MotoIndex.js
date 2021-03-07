@@ -498,6 +498,34 @@ const App = ({ match }) => {
           </NewsStore>
         </Route>
         {/*
+        ######     #    ######  ####### ####### #     #  #####  ### #     # ####### 
+        #     #   # #   #     #    #    #       ##    # #     #  #  ##    # #       
+        #     #  #   #  #     #    #    #       # #   # #        #  # #   # #       
+        ######  #     # ######     #    #####   #  #  # #  ####  #  #  #  # #####   
+        #       ####### #   #      #    #       #   # # #     #  #  #   # # #       
+        #       #     # #    #     #    #       #    ## #     #  #  #    ## #       
+        #       #     # #     #    #    ####### #     #  #####  ### #     # ####### */}
+        <Route
+          path={["/carcatalog/edition/:carId", "/carcatalog/detail/:carId"]}
+        >
+          <CarcatalogDetail />
+        </Route>
+        <Route path={["/carcatalog/mark/:markId"]}>
+          <CarcatalogIndexList />
+        </Route>
+        <Route path={["/partenginecategory/:engineid"]}>
+          <UniversalStore>
+            <UniversalListPage />
+          </UniversalStore>
+        </Route>
+        <Route path={["/partengine"]}>
+          {/* <PartcatalogStore> */}
+          <UniversalStore>
+            <UniversalListPage />
+          </UniversalStore>
+          {/* </PartcatalogStore> */}
+        </Route>
+        {/*
         #     # #     # ### #     # ####### ######   #####     #    #       
         #     # ##    #  #  #     # #       #     # #     #   # #   #       
         #     # # #   #  #  #     # #       #     # #        #   #  #       

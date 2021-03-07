@@ -3,20 +3,95 @@ import { useHistory } from "react-router-dom";
 import { message } from "antd";
 
 import myAxiosZ from "../util/myAxiosZ";
-import {
-  prepareEngineList,
-  prepareEngineListSettings as mySettings,
-  prepareEngineDetail,
-} from "util/specData/prepareSpecsEngine";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import { ContextDevTool } from "react-context-devtool";
+
+import {
+  prepareEngineList,
+  prepareEngineDetail,
+  prepareEngineListSettings,
+  prepareEngineContextSettings,
+  prepareEngineFilterSettings,
+} from "util/specData/prepareSpecsEngine";
+
+import {
+  preparePartengineList,
+  preparePartengineDetail,
+  preparePartengineListSettings,
+  preparePartengineContextSettings,
+  preparePartengineFilterSettings,
+} from "util/specData/prepareSpecsPartengine";
+
+import {
+  preparePartenginecategoryList,
+  preparePartenginecategoryDetail,
+  preparePartenginecategoryListSettings,
+  preparePartenginecategoryContextSettings,
+  preparePartenginecategoryFilterSettings,
+} from "util/specData/prepareSpecsPartenginecategory";
 
 const UniversalContext = React.createContext();
 
 export const UniversalStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
+
+  let myContextListSetting = {
+    loadParams: {
+      systemmetagroupid: "",
+      showquery: "0",
+      ignorepermission: "1",
+      paging: {
+        pagesize: "24", //нийтлэлийн тоо
+        offset: "1", //хуудасны дугаар
+        sortcolumnname: "id",
+        sorttypename: "DESC",
+      },
+    },
+  };
+  let myContextDetailSetting = {};
+  let myPrepareListFunction = () => {};
+  let myPrepareDetailFunction = () => {};
+  let myUniversalListSetting = {
+    pagetitle: "Тодорхойгүй",
+    menu: "Unknow",
+    sortFields: [{}],
+    meta: { title: "Тодорхойгүй", property: [] },
+  };
+  let myUniversalFilterSetting = { mainSetting: {}, widgets: [] };
+
+  switch (filterContext.urlSetting.menu) {
+    case "engine":
+      myContextListSetting = prepareEngineContextSettings.listSetting;
+      myContextDetailSetting = prepareEngineContextSettings.detailSetting;
+      myPrepareListFunction = prepareEngineList;
+      myPrepareDetailFunction = prepareEngineDetail;
+      myUniversalListSetting = prepareEngineListSettings;
+      myUniversalFilterSetting = prepareEngineFilterSettings;
+      break;
+    case "partengine":
+      myContextListSetting = preparePartengineContextSettings.listSetting;
+      myContextDetailSetting = preparePartengineContextSettings.detailSetting;
+      myPrepareListFunction = preparePartengineList;
+      myPrepareDetailFunction = preparePartengineDetail;
+      myUniversalListSetting = preparePartengineListSettings;
+      myUniversalFilterSetting = preparePartengineFilterSettings;
+      break;
+    case "partenginecategory":
+      myContextListSetting =
+        preparePartenginecategoryContextSettings.listSetting;
+      myContextDetailSetting =
+        preparePartenginecategoryContextSettings.detailSetting;
+      myPrepareListFunction = preparePartenginecategoryList;
+      myPrepareDetailFunction = preparePartenginecategoryDetail;
+      myUniversalListSetting = preparePartenginecategoryListSettings;
+      myUniversalFilterSetting = preparePartenginecategoryFilterSettings;
+      break;
+
+    default:
+      break;
+  }
 
   //### #     # ### #######
   // #  ##    #  #     #
@@ -27,7 +102,30 @@ export const UniversalStore = (props) => {
   //### #     # ###    #
 
   const initialUniversalList = {
-    loadParams: filterContext.universalContextSetting.listSetting.loadParams,
+    loadParams: {
+      ...myContextListSetting.loadParams,
+      paging: {
+        ...myContextListSetting.loadParams.paging,
+        pagesize:
+          filterContext.urlSetting.paging?.pagesize ||
+          myContextListSetting.loadParams.paging.pagesize ||
+          "24",
+        offset:
+          filterContext.urlSetting.paging?.offset ||
+          myContextListSetting.loadParams.paging.offset ||
+          "1",
+        sortcolumnnames: {
+          [filterContext.urlSetting.sorting.sortcolumnnames ||
+          myContextListSetting.loadParams.paging.sortcolumnname ||
+          "id"]: {
+            sorttype:
+              filterContext.urlSetting.sorting?.sorttype ||
+              myContextListSetting.loadParams.paging.sorttypename ||
+              "DESC",
+          },
+        },
+      },
+    },
     mainList: [],
     loading: false,
     error: null,
@@ -35,8 +133,10 @@ export const UniversalStore = (props) => {
   };
 
   const initialUniversalDetail = {
-    loadParams: filterContext.universalContextSetting.detailSetting.loadParams,
-    mainDetail: [],
+    loadParams: {
+      ...myContextDetailSetting.loadParams,
+    },
+    mainDetail: {},
     loading: false,
     error: null,
   };
@@ -64,6 +164,9 @@ export const UniversalStore = (props) => {
         break;
       case "List":
         loadUniversalList();
+        1. Жаргал аа, init-ээ эндээс хамаарч бүгдийг нь шинэчлэх шаардлагай.
+        2. Жаргал аа, prepareSpec-ээ бүгдийг нь FilterContext дотор тавиад өгчихье.
+        3. menuType-ийн Detail, List-ийг prepareSpec тохиргоонууд дотор тавьж өгөх хэрэгтэй.
         break;
       default:
         clearUniversalDetail();
@@ -139,10 +242,10 @@ export const UniversalStore = (props) => {
       },
     };
 
-    // console.log(
-    //   "loadUniversalList myParamsUniversalList",
-    //   myParamsUniversalList
-    // );
+    console.log(
+      "loadUniversalList myParamsUniversalList",
+      myParamsUniversalList
+    );
 
     myAxiosZ(myParamsUniversalList)
       .then((myData) => {
@@ -156,22 +259,22 @@ export const UniversalStore = (props) => {
         delete myArray["paging"];
 
         // let myTempList = Object.values(myArray);
-        let myTempList = [];
-        switch (filterContext.urlSetting.menu) {
-          case "engine":
-            myTempList = prepareEngineList(
-              myArray,
-              filterContext.urlSetting.menu
-            );
-            break;
+        // let myTempList = [];
+        // switch (filterContext.urlSetting.menu) {
+        //   case "engine":
+        //     myTempList = myPrepareListFunction(
+        //       myArray,
+        //       filterContext.urlSetting.menu
+        //     );
+        //     break;
 
-          default:
-            break;
-        }
-        // const myTempList = prepareUniversalList(
-        //   myArray,
-        //   filterContext.urlSetting.menu
-        // );
+        //   default:
+        //     break;
+        // }
+        const myTempList = myPrepareListFunction(
+          myArray,
+          filterContext.urlSetting.menu
+        );
 
         setUniversalList({
           ...universalList,
@@ -258,11 +361,15 @@ export const UniversalStore = (props) => {
     });
   };
 
+  // console.log("ddddddd", myUniversalFilterSetting);
+
   return (
     <UniversalContext.Provider
       value={{
         universalList,
         universalDetail,
+        myUniversalListSetting,
+        myUniversalFilterSetting,
         // loadUniversalDetail,
         clearUniversalDetail,
         toggleFilterDrawerOpen,

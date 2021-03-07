@@ -27,6 +27,7 @@ const UniversalListType1 = ({
   myListContextList,
   myListContextListList,
   mySettings = null,
+  myUniversalFilterSetting = null,
   MyFilter = null,
   MyFilterDrawer,
 }) => {
@@ -50,7 +51,7 @@ const UniversalListType1 = ({
       />
 
       <Layout>
-        {MyFilter && isBrowser && (
+        {MyFilter && myUniversalFilterSetting && isBrowser && (
           <Sider
             className="moto-layout-sider gx-mr-lg-4"
             breakpoint="md"
@@ -62,7 +63,9 @@ const UniversalListType1 = ({
               console.log(collapsed, type);
             }}
           >
-            {MyFilter && <MyFilter />}
+            {MyFilter && (
+              <MyFilter myUniversalFilterSetting={myUniversalFilterSetting} />
+            )}
           </Sider>
         )}
         <Layout>

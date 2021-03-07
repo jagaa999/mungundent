@@ -13,9 +13,9 @@ import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSear
 //        # #          #       #     #  #   # # #     #
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
-export const prepareEngineListSettings = {
+export const preparePartenginecategoryListSettings = {
   pagetitle: "Хөдөлгүүр",
-  menu: "engine",
+  menu: "partenginecategory",
   sortFields: [
     {
       field: "id",
@@ -45,7 +45,7 @@ export const prepareEngineListSettings = {
 //  #     # #          #    #######  #  #
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
-export const prepareEngineDetailSettings = {
+export const preparePartenginecategoryDetailSettings = {
   pagetitle: "Хөдөлгүүр",
   menu: "news",
   contextName: "context/UniversalContext",
@@ -84,7 +84,7 @@ const tempMainData = (item, menu) => {
   return {
     id: item.id,
     menu: menu,
-    link: { field: "link", value: `/${menu}/${item.id}` },
+    link: { field: "link", value: `/partenginecategorycategory/${item.id}` },
     title: {
       field: "fulldescription",
       value: item.fulldescription,
@@ -124,14 +124,14 @@ const tempMainData = (item, menu) => {
 
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
-    {
-      field: "m_description",
-      value: item.m_description,
-    },
-    {
-      field: "description",
-      value: item.description,
-    },
+    // {
+    //   field: "m_description",
+    //   value: item.m_description,
+    // },
+    // {
+    //   field: "description",
+    //   value: item.description,
+    // },
     // {
     //   field: "constructioninterval",
     //   value: item.constructioninterval,
@@ -286,7 +286,11 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
 //  #        #        #    #
 //  #        #  #     #    #
 //  ####### ###  #####     #
-export const prepareEngineList = (myArray, menu = "", myContext) => {
+export const preparePartenginecategoryList = (
+  myArray,
+  menu = "",
+  myContext
+) => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
@@ -326,7 +330,11 @@ export const prepareEngineList = (myArray, menu = "", myContext) => {
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
 //
-export const prepareEngineDetail = (myItem, menu = "", myContext) => {
+export const preparePartenginecategoryDetail = (
+  myItem,
+  menu = "",
+  myContext
+) => {
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempHeaderSpec(myItem, menu, mainData);
   const specList1 = tempSpecList1(myItem, menu, mainData);
@@ -445,17 +453,17 @@ export const prepareEngineDetail = (myItem, menu = "", myContext) => {
 //  #       #     # #   # #    #    #         # #      #
 //  #     # #     # #    ##    #    #        #   #     #
 //   #####  ####### #     #    #    ####### #     #    #
-export const prepareEngineContextSettings = {
+export const preparePartenginecategoryContextSettings = {
   listSetting: {
     loadParams: {
-      systemmetagroupid: "1607594054211261", //Engine List
+      systemmetagroupid: "1607672615109111", //Partenginecategory List
       showquery: "0",
       ignorepermission: "1",
       paging: {
         pagesize: "24", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "id",
-        sorttypename: "DESC",
+        sortcolumnname: "nodeid",
+        sorttypename: "ASC",
         // pagesize: urlSetting.paging?.pagesize || "24", //нийтлэлийн тоо
         // offset: urlSetting.paging?.offset || "1", //хуудасны дугаар
         // sortcolumnnames: {
@@ -468,7 +476,7 @@ export const prepareEngineContextSettings = {
   },
   detailSetting: {
     loadParams: {
-      systemmetagroupid: "1605592797379", //Engine Detail байх ёстой
+      systemmetagroupid: "1605592797379", //Partenginecategory Detail байх ёстой
       showquery: "0",
       ignorepermission: "1",
       paging: {
@@ -486,7 +494,7 @@ export const prepareEngineContextSettings = {
 //  #        #  #          #    #       #   #
 //  #        #  #          #    #       #    #
 //  #       ### #######    #    ####### #     #
-export const prepareEngineFilterSettings = {
+export const preparePartenginecategoryFilterSettings = {
   mainSetting: {},
   widgets: [
     <FilterTextSearch

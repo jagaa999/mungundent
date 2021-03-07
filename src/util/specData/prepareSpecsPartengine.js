@@ -13,9 +13,9 @@ import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSear
 //        # #          #       #     #  #   # # #     #
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
-export const prepareEngineListSettings = {
+export const preparePartengineListSettings = {
   pagetitle: "Хөдөлгүүр",
-  menu: "engine",
+  menu: "partengine",
   sortFields: [
     {
       field: "id",
@@ -45,7 +45,7 @@ export const prepareEngineListSettings = {
 //  #     # #          #    #######  #  #
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
-export const prepareEngineDetailSettings = {
+export const preparePartengineDetailSettings = {
   pagetitle: "Хөдөлгүүр",
   menu: "news",
   contextName: "context/UniversalContext",
@@ -84,7 +84,7 @@ const tempMainData = (item, menu) => {
   return {
     id: item.id,
     menu: menu,
-    link: { field: "link", value: `/${menu}/${item.id}` },
+    link: { field: "link", value: `/partenginecategory/${item.id}` },
     title: {
       field: "fulldescription",
       value: item.fulldescription,
@@ -124,14 +124,14 @@ const tempMainData = (item, menu) => {
 
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
-    {
-      field: "m_description",
-      value: item.m_description,
-    },
-    {
-      field: "description",
-      value: item.description,
-    },
+    // {
+    //   field: "m_description",
+    //   value: item.m_description,
+    // },
+    // {
+    //   field: "description",
+    //   value: item.description,
+    // },
     // {
     //   field: "constructioninterval",
     //   value: item.constructioninterval,
@@ -286,7 +286,7 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
 //  #        #        #    #
 //  #        #  #     #    #
 //  ####### ###  #####     #
-export const prepareEngineList = (myArray, menu = "", myContext) => {
+export const preparePartengineList = (myArray, menu = "", myContext) => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
@@ -326,7 +326,7 @@ export const prepareEngineList = (myArray, menu = "", myContext) => {
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
 //
-export const prepareEngineDetail = (myItem, menu = "", myContext) => {
+export const preparePartengineDetail = (myItem, menu = "", myContext) => {
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempHeaderSpec(myItem, menu, mainData);
   const specList1 = tempSpecList1(myItem, menu, mainData);
@@ -445,10 +445,10 @@ export const prepareEngineDetail = (myItem, menu = "", myContext) => {
 //  #       #     # #   # #    #    #         # #      #
 //  #     # #     # #    ##    #    #        #   #     #
 //   #####  ####### #     #    #    ####### #     #    #
-export const prepareEngineContextSettings = {
+export const preparePartengineContextSettings = {
   listSetting: {
     loadParams: {
-      systemmetagroupid: "1607594054211261", //Engine List
+      systemmetagroupid: "1607594054211261", //Partengine List
       showquery: "0",
       ignorepermission: "1",
       paging: {
@@ -468,7 +468,7 @@ export const prepareEngineContextSettings = {
   },
   detailSetting: {
     loadParams: {
-      systemmetagroupid: "1605592797379", //Engine Detail байх ёстой
+      systemmetagroupid: "1605592797379", //Partengine Detail байх ёстой
       showquery: "0",
       ignorepermission: "1",
       paging: {
@@ -486,7 +486,7 @@ export const prepareEngineContextSettings = {
 //  #        #  #          #    #       #   #
 //  #        #  #          #    #       #    #
 //  #       ### #######    #    ####### #     #
-export const prepareEngineFilterSettings = {
+export const preparePartengineFilterSettings = {
   mainSetting: {},
   widgets: [
     <FilterTextSearch
