@@ -20,7 +20,7 @@ const UniversalListPage = () => {
   // const memberContext = useContext(MemberContext);
   // const OnlyMember = memberContext.OnlyMember;
 
-  // console.log("SSSSSS", universalContext.myUniversalFilterSetting);
+  // console.log("SSSSSS", filterContext.urlSetting.contextSetting.myUniversalFilterSetting);
 
   const renderSwitch = (cardtype) => {
     switch (cardtype) {
@@ -31,8 +31,12 @@ const UniversalListPage = () => {
             myListContextLoading={universalContext.universalList.loading}
             myListContextList={universalContext.universalList}
             myListContextListList={universalContext.universalList.mainList}
-            mySettings={universalContext.myUniversalListSetting}
-            myUniversalFilterSetting={universalContext.myUniversalFilterSetting}
+            mySettings={
+              filterContext.urlSetting.contextSetting.myUniversalListSetting
+            }
+            myUniversalFilterSetting={
+              filterContext.urlSetting.contextSetting.myUniversalFilterSetting
+            }
             MyFilter={UniversalFilter}
             MyFilterDrawer={UniversalFilterDrawer}
           />
@@ -44,8 +48,12 @@ const UniversalListPage = () => {
             myListContextLoading={universalContext.universalList.loading}
             myListContextList={universalContext.universalList}
             myListContextListList={universalContext.universalList.mainList}
-            mySettings={universalContext.myUniversalListSetting}
-            myUniversalFilterSetting={universalContext.myUniversalFilterSetting}
+            mySettings={
+              filterContext.urlSetting.contextSetting.myUniversalListSetting
+            }
+            myUniversalFilterSetting={
+              filterContext.urlSetting.contextSetting.myUniversalFilterSetting
+            }
             MyFilter={UniversalFilter}
             MyFilterDrawer={UniversalFilterDrawer}
           />
@@ -57,8 +65,12 @@ const UniversalListPage = () => {
             myListContextLoading={universalContext.universalList.loading}
             myListContextList={universalContext.universalList}
             myListContextListList={universalContext.universalList.mainList}
-            mySettings={universalContext.myUniversalListSetting}
-            myUniversalFilterSetting={universalContext.myUniversalFilterSetting}
+            mySettings={
+              filterContext.urlSetting.contextSetting.myUniversalListSetting
+            }
+            myUniversalFilterSetting={
+              filterContext.urlSetting.contextSetting.myUniversalFilterSetting
+            }
             MyFilter={UniversalFilter}
             MyFilterDrawer={UniversalFilterDrawer}
           />
@@ -71,7 +83,9 @@ const UniversalListPage = () => {
     <>
       {/* <OnlyMember> */}
       <UniversalListMeta
-        myMeta={universalContext.myUniversalListSetting.meta}
+        myMeta={
+          filterContext.urlSetting.contextSetting.myUniversalListSetting.meta
+        }
       />
       {renderSwitch(filterContext.urlSetting.cardtype.cardtype)}
       {/* </OnlyMember> */}

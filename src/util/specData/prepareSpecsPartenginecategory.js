@@ -14,24 +14,24 @@ import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSear
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
 export const preparePartenginecategoryListSettings = {
-  pagetitle: "Хөдөлгүүр",
+  pagetitle: "Сэлбэгийн ангилал",
   menu: "partenginecategory",
   sortFields: [
     {
-      field: "id",
+      field: "nodeid",
       label: "ID дугаараар",
       icon: "iconlistlist",
     },
     ,
   ],
   meta: {
-    title: "Хөдөлгүүр",
-    description: "Хөдөлгүүрийн жагсаалт",
+    title: "Хөдөлгүүрийн сэлбэгийн ангилал",
+    description: "Хөдөлгүүрийн сэлбэгийн ангилал",
     property: [
       { property: "fb:app_id", content: "186294318100220" },
       { property: "og:type", content: "article" },
       { property: "og:title", content: "Хөдөлгүүр" },
-      { property: "og:description", content: "Хөдөлгүүрийн жагсаалт" },
+      { property: "og:description", content: "Хөдөлгүүрийн сэлбэгийн ангилал" },
       { property: "og:image", content: "" },
       { property: "og:locale", content: "mn_MN" },
     ],
@@ -46,20 +46,20 @@ export const preparePartenginecategoryListSettings = {
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
 export const preparePartenginecategoryDetailSettings = {
-  pagetitle: "Хөдөлгүүр",
+  pagetitle: "Хөдөлгүүрийн сэлбэгийн ангилал",
   menu: "news",
   contextName: "context/UniversalContext",
   meta: {
-    title: "Хөдөлгүүр",
+    title: "Хөдөлгүүрийн сэлбэгийн ангилал",
     description: "Авто ертөнцийн сонин сайхнаас",
     property: [
       { property: "fb:app_id", content: "186294318100220" },
       { property: "og:type", content: "article" },
       // {property: "og:url", content: {window.location.href}},
-      { property: "og:title", content: "Хөдөлгүүр" },
+      { property: "og:title", content: "Хөдөлгүүрийн сэлбэгийн ангилал" },
       {
         property: "og:description",
-        content: "Хөдөлгүүрийн тухай",
+        content: "Хөдөлгүүрийн сэлбэгийн ангиллын тухай",
       },
       { property: "og:image", content: "" },
       { property: "og:locale", content: "mn_MN" },
@@ -82,12 +82,12 @@ export const preparePartenginecategoryDetailSettings = {
 
 const tempMainData = (item, menu) => {
   return {
-    id: item.id,
+    id: item.nodeid,
     menu: menu,
-    link: { field: "link", value: `/partenginecategorycategory/${item.id}` },
+    link: { field: "link", value: `/nextlevel/${item.nodeid}` },
     title: {
-      field: "fulldescription",
-      value: item.fulldescription,
+      field: "description",
+      value: item.description,
     },
     imagemain: { field: "", value: "" },
     imagemaincloudname: { field: "imagemaincloudname", value: "motomn" },
@@ -100,8 +100,8 @@ const tempMainData = (item, menu) => {
       value: toBoolean(item.isactive || true) ? true : false,
     },
     description: {
-      field: "description",
-      value: item.description.substring(0, 135),
+      field: "",
+      value: "",
     },
     mainnumber: {
       field: "",
@@ -141,18 +141,18 @@ const tempHeaderSpec = (item, menu, mainData) => {
 
 const tempSpecList1 = (item, menu, mainData) => {
   return [
-    {
-      field: "capacity",
-      value: item.capacity,
-    },
-    {
-      field: "fueltype",
-      value: item.fueltype,
-    },
-    {
-      field: "power",
-      value: item.power,
-    },
+    // {
+    //   field: "capacity",
+    //   value: item.capacity,
+    // },
+    // {
+    //   field: "fueltype",
+    //   value: item.fueltype,
+    // },
+    // {
+    //   field: "power",
+    //   value: item.power,
+    // },
   ];
 };
 
@@ -171,20 +171,20 @@ const tempOwnerData = (item, menu, mainData) => {
 
 const tempTableColumns = (item, menu, mainData) => {
   return [
-    {
-      field: "m_description",
-      // responsive: ["lg"],
-      renderDivClass: "gx-fs-sm gx-text-grey",
-      value: (
-        <span className="gx-fs-sm gx-text-grey">{item.m_description}</span>
-      ),
-    },
-    {
-      field: "description",
-      // responsive: ["lg"],
-      renderDivClass: "gx-fs-sm gx-text-grey",
-      value: <span className="gx-fs-sm gx-text-grey">{item.description}</span>,
-    },
+    // {
+    //   field: "m_description",
+    //   // responsive: ["lg"],
+    //   renderDivClass: "gx-fs-sm gx-text-grey",
+    //   value: (
+    //     <span className="gx-fs-sm gx-text-grey">{item.m_description}</span>
+    //   ),
+    // },
+    // {
+    //   field: "description",
+    //   // responsive: ["lg"],
+    //   renderDivClass: "gx-fs-sm gx-text-grey",
+    //   value: <span className="gx-fs-sm gx-text-grey">{item.description}</span>,
+    // },
   ];
 };
 
@@ -195,8 +195,8 @@ const tempCompareButtonData = (item, menu, mainData) => {
     mainSpec: mainData.mainnumber.value,
     link: mainData.link.value,
     subSpecs: [
-      { field: "m_description", value: item.m_description },
-      { field: "description", value: item.description },
+      // { field: "m_description", value: item.m_description },
+      // { field: "description", value: item.description },
     ],
   };
 };
@@ -204,7 +204,7 @@ const tempCompareButtonData = (item, menu, mainData) => {
 const tempLoveButtonData = (item, menu, mainData) => {
   return {
     id: "",
-    tablename: "MOTO_ENGINE",
+    tablename: "MOTO_ENGINECATEGORY",
     actionname: "Таалагдлаа",
     actiondata: "1",
     recordid: mainData.id || "",
@@ -216,7 +216,7 @@ const tempLoveButtonData = (item, menu, mainData) => {
 const tempSaveButtonData = (item, menu, mainData) => {
   return {
     id: "",
-    tablename: "MOTO_ENGINE",
+    tablename: "MOTO_ENGINECATEGORY",
     actionname: "Жоорлох",
     actiondata: "1",
     recordid: mainData.id || "",
@@ -464,19 +464,13 @@ export const preparePartenginecategoryContextSettings = {
         offset: "1", //хуудасны дугаар
         sortcolumnname: "nodeid",
         sorttypename: "ASC",
-        // pagesize: urlSetting.paging?.pagesize || "24", //нийтлэлийн тоо
-        // offset: urlSetting.paging?.offset || "1", //хуудасны дугаар
-        // sortcolumnnames: {
-        //   [urlSetting.sorting?.sortcolumnnames || "id"]: {
-        //     sorttype: urlSetting.sorting?.sorttype || "DESC",
-        //   },
-        // },
       },
     },
+    urlIdField: "engineid",
   },
   detailSetting: {
     loadParams: {
-      systemmetagroupid: "1605592797379", //Partenginecategory Detail байх ёстой
+      systemmetagroupid: "", //Partenginecategory Detail байх ёстой
       showquery: "0",
       ignorepermission: "1",
       paging: {
@@ -502,13 +496,13 @@ export const preparePartenginecategoryFilterSettings = {
       placeholder="Текстээ бичнэ үү"
       urlparamfield="description"
     />,
-    <FilterCheckbox
-      metaListId="16147438441621"
-      title="Үйлдвэрлэгч"
-      placeholder="Хөдөлгүүр үйлдвэрлэгч"
-      urlparamfield="manufacturerid"
-      labelfield="description"
-      valuefield="id"
-    />,
+    // <FilterCheckbox
+    //   metaListId="16147438441621"
+    //   title="Үйлдвэрлэгч"
+    //   placeholder="Хөдөлгүүр үйлдвэрлэгч"
+    //   urlparamfield="manufacturerid"
+    //   labelfield="description"
+    //   valuefield="id"
+    // />,
   ],
 };

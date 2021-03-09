@@ -27,8 +27,6 @@ const UniversalListType2 = ({
   MyFilter = null,
   MyFilterDrawer = null,
 }) => {
-  console.log("EEEEEEEEE", myUniversalFilterSetting);
-
   return (
     <>
       <UniversalListActionHeader
@@ -43,10 +41,10 @@ const UniversalListType2 = ({
             breakpoint="md"
             collapsedWidth="0"
             onBreakpoint={(broken) => {
-              console.log(broken);
+              // console.log(broken);
             }}
             onCollapse={(collapsed, type) => {
-              console.log(collapsed, type);
+              // console.log(collapsed, type);
             }}
           >
             <MyFilter myUniversalFilterSetting={myUniversalFilterSetting} />

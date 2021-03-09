@@ -16,6 +16,7 @@ import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSear
 export const prepareEngineListSettings = {
   pagetitle: "Хөдөлгүүр",
   menu: "engine",
+  menuType: "list",
   sortFields: [
     {
       field: "id",
@@ -48,6 +49,7 @@ export const prepareEngineListSettings = {
 export const prepareEngineDetailSettings = {
   pagetitle: "Хөдөлгүүр",
   menu: "news",
+  menuType: "detail",
   contextName: "context/UniversalContext",
   meta: {
     title: "Хөдөлгүүр",

@@ -6,6 +6,30 @@ import useDidMountEffect from "util/useDidMountEffect";
 import { isEmpty } from "lodash";
 import { ContextDevTool } from "react-context-devtool";
 
+import {
+  prepareEngineList,
+  prepareEngineDetail,
+  prepareEngineListSettings,
+  prepareEngineContextSettings,
+  prepareEngineFilterSettings,
+} from "util/specData/prepareSpecsEngine";
+
+import {
+  preparePartengineList,
+  preparePartengineDetail,
+  preparePartengineListSettings,
+  preparePartengineContextSettings,
+  preparePartengineFilterSettings,
+} from "util/specData/prepareSpecsPartengine";
+
+import {
+  preparePartenginecategoryList,
+  preparePartenginecategoryDetail,
+  preparePartenginecategoryListSettings,
+  preparePartenginecategoryContextSettings,
+  preparePartenginecategoryFilterSettings,
+} from "util/specData/prepareSpecsPartenginecategory";
+
 const FilterContext = React.createContext();
 
 export const FilterStore = (props) => {
@@ -18,9 +42,34 @@ export const FilterStore = (props) => {
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", useParams());
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", ddddId);
 
+  let myContextListSetting = {
+    loadParams: {
+      systemmetagroupid: "",
+      showquery: "0",
+      ignorepermission: "1",
+      paging: {
+        pagesize: "24", //нийтлэлийн тоо
+        offset: "1", //хуудасны дугаар
+        sortcolumnname: "id",
+        sorttypename: "DESC",
+      },
+    },
+  };
+  let myContextDetailSetting = {};
+  let myPrepareListFunction = () => {};
+  let myPrepareDetailFunction = () => {};
+  let myUniversalListSetting = {
+    pagetitle: "Тодорхойгүй",
+    menu: "Unknow",
+    sortFields: [{}],
+    meta: { title: "Тодорхойгүй", property: [] },
+  };
+  let myUniversalFilterSetting = { mainSetting: {}, widgets: [] };
+
   const initialUrlSetting = {
     motoUrl: pathname.split("/"),
     menu: pathname.split("/")[1],
+    urlIdValue: pathname.split("/")[2] || "",
     pathName: pathname,
     menuType: "",
     search: search,
@@ -32,6 +81,15 @@ export const FilterStore = (props) => {
     },
     loading: false,
     error: null,
+
+    contextSetting: {
+      myContextListSetting: myContextListSetting,
+      myContextDetailSetting: myContextDetailSetting,
+      myPrepareListFunction: myPrepareListFunction,
+      myPrepareDetailFunction: myPrepareDetailFunction,
+      myUniversalListSetting: myUniversalListSetting,
+      myUniversalFilterSetting: myUniversalFilterSetting,
+    },
   };
 
   const [urlSetting, setUrlSetting] = useState(initialUrlSetting);
@@ -101,9 +159,57 @@ export const FilterStore = (props) => {
       myMenuType = "List";
     }
 
+    const myMotoUrl = pathname.split("/");
+    const myMenu = pathname.split("/")[1];
+    const myUrlIdValue = pathname.split("/")[2] || "";
+
+    switch (myMenu) {
+      case "engine":
+        myContextListSetting = prepareEngineContextSettings.listSetting;
+        myContextDetailSetting = prepareEngineContextSettings.detailSetting;
+        myPrepareListFunction = prepareEngineList;
+        myPrepareDetailFunction = prepareEngineDetail;
+        myUniversalListSetting = prepareEngineListSettings;
+        myUniversalFilterSetting = prepareEngineFilterSettings;
+
+        break;
+      case "partengine":
+        myContextListSetting = preparePartengineContextSettings.listSetting;
+        myContextDetailSetting = preparePartengineContextSettings.detailSetting;
+        myPrepareListFunction = preparePartengineList;
+        myPrepareDetailFunction = preparePartengineDetail;
+        myUniversalListSetting = preparePartengineListSettings;
+        myUniversalFilterSetting = preparePartengineFilterSettings;
+
+        break;
+      case "partenginecategory":
+        myContextListSetting =
+          preparePartenginecategoryContextSettings.listSetting;
+        myContextDetailSetting =
+          preparePartenginecategoryContextSettings.detailSetting;
+        myPrepareListFunction = preparePartenginecategoryList;
+        myPrepareDetailFunction = preparePartenginecategoryDetail;
+        myUniversalListSetting = preparePartenginecategoryListSettings;
+        myUniversalFilterSetting = preparePartenginecategoryFilterSettings;
+        break;
+
+      default:
+        break;
+    }
+
+    if (!isEmpty(myContextListSetting.urlIdField)) {
+      myContextListSetting.loadParams.criteria = {
+        ...myContextListSetting.loadParams.criteria,
+        [myContextListSetting.urlIdField]: "5",
+        Одоо энийг 5 биш URL Setting Доторх парамщтрээр солино
+      };
+    }
+
+    console.log("ЭНД НЭГ ОРСОН.");
     setUrlSetting({
-      motoUrl: pathname.split("/"),
-      menu: pathname.split("/")[1],
+      motoUrl: myMotoUrl,
+      menu: myMenu,
+      urlIdValue: myUrlIdValue,
       pathName: pathname,
       menuType: myMenuType,
       search: search,
@@ -113,6 +219,14 @@ export const FilterStore = (props) => {
       cardtype: myCardtype,
       loading: false,
       error: null,
+      contextSetting: {
+        myContextListSetting: myContextListSetting,
+        myContextDetailSetting: myContextDetailSetting,
+        myPrepareListFunction: myPrepareListFunction,
+        myPrepareDetailFunction: myPrepareDetailFunction,
+        myUniversalListSetting: myUniversalListSetting,
+        myUniversalFilterSetting: myUniversalFilterSetting,
+      },
     });
   }, [pathname, search]);
 
@@ -228,10 +342,12 @@ export const FilterStore = (props) => {
     });
     // console.log("myObject", myObject);
     // window.scrollTo(0, 0);
-    setUrlSetting(myObject);
+    console.log("ЭНД ХОЁР ДАХИА ОРСОН.");
+    setUrlSetting({ ...urlSetting, ...myObject });
   };
 
   const clearAll = () => {
+    console.log("ЭНД ГУРАВ ДАХИА ОРСОН.");
     setUrlSetting({ ...urlSetting, filterList: {}, paging: {}, sorting: {} });
   };
 

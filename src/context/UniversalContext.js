@@ -6,92 +6,13 @@ import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import FilterContext from "context/FilterContext";
 import { ContextDevTool } from "react-context-devtool";
-
-import {
-  prepareEngineList,
-  prepareEngineDetail,
-  prepareEngineListSettings,
-  prepareEngineContextSettings,
-  prepareEngineFilterSettings,
-} from "util/specData/prepareSpecsEngine";
-
-import {
-  preparePartengineList,
-  preparePartengineDetail,
-  preparePartengineListSettings,
-  preparePartengineContextSettings,
-  preparePartengineFilterSettings,
-} from "util/specData/prepareSpecsPartengine";
-
-import {
-  preparePartenginecategoryList,
-  preparePartenginecategoryDetail,
-  preparePartenginecategoryListSettings,
-  preparePartenginecategoryContextSettings,
-  preparePartenginecategoryFilterSettings,
-} from "util/specData/prepareSpecsPartenginecategory";
+import { isEmpty } from "lodash";
 
 const UniversalContext = React.createContext();
 
 export const UniversalStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
-
-  let myContextListSetting = {
-    loadParams: {
-      systemmetagroupid: "",
-      showquery: "0",
-      ignorepermission: "1",
-      paging: {
-        pagesize: "24", //нийтлэлийн тоо
-        offset: "1", //хуудасны дугаар
-        sortcolumnname: "id",
-        sorttypename: "DESC",
-      },
-    },
-  };
-  let myContextDetailSetting = {};
-  let myPrepareListFunction = () => {};
-  let myPrepareDetailFunction = () => {};
-  let myUniversalListSetting = {
-    pagetitle: "Тодорхойгүй",
-    menu: "Unknow",
-    sortFields: [{}],
-    meta: { title: "Тодорхойгүй", property: [] },
-  };
-  let myUniversalFilterSetting = { mainSetting: {}, widgets: [] };
-
-  switch (filterContext.urlSetting.menu) {
-    case "engine":
-      myContextListSetting = prepareEngineContextSettings.listSetting;
-      myContextDetailSetting = prepareEngineContextSettings.detailSetting;
-      myPrepareListFunction = prepareEngineList;
-      myPrepareDetailFunction = prepareEngineDetail;
-      myUniversalListSetting = prepareEngineListSettings;
-      myUniversalFilterSetting = prepareEngineFilterSettings;
-      break;
-    case "partengine":
-      myContextListSetting = preparePartengineContextSettings.listSetting;
-      myContextDetailSetting = preparePartengineContextSettings.detailSetting;
-      myPrepareListFunction = preparePartengineList;
-      myPrepareDetailFunction = preparePartengineDetail;
-      myUniversalListSetting = preparePartengineListSettings;
-      myUniversalFilterSetting = preparePartengineFilterSettings;
-      break;
-    case "partenginecategory":
-      myContextListSetting =
-        preparePartenginecategoryContextSettings.listSetting;
-      myContextDetailSetting =
-        preparePartenginecategoryContextSettings.detailSetting;
-      myPrepareListFunction = preparePartenginecategoryList;
-      myPrepareDetailFunction = preparePartenginecategoryDetail;
-      myUniversalListSetting = preparePartenginecategoryListSettings;
-      myUniversalFilterSetting = preparePartenginecategoryFilterSettings;
-      break;
-
-    default:
-      break;
-  }
 
   //### #     # ### #######
   // #  ##    #  #     #
@@ -101,31 +22,43 @@ export const UniversalStore = (props) => {
   // #  #    ##  #     #
   //### #     # ###    #
 
-  const initialUniversalList = {
-    loadParams: {
-      ...myContextListSetting.loadParams,
-      paging: {
-        ...myContextListSetting.loadParams.paging,
-        pagesize:
-          filterContext.urlSetting.paging?.pagesize ||
-          myContextListSetting.loadParams.paging.pagesize ||
-          "24",
-        offset:
-          filterContext.urlSetting.paging?.offset ||
-          myContextListSetting.loadParams.paging.offset ||
-          "1",
-        sortcolumnnames: {
-          [filterContext.urlSetting.sorting.sortcolumnnames ||
-          myContextListSetting.loadParams.paging.sortcolumnname ||
-          "id"]: {
-            sorttype:
-              filterContext.urlSetting.sorting?.sorttype ||
-              myContextListSetting.loadParams.paging.sorttypename ||
-              "DESC",
-          },
-        },
-      },
-    },
+  // let initialUniversalList = {
+  //   loadParams: {
+  //     ...filterContext.urlSetting.contextSetting.myContextListSetting.loadParams,
+  //     paging: {
+  //       ...filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging,
+  //       pagesize:
+  //         filterContext.urlSetting.paging?.pagesize ||
+  //         filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging
+  //           .pagesize ||
+  //         "24",
+  //       offset:
+  //         filterContext.urlSetting.paging?.offset ||
+  //         filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging
+  //           .offset ||
+  //         "1",
+  //       sortcolumnnames: {
+  //         [filterContext.urlSetting.sorting.sortcolumnnames ||
+  //         filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging
+  //           .sortcolumnname ||
+  //         "id"]: {
+  //           sorttype:
+  //             filterContext.urlSetting.sorting?.sorttype ||
+  //             filterContext.urlSetting.contextSetting.myContextListSetting.loadParams
+  //               .paging.sorttypename ||
+  //             "DESC",
+  //         },
+  //       },
+  //     },
+  //   },
+  //   mainList: [],
+  //   loading: false,
+  //   error: null,
+  //   isFilterDrawerOpen: false,
+  // };
+  let initialUniversalList = {
+    loadParams:
+      filterContext.urlSetting.contextSetting.myContextListSetting.loadParams,
     mainList: [],
     loading: false,
     error: null,
@@ -134,7 +67,7 @@ export const UniversalStore = (props) => {
 
   const initialUniversalDetail = {
     loadParams: {
-      ...myContextDetailSetting.loadParams,
+      // ...myContextDetailSetting.loadParams,
     },
     mainDetail: {},
     loading: false,
@@ -147,10 +80,19 @@ export const UniversalStore = (props) => {
   );
 
   useEffect(() => {
+    // initialUniversalList = {
+    //   loadParams: {},
+    //   mainList: [],
+    //   loading: false,
+    //   error: null,
+    //   isFilterDrawerOpen: false,
+    // };
+
     // myMenuType = "Insert";
     // myMenuType = "Edit";
     // myMenuType = "Detail";
     // myMenuType = "List";
+    console.log("ЭНД ОРЖ БАЙГАА БИЗ ДЭЭ", filterContext.urlSetting);
 
     switch (filterContext.urlSetting.menuType) {
       // case "Insert":
@@ -163,10 +105,15 @@ export const UniversalStore = (props) => {
         clearUniversalDetail();
         break;
       case "List":
-        loadUniversalList();
-        1. Жаргал аа, init-ээ эндээс хамаарч бүгдийг нь шинэчлэх шаардлагай.
-        2. Жаргал аа, prepareSpec-ээ бүгдийг нь FilterContext дотор тавиад өгчихье.
-        3. menuType-ийн Detail, List-ийг prepareSpec тохиргоонууд дотор тавьж өгөх хэрэгтэй.
+        // setUniversalList(initialUniversalList);
+        if (
+          !isEmpty(
+            filterContext.urlSetting.contextSetting.myContextListSetting
+              .loadParams.systemmetagroupid
+          )
+        )
+          loadUniversalList();
+        // Жаргалаа 3. menuType-ийн Detail, List-ийг prepareSpec тохиргоонууд дотор тавьж өгөх хэрэгтэй.
         break;
       default:
         clearUniversalDetail();
@@ -183,8 +130,11 @@ export const UniversalStore = (props) => {
   //  ####### ###  #####     #
 
   const loadUniversalList = () => {
-    console.log("loadUniversalList ДУУДСАН");
+    console.log("loadUniversalList ДУУДСАН", universalList);
+    // setUniversalList({ ...initialUniversalList, loading: true });
     setUniversalList({ ...universalList, loading: true });
+
+    console.log("ӨБөӨӨӨӨӨӨӨ", filterContext.urlSetting.contextSetting);
 
     let myCriteria = {};
     Object.keys(filterContext.urlSetting.filterList).map((item) => {
@@ -218,18 +168,30 @@ export const UniversalStore = (props) => {
       }
     });
 
+    console.log(
+      "RRRRRRRRRR",
+      filterContext.urlSetting.contextSetting,
+      universalList
+    );
+
     const myParamsUniversalList = {
       request: {
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
         parameters: {
-          ...universalList.loadParams,
+          // ...initialUniversalList.loadParams,
+          ...filterContext.urlSetting.contextSetting.myContextListSetting
+            .loadParams,
           criteria: {
+            ...filterContext.urlSetting.contextSetting.myContextListSetting
+              .loadParams.criteria,
             ...myCriteria,
           },
           paging: {
-            ...universalList.loadParams.paging,
+            // ...initialUniversalList.loadParams.paging,
+            ...filterContext.urlSetting.contextSetting.myContextListSetting
+              .loadParams.paging,
             pagesize: filterContext.urlSetting.paging.pagesize || "24",
             offset: filterContext.urlSetting.paging.offset || "1",
             sortcolumnnames: {
@@ -271,7 +233,7 @@ export const UniversalStore = (props) => {
         //   default:
         //     break;
         // }
-        const myTempList = myPrepareListFunction(
+        const myTempList = filterContext.urlSetting.contextSetting.myPrepareListFunction(
           myArray,
           filterContext.urlSetting.menu
         );
@@ -368,8 +330,8 @@ export const UniversalStore = (props) => {
       value={{
         universalList,
         universalDetail,
-        myUniversalListSetting,
-        myUniversalFilterSetting,
+        // myUniversalListSetting,
+        // myUniversalFilterSetting,
         // loadUniversalDetail,
         clearUniversalDetail,
         toggleFilterDrawerOpen,
