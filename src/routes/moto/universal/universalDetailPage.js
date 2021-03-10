@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
+import { Empty } from "antd";
+
 import { prepareTitle } from "../../../util/config";
 // import AutozarDetail from "../../../components/Moto/AutozarDetail";
 import AutozarDetail2 from "../../../components/Moto/AutozarDetail2";
@@ -27,6 +29,24 @@ const UniversalDetailPage = () => {
       universalContext.loadUniversalDetail(id);
     }
   }, [id, memberContext.state.memberCloudUserSysId]);
+
+  const myMenu = filterContext.urlSetting.menu; //part гэсэн үгийг авна
+  const myCapitalizeMenu = myMenu.charAt(0).toUpperCase() + myMenu.slice(1); //Part гэсэн үг гарч ирнэ
+  const MyDetailComponent = React.lazy(() =>
+    import(
+      `components/Moto/${myCapitalizeMenu}/${myCapitalizeMenu}Detail`
+    ).catch(() => ({
+      default: () => (
+        <Empty
+          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+          imageStyle={{
+            height: 60,
+          }}
+          description={<span>Дэлгэрэнгүй мэдээлэл алга</span>}
+        ></Empty>
+      ),
+    }))
+  );
 
   return (
     <>
@@ -54,6 +74,9 @@ const UniversalDetailPage = () => {
                     .myUniversalDetailSetting
                 }
               />
+
+              <MyDetailComponent />
+
               {/* <AutozarDetail2 myDetailContext={universalContext} /> */}
             </LogsStore>
           </CommentListStore>

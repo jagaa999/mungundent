@@ -91,6 +91,7 @@ export const FilterStore = (props) => {
     meta: { title: "Тодорхойгүй", property: [] },
   };
   let myUniversalFilterSetting = { mainSetting: {}, widgets: [] };
+  let myDetailBox = "";
 
   const initialUrlSetting = {
     motoUrl: pathname.split("/"),
@@ -277,6 +278,7 @@ export const FilterStore = (props) => {
         myUniversalListSetting: myUniversalListSetting,
         myUniversalDetailSetting: myUniversalDetailSetting,
         myUniversalFilterSetting: myUniversalFilterSetting,
+        myDetailBox: myDetailBox,
       },
     });
   }, [pathname, search]);
