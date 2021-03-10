@@ -48,8 +48,8 @@ const UniversalDetailPageHeader = ({
         subTitle={mainData.title.value.substring(0, 23) + "…"}
         tags={
           <>
-            {myItem.isfeatured && <FeaturedTag />}
-            {!myItem.isactive && <ActiveTag />}
+            {myItem.mainData.isfeatured.value && <FeaturedTag />}
+            {!myItem.mainData.isactive.value && <ActiveTag />}
           </>
         }
         extra={[

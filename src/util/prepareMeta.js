@@ -41,7 +41,7 @@ export const UniversalDetailMeta = ({ meta, myItem }) => {
     <Helmet>
       <title>
         {prepareTitle(
-          `${myItem?.mainData?.title?.value.substring(0, 30) || ""}`
+          `${myItem?.mainData?.title?.value?.substring(0, 30) || ""}`
         )}
       </title>
       <meta

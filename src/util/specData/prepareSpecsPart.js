@@ -13,9 +13,9 @@ import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSear
 //        # #          #       #     #  #   # # #     #
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
-export const preparePartenginecategoryListSettings = {
-  pagetitle: "Сэлбэгийн ангилал",
-  menu: "partenginecategory",
+export const preparePartListSettings = {
+  pagetitle: "Сэлбэг",
+  menu: "part",
   sortFields: [
     {
       field: "nodeid",
@@ -25,13 +25,13 @@ export const preparePartenginecategoryListSettings = {
     ,
   ],
   meta: {
-    title: "Хөдөлгүүрийн сэлбэгийн ангилал",
-    description: "Хөдөлгүүрийн сэлбэгийн ангилал",
+    title: "Хөдөлгүүрийн сэлбэг",
+    description: "Хөдөлгүүрийн сэлбэг",
     property: [
       { property: "fb:app_id", content: "186294318100220" },
       { property: "og:type", content: "article" },
       { property: "og:title", content: "Хөдөлгүүр" },
-      { property: "og:description", content: "Хөдөлгүүрийн сэлбэгийн ангилал" },
+      { property: "og:description", content: "Хөдөлгүүрийн сэлбэг" },
       { property: "og:image", content: "" },
       { property: "og:locale", content: "mn_MN" },
     ],
@@ -45,21 +45,21 @@ export const preparePartenginecategoryListSettings = {
 //  #     # #          #    #######  #  #
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
-export const preparePartenginecategoryDetailSettings = {
-  pagetitle: "Хөдөлгүүрийн сэлбэгийн ангилал",
+export const preparePartDetailSettings = {
+  pagetitle: "Сэлбэг",
   menu: "news",
   contextName: "context/UniversalContext",
   meta: {
-    title: "Хөдөлгүүрийн сэлбэгийн ангилал",
+    title: "Сэлбэг",
     description: "Авто ертөнцийн сонин сайхнаас",
     property: [
       { property: "fb:app_id", content: "186294318100220" },
       { property: "og:type", content: "article" },
       // {property: "og:url", content: {window.location.href}},
-      { property: "og:title", content: "Хөдөлгүүрийн сэлбэгийн ангилал" },
+      { property: "og:title", content: "Сэлбэг" },
       {
         property: "og:description",
-        content: "Хөдөлгүүрийн сэлбэгийн ангиллын тухай",
+        content: "Сэлбэгийн ангиллын тухай",
       },
       { property: "og:image", content: "" },
       { property: "og:locale", content: "mn_MN" },
@@ -68,7 +68,7 @@ export const preparePartenginecategoryDetailSettings = {
   headerSettings: {
     showPageHeader: true,
     showTableColumns: true,
-    showCard: false,
+    showCard: true,
   },
 };
 
@@ -86,7 +86,7 @@ const tempMainData = (item, menu) => {
     menu: menu,
     link: {
       field: "link",
-      value: `/partenginepart/${item.nodeid}?engineid=${item.engineid}`,
+      value: `/partdetail/${item.datasupplierarticlenumber}`,
     },
     title: {
       field: "description",
@@ -127,35 +127,35 @@ const tempMainData = (item, menu) => {
 
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
-    // {
-    //   field: "m_description",
-    //   value: item.m_description,
-    // },
-    // {
-    //   field: "description",
-    //   value: item.description,
-    // },
-    // {
-    //   field: "constructioninterval",
-    //   value: item.constructioninterval,
-    // },
+    {
+      field: "datasupplierarticlenumber",
+      value: item.datasupplierarticlenumber,
+    },
+    {
+      field: "supdescription",
+      value: item.supdescription,
+    },
+    {
+      field: "assemblygroupdescription",
+      value: item.assemblygroupdescription,
+    },
   ];
 };
 
 const tempSpecList1 = (item, menu, mainData) => {
   return [
-    // {
-    //   field: "capacity",
-    //   value: item.capacity,
-    // },
-    // {
-    //   field: "fueltype",
-    //   value: item.fueltype,
-    // },
-    // {
-    //   field: "power",
-    //   value: item.power,
-    // },
+    {
+      field: "normalizeddescription",
+      value: item.normalizeddescription,
+    },
+    {
+      field: "usagedescription",
+      value: item.usagedescription,
+    },
+    {
+      field: "linkageid",
+      value: item.linkageid,
+    },
   ];
 };
 
@@ -289,11 +289,7 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
 //  #        #        #    #
 //  #        #  #     #    #
 //  ####### ###  #####     #
-export const preparePartenginecategoryList = (
-  myArray,
-  menu = "",
-  myContext
-) => {
+export const preparePartList = (myArray, menu = "", myContext) => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
@@ -333,11 +329,7 @@ export const preparePartenginecategoryList = (
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
 //
-export const preparePartenginecategoryDetail = (
-  myItem,
-  menu = "",
-  myContext
-) => {
+export const preparePartDetail = (myItem, menu = "", myContext) => {
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempHeaderSpec(myItem, menu, mainData);
   const specList1 = tempSpecList1(myItem, menu, mainData);
@@ -396,8 +388,8 @@ export const preparePartenginecategoryDetail = (
   myItem.tableColumns = tableColumns;
   myItem.ownerButtons = ownerButtons;
 
-  console.log("myItem.ownerButtons", myItem.ownerButtons);
-  console.log("myContext", myContext);
+  // console.log("myItem.ownerButtons", myItem.ownerButtons);
+  // console.log("myContext", myContext);
 
   return myItem;
 };
@@ -456,30 +448,27 @@ export const preparePartenginecategoryDetail = (
 //  #       #     # #   # #    #    #         # #      #
 //  #     # #     # #    ##    #    #        #   #     #
 //   #####  ####### #     #    #    ####### #     #    #
-export const preparePartenginecategoryContextSettings = {
+export const preparePartContextSettings = {
   listSetting: {
     loadParams: {
-      systemmetagroupid: "1607672615109111", //Partenginecategory List
+      systemmetagroupid: "1614689312797197", //Part List
       showquery: "0",
       ignorepermission: "1",
       paging: {
         pagesize: "24", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "nodeid",
+        sortcolumnname: "datasupplierarticlenumber",
         sorttypename: "ASC",
       },
     },
-    urlIdField: "engineid",
+    urlIdField: "nodeid",
   },
   detailSetting: {
-    loadParams: {
-      systemmetagroupid: "", //Partenginecategory Detail байх ёстой
-      showquery: "0",
-      ignorepermission: "1",
-      paging: {
-        pagesize: "1",
-        offset: "1",
-      },
+    command: "20motoPartList_004",
+    urlIdField: "datasupplierarticlenumber",
+    parameters: {
+      // id: "",
+      // title: ""
     },
   },
 };
@@ -491,7 +480,7 @@ export const preparePartenginecategoryContextSettings = {
 //  #        #  #          #    #       #   #
 //  #        #  #          #    #       #    #
 //  #       ### #######    #    ####### #     #
-export const preparePartenginecategoryFilterSettings = {
+export const preparePartFilterSettings = {
   mainSetting: {},
   widgets: [
     <FilterTextSearch

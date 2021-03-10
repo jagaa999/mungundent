@@ -46,6 +46,10 @@ const UniversalListPage = asyncComponent(() => {
   return import("./moto/universal/universalListPage");
 });
 
+const UniversalDetailPage = asyncComponent(() => {
+  return import("./moto/universal/universalDetailPage");
+});
+
 const CarcatalogFirmList = asyncComponent(() => {
   return import("./moto/carCatalog/carCatalogFirmListPage");
 });
@@ -505,13 +509,22 @@ const App = ({ match }) => {
         #       ####### #   #      #    #       #   # # #     #  #  #   # # #       
         #       #     # #    #     #    #       #    ## #     #  #  #    ## #       
         #       #     # #     #    #    ####### #     #  #####  ### #     # ####### */}
-        <Route
+        {/* <Route
           path={["/carcatalog/edition/:carId", "/carcatalog/detail/:carId"]}
         >
           <CarcatalogDetail />
         </Route>
-        <Route path={["/carcatalog/mark/:markId"]}>
-          <CarcatalogIndexList />
+        */}
+        <Route path={["/part/:id"]}>
+          <UniversalStore>
+            <UniversalDetailPage />
+          </UniversalStore>
+        </Route>
+
+        <Route path={["/partenginepart/:partid"]}>
+          <UniversalStore>
+            <UniversalListPage />
+          </UniversalStore>
         </Route>
         <Route path={["/partenginecategory/:engineid"]}>
           <UniversalStore>
@@ -519,11 +532,9 @@ const App = ({ match }) => {
           </UniversalStore>
         </Route>
         <Route path={["/partengine"]}>
-          {/* <PartcatalogStore> */}
           <UniversalStore>
             <UniversalListPage />
           </UniversalStore>
-          {/* </PartcatalogStore> */}
         </Route>
         {/*
         #     # #     # ### #     # ####### ######   #####     #    #       

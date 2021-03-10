@@ -10,6 +10,7 @@ import {
   prepareEngineList,
   prepareEngineDetail,
   prepareEngineListSettings,
+  prepareEngineDetailSettings,
   prepareEngineContextSettings,
   prepareEngineFilterSettings,
 } from "util/specData/prepareSpecsEngine";
@@ -18,6 +19,7 @@ import {
   preparePartengineList,
   preparePartengineDetail,
   preparePartengineListSettings,
+  preparePartengineDetailSettings,
   preparePartengineContextSettings,
   preparePartengineFilterSettings,
 } from "util/specData/prepareSpecsPartengine";
@@ -26,9 +28,28 @@ import {
   preparePartenginecategoryList,
   preparePartenginecategoryDetail,
   preparePartenginecategoryListSettings,
+  preparePartenginecategoryDetailSettings,
   preparePartenginecategoryContextSettings,
   preparePartenginecategoryFilterSettings,
 } from "util/specData/prepareSpecsPartenginecategory";
+
+import {
+  preparePartenginepartList,
+  preparePartenginepartDetail,
+  preparePartenginepartListSettings,
+  preparePartenginepartDetailSettings,
+  preparePartenginepartContextSettings,
+  preparePartenginepartFilterSettings,
+} from "util/specData/prepareSpecsPartenginepart";
+
+import {
+  preparePartList,
+  preparePartDetail,
+  preparePartListSettings,
+  preparePartDetailSettings,
+  preparePartContextSettings,
+  preparePartFilterSettings,
+} from "util/specData/prepareSpecsPart";
 
 const FilterContext = React.createContext();
 
@@ -64,6 +85,11 @@ export const FilterStore = (props) => {
     sortFields: [{}],
     meta: { title: "Тодорхойгүй", property: [] },
   };
+  let myUniversalDetailSetting = {
+    pagetitle: "Тодорхойгүй",
+    menu: "Unknow",
+    meta: { title: "Тодорхойгүй", property: [] },
+  };
   let myUniversalFilterSetting = { mainSetting: {}, widgets: [] };
 
   const initialUrlSetting = {
@@ -88,6 +114,7 @@ export const FilterStore = (props) => {
       myPrepareListFunction: myPrepareListFunction,
       myPrepareDetailFunction: myPrepareDetailFunction,
       myUniversalListSetting: myUniversalListSetting,
+      myUniversalDetailSetting: myUniversalDetailSetting,
       myUniversalFilterSetting: myUniversalFilterSetting,
     },
   };
@@ -152,7 +179,8 @@ export const FilterStore = (props) => {
       myMenuType = "Edit";
     } else if (
       !isEmpty(pathname.split("/")[2]) &&
-      pathname.split("/")[1] !== "partenginecategory"
+      pathname.split("/")[1] !== "partenginecategory" &&
+      pathname.split("/")[1] !== "partenginepart"
     ) {
       myMenuType = "Detail";
     } else {
@@ -170,6 +198,7 @@ export const FilterStore = (props) => {
         myPrepareListFunction = prepareEngineList;
         myPrepareDetailFunction = prepareEngineDetail;
         myUniversalListSetting = prepareEngineListSettings;
+        myUniversalDetailSetting = prepareEngineDetailSettings;
         myUniversalFilterSetting = prepareEngineFilterSettings;
 
         break;
@@ -179,6 +208,7 @@ export const FilterStore = (props) => {
         myPrepareListFunction = preparePartengineList;
         myPrepareDetailFunction = preparePartengineDetail;
         myUniversalListSetting = preparePartengineListSettings;
+        myUniversalDetailSetting = preparePartengineDetailSettings;
         myUniversalFilterSetting = preparePartengineFilterSettings;
 
         break;
@@ -190,7 +220,27 @@ export const FilterStore = (props) => {
         myPrepareListFunction = preparePartenginecategoryList;
         myPrepareDetailFunction = preparePartenginecategoryDetail;
         myUniversalListSetting = preparePartenginecategoryListSettings;
+        myUniversalDetailSetting = preparePartenginecategoryDetailSettings;
         myUniversalFilterSetting = preparePartenginecategoryFilterSettings;
+        break;
+      case "partenginepart":
+        myContextListSetting = preparePartenginepartContextSettings.listSetting;
+        myContextDetailSetting =
+          preparePartenginepartContextSettings.detailSetting;
+        myPrepareListFunction = preparePartenginepartList;
+        myPrepareDetailFunction = preparePartenginepartDetail;
+        myUniversalListSetting = preparePartenginepartListSettings;
+        myUniversalDetailSetting = preparePartenginepartDetailSettings;
+        myUniversalFilterSetting = preparePartenginepartFilterSettings;
+        break;
+      case "part":
+        myContextListSetting = preparePartContextSettings.listSetting;
+        myContextDetailSetting = preparePartContextSettings.detailSetting;
+        myPrepareListFunction = preparePartList;
+        myPrepareDetailFunction = preparePartDetail;
+        myUniversalListSetting = preparePartListSettings;
+        myUniversalDetailSetting = preparePartDetailSettings;
+        myUniversalFilterSetting = preparePartFilterSettings;
         break;
 
       default:
@@ -200,8 +250,8 @@ export const FilterStore = (props) => {
     if (!isEmpty(myContextListSetting.urlIdField)) {
       myContextListSetting.loadParams.criteria = {
         ...myContextListSetting.loadParams.criteria,
-        [myContextListSetting.urlIdField]: "5",
-        Одоо энийг 5 биш URL Setting Доторх парамщтрээр солино
+        [myContextListSetting.urlIdField]: myUrlIdValue,
+        // Одоо энийг 5 биш URL Setting Доторх парамщтрээр солино
       };
     }
 
@@ -225,6 +275,7 @@ export const FilterStore = (props) => {
         myPrepareListFunction: myPrepareListFunction,
         myPrepareDetailFunction: myPrepareDetailFunction,
         myUniversalListSetting: myUniversalListSetting,
+        myUniversalDetailSetting: myUniversalDetailSetting,
         myUniversalFilterSetting: myUniversalFilterSetting,
       },
     });

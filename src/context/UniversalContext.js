@@ -130,11 +130,11 @@ export const UniversalStore = (props) => {
   //  ####### ###  #####     #
 
   const loadUniversalList = () => {
-    console.log("loadUniversalList ДУУДСАН", universalList);
+    // console.log("loadUniversalList ДУУДСАН", universalList);
     // setUniversalList({ ...initialUniversalList, loading: true });
     setUniversalList({ ...universalList, loading: true });
 
-    console.log("ӨБөӨӨӨӨӨӨӨ", filterContext.urlSetting.contextSetting);
+    // console.log("ӨБөӨӨӨӨӨӨӨ", filterContext.urlSetting.contextSetting);
 
     let myCriteria = {};
     Object.keys(filterContext.urlSetting.filterList).map((item) => {
@@ -168,11 +168,11 @@ export const UniversalStore = (props) => {
       }
     });
 
-    console.log(
-      "RRRRRRRRRR",
-      filterContext.urlSetting.contextSetting,
-      universalList
-    );
+    // console.log(
+    //   "RRRRRRRRRR",
+    //   filterContext.urlSetting.contextSetting,
+    //   universalList
+    // );
 
     const myParamsUniversalList = {
       request: {
@@ -211,28 +211,15 @@ export const UniversalStore = (props) => {
 
     myAxiosZ(myParamsUniversalList)
       .then((myData) => {
-        console.log("myData", myData);
+        // console.log("myData", myData);
         const myPaging = myData.response?.result?.paging || {};
         const myArray = myData.response?.result || [];
 
-        console.log("myArray", myArray);
+        // console.log("myArray", myArray);
 
         delete myArray["aggregatecolumns"];
         delete myArray["paging"];
 
-        // let myTempList = Object.values(myArray);
-        // let myTempList = [];
-        // switch (filterContext.urlSetting.menu) {
-        //   case "engine":
-        //     myTempList = myPrepareListFunction(
-        //       myArray,
-        //       filterContext.urlSetting.menu
-        //     );
-        //     break;
-
-        //   default:
-        //     break;
-        // }
         const myTempList = filterContext.urlSetting.contextSetting.myPrepareListFunction(
           myArray,
           filterContext.urlSetting.menu
@@ -261,37 +248,36 @@ export const UniversalStore = (props) => {
   // #     # #          #    #     #  #  #
   // ######  #######    #    #     # ### #######
 
-  /*
-  const loadUniversalDetail = (id = 0) => {
+  const loadUniversalDetail = (myId = 0) => {
     setUniversalDetail({ ...universalDetail, loading: true });
     const myParamsUniversalDetail = {
       request: {
-        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         username:
           memberContext.state.memberUID || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",
-        command: "motoUniversal_List_004",
+        command:
+          filterContext.urlSetting.contextSetting.myContextDetailSetting
+            .command || "",
         parameters: {
-          id: id || "",
-          memberid: memberContext.state.memberCloudUserSysId || "1598934946963",
-          usersystemid:
-            memberContext.state.memberCloudUserSysId || "1598934946963",
+          ...filterContext.urlSetting.contextSetting.myContextDetailSetting
+            .parameters,
+          [filterContext.urlSetting.contextSetting.myContextDetailSetting
+            .urlIdField]: myId,
         },
       },
     };
 
-    // console.log("myParamsUniversalDetail", myParamsUniversalDetail);
-    setUniversalDetail(initialUniversalDetail);
+    console.log("myParamsUniversalDetail", myParamsUniversalDetail);
 
     // axios
     //   .post("", myParamsUniversalDetail)
     myAxiosZ(myParamsUniversalDetail)
       .then((myData) => {
-        // console.log("AUTOZAR DETAIL RESPONSE------------> ", myData);
+        console.log("UNIVERSAL DETAIL RESPONSE------------> ", myData);
         const myArray = myData.response.result || [];
-        // console.log("AUTOZAR DETAIL myArray------------> ", myArray);
+        console.log("UNIVERSAL DETAIL myArray------------> ", myArray);
 
-        const myTempItem = prepareUniversalDetail(
+        const myTempItem = filterContext.urlSetting.contextSetting.myPrepareDetailFunction(
           myArray,
           filterContext.urlSetting.menu
         );
@@ -301,8 +287,7 @@ export const UniversalStore = (props) => {
         setUniversalDetail({
           ...universalDetail,
           loading: false,
-          // universalDetail: myArray,
-          universalDetail: myTempItem,
+          mainDetail: myTempItem,
         });
       })
       .catch((error) => {
@@ -310,7 +295,6 @@ export const UniversalStore = (props) => {
         message.error(error.toString(), 7);
       });
   };
-  */
 
   const clearUniversalDetail = () => {
     setUniversalDetail(initialUniversalDetail);
@@ -332,7 +316,7 @@ export const UniversalStore = (props) => {
         universalDetail,
         // myUniversalListSetting,
         // myUniversalFilterSetting,
-        // loadUniversalDetail,
+        loadUniversalDetail,
         clearUniversalDetail,
         toggleFilterDrawerOpen,
       }}
