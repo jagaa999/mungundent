@@ -19,6 +19,8 @@ const PartDetail = () => {
   // if (isEmpty(myDetail)) return "";
   // console.log("DDDDDDDDDDDDD", myDetail);
 
+  Одоо энд PartDetail-ийг хүссэнээрээ бичнэ дээ.
+
   return (
     <div>
       sdfdsfdsf dsf dsf dsf dsf
