@@ -741,11 +741,8 @@ export const CarcatalogStore = (props) => {
     if (isEmpty(carDetail.carDetail)) {
       return (
         <Empty
-          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-          imageStyle={{
-            height: 60,
-          }}
-          description={<span>Машин сонгоогүй.</span>}
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Машин сонгогдоогүй"
         >
           <Button type="primary" onClick={() => toggleDrawer()}>
             Одоо сонгоё

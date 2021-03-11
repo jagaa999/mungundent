@@ -24,152 +24,97 @@ import {
 
 import { FeaturedTag, ActiveTag } from "../Tag/SmallTags";
 import UniversalListItemMainImage from "./UniversalListItemMainImage";
+import UniversalDetailImages from "./UniversalDetailImages";
 import UniversalDetailPageTableColumn from "./UniversalDetailPageTableColumn";
 import { GetSpecData } from "util/getSpecData";
 import { isEmpty } from "lodash";
 
 const UniversalDetailPageCard = ({ myItem, myDetailSettings }) => {
-  const { mainData, headerSpec, specList1, specList2, ownerData } = myItem;
+  const {
+    mainData,
+    headerSpec,
+    specList1,
+    specList2,
+    ownerData,
+    tableColumns,
+  } = myItem;
   const { headerSettings } = myDetailSettings;
 
   if (headerSettings.showCard) {
     return (
       <>
-        {/* <Row className="gx-mt-5" align="middle" justify="center_old">
-          <Col span={6} className="gx-text-right">
+        <Row>
+          <Col span={12}>
             <UniversalListItemMainImage
-              myClass=""
-              width="100"
+              myClass="gx-img-fluid gx-w-100 gx-card-widget gx-mb-4"
+              width="auto"
               imageMain={mainData.imagemain.value}
               cloudName={mainData.imagemaincloudname.value}
             />
-          </Col>
-          <Col span={18}>
-            <h2 className="gx-text-center_old">
-              {mainData.title.value}
-              {mainData.isfeatured.value && <FeaturedTag />}
-              {mainData.isactive.value && !mainData.isactive.value && (
-                <ActiveTag />
-              )}
-            </h2>
 
-            <h4 className="gx-mt-4 gx-text-center_old">
-              {mainData.mainnumber.value}
-            </h4>
-          </Col>
-        </Row> */}
-
-        <Row className="gx-mt-5">
-          <Col span={24} className="gx-text-center_old">
-            <Card.Meta
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-              }}
-              avatar={
-                <UniversalListItemMainImage
-                  myClass=""
-                  width="100"
-                  imageMain={mainData.imagemain.value}
-                  cloudName={mainData.imagemaincloudname.value}
-                />
-              }
-              title={
-                <h2>
-                  {mainData.title.value}
-                  {mainData.isfeatured.value && <FeaturedTag />}
-                  {mainData.isactive.value && !mainData.isactive.value && (
-                    <ActiveTag />
-                  )}
-                </h2>
-              }
-              description={<h4>{mainData.mainnumber.value}</h4>}
+            <UniversalDetailImages
+              myItem={myItem}
+              imageotherFileList={myItem.imageotherFileList}
             />
           </Col>
-        </Row>
-
-        {/* <Divider className="gx-my-5" /> */}
-
-        <UniversalDetailPageTableColumn
-          className="gx-my-5"
-          myItem={myItem}
-          myDetailSettings={myDetailSettings}
-        />
-
-        <Row>
-          <Col span={24}>{mainData.description.value}</Col>
-        </Row>
-
-        <div style={{ marginBottom: "90px" }}></div>
-
-        {/* <Card
-          className="moto-autozar-detail-card gx-mt-3"
-          style={{ width: "100%", height: "100ыы%" }}
-          title={
-            <>
+          <Col span={12}>
+            <div className="gx-fs-xxxl gx-font-weight-semi-bold">
               {mainData.title.value}
               {mainData.isfeatured.value && <FeaturedTag />}
               {mainData.isactive.value && !mainData.isactive.value && (
                 <ActiveTag />
               )}
-            </>
-          }
-          extra={mainData.mainnumber.value}
-        >
-          <Row>
-            <Col span={12}>
+            </div>
+            <h3 className="gx-mt-4">{mainData.mainnumber.value}</h3>
+
+            <div>
               <Descriptions
                 column={1}
                 layout="horizontal"
                 className="moto-auction-head-description"
               >
-                {[...headerSpec, ...specList1, ...specList2].map(
-                  (item, index) => {
-                    if (isEmpty(item.value || "")) return null;
-                    const myItem = GetSpecData(item.field);
-                    return (
-                      <Descriptions.Item
-                        className="gx-border-bottom gx-py-2"
-                        key={index}
-                        label={
-                          <span className="gx-text-grey_old">
-                            {myItem.label}
-                          </span>
-                        }
-                      >
-                        {item.value}
-                      </Descriptions.Item>
-                    );
-                  }
-                )}
+                {[
+                  ...headerSpec,
+                  ...specList1,
+                  ...specList2,
+                  ...tableColumns,
+                ].map((item, index) => {
+                  if (isEmpty(item.value || "")) return null;
+                  const myTempItem = GetSpecData(
+                    item.field,
+                    myItem.mainData.menu
+                  );
+                  return (
+                    <Descriptions.Item
+                      className="gx-border-bottom gx-py-2"
+                      key={index}
+                      label={
+                        <span className="gx-text-grey_old">
+                          {myTempItem.label}
+                        </span>
+                      }
+                    >
+                      {item.value}
+                    </Descriptions.Item>
+                  );
+                })}
               </Descriptions>
-            </Col>
-            <Col span={12}>
-              <UniversalListItemMainImage
-                myClass="gx-img-fluid gx-w-100"
-                width="auto"
-                imageMain={mainData.imagemain.value}
-                cloudName={mainData.imagemaincloudname.value}
-              />
+            </div>
+          </Col>
+        </Row>
+
+        {!isEmpty(mainData.description.value) && (
+          <Row className="gx-mt-5">
+            <Col span={24}>
+              <h4>Тайлбар</h4>
+              {mainData.description.value}
             </Col>
           </Row>
+        )}
 
-          {!isEmpty(mainData.description.value) && (
-            <>
-              <Divider className="gx-my-5" />
-              <Row>
-                <Col span={24}>
-                  <h4 className="gx-mb-4">
-                    {GetSpecData(mainData.description.field).label}
-                  </h4>
+        <div style={{ marginBottom: "90px" }}></div>
 
-                  {mainData.description.value}
-                </Col>
-              </Row>
-            </>
-          )}
-
+        {/*       
           {!isEmpty(ownerData.name) && (
             <>
               <Divider className="gx-my-5" />
@@ -200,7 +145,7 @@ const UniversalDetailPageCard = ({ myItem, myDetailSettings }) => {
               </Row>
             </>
           )}
-        </Card> */}
+        */}
       </>
     );
   }

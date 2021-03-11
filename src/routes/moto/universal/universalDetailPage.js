@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import { Empty } from "antd";
+import { Empty, Row, Col } from "antd";
 
 import { prepareTitle } from "../../../util/config";
 // import AutozarDetail from "../../../components/Moto/AutozarDetail";
@@ -17,6 +17,8 @@ import UniversalContext from "../../../context/UniversalContext";
 import MemberContext from "../../../context/MemberContext";
 import FilterContext from "../../../context/FilterContext";
 import LoadingDetail from "../../../components/Moto/Loading/LoadingDetail";
+import LogBox from "../../../components/Moto/LogBox";
+import CommentBox from "../../../components/Moto/CommentBox";
 
 const UniversalDetailPage = () => {
   const { id } = useParams(); //URL-аас орж ирсэн ID буюу Нийтлэлийн ID
@@ -38,11 +40,8 @@ const UniversalDetailPage = () => {
     ).catch(() => ({
       default: () => (
         <Empty
-          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-          imageStyle={{
-            height: 60,
-          }}
-          description={<span>Дэлгэрэнгүй мэдээлэл алга</span>}
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Дэлгэрэнгүй мэдээлэл алга"
         ></Empty>
       ),
     }))
@@ -77,7 +76,30 @@ const UniversalDetailPage = () => {
 
               <MyDetailComponent />
 
-              {/* <AutozarDetail2 myDetailContext={universalContext} /> */}
+              <Row className="gx-mt-5">
+                <Col span={12}>
+                  <CommentBox
+                    recordId={
+                      universalContext.universalDetail.mainDetail?.mainData?.id
+                    }
+                    tableName={
+                      universalContext.universalDetail.mainDetail
+                        ?.loveButtonData?.tablename || ""
+                    }
+                  />
+                </Col>
+                <Col span={12}>
+                  <LogBox
+                    recordId={
+                      universalContext.universalDetail.mainDetail?.mainData?.id
+                    }
+                    tableName={
+                      universalContext.universalDetail.mainDetail
+                        ?.loveButtonData?.tablename || ""
+                    }
+                  />
+                </Col>
+              </Row>
             </LogsStore>
           </CommentListStore>
         </>

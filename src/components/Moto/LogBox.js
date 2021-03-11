@@ -1,9 +1,10 @@
 import React, { useEffect, useContext } from "react";
 
-import { Row, Col, message, Alert } from "antd";
+import { Row, Col, message, Alert, Empty } from "antd";
 
 import LogsContext from "context/LogsContext";
 import LogBoxItems from "./LogBoxItems";
+import { isEmpty } from "lodash";
 
 const LogBox = ({ recordId, tableName }) => {
   useEffect(() => {
@@ -13,9 +14,15 @@ const LogBox = ({ recordId, tableName }) => {
   const logContext = useContext(LogsContext);
 
   return (
-    <div className="gx-main-content news-detail">
-      {logContext.logList.logList.length && (
+    // <div className="gx-main-content news-detail">
+    <div className="">
+      {!isEmpty(logContext.logList.logList) ? (
         <LogBoxItems logBoxItems={logContext.logList.logList} />
+      ) : (
+        <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Үзсэн түүхгүй"
+        ></Empty>
       )}
 
       {logContext.logList.error !== null ? (

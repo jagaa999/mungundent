@@ -89,8 +89,10 @@ const tempMainData = (item, menu) => {
       value: `/part/${item.datasupplierarticlenumber}`,
     },
     title: {
-      field: "description",
-      value: item.description,
+      // field: "description",
+      // value: item.description,
+      field: "newtitle",
+      value: `${item.description} - ${item.supdescription}`,
     },
     imagemain: { field: "", value: "" },
     imagemaincloudname: { field: "imagemaincloudname", value: "motomn" },

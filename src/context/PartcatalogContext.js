@@ -567,11 +567,8 @@ export const PartcatalogStore = (props) => {
     if (isEmpty(partDetail.partDetail)) {
       return (
         <Empty
-          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-          imageStyle={{
-            height: 60,
-          }}
-          description={<span>Машин сонгоогүй.</span>}
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Сэлбэг сонгоогүй"
         >
           <Button type="primary" onClick={() => toggleDrawer()}>
             Одоо сонгоё

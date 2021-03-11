@@ -13,7 +13,8 @@ const CommentBox = ({ recordId, tableName }) => {
   const commentContext = useContext(CommentContext);
 
   return (
-    <div className="gx-main-content news-detail">
+    // <div className="gx-main-content news-detail">
+    <div className="">
       <CommentBoxItems
         commentBoxItems={commentContext.commentList.commentList || {}}
         recordId={recordId}

@@ -207,7 +207,7 @@ const tempCompareButtonData = (item, menu, mainData) => {
 const tempLoveButtonData = (item, menu, mainData) => {
   return {
     id: "",
-    tablename: "MOTO_ENGINECATEGORY",
+    tablename: "MOTO_ENGINEPART",
     actionname: "Таалагдлаа",
     actiondata: "1",
     recordid: mainData.id || "",
@@ -219,7 +219,7 @@ const tempLoveButtonData = (item, menu, mainData) => {
 const tempSaveButtonData = (item, menu, mainData) => {
   return {
     id: "",
-    tablename: "MOTO_ENGINECATEGORY",
+    tablename: "MOTO_ENGINEPART",
     actionname: "Жоорлох",
     actiondata: "1",
     recordid: mainData.id || "",
