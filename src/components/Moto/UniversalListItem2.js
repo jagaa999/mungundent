@@ -100,7 +100,7 @@ const UniversalListItem2 = ({ myUniversalItem }) => {
         // delay: 50,
         // duration: 50,
       }}
-      className="moto-item-card gx-pb-2"
+      className="moto-item-card gx-p-2"
     >
       <Card
         bordered={false}

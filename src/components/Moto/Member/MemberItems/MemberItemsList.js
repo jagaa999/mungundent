@@ -28,12 +28,13 @@ const MemberItemsList = ({ tableName, menu }) => {
 
   let MemberItemsList = [];
 
-  Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
+  Object.keys(memberItemsContext.memberItems.memberItems).map((item, index) => {
     if (
-      memberItemsContext.state.memberItems[item].tablename === tableName &&
-      memberItemsContext.state.memberItems[item].actionname === "Жоорлох"
+      memberItemsContext.memberItems.memberItems[item].tablename ===
+        tableName &&
+      memberItemsContext.memberItems.memberItems[item].actionname === "Жоорлох"
     ) {
-      MemberItemsList.push(memberItemsContext.state.memberItems[item]);
+      MemberItemsList.push(memberItemsContext.memberItems.memberItems[item]);
     }
   });
 

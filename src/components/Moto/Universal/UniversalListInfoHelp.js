@@ -9,11 +9,8 @@ const UniversalListInfoHelp = ({ mySettings }) => {
     import(`../${myCapitalizeName}/${myCapitalizeName}ListInfo`).catch(() => ({
       default: () => (
         <Empty
-          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-          imageStyle={{
-            height: 60,
-          }}
-          description={<span>Зөвлөмж алга</span>}
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Зөвлөмж алга"
         ></Empty>
       ),
     }))

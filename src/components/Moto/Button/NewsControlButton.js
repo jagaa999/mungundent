@@ -65,9 +65,9 @@ const NewsControlButton = (props) => {
     checked: false,
   };
 
-  Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
-    const myItem = memberItemsContext.state.memberItems[index];
-    // console.log("memberItemsContext.state.memberItems", myItem);
+  Object.keys(memberItemsContext.memberItems.memberItems).map((item, index) => {
+    const myItem = memberItemsContext.memberItems.memberItems[index];
+    // console.log("memberItemsContext.memberItems.memberItems", myItem);
     if (myItem.recordid === newsItem.newsid) {
       switch (myItem.actionname) {
         case "Таалагдлаа":

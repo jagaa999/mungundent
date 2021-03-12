@@ -113,8 +113,8 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
         hoverable={true}
       >
         <Row gutter={[1, 1]}>
-          <Col span="9">
-            {!isEmpty(mainData.imagemain.value) && (
+          {!isEmpty(mainData.imagemain.value) && (
+            <Col span="9">
               <div className="gx-product-image">
                 <Link to={mainData.link.value}>
                   <span className="gx-link gx-grid-thumb-cover moto-listtype2">
@@ -127,8 +127,8 @@ const UniversalListItem1 = ({ myUniversalItem, grid }) => {
                   </span>
                 </Link>
               </div>
-            )}
-          </Col>
+            </Col>
+          )}
 
           <Col span="15">
             <div className="gx-p-3">

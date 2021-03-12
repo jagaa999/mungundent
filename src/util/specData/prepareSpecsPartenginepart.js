@@ -13,9 +13,9 @@ import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSear
 //        # #          #       #     #  #   # # #     #
 //  #     # #          #       #     #  #    ## #     #
 //   #####  #######    #       #    ### #     #  #####
-export const preparePartenginecategoryListSettings = {
+export const preparePartenginepartListSettings = {
   pagetitle: "Сэлбэгийн ангилал",
-  menu: "partenginecategory",
+  menu: "partenginepart",
   sortFields: [
     {
       field: "nodeid",
@@ -45,7 +45,7 @@ export const preparePartenginecategoryListSettings = {
 //  #     # #          #    #######  #  #
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
-export const preparePartenginecategoryDetailSettings = {
+export const preparePartenginepartDetailSettings = {
   pagetitle: "Хөдөлгүүрийн сэлбэгийн ангилал",
   menu: "news",
   contextName: "context/UniversalContext",
@@ -86,11 +86,13 @@ const tempMainData = (item, menu) => {
     menu: menu,
     link: {
       field: "link",
-      value: `/partenginepart/${item.nodeid}?engineid=${item.engineid}`,
+      value: `/part/${item.datasupplierarticlenumber}`,
     },
     title: {
-      field: "description",
-      value: item.description,
+      // field: "description",
+      // value: item.description,
+      field: "newtitle",
+      value: `${item.description} - ${item.supdescription}`,
     },
     imagemain: { field: "", value: "" },
     imagemaincloudname: { field: "imagemaincloudname", value: "motomn" },
@@ -127,35 +129,35 @@ const tempMainData = (item, menu) => {
 
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
-    // {
-    //   field: "m_description",
-    //   value: item.m_description,
-    // },
-    // {
-    //   field: "description",
-    //   value: item.description,
-    // },
-    // {
-    //   field: "constructioninterval",
-    //   value: item.constructioninterval,
-    // },
+    {
+      field: "datasupplierarticlenumber",
+      value: item.datasupplierarticlenumber,
+    },
+    {
+      field: "supdescription",
+      value: item.supdescription,
+    },
+    {
+      field: "assemblygroupdescription",
+      value: item.assemblygroupdescription,
+    },
   ];
 };
 
 const tempSpecList1 = (item, menu, mainData) => {
   return [
-    // {
-    //   field: "capacity",
-    //   value: item.capacity,
-    // },
-    // {
-    //   field: "fueltype",
-    //   value: item.fueltype,
-    // },
-    // {
-    //   field: "power",
-    //   value: item.power,
-    // },
+    {
+      field: "normalizeddescription",
+      value: item.normalizeddescription,
+    },
+    {
+      field: "usagedescription",
+      value: item.usagedescription,
+    },
+    {
+      field: "linkageid",
+      value: item.linkageid,
+    },
   ];
 };
 
@@ -289,11 +291,7 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
 //  #        #        #    #
 //  #        #  #     #    #
 //  ####### ###  #####     #
-export const preparePartenginecategoryList = (
-  myArray,
-  menu = "",
-  myContext
-) => {
+export const preparePartenginepartList = (myArray, menu = "", myContext) => {
   const myList = Object.values(myArray);
 
   myList.map((item, index) => {
@@ -333,11 +331,7 @@ export const preparePartenginecategoryList = (
 //  #     # #          #    #     #  #  #
 //  ######  #######    #    #     # ### #######
 //
-export const preparePartenginecategoryDetail = (
-  myItem,
-  menu = "",
-  myContext
-) => {
+export const preparePartenginepartDetail = (myItem, menu = "", myContext) => {
   const mainData = tempMainData(myItem, menu);
   const headerSpec = tempHeaderSpec(myItem, menu, mainData);
   const specList1 = tempSpecList1(myItem, menu, mainData);
@@ -402,6 +396,53 @@ export const preparePartenginecategoryDetail = (
   return myItem;
 };
 
+// body: "";
+// booktypeid: "";
+// companyid: "";
+// contentid: "";
+// createddate: "";
+// creatorid: "1493006644797290";
+// creatorname: "Moto админ";
+// creatorphoto: "https://lh5.googleusoto.jpg";
+// creatorpositionname: "Гишүүн";
+// description: "Zoom тэсрэлт хийсэн.";
+// dim1: "";
+// dim2: "";
+// imagemain: "http://res.cloudykyjwj51up1azp.jpg";
+// imageotherFileList: false;
+// isactive: true;
+// iscomment: true;
+// isfacebook: "";
+// isfeatured: false;
+// istwitter: "";
+// modifiedby: "1605592513980";
+// modifieddate: "";
+// modifiername: "";
+// modifierphoto: "";
+// modifierpositionname: "";
+// newsid: "16102815112941";
+// newssourcefacebook: "https://www.facebook.com/gogo.mn/";
+// newssourceid: "1508638385019";
+// newssourcelogo: "storage/uploa208931.jpg";
+// newssourcename: "GoGo Мэдээ";
+// newssourcetype: "Вэб сайт";
+// newssourcewebsite: "http://gogo.mn/";
+// newssourceyoutube: "";
+// newstypeid: "201";
+// newstypename: "Мэдлэг Зөвлөгөө";
+// publisheddate: "2021-01-15 09:54:16";
+// publisherid: "1605592513980";
+// publishername: "";
+// publisherphoto: "";
+// publisherpositionname: "";
+// title: "2021 оны";
+// userfirebaseuid: "7wIotzm1GsaaMCnM4SSbBJkydBu1";
+// userfullename: "Aldar Ulzii";
+// username: "7wIotzm1GsaaMCnM4SSbBJkydBu1";
+// userpersonid: "1605592513978";
+// userprofilephoto: "https://lh3.googleuSv9WFV=s96-c";
+// userpublisherid: "1605592513980";
+
 //   #####  ####### #     # ####### ####### #     # #######
 //  #     # #     # ##    #    #    #        #   #     #
 //  #       #     # # #   #    #    #         # #      #
@@ -409,24 +450,24 @@ export const preparePartenginecategoryDetail = (
 //  #       #     # #   # #    #    #         # #      #
 //  #     # #     # #    ##    #    #        #   #     #
 //   #####  ####### #     #    #    ####### #     #    #
-export const preparePartenginecategoryContextSettings = {
+export const preparePartenginepartContextSettings = {
   listSetting: {
     loadParams: {
-      systemmetagroupid: "1607672615109111", //Partenginecategory List
+      systemmetagroupid: "1614689312797197", //Partenginepart List
       showquery: "0",
       ignorepermission: "1",
       paging: {
         pagesize: "24", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "nodeid",
+        sortcolumnname: "datasupplierarticlenumber",
         sorttypename: "ASC",
       },
     },
-    urlIdField: "engineid",
+    urlIdField: "nodeid",
   },
   detailSetting: {
     loadParams: {
-      systemmetagroupid: "", //Partenginecategory Detail байх ёстой
+      systemmetagroupid: "", //Partenginepart Detail байх ёстой
       showquery: "0",
       ignorepermission: "1",
       paging: {
@@ -444,7 +485,7 @@ export const preparePartenginecategoryContextSettings = {
 //  #        #  #          #    #       #   #
 //  #        #  #          #    #       #    #
 //  #       ### #######    #    ####### #     #
-export const preparePartenginecategoryFilterSettings = {
+export const preparePartenginepartFilterSettings = {
   mainSetting: {},
   widgets: [
     <FilterTextSearch

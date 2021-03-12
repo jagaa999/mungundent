@@ -6,6 +6,51 @@ import useDidMountEffect from "util/useDidMountEffect";
 import { isEmpty } from "lodash";
 import { ContextDevTool } from "react-context-devtool";
 
+import {
+  prepareEngineList,
+  prepareEngineDetail,
+  prepareEngineListSettings,
+  prepareEngineDetailSettings,
+  prepareEngineContextSettings,
+  prepareEngineFilterSettings,
+} from "util/specData/prepareSpecsEngine";
+
+import {
+  preparePartengineList,
+  preparePartengineDetail,
+  preparePartengineListSettings,
+  preparePartengineDetailSettings,
+  preparePartengineContextSettings,
+  preparePartengineFilterSettings,
+} from "util/specData/prepareSpecsPartengine";
+
+import {
+  preparePartenginecategoryList,
+  preparePartenginecategoryDetail,
+  preparePartenginecategoryListSettings,
+  preparePartenginecategoryDetailSettings,
+  preparePartenginecategoryContextSettings,
+  preparePartenginecategoryFilterSettings,
+} from "util/specData/prepareSpecsPartenginecategory";
+
+import {
+  preparePartenginepartList,
+  preparePartenginepartDetail,
+  preparePartenginepartListSettings,
+  preparePartenginepartDetailSettings,
+  preparePartenginepartContextSettings,
+  preparePartenginepartFilterSettings,
+} from "util/specData/prepareSpecsPartenginepart";
+
+import {
+  preparePartList,
+  preparePartDetail,
+  preparePartListSettings,
+  preparePartDetailSettings,
+  preparePartContextSettings,
+  preparePartFilterSettings,
+} from "util/specData/prepareSpecsPart";
+
 const FilterContext = React.createContext();
 
 export const FilterStore = (props) => {
@@ -18,9 +63,40 @@ export const FilterStore = (props) => {
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", useParams());
   // console.log("ЫЫЫЫЫЫЫЫЫЫЫ", ddddId);
 
+  let myContextListSetting = {
+    loadParams: {
+      systemmetagroupid: "",
+      showquery: "0",
+      ignorepermission: "1",
+      paging: {
+        pagesize: "24", //нийтлэлийн тоо
+        offset: "1", //хуудасны дугаар
+        sortcolumnname: "id",
+        sorttypename: "DESC",
+      },
+    },
+  };
+  let myContextDetailSetting = {};
+  let myPrepareListFunction = () => {};
+  let myPrepareDetailFunction = () => {};
+  let myUniversalListSetting = {
+    pagetitle: "Тодорхойгүй",
+    menu: "Unknow",
+    sortFields: [{}],
+    meta: { title: "Тодорхойгүй", property: [] },
+  };
+  let myUniversalDetailSetting = {
+    pagetitle: "Тодорхойгүй",
+    menu: "Unknow",
+    meta: { title: "Тодорхойгүй", property: [] },
+  };
+  let myUniversalFilterSetting = { mainSetting: {}, widgets: [] };
+  let myDetailBox = "";
+
   const initialUrlSetting = {
     motoUrl: pathname.split("/"),
     menu: pathname.split("/")[1],
+    urlIdValue: pathname.split("/")[2] || "",
     pathName: pathname,
     menuType: "",
     search: search,
@@ -32,6 +108,16 @@ export const FilterStore = (props) => {
     },
     loading: false,
     error: null,
+
+    contextSetting: {
+      myContextListSetting: myContextListSetting,
+      myContextDetailSetting: myContextDetailSetting,
+      myPrepareListFunction: myPrepareListFunction,
+      myPrepareDetailFunction: myPrepareDetailFunction,
+      myUniversalListSetting: myUniversalListSetting,
+      myUniversalDetailSetting: myUniversalDetailSetting,
+      myUniversalFilterSetting: myUniversalFilterSetting,
+    },
   };
 
   const [urlSetting, setUrlSetting] = useState(initialUrlSetting);
@@ -94,16 +180,87 @@ export const FilterStore = (props) => {
       myMenuType = "Edit";
     } else if (
       !isEmpty(pathname.split("/")[2]) &&
-      pathname.split("/")[1] !== "partenginecategory"
+      pathname.split("/")[1] !== "partenginecategory" &&
+      pathname.split("/")[1] !== "partenginepart"
     ) {
       myMenuType = "Detail";
     } else {
       myMenuType = "List";
     }
 
+    const myMotoUrl = pathname.split("/");
+    const myMenu = pathname.split("/")[1];
+    const myUrlIdValue = pathname.split("/")[2] || "";
+
+    switch (myMenu) {
+      case "engine":
+        myContextListSetting = prepareEngineContextSettings.listSetting;
+        myContextDetailSetting = prepareEngineContextSettings.detailSetting;
+        myPrepareListFunction = prepareEngineList;
+        myPrepareDetailFunction = prepareEngineDetail;
+        myUniversalListSetting = prepareEngineListSettings;
+        myUniversalDetailSetting = prepareEngineDetailSettings;
+        myUniversalFilterSetting = prepareEngineFilterSettings;
+
+        break;
+      case "partengine":
+        myContextListSetting = preparePartengineContextSettings.listSetting;
+        myContextDetailSetting = preparePartengineContextSettings.detailSetting;
+        myPrepareListFunction = preparePartengineList;
+        myPrepareDetailFunction = preparePartengineDetail;
+        myUniversalListSetting = preparePartengineListSettings;
+        myUniversalDetailSetting = preparePartengineDetailSettings;
+        myUniversalFilterSetting = preparePartengineFilterSettings;
+
+        break;
+      case "partenginecategory":
+        myContextListSetting =
+          preparePartenginecategoryContextSettings.listSetting;
+        myContextDetailSetting =
+          preparePartenginecategoryContextSettings.detailSetting;
+        myPrepareListFunction = preparePartenginecategoryList;
+        myPrepareDetailFunction = preparePartenginecategoryDetail;
+        myUniversalListSetting = preparePartenginecategoryListSettings;
+        myUniversalDetailSetting = preparePartenginecategoryDetailSettings;
+        myUniversalFilterSetting = preparePartenginecategoryFilterSettings;
+        break;
+      case "partenginepart":
+        myContextListSetting = preparePartenginepartContextSettings.listSetting;
+        myContextDetailSetting =
+          preparePartenginepartContextSettings.detailSetting;
+        myPrepareListFunction = preparePartenginepartList;
+        myPrepareDetailFunction = preparePartenginepartDetail;
+        myUniversalListSetting = preparePartenginepartListSettings;
+        myUniversalDetailSetting = preparePartenginepartDetailSettings;
+        myUniversalFilterSetting = preparePartenginepartFilterSettings;
+        break;
+      case "part":
+        myContextListSetting = preparePartContextSettings.listSetting;
+        myContextDetailSetting = preparePartContextSettings.detailSetting;
+        myPrepareListFunction = preparePartList;
+        myPrepareDetailFunction = preparePartDetail;
+        myUniversalListSetting = preparePartListSettings;
+        myUniversalDetailSetting = preparePartDetailSettings;
+        myUniversalFilterSetting = preparePartFilterSettings;
+        break;
+
+      default:
+        break;
+    }
+
+    if (!isEmpty(myContextListSetting.urlIdField)) {
+      myContextListSetting.loadParams.criteria = {
+        ...myContextListSetting.loadParams.criteria,
+        [myContextListSetting.urlIdField]: myUrlIdValue,
+        // Одоо энийг 5 биш URL Setting Доторх парамщтрээр солино
+      };
+    }
+
+    console.log("ЭНД НЭГ ОРСОН.");
     setUrlSetting({
-      motoUrl: pathname.split("/"),
-      menu: pathname.split("/")[1],
+      motoUrl: myMotoUrl,
+      menu: myMenu,
+      urlIdValue: myUrlIdValue,
       pathName: pathname,
       menuType: myMenuType,
       search: search,
@@ -113,6 +270,16 @@ export const FilterStore = (props) => {
       cardtype: myCardtype,
       loading: false,
       error: null,
+      contextSetting: {
+        myContextListSetting: myContextListSetting,
+        myContextDetailSetting: myContextDetailSetting,
+        myPrepareListFunction: myPrepareListFunction,
+        myPrepareDetailFunction: myPrepareDetailFunction,
+        myUniversalListSetting: myUniversalListSetting,
+        myUniversalDetailSetting: myUniversalDetailSetting,
+        myUniversalFilterSetting: myUniversalFilterSetting,
+        myDetailBox: myDetailBox,
+      },
     });
   }, [pathname, search]);
 
@@ -228,10 +395,12 @@ export const FilterStore = (props) => {
     });
     // console.log("myObject", myObject);
     // window.scrollTo(0, 0);
-    setUrlSetting(myObject);
+    console.log("ЭНД ХОЁР ДАХИА ОРСОН.");
+    setUrlSetting({ ...urlSetting, ...myObject });
   };
 
   const clearAll = () => {
+    console.log("ЭНД ГУРАВ ДАХИА ОРСОН.");
     setUrlSetting({ ...urlSetting, filterList: {}, paging: {}, sorting: {} });
   };
 

@@ -3,7 +3,7 @@ import moment from "moment";
 import accounting from "accounting";
 
 import toBoolean from "util/booleanFunction";
-import { Card, Typography, Tabs } from "antd";
+import { Button, Card, Typography, Tabs } from "antd";
 
 import TabGeneral from "./Carcatalog/Tabs/General";
 import TabMotor from "./Carcatalog/Tabs/Motor";
@@ -12,12 +12,15 @@ import TabOption from "./Carcatalog/Tabs/Option";
 import TabSalon from "./Carcatalog/Tabs/Salon";
 import TabColor from "./Carcatalog/Tabs/Color";
 
+import MemberItemsContext from "context/MemberItemsContext";
+
 const { Meta } = Card;
 const { Paragraph } = Typography;
 const { TabPane } = Tabs;
 
-const MarkItem = ({ detailItem }) => {
+const CarcatalogDetailItemTab = ({ detailItem }) => {
   // console.log("Манай Item - ", detailItem);
+  const memberItemsContext = useContext(MemberItemsContext);
 
   const [cardTabs, setCardTabs] = useState({
     key: "tab1",
@@ -90,9 +93,22 @@ const MarkItem = ({ detailItem }) => {
         >
           {contentList[cardTabs.key]}
         </Card>
+
+        <Button
+          onClick={() =>
+            memberItemsContext.saveMotocar({
+              firmid: detailItem.firmid || "",
+              markid: detailItem.markid || "",
+              mainid: detailItem.mainid || "",
+              carid: detailItem.carid || "",
+            })
+          }
+        >
+          Надад энэ машин бий
+        </Button>
       </div>
     </>
   );
 };
 
-export default MarkItem;
+export default CarcatalogDetailItemTab;

@@ -29,8 +29,9 @@ import FilterContext from "context/FilterContext";
 import MyIcon from "util/iconFunction";
 import { isEmpty } from "lodash";
 import { GetSpecData } from "util/getSpecData";
-const { Option } = Select;
+import { ContextDevTool } from "react-context-devtool";
 
+const { Option } = Select;
 const CarcatalogContext = React.createContext();
 
 export const CarcatalogStore = (props) => {
@@ -741,11 +742,8 @@ export const CarcatalogStore = (props) => {
     if (isEmpty(carDetail.carDetail)) {
       return (
         <Empty
-          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-          imageStyle={{
-            height: 60,
-          }}
-          description={<span>Машин сонгоогүй.</span>}
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Машин сонгогдоогүй"
         >
           <Button type="primary" onClick={() => toggleDrawer()}>
             Одоо сонгоё
@@ -805,8 +803,15 @@ export const CarcatalogStore = (props) => {
         toggleDrawer,
         toggleOnlyThisCar,
       }}
-      displayName="CarcatalogStore"
     >
+      {process.env.NODE_ENV === "development" && (
+        <ContextDevTool
+          context={CarcatalogContext}
+          id="CarcatalogContextId"
+          displayName="CARCATALOG STORE"
+        />
+      )}
+
       {props.children}
       <CarDrawer />
     </CarcatalogContext.Provider>

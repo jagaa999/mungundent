@@ -16,7 +16,10 @@ const CommentBoxItems = ({ commentBoxItems, recordId, tableName }) => {
 
   return (
     <div>
-      <Card title="Сэтгэгдэл">
+      <Card
+        title={<span className="gx-fs-sm gx-font-weight-light">Сэтгэгдэл</span>}
+        size="small"
+      >
         {commentBoxItems.length > 0 ? (
           <>
             <div className="gx-wall-comment-box">

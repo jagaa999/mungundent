@@ -24,7 +24,7 @@ const AutozarDetail2 = ({ myDetailContext }) => {
           centered={true}
           className="moto-product-detail-tab"
         >
-          <Tabs.TabPane tab="Автомашин" key="1">
+          <Tabs.TabPane tab="Үзүүлэлт" key="1">
             <Card>
               <AutozarDetail2General myItem={myItem} />
             </Card>

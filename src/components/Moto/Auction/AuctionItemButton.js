@@ -58,8 +58,8 @@ const AuctionItemButton = ({ auctionItem }) => {
     checked: false,
   };
 
-  Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
-    const myItem = memberItemsContext.state.memberItems[index];
+  Object.keys(memberItemsContext.memberItems.memberItems).map((item, index) => {
+    const myItem = memberItemsContext.memberItems.memberItems[index];
     if (
       myItem.recordid === auctionItem.ID &&
       myItem.tablename === "MOTO_AUCTION"

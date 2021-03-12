@@ -90,7 +90,8 @@ const OrderModal = ({ order, isOrderModal }) => {
             }}
             className="gx-mr-1"
           >
-            <MyIcon type="icontrash-alt-solid" className="moto-icon-1-3" />
+            {/* <MyIcon type="icontrash-alt-solid" className="moto-icon-1-3" /> */}
+            Болих
           </Button>,
           <Button
             key="submit"
