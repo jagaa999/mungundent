@@ -164,9 +164,9 @@ export const UniversalStore = (props) => {
         break;
       case "List":
         loadUniversalList();
-        1. Жаргал аа, init-ээ эндээс хамаарч бүгдийг нь шинэчлэх шаардлагай.
-        2. Жаргал аа, prepareSpec-ээ бүгдийг нь FilterContext дотор тавиад өгчихье.
-        3. menuType-ийн Detail, List-ийг prepareSpec тохиргоонууд дотор тавьж өгөх хэрэгтэй.
+        // 1. Жаргал аа, init-ээ эндээс хамаарч бүгдийг нь шинэчлэх шаардлагай.
+        // 2. Жаргал аа, prepareSpec-ээ бүгдийг нь FilterContext дотор тавиад өгчихье.
+        // 3. menuType-ийн Detail, List-ийг prepareSpec тохиргоонууд дотор тавьж өгөх хэрэгтэй.
         break;
       default:
         clearUniversalDetail();
