@@ -1,52 +1,53 @@
-import React, { useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 
-import axios from "../util/axiosConfig";
+import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import { message } from "antd";
 import Moment from "moment";
-// import IsMemberLogin from "util/isMember";
-// import mainAxios from "axios";
+import { ContextDevTool } from "react-context-devtool";
 
 const MemberItemsContext = React.createContext();
-
-//----------------------- Member Items
 
 export const MemberItemsStore = (props) => {
   const memberContext = useContext(MemberContext);
 
-  const initialStateMemberItems = {
+  const initialMemberItems = {
     memberItems: {},
     loading: false,
     error: null,
   };
 
-  const [state, setState] = useState(initialStateMemberItems);
-
-  const clearMemberItems = () => {
-    setState(initialStateMemberItems);
+  const initialMotocar = {
+    mainList: {},
+    loading: false,
+    error: null,
   };
 
-  const getError = (error) => {
-    setState({ ...state, loading: false, error });
-    message.error(error.toString(), 7);
-    console.log("error", error);
-  };
+  const [memberItems, setMemberItems] = useState(initialMemberItems);
+  const [motocar, setMotocar] = useState(initialMotocar);
 
-  const loadMemberItems = (memberId) => {
+  useEffect(() => {
+    loadMemberItems();
+  }, [memberContext.state.memberCloudUserSysId]);
+
+  //  #       ###  #####  #######
+  //  #        #  #     #    #
+  //  #        #  #          #
+  //  #        #   #####     #
+  //  #        #        #    #
+  //  #        #  #     #    #
+  //  ####### ###  #####     #
+  const loadMemberItems = () => {
     if (!memberContext.state.isLogin) return null;
 
-    clearMemberItems();
+    setMemberItems({ ...memberItems, loading: true });
 
     const myParamsMemberItems = {
       request: {
-        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         username: memberContext.state.memberUID,
         password: "89",
         command: "PL_MDVIEW_004",
-
         parameters: {
-          // systemmetagroupid: "1588074509203718", //Хадгалсан нийтлэл
           systemmetagroupid: "1588073051944136", //Хадгалсан зүйлс
           showQuery: "0",
           ignorepermission: "1",
@@ -70,41 +71,50 @@ export const MemberItemsStore = (props) => {
       },
     };
     // console.log("Бэлтгэсэн myParamsMemberItems : ", myParamsMemberItems);
-    setState({ ...state, loading: true });
 
-    axios
-      .post("", myParamsMemberItems)
-      .then((response) => {
-        // console.log("ИРСЭН loadMemberItems response:   ", response);
+    // axios
+    //   .post("", myParamsMemberItems)
+    //   .then((response) => {
+    myAxiosZ(myParamsMemberItems)
+      .then((myResponse) => {
+        // console.log("ИРСЭН loadMemberItems response:   ", myResponse);
+        const myData = myResponse.response;
 
-        const myPaging = response.data.response.result.paging;
-        const myArray = response.data.response.result;
+        if (myData.status === "error") {
+          message.error(myData.text);
+        } else {
+          // const myPaging = response.data.response.result.paging;
+          // const myArray = response.data.response.result;
+          const myPaging = myData.result?.paging || {};
+          // console.log("myPaging myPaging", myPaging);
+          const myArray = myData.result || [];
 
-        delete myArray["aggregatecolumns"];
-        delete myArray["paging"];
+          delete myArray["aggregatecolumns"];
+          delete myArray["paging"];
 
-        // console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
+          // console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
 
-        setState({
-          ...state,
-          loading: false,
-          memberItems: myArray,
-        });
+          setMemberItems({
+            ...memberItems,
+            loading: false,
+            memberItems: myArray,
+          });
+        }
       })
       .catch((error) => {
-        setState({ ...state, loading: false, error });
+        // setMemberItems({ ...memberItems, loading: false, error });
+        message.error(error);
         console.log(error);
       });
   };
 
-  //     #####     #    #     # #######
-  //  #     #   # #   #     # #
-  //  #        #   #  #     # #
-  //   #####  #     # #     # #####
-  //        # #######  #   #  #
-  //  #     # #     #   # #   #
-  //   #####  #     #    #    #######
-
+  //   #####     #    #     # #######    ### ####### ####### #     #
+  //  #     #   # #   #     # #           #     #    #       ##   ##
+  //  #        #   #  #     # #           #     #    #       # # # #
+  //   #####  #     # #     # #####       #     #    #####   #  #  #
+  //        # #######  #   #  #           #     #    #       #     #
+  //  #     # #     #   # #   #           #     #    #       #     #
+  //   #####  #     #    #    #######    ###    #    ####### #     #
   const saveMemberItem = (values) => {
     if (!memberContext.isMember()) {
       return null;
@@ -137,32 +147,42 @@ export const MemberItemsStore = (props) => {
 
     console.log("saveMemberItem-ын бэлтгэсэн myMemberItem", myMemberItem);
 
-    // setState({ ...state, loading: true });
+    // axios
+    //   .post("", myMemberItem)
+    //   .then((response) => {
+    myAxiosZ(myMemberItem)
+      .then((myData) => {
+        const myDetail = myData.response || {};
+        console.log(
+          "After parse saveMemberItem Result ------------>",
+          myDetail
+        );
 
-    axios
-      .post("", myMemberItem)
-      .then((response) => {
-        console.log("Just Save saveMemberItem:   ", response);
-
-        const myData = response.data.response;
-        console.log("After parse saveMemberItem Result ------------>", myData);
-
-        if (myData.status === "error") {
-          getError(myData.text);
+        if (myDetail.status === "error") {
+          message.error(myDetail.text, 7);
         } else {
           message.success(
             "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
           );
-          loadMemberItems(memberContext.state.memberCloudUserSysId);
+          loadMemberItems();
         }
       })
       .catch((error) => {
-        getError(error);
+        message.error(error);
+        console.log(error);
       });
   };
 
+  //  ######  ####### #       ####### ####### #######    ### ####### ####### #     #
+  //  #     # #       #       #          #    #           #     #    #       ##   ##
+  //  #     # #       #       #          #    #           #     #    #       # # # #
+  //  #     # #####   #       #####      #    #####       #     #    #####   #  #  #
+  //  #     # #       #       #          #    #           #     #    #       #     #
+  //  #     # #       #       #          #    #           #     #    #       #     #
+  //  ######  ####### ####### #######    #    #######    ###    #    ####### #     #
+
   const deleteMemberItem = (id) => {
-    console.log("deleteMemberItem дотор орж ирсэн values--", id);
+    // console.log("deleteMemberItem дотор орж ирсэн values--", id);
     const myMemberItem = {
       request: {
         username: memberContext.state.memberUID,
@@ -173,36 +193,141 @@ export const MemberItemsStore = (props) => {
         },
       },
     };
-    console.log("deleteMemberItem-ын бэлтгэсэн myMemberItem", myMemberItem);
+    // console.log("deleteMemberItem-ын бэлтгэсэн myMemberItem", myMemberItem);
+    myAxiosZ(myMemberItem)
+      .then((myData) => {
+        const myDetail = myData.response || {};
 
-    axios
-      .post("", myMemberItem)
-      .then((response) => {
-        console.log("Just  deleteMemberItem:   ", response);
-        const myData = response.data.response;
-        console.log(
-          "After parse deleteMemberItem Result ------------>",
-          myData
-        );
-
-        if (myData.status === "error") {
-          getError(myData.text);
+        if (myDetail.status === "error") {
+          message.error(myDetail.text, 7);
         } else {
           message.warning(
             "Таны тэмдэглэлээс устгалаа. Өдрийг сайхан өнгөрүүлээрэй."
           );
-          loadMemberItems(memberContext.state.memberCloudUserSysId);
+          loadMemberItems();
         }
       })
       .catch((error) => {
-        getError(error);
+        message.error(error);
+        console.log(error);
+      });
+  };
+
+  //  #     # ####### ####### #######  #####     #    ######
+  //  ##   ## #     #    #    #     # #     #   # #   #     #
+  //  # # # # #     #    #    #     # #        #   #  #     #
+  //  #  #  # #     #    #    #     # #       #     # ######
+  //  #     # #     #    #    #     # #       ####### #   #
+  //  #     # #     #    #    #     # #     # #     # #    #
+  //  #     # #######    #    #######  #####  #     # #     #
+  const loadMotocar = () => {
+    setMotocar({ ...motocar, loading: true });
+    const myParams = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "PL_MDVIEW_004",
+        parameters: {
+          systemmetagroupid: "1600421356169317",
+          showQuery: "0",
+          ignorepermission: "1",
+          criteria: {
+            systemuserid: memberContext.state.memberCloudUserSysId,
+          },
+          paging: {
+            pagesize: "",
+            offset: "1",
+            sortcolumnnames: {
+              id: { sorttype: "DESC" },
+            },
+          },
+        },
+      },
+    };
+    myAxiosZ(myParams)
+      .then((myResponse) => {
+        const myData = myResponse.response;
+        if (myData.status === "error") {
+          message.error(myData.text);
+        } else {
+          const myPaging = myData.result?.paging || {};
+          const myArray = myData.result || [];
+          delete myArray["aggregatecolumns"];
+          delete myArray["paging"];
+          setMotocar({
+            ...motocar,
+            loading: false,
+            mainList: myArray,
+          });
+        }
+      })
+      .catch((error) => {
+        message.error(error);
+        console.log(error);
+      });
+  };
+
+  const saveMotocar = (values) => {
+    console.log("saveMotocar дотор орж ирсэн values--", values);
+
+    const myMotocar = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "motoMotocarDV_002",
+        parameters: {
+          id: values.id || "",
+          systemuserid: memberContext.state.memberCloudUserSysId,
+          firmid: values.firmid || "",
+          markid: values.markid || "",
+          mainid: values.mainid || "",
+          carid: values.carid || "",
+        },
+      },
+    };
+    console.log("saveMotocar-ын бэлтгэсэн myMotocar", myMotocar);
+    // return null;
+
+    myAxiosZ(myMotocar)
+      .then((myData) => {
+        const myDetail = myData.response || {};
+        console.log("After parse saveMotocar Result ------------>", myDetail);
+
+        if (myDetail.status === "error") {
+          message.error(myDetail.text, 7);
+        } else {
+          message.success(
+            "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
+          );
+          loadMotocar();
+        }
+      })
+      .catch((error) => {
+        message.error(error);
+        console.log(error);
       });
   };
 
   return (
     <MemberItemsContext.Provider
-      value={{ state, loadMemberItems, saveMemberItem, deleteMemberItem }}
+      value={{
+        memberItems,
+        loadMemberItems,
+        saveMemberItem,
+        deleteMemberItem,
+        motocar,
+        loadMotocar,
+        saveMotocar,
+      }}
     >
+      {process.env.NODE_ENV === "development" && (
+        <ContextDevTool
+          context={MemberItemsContext}
+          id="MemberItemsContext"
+          displayName="MEMBER ITEM STORE"
+        />
+      )}
+
       {props.children}
     </MemberItemsContext.Provider>
   );

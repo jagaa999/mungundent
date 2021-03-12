@@ -68,8 +68,8 @@ const AuctionControlButton = ({ auctionItem, tableName }) => {
     checked: false,
   };
 
-  Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
-    const myItem = memberItemsContext.state.memberItems[index];
+  Object.keys(memberItemsContext.memberItems.memberItems).map((item, index) => {
+    const myItem = memberItemsContext.memberItems.memberItems[index];
     if (myItem.recordid === auctionItem.ID && myItem.tablename === tableName) {
       switch (myItem.actionname) {
         case "Таалагдлаа":

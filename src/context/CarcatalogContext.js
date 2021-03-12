@@ -29,8 +29,9 @@ import FilterContext from "context/FilterContext";
 import MyIcon from "util/iconFunction";
 import { isEmpty } from "lodash";
 import { GetSpecData } from "util/getSpecData";
-const { Option } = Select;
+import { ContextDevTool } from "react-context-devtool";
 
+const { Option } = Select;
 const CarcatalogContext = React.createContext();
 
 export const CarcatalogStore = (props) => {
@@ -802,8 +803,15 @@ export const CarcatalogStore = (props) => {
         toggleDrawer,
         toggleOnlyThisCar,
       }}
-      displayName="CarcatalogStore"
     >
+      {process.env.NODE_ENV === "development" && (
+        <ContextDevTool
+          context={CarcatalogContext}
+          id="CarcatalogContextId"
+          displayName="CARCATALOG STORE"
+        />
+      )}
+
       {props.children}
       <CarDrawer />
     </CarcatalogContext.Provider>

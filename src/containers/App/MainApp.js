@@ -39,10 +39,10 @@ const MainApp = () => {
 
   const match = useRouteMatch();
 
-  useEffect(() => {
-    //* Дараа нь тухайн хэрэглэгчийн Хадгалсан зүйлсийг дуудна.
-    memberItemsContext.loadMemberItems("1502764251361501");
-  }, [memberContext.state.memberCloudUserSysId]);
+  // useEffect(() => {
+  //   //* Дараа нь тухайн хэрэглэгчийн Хадгалсан зүйлсийг дуудна.
+  //   memberItemsContext.loadMemberItems("1502764251361501");
+  // }, [memberContext.state.memberCloudUserSysId]);
 
   return (
     <Switch>

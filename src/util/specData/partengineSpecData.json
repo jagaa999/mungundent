@@ -1,0 +1,29 @@
+{
+ 
+
+  "id": {
+    "testvalue": "23837",
+    "label": "ID дугаар",
+    "tooltip":"",
+    "icon":""
+  },
+  "capacity": {
+    "testvalue": "2675 ccm",
+    "label": "Багтаамж",
+    "tooltip":"Хөдөлгүүрийн багтаамж",
+    "icon":""
+  },
+  "fueltype":{
+    "testvalue": "бензин",
+    "label": "Шатахуун",
+    "tooltip":"Шатахууны төрөл",
+    "icon":""
+  },
+  "power":{    
+    "testvalue": "161 - 177 PS",
+    "label": "Чадал",
+    "tooltip":"Хөдөлгүүрийн чадал",
+    "icon":""
+  }
+
+}

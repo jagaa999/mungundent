@@ -1,0 +1,164 @@
+{
+  "productid": {
+    "testvalue": "8",
+    "label": "Сэлбэгийн ID",
+    "tooltip": "",
+    "icon": ""
+  },
+  "assemblygroupdescription": {
+    "testvalue": "Система подачи воздуха",
+    "label": "Хамаарах систем",
+    "tooltip": "",
+    "icon": ""
+  },
+  "description": {
+    "testvalue": "Воздушный фильтр",
+    "label": "Нэршил",
+    "tooltip": "",
+    "icon": ""
+  },
+  "normalizeddescription": {
+    "testvalue": "Фильтр",
+    "label": "Ангилал",
+    "tooltip": "",
+    "icon": ""
+  },
+  "usagedescription": {
+    "testvalue": "Воздух",
+    "label": "Хэрэглээний төрөл",
+    "tooltip": "",
+    "icon": ""
+  },
+  "supplierid": {
+    "testvalue": "350",
+    "label": "Брэндийн ID",
+    "tooltip": "",
+    "icon": ""
+  },
+  "datasupplierarticlenumber": {
+    "testvalue": "ADT322118",
+    "label": "Сэлбэгийн код",
+    "tooltip": "",
+    "icon": ""
+  },
+  "articlestatedisplayvalue": {
+    "testvalue": "Нормальный",
+    "label": "articlestatedisplayvalue",
+    "tooltip": "",
+    "icon": ""
+  },
+  "articledescription": {
+    "testvalue": "",
+    "label": "articledescription",
+    "tooltip": "",
+    "icon": ""
+  },
+  "flagaccessory": {
+    "testvalue": "false",
+    "label": "flagaccessory",
+    "tooltip": "",
+    "icon": ""
+  },
+  "flagmaterialcertification": {
+    "testvalue": "false",
+    "label": "flagmaterialcertification",
+    "tooltip": "",
+    "icon": ""
+  },
+  "flagremanufactured": {
+    "testvalue": "false",
+    "label": "flagremanufactured",
+    "tooltip": "",
+    "icon": ""
+  },
+  "flagselfservicepacking": {
+    "testvalue": "false",
+    "label": "flagselfservicepacking",
+    "tooltip": "",
+    "icon": ""
+  },
+  "foundstring": {
+    "testvalue": "ADT322118",
+    "label": "foundstring",
+    "tooltip": "",
+    "icon": ""
+  },
+  "hasaxle": {
+    "testvalue": "false",
+    "label": "hasaxle",
+    "tooltip": "",
+    "icon": ""
+  },
+  "hascommercialvehicle": {
+    "testvalue": "false",
+    "label": "hascommercialvehicle",
+    "tooltip": "",
+    "icon": ""
+  },
+  "hascvmanuid": {
+    "testvalue": "false",
+    "label": "hascvmanuid",
+    "tooltip": "",
+    "icon": ""
+  },
+  "hasengine": {
+    "testvalue": "true",
+    "label": "hasengine",
+    "tooltip": "",
+    "icon": ""
+  },
+  "haslinkitems": {
+    "testvalue": "true",
+    "label": "haslinkitems",
+    "tooltip": "",
+    "icon": ""
+  },
+  "hasmotorbike": {
+    "testvalue": "false",
+    "label": "hasmotorbike",
+    "tooltip": "",
+    "icon": ""
+  },
+  "haspassengercar": {
+    "testvalue": "false",
+    "label": "haspassengercar",
+    "tooltip": "",
+    "icon": ""
+  },
+  "isvalid": {
+    "testvalue": "true",
+    "label": "isvalid",
+    "tooltip": "",
+    "icon": ""
+  },
+  "lotsize1": {
+    "testvalue": "0",
+    "label": "lotsize1",
+    "tooltip": "",
+    "icon": ""
+  },
+  "lotsize2": {
+    "testvalue": "0",
+    "label": "lotsize2",
+    "tooltip": "",
+    "icon": ""
+  },
+  "articlenormalizeddescription": {
+    "testvalue": "Фильтр",
+    "label": "Ангилал",
+    "tooltip": "",
+    "icon": ""
+  },
+  "packingunit": {
+    "testvalue": "1",
+    "label": "Тоо ширхэг",
+    "tooltip": "",
+    "icon": ""
+  },
+  "quantityperpackingunit": {
+    "testvalue": "0",
+    "label": "quantityperpackingunit",
+    "tooltip": "",
+    "icon": ""
+  }
+}

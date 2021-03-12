@@ -41,8 +41,8 @@ const UniversalListItemButton = ({ myUniversalItem, isDetail = false }) => {
     checked: false,
   };
 
-  Object.keys(memberItemsContext.state.memberItems).map((item, index) => {
-    const myItem = memberItemsContext.state.memberItems[index];
+  Object.keys(memberItemsContext.memberItems.memberItems).map((item, index) => {
+    const myItem = memberItemsContext.memberItems.memberItems[index];
     if (
       myItem?.recordid === loveButtonData?.recordid &&
       myItem?.tablename === loveButtonData?.tablename

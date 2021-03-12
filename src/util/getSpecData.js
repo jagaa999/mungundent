@@ -5,6 +5,8 @@ import auctionSpecData from "./specData/auctionSpecData.json";
 import productSpecData from "./specData/productSpecData.json";
 import carcatalogSpecData from "./specData/carcatalogSpecData.json";
 import engineSpecData from "./specData/engineSpecData.json";
+import partSpecData from "./specData/partSpecData.json";
+import partengineSpecData from "./specData/partengineSpecData.json";
 // import FilterContext from "context/FilterContext";
 
 export const GetSpecData = (field = "", menu) => {
@@ -29,6 +31,12 @@ export const GetSpecData = (field = "", menu) => {
       break;
     case "engine":
       myObject = engineSpecData;
+      break;
+    case "part":
+      myObject = partSpecData;
+      break;
+    case "partengine":
+      myObject = partengineSpecData;
       break;
 
     default:
