@@ -365,23 +365,7 @@ export const MemberItemsStore = (props) => {
     };
     // console.log("saveMotocar-ын бэлтгэсэн myMotocar", myMotocar);
 
-    myAxiosZ(myMotocar)
-      .then((myData) => {
-        // const myDetail = myData.response || {};
-        // console.log("After parse saveMotocar Result ------------>", myDetail);
-        // if (myDetail.status === "error") {
-        //   message.error(myDetail.text, 7);
-        // } else {
-        //   message.success(
-        //     "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
-        //   );
-        // loadMotocar();
-        // }
-      })
-      .catch((error) => {
-        // message.error(error);
-        // console.log(error);
-      });
+    myAxiosZ(myMotocar);
   };
 
   const chooseDefaultMotocar = async (values) => {
@@ -395,6 +379,7 @@ export const MemberItemsStore = (props) => {
     });
 
     await loadMotocar();
+    await message.success("Таны гол машин сонгогдлоо.");
   };
 
   return (
