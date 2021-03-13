@@ -2,23 +2,31 @@ import React, { useEffect, useState, useContext } from "react";
 
 import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
-import { message } from "antd";
+import { message, Modal, Result, Button, notification } from "antd";
+import toBoolean from "util/booleanFunction";
 import Moment from "moment";
 import { ContextDevTool } from "react-context-devtool";
+import {
+  prepareMotocarList,
+  prepareMotocarListSettings as mySettings,
+  prepareMotocarDetail,
+} from "util/specData/prepareSpecsMotocar";
+import FilterContext from "context/FilterContext";
 
 const MemberItemsContext = React.createContext();
 
 export const MemberItemsStore = (props) => {
   const memberContext = useContext(MemberContext);
+  const filterContext = useContext(FilterContext);
 
   const initialMemberItems = {
-    memberItems: {},
+    memberItems: [],
     loading: false,
     error: null,
   };
 
   const initialMotocar = {
-    mainList: {},
+    mainList: [],
     loading: false,
     error: null,
   };
@@ -28,6 +36,7 @@ export const MemberItemsStore = (props) => {
 
   useEffect(() => {
     loadMemberItems();
+    loadMotocar();
   }, [memberContext.state.memberCloudUserSysId]);
 
   //  #       ###  #####  #######
@@ -221,6 +230,7 @@ export const MemberItemsStore = (props) => {
   //  #     # #     #    #    #     # #     # #     # #    #
   //  #     # #######    #    #######  #####  #     # #     #
   const loadMotocar = () => {
+    // console.log("loadMotocar");
     setMotocar({ ...motocar, loading: true });
     const myParams = {
       request: {
@@ -244,8 +254,12 @@ export const MemberItemsStore = (props) => {
         },
       },
     };
+    // console.log("loadMotoCar myParams", myParams);
+
     myAxiosZ(myParams)
       .then((myResponse) => {
+        // console.log("loadMotoCar myResponse", myResponse);
+
         const myData = myResponse.response;
         if (myData.status === "error") {
           message.error(myData.text);
@@ -254,10 +268,17 @@ export const MemberItemsStore = (props) => {
           const myArray = myData.result || [];
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
+
+          // const myTempList = Object.values(myArray);
+          const myTempList = prepareMotocarList(
+            myArray,
+            filterContext.urlSetting.menu
+          );
+
           setMotocar({
             ...motocar,
             loading: false,
-            mainList: myArray,
+            mainList: myTempList,
           });
         }
       })
@@ -267,8 +288,11 @@ export const MemberItemsStore = (props) => {
       });
   };
 
+  // **************
+  // **************
+  // **************
   const saveMotocar = (values) => {
-    console.log("saveMotocar дотор орж ирсэн values--", values);
+    // console.log("saveMotocar дотор орж ирсэн values--", values);
 
     const myMotocar = {
       request: {
@@ -285,7 +309,7 @@ export const MemberItemsStore = (props) => {
         },
       },
     };
-    console.log("saveMotocar-ын бэлтгэсэн myMotocar", myMotocar);
+    // console.log("saveMotocar-ын бэлтгэсэн myMotocar", myMotocar);
     // return null;
 
     myAxiosZ(myMotocar)
@@ -296,9 +320,25 @@ export const MemberItemsStore = (props) => {
         if (myDetail.status === "error") {
           message.error(myDetail.text, 7);
         } else {
-          message.success(
-            "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
-          );
+          // message.success(
+          //   "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
+          // );
+          notification.open({
+            description: (
+              <Result
+                status="success"
+                title="Амжилттай нэмлээ."
+                subTitle="Таны эзэмшилд байдаг энэ машиныг таны гараашт дөнгөж сая нэмлээ."
+                extra={[
+                  <Button type="primary" key="mygarage" disabled>
+                    Гараашаа үзэх
+                  </Button>,
+                ]}
+              />
+            ),
+            placement: "topLeft",
+          });
+
           loadMotocar();
         }
       })
@@ -306,6 +346,55 @@ export const MemberItemsStore = (props) => {
         message.error(error);
         console.log(error);
       });
+  };
+
+  const changeIsDefault = (values) => {
+    // console.log("saveMotocar дотор орж ирсэн values--", values);
+
+    const myMotocar = {
+      request: {
+        username: memberContext.state.memberUID,
+        password: "89",
+        command: "motoMotocarDV_002",
+        parameters: {
+          ...values,
+          id: values.id,
+          isdefault: toBoolean(values.isdefault) ? "1" : "0",
+        },
+      },
+    };
+    // console.log("saveMotocar-ын бэлтгэсэн myMotocar", myMotocar);
+
+    myAxiosZ(myMotocar)
+      .then((myData) => {
+        // const myDetail = myData.response || {};
+        // console.log("After parse saveMotocar Result ------------>", myDetail);
+        // if (myDetail.status === "error") {
+        //   message.error(myDetail.text, 7);
+        // } else {
+        //   message.success(
+        //     "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
+        //   );
+        // loadMotocar();
+        // }
+      })
+      .catch((error) => {
+        // message.error(error);
+        // console.log(error);
+      });
+  };
+
+  const chooseDefaultMotocar = async (values) => {
+    const myId = values.id;
+    await motocar.mainList.map((item, index) => {
+      if (item.id === myId) {
+        changeIsDefault({ ...item, isdefault: true });
+      } else {
+        changeIsDefault({ ...item, isdefault: false });
+      }
+    });
+
+    await loadMotocar();
   };
 
   return (
@@ -318,6 +407,7 @@ export const MemberItemsStore = (props) => {
         motocar,
         loadMotocar,
         saveMotocar,
+        chooseDefaultMotocar,
       }}
     >
       {process.env.NODE_ENV === "development" && (

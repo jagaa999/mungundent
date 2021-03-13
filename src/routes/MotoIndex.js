@@ -294,10 +294,15 @@ const App = ({ match }) => {
             <MotocarForm />
           </MotocarStore>
         </Route>
-        <Route path={["/motocar", "/motocarlist"]}>
+        {/* <Route path={["/motocar", "/motocarlist"]}>
           <MotocarStore>
             <MotocarList />
           </MotocarStore>
+        </Route> */}
+        <Route path={["/motocar"]}>
+          <UniversalStore>
+            <UniversalListPage />
+          </UniversalStore>
         </Route>
         {/*}
       #     # ####### #     #  #####  

@@ -227,7 +227,6 @@ export const NewsStore = (props) => {
   const loadNewsDetail = (newsId) => {
     const myParamsNewsDetail = {
       request: {
-        // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
         username:
           memberContext.state.memberUID || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
         password: "89",

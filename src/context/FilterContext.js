@@ -51,6 +51,15 @@ import {
   preparePartFilterSettings,
 } from "util/specData/prepareSpecsPart";
 
+import {
+  prepareMotocarList,
+  prepareMotocarDetail,
+  prepareMotocarListSettings,
+  prepareMotocarDetailSettings,
+  prepareMotocarContextSettings,
+  prepareMotocarFilterSettings,
+} from "util/specData/prepareSpecsMotocar";
+
 const FilterContext = React.createContext();
 
 export const FilterStore = (props) => {
@@ -242,6 +251,15 @@ export const FilterStore = (props) => {
         myUniversalListSetting = preparePartListSettings;
         myUniversalDetailSetting = preparePartDetailSettings;
         myUniversalFilterSetting = preparePartFilterSettings;
+        break;
+      case "motocar":
+        myContextListSetting = prepareMotocarContextSettings.listSetting;
+        myContextDetailSetting = prepareMotocarContextSettings.detailSetting;
+        myPrepareListFunction = prepareMotocarList;
+        myPrepareDetailFunction = prepareMotocarDetail;
+        myUniversalListSetting = prepareMotocarListSettings;
+        myUniversalDetailSetting = prepareMotocarDetailSettings;
+        myUniversalFilterSetting = prepareMotocarFilterSettings;
         break;
 
       default:
