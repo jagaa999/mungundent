@@ -16,6 +16,8 @@ import UniversalContext from "context/UniversalContext";
 const UniversalFilterDrawer = ({ myUniversalFilterSetting }) => {
   const universalContext = useContext(UniversalContext);
 
+  console.log("sssss", myUniversalFilterSetting);
+
   return (
     <div>
       <Drawer

@@ -83,7 +83,11 @@ const UniversalListType3 = ({
                   </Row>
 
                   <MotoPagination myClass="gx-mt-2" />
-                  <MyFilterDrawer />
+                  {MyFilterDrawer && (
+                    <MyFilterDrawer
+                      myUniversalFilterSetting={myUniversalFilterSetting}
+                    />
+                  )}
                   <AffixButtonInsert link={mySettings.menu} />
                 </>
               ) : (
