@@ -11,6 +11,7 @@ import {
   prepareMotocarListSettings as mySettings,
   prepareMotocarDetail,
 } from "util/specData/prepareSpecsMotocar";
+import { LoadProcess, LoadProcessAdvanced2 } from "util/axiosFunction";
 import FilterContext from "context/FilterContext";
 
 const MemberItemsContext = React.createContext();
@@ -29,6 +30,7 @@ export const MemberItemsStore = (props) => {
     mainList: [],
     loading: false,
     error: null,
+    defaultCar: {},
   };
 
   const [memberItems, setMemberItems] = useState(initialMemberItems);
@@ -38,6 +40,20 @@ export const MemberItemsStore = (props) => {
     loadMemberItems();
     loadMotocar();
   }, [memberContext.state.memberCloudUserSysId]);
+
+  //motocar.mainList өөрчлөгдөхөд defaultCar-ийг тавьж өгнө.
+  useEffect(() => {
+    motocar.mainList.map((item, index) => {
+      if (item.isdefault) {
+        setMotocar({
+          ...motocar,
+          defaultCar: {
+            ...item,
+          },
+        });
+      }
+    });
+  }, [motocar.mainList]);
 
   //  #       ###  #####  #######
   //  #        #  #     #    #
@@ -81,9 +97,6 @@ export const MemberItemsStore = (props) => {
     };
     // console.log("Бэлтгэсэн myParamsMemberItems : ", myParamsMemberItems);
 
-    // axios
-    //   .post("", myParamsMemberItems)
-    //   .then((response) => {
     myAxiosZ(myParamsMemberItems)
       .then((myResponse) => {
         // console.log("ИРСЭН loadMemberItems response:   ", myResponse);
@@ -92,16 +105,11 @@ export const MemberItemsStore = (props) => {
         if (myData.status === "error") {
           message.error(myData.text);
         } else {
-          // const myPaging = response.data.response.result.paging;
-          // const myArray = response.data.response.result;
           const myPaging = myData.result?.paging || {};
-          // console.log("myPaging myPaging", myPaging);
           const myArray = myData.result || [];
 
           delete myArray["aggregatecolumns"];
           delete myArray["paging"];
-
-          // console.log("ИРСЭН loadMemberItems myArray:   ", myArray);
 
           setMemberItems({
             ...memberItems,
@@ -111,7 +119,6 @@ export const MemberItemsStore = (props) => {
         }
       })
       .catch((error) => {
-        // setMemberItems({ ...memberItems, loading: false, error });
         message.error(error);
         console.log(error);
       });
@@ -230,7 +237,6 @@ export const MemberItemsStore = (props) => {
   //  #     # #     #    #    #     # #     # #     # #    #
   //  #     # #######    #    #######  #####  #     # #     #
   const loadMotocar = () => {
-    // console.log("loadMotocar");
     setMotocar({ ...motocar, loading: true });
     const myParams = {
       request: {
@@ -294,10 +300,9 @@ export const MemberItemsStore = (props) => {
   const saveMotocar = (values) => {
     // console.log("saveMotocar дотор орж ирсэн values--", values);
 
-    const myMotocar = {
+    LoadProcessAdvanced2({
       request: {
         username: memberContext.state.memberUID,
-        password: "89",
         command: "motoMotocarDV_002",
         parameters: {
           id: values.id || "",
@@ -308,64 +313,61 @@ export const MemberItemsStore = (props) => {
           carid: values.carid || "",
         },
       },
-    };
-    // console.log("saveMotocar-ын бэлтгэсэн myMotocar", myMotocar);
-    // return null;
+      successActions: [
+        notification.open({
+          description: (
+            <Result
+              status="success"
+              title="Амжилттай нэмлээ."
+              subTitle="Таны эзэмшилд байдаг энэ машиныг таны гараашт дөнгөж сая нэмлээ."
+              extra={[
+                <Button type="primary" key="mygarage" disabled>
+                  Гараашаа үзэх
+                </Button>,
+              ]}
+            />
+          ),
+          placement: "topLeft",
+        }),
+        loadMotocar(),
+      ],
+    });
+  };
 
-    myAxiosZ(myMotocar)
-      .then((myData) => {
-        const myDetail = myData.response || {};
-        console.log("After parse saveMotocar Result ------------>", myDetail);
-
-        if (myDetail.status === "error") {
-          message.error(myDetail.text, 7);
-        } else {
-          // message.success(
-          //   "Амжилттай тэмдэглэж авлаа. Өдрийг сайхан өнгөрүүлээрэй."
-          // );
-          notification.open({
-            description: (
-              <Result
-                status="success"
-                title="Амжилттай нэмлээ."
-                subTitle="Таны эзэмшилд байдаг энэ машиныг таны гараашт дөнгөж сая нэмлээ."
-                extra={[
-                  <Button type="primary" key="mygarage" disabled>
-                    Гараашаа үзэх
-                  </Button>,
-                ]}
-              />
-            ),
-            placement: "topLeft",
-          });
-
-          loadMotocar();
-        }
-      })
-      .catch((error) => {
-        message.error(error);
-        console.log(error);
-      });
+  //  #####  ###### #    #  ####  #    # ######
+  //  #    # #      ##  ## #    # #    # #
+  //  #    # #####  # ## # #    # #    # #####
+  //  #####  #      #    # #    # #    # #
+  //  #   #  #      #    # #    #  #  #  #
+  //  #    # ###### #    #  ####    ##   ######
+  const removeMotocar = (values) => {
+    LoadProcessAdvanced2({
+      request: {
+        username: memberContext.state.memberUID,
+        command: "motoMotocarDV_005",
+        parameters: {
+          id: values.id || "",
+        },
+      },
+      successActions: [
+        message.warning("Таны эзэмшилд байсан машиныг гараашаас устгав."),
+        loadMotocar(),
+      ],
+    });
   };
 
   const changeIsDefault = (values) => {
-    // console.log("saveMotocar дотор орж ирсэн values--", values);
-
-    const myMotocar = {
-      request: {
-        username: memberContext.state.memberUID,
-        password: "89",
-        command: "motoMotocarDV_002",
-        parameters: {
-          ...values,
-          id: values.id,
-          isdefault: toBoolean(values.isdefault) ? "1" : "0",
-        },
+    LoadProcess({
+      username: memberContext.state.memberUID,
+      command: "motoMotocarDV_002",
+      parameters: {
+        ...values,
+        id: values.id,
+        isdefault: toBoolean(values.isdefault) ? "1" : "0",
       },
-    };
-    // console.log("saveMotocar-ын бэлтгэсэн myMotocar", myMotocar);
-
-    myAxiosZ(myMotocar);
+      successMessage: "none",
+      errorMessage: "none",
+    });
   };
 
   const chooseDefaultMotocar = async (values) => {
@@ -379,7 +381,7 @@ export const MemberItemsStore = (props) => {
     });
 
     await loadMotocar();
-    await message.success("Таны гол машин сонгогдлоо.");
+    await message.success("Таны үндсэн машин сонгогдлоо.");
   };
 
   return (
@@ -393,6 +395,7 @@ export const MemberItemsStore = (props) => {
         loadMotocar,
         saveMotocar,
         chooseDefaultMotocar,
+        removeMotocar,
       }}
     >
       {process.env.NODE_ENV === "development" && (

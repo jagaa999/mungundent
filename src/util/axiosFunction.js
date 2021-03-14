@@ -1,136 +1,175 @@
 import React, { useState } from "react";
-import axios from "util/axiosConfig";
+import myAxiosZ from "util/myAxiosZ";
 import { message } from "antd";
+import { isEmpty } from "lodash";
 
-const myInitParamsProcess = {
-  request: {
-    // sessionid: "efa772a2-1923-4a06-96d6-5e9ecb4b1dd4",
-    username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
-    password: "89",
-    command: "motoNEWS_MAINDETAIL_004",
-    parameters: {
-      // newsid: "",
-      // memberid: "",
-    },
-  },
-};
-
+//  ######  ######  #######  #####  #######  #####   #####
+//  #     # #     # #     # #     # #       #     # #     #
+//  #     # #     # #     # #       #       #       #
+//  ######  ######  #     # #       #####    #####   #####
+//  #       #   #   #     # #       #             #       #
+//  #       #    #  #     # #     # #       #     # #     #
+//  #       #     # #######  #####  #######  #####   #####
 export function LoadProcess(props) {
-  const myParams = myInitParamsProcess;
-  myParams.request.command = props ? props.command : "";
-  myParams.request.parameters = props ? props.parameters : {};
+  const myParams = {
+    request: {
+      username: props.username || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+      password: props.password || "89",
+      command: props ? props.command : "",
+      parameters: {
+        ...props.parameters,
+        // newsid: "",
+        // memberid: "",
+      },
+    },
+  };
 
-  // console.log("axiosFunction Process myParams ----------->", myParams);
-  console.log("Axios props", props);
-
-  return axios
-    .post("", myParams)
-    .then((response) => {
-      if (response.data.response.status === "error") {
-        message.error(response.data.response.text.toString(), 7);
-        return {};
+  myAxiosZ(myParams)
+    .then((myData) => {
+      const myDetail = myData.response || {};
+      if (myDetail.status === "error") {
+        message.error(myDetail.text.toString(), 7);
       } else {
-        const myResult = response.data.response.result;
-        return myResult;
+        if (props.successMessage !== "none") {
+          message.success(
+            props.successMessage ||
+              "Амжилттай гүйцэтгэлээ. Өдрийг сайхан өнгөрүүлээрэй."
+          );
+        }
+        return isEmpty(myDetail.result) ? {} : myDetail.result;
       }
     })
     .catch((error) => {
-      return error;
+      if (props.errorMessage !== "none") {
+        message.error(props.errorMessage || error.toString, 7);
+      }
+      console.log(error);
+      return {};
     });
 }
 
-// !-----------------------
-// !-----------------------
-// !-----------------------
-const myInitParamsDataview = {
-  request: {
-    username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
-    password: "89",
-    command: "PL_MDVIEW_004",
-    parameters: {
-      systemmetagroupid: "1587100905303413",
-      ignorepermission: "1",
-      showQuery: "0",
-      // paging: {
-      //   pageSize: "15", //нийтлэлийн тоо
-      //   offset: "1", //хуудасны дугаар
-      //   sortColumnNames: {
-      //     id: {
-      //       //эрэмбэлэх талбар
-      //       sortType: "DESC", //эрэмбэлэх чиглэл
-      //     },
-      //   },
-      // },
+export const LoadProcessAdvanced2 = (props) => {
+  const myParams = {
+    request: {
+      ...props.request,
+      username: props.request.username || "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+      password: props.request.password || "89",
     },
-  },
+  };
+
+  myAxiosZ(myParams)
+    .then((myData) => {
+      const myDetail = myData.response || {};
+      if (myDetail.status === "error") {
+        message.error(myDetail.text.toString(), 7);
+      } else {
+        props.successActions.map((item, index) => {
+          return item;
+        });
+
+        return isEmpty(myDetail.result) ? {} : myDetail.result;
+      }
+    })
+    .catch((error) => {
+      if (props.errorMessage !== "none") {
+        message.error(props.errorMessage || error.toString, 7);
+      }
+      console.log(error);
+      return {};
+    });
 };
 
+//  ######     #    #######    #    #     # ### ####### #     #
+//  #     #   # #      #      # #   #     #  #  #       #  #  #
+//  #     #  #   #     #     #   #  #     #  #  #       #  #  #
+//  #     # #     #    #    #     # #     #  #  #####   #  #  #
+//  #     # #######    #    #######  #   #   #  #       #  #  #
+//  #     # #     #    #    #     #   # #    #  #       #  #  #
+//  ######  #     #    #    #     #    #    ### #######  ## ##
 export function loadDataview(props) {
-  const myParams = myInitParamsDataview;
-  myParams.request.parameters.systemmetagroupid = props
-    ? props.systemmetagroupid
-    : "";
-  myParams.request.parameters.criteria = props ? props.criteria : {};
-  myParams.request.parameters.paging = props ? props.paging : {};
-  console.log("myParams", myParams);
-  return axios
-    .post("", myParams)
-    .then((response) => {
-      console.log("Цаанаас юу ирэв?", response);
-      // console.log("Цаанаас юу ирэв? dfgsdfsdf", response.data.response.result);
-      // console.log(
-      //   "Цаанаас юу ирэв? dfgsdfsdf",
-      //   response.data.response.result.paging
-      // );
+  const myParams = {
+    request: {
+      username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+      password: "89",
+      command: "PL_MDVIEW_004",
+      parameters: {
+        systemmetagroupid: props ? props.systemmetagroupid : "",
+        ignorepermission: "1",
+        showQuery: "0",
+        criteria: {
+          ...props.criteria,
+        },
+        paging: {
+          ...props.paging,
+        },
+      },
+    },
+  };
 
-      if (response.data.response.status === "error") {
-        message.error(response.data.response.text.toString(), 7);
+  return myAxiosZ(myParams)
+    .then((myResponse) => {
+      // console.log("Цаанаас юу ирэв?", myResponse);
+      const myData = myResponse.response;
+
+      if (myData.status === "error") {
+        message.error(myData.text.toString(), 7);
         return [];
       } else {
-        const myTempArray = response.data.response.result;
-        delete myTempArray["aggregatecolumns"];
-        delete myTempArray["paging"];
+        const myPaging = myData.result?.paging || {};
+        const myArray = myData.result || [];
+        delete myArray["aggregatecolumns"];
+        delete myArray["paging"];
 
-        const myArray = Object.values(myTempArray);
+        return Object.values(myArray);
+      }
+    })
+    .catch((error) => {
+      message.error(error.toString(), 7);
+      return [];
+    });
+}
+
+//  ######  #     # ####### ######        # #######  #####  #######
+//  #     # #     # #     # #     #       # #       #     #    #
+//  #     # #     # #     # #     #       # #       #          #
+//  #     # #     # #     # ######        # #####   #          #
+//  #     #  #   #  #     # #     # #     # #       #          #
+//  #     #   # #   #     # #     # #     # #       #     #    #
+//  ######     #    ####### ######   #####  #######  #####     #
+export function loadDVObject(props) {
+  const myParams = {
+    request: {
+      username: "d14BuUMTjSRnLbrFXDOXM80fNfa2", //Moto Guest
+      password: "89",
+      command: "PL_MDVIEW_004",
+      parameters: {
+        systemmetagroupid: props ? props.systemmetagroupid : "",
+        ignorepermission: "1",
+        showQuery: "0",
+        criteria: {
+          ...props.criteria,
+        },
+        paging: {
+          ...props.paging,
+        },
+      },
+    },
+  };
+
+  return myAxiosZ(myParams)
+    .then((myResponse) => {
+      const myData = myResponse.response;
+
+      if (myData.status === "error") {
+        message.error(myData.text.toString(), 7);
+        return {};
+      } else {
+        const myArray = myData.result || {};
         return myArray;
       }
     })
     .catch((error) => {
       message.error(error.toString(), 7);
-      return [];
-    });
-}
-
-export function loadDVObject(props) {
-  const myParams = myInitParamsDataview;
-  myParams.request.parameters.systemmetagroupid = props
-    ? props.systemmetagroupid
-    : "";
-  myParams.request.parameters.criteria = props ? props.criteria : {};
-  myParams.request.parameters.paging = props ? props.paging : {};
-  return axios
-    .post("", myParams)
-    .then((response) => {
-      // console.log("Цаанаас юу ирэв?", response);
-      // console.log("Цаанаас юу ирэв? dfgsdfsdf", response.data.response.result);
-      // console.log(
-      //   "Цаанаас юу ирэв? dfgsdfsdf",
-      //   response.data.response.result.paging
-      // );
-
-      if (response.data.response.status === "error") {
-        message.error(response.data.response.text.toString(), 7);
-        return [];
-      } else {
-        const myTempArray = response.data.response.result;
-        // delete myTempArray["aggregatecolumns"];
-        // delete myTempArray["paging"];
-        // const myArray = Object.values(myTempArray);
-        return myTempArray;
-      }
-    })
-    .catch((error) => {
-      message.error(error.toString(), 7);
-      return [];
+      return {};
     });
 }

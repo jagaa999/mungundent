@@ -24,7 +24,6 @@ import ProductContext from "../../../context/ProductContext";
 import FilterContext from "../../../context/FilterContext";
 import CarcatalogContext from "../../../context/CarcatalogContext";
 import KpiFilter from "./KpiFilter";
-import CarcatalogFilter from "./CarcatalogFilter";
 
 const { Search } = Input;
 const { Option } = Select;

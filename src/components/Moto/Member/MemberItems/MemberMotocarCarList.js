@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Checkbox, List, Tooltip, Image as ImageAnt, Typography } from "antd";
+import MyIcon from "util/iconFunction";
 import MemberItemsContext from "context/MemberItemsContext";
 import FilterContext from "context/FilterContext";
 
@@ -19,13 +20,25 @@ const MemberMotocarCarList = () => {
       renderItem={(item) => (
         <List.Item
           actions={[
-            <Tooltip title="Default машинаар сонгох">
+            <Tooltip title="Үндсэн машинаар сонгох">
               <Checkbox
                 checked={item.isdefault || false}
                 onClick={(e) => {
                   memberItemsContext.chooseDefaultMotocar({
                     ...item,
                     isdefault: e.target.checked,
+                  });
+                }}
+              />
+            </Tooltip>,
+            <Tooltip title="Гараашаас устгах">
+              <MyIcon
+                type="icontrash-alt-solid"
+                className="moto-icon-1-3"
+                onClick={(e) => {
+                  memberItemsContext.removeMotocar({
+                    ...item,
+                    id: item.mainData.id,
                   });
                 }}
               />

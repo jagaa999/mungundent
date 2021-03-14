@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { Avatar, List, Tooltip, Image as ImageAnt, Typography } from "antd";
-import { ClearOutlined, DeleteOutlined } from "@ant-design/icons";
+import { List, Tooltip, Image as ImageAnt, Typography } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import MemberItemsContext from "context/MemberItemsContext";
 import moment from "moment";
 import "moment/locale/mn";

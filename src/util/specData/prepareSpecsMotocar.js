@@ -71,14 +71,13 @@ export const prepareMotocarDetailSettings = {
   },
 };
 
-//  ####### ####### #     # ######
-//     #    #       ##   ## #     #
-//     #    #       # # # # #     #
-//     #    #####   #  #  # ######
-//     #    #       #     # #
-//     #    #       #     # #
-//     #    ####### #     # #
-
+//  #     #    #    ### #     # ######     #    #######    #
+//  ##   ##   # #    #  ##    # #     #   # #      #      # #
+//  # # # #  #   #   #  # #   # #     #  #   #     #     #   #
+//  #  #  # #     #  #  #  #  # #     # #     #    #    #     #
+//  #     # #######  #  #   # # #     # #######    #    #######
+//  #     # #     #  #  #    ## #     # #     #    #    #     #
+//  #     # #     # ### #     # ######  #     #    #    #     #
 const tempMainData = (item, menu) => {
   return {
     id: item.id,
@@ -124,6 +123,12 @@ const tempMainData = (item, menu) => {
   };
 };
 
+//  #    # ######   ##   #####  ###### #####
+//  #    # #       #  #  #    # #      #    #
+//  ###### #####  #    # #    # #####  #    #
+//  #    # #      ###### #    # #      #####
+//  #    # #      #    # #    # #      #   #
+//  #    # ###### #    # #####  ###### #    #
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
     {
@@ -171,6 +176,12 @@ const tempOwnerData = (item, menu, mainData) => {
   };
 };
 
+//  #####   ##   #####  #      ######
+//    #    #  #  #    # #      #
+//    #   #    # #####  #      #####
+//    #   ###### #    # #      #
+//    #   #    # #    # #      #
+//    #   #    # #####  ###### ######
 const tempTableColumns = (item, menu, mainData) => {
   return [
     // {
@@ -203,6 +214,12 @@ const tempCompareButtonData = (item, menu, mainData) => {
   };
 };
 
+//  #####  #    # ##### #####  ####  #    #  ####
+//  #    # #    #   #     #   #    # ##   # #
+//  #####  #    #   #     #   #    # # #  #  ####
+//  #    # #    #   #     #   #    # #  # #      #
+//  #    # #    #   #     #   #    # #   ## #    #
+//  #####   ####    #     #    ####  #    #  ####
 const tempLoveButtonData = (item, menu, mainData) => {
   return {
     id: "",
@@ -281,6 +298,12 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
   ];
 };
 
+//   ####   ####  #####  #####  ######  ####  #####
+//  #    # #    # #    # #    # #      #    #   #
+//  #      #    # #    # #    # #####  #        #
+//  #      #    # #####  #####  #      #        #
+//  #    # #    # #   #  #   #  #      #    #   #
+//   ####   ####  #    # #    # ######  ####    #
 const correctFields = (myItem) => {
   //All specs
   // myItem.createddate = moment(myItem.createddate);
@@ -399,53 +422,6 @@ export const prepareMotocarDetail = (myItem, menu = "", myContext) => {
 
   return myItem;
 };
-
-// body: "";
-// booktypeid: "";
-// companyid: "";
-// contentid: "";
-// createddate: "";
-// creatorid: "1493006644797290";
-// creatorname: "Moto админ";
-// creatorphoto: "https://lh5.googleusoto.jpg";
-// creatorpositionname: "Гишүүн";
-// description: "Zoom тэсрэлт хийсэн.";
-// dim1: "";
-// dim2: "";
-// imagemain: "http://res.cloudykyjwj51up1azp.jpg";
-// imageotherFileList: false;
-// isactive: true;
-// iscomment: true;
-// isfacebook: "";
-// isfeatured: false;
-// istwitter: "";
-// modifiedby: "1605592513980";
-// modifieddate: "";
-// modifiername: "";
-// modifierphoto: "";
-// modifierpositionname: "";
-// newsid: "16102815112941";
-// newssourcefacebook: "https://www.facebook.com/gogo.mn/";
-// newssourceid: "1508638385019";
-// newssourcelogo: "storage/uploa208931.jpg";
-// newssourcename: "GoGo Мэдээ";
-// newssourcetype: "Вэб сайт";
-// newssourcewebsite: "http://gogo.mn/";
-// newssourceyoutube: "";
-// newstypeid: "201";
-// newstypename: "Мэдлэг Зөвлөгөө";
-// publisheddate: "2021-01-15 09:54:16";
-// publisherid: "1605592513980";
-// publishername: "";
-// publisherphoto: "";
-// publisherpositionname: "";
-// title: "2021 оны";
-// userfirebaseuid: "7wIotzm1GsaaMCnM4SSbBJkydBu1";
-// userfullename: "Aldar Ulzii";
-// username: "7wIotzm1GsaaMCnM4SSbBJkydBu1";
-// userpersonid: "1605592513978";
-// userprofilephoto: "https://lh3.googleuSv9WFV=s96-c";
-// userpublisherid: "1605592513980";
 
 //   #####  ####### #     # ####### ####### #     # #######
 //  #     # #     # ##    #    #    #        #   #     #

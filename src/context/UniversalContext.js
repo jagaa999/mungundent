@@ -14,48 +14,12 @@ export const UniversalStore = (props) => {
   const memberContext = useContext(MemberContext);
   const filterContext = useContext(FilterContext);
 
-  //### #     # ### #######
-  // #  ##    #  #     #
-  // #  # #   #  #     #
-  // #  #  #  #  #     #
-  // #  #   # #  #     #
-  // #  #    ##  #     #
-  //### #     # ###    #
-
-  // let initialUniversalList = {
-  //   loadParams: {
-  //     ...filterContext.urlSetting.contextSetting.myContextListSetting.loadParams,
-  //     paging: {
-  //       ...filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging,
-  //       pagesize:
-  //         filterContext.urlSetting.paging?.pagesize ||
-  //         filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging
-  //           .pagesize ||
-  //         "24",
-  //       offset:
-  //         filterContext.urlSetting.paging?.offset ||
-  //         filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging
-  //           .offset ||
-  //         "1",
-  //       sortcolumnnames: {
-  //         [filterContext.urlSetting.sorting.sortcolumnnames ||
-  //         filterContext.urlSetting.contextSetting.myContextListSetting.loadParams.paging
-  //           .sortcolumnname ||
-  //         "id"]: {
-  //           sorttype:
-  //             filterContext.urlSetting.sorting?.sorttype ||
-  //             filterContext.urlSetting.contextSetting.myContextListSetting.loadParams
-  //               .paging.sorttypename ||
-  //             "DESC",
-  //         },
-  //       },
-  //     },
-  //   },
-  //   mainList: [],
-  //   loading: false,
-  //   error: null,
-  //   isFilterDrawerOpen: false,
-  // };
+  //  # #    # # #####
+  //  # ##   # #   #
+  //  # # #  # #   #
+  //  # #  # # #   #
+  //  # #   ## #   #
+  //  # #    # #   #
   let initialUniversalList = {
     loadParams:
       filterContext.urlSetting.contextSetting.myContextListSetting.loadParams,

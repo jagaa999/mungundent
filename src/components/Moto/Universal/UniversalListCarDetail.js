@@ -12,19 +12,22 @@ import {
   Switch,
 } from "antd";
 import { isEmpty } from "lodash";
+import MemberItemsContext from "context/MemberItemsContext";
 import CarcatalogContext from "context/CarcatalogContext";
-import { GetSpecData } from "util/getSpecData";
-import { moment } from "moment";
 
 const UniversalListCarDetail = (props) => {
+  const memberItemsContext = useContext(MemberItemsContext);
   const carCatalogContext = useContext(CarcatalogContext);
 
   const MyDetail = carCatalogContext.CarDetailPopover;
   const carDrawer = carCatalogContext.carDrawer;
-  const carDetail = carCatalogContext.carDetail.carDetail;
-  const mainData = carCatalogContext.carDetail.carDetail.mainData;
-  const specList1 = carCatalogContext.carDetail.carDetail.specList1;
+  // const carDetail = carCatalogContext.carDetail.carDetail;
+  const carDetail = memberItemsContext.motocar.defaultCar;
+  const mainData = carDetail.mainData;
+  const specList1 = carDetail.specList1;
   if (isEmpty(mainData)) return null;
+
+  console.log("carDetail", carDetail);
 
   return (
     <div
@@ -35,7 +38,7 @@ const UniversalListCarDetail = (props) => {
         className="gx-mr-3 gx-d-flex "
         style={{ flexDirection: "column", justifyContent: "flex-end" }}
       >
-        <div className="gx-mb-2 gx-ml-auto">Таны машин</div>
+        <div className="gx-mb-2 gx-ml-auto">Таны гарааш дахь машин</div>
         <div className="">
           <span className="gx-fs-xs gx-mr-2">Зөвхөн энэ машин!</span>
           <Switch
@@ -47,12 +50,12 @@ const UniversalListCarDetail = (props) => {
       </div>
       <Card
         className={`gx-card-full gx-dot-arrow-hover gx-m-0`}
-        style={{ maxWidth: "290px" }}
+        style={{ width: "300px" }}
       >
         <div className="gx-user-wid-row" style={{ height: "80px" }}>
           <div
             className="gx-user-wid gx-mr-3"
-            style={{ width: "40%", height: "100%" }}
+            style={{ width: "110px", height: "100%" }}
           >
             <img
               alt={mainData.title.value}
@@ -74,17 +77,19 @@ const UniversalListCarDetail = (props) => {
               </Typography.Paragraph>
             </div>
             <div className="gx-mb-1 gx-text-grey gx-fs-sm">
-              {/* {mainData.mainnumber.value} */}
-              <Space split="•">
+              {/* <Space split="•"> */}
+              <div>
                 <Typography.Text>{mainData.mainnumber.value}</Typography.Text>
-                {/* {carDetail.headerSpec.map((item, index) => {
-                  if (isEmpty(item.value || "")) return null;
-                  const myItem = GetSpecData(item.field, "carcatalog");
-                  return (
+              </div>
+              {carDetail.headerSpec.map((item, index) => {
+                if (isEmpty(item.value || "")) return null;
+                return (
+                  <div>
                     <Typography.Text key={index}>{item.value}</Typography.Text>
-                  );
-                })} */}
-              </Space>
+                  </div>
+                );
+              })}
+              {/* </Space> */}
             </div>
             <div className="gx-fs-xs">
               {/* tire2frontfull

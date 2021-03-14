@@ -13,7 +13,7 @@ import CustomScrollbars from "../../../util/CustomScrollbars";
 import UniversalFilter from "./UniversalFilter";
 import UniversalContext from "context/UniversalContext";
 
-const UniversalFilterDrawer = () => {
+const UniversalFilterDrawer = ({ myUniversalFilterSetting }) => {
   const universalContext = useContext(UniversalContext);
 
   return (
@@ -42,7 +42,9 @@ const UniversalFilterDrawer = () => {
         }
       >
         <CustomScrollbars className="gx-p-1">
-          <UniversalFilter />
+          <UniversalFilter
+            myUniversalFilterSetting={myUniversalFilterSetting}
+          />
         </CustomScrollbars>
       </Drawer>
 

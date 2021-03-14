@@ -19,6 +19,8 @@ const UniversalFilter = ({ myUniversalFilterSetting }) => {
 
   if (myUniversalFilterSetting === null) return null;
 
+  console.log("myUniversalFilterSetting", myUniversalFilterSetting);
+
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "99%" }}>
       <h6 className="gx-mb-3 gx-text-uppercase gx-text-orange">Шүүлтүүр</h6>

@@ -15,6 +15,7 @@ import { LoadProcess } from "util/axiosFunction";
 import { formCompactLayout } from "util/config";
 import moment from "moment";
 import "moment/locale/mn";
+import { isEmpty } from "lodash";
 
 const { Option } = Select;
 
@@ -35,6 +36,8 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
           parameters: {
             mgllicensenumberfull: myLicenseNumber,
           },
+          successMessage: "Олдлоо!",
+          errorMessage: "Олдсонгүй!",
         }),
         loading: false,
       });
@@ -58,7 +61,8 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
   };
 
   useEffect(() => {
-    if (Object.keys(mglCar.mglCar).length !== 0) {
+    // if (Object.keys(mglCar.mglCar).length !== 0) {
+    if (!isEmpty(mglCar.mglCar)) {
       message.success("Машин олдлоо", 7);
       console.log("mglCar", mglCar);
 
@@ -85,6 +89,7 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
   // console.log("MGLFITMLIST", mglFirmList);
   // console.log("MGLMARKLIST", mglMarkList);
   // console.log("carbodyList", carBodyList);
+  // console.log("CCCCCCC", mglCar);
 
   // ######  ####### ####### #     # ######  #     #
   // #     # #          #    #     # #     # ##    #
@@ -112,9 +117,7 @@ const AutozarForm1General = ({ form, mglFuelList }) => {
           </span>
         }
         hasFeedback
-        validateStatus={
-          Object.keys(mglCar.mglCar).length !== 0 ? "success" : ""
-        }
+        validateStatus={!isEmpty(mglCar.mglCar) ? "success" : ""}
       >
         <Input
           size="large"
