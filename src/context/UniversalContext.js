@@ -44,20 +44,6 @@ export const UniversalStore = (props) => {
   );
 
   useEffect(() => {
-    // initialUniversalList = {
-    //   loadParams: {},
-    //   mainList: [],
-    //   loading: false,
-    //   error: null,
-    //   isFilterDrawerOpen: false,
-    // };
-
-    // myMenuType = "Insert";
-    // myMenuType = "Edit";
-    // myMenuType = "Detail";
-    // myMenuType = "List";
-    console.log("ЭНД ОРЖ БАЙГАА БИЗ ДЭЭ", filterContext.urlSetting);
-
     switch (filterContext.urlSetting.menuType) {
       // case "Insert":
       //   clearProductDetail();

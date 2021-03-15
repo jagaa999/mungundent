@@ -418,7 +418,7 @@ export const preparePartenginecategoryContextSettings = {
       paging: {
         pagesize: "24", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "nodeid",
+        sortcolumnnames: "nodeid",
         sorttypename: "ASC",
       },
     },

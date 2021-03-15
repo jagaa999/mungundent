@@ -42,6 +42,9 @@ const UniversalListType1 = ({
     setSider({ collapsed });
   };
 
+  console.log("DDDDDDDDDDDDDDD", MyFilter);
+  console.log("БББББЫЫЫЫЫЫЫЫЫ", myUniversalFilterSetting);
+
   return (
     <>
       <UniversalListActionHeader
@@ -51,21 +54,24 @@ const UniversalListType1 = ({
       />
 
       <Layout>
-        {MyFilter && myUniversalFilterSetting && isBrowser && (
+        {/* {MyFilter !== null && myUniversalFilterSetting !== null && isBrowser && ( */}
+        {isBrowser && (
           <Sider
             className="moto-layout-sider gx-mr-lg-4"
             breakpoint="md"
             collapsedWidth="0"
             onBreakpoint={(broken) => {
-              console.log(broken);
+              // console.log(broken);
             }}
             onCollapse={(collapsed, type) => {
-              console.log(collapsed, type);
+              // console.log(collapsed, type);
             }}
           >
-            {MyFilter && (
+            {/* {MyFilter && (
               <MyFilter myUniversalFilterSetting={myUniversalFilterSetting} />
-            )}
+            )} */}
+            {/* Product дээр гарахгүй байгаа тул энийг түр авлаа. */}
+            <MyFilter myUniversalFilterSetting={myUniversalFilterSetting} />
           </Sider>
         )}
         <Layout>

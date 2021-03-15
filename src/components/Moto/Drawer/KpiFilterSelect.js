@@ -33,7 +33,7 @@ const KpiFilterSelect = ({ kpiFilterItem }) => {
 
   useEffect(() => {
     const carKpi = checkKpiCar(carDrawer, carDetail, kpiFilterItem);
-    console.log("SCroll carKpi", carKpi);
+    console.log("Scroll carKpi", carKpi);
     if (carKpi !== null) setSelected(carKpi);
   }, [carDrawer.onlyThisCar]);
 

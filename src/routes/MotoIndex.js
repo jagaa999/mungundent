@@ -337,10 +337,13 @@ const App = ({ match }) => {
             <NewsDetailPage />
           </NewsStore>
         </Route>
-        <Route path={["/news", "/newslist"]}>
-          <NewsStore>
+        <Route path={["/news"]}>
+          {/* <NewsStore>
             <NewsList />
-          </NewsStore>
+          </NewsStore> */}
+          <UniversalStore>
+            <UniversalListPage />
+          </UniversalStore>
         </Route>
         {/* 
       #     # ####### #     # ######  ####### ######  

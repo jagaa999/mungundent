@@ -7,6 +7,9 @@ import accounting from "accounting";
 import moment from "moment";
 import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionStarRatingComponent";
 import MyIcon from "util/iconFunction";
+import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSearch";
+import FilterCheckbox from "components/Moto/Drawer/FilterWidget/FilterCheckbox";
+import FilterRadioButton2 from "components/Moto/Drawer/FilterWidget/FilterRadioButton2";
 
 //   #####  ####### ####### ####### ### #     #  #####
 //  #     # #          #       #     #  ##    # #
@@ -36,7 +39,6 @@ export const prepareNewsListSettings = {
     property: [
       { property: "fb:app_id", content: "186294318100220" },
       { property: "og:type", content: "article" },
-      // {property: "og:url", content: {window.location.href}},
       { property: "og:title", content: "Нийтлэл, мэдээ" },
       { property: "og:description", content: "Авто ертөнцийн сонин сайхнаас" },
       { property: "og:image", content: "" },
@@ -125,6 +127,12 @@ const tempMainData = (item, menu) => {
   };
 };
 
+//  #    # ######   ##   #####  ###### #####
+//  #    # #       #  #  #    # #      #    #
+//  ###### #####  #    # #    # #####  #    #
+//  #    # #      ###### #    # #      #####
+//  #    # #      #    # #    # #      #   #
+//  #    # ###### #    # #####  ###### #    #
 const tempHeaderSpec = (item, menu, mainData) => {
   return [
     {
@@ -155,6 +163,12 @@ const tempOwnerData = (item, menu, mainData) => {
   };
 };
 
+//  #####   ##   #####  #      ######
+//    #    #  #  #    # #      #
+//    #   #    # #####  #      #####
+//    #   ###### #    # #      #
+//    #   #    # #    # #      #
+//    #   #    # #####  ###### ######
 const tempTableColumns = (item, menu, mainData) => {
   return [
     // {
@@ -201,6 +215,12 @@ const tempCompareButtonData = (item, menu, mainData) => {
   };
 };
 
+//  #####  #    # ##### #####  ####  #    #  ####
+//  #    # #    #   #     #   #    # ##   # #
+//  #####  #    #   #     #   #    # # #  #  ####
+//  #    # #    #   #     #   #    # #  # #      #
+//  #    # #    #   #     #   #    # #   ## #    #
+//  #####   ####    #     #    ####  #    #  ####
 const tempLoveButtonData = (item, menu, mainData) => {
   return {
     id: "",
@@ -281,6 +301,50 @@ const tempOwnerButtons = (item, menu, mainData, myContext) => {
   ];
 };
 
+//   ####   ####  #####  #####  ######  ####  #####
+//  #    # #    # #    # #    # #      #    #   #
+//  #      #    # #    # #    # #####  #        #
+//  #      #    # #####  #####  #      #        #
+//  #    # #    # #   #  #   #  #      #    #   #
+//   ####   ####  #    # #    # ######  ####    #
+const correctFields = (myItem) => {
+  //All specs
+  myItem.createddate = moment(myItem.createddate);
+  myItem.modifieddate = moment(myItem.modifieddate);
+  myItem.isactive = toBoolean(myItem.isactive);
+  myItem.iscomment = toBoolean(myItem.iscomment);
+  myItem.isfeatured = toBoolean(myItem.isfeatured);
+
+  myItem.imagemainFileList = [];
+  myItem.imagemainFileList =
+    myItem.imagemain !== undefined &&
+    (myItem.imagemain !== ""
+      ? [
+          {
+            uid: "-1",
+            name: "Тодорхойгүй",
+            status: "done",
+            url: myItem.imagemain || "",
+            thumbUrl: myItem.imagemain || "",
+            response: { url: myItem.imagemain || "" },
+          },
+        ]
+      : []);
+  myItem.imageotherFileList = [];
+  myItem.imageotherFileList =
+    myItem.imageother !== undefined &&
+    (myItem.imageother !== ""
+      ? JSON.parse(myItem.imageother).map((item, index) => ({
+          uid: index - 1,
+          name: item.replace(/^.*[\\\/]/, ""),
+          status: "done",
+          url: item || "",
+          thumbUrl: item || "",
+          response: { url: item || "" },
+        }))
+      : []);
+};
+
 //  #       ###  #####  #######
 //  #        #  #     #    #
 //  #        #  #          #
@@ -302,6 +366,8 @@ export const prepareNewsList = (myArray, menu = "", myContext) => {
     const compareButtonData = tempCompareButtonData(item, menu, mainData);
     const tableColumns = tempTableColumns(item, menu, mainData);
     const ownerButtons = tempOwnerButtons(item, menu, mainData, myContext);
+
+    correctFields(item);
 
     myList[index].mainData = mainData;
     myList[index].headerSpec = headerSpec;
@@ -340,41 +406,7 @@ export const prepareNewsDetail = (myItem, menu = "", myContext) => {
   const tableColumns = tempTableColumns(myItem, menu, mainData);
   const ownerButtons = tempOwnerButtons(myItem, menu, mainData, myContext);
 
-  //All specs
-  myItem.createddate = moment(myItem.createddate);
-  myItem.modifieddate = moment(myItem.modifieddate);
-  myItem.isactive = toBoolean(myItem.isactive);
-  myItem.iscomment = toBoolean(myItem.iscomment);
-  myItem.isfeatured = toBoolean(myItem.isfeatured);
-
-  myItem.imagemainFileList = [];
-  myItem.imagemainFileList =
-    myItem.imagemain !== undefined &&
-    (myItem.imagemain !== ""
-      ? [
-          {
-            uid: "-1",
-            name: "Тодорхойгүй",
-            status: "done",
-            url: myItem.imagemain || "",
-            thumbUrl: myItem.imagemain || "",
-            response: { url: myItem.imagemain || "" },
-          },
-        ]
-      : []);
-  myItem.imageotherFileList = [];
-  myItem.imageotherFileList =
-    myItem.imageother !== undefined &&
-    (myItem.imageother !== ""
-      ? JSON.parse(myItem.imageother).map((item, index) => ({
-          uid: index - 1,
-          name: item.replace(/^.*[\\\/]/, ""),
-          status: "done",
-          url: item || "",
-          thumbUrl: item || "",
-          response: { url: item || "" },
-        }))
-      : []);
+  correctFields(myItem);
 
   myItem.mainData = mainData;
   myItem.headerSpec = headerSpec;
@@ -439,3 +471,88 @@ export const prepareNewsDetail = (myItem, menu = "", myContext) => {
 // userpersonid: "1605592513978";
 // userprofilephoto: "https://lh3.googleuSv9WFV=s96-c";
 // userpublisherid: "1605592513980";
+
+//   #####  ####### #     # ####### ####### #     # #######
+//  #     # #     # ##    #    #    #        #   #     #
+//  #       #     # # #   #    #    #         # #      #
+//  #       #     # #  #  #    #    #####      #       #
+//  #       #     # #   # #    #    #         # #      #
+//  #     # #     # #    ##    #    #        #   #     #
+//   #####  ####### #     #    #    ####### #     #    #
+export const prepareNewsContextSettings = {
+  listSetting: {
+    loadParams: {
+      systemmetagroupid: "1587197820548033", //News List
+      showquery: "0",
+      ignorepermission: "1",
+      paging: {
+        pagesize: "12", //нийтлэлийн тоо
+        offset: "1", //хуудасны дугаар
+        sortcolumnnames: "modifieddate",
+        sorttypename: "DESC",
+      },
+    },
+    urlIdField: "",
+  },
+  detailSetting: {
+    loadParams: {
+      systemmetagroupid: "", //News Detail байх ёстой
+      showquery: "0",
+      ignorepermission: "1",
+      paging: {
+        pagesize: "1",
+        offset: "1",
+      },
+    },
+  },
+};
+
+//  ####### ### #       ####### ####### ######
+//  #        #  #          #    #       #     #
+//  #        #  #          #    #       #     #
+//  #####    #  #          #    #####   ######
+//  #        #  #          #    #       #   #
+//  #        #  #          #    #       #    #
+//  #       ### #######    #    ####### #     #
+export const prepareNewsFilterSettings = {
+  mainSetting: {},
+  widgets: [
+    <FilterTextSearch
+      title="Нэрээр хайх"
+      placeholder="Текстээ бичнэ үү"
+      urlparamfield="title"
+    />,
+    <FilterCheckbox
+      metaListId="1587100905303413"
+      title="Төрөл"
+      placeholder="Нийтлэлийн төрөл"
+      urlparamfield="newstypeid"
+      labelfield="newstypename"
+      valuefield="newstypeid"
+    />,
+    <FilterRadioButton2
+      metaListId="1587100905303413"
+      title="Төрөл"
+      placeholder="Нийтлэлийн төрөл"
+      urlparamfield="newstypeid"
+      labelfield="newstypename"
+      valuefield="newstypeid"
+    />,
+    <FilterCheckbox
+      metaListId="1585046479054"
+      title="Эх сурвалж"
+      placeholder="Нийтлэлийн эх сурвалж"
+      urlparamfield="newssourceid"
+      labelfield="newssourcename"
+      valuefield="newssourceid"
+    />,
+    <FilterCheckbox
+      metaListId="1585046481242"
+      title="Нийтлэгч"
+      placeholder="Нийтлэгч хүмүүс"
+      urlparamfield="publisherid"
+      labelfield="publishername"
+      valuefield="publisherid"
+    />,
+  ],
+};

@@ -22,11 +22,20 @@ const UniversalListItemMainImage = ({
     myCloudName = "motomn";
   }
 
+  // moto-img-pngshadow
+  // const ddd = opacityRatio(imageMain);
+  // console.log("DDDDDDDDDD", ddd);
+
+  const imgExt = imageMain
+    .substring(imageMain.lastIndexOf(".") + 1)
+    .toLowerCase();
+  const myAdditionClass = `moto-img-${imgExt}`;
+
   return (
     <>
       {myImageMain.indexOf("cloudinary") !== -1 ? (
         <ImageCloudinary
-          className={myClass}
+          className={`${myClass} ${myAdditionClass}`}
           cloudName={myCloudName}
           publicId={myImageMain
             .slice(myImageMain.indexOf("upload/") + 7, myImageMain.length)
@@ -45,13 +54,14 @@ const UniversalListItemMainImage = ({
           alt={myImageMain}
           onError={defaultSrc}
           style={style}
+          onLoad={function noRefCheck() {}}
         />
       ) : (
         <img
           src={myImageMain}
           width={`${width}px`}
           height={height}
-          className={myClass}
+          className={`${myClass} ${myAdditionClass}`}
           alt={myImageMain}
           style={style}
         />

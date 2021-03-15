@@ -454,7 +454,7 @@ export const preparePartengineContextSettings = {
       paging: {
         pagesize: "24", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "id",
+        sortcolumnnames: "id",
         sorttypename: "DESC",
         // pagesize: urlSetting.paging?.pagesize || "24", //нийтлэлийн тоо
         // offset: urlSetting.paging?.offset || "1", //хуудасны дугаар

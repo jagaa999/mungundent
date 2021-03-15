@@ -52,7 +52,8 @@ const UniversalListType3 = ({
         myIsFilterDrawerOpen={myListContextList.isFilterDrawerOpen}
       />
       <Layout>
-        {MyFilter && myUniversalFilterSetting && isBrowser && (
+        {/* {MyFilter && myUniversalFilterSetting && isBrowser && ( */}
+        {isBrowser && (
           <Sider
             className="moto-layout-sider gx-mr-lg-4"
             breakpoint="md"
@@ -64,9 +65,7 @@ const UniversalListType3 = ({
               console.log(collapsed, type);
             }}
           >
-            {MyFilter && (
-              <MyFilter myUniversalFilterSetting={myUniversalFilterSetting} />
-            )}
+            <MyFilter myUniversalFilterSetting={myUniversalFilterSetting} />
           </Sider>
         )}
         <Layout>

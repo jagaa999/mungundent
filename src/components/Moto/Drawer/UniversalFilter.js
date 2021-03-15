@@ -19,7 +19,7 @@ const UniversalFilter = ({ myUniversalFilterSetting }) => {
 
   if (myUniversalFilterSetting === null) return null;
 
-  console.log("myUniversalFilterSetting", myUniversalFilterSetting);
+  // console.log("myUniversalFilterSetting", myUniversalFilterSetting);
 
   return (
     <div className="gx-p-3" style={{ height: "100%", width: "99%" }}>

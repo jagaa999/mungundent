@@ -8,7 +8,7 @@ const KpiFilterRadioButton2 = ({ kpiFilterItem }) => {
   const filterContext = useContext(FilterContext);
 
   const prepareURL2 = (arriveValue, parameterLabel) => {
-    const myValue = arriveValue !== myDefault ? arriveValue : null;
+    const myValue = arriveValue !== myDefault ? arriveValue : undefined;
     const baseEncodedValues = btoa(myValue || "");
     filterContext.updateParams({
       ["*" + parameterLabel]: baseEncodedValues,

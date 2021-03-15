@@ -439,7 +439,7 @@ export const prepareMotocarContextSettings = {
       paging: {
         pagesize: "12", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "id",
+        sortcolumnnames: "id",
         sorttypename: "DESC",
       },
     },

@@ -459,7 +459,7 @@ export const preparePartenginepartContextSettings = {
       paging: {
         pagesize: "24", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "datasupplierarticlenumber",
+        sortcolumnnames: "datasupplierarticlenumber",
         sorttypename: "ASC",
       },
     },

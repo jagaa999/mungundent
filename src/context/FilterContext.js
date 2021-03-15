@@ -60,6 +60,15 @@ import {
   prepareMotocarFilterSettings,
 } from "util/specData/prepareSpecsMotocar";
 
+import {
+  prepareNewsList,
+  prepareNewsDetail,
+  prepareNewsListSettings,
+  prepareNewsDetailSettings,
+  prepareNewsContextSettings,
+  prepareNewsFilterSettings,
+} from "util/specData/prepareSpecsNews";
+
 const FilterContext = React.createContext();
 
 export const FilterStore = (props) => {
@@ -80,7 +89,7 @@ export const FilterStore = (props) => {
       paging: {
         pagesize: "24", //нийтлэлийн тоо
         offset: "1", //хуудасны дугаар
-        sortcolumnname: "id",
+        sortcolumnnames: "id",
         sorttypename: "DESC",
       },
     },
@@ -140,63 +149,6 @@ export const FilterStore = (props) => {
   }, [pathname]);
 
   useEffect(() => {
-    let myFilterList = {};
-    let myPaging = { offset: "1", pagesize: "12" };
-    let mySorting = {};
-    let myCardtype = {
-      cardtype: localStorage.getItem(pathname + "cardtype") || "typelist",
-    };
-
-    Object.keys(searchParams).map((item) => {
-      if (item === "offset" || item === "pagesize") {
-        const myTempItem = {
-          [item]: searchParams[item],
-        };
-        myPaging = Object.assign(myPaging, myTempItem);
-      } else if (item === "sortcolumnnames" || item === "sorttype") {
-        const myTempItem = {
-          [item]: searchParams[item],
-        };
-        mySorting = Object.assign(mySorting, myTempItem);
-      } else if (item === "cardtype") {
-        const myTempItem = {
-          [item]: searchParams[item],
-        };
-        myCardtype = Object.assign(myCardtype, myTempItem);
-      } else {
-        const myTempItem = {
-          [item]: searchParams[item],
-        };
-        myFilterList = Object.assign(myFilterList, myTempItem);
-      }
-    });
-
-    //pathName-ээс хамаарч menuType-д тухайн цэсний төлөвийг өгнө.
-    //List, Detail, Form (Insert, Edit) гэсэн 3 гол төрөл бий.
-    let myMenuType = "List";
-    // "/news/edit/:newsId",
-    // "/news/:newsId/edit",
-    // "/news/insert",
-    // "/news/add",
-    // "/news/:newsId",
-    // "/news/:newsId/detail",
-    // "/news/detail/:newsId",
-    // "/newslist/:newsId",
-
-    if (pathname.indexOf("insert") !== -1 || pathname.indexOf("add") !== -1) {
-      myMenuType = "Insert";
-    } else if (pathname.indexOf("edit") !== -1) {
-      myMenuType = "Edit";
-    } else if (
-      !isEmpty(pathname.split("/")[2]) &&
-      pathname.split("/")[1] !== "partenginecategory" &&
-      pathname.split("/")[1] !== "partenginepart"
-    ) {
-      myMenuType = "Detail";
-    } else {
-      myMenuType = "List";
-    }
-
     const myMotoUrl = pathname.split("/");
     const myMenu = pathname.split("/")[1];
     const myUrlIdValue = pathname.split("/")[2] || "";
@@ -261,9 +213,78 @@ export const FilterStore = (props) => {
         myUniversalDetailSetting = prepareMotocarDetailSettings;
         myUniversalFilterSetting = prepareMotocarFilterSettings;
         break;
+      case "news":
+        myContextListSetting = prepareNewsContextSettings.listSetting;
+        myContextDetailSetting = prepareNewsContextSettings.detailSetting;
+        myPrepareListFunction = prepareNewsList;
+        myPrepareDetailFunction = prepareNewsDetail;
+        myUniversalListSetting = prepareNewsListSettings;
+        myUniversalDetailSetting = prepareNewsDetailSettings;
+        myUniversalFilterSetting = prepareNewsFilterSettings;
+        break;
 
       default:
         break;
+    }
+
+    let myFilterList = {};
+    let myPaging = { offset: "1", pagesize: "12" };
+    let mySorting = {
+      sortcolumnnames: myContextListSetting.loadParams.paging.sortcolumnnames,
+      sorttype: myContextListSetting.loadParams.paging.sorttypename,
+    };
+    let myCardtype = {
+      cardtype: localStorage.getItem(pathname + "cardtype") || "typelist",
+    };
+
+    Object.keys(searchParams).map((item) => {
+      if (item === "offset" || item === "pagesize") {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        myPaging = Object.assign(myPaging, myTempItem);
+      } else if (item === "sortcolumnnames" || item === "sorttype") {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        mySorting = Object.assign(mySorting, myTempItem);
+      } else if (item === "cardtype") {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        myCardtype = Object.assign(myCardtype, myTempItem);
+      } else {
+        const myTempItem = {
+          [item]: searchParams[item],
+        };
+        myFilterList = Object.assign(myFilterList, myTempItem);
+      }
+    });
+
+    //pathName-ээс хамаарч menuType-д тухайн цэсний төлөвийг өгнө.
+    //List, Detail, Form (Insert, Edit) гэсэн 3 гол төрөл бий.
+    let myMenuType = "List";
+    // "/news/edit/:newsId",
+    // "/news/:newsId/edit",
+    // "/news/insert",
+    // "/news/add",
+    // "/news/:newsId",
+    // "/news/:newsId/detail",
+    // "/news/detail/:newsId",
+    // "/newslist/:newsId",
+
+    if (pathname.indexOf("insert") !== -1 || pathname.indexOf("add") !== -1) {
+      myMenuType = "Insert";
+    } else if (pathname.indexOf("edit") !== -1) {
+      myMenuType = "Edit";
+    } else if (
+      !isEmpty(pathname.split("/")[2]) &&
+      pathname.split("/")[1] !== "partenginecategory" &&
+      pathname.split("/")[1] !== "partenginepart"
+    ) {
+      myMenuType = "Detail";
+    } else {
+      myMenuType = "List";
     }
 
     if (!isEmpty(myContextListSetting.urlIdField)) {

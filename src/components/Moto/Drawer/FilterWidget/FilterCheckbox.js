@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { Select } from "antd";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
+import { FilterTitle } from "util/textFunction";
 import FilterContext from "context/FilterContext";
 
 const FilterCheckbox = ({
@@ -37,15 +38,16 @@ const FilterCheckbox = ({
   return (
     <>
       {/* <h6 className="gx-text-uppercase gx-text-orange gx-mt-4">{title}</h6> */}
-      <div
+      {/* <div
         className="gx-mt-4 gx-mb-2 gx-fs-sm"
         style={{ color: "rgb(173, 182, 199)" }}
       >
         {title}
-      </div>
+      </div> */}
+      <FilterTitle title={title} className="gx-mt-4" />
 
       <Select
-        className="moto-select-firm gx-w-100 gx-my-2"
+        className="moto-select-firm gx-w-100 gx-my-2 gx-fs-sm"
         loading={myData.loading}
         showSearch
         allowClear
@@ -61,7 +63,7 @@ const FilterCheckbox = ({
             return false;
           }
         }}
-        defaultValue={
+        value={
           filterContext.urlSetting.filterList?.[urlparamfield] || undefined
         }
       >
