@@ -42,9 +42,6 @@ const UniversalListType1 = ({
     setSider({ collapsed });
   };
 
-  console.log("DDDDDDDDDDDDDDD", MyFilter);
-  console.log("БББББЫЫЫЫЫЫЫЫЫ", myUniversalFilterSetting);
-
   return (
     <>
       <UniversalListActionHeader

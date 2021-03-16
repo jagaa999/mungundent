@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import myAxiosZ from "util/myAxiosZ";
-import { message } from "antd";
+import { message, Modal } from "antd";
 import { isEmpty } from "lodash";
 
 //  ######  ######  #######  #####  #######  #####   #####
@@ -48,7 +48,9 @@ export function LoadProcess(props) {
     });
 }
 
-export const LoadProcessAdvanced2 = (props) => {
+const letRunLoadProcessAdvanced2 = (props) => {
+  console.log("ЦААШАА АЖИЛЛАЖ байна");
+
   const myParams = {
     request: {
       ...props.request,
@@ -59,24 +61,57 @@ export const LoadProcessAdvanced2 = (props) => {
 
   myAxiosZ(myParams)
     .then((myData) => {
+      console.log("Axios ажилласан");
+
       const myDetail = myData.response || {};
       if (myDetail.status === "error") {
         message.error(myDetail.text.toString(), 7);
       } else {
         props.successActions.map((item, index) => {
-          return item;
+          console.log("successActions ажилласан", item);
+          return item.action();
         });
 
         return isEmpty(myDetail.result) ? {} : myDetail.result;
       }
     })
     .catch((error) => {
+      console.log("Axios алдаа өгсөн");
+
       if (props.errorMessage !== "none") {
         message.error(props.errorMessage || error.toString, 7);
       }
       console.log(error);
       return {};
     });
+};
+
+export const LoadProcessAdvanced2 = (props) => {
+  const { preConfirmModal } = props;
+
+  if (!isEmpty(preConfirmModal)) {
+    console.log("preConfirmModal байгаа");
+    Modal.confirm({
+      ...preConfirmModal,
+      onOk() {
+        console.log("OK даржээ");
+        letRunLoadProcessAdvanced2(props);
+
+        // return new Promise((resolve, reject) => {
+        //   // setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        //   console.log("OK даржээ");
+        //   letRunLoadProcessAdvanced2(props);
+        // }).catch(() => console.log("Oops errors!"));
+      },
+      onCancel() {
+        console.log("Cancel даржээ");
+        // return null;
+      },
+    });
+  } else {
+    console.log("preConfirmModal байхгүй");
+    letRunLoadProcessAdvanced2(props);
+  }
 };
 
 //  ######     #    #######    #    #     # ### ####### #     #

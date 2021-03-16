@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import myAxiosZ from "../util/myAxiosZ";
 import MemberContext from "context/MemberContext";
 import { message, Modal, Result, Button, notification } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import toBoolean from "util/booleanFunction";
 import Moment from "moment";
 import { ContextDevTool } from "react-context-devtool";
@@ -237,6 +238,8 @@ export const MemberItemsStore = (props) => {
   //  #     # #     #    #    #     # #     # #     # #    #
   //  #     # #######    #    #######  #####  #     # #     #
   const loadMotocar = () => {
+    console.log("loadMotocar ажиллаж байна");
+
     setMotocar({ ...motocar, loading: true });
     const myParams = {
       request: {
@@ -314,22 +317,27 @@ export const MemberItemsStore = (props) => {
         },
       },
       successActions: [
-        notification.open({
-          description: (
-            <Result
-              status="success"
-              title="Амжилттай нэмлээ."
-              subTitle="Таны эзэмшилд байдаг энэ машиныг таны гараашт дөнгөж сая нэмлээ."
-              extra={[
-                <Button type="primary" key="mygarage" disabled>
-                  Гараашаа үзэх
-                </Button>,
-              ]}
-            />
-          ),
-          placement: "topLeft",
-        }),
-        loadMotocar(),
+        {
+          action: () =>
+            notification.open({
+              description: (
+                <Result
+                  status="success"
+                  title="Амжилттай нэмлээ."
+                  subTitle="Таны эзэмшилд байдаг энэ машиныг таны гараашт дөнгөж сая нэмлээ."
+                  extra={[
+                    <Button type="primary" key="mygarage" disabled>
+                      Гараашаа үзэх
+                    </Button>,
+                  ]}
+                />
+              ),
+              placement: "topLeft",
+            }),
+        },
+        {
+          action: () => loadMotocar(),
+        },
       ],
     });
   };
@@ -349,9 +357,24 @@ export const MemberItemsStore = (props) => {
           id: values.id || "",
         },
       },
+      preConfirmModal: {
+        title: "Та энэ машиныг Гараашаасаа устгахдаа итгэлтэй байна уу?",
+        zIndex: 2500,
+        icon: <ExclamationCircleOutlined />,
+        content:
+          "Нэгэнт устгавал энэ машинтай холбоотой бүх мэдээлэл устах болно.",
+        okText: "Устгая",
+        okType: "danger",
+        cancelText: "Больё",
+      },
       successActions: [
-        message.warning("Таны эзэмшилд байсан машиныг гараашаас устгав."),
-        loadMotocar(),
+        {
+          action: () =>
+            message.warning("Таны эзэмшилд байсан машиныг гараашаас устгав."),
+        },
+        {
+          action: () => loadMotocar(),
+        },
       ],
     });
   };
