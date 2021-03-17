@@ -22,7 +22,7 @@ const FilterRadioButton2 = ({
     myList: [],
   });
 
-  console.log("D", myData);
+  // console.log("D", myData);
 
   //prepare criteria params
   let myCriteria = {};
@@ -62,7 +62,7 @@ const FilterRadioButton2 = ({
 
   useEffect(() => {
     callAllDataAsync();
-  }, []);
+  }, [filterContext.urlSetting.filterList]);
 
   const prepareURL2 = (arriveValue, parameterLabel) => {
     const myValue = arriveValue !== myDefault ? arriveValue : undefined;
