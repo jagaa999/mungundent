@@ -69,6 +69,15 @@ import {
   prepareNewsFilterSettings,
 } from "util/specData/prepareSpecsNews";
 
+import {
+  prepareAutozarList,
+  prepareAutozarDetail,
+  prepareAutozarListSettings,
+  prepareAutozarDetailSettings,
+  prepareAutozarContextSettings,
+  prepareAutozarFilterSettings,
+} from "util/specData/prepareSpecsAutozar";
+
 const FilterContext = React.createContext();
 
 export const FilterStore = (props) => {
@@ -221,6 +230,15 @@ export const FilterStore = (props) => {
         myUniversalListSetting = prepareNewsListSettings;
         myUniversalDetailSetting = prepareNewsDetailSettings;
         myUniversalFilterSetting = prepareNewsFilterSettings;
+        break;
+      case "autozar":
+        myContextListSetting = prepareAutozarContextSettings.listSetting;
+        myContextDetailSetting = prepareAutozarContextSettings.detailSetting;
+        myPrepareListFunction = prepareAutozarList;
+        myPrepareDetailFunction = prepareAutozarDetail;
+        myUniversalListSetting = prepareAutozarListSettings;
+        myUniversalDetailSetting = prepareAutozarDetailSettings;
+        myUniversalFilterSetting = prepareAutozarFilterSettings;
         break;
 
       default:

@@ -18,11 +18,6 @@ const FilterCheckbox = ({
 }) => {
   const filterContext = useContext(FilterContext);
 
-  const [myData, setMyData] = useState({
-    loading: true,
-    myList: [],
-  });
-
   //prepare criteria params
   let myCriteria = {};
   if (!isEmpty(criteria)) {
@@ -48,6 +43,11 @@ const FilterCheckbox = ({
     };
   }
 
+  const [myData, setMyData] = useState({
+    loading: false,
+    myList: [],
+  });
+
   const callAllDataAsync = async () => {
     setMyData({
       myList: await loadDataview({
@@ -60,18 +60,26 @@ const FilterCheckbox = ({
   };
 
   useEffect(() => {
-    callAllDataAsync();
+    //criteria байгаа мөртлөө шүүх утга нь хоосон байвал уг Filter-ийг тэр чигт нь хаачихъя.
+    //Яагаад гэвэл энэ Chained Select юм байна. Фирм → Марк гэсэн үг. Фирм сонгоогүй бол
+    //Марк хоосон байх ёстой.
+    if (
+      !isEmpty(criteria) &&
+      isEmpty(filterContext.urlSetting.filterList?.[criteria.operand])
+    ) {
+      setMyData({
+        myList: [],
+        loading: false,
+      });
+    } else {
+      callAllDataAsync();
+    }
   }, [filterContext.urlSetting.filterList]);
+
+  // console.log("FilterCheckbox", myData);
 
   return (
     <>
-      {/* <h6 className="gx-text-uppercase gx-text-orange gx-mt-4">{title}</h6> */}
-      {/* <div
-        className="gx-mt-4 gx-mb-2 gx-fs-sm"
-        style={{ color: "rgb(173, 182, 199)" }}
-      >
-        {title}
-      </div> */}
       <FilterTitle title={title} className="gx-mt-4" />
 
       <Select

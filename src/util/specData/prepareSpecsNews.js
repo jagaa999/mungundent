@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Html5Entities } from "html-entities";
 import { Menu, Checkbox } from "antd";
 import toBoolean from "util/booleanFunction";
 import accounting from "accounting";
 import moment from "moment";
-import MotoAuctionStarRatingComponent from "components/Moto/Auction/MotoAuctionStarRatingComponent";
 import MyIcon from "util/iconFunction";
 import FilterTextSearch from "components/Moto/Drawer/FilterWidget/FilterTextSearch";
 import FilterCheckbox from "components/Moto/Drawer/FilterWidget/FilterCheckbox";
@@ -560,32 +558,32 @@ export const prepareNewsFilterSettings = {
     // />,
 
     <FilterCheckbox
-      metaListId="1602132741145717"
+      metaListId="1586942860884102"
       paging={{
-        sortColumnNames: "mglfirm",
+        sortColumnNames: "firmname",
         sortType: "ASC",
       }}
       title="Фирм"
       placeholder="Автомашины фирм"
-      urlparamfield="mglfirm"
-      labelfield="mglfirm"
-      valuefield="mglfirm"
+      urlparamfield="firmid"
+      labelfield="firmname"
+      valuefield="firmid"
     />,
     <FilterCheckbox
-      metaListId="1602132873132213"
+      metaListId="1586946725870325"
       criteria={{
         operator: "=",
-        operand: "mglfirm",
+        operand: "firmid",
       }}
       paging={{
-        sortColumnNames: "mglmark",
+        sortColumnNames: "markname",
         sortType: "ASC",
       }}
       title="Марк"
       placeholder="Автомашины марк"
-      urlparamfield="mglmark"
-      labelfield="mglmark"
-      valuefield="mglmark"
+      urlparamfield="markid"
+      labelfield="markname"
+      valuefield="markid"
     />,
   ],
 };

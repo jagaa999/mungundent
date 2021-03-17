@@ -78,14 +78,14 @@ const FilterRadioButton2 = ({
 
   return (
     <>
-      <FilterTitle title={title} className="gx-mt-4" />
+      <FilterTitle title={title} className="gx-mt-4 gx-mb-3" />
 
       <div className="gx-w-100 gx-p-0">
         {myData.myList.map((item, index) => {
           const myValue = item[valuefield];
 
           return (
-            <Tooltip title={item[labelfield]} placement="right">
+            <Tooltip title={item[labelfield]} placement="right" key={index}>
               <Card
                 key={index}
                 className={`gx-fs-sm gx-mb-2 gx-card-full gx-p-2 gx-text-center ${

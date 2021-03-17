@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { Select, Input } from "antd";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
+import { FilterTitle } from "util/textFunction";
 import FilterContext from "context/FilterContext";
 
 const FilterTextSearch = ({ title, placeholder, urlparamfield }) => {
@@ -9,13 +10,7 @@ const FilterTextSearch = ({ title, placeholder, urlparamfield }) => {
 
   return (
     <>
-      {/* <h6 className="gx-text-uppercase gx-text-orange gx-mt-4">{title}</h6> */}
-      <div
-        className="gx-mt-4 gx-mb-2 gx-fs-sm"
-        style={{ color: "rgb(173, 182, 199)" }}
-      >
-        {title}
-      </div>
+      <FilterTitle title={title} className="gx-mt-4 gx-mb-3" />
 
       <Input.Search
         placeholder={placeholder}

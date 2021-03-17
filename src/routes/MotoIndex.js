@@ -266,10 +266,13 @@ const App = ({ match }) => {
             <AutozarDetail />
           </AutozarStore>
         </Route>
-        <Route path={["/autozar", "/autozarlist"]}>
-          <AutozarStore>
+        <Route path={["/autozar"]}>
+          {/* <AutozarStore>
             <AutozarList />
-          </AutozarStore>
+          </AutozarStore> */}
+          <UniversalStore>
+            <UniversalListPage />
+          </UniversalStore>
         </Route>
         {/*}
 
