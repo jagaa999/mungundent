@@ -522,16 +522,20 @@ export const prepareNewsFilterSettings = {
       placeholder="Текстээ бичнэ үү"
       urlparamfield="title"
     />,
-    <FilterCheckbox
-      metaListId="1587100905303413"
-      title="Төрөл"
-      placeholder="Нийтлэлийн төрөл"
-      urlparamfield="newstypeid"
-      labelfield="newstypename"
-      valuefield="newstypeid"
-    />,
+    // <FilterCheckbox
+    //   metaListId="1587100905303413"
+    //   title="Төрөл"
+    //   placeholder="Нийтлэлийн төрөл"
+    //   urlparamfield="newstypeid"
+    //   labelfield="newstypename"
+    //   valuefield="newstypeid"
+    // />,
     <FilterRadioButton2
       metaListId="1587100905303413"
+      paging={{
+        sortColumnNames: "newstypeid",
+        sortType: "ASC",
+      }}
       title="Төрөл"
       placeholder="Нийтлэлийн төрөл"
       urlparamfield="newstypeid"
@@ -546,13 +550,42 @@ export const prepareNewsFilterSettings = {
       labelfield="newssourcename"
       valuefield="newssourceid"
     />,
+    // <FilterCheckbox
+    //   metaListId="1585046481242"
+    //   title="Нийтлэгч"
+    //   placeholder="Нийтлэгч хүмүүс"
+    //   urlparamfield="publisherid"
+    //   labelfield="publishername"
+    //   valuefield="publisherid"
+    // />,
+
     <FilterCheckbox
-      metaListId="1585046481242"
-      title="Нийтлэгч"
-      placeholder="Нийтлэгч хүмүүс"
-      urlparamfield="publisherid"
-      labelfield="publishername"
-      valuefield="publisherid"
+      metaListId="1602132741145717"
+      paging={{
+        sortColumnNames: "mglfirm",
+        sortType: "ASC",
+      }}
+      title="Фирм"
+      placeholder="Автомашины фирм"
+      urlparamfield="mglfirm"
+      labelfield="mglfirm"
+      valuefield="mglfirm"
+    />,
+    <FilterCheckbox
+      metaListId="1602132873132213"
+      criteria={{
+        operator: "=",
+        operand: "mglfirm",
+      }}
+      paging={{
+        sortColumnNames: "mglmark",
+        sortType: "ASC",
+      }}
+      title="Марк"
+      placeholder="Автомашины марк"
+      urlparamfield="mglmark"
+      labelfield="mglmark"
+      valuefield="mglmark"
     />,
   ],
 };

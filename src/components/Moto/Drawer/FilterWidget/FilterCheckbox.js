@@ -4,6 +4,7 @@ import { Select } from "antd";
 import { LoadProcess, loadDataview } from "util/axiosFunction";
 import { FilterTitle } from "util/textFunction";
 import FilterContext from "context/FilterContext";
+import { isEmpty } from "lodash";
 
 const FilterCheckbox = ({
   metaListId,
@@ -12,6 +13,8 @@ const FilterCheckbox = ({
   urlparamfield,
   labelfield,
   valuefield,
+  criteria = undefined,
+  paging = undefined,
 }) => {
   const filterContext = useContext(FilterContext);
 
@@ -20,12 +23,37 @@ const FilterCheckbox = ({
     myList: [],
   });
 
+  //prepare criteria params
+  let myCriteria = {};
+  if (!isEmpty(criteria)) {
+    myCriteria = {
+      [criteria.operand]: {
+        0: {
+          operator: criteria.operator || "=",
+          operand: filterContext.urlSetting.filterList?.[criteria.operand],
+        },
+      },
+    };
+  }
+
+  //prepare paging params
+  let myPaging = {};
+  if (!isEmpty(paging)) {
+    myPaging = {
+      sortColumnNames: {
+        [paging.sortColumnNames]: {
+          sortType: paging?.sortType || "ASC",
+        },
+      },
+    };
+  }
+
   const callAllDataAsync = async () => {
     setMyData({
       myList: await loadDataview({
         systemmetagroupid: metaListId,
-        criteria: {},
-        paging: {},
+        criteria: { ...myCriteria },
+        paging: { ...myPaging },
       }),
       loading: false,
     });
@@ -33,7 +61,7 @@ const FilterCheckbox = ({
 
   useEffect(() => {
     callAllDataAsync();
-  }, []);
+  }, [filterContext.urlSetting.filterList]);
 
   return (
     <>
