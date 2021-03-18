@@ -1,37 +1,34 @@
 import React from "react";
 import Vimeo from "@u-wave/react-vimeo";
+import VimeoBanner from "../Moto/Media/VimeoBanner";
 
 //  https://www.npmjs.com/package/react-vimeo-embed
 
+const bannerList = [
+  {
+    videoId: "374644920",
+    title: "Kia K5",
+    link: "https://www.facebook.com/kiamotorsmongolia/",
+  },
+  {
+    videoId: "489787055",
+    title: "Jeep Wrangler Rubicon",
+    link: "https://www.facebook.com/JeepOllllllOMongolia",
+  },
+  {
+    videoId: "400887647",
+    title: "Jeep Wrangler",
+    link: "https://www.facebook.com/JeepOllllllOMongolia",
+  },
+];
+
 const HomeBanner = () => {
+  const myItem = bannerList[Math.floor(Math.random() * bannerList.length)];
   return (
     <>
       <div className="gx-fs-xs gx-text-grey gx-w-100 gx-text-right">Баннер</div>
 
-      <Vimeo
-        video="374644920"
-        // video="461834246"
-        autoplay={true}
-        muted={true}
-        background={true}
-        width="100%"
-        height="auto"
-        loop={true}
-        showByline={true}
-        controls={false}
-        responsive={true}
-      />
-      <div className="gx-mt-2 gx-w-100 gx-text-center">
-        <span className="gx-mr-2">Kia K5</span>
-        <a
-          href="https://www.facebook.com/kiamotorsmongolia/"
-          target="_blank"
-          className="gx-fs-sm"
-        >
-          <i className="icon icon-long-arrow-right gx-fs-xl gx-ml-3 gx-d-inline-flex gx-vertical-align-middle" />{" "}
-          Энд дарна уу
-        </a>
-      </div>
+      <VimeoBanner {...myItem} />
     </>
   );
 };
