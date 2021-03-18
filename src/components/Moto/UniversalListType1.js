@@ -71,7 +71,7 @@ const UniversalListType1 = ({
             <MyFilter myUniversalFilterSetting={myUniversalFilterSetting} />
           </Sider>
         )}
-        <Layout>
+        <Layout style={{ overflow: "visible" }}>
           <Content style={{ minHeight: "100vw" }}>
             <div className="moto-list">
               {!myListContextLoading ? (

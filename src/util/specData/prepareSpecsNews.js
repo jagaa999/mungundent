@@ -141,6 +141,14 @@ const tempHeaderSpec = (item, menu, mainData) => {
       field: "newssourcename",
       value: item.newssourcename,
     },
+    {
+      field: "firmnames",
+      value: item.firmnames,
+    },
+    {
+      field: "marknames",
+      value: item.marknames,
+    },
   ];
 };
 
