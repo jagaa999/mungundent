@@ -141,6 +141,11 @@ const tempHeaderSpec = (item, menu, mainData) => {
       field: "newssourcename",
       value: item.newssourcename,
     },
+  ];
+};
+
+const tempSpecList1 = (item, menu, mainData) => {
+  return [
     {
       field: "carfirmnames",
       value: item.carfirmnames,
@@ -150,10 +155,6 @@ const tempHeaderSpec = (item, menu, mainData) => {
       value: item.carmarknames,
     },
   ];
-};
-
-const tempSpecList1 = (item, menu, mainData) => {
-  return [];
 };
 
 const tempSpecList2 = (item, menu, mainData) => {
