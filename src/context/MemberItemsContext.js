@@ -238,7 +238,7 @@ export const MemberItemsStore = (props) => {
   //  #     # #     #    #    #     # #     # #     # #    #
   //  #     # #######    #    #######  #####  #     # #     #
   const loadMotocar = () => {
-    console.log("loadMotocar ажиллаж байна");
+    // console.log("loadMotocar ажиллаж байна");
 
     setMotocar({ ...motocar, loading: true });
     const myParams = {

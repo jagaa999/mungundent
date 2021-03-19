@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { ContextDevTool } from "react-context-devtool";
 
 import { message } from "antd";
 import toBoolean from "util/booleanFunction";
@@ -327,7 +328,7 @@ export const NewsStore = (props) => {
       },
     };
 
-    // console.log("myParamsNewsDetail", myParamsNewsDetail);
+    console.log("myParamsNewsDetail", myParamsNewsDetail);
 
     // setState({ ...state, loading: true });
 
@@ -486,6 +487,14 @@ export const NewsStore = (props) => {
         upPublishedDate,
       }}
     >
+      {process.env.NODE_ENV === "development" && (
+        <ContextDevTool
+          context={NewsContext}
+          id="NewsContextId"
+          displayName="NEWS STORE"
+        />
+      )}
+
       {props.children}
     </NewsContext.Provider>
   );

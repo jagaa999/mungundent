@@ -108,7 +108,7 @@ const tempMainData = (item, menu) => {
     },
     description: {
       field: "description",
-      value: item.description.substring(0, 135),
+      value: item?.description?.substring(0, 135),
     },
     mainnumber: {
       field: "",
@@ -142,12 +142,12 @@ const tempHeaderSpec = (item, menu, mainData) => {
       value: item.newssourcename,
     },
     {
-      field: "firmnames",
-      value: item.firmnames,
+      field: "carfirmnames",
+      value: item.carfirmnames,
     },
     {
-      field: "marknames",
-      value: item.marknames,
+      field: "carmarknames",
+      value: item.carmarknames,
     },
   ];
 };

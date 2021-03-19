@@ -27,7 +27,7 @@ const UniversalListCarDetail = (props) => {
   const specList1 = carDetail.specList1;
   if (isEmpty(mainData)) return null;
 
-  console.log("carDetail", carDetail);
+  // console.log("carDetail", carDetail);
 
   return (
     <div
