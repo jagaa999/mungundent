@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { message } from "antd";
 import toBoolean from "util/booleanFunction";
 import moment from "moment";
+import { getUniqueId } from "util/textFunction";
 
 import axios from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
@@ -283,16 +284,12 @@ export const NewsStore = (props) => {
 
   const saveNewsDetail = (values) => {
     // console.log("saveNewsDetail дотор орж ирсэн values--", values);
-
     const myimagemain =
       values.imgurl &&
       values.imgurl.fileList &&
       values.imgurl.fileList.length > 0
         ? values.imgurl.fileList[0].response.url
         : "";
-
-    const myBody = JSON.stringify(values.body); //Элдэв тэмдэгтийг хувиргаж, дан текст болгон хадгална.
-    const myDescription = values.body.blocks[0].data.text.substring(0, 500); //Эхний параграф текстийг авч description буюу товчлолд өгнө.
 
     // return null;
 
@@ -302,10 +299,10 @@ export const NewsStore = (props) => {
         password: "89",
         command: "motoNewsDV_002",
         parameters: {
-          id: values.newsid || "",
+          id: values.newsid || getUniqueId(),
           title: values.title,
           imgurl: myimagemain,
-          body: myBody,
+          body: JSON.stringify(values.body), //Элдэв тэмдэгтийг хувиргаж, дан текст болгон хадгална.
           isfeatured: toBoolean(values.isfeatured) ? "1" : "0",
           iscomment: toBoolean(values.iscomment) ? "1" : "0",
           isactive: toBoolean(values.isactive) ? "1" : "0",
@@ -318,7 +315,7 @@ export const NewsStore = (props) => {
           //! publishedDate, // --Form-д байгаа ! Түр авав
           // createdDate,
           // modifiedDate,
-          description: myDescription,
+          description: values.body.blocks[0].data.text.substring(0, 500), //Эхний параграф текстийг авч description буюу товчлолд өгнө.
           newstypeId: values.newstypeid,
           newssourceId: values.newssourceid,
           // contentId,
