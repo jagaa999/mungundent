@@ -282,9 +282,8 @@ export const NewsStore = (props) => {
   //        # #######  #   #  #
   //  #     # #     #   # #   #
   //   #####  #     #    #    #######
-
   const saveNewsDetail = (values) => {
-    // console.log("saveNewsDetail дотор орж ирсэн values--", values);
+    console.log("saveNewsDetail дотор орж ирсэн values--", values);
     const myimagemain =
       values.imgurl &&
       values.imgurl.fileList &&
@@ -300,6 +299,7 @@ export const NewsStore = (props) => {
         password: "89",
         command: "motoNewsDV_002",
         parameters: {
+          ...values,
           id: values.newsid || getUniqueId(),
           title: values.title,
           imgurl: myimagemain,
@@ -331,6 +331,7 @@ export const NewsStore = (props) => {
     console.log("myParamsNewsDetail", myParamsNewsDetail);
 
     // setState({ ...state, loading: true });
+    // return null;
 
     axios
       .post("", myParamsNewsDetail)

@@ -2,11 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 
 import NewsEditor from "./NewsEditor";
 import ImageUpload from "./Image/ImageUpload";
+import MyIcon from "util/iconFunction";
 
 //Body-ийн их биеийн тагуудыг зөв харуулдаг болгохын тулд оруулж ирэв.
 import { Html5Entities } from "html-entities";
 import toBoolean from "util/booleanFunction";
-
 import {
   Button,
   Card,
@@ -18,14 +18,93 @@ import {
   Select,
 } from "antd";
 
-import { PlusOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-
 import { loadDataview } from "util/axiosFunction";
 import NewsContext from "context/NewsContext";
 import ImageCrop1 from "./Image/ImageCrop1";
+import CarFirmMarkChoose from "./Form/CarFirmMarkChoose";
+import { isEmpty } from "lodash";
 
 const { Option, OptGroup } = Select;
 const { TextArea } = Input;
+
+const prepareCarFirmMark = (values) => {
+  // carfirmlist":{4 items
+  //   "0": {
+  //   id:"1487833859399"
+  //   srctablename:"ECM_NEWS"
+  //   srcrecordid:"16150271791671"
+  //   trgtablename:"MOTO_GOO_CARS_REF_FIRM"
+  //   trgrecordid:"1021400000"
+  //   text1:"Volkswagen"
+  //   }
+  // }
+
+  // carmarklist:{
+  //   "0": {
+  //   id:"1487833859400",
+  //   srctablename:"ECM_NEWS",
+  //   srcrecordid:"16150271791671",
+  //   trgtablename:"MOTO_GOO_CARS_REF_MARK",
+  //   trgrecordid:"6464819816495469",
+  //   text1:"5 Series",
+  //   }
+  // }
+
+  //   carfirmmark: Array(2)
+  // 0: {firm: "1060200000 ~ Alfa Romeo", mark: undefined}
+  // 1: {firm: "1011300000 ~ Toyota", mark: "7151525444091293~Alphard Hybrid"}
+
+  const carFirmList = [];
+  const carMarkList = [];
+
+  const myList = values.carfirmmark || [];
+
+  myList.map((item, index) => {
+    console.log("eeeeeee", item);
+
+    const myFirmTemp = item.firm || "";
+    const myIdFirm = myFirmTemp.split("~")[0];
+    const myTextFirm = myFirmTemp.split("~")[1];
+    console.log(myIdFirm, "         ------------      ", myTextFirm);
+    if (!isEmpty(myIdFirm)) {
+      const myFirm = {
+        id: "",
+        srctablename: "ECM_NEWS",
+        srcrecordid: values.newsid || "",
+        trgtablename: "MOTO_GOO_CARS_REF_FIRM",
+        trgrecordid: myIdFirm,
+        text1: myTextFirm,
+      };
+      carFirmList.push(myFirm);
+    }
+
+    const myMarkTemp = item.mark || "";
+    const myIdMark = myMarkTemp.split("~")[0];
+    const myTextMark = myMarkTemp.split("~")[1];
+    console.log(myIdMark, "         ------------      ", myTextMark);
+    if (!isEmpty(myIdMark)) {
+      const myMark = {
+        id: "",
+        srctablename: "ECM_NEWS",
+        srcrecordid: values.newsid || "",
+        trgtablename: "MOTO_GOO_CARS_REF_MARK",
+        trgrecordid: myIdMark,
+        text1: myTextMark,
+      };
+      carMarkList.push(myMark);
+    }
+
+    // console.log("DDDDDDDD", myFirm);
+  });
+
+  values.carFirmList = carFirmList;
+  values.carMarkList = carMarkList;
+
+  // values.remove("carfirmmark");
+  delete values["carfirmmark"];
+
+  return values;
+};
 
 const formItemLayout = {
   labelCol: {
@@ -63,6 +142,12 @@ function handleFocus() {
   console.log("focus");
 }
 
+//   ####  #####   ##   #####  #####
+//  #        #    #  #  #    #   #
+//   ####    #   #    # #    #   #
+//       #   #   ###### #####    #
+//  #    #   #   #    # #   #    #
+//   ####    #   #    # #    #   #
 const NewsForm = () => {
   const [form] = Form.useForm();
   const newsDetailContext = useContext(NewsContext);
@@ -141,15 +226,21 @@ const NewsForm = () => {
     console.log("FFFFFFFFF", form);
   }, []);
 
+  //  ###### # #    # #  ####  #    #
+  //  #      # ##   # # #      #    #
+  //  #####  # # #  # #  ####  ######
+  //  #      # #  # # #      # #    #
+  //  #      # #   ## # #    # #    #
+  //  #      # #    # #  ####  #    #
   const onFinish = (values) => {
     // values.body = htmlEntities.decode(myBody);
     values.body = myBody;
     values.images = myImages;
-    newsDetailContext.saveNewsDetail(values);
-  };
+    console.log("MY Last Form Finish", values);
+    values = prepareCarFirmMark(values);
+    console.log("AFTER PREPARE", values);
 
-  const saveButton = () => {
-    console.log("Save button clicked");
+    newsDetailContext.saveNewsDetail(values);
   };
 
   const normFileBody = (e) => {
@@ -159,12 +250,12 @@ const NewsForm = () => {
     return e;
   };
 
-  const normFileImages = (e) => {
-    console.log("Editorjs хүлээн авсан images:", e);
+  // const normFileImages = (e) => {
+  //   console.log("Editorjs хүлээн авсан images:", e);
 
-    setMyImages(e);
-    return e;
-  };
+  //   setMyImages(e);
+  //   return e;
+  // };
 
   let myNewsType = newsType.newsTypes;
   myNewsType.map((item, index) => {
@@ -175,16 +266,14 @@ const NewsForm = () => {
     }
   });
 
-  console.log("newsItem: ", newsItem);
+  // console.log("newsItem: ", newsItem);
 
-  // ######  ####### ####### #     # ######  #     #
-  // #     # #          #    #     # #     # ##    #
-  // #     # #          #    #     # #     # # #   #
-  // ######  #####      #    #     # ######  #  #  #
-  // #   #   #          #    #     # #   #   #   # #
-  // #    #  #          #    #     # #    #  #    ##
-  // #     # #######    #     #####  #     # #     #
-
+  //  #####  ###### ##### #    # #####  #    #
+  //  #    # #        #   #    # #    # ##   #
+  //  #    # #####    #   #    # #    # # #  #
+  //  #####  #        #   #    # #####  #  # #
+  //  #   #  #        #   #    # #   #  #   ##
+  //  #    # ######   #    ####  #    # #    #
   return (
     <Card
       className="gx-card_old "
@@ -211,14 +300,32 @@ const NewsForm = () => {
         scrollToFirstError={true}
         colon={false}
       >
+        {/*                                             
+         ####    ##   #####  ###### # #####  #    # 
+        #    #  #  #  #    # #      # #    # ##  ## 
+        #      #    # #    # #####  # #    # # ## # 
+        #      ###### #####  #      # #####  #    # 
+        #    # #    # #   #  #      # #   #  #    # 
+         ####  #    # #    # #      # #    # #    # */}
+
+        <Form.Item {...formItemLayout} label="Холбоотой фирм, марк">
+          <CarFirmMarkChoose
+            myItem={newsItem}
+            tailFormItemLayout={tailFormItemLayout}
+            {...tailFormItemLayout}
+            form={form}
+          />
+        </Form.Item>
+
+        {/* <Divider /> */}
+
         {/*
-        ####### ### ####### #       ####### 
-            #     #     #    #       #       
-            #     #     #    #       #       
-            #     #     #    #       #####   
-            #     #     #    #       #       
-            #     #     #    #       #       
-            #    ###    #    ####### #######  */}
+        ##### # ##### #      ###### 
+          #   #   #   #      #      
+          #   #   #   #      #####  
+          #   #   #   #      #      
+          #   #   #   #      #      
+          #   #   #   ###### ###### */}
         <Form.Item name="newsid" label="ID дугаар" hidden={true}>
           <Input disabled />
         </Form.Item>
@@ -229,7 +336,8 @@ const NewsForm = () => {
             <span>
               Гарчиг&nbsp;
               <Tooltip title="Нийтлэлийн утга санааг бүрэн төлөөлөхүйцээр өгөөрэй.">
-                <QuestionCircleOutlined />
+                {/* <QuestionCircleOutlined /> */}
+                <MyIcon type="iconhelp" />
               </Tooltip>
             </span>
           }
@@ -390,12 +498,28 @@ const NewsForm = () => {
 
         <Divider />
 
+        {/* 
+        "id":string"1487833859399"
+        "srctablename":string"ECM_NEWS"
+        "srcrecordid":string"16150271791671"
+        "trgtablename":string"MOTO_GOO_CARS_REF_FIRM"
+        "trgrecordid":string"1021400000"
+        "text1":string"Volkswagen" */}
+        {/* const [carFirmList, setCarFirmList] = useState([]); */}
+
+        {/* <CarFirmMarkSelect
+          myItem={newsItem}
+          carFirmList={carFirmList}
+          setCarFirmList={setCarFirmList}
+        /> */}
+
         <Form.Item {...tailFormItemLayout}>
           <Button
             type="primary"
             size="large"
             htmlType="submit"
-            icon={<PlusOutlined />}
+            // className="gx-btn-success"
+            icon={<MyIcon type="iconplus-solid" />}
           >
             Илгээх
           </Button>
