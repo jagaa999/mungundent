@@ -18,6 +18,7 @@ import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 
 import { loadDataview } from "util/axiosFunction";
 import { changeConfirmLocale } from "antd/lib/modal/locale";
+import { isEmpty } from "lodash";
 
 const myLayout = {
   wrapperCol: {
@@ -31,7 +32,12 @@ const myLayout = {
 //       #   #   ###### #####    #
 //  #    #   #   #    # #   #    #
 //   ####    #   #    # #    #   #
-const CarFirmMarkChoose = ({ form, myItem, tailFormItemLayout }) => {
+const CarFirmMarkChoose = ({
+  form,
+  myItem,
+  tailFormItemLayout,
+  onValuesChange,
+}) => {
   // metaListId="1586942860884102"
   // paging={{
   //   sortColumnNames: "firmname",
@@ -77,7 +83,17 @@ const CarFirmMarkChoose = ({ form, myItem, tailFormItemLayout }) => {
     console.log("FFFFFFFFF", form);
   }, []);
 
+  // console.log(onValuesChange);
+  // console.log(form.onValuesChange);
+  // console.log(form);
+  // console.log(form.getFieldsValue());
+
+  useEffect(() => {
+    console.log("ӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨ");
+  }, [form.getFieldsValue().carfirmmark]);
+
   const changeFirm = async (e) => {
+    console.log("Firm changed", e);
     const myId = e.split("~")[0];
 
     setMarkList({ ...markList, loading: true });
@@ -105,6 +121,10 @@ const CarFirmMarkChoose = ({ form, myItem, tailFormItemLayout }) => {
     });
   };
 
+  const changeSelect = (e) => {
+    console.log("changeSelect ажиллажээ", e);
+  };
+
   //  #####  ###### ##### #    # #####  #    #
   //  #    # #        #   #    # #    # ##   #
   //  #    # #####    #   #    # #    # # #  #
@@ -115,7 +135,14 @@ const CarFirmMarkChoose = ({ form, myItem, tailFormItemLayout }) => {
     <Form.List name="carfirmmark">
       {(fields, { add, remove }) => (
         <>
-          {fields.map((field) => {
+          {fields.map((field, index) => {
+            // console.log("fields", fields);
+
+            // const myTemp = Object.values(myItem.carfirmlist || {})[index];
+            // console.log("myTemp", myTemp);
+            // if (!isEmpty(myTemp))
+            //   changeFirm(`${myTemp.trgrecordid}~${myTemp.text1}`);
+
             return (
               // <>
               <Space
@@ -137,7 +164,13 @@ const CarFirmMarkChoose = ({ form, myItem, tailFormItemLayout }) => {
                     placeholder="Фирм"
                     style={{ width: "170px" }}
                     optionFilterProp="children"
-                    onChange={changeFirm}
+                    value="1030300000~Hyundai"
+                    // onChange={changeFirm}
+                    // onSelect={changeSelect}
+                    // onSearch={changeSelect}
+                    // onBlur={changeSelect}
+                    // onFocus={changeSelect}
+                    // onSearch={changeSelect}
                     filterOption={(input, option) => {
                       if (option.value) {
                         return (
@@ -170,7 +203,7 @@ const CarFirmMarkChoose = ({ form, myItem, tailFormItemLayout }) => {
                   <Select
                     loading={markList.loading}
                     showSearch
-                    placeholder="Фирм"
+                    placeholder="Марк"
                     style={{ width: "170px" }}
                     optionFilterProp="children"
                     // onChange={}

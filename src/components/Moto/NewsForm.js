@@ -223,7 +223,7 @@ const NewsForm = () => {
   useEffect(() => {
     callFunctionAsync();
     // form.title.focus();
-    console.log("FFFFFFFFF", form);
+    // console.log("FFFFFFFFF", form);
   }, []);
 
   //  ###### # #    # #  ####  #    #
@@ -266,7 +266,13 @@ const NewsForm = () => {
     }
   });
 
+  const handleFormValuesChange = (changedValues, allValues) => {
+    console.log("handleFormValuesChange ажиллалаа", changedValues, allValues);
+  };
+
   // console.log("newsItem: ", newsItem);
+
+  // console.log("newsItem.carfirmlist", newsItem.carfirmlist);
 
   //  #####  ###### ##### #    # #####  #    #
   //  #    # #        #   #    # #    # ##   #
@@ -285,6 +291,7 @@ const NewsForm = () => {
         form={form}
         name="newsDetailForm"
         onFinish={onFinish}
+        onValuesChange={handleFormValuesChange}
         initialValues={{
           newsid: newsItem.newsid || "",
           title: newsItem.title || "",
@@ -296,6 +303,18 @@ const NewsForm = () => {
             ? toBoolean(newsItem.isfeatured)
             : false,
           // description: newsItem ? newsItem.description : "",
+          // carfirmmark: Object.values(newsItem.carfirmlist || {}),
+          carfirmmark: [
+            {
+              firm: "1030400000~Kia",
+            },
+            {
+              firm: "1030300000~Hyundai",
+            },
+            {
+              firm: "1030400000~Kia",
+            },
+          ],
         }}
         scrollToFirstError={true}
         colon={false}
@@ -314,6 +333,7 @@ const NewsForm = () => {
             tailFormItemLayout={tailFormItemLayout}
             {...tailFormItemLayout}
             form={form}
+            onValuesChange={form.onValuesChange}
           />
         </Form.Item>
 
