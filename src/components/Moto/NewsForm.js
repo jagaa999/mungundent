@@ -267,7 +267,7 @@ const NewsForm = () => {
   });
 
   const handleFormValuesChange = (changedValues, allValues) => {
-    console.log("handleFormValuesChange ажиллалаа", changedValues, allValues);
+    console.log("handleFormValuesChange ажиллалаа", changedValues);
   };
 
   // console.log("newsItem: ", newsItem);

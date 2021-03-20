@@ -80,7 +80,7 @@ const CarFirmMarkChoose = ({
 
   useEffect(() => {
     callFunctionAsync();
-    console.log("FFFFFFFFF", form);
+    // console.log("FFFFFFFFF", form);
   }, []);
 
   // console.log(onValuesChange);
@@ -89,7 +89,8 @@ const CarFirmMarkChoose = ({
   // console.log(form.getFieldsValue());
 
   useEffect(() => {
-    console.log("ӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨ");
+    console.log("ӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨӨ", form.getFieldsValue().carfirmmark);
+    // changeFirm()
   }, [form.getFieldsValue().carfirmmark]);
 
   const changeFirm = async (e) => {
@@ -166,11 +167,6 @@ const CarFirmMarkChoose = ({
                     optionFilterProp="children"
                     value="1030300000~Hyundai"
                     // onChange={changeFirm}
-                    // onSelect={changeSelect}
-                    // onSearch={changeSelect}
-                    // onBlur={changeSelect}
-                    // onFocus={changeSelect}
-                    // onSearch={changeSelect}
                     filterOption={(input, option) => {
                       if (option.value) {
                         return (
