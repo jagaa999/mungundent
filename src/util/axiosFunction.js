@@ -141,6 +141,8 @@ export function loadDataview(props) {
     },
   };
 
+  // console.log("loadDataview - myParams", myParams);
+
   return myAxiosZ(myParams)
     .then((myResponse) => {
       // console.log("Цаанаас юу ирэв?", myResponse);

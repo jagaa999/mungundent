@@ -1,6 +1,8 @@
 import React from "react";
+import { isEmpty } from "lodash";
 
 export const FilterTitle = ({ title, className }) => {
+  if (isEmpty(title)) return null;
   return <h6 className={`gx-font-weight-bold ${className}`}>{title}</h6>;
 };
 

@@ -22,6 +22,7 @@ import { loadDataview } from "util/axiosFunction";
 import NewsContext from "context/NewsContext";
 import ImageCrop1 from "./Image/ImageCrop1";
 import CarFirmMarkChoose from "./Form/CarFirmMarkChoose";
+import CarFirmMarkChooseComponent from "./Form/CarFirmMarkChooseComponent";
 import { isEmpty } from "lodash";
 
 const { Option, OptGroup } = Select;
@@ -153,6 +154,9 @@ const NewsForm = () => {
   const newsDetailContext = useContext(NewsContext);
   const newsItem = newsDetailContext.newsDetail.mainDetail;
   const [imageTags, setImageTags] = useState("");
+  const [carfirmmark, setCarfirmmark] = useState([{}, {}, {}]);
+
+  console.log("carfor newsform", carfirmmark);
 
   const titleOnChange = (text) => {
     // console.log("dsfdsfsd", text.target.value);
@@ -303,18 +307,6 @@ const NewsForm = () => {
             ? toBoolean(newsItem.isfeatured)
             : false,
           // description: newsItem ? newsItem.description : "",
-          // carfirmmark: Object.values(newsItem.carfirmlist || {}),
-          carfirmmark: [
-            {
-              firm: "1030400000~Kia",
-            },
-            {
-              firm: "1030300000~Hyundai",
-            },
-            {
-              firm: "1030400000~Kia",
-            },
-          ],
         }}
         scrollToFirstError={true}
         colon={false}
@@ -327,7 +319,7 @@ const NewsForm = () => {
         #    # #    # #   #  #      # #   #  #    # 
          ####  #    # #    # #      # #    # #    # */}
 
-        <Form.Item {...formItemLayout} label="Холбоотой фирм, марк">
+        {/* <Form.Item {...formItemLayout} label="Холбоотой фирм, марк">
           <CarFirmMarkChoose
             myItem={newsItem}
             tailFormItemLayout={tailFormItemLayout}
@@ -335,9 +327,17 @@ const NewsForm = () => {
             form={form}
             onValuesChange={form.onValuesChange}
           />
+        </Form.Item> */}
+
+        <Form.Item {...formItemLayout} label="Фирм, марк сонгох">
+          <CarFirmMarkChooseComponent
+            myItem={newsItem}
+            carfirmmark={carfirmmark}
+            setCarfirmmark={setCarfirmmark}
+          />
         </Form.Item>
 
-        {/* <Divider /> */}
+        <Divider />
 
         {/*
         ##### # ##### #      ###### 
