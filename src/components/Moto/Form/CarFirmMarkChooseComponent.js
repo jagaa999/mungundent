@@ -23,6 +23,7 @@ const CarFirmMarkChooseComponent = ({
       {carfirmmark.map((item, index) => {
         return (
           <CarFirmMarkChooseItem
+            item={item}
             myItem={myItem}
             carfirmmark={carfirmmark}
             setCarfirmmark={setCarfirmmark}
@@ -30,6 +31,14 @@ const CarFirmMarkChooseComponent = ({
           />
         );
       })}
+
+      <Button
+        onClick={() => {
+          setCarfirmmark([...carfirmmark, {}]);
+        }}
+      >
+        Нэмэх
+      </Button>
     </>
   );
 };

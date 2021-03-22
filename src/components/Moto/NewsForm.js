@@ -52,8 +52,8 @@ const prepareCarFirmMark = (values) => {
   // }
 
   //   carfirmmark: Array(2)
-  // 0: {firm: "1060200000 ~ Alfa Romeo", mark: undefined}
-  // 1: {firm: "1011300000 ~ Toyota", mark: "7151525444091293~Alphard Hybrid"}
+  // 0: {firm: "1060200000~Alfa Romeo", mark: undefined}
+  // 1: {firm: "1011300000~Toyota", mark: "7151525444091293~Alphard Hybrid"}
 
   const carFirmList = [];
   const carMarkList = [];
@@ -154,7 +154,11 @@ const NewsForm = () => {
   const newsDetailContext = useContext(NewsContext);
   const newsItem = newsDetailContext.newsDetail.mainDetail;
   const [imageTags, setImageTags] = useState("");
-  const [carfirmmark, setCarfirmmark] = useState([{}, {}, {}]);
+  const [carfirmmark, setCarfirmmark] = useState([
+    { firm: "1060200000~Alfa Romeo", mark: undefined },
+    { firm: "1011300000~Toyota", mark: "7151525444091293~Alphard Hybrid" },
+    {},
+  ]);
 
   console.log("carfor newsform", carfirmmark);
 
@@ -244,7 +248,7 @@ const NewsForm = () => {
     values = prepareCarFirmMark(values);
     console.log("AFTER PREPARE", values);
 
-    newsDetailContext.saveNewsDetail(values);
+    // newsDetailContext.saveNewsDetail(values);
   };
 
   const normFileBody = (e) => {

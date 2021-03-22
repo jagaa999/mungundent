@@ -11,6 +11,7 @@ const FormSelect = ({
   placeholder,
   labelfield,
   valuefield,
+  value,
   criteria = undefined,
   paging = undefined,
   onChange,
@@ -51,6 +52,7 @@ const FormSelect = ({
         placeholder={placeholder}
         optionFilterProp="children"
         onChange={onChange}
+        value={value}
         filterOption={(input, option) => {
           if (option.value) {
             return (
