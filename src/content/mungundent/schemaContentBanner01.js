@@ -3,7 +3,7 @@ export const schemaContentBanner01 = {
   className: "carousel gx-h-100-h gx-w-100 gx-p-relative",
   style: {
     position: "relative",
-    backgroundColor: "red",
+    backgroundColor: "#aef9f7",
     overflow: "hidden",
     height: "90vh",
   },
@@ -21,7 +21,7 @@ export const schemaContentBanner01 = {
               className: "gx-p-relative",
               style: {
                 backgroundImage:
-                  "url(https://wallpaperaccess.com/full/363993.jpg)",
+                  "url(https://res.cloudinary.com/mungundent/image/upload/v1616500213/slide/slide_01_bsut6h.jpg)",
                 backgroundSize: "cover",
                 height: "90vh",
                 width: "100%",
@@ -72,14 +72,14 @@ export const schemaContentBanner01 = {
                                           className:
                                             "gx-p-relative gx-text-transform-uppercase",
                                           style: {
-                                            backgroundColor: "#e82a2a",
+                                            backgroundColor: "#fafafa",
                                             padding: "5px 10px",
                                             fontSize: "14px",
                                             fontWeight: 500,
                                             textTransform: "uppercase",
                                             letterSpacing: "2px",
                                           },
-                                          text: "product",
+                                          text: "Япон стандарт",
                                         },
                                       ],
                                     },
@@ -99,7 +99,7 @@ export const schemaContentBanner01 = {
                                           style: {
                                             color: "#fff",
                                           },
-                                          text: "KEY VISUALS",
+                                          text: "ҮЗЛЭГ, ЭМЧИЛГЭЭ",
                                         },
                                       ],
                                     },
@@ -125,7 +125,7 @@ export const schemaContentBanner01 = {
               className: "gx-p-relative",
               style: {
                 backgroundImage:
-                  "url(http://theme.dsngrid.com/xmin/assets/img/project/project7/1.jpg)",
+                  "url(https://res.cloudinary.com/mungundent/image/upload/v1616500426/slide/slide_03_tckfo4.jpg)",
                 backgroundSize: "cover",
                 height: "90vh",
                 width: "100%",
@@ -176,14 +176,14 @@ export const schemaContentBanner01 = {
                                           className:
                                             "gx-p-relative gx-text-transform-uppercase",
                                           style: {
-                                            backgroundColor: "#e82a2a",
+                                            backgroundColor: "#fafafa",
                                             padding: "5px 10px",
                                             fontSize: "14px",
                                             fontWeight: 500,
                                             textTransform: "uppercase",
                                             letterSpacing: "2px",
                                           },
-                                          text: "product",
+                                          text: "Герман чанар",
                                         },
                                       ],
                                     },
@@ -203,7 +203,7 @@ export const schemaContentBanner01 = {
                                           style: {
                                             color: "#fff",
                                           },
-                                          text: "KEY VISUALS",
+                                          text: "ЦИРКОН БҮРЭЭС",
                                         },
                                       ],
                                     },
@@ -229,7 +229,7 @@ export const schemaContentBanner01 = {
               className: "gx-p-relative",
               style: {
                 backgroundImage:
-                  "url(http://theme.dsngrid.com/xmin/assets/img/project/project7/1.jpg)",
+                  "url(https://res.cloudinary.com/mungundent/image/upload/v1616500426/slide/slide_02_jvpwwp.jpg)",
                 backgroundSize: "cover",
                 height: "90vh",
                 width: "100%",
@@ -280,14 +280,14 @@ export const schemaContentBanner01 = {
                                           className:
                                             "gx-p-relative gx-text-transform-uppercase",
                                           style: {
-                                            backgroundColor: "#e82a2a",
+                                            backgroundColor: "#fafafa",
                                             padding: "5px 10px",
                                             fontSize: "14px",
                                             fontWeight: 500,
                                             textTransform: "uppercase",
                                             letterSpacing: "2px",
                                           },
-                                          text: "product",
+                                          text: "Япон чанар",
                                         },
                                       ],
                                     },
@@ -307,7 +307,7 @@ export const schemaContentBanner01 = {
                                           style: {
                                             color: "#fff",
                                           },
-                                          text: "KEY VISUALS",
+                                          text: "ИМПЛАНТ",
                                         },
                                       ],
                                     },

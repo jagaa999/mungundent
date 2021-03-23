@@ -29,6 +29,10 @@ const OboCustomPage = asyncComponent(() => {
   return import("content/obocustom/ObocustomPage");
 });
 
+const MungundentPage = asyncComponent(() => {
+  return import("content/mungundent/MungundentPage");
+});
+
 const SuxPage = asyncComponent(() => {
   return import("content/sux/SuhPage");
 });
@@ -71,6 +75,10 @@ const MainApp = () => {
 
       <Route path={["/obocustom/", "/obocustoms"]}>
         <OboCustomPage />
+      </Route>
+
+      <Route path={["/mungundent/"]}>
+        <MungundentPage />
       </Route>
 
       <Route path={["/suh/", "/sux/", "sukh", "sox"]}>

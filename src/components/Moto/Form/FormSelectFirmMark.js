@@ -5,7 +5,7 @@ import { LoadProcess, loadDataview } from "util/axiosFunction";
 import { FilterTitle } from "util/textFunction";
 import { isEmpty } from "lodash";
 
-const FormSelect = ({
+const FormSelectFirmMark = ({
   metaListId,
   title,
   placeholder,
@@ -39,11 +39,17 @@ const FormSelect = ({
 
   // console.log("FormSelect", myData);
 
+  // const ddd = (value, label) => {
+  //   console.log(value);
+  //   console.log(label);
+  // };
+
   return (
     <>
       <FilterTitle title={title} className="gx-mt-4" />
 
       <Select
+        // labelInValue={true}
         className="gx-fs-sm"
         style={{ ...style }}
         loading={myData.loading}
@@ -51,7 +57,8 @@ const FormSelect = ({
         allowClear
         placeholder={placeholder}
         optionFilterProp="children"
-        onChange={(e) => onChange(e, myData, "xxx")}
+        // onChange={(e) => onChange(e)}
+        onChange={onChange}
         value={value}
         filterOption={(input, option) => {
           if (option.value) {
@@ -64,7 +71,11 @@ const FormSelect = ({
         }}
       >
         {myData.myList.map((item, index) => (
-          <Select.Option key={index} value={item[valuefield]}>
+          <Select.Option
+            key={index}
+            // value={`${item[valuefield]}~${item[labelfield]}`}
+            value={item[valuefield]}
+          >
             {item[labelfield]}
           </Select.Option>
         ))}
@@ -73,4 +84,4 @@ const FormSelect = ({
   );
 };
 
-export default FormSelect;
+export default FormSelectFirmMark;

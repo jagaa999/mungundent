@@ -256,12 +256,12 @@
     "tooltip": "Нийтлэгч",
     "icon": ""
   },
-  "firmnames": {
+  "carfirmnames": {
     "label": "Дурдагдсан фирм",
     "tooltip": "Дурдагдсан фирм",
     "icon": ""
   },
-  "marknames": {
+  "carmarknames": {
     "label": "Дурдагдсан марк",
     "tooltip": "Дурдагдсан марк",
     "icon": ""

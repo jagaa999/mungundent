@@ -28,85 +28,6 @@ import { isEmpty } from "lodash";
 const { Option, OptGroup } = Select;
 const { TextArea } = Input;
 
-const prepareCarFirmMark = (values) => {
-  // carfirmlist":{4 items
-  //   "0": {
-  //   id:"1487833859399"
-  //   srctablename:"ECM_NEWS"
-  //   srcrecordid:"16150271791671"
-  //   trgtablename:"MOTO_GOO_CARS_REF_FIRM"
-  //   trgrecordid:"1021400000"
-  //   text1:"Volkswagen"
-  //   }
-  // }
-
-  // carmarklist:{
-  //   "0": {
-  //   id:"1487833859400",
-  //   srctablename:"ECM_NEWS",
-  //   srcrecordid:"16150271791671",
-  //   trgtablename:"MOTO_GOO_CARS_REF_MARK",
-  //   trgrecordid:"6464819816495469",
-  //   text1:"5 Series",
-  //   }
-  // }
-
-  //   carfirmmark: Array(2)
-  // 0: {firm: "1060200000~Alfa Romeo", mark: undefined}
-  // 1: {firm: "1011300000~Toyota", mark: "7151525444091293~Alphard Hybrid"}
-
-  const carFirmList = [];
-  const carMarkList = [];
-
-  const myList = values.carfirmmark || [];
-
-  myList.map((item, index) => {
-    console.log("eeeeeee", item);
-
-    const myFirmTemp = item.firm || "";
-    const myIdFirm = myFirmTemp.split("~")[0];
-    const myTextFirm = myFirmTemp.split("~")[1];
-    console.log(myIdFirm, "         ------------      ", myTextFirm);
-    if (!isEmpty(myIdFirm)) {
-      const myFirm = {
-        id: "",
-        srctablename: "ECM_NEWS",
-        srcrecordid: values.newsid || "",
-        trgtablename: "MOTO_GOO_CARS_REF_FIRM",
-        trgrecordid: myIdFirm,
-        text1: myTextFirm,
-      };
-      carFirmList.push(myFirm);
-    }
-
-    const myMarkTemp = item.mark || "";
-    const myIdMark = myMarkTemp.split("~")[0];
-    const myTextMark = myMarkTemp.split("~")[1];
-    console.log(myIdMark, "         ------------      ", myTextMark);
-    if (!isEmpty(myIdMark)) {
-      const myMark = {
-        id: "",
-        srctablename: "ECM_NEWS",
-        srcrecordid: values.newsid || "",
-        trgtablename: "MOTO_GOO_CARS_REF_MARK",
-        trgrecordid: myIdMark,
-        text1: myTextMark,
-      };
-      carMarkList.push(myMark);
-    }
-
-    // console.log("DDDDDDDD", myFirm);
-  });
-
-  values.carFirmList = carFirmList;
-  values.carMarkList = carMarkList;
-
-  // values.remove("carfirmmark");
-  delete values["carfirmmark"];
-
-  return values;
-};
-
 const formItemLayout = {
   labelCol: {
     xs: { span: 0 },
@@ -154,13 +75,11 @@ const NewsForm = () => {
   const newsDetailContext = useContext(NewsContext);
   const newsItem = newsDetailContext.newsDetail.mainDetail;
   const [imageTags, setImageTags] = useState("");
-  const [carfirmmark, setCarfirmmark] = useState([
-    { firm: "1060200000~Alfa Romeo", mark: undefined },
-    { firm: "1011300000~Toyota", mark: "7151525444091293~Alphard Hybrid" },
-    {},
-  ]);
+  const [myCarFirmList, setMyCarFirmList] = useState(
+    Object.values(newsItem.carfirmlist || {})
+  );
 
-  console.log("carfor newsform", carfirmmark);
+  console.log("carfor newsform", myCarFirmList);
 
   const titleOnChange = (text) => {
     // console.log("dsfdsfsd", text.target.value);
@@ -245,10 +164,10 @@ const NewsForm = () => {
     values.body = myBody;
     values.images = myImages;
     console.log("MY Last Form Finish", values);
-    values = prepareCarFirmMark(values);
+    values.carfirmlist = myCarFirmList;
     console.log("AFTER PREPARE", values);
 
-    // newsDetailContext.saveNewsDetail(values);
+    newsDetailContext.saveNewsDetail(values);
   };
 
   const normFileBody = (e) => {
@@ -278,7 +197,8 @@ const NewsForm = () => {
     console.log("handleFormValuesChange ажиллалаа", changedValues);
   };
 
-  // console.log("newsItem: ", newsItem);
+  // console.log("newsItem.carfirmlist: ", newsItem.carfirmlist);
+  // console.log("newsItem.carmarklist: ", newsItem.carmarklist);
 
   // console.log("newsItem.carfirmlist", newsItem.carfirmlist);
 
@@ -315,34 +235,6 @@ const NewsForm = () => {
         scrollToFirstError={true}
         colon={false}
       >
-        {/*                                             
-         ####    ##   #####  ###### # #####  #    # 
-        #    #  #  #  #    # #      # #    # ##  ## 
-        #      #    # #    # #####  # #    # # ## # 
-        #      ###### #####  #      # #####  #    # 
-        #    # #    # #   #  #      # #   #  #    # 
-         ####  #    # #    # #      # #    # #    # */}
-
-        {/* <Form.Item {...formItemLayout} label="Холбоотой фирм, марк">
-          <CarFirmMarkChoose
-            myItem={newsItem}
-            tailFormItemLayout={tailFormItemLayout}
-            {...tailFormItemLayout}
-            form={form}
-            onValuesChange={form.onValuesChange}
-          />
-        </Form.Item> */}
-
-        <Form.Item {...formItemLayout} label="Фирм, марк сонгох">
-          <CarFirmMarkChooseComponent
-            myItem={newsItem}
-            carfirmmark={carfirmmark}
-            setCarfirmmark={setCarfirmmark}
-          />
-        </Form.Item>
-
-        <Divider />
-
         {/*
         ##### # ##### #      ###### 
           #   #   #   #      #      
@@ -518,6 +410,23 @@ const NewsForm = () => {
           hidden={true}
         >
           <Switch name="switchiscomment" defaultChecked />
+        </Form.Item>
+
+        <Divider />
+
+        {/*                                             
+         ####    ##   #####  ###### # #####  #    # 
+        #    #  #  #  #    # #      # #    # ##  ## 
+        #      #    # #    # #####  # #    # # ## # 
+        #      ###### #####  #      # #####  #    # 
+        #    # #    # #   #  #      # #   #  #    # 
+         ####  #    # #    # #      # #    # #    # */}
+        <Form.Item {...formItemLayout} label="Фирм, марк сонгох">
+          <CarFirmMarkChooseComponent
+            myItem={newsItem}
+            myCarFirmList={myCarFirmList}
+            setMyCarFirmList={setMyCarFirmList}
+          />
         </Form.Item>
 
         <Divider />

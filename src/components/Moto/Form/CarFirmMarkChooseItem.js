@@ -1,9 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import MyIcon from "util/iconFunction";
-import { Button, Tooltip, Space } from "antd";
-import { loadDataview } from "util/axiosFunction";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { Button, Tooltip, Space, message } from "antd";
 import { isEmpty } from "lodash";
-import FormSelect from "./FormSelect";
+import FormSelectFirmMark from "./FormSelectFirmMark";
+import { LoadProcess, LoadProcessAdvanced2 } from "util/axiosFunction";
+import MemberContext from "context/MemberContext";
 
 //   ####  #####   ##   #####  #####
 //  #        #    #  #  #    #   #
@@ -12,40 +14,52 @@ import FormSelect from "./FormSelect";
 //  #    #   #   #    # #   #    #
 //   ####    #   #    # #    #   #
 const CarFirmMarkChooseItem = ({
-  item, // 0: {firm: "1060200000~Alfa Romeo", mark: undefined}
-  myItem,
-  carfirmmark,
-  setCarfirmmark,
+  item,
+  myCarFirmList,
+  setMyCarFirmList,
   index,
 }) => {
-  const myFirmTemp = item?.firm || "";
-  const myIdFirm = myFirmTemp?.split("~")[0] || undefined;
-  const myTextFirm = myFirmTemp?.split("~")[1] || undefined;
-  const myMarkTemp = item?.mark || "";
-  const myIdMark = myMarkTemp?.split("~")[0] || undefined;
-  const myTextMark = myMarkTemp?.split("~")[1] || undefined;
+  const memberContext = useContext(MemberContext);
+  const myFirmId = item.trgrecordid || undefined;
 
-  // console.log("myIdFirm", myIdFirm);
-  // console.log("myTextFirm", myTextFirm);
-
-  // metaListId="1586942860884102"
-  // paging={{
-  //   sortColumnNames: "firmname",
-  //   sortType: "ASC",
-  // }}
-  // title="Фирм"
-  // placeholder="Автомашины фирм"
-  // urlparamfield="firmid"
-  // labelfield="firmname"
-  // valuefield="firmid"
-  // const [firmId, setFirmId] = useState(myIdFirm);
-
-  const changeFirm = (e) => {
-    // setFirmId(e);
-    // setCarfirmmark([...carfirmmark]);
+  const changeFirm = (value, label) => {
+    myCarFirmList[index] = {
+      ...myCarFirmList[index],
+      trgrecordid: label.value,
+      text1: label.children,
+    };
+    setMyCarFirmList([...myCarFirmList]);
   };
 
-  // console.log("carfirmmark", carfirmmark);
+  const removeItFromDatabase = (myItem) => {
+    //Энд тухайн META_RECORD бичлэгийг устгана.
+    LoadProcessAdvanced2({
+      request: {
+        username: memberContext.state.memberUID,
+        command: "motoMetaDmRecordMap_005",
+        parameters: {
+          id: myItem.id || "",
+        },
+      },
+      preConfirmModal: {
+        title: "Энэ холбоосыг устгахдаа итгэлтэй байна уу?",
+        zIndex: 2500,
+        icon: <ExclamationCircleOutlined />,
+        content: "Энэ холбоос өмнө нь үүссэн байгааг анхаарна уу.",
+        okText: "Устгая",
+        okType: "danger",
+        cancelText: "Больё",
+      },
+      successActions: [
+        {
+          action: () => message.warning("Амжилттай устгалаа."),
+        },
+        // {
+        //   action: () => loadMotocar(),
+        // },
+      ],
+    });
+  };
 
   return (
     <Space
@@ -53,13 +67,13 @@ const CarFirmMarkChooseItem = ({
       style={{ display: "flex", marginBottom: 8 }}
       align="baseline"
     >
-      <FormSelect
+      <FormSelectFirmMark
         metaListId="1599822188399800"
         title=""
         placeholder="Фирмээ сонгоно уу"
         labelfield="firmname"
         valuefield="id"
-        value={myIdFirm}
+        value={myFirmId}
         criteria={{}}
         paging={{
           sortColumnNames: {
@@ -72,19 +86,19 @@ const CarFirmMarkChooseItem = ({
         style={{ width: "170px" }}
       />
 
-      {!isEmpty(myIdFirm) && (
-        <FormSelect
+      {/* {!isEmpty(myFirmId) && (
+        <FormSelectFirmMark
           metaListId="1586946725870325"
           title=""
           placeholder="Маркаа сонгоно уу"
           labelfield="markname"
           valuefield="markid"
-          value={myIdMark}
+          value={myMarkTemp}
           criteria={{
             firmid: {
               0: {
                 operator: "=",
-                operand: myIdFirm,
+                operand: myFirmId,
               },
             },
           }}
@@ -95,23 +109,25 @@ const CarFirmMarkChooseItem = ({
               },
             },
           }}
-          // onChange={changeFirm}
+          onChange={changeMark}
           style={{ width: "170px" }}
         />
-      )}
+      )} */}
 
       <Tooltip title="Талбарыг устгах" placement="right">
         <MyIcon
           type="icontrash-alt-solid"
           className="moto-icon-1-3"
           onClick={() => {
-            // console.log("index", index);
-            // carfirmmark.splice(index, 1);
-            carfirmmark.splice(0, 1);
-            setCarfirmmark([...carfirmmark]);
+            console.log("myCarFirmList[index]", myCarFirmList[index]);
+
+            if (!isEmpty(myCarFirmList[index].id)) {
+              removeItFromDatabase(myCarFirmList[index]);
+            }
+            myCarFirmList.splice(index, 1);
+            setMyCarFirmList([...myCarFirmList]);
           }}
         />
-        {index}
       </Tooltip>
     </Space>
     // </>

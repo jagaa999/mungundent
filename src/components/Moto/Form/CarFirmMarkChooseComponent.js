@@ -14,19 +14,19 @@ import CarFirmMarkChooseItem from "./CarFirmMarkChooseItem";
 //   ####    #   #    # #    #   #
 const CarFirmMarkChooseComponent = ({
   myItem,
-  carfirmmark,
-  setCarfirmmark,
+  myCarFirmList,
+  setMyCarFirmList,
 }) => {
-  console.log("carfor", carfirmmark);
+  // console.log("carfor", myCarFirmList);
+
   return (
     <>
-      {carfirmmark.map((item, index) => {
+      {myCarFirmList.map((item, index) => {
         return (
           <CarFirmMarkChooseItem
             item={item}
-            myItem={myItem}
-            carfirmmark={carfirmmark}
-            setCarfirmmark={setCarfirmmark}
+            myCarFirmList={myCarFirmList}
+            setMyCarFirmList={setMyCarFirmList}
             index={index}
           />
         );
@@ -34,7 +34,7 @@ const CarFirmMarkChooseComponent = ({
 
       <Button
         onClick={() => {
-          setCarfirmmark([...carfirmmark, {}]);
+          setMyCarFirmList([...myCarFirmList, {}]);
         }}
       >
         Нэмэх
