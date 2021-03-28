@@ -4,11 +4,8 @@ import { useHistory } from "react-router-dom";
 import { isEmpty } from "lodash";
 import { firebaseAuth } from "firebase/firebase";
 
-import axios, { ecomZ, decomZ } from "util/axiosConfig";
 import myAxiosZ from "../util/myAxiosZ";
 import { message, Modal } from "antd";
-import toBoolean from "util/booleanFunction";
-import moment from "moment";
 import MyIcon from "util/iconFunction";
 import PleaseLogin from "components/Moto/Member/PleaseLogin";
 import SignIn from "containers/SignIn";
@@ -122,10 +119,11 @@ export const MemberProfileStore = (props) => {
     if (state.isLogin) {
       // console.log("ЭНД ХЭРЭГЛЭГЧ FIREBASE логиндсон.");
       // console.log("Харин одоо хэрэглэгчийн мэдээллийг ERP-аас татах ёстой.");
-
+      /*
       if (state.memberUID) {
         loginMemberCloud(state.memberUID); //Cloud-д хэрэглэгчийг login-дуулна.
       }
+      */
     }
   }, [state.isLogin]);
 
@@ -144,6 +142,7 @@ export const MemberProfileStore = (props) => {
   //  #       #    #  #          #       #     # #     #  #  #    ##
   //  ####### #     # #          ####### #######  #####  ### #     #
 
+  /*
   const loginMemberCloud = (firebaseUid) => {
     setState({ ...state, loading: true });
 
@@ -179,6 +178,7 @@ export const MemberProfileStore = (props) => {
         console.log(error);
       });
   };
+  */
 
   //  ####### ######  ######      #####  ######  #######    #    ####### #######
   //  #       #     # #     #    #     # #     # #         # #      #    #
@@ -188,6 +188,7 @@ export const MemberProfileStore = (props) => {
   //  #       #    #  #          #     # #    #  #       #     #    #    #
   //  ####### #     # #           #####  #     # ####### #     #    #    #######
 
+  /*
   const createMemberCloudWithFirebase = () => {
     // console.log("ОДООО ҮҮСГЭХЭЭР ОРЖ ИРЭВ");
     setState({ ...state, loading: true });
@@ -246,6 +247,7 @@ export const MemberProfileStore = (props) => {
         console.log("error", error);
       });
   };
+  */
 
   //   #####  ####### #######    #       #######  #####     #    #
   //  #     # #          #       #       #     # #     #   # #   #
@@ -291,6 +293,7 @@ export const MemberProfileStore = (props) => {
   //  #       #     # #     # #     #    #     # #          #    #     #  #  #
   //  ####### ####### #     # ######     ######  #######    #    #     # ### #######
 
+  /*
   const loadMemberDetail = (id = 0) => {
     // console.log("ЭЭЭЭЭЭЭЭЭЭ", id);
 
@@ -367,6 +370,7 @@ export const MemberProfileStore = (props) => {
         message.error(error.toString(), 7);
       });
   };
+  */
 
   const clearMemberDetail = () => {
     setMemberDetail(initialStateMemberDetail);
@@ -380,6 +384,7 @@ export const MemberProfileStore = (props) => {
   // #     # #     #   # #   #          #     # #          #    #     #  #  #
   //  #####  #     #    #    #######    ######  #######    #    #     # ### #######
 
+  /*
   const saveMemberDetail = (values) => {
     console.log("saveMemberDetail дотор орж ирсэн values--", values);
     // const mytitle = `${moment(values.caryearmanufactured).format("YYYY")} ${
@@ -454,6 +459,7 @@ export const MemberProfileStore = (props) => {
         message.error(error, 7);
       });
   };
+  */
 
   //  ###  #####  #     # ####### #     # ######  ####### ######
   //   #  #     # ##   ## #       ##   ## #     # #       #
@@ -523,14 +529,13 @@ export const MemberProfileStore = (props) => {
       value={{
         state,
         memberDetail,
-        // loadMemberProfile,
-        loginMemberCloud,
+        // loginMemberCloud,
         clearMemberProfile,
         clearError,
         setFirebaseProfile,
         isModal,
         // loadMemberDetail,
-        saveMemberDetail,
+        // saveMemberDetail,
         clearMemberDetail,
         isMember,
         OnlyMember,

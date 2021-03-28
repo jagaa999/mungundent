@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import "firebase/analytics";
 
 // import 'firebase/storage';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
@@ -12,16 +13,18 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 // Initialize Firebase
 const config = {
-  apiKey: "AIzaSyDoc57P_ggKwJCiJgGHWeZi-oIXshpcDs4",
-  authDomain: "moto-86243.firebaseapp.com",
-  databaseURL: "https://moto-86243.firebaseio.com",
-  projectId: "moto-86243",
-  storageBucket: "moto-86243.appspot.com",
-  messagingSenderId: "938578949385",
+  apiKey: "AIzaSyB8lKKXMKdEM0C19WZ4B_GpmxJW0QTtKy4",
+  authDomain: "mungundent.firebaseapp.com",
+  projectId: "mungundent",
+  storageBucket: "mungundent.appspot.com",
+  messagingSenderId: "635470397728",
+  appId: "1:635470397728:web:1e6991bff6905f36479745",
+  measurementId: "G-MBCX70N1JJ",
 };
 
 firebase.initializeApp(config);
 const auth = firebase.auth();
+const analytics = firebase.analytics();
 
 // firebase.auth().languageCode = "mn";
 firebase.auth().useDeviceLanguage(); //Тухайн төхөөрөмжийн хэлийг шууд сонгоё.

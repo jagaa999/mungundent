@@ -40,7 +40,7 @@ const MenuMember = () => {
         </Descriptions.Item>
       </Descriptions>
 
-      <Link to={"/news/insert"}>
+      {/* <Link to={"/news/insert"}>
         <Button
           className="gx-mb-1 gx-mt-2 gx-btn-success"
           icon={<PlusOutlined />}
@@ -51,27 +51,6 @@ const MenuMember = () => {
         </Button>
       </Link>
 
-      <Link to={"/autozar/insert"}>
-        <Button
-          className="gx-mb-1 gx-mt-2 gx-btn-success gx-ml-3"
-          icon={<PlusOutlined />}
-          type="text"
-          size="small"
-        >
-          Автозар
-        </Button>
-      </Link>
-
-      {/* <Link to={"/motocar/insert"}>
-        <Button
-          className="gx-mb-1 gx-mt-2 gx-btn-success gx-ml-3"
-          icon={<PlusOutlined />}
-          type="text"
-          size="small"
-        >
-          Машин
-        </Button>
-      </Link> */}
       <Link to={"/member/edit/" + memberContext.state.memberCloudUserSysId}>
         <Button
           className="gx-mb-1 gx-mt-2 gx-btn-success gx-ml-3"
@@ -81,41 +60,13 @@ const MenuMember = () => {
         >
           Анкет
         </Button>
-      </Link>
+      </Link> */}
 
       <Divider className="gx-mt-3 gx-mb-3" />
-
-      <Button
-        className="gx-mb-1 gx-mt-2 gx-btn-info"
-        // icon={<PlusOutlined />}
-        type="text"
-        size="small"
-        onClick={compareContext.toggleDrawer}
-      >
-        Харьцуулах
-      </Button>
 
       <Divider className="gx-mt-3 gx-mb-3" />
       <div className="gx-d-flex">
-        <div>
-          <Button
-            icon={<HomeOutlined />}
-            size="small"
-            className="gx-btn-warning"
-            disabled
-          >
-            Гарааш
-          </Button>
-          <Link to={"/member/" + memberContext.state.memberCloudUserSysId}>
-            <Button
-              icon={<UserOutlined />}
-              size="small"
-              className="gx-btn-warning"
-            >
-              Профайл
-            </Button>
-          </Link>
-        </div>
+        <div></div>
         <div className="gx-ml-auto">
           <Button
             icon={<LogoutOutlined />}

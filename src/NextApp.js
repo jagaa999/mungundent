@@ -7,7 +7,6 @@ import "assets/vendors/style";
 // import configureStore, { history } from "./appRedux/store";
 import { MemberProfileStore } from "context/MemberContext";
 import { GeneralDataStore } from "context/GeneralDataContext";
-import { FilterStore } from "context/FilterContext";
 
 // import { BackTop } from "antd";
 
@@ -16,27 +15,23 @@ const MotoIndexApp = lazy(() => import("./containers/App/MotoIndexApp"));
 
 const NextApp = () => {
   return (
-    // <Provider store={store}>
     <BrowserRouter>
       <MemberProfileStore>
         <GeneralDataStore>
-          <FilterStore>
-            <Helmet>
-              <meta charSet="UTF-8" />
-              <title>Moto.mn - Cars, Parts</title>
-              <meta
-                name="description"
-                content="Автомашин, авто сэлбэг, эд анги"
-              />
-            </Helmet>
-            <Suspense fallback={<div>Одоохон...</div>}>
-              <MotoIndexApp />
-            </Suspense>
-          </FilterStore>
+          <Helmet>
+            <meta charSet="UTF-8" />
+            <title>Mungundent - Dental Clinic</title>
+            <meta
+              name="description"
+              content="Монголын шилдэг шүдний эмнэлгүүдийн нэг. Япон стандартаар эмчилж, хянана."
+            />
+          </Helmet>
+          <Suspense fallback={<div>Одоохон...</div>}>
+            <MotoIndexApp />
+          </Suspense>
         </GeneralDataStore>
       </MemberProfileStore>
     </BrowserRouter>
-    // </Provider>
   );
 };
 

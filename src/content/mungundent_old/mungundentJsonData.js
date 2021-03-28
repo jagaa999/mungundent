@@ -20,8 +20,8 @@ export const schemaBodyParams = {
   },
 };
 
-// export const schemaContent = [schemaContentBanner01];
-export const schemaContent = [];
+export const schemaContent = [schemaContentBanner01];
+// export const schemaContent = [];
 export const schemaBody = schemaBodyData;
 // export const schemaBody = [];
 

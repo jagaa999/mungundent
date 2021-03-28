@@ -21,7 +21,10 @@ const MotoHeader = () => {
 
   return (
     <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">
-      <Header className="gx-header-horizontal-main">
+      <Header
+        className="gx-header-horizontal-main"
+        style={{ minHeight: "48px", display: "flex" }}
+      >
         <div className="gx-container">
           <div className="gx-header-horizontal-main-flex gx-w-100">
             <Link to="/" className="gx-d-block gx-pointer gx-mr-xs-5 gx-logo">
@@ -31,91 +34,23 @@ const MotoHeader = () => {
                 </span>
               </Tooltip>
               <div className="gx-d-none gx-d-lg-block">
-                {/* <img
+                <img
                   alt=""
                   style={{ height: "26px" }}
-                  src={require("assets/images/logo.png")}
-                /> */}
-                <MyIcon type="iconmoto_logo_01" />
+                  src={require("assets/images/mungundent_logo.png")}
+                />
+                {/* <MyIcon type="iconmoto_logo_01" /> */}
               </div>
             </Link>
             <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-block gx-w-75">
               <MotoHorizontalNav />
             </div>
-            {/* 
- #     # ####### ####### #######  #####     #    ######  
- ##   ## #     #    #    #     # #     #   # #   #     # 
- # # # # #     #    #    #     # #        #   #  #     # 
- #  #  # #     #    #    #     # #       #     # ######  
- #     # #     #    #    #     # #       ####### #   #   
- #     # #     #    #    #     # #     # #     # #    #  
- #     # #######    #    #######  #####  #     # #     #  */}
-            <ul className="gx-header-notifications gx-ml-auto">
-              <li>
-                <Popover
-                  // overlayClassName="gx-popover-horizantal"
-                  // placement="bottomRight"
-                  content={carCatalogContext.CarDetailPopover}
-                  trigger="hover"
-                  // title="Каталогиос сонгосон машин"
-                >
-                  <span
-                    className="gx-pointer gx-status-pos gx-d-block"
-                    onClick={carCatalogContext.toggleDrawer}
-                  >
-                    <MyIcon type="iconcar2" className="moto-icon-1-3" />
-                  </span>
-                </Popover>
-              </li>
-              {memberContext.state.isLogin ? (
-                //* Member Motocar
-                <li className="gx-msg">
-                  <Popover
-                    overlayClassName="gx-popover-horizantal"
-                    placement="bottomRight"
-                    content={<MemberMotocar />}
-                    trigger="click"
-                  >
-                    <span className="gx-pointer gx-status-pos gx-d-block">
-                      <MyIcon type="iconmotocar" className="moto-icon-1-3" />
-                    </span>
-                  </Popover>
-                </li>
-              ) : (
-                ""
-              )}
-              {/*
- #     # ####### #     # ######  ####### ######  ### ####### ####### #     #  #####  
- ##   ## #       ##   ## #     # #       #     #  #     #    #       ##   ## #     # 
- # # # # #       # # # # #     # #       #     #  #     #    #       # # # # #       
- #  #  # #####   #  #  # ######  #####   ######   #     #    #####   #  #  #  #####  
- #     # #       #     # #     # #       #   #    #     #    #       #     #       # 
- #     # #       #     # #     # #       #    #   #     #    #       #     # #     # 
- #     # ####### #     # ######  ####### #     # ###    #    ####### #     #  #####  */}
-              {memberContext.state.isLogin ? (
-                //* Member хадгалсан зүйлс MemberItems context дотор байгаа зүйлс
-                <li className="gx-msg">
-                  <Popover
-                    overlayClassName="gx-popover-horizantal"
-                    placement="bottomRight"
-                    content={<MemberItems />}
-                    trigger="click"
-                  >
-                    <span className="gx-pointer gx-status-pos gx-d-block">
-                      <MyIcon
-                        type="iconinbox-solid"
-                        className="moto-icon-1-3"
-                      />
-                    </span>
-                  </Popover>
-                </li>
-              ) : (
-                ""
-              )}
+
+            {/* <ul className="gx-header-notifications gx-ml-auto">
               <li className="gx-user-nav">
                 <MenuMember />
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </Header>

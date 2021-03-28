@@ -16,7 +16,7 @@ export const schemaBodyData = [
         component: "div",
         className: "wrapper",
         children: [
-          //   widgetText01,
+          widgetText01,
           widgetText02,
 
           {
